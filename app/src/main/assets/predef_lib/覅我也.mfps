@@ -1,0 +1,263 @@
+citingspace
+function dfghj(a,b)
+   print("this is function dfghj("+a+","+b+")\n")
+   __sin_test__ :: sin(15)
+   using citingspace test__sc :: scb
+   print ("call asd (e, e, e) = "+asd(e,e,e)+"\n")
+   return __sin_test__ :: cos(15)
+
+endf
+endcs
+
+citingspace nothing_inside
+endcs
+
+function returns_return_Nothing()
+	print("\nTest returns return nothing \n")
+	return __sin_test__ :: sin(3)
+endf
+
+function returns_return_Nothing2()
+	print("\nTest returns return nothing2 \n")
+	return returns_return_Nothing()
+endf
+
+function return_Nothing()
+	print("\nIn return nothing\n")
+	return
+endf
+
+function returns_return_Nothing3()
+	print("\nTest returns return nothing3 \n")
+	return return_Nothing()
+endf
+
+function testhelpblock()
+    if true
+        help
+			variable kk
+			select kk
+			case 7
+				using citingspace ::__sin_test__
+				sin(e)
+			case 8
+				break
+			ends
+        help
+        endh
+        print("am i in help \n")
+        sin(e)
+        print("no, i am not \n")
+        variable xx = 15.67
+        using citingspace ::__sin_test__
+        endh
+    endif
+endf
+
+function testhelpblockmain()
+    try
+        testhelpblock()
+    catch
+        print("cos(30)="+cos(30)+ "\n")
+        try
+            print("xx="+xx+ "\n")
+        catch
+            print("no xx \n")
+        endtry
+    endtry
+endf
+
+function testexceptionthrowmain()
+    try
+        testexceptionthrow()
+    catch
+        print("cos(30)="+cos(30)+ "\n")
+        try
+            print("xx="+xx+ "\n")
+        catch
+            print("no xx \n")
+        endtry
+    endtry
+endf
+
+function testexceptionthrow()
+    using citingspace ::__sin_test__
+    variable xx=14.6
+    endh
+endf
+
+function testincompletemain()
+    try
+        testincompletefunc()
+    catch
+    endtry
+    try
+        testincompletefunc()
+    catch
+    endtry
+    try
+        testincompletefunc()
+    catch
+    endtry
+endf
+
+function testselectcasegap()
+variable a=9
+select a
+throw "An exception thrown between select and case"
+case 9
+print("in case 9 \n")
+ends
+select a
+throw "An exception thrown between select and case"
+case 8
+print("in case 8 \n")
+ends
+select a
+throw "An exception thrown between select and case"
+case 8
+print("in case 8 \n")
+case 9
+print("in case 9 \n")
+ends
+select a
+throw "An exception thrown between select and case"
+case 9
+print("in case 9 \n")
+case 8
+print("in case 8 \n")
+ends
+select a
+throw "An exception thrown between select and case"
+ends
+endf
+
+function testForWhileTryRef()
+	using citingspace __sin_test__
+	for variable idx = cos(30) to 4 step 0.2
+		using citingspace
+		using citingspace ::mfp::math::trigon
+		variable idx1 = 2
+		while and(cos(idx) < 0.9, idx1 < 5)
+			try
+				print("cos(30) = " + cos(30) + " before using citingspace ::__sin_test__.\n")
+				using citingspace ::__sqrt_test__::csa
+				throw("After using citingspace ::\n")
+			catch sqrt(25) == 105
+				print("caught!\n")
+				using citingspace ::__sqrt_test__::csa
+			catch sqrt(25) == 105
+				print("caught!\n")
+				throw("Throw again")
+			endtry
+			idx1 = idx1 + 1
+		loop
+	next
+endf
+
+function testForCatch()
+	using citingspace __sqrt_test__::csb
+	try
+		print("In try \n")
+		using citingspace __sqrt_test__::csa
+	catch sqrt(25) == 105
+		print("In catch\n")
+	endtry
+endf
+
+function testSelectCaseRef(a)
+	using citingspace ::__sqrt_test__ :: csb
+	select a
+		if a > 30
+			using citingspace ::__CS_IN_FUNC__ :: csb
+			testfunc4cs1()
+		endif
+		using citingspace ::__CS_IN_FUNC__ :: csa
+		testfunc4cs1()
+		using citingspace ::__sqrt_test__ :: csa
+	case sqrt(25)
+		testfunc4cs1()
+		using citingspace ::__CS_IN_FUNC__ :: csc
+	case 6
+		testfunc4cs()
+		break
+		using citingspace ::__CS_IN_FUNC__ :: csd
+		testfunc4cs()
+	case 7
+		using citingspace ::__sqrt_test__ :: csa
+		using citingspace ::__CS_IN_FUNC__ :: cse
+		for variable idx = 0 to sqrt(9) step 14
+			print("In for loop, idx = " + idx + "\n")
+		next
+		variable b = 6
+		do
+			using citingspace ::__sin_test__
+			if (b == 6)
+				testfunc4cs()
+				b = b+1
+				continue
+				printf("OK, after continue\n")
+			elseif (b == 18)
+				using citingspace ::__CS_IN_FUNC__ :: csc
+				testfunc4cs1()
+				break
+				using citingspace ::__CS_IN_FUNC__ :: csd
+			else
+				testfunc4cs2()
+				b = b + 1
+			endif
+		until cos(b) > 0.5
+		return testfunc4cs2()
+		testfunc4cs1()
+	default
+		using citingspace __CS_IN_FUNC__ :: cse
+		continue
+		testfunc4cs1()
+	ends
+		
+endf
+
+function testincompleteif()
+	variable a = 3, b = 4, c = 5
+	testfunc4cs1()
+	using citingspace :: __CS_IN_FUNC__ :: csa
+	if a == 3
+		testfunc4cs1()
+		using citingspace :: __CS_IN_FUNC__ :: csb
+		try
+			if b == 1
+			elseif b == 4
+				testfunc4cs1()
+				using citingspace :: __CS_IN_FUNC__ :: csc
+					while c == 5
+						variable x = 9
+						testfunc4cs1()
+						using citingspace :: __CS_IN_FUNC__ :: csd
+						c = c + 1
+			endif
+		catch
+			print("Incomplete while block has been caught\n")
+			print("x = " + x + "\n")
+		endtry
+endf
+
+function testincompleteifmain()
+    try
+        testincompleteif()
+    catch
+    endtry
+    try
+        testincompleteif()
+    catch
+    endtry
+    try
+        testincompleteif()
+    catch
+    endtry
+endf
+
+function testincompletefunc()
+    print("before using ::__sin_test__cos(30)="+cos(30)+"\n")
+    using citingspace ::__sin_test__
+    print("after using ::__sin_test__cos(30)="+cos(30)+"\n")
+// NO more code should be placed after this line.

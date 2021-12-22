@@ -1,0 +1,203 @@
+
+citingspace  ::  Metta :: DDDK::v5__ :: V6  
+
+using citingspace :: metta :: DDDk :: v5__ 
+using citingspace ::__ABCDE__::Abcde::*
+using citingspace ::__ABCDE__::Abcde::CIA :: *
+using citingspace ::mEttA
+
+Help
+ this is ::Metta::dddK::v5__::v6::oooo1()
+endh
+function oooo1()
+
+ print("this is ::metta::dddK::v5__::v6::oooo1()\n")
+ 
+ print (" Now call function ::__ABCDE__::Abcde::KGB::oooo()\n")
+ ::__ABCDE__::Abcde::KGB::oooo()
+ 
+ print (" Now call function oooo()\n")
+ oooo()
+ 
+ print (" Now call function iiii()\n")
+ iiii()
+ 
+ try
+  print (" Now call function v5__::v6::oooo()\n")
+  v5__::v6::oooo()
+ catch
+  print ("Cannot find v5__::v6::oooo()\n")
+ endtry
+ 
+ print (" Now call function v6::oooo()\n")
+ v6::oooo()
+ 
+ print (" Now call abcde(1,2,3,4)\n")
+ abcde(1,2,3,4)
+ 
+ print (" Now call fghi()\n")
+ fghi()
+ 
+ print (" Now call fghi1()\n")
+ fghi1()
+ 
+ print (" Now call jjjj()\n")
+ jjjj()
+endf
+
+endcs
+
+citingspace meTTA
+Help
+ this is ::Metta::abcde ()
+endh
+function abcde()
+ print("this is ::Metta::abcde ()\n")
+endf
+
+
+Help
+ this is ::Metta::abcde (...)
+endh
+function abcde(...)
+ print("this is ::Metta::abcde (...)\n")
+endf
+
+
+Help
+ this is ::Metta::abcde (1...)
+endh
+function abcde(a, ...)
+ print("this is ::Metta::abcde (1...)\n")
+endf
+
+
+Help
+ this is ::meTtA ::abcde (2...)
+endh
+function abcde(a, b, ...)
+ print("this is ::Metta::abcde (2...)\n")
+endf
+
+
+Help
+ this is ::Metta::abcde (4)
+endh
+function abcde(a, b, c, d)
+ print("this is ::Metta::abcde (4)\n")
+endf
+
+
+Help
+ this is :: mEttA ::abcde (1)
+endh
+function abcde(a)
+ print("this is :: mEttA ::abcde (1)\n")
+endf
+
+Help
+ this is ::Metta::fghi()
+endh
+function fghi()
+	print("this is ::Metta::fghi()\n")
+endf
+
+citingspace dddK
+Help
+ this is ::Metta::dddK::fghi()
+endh
+function fghi()
+	print("this is ::Metta::dddK::fghi()\n")
+endf
+Help
+ this is ::Metta::dddK::fghi(a,b)
+endh
+function fghi(a,b)
+	print("this is ::Metta::dddK::fghi(a,b)\n")
+endf
+Help
+ this is ::Metta::dddK::fghi1()
+endh
+function fghi1()
+	print("this is ::Metta::dddK::fghi1()\n")
+endf
+
+citingspace v5__::v6
+Help
+ this is ::Metta::dddK::v5__::v6::oooo()
+endh
+function oooo()
+ print("this is ::Metta::dddK::v5__::v6::oooo()\n")
+endf
+endcs
+endcs
+endcs
+citingspace ::Metta::dddK::  FGhI
+Help
+ this is ::Metta::dddK::FGhI::fghi(a,b)
+endh
+function fghi(a,b)
+	print("this is ::Metta::dddK::FGhI::fghi(a,b)\n")
+endf
+
+Help
+ this is ::Metta::dddK::FGhI::testFGHIOOOO(a)
+endh
+function testFGHIOOOO(a)
+	print("this is ::Metta::dddK::FGhI::testFGHIOOOO(a)\n")
+endf
+
+endcs
+citingspace
+Help
+ this is ::fghi()
+endh
+function fghi()
+	print("this is ::fghi()\n")
+endf
+
+Help
+ this is ::fghi1()
+endh
+function fghi1()
+	print("this is ::fghi1()\n")
+endf
+
+
+citingspace __ABCDE__ :: Abcde
+
+Help
+ this is ::__ABCDE__ :: Abcde::testFGHIOOOO(a)
+endh
+function testFGHIOOOO(a)
+	print("this is ::__ABCDE__ :: Abcde::testFGHIOOOO(a)\n")
+endf
+
+citingspace KGB
+Help
+ this is ::__ABCDE__::Abcde::KGB::oooo()
+endh
+function oooo()
+ print("this is ::__ABCDE__::Abcde::KGB::oooo()\n")
+endf
+
+Help
+ this is ::__ABCDE__::Abcde::KGB::iiii()
+endh
+function iiii()
+ print("this is ::__ABCDE__::Abcde::KGB::iiii()\n")
+endf
+
+endcs
+
+citingspace CIA
+
+Help
+ this is ::__ABCDE__::Abcde::CIA::jjjj()
+endh
+function jjjj()
+ print("this is ::__ABCDE__::Abcde::CIA::jjjj()\n")
+endf
+
+endcs
+endcs

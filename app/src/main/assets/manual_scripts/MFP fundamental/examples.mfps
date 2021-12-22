@@ -1,0 +1,414 @@
+#!/usr/bin/mfplang
+
+@execution_entry mfpexample :: helloworld (@)
+
+citingspace ::mfpexample
+
+Help
+@language:
+  my_name is user's name input when running the function.
+@end
+@language:simplified_chinese
+  my_name是用户在运行本函数时输入自己的名字
+@end
+endh
+function Helloworld(my_name)
+
+  //Although in the code no unicode char (e.g. Chinese characters)
+  //is allowed, but in strings and comments unicode chars are
+  //allowed. Also note that " must be single byte Ascii char
+  //instead of unicode ” or “.
+  //虽然代码中不能有中文，但是字符串中和注释里可以有中文。另外注意代码中的双
+  //引号必须是英文单字节双引号"而不能是中文双字节双引号“或者”。
+  print("Hello world!(Chinese:世界你好！) my name is " + my_name)
+  return 1
+endf
+
+function DeclareVariable()
+  variable a = [1,2,3], b
+  b = 4.75-0.67i
+  print("a = " + a + "; b = " + b + "\n")
+endf
+
+Help
+@language:
+  a input by user when this function called. It should be a real value. 
+@end
+@language:simplified_chinese
+  a是一个实数值，由用户作为调用函数时的参数输入
+@end
+endh
+function IfStatement(a)
+  if a < 0
+    print("a < 0!\n")
+  elseif a < 1
+    print("0 <= a < 1!\n")
+  elseif a < 10
+    print("1 <= a < 10!\n")
+  else
+    print("a >= 10!\n")
+  endif
+endf
+
+function Testloops(a)
+  if a == 0
+    // a==0 we test for, break and continue statements
+    // 测试for语句，以及break和continue语句
+    for variable idx = 0 to -8 step -1
+      if idx > -4
+        continue
+      elseif idx < -6
+        break
+      else
+        print("idx = " + idx + "\n")
+      endif
+    next
+  elseif a == 1
+    // a == 1 we test while and do statements
+    // 测试while语句和do语句
+    variable idx = 4
+    while idx < 8
+      variable idx1 = idx
+      do
+        idx1 = idx1 + 2
+      until idx1 > 11
+      idx = idx + idx1 /5
+    loop
+	//打印出最后idx的值
+    print("after while and do, idx value is " + idx + "\n")
+  endif
+endf
+
+Help
+@language:
+  a input by user when this function called. It should be a real value. 
+@end
+@language:simplified_chinese
+  a是一个实数值，由用户作为调用函数时的参数输入
+@end
+endh
+function TestSelect(a)
+  select a
+  case 1
+    print("a is 1\n")
+    break
+  case 2
+    // since no break after this statement, it will continue to
+    // case 3 until see a break or ends.
+    // 由于case 2没有break语句，MFP将会继续执行case 3里面的代码，
+    // 直到遇到一个break或者ends为止。
+    print("a is 2\n")
+  case 3
+    print("a is 3\n")
+    break
+  default
+    print("a is other value\n")
+  ends
+endf
+
+Help
+  test try ... catch statement
+endh
+Function testTryCatch()
+  Variable a, b, c
+  a = 3
+  Try
+    Select a
+    Case 3
+      print("a == 3\n")
+      Try
+        dbc = a + 4
+      Catch  // catch all the exceptions (捕获所有异常)
+        print ("dbc is undefined\n")  //变量dbc没有声明
+      EndTry
+    EndS
+    Throw "my exception"  //throw an exception by user
+                // 用户主动抛出一个异常
+  Catch (1+2)==4
+    // here (1+2)==4 is an exception filter. If an exception
+    // satisfies (1+2)==4 it is caught here.
+    // 这里(1+2)==4是一个异常过滤器，如果一个异常满足(1+2)==4，
+    // 它就会被这里的catch语句捕获
+    
+    //will never be here because 1+2 never equals 4.
+    //由于1+2永远不等于4，所以没有异常会被捕获。
+    print ("Exception satisfying (1+2) == 4 is caught")
+  catch false
+    // here false is another exception filter. Clearly,
+    // no exception will be caught.
+    // 这里false也是一个异常过滤器，显然，不会有异常被捕获
+    print ("Exception satisfying false is caught")
+  Catch and((b=level)=="LANGUAGE", (c=info) == "my exception")
+    // here the exception filter has two conditions.
+    // exception level should be "LANGUAGE" and info should
+    // be "my exception". we can define many different
+    // exception filters using logic functions like and, or,
+    // and exception level and info.
+    // 这里的异常过滤器有两个条件，第一，异常的级别为"LANGUAGE"
+    // 级，第二，异常的信息为"my exception"。我们可以通过比较异
+    // 常级别(level)和异常信息(info)，并使用逻辑函数and和or，
+    // 来定义各种各样的异常过滤器。
+    
+    // we cannot use level and info directly because they
+    // are valid only in a catch statement. However, we can
+    // assign their values to some variables and access the
+    // variables later on.
+    // level和info是catch语句内部的变量，不是catch语句不能够用。
+    // 但是我们可以把level和info的指赋予其它变量以便以后读取。
+    print ("Exception caught, level = " + b + ", info is " + c)
+    print ("\n")
+    Try  
+      // Unlike other languages, note that divided by 0 will
+      // not cause an exception because MFP supports INF
+      // (infinite) and Nan.
+      // 和其他语言不同，由于MFP支持无穷大和无定义数，除以0不会
+      // 造成中断。
+      c = 3/0
+    Catch
+      print ("Divided by zero!\n")  // will not be here
+                      // 这一句不会被执行
+    EndTry
+  Endtry
+Endf
+
+Function testSolve()
+  Variable a, b, c, x, y, z
+  a = 3
+  b = 4
+  c = 5
+  x = 6
+  y = 7
+  z = 8
+  // x, y and z are unknown variables to be solved.
+  // a, b and c are also used in solve block. However,
+  // they are not unknown so that their values won't
+  // change after solve block.
+  // x，y和z为待解变量
+  // 变量a，b和c也用于本内联求解代数方程程序块
+  // 但是，a，b和c不是待解变量所以它们的值不会改变。
+  solve x, y, z
+    // Note that in the following equations
+	// == must be used instead of =.
+    // 注意必须使用‘==’而不是赋值符号‘=’。
+    a * x**2 + 7 * log(b) *x + 6.5 == 8
+    y * b - z + 6 == 3.7 + x/(a + 7)
+    y * x + z/(c - 3) == 6 + a + y
+  slvreto a  // a, which is negligible, is used to store
+             // all the roots of all variables.
+			 // 用于存放每一个变量的所有的根，可以省略
+  print("\nx == " + x + "\ny == " + y + "\nz == " + z)
+  print("\nnumber of result sets is ")
+  // print number of result sets (打印解集个数)
+  print(get_num_of_results_sets(a))
+  
+  // It is possible that solve block cannot solve the
+  // equations. If so, slverto returns an empty value.
+  // Note that can only use system provided function
+  // get_num_of_results_sets to determine number of
+  // result sets because data structure of the returned
+  //  value in a future edition.
+  // 存在MFP无法解出方程的情况，如果是这样，内联求解代数方程
+  // 程序块返回一个空值。注意，由于内联求解代数方程程序块返回值
+  // 的格式可能会改变，所以一定要用系统提供的函数，也就是
+  // get_num_results_sets。
+  if (get_num_of_results_sets(a) > 0)
+    // 0 means first result set, 1 is 2nd result set, ...
+    // 0意味着第一组解，1是第二组解，依次类推。
+    print("\nThe second result set is ")
+    print(get_solved_results_set(a, 1))
+    // Note that function get_variable_results has two
+    // parameters. First is solve block's return which
+    // includes all result sets. Second tells the function
+    // which unknown variable to return: 0 means the first
+    // unknown variable, 1 means the second, etc. It is
+    // possible that some unknown variables can be solved
+    // while others cannot. In this case value of unknown
+    // which cannot be solved is NULL.
+    // 注意get_variable_results有两个参数，第一个是solve程序块
+    // 返回的包含所有解的变量，第二个是待解变量在solve
+    // 语句中的位子。0表示第一个待解变量，1表示第二个，依次类推。
+    // 也有可能一些变量能够解出但另一些变量无法解出，在这种情况下，
+    // 在solve程序块返回值中，没有解出的变量的值为NULL。
+    // Now print all roots of y (打印y的所有根)
+    print("\nAll roots of y are ")
+    print(get_variable_results(a, 1))
+  else
+    // cannot solve (解不出来)
+    print("\nSorry, cannot solve x, y and z")
+  endif
+  return
+Endf
+
+// the following code shows user how citingspace and using citingspace work
+// 以下代码向用户展示如何使用citingspace和using citingspace语句
+Function testCS1(a)
+	print("This is ::mfpexample::testCS1, a=" + a + "\n")
+endf
+
+citingspace Abcd
+Function testCS1(a)
+	print("This is ::mfpexample::abcd::testCS1, a=" + a + "\n")
+endf
+
+Function testCS2(a, b)
+	print("This is ::mfpexample::abcd::testCS2, a="+a+", b="+ b+"\n")
+endf
+endcs
+
+citingspace ::Abcd
+Function testCS1(a)
+	print("This is ::abcd::testCS1, a=" + a + "\n")
+endf
+
+using citingspace abcd
+Function testCSRef()
+	// get error here because testCS2(a,b) is only defined in citingspace
+	// ::mfpexample::abcd. Indeed using citingspace abcd has been declared
+	// before the function. This function is defined in citingspace ::Abcd
+	// . Because using citingspace abcd means use relative citingspace
+	// abcd, so the absolute citingspace should be ::Abcd + abcd =
+	// ::Abcd::abcd. This citingspace does not exist, so the function will
+	// fail.
+	//注意这里调用testCS2(a,b)时会出错，原因是testCS2(a,b)定义在引用空
+	// 间::mfpexample::abcd中。虽然using citingspace abcd已经被声明，但
+	//由于abcd是相对引用路径而不是绝对引用路径，而本函数（testCSRef）
+	// 定义在引用空间::Abcd中，这样一来，using citingspace abcd语句
+	// 所指向的引用空间的绝对引用路径就是::Abcd::abcd。但这个引用空间并
+	// 不存在，而里面就更不会有testCS2(a,b)函数了，所以会出错。
+	testCS2(2,3)
+endf
+using citingspace ::mfpexample::abcd
+Function testCSRef1()
+	// here testCS2(a,b) is called after citingspace ::mfpexample::abcd is
+	// declared to use. So MFP will be able to find the right function
+	// which is ::mfpexample::abcd::testCS2
+	//这里，testCS2(a,b)在using citingspace ::mfpexample::abcd语句之后调
+	// 用，函数testCS2(a,b)是定义在引用空间::mfpexample::abcd中，所以
+	// 可以正确执行。
+	testCS2(2,3)
+endf
+endcs
+
+citingspace ::__efgh__
+Function testCSRef1()
+	// here the first testCS2(a,b) (testCS2 inside if block) is called
+	// after citingspace ::mfpexample::abcd is declared to use in the if
+	// block. So MFP will be able to find the right function which is 
+	// ::mfpexample::abcd::testCS2. The second testCS2(a,b) is in the
+	// nested for block. Because the if block above the for block has
+	// declared to use ::mfpexample::abcd so the second testCS2(a,b) can
+	// still be found. However, the last testCS2(a,b) is out of if block
+	// so that it cannot see the using citingspace ::mfpexample::abcd
+	// statement so user will get error at the last testCS2 function.
+	//这里，第一个testCS2(a,b)函数（在if程序块内的testCS2）在
+	// using citingspace ::mfpexample::abcd语句之后调用，所以能够被正确执行。
+	// 第二个testCS2(a,b)函数在for程序块内，它能够看到上层程序块，也就是
+	// if程序块的using citingspace ::mfpexample::abcd的语句，所以也能够正
+	// 常执行。但是最后一个testCS2(a,b)函数在if程序块之外，它无法看到在
+	// if程序块内的using citingspace ::mfpexample::abcd语句，所以无法正确
+	// 执行，会出错。
+	variable a = 3
+	if a == 3
+		using citingspace ::mfpexample::abcd
+		print("::mfpexample::abcd is declared to use in this if block\n")
+		testCS2(2,3)
+		for variable idx = 0 to 1 step 1
+			print("::mfpexample::abcd is declared to use in the above if block\n")
+			testCS2(2,3)
+		next
+	endif
+	print("::mfpexample::abcd is not declared to use out of if block\n")
+	testCS2(2,3)
+endf
+
+Function testCSRef2()
+
+	variable a = 3
+	// call ::mfpexample::testCS1 because testCSRef2() is inside (both
+	// ::__efgh__ and) ::mfpexample. Citingspace ::__efgh__ has a higher
+	// priority than ::mfpexample. If there is function named testCS1
+	// with one parameter is defined in ::__efgh__ it will be called.
+	// However, there is not. So MFP looks for testCS1 with one parameter
+	// in citingspace ::mfpexample. And there is. So ::mfpexample::testCS1
+	// is called.
+	// 调用::mfpexample::testCS1函数。这是因为testCSRef2（）函数既位于
+	// 引用空间::__efgh__中，也位于引用空间::mfpexample中。但是
+	// ，由于::__efgh__位于引用空间::mfpexample的内部，而testCSRef2()
+	// 又位于::__efgh__内部，所以，引用空间::__efgh__具有更高的优先级，
+	// 如果在引用空间::__efgh__内有定义一个名叫函数testCS1并且只有
+	// 一个参数的函数，则这个函数将会被调用，但是由于::__efgh__中没有
+	// 这个函数，所以MFP会在更外层的引用空间中寻找，最后MFP在
+	// 引用空间::mfpexample中找到了这个函数，所以该函数被调用。
+	testCS1(a)
+	if a == 3
+		using citingspace ::abcd
+		// Because citingspace ::abcd has been explicitly declared to use
+		// in the innermost block, it has higher priority than
+		// ::mfpexample(but sill lower priority than the innermost
+		// citingspace declaration, in this case it is ::__efgh__). Thus
+		// ::abcd::testCS1 is called.
+		// 由于using citingspace ::abcd在最内层的程序块中被声明，它
+		// 具有比::mfpexample引用空间更高的优先级（但是它的优先级仍然
+		// 比::__efgh__要低，原因是::__efgh__是testCSRef2()函数最直接
+		// 的引用空间）。所以，最后的结果是函数::abcd::testCS1被调用。
+		testCS1(a)
+	endif
+	
+	using citingspace ::mfpexample::abcd
+	// citingspace ::mfpexample::abcd has been explicitly declared to use
+	// and it is the closest using citingspace statement to the below
+	// testCS1 function. As such ::mfpexample::abcd has higher priority
+	// than any other citingspaces except ::__efgh__. Since ::__efgh__
+	// doesn't include a testCS1 function with a single parameter,
+	// ::mfpexample::abcd::testCS1 is called.
+	// using citingspace ::mfpexample::abcd语句位于下面testCS1函数调用
+	// 的正上方，所以引用空间::mfpexample::abcd具有比除了::__efgh__之外
+	// 所有其他引用空间都要高的优先级。由于引用空间::__efgh__中不包括
+	// 一个叫testCS1并且只有一个参数的函数，::mfpexample::abcd::testCS1
+	// 函数将被调用。
+	testCS1(a)
+endf
+endcs
+using citingspace ::mfpexample::abcd
+
+citingspace ::__efgh__
+
+Function testCSRef3()
+	// function testCS2(a,b) is defined in the citingspace
+	// ::mfpexample::abcd and statement using citingspace ::mfpexample::abcd
+	// is called in the above citingspace, i.e. ::abcd (not the innermost
+	// citingspace, i.e. ::__efgh__, but ::abcd as a citingspace includes
+	// citingspace ::__efgh__) before this function call. Therefore, function
+	//testCS2(2,3) can be found.
+	// 函数testCS2(a,b)被定义在引用空间::mfpexample::abcd中，并且，在
+	// 外层引用空间::abcd中（也就是并非最内层的直接引用空间::__efgh__，
+	// 但引用空间::abcd包含了::__efgh__）声明了
+	// using citingspace ::mfpexample::abcd，而且这个声明是在本函数调
+	// 用之前。所以，这里调用函数testCS2(2,3)能够成功。
+	testCS2(2,3)
+endf
+Endcs
+// the above code shows user how citingspace and using citingspace work
+// 以上代码向用户展示如何使用citingspace和using citingspace语句
+
+Help
+This line will be shown for any system language.
+@language:
+This line will be shown for default system language.
+@end
+    This line will also be shown for any system language.
+@language:simplified_chinese
+这一行将在系统语言为中文时显示（This line will be shown when system language is simplified Chinese.）。
+@end
+This line is also a line for any system language.
+Endh
+Function testHelp(x, y)
+Endf
+
+Function myFunc (value1, value2, value3, value4)
+    Variable avg_value
+    avg_value = (value3 - value1) - (value4 - value2)
+    Return avg_value
+Endf
+
+endcs

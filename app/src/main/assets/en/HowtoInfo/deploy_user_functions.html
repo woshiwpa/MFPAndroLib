@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>Scientific Calculator Plus Help</title>
+	</head>
+	<body style="background-color:white;">
+		<h2 style="color:blue">Scientific Calculator Plus Help : Deploy user defined functions</h2>
+		
+		<p style="font-family:verdana;color:black;">
+		In order to implement and run user's own function(s), the following steps are required:
+		</p>
+		<p style="font-family:verdana;color:black;">
+		1. Start Scientific Calculator Plus;
+		</p>
+		<p style="font-family:verdana;color:black;">
+		2. Open Script Editor and type your program and save.
+		</p>
+		<p style="font-family:verdana;color:black;">
+		Clearly, it is not an easy thing to type in a mobile phone. So what user can do is
+		</p>
+		<p style="font-family:verdana;color:black;">
+		1. Connect your mobile device to a PC via an USB cord;
+		</p>
+		<p style="font-family:verdana;color:black;">
+		2. Enable write-access to your mobile device's internal storage and/or SD card;
+		</p>
+		<p style="font-family:verdana;color:black;">
+		3. Find your mobile storage (either internal storage or SD card) in PC, find AnMath folder, navigate to AnMath/scripts. In this folder, create a new .mfps file, say my_prog.mfps.
+		</p>
+		<p style="font-family:verdana;color:black;">
+		4. Edit my_prog.mfps use any text editor in PC. An example function would be like:
+		</p>
+<pre style="font-family:verdana;color:blue;">
+Function MyFunc(Number_value1, Number_value2,Number_value3, Number_value4)
+    Variable avg_value
+    avg_value = (Number_value3-Number_value1)-(Number_value4-Number_value2)
+    Return avg_value
+Endf
+</pre>
+		<p style="font-family:verdana;color:black;">
+		then save the file. Then disconnect your mobile from PC.
+		</p>
+		<p style="font-family:verdana;color:black;">
+		5. Open Scientific Calculator Plus;
+		</p>
+		<p style="font-family:verdana;color:black;">
+		6. Start command line, type
+		</p>
+		<p style="font-family:verdana;color:black;">
+		myfunc(1,2,3,4)
+		</p>
+		<p style="font-family:verdana;color:black;">
+		then type enter, result which is 0 will be shown.
+		</p>
+		<p style="font-family:verdana;color:black;">
+		Please note that
+		</p>
+		<p style="font-family:verdana;color:black;">
+		1. If input user defined function from PC, user may need to restart Scientific Calculator Plus after disconnected from PC. Otherwise, Scientific Calculator Plus may not load your new function.
+		</p>
+		<p style="font-family:verdana;color:black;">
+		2. Function title must be declared, i.e.
+		</p>
+<pre style="font-family:verdana;color:blue;">
+Function XXXX(...)
+Endf
+</pre>
+		<p style="font-family:verdana;color:black;">
+		is needed. A script without function declaration is not supported.
+		</p>
+		<p style="font-family:verdana;color:black;">
+		3. Ensure that different functions do not share the same name. Ensure that user defined function name is different from predefined or build-in functions. We suggest user always declares function name with initial MyF*****.
+		</p>
+		<p style="font-family:verdana;color:black;">
+		4. Some mobiles, e.g. Sumsang Galaxy Express, do not allow user to create a new file from SD card or phone's internal storage after the phone is connected to PC. This prevents virus to transfer from phone to PC or vice versa and ensures the security of both phone and PC. However, this feature makes some small troubles when user wants to create his/her own functions. A work around is to copy the whole AnMath folder to a read-write enabled folder in PC, add new .mfps files there and debug them using JAVA based Scientific Calculator Plus there. Then copy the whole AnMath folder back and replace the old AnMath folder in SD Card.
+		</p>
+	</body>
+</html>

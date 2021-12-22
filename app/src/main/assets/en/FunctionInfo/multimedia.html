@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>Scientific Calculator Plus Help</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">Scientific Calculator Plus Help : multimedia functions</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>Function name</th>
+<th>Function info</th>
+</tr>
+<tr>
+<td><center>clone_image</center></td>
+<td><p>::mfp::multimedia::image_lib::clone_image(7) :</p>
+<p>clone_image(image_src, src_left, src_top, src_right, src_bottom, dest_width, dest_height) returns a new wrapped JAVA image object with width = dest_width and height = dest_height. The returned image is a (zoomed) copy of image_src's selected area. The selected area's left, top, right and bottom are src_left, src_top, src_right and src_bottom respectively. Note that src_left, src_top, src_right and src_bottom are optional. By default, they equal 0, 0, width of image_src and height of image_src respectively. dest_width and dest_height are also optional. By default, dest_width equals src_right - src_left and dest_height equals src_bottom - src_top. An example of this function is clone_image(img_src, 0, 0, 100, 200, 50, 300) .</p>
+</td>
+</tr>
+<tr>
+<td><center>create_image</center></td>
+<td><p>::mfp::multimedia::image_lib::create_image(2) :</p>
+<p>create_image(w, h) returns a new and blank wrapped JAVA image object with width = w and height = h.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_image_size</center></td>
+<td><p>::mfp::multimedia::image_lib::get_image_size(1) :</p>
+<p>get_image_size(image_handle) returns size (i.e. [width, height]) of a wrapped JAVA image object (i.e. image handle).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_path</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_path(1) :</p>
+<p>get_sound_path(sound_handle) returns sound file path of the sound handle.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_reference_path</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_reference_path(1) :</p>
+<p>get_sound_reference_path(sound_handle) returns sound reference file path of the sound handle. If the sound is not extracted from a zip file, sound reference file is the same as sound file. If the sound is extracted from a zip file, sound reference file path is the zip file path followed by the sound's zip entry path, like "/folder1/folder2/snd.zip/zipped_folder/snd.wav", where "/folder1/folder2/snd.zip" is path of the zip file and "zipped_folder/snd.wav" is zip entry path.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_repeat</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_repeat(1) :</p>
+<p>get_sound_repeat(sound_handle) returns a boolean indicating the sound is repeatedly played or not.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_source_type</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_source_type(1) :</p>
+<p>get_sound_source_type(sound_handle) returns an integer which is sound reference source file type. 0 means normal source file, 1 means zipped source file and 2 means zipped source file in Android asset (for MFP app).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_volume</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_volume(1) :</p>
+<p>get_sound_volume(sound_handle) returns volume of the sound referred by sound_handle. Volume is a double value ranging from 0 to 1.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_playing</center></td>
+<td><p>::mfp::multimedia::audio_lib::is_playing(1) :</p>
+<p>This function accepts a single parameter, which is a media player handle. If the sound represented by the handle is playing, this function returns true. If the sound is not playing or the handle is invalid, returns false.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_valid_image_handle</center></td>
+<td><p>::mfp::multimedia::image_lib::is_valid_image_handle(1) :</p>
+<p>is_valid_image_handle(image_handle) returns true or false, telling developer if a image handle (i.e. a wrapped JAVA image object) is still valid or has been closed.</p>
+</td>
+</tr>
+<tr>
+<td><center>load_image</center></td>
+<td><p>::mfp::multimedia::image_lib::load_image(1) :</p>
+<p>load_image(image_path) returns a wrapped JAVA image object. image_path is a string based path pointing to an image file.</p>
+</td>
+</tr>
+<tr>
+<td><center>load_image_from_zip</center></td>
+<td><p>::mfp::multimedia::image_lib::load_image_from_zip(3) :</p>
+<p>load_image_from_zip(zip_file_name, zip_entry_path, zip_file_type) returns a wrapped JAVA image object loaded from a zipped file. Its first parameter is the path of the zipped file. Its second parameter is the zip entry path of the image. Its last parameter is zip file type. 0 means it is a normal zip file and 1 means it is an Android asset zip file (for MFP app).</p>
+</td>
+</tr>
+<tr>
+<td><center>open_image_display</center></td>
+<td><p>::mfp::multimedia::image_lib::open_image_display(1) :</p>
+<p>open_image_display(image_path_or_handle) creates an image display for developer to paint. image_path_or_handle is either a string based path pointing to an image file, or null, or a memory handle of a JAVA image object returned by load_image, load_image_from_zip, create_image or clone_image functions.</p>
+</td>
+</tr>
+<tr>
+<td><center>play_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::play_sound(4) :</p>
+<p>play_sound(source_path, repeat_or_not, volume, create_new_or_not) plays a sound file (can be wave, midi or mp3). This function returns a sound handle which is a JAVA (or Android) media player wrapper. Because the media player resource is scarce, this function will try to reuse previously created sound handle. It has four parameters. The first parameter is the path of the sound file. The second parameter is a boolean telling MFP whether the sound should be repeated to play or not. This parameter is optional and its default value is false. The third one, which is a double from 0 to 1, is the volume of the sound. This parameter is optional and its default value is 1. The fourth one is a boolean flag telling MFP to create a new sound handle compulsorily or not. If it is true, play_sound always creates a new sound handle. This function is optional and its default value is false.</p>
+</td>
+</tr>
+<tr>
+<td><center>play_sound_from_zip</center></td>
+<td><p>::mfp::multimedia::audio_lib::play_sound_from_zip(6) :</p>
+<p>play_sound_from_zip(source_zip_file_path, zip_entry_path, zip_file_type, repeat_or_not, volume, create_new_or_not) plays a sound file (can be wave, midi or mp3) extracted from a zip file. This function returns a sound handle which is a JAVA (or Android) media player wrapper. Because the media player resource is scarce, this function will try to reuse previously created sound handle. It has six parameters. The first parameter is the path of the zip file. The second parameter is zip entry path of the zipped sound file. The third parameter is zip file type, 0 for normal zip file and 1 for MFP app's Android asset zip file. The fourth parameter is a boolean telling MFP whether the sound should be repeated to play or not. This parameter is optional and its default value is false. The fifth one, which is a double from 0 to 1, is the volume of the sound. This parameter is optional and its default value is 1. The sixth one is a boolean flag telling MFP to create a new sound handle compulsorily or not. If it is true, play_sound always creates a new sound handle. This function is optional and its default value is false.</p>
+</td>
+</tr>
+<tr>
+<td><center>save_image</center></td>
+<td><p>::mfp::multimedia::image_lib::save_image(3) :</p>
+<p>save_image(image, file_format, path) saves a wrapped JAVA image object to an image file. The first parameter is the wrapped JAVA image object. The second parameter is the format of the file. It is a string and currently only "png", "jpg" and "bmp" are supported. The third parameter is the path of the file. This function returns true if the file is saved successfully, and returns false if any failure. For example, save_image(img, "png", "C:\\Temp\\1.png") .</p>
+</td>
+</tr>
+<tr>
+<td><center>set_sound_repeat</center></td>
+<td><p>::mfp::multimedia::audio_lib::set_sound_repeat(2) :</p>
+<p>set_sound_repeat(sound_handle, repeat_or_not) set a sound handle to play repeatedly or not.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_sound_volume</center></td>
+<td><p>::mfp::multimedia::audio_lib::set_sound_volume(2) :</p>
+<p>set_sound_volume(sound_handle, volume) set volume (from 0 to 1) a sound handle.</p>
+</td>
+</tr>
+<tr>
+<td><center>start_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::start_sound(1) :</p>
+<p>start_sound(sound_handle) plays a sound referred by sound handle sound_handle. If the sound has been started, this function will do nothing.</p>
+</td>
+</tr>
+<tr>
+<td><center>stop_all_sounds</center></td>
+<td><p>::mfp::multimedia::audio_lib::stop_all_sounds(0) :</p>
+<p>stop_all_sounds() stops all playing sounds.</p>
+</td>
+</tr>
+<tr>
+<td><center>stop_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::stop_sound(1) :</p>
+<p>stop_sound(sound_handle) stops the playing sound referred by sound_handle. If the sound is not playing, it does nothing.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

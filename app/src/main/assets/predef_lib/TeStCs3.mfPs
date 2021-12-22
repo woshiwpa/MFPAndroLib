@@ -1,0 +1,575 @@
+citingspace __ABCDE__ :: Abcde ::kgb
+Help
+this is ::__ABCDE__ :: Abcde ::kgb::abcDE()
+endh
+function abcDE()
+	print("this is ::__ABCDE__ :: Abcde ::kgb::abcDE()\n")
+endf
+
+Help
+this is ::__ABCDE__ :: Abcde ::kgb::fGHI(3)
+endh
+function fGHI(a, b, c)
+	print("this is ::__ABCDE__ :: Abcde ::kgb::fGHI(3)\n")
+endf
+
+Help
+this is ::__ABCDE__ :: Abcde ::kgb::test_usecs_in_FuncTryCatch(1)
+endh
+function test_usecs_in_FuncTryCatch(a)
+	print("this is to test using citingspace statement in function body\n")
+	try
+		print("Now test ::Metta::dddK::fghi::fghiB() without calling using citingspace\n")
+		fghiB()
+	catch
+		print("Without using citingspace, fghiB cannot be called\n")
+		using citingspace :: Metta :: DDDK:: 		fGhI
+		print("Now test ::Metta::dddK::fghi::fghiB() with using right absolute citingspace inside a catch block\n")
+		fghiB()
+	endtry
+	using citingspace :: Metta :: DDDK::v5__ :: V6  
+	try
+		try
+			print("Now test ::Metta::dddK::fghi::fghiB() with using wrong absolute citingspace\n")
+			fghiB()
+		catch
+			print("With using wrong absolute citingspace, fghiB cannot be called\n")
+		endtry
+		using citingspace :: Metta :: DDDK:: 		fGhI
+		print("Now test ::Metta::dddK::fghi::fghiB() with using right absolute citingspace inside a try block\n")
+		fghiB()
+	endtry
+	using citingspace Metta :: DDDK::v5__ :: V6  
+	try
+		print("Now test ::Metta::dddK::fghi::fghiB() with using wrong relative citingspace\n")
+		fghiB()
+	catch
+		print("With wrong relative citingspace, fghiB cannot be called\n")
+	endtry
+	using citingspace :: Metta :: DDDK:: 		fGhI
+	try
+		print("Now test ::Metta::dddK::fghi::fghiB() with using right absolute citingspace\n")
+		fghiB()
+	catch
+		print("With using right absolute citingspace, fghiB cannot be called\n")
+	endtry
+	
+	using citingspace :: Metta :: DDDK::v5__ :: V6  
+	print("Now test ::Metta::dddK::fghi::fghiB() again after adding a new but wrong absolute citingspace\n")
+	fghiB()
+	return a + 1
+endf
+
+Help
+this is ::__ABCDE__ :: Abcde ::kgb::test_usecs_in_ReturnIfElse(1)
+endh
+function Test_useCS_in_ReturnIfElse(b)
+	try
+		print("Now test ::Metta::dddK::fghi::fghiB() without adding any citingspace\n")
+		fghiB()
+	catch
+		print("without adding any citingspace, fghiB cannot be called\n")
+	endtry
+	variable a = test_usecs_in_FuncTryCatch(3)
+	try
+		print("Now test ::Metta::dddK::fghi::fghiB() again after return without adding citingspace\n")
+		fghiB()
+	catch
+		print("after return without adding citingspace, fghiB cannot be called\n")
+	endtry
+	using citingspace :: Metta :: DDDK:: 		fGhI
+	a = test_usecs_in_FuncTryCatch(4)
+	if (a > 2)
+		print("In valid if only branch\n")
+		using citingspace Metta
+		try
+			print("Now test :: mEttA ::abcde (1) with wrong relative citing space\n")
+			abcDE(3.88)
+		catch
+			print("cannot call :: mEttA ::abcde (1) with wrong relative citing space\n")
+		endtry
+		using citingspace :: Metta
+		print("Now test :: mEttA ::abcde (1) with right absolute citing space\n")
+		abcDE(3.88)
+	endif
+	
+	if (a + 1 < 2)
+		print("In invalid if-else's if branch\n")
+		using citingspace Metta
+		try
+			print("Now test :: mEttA ::abcde (1) with wrong relative citing space\n")
+			abcDE(3.88)
+		catch
+			print("cannot call :: mEttA ::abcde (1) with wrong relative citing space\n")
+		endtry
+		using citingspace :: Metta
+		print("Now test :: mEttA ::abcde (1) with right absolute citing space\n")
+		abcDE(3.88)
+	else
+		print("In valid if-else's else branch\n")
+		using citingspace Metta
+		try
+			print("Now test :: mEttA ::abcde (1) with wrong relative citing space\n")
+			abcDE(3.88)
+		catch
+			print("cannot call :: mEttA ::abcde (1) with wrong relative citing space\n")
+		endtry
+		using citingspace :: Metta
+		print("Now test :: mEttA ::abcde (1) with right absolute citing space\n")
+		abcDE(3.88)
+	endif
+	
+	if (a < 2)
+		print("In invalid if-elseif-else's if branch\n")
+		using citingspace Metta
+		try
+			print("Now test :: mEttA ::abcde (1) with wrong relative citing space\n")
+			abcDE(3.88)
+		catch
+			print("cannot call :: mEttA ::abcde (1) with wrong relative citing space\n")
+		endtry
+		using citingspace :: Metta
+		print("Now test :: mEttA ::abcde (1) with right absolute citing space\n")
+		abcDE(3.88)
+	elseif (a + 1 > 2)
+		using citingspace ::__SIN_TEST__
+		print("In valid if-elseif-else's elseif branch\n")
+		using citingspace Metta
+		try
+			print("Now test :: mEttA ::abcde (1) with wrong relative citing space\n")
+			abcDE(3.88)
+		catch
+			print("cannot call :: mEttA ::abcde (1) with wrong relative citing space\n")
+		endtry
+		using citingspace :: Metta
+		print("Now test :: mEttA ::abcde (1) with right absolute citing space\n")
+		abcDE(3.88)
+		
+		print("Now test :: __Sin__test :: sin (1) with right absolute citing space\n")
+		sin(3.88)
+		print("Now run __SIN_TEST__ :: cos(7)\n")
+		print(":: __Sin__test :: cos(7) = " + cos(7) + "\n")
+	else
+		print("In invalid if-elseif-else's else branch\n")
+		try
+			print("Now test :: mEttA ::abcde (1) with wrong absolute citing space\n")
+			abcDE(3.88)
+		catch
+			print("cannot call :: mEttA ::abcde (1) with wrong relative citing space\n")
+		endtry
+		using citingspace :: Metta
+		print("Now test :: mEttA ::abcde (1) with right absolute citing space\n")
+		abcDE(3.88)
+	endif
+	
+	try
+		print("Now test sin (1) with no citing space\n")
+		print("sin(pi/6) = " + sin(pi/6) + "\n")
+	catch
+		print("It actually run :: __Sin__test :: sin (1) instead of ::mfp::math::trigon::sin(1)\n")
+	endtry
+	
+	print("Now test ::Metta::dddK::fghi::fghiB() again after previously adding right citingspace\n")
+	fghiB()
+	
+	return b+2
+endf
+
+Help
+this is ::__ABCDE__ :: Abcde ::kgb::Test_useCS_in_Loops(1)
+endh
+function Test_useCS_in_Loops(b)
+	// test for loop
+	variable idx = 0
+	for idx = 0 to 2 step 1
+		print("in for loop, idx = " + idx + "\n")
+		try
+			testfunc4cs()
+		catch
+			print("testfunc4cs cannot be found before using :: __CS_IN_FUNC__ :: csa or :: __CS_IN_FUNC__ :: csb\n")
+		endtry
+		print("using citingspace :: __CS_IN_FUNC__ :: csa\n")
+		using citingspace :: __CS_IN_FUNC__ :: csa
+		testfunc4cs()
+		if and(b < 0, idx == 1)
+			print("break loop\n")
+			break
+		elseif and(b == 0, idx == 1)
+			print("continue loop\n")
+			continue
+		endif
+		print("using citingspace :: __CS_IN_FUNC__ :: csb\n")
+		using citingspace :: __CS_IN_FUNC__ :: csb
+		testfunc4cs()
+	next
+	print("out of for loop, try to call testfunc4cs\n")
+	try
+		testfunc4cs()
+	catch
+		print("testfunc4cs cannot be found out of for loop\n")
+	endtry
+	
+	// test while loop
+	idx = 0
+	while idx <= 2
+		print("in while loop, idx = " + idx + "\n")
+		try
+			testfunc4cs()
+		catch
+			print("testfunc4cs cannot be found before using :: __CS_IN_FUNC__ :: csa or :: __CS_IN_FUNC__ :: csb\n")
+		endtry
+		print("using citingspace :: __CS_IN_FUNC__ :: csa\n")
+		using citingspace :: __CS_IN_FUNC__ :: csa
+		testfunc4cs()
+		if and(b < 0, idx == 1)
+			print("break loop\n")
+			break
+		elseif and(b == 0, idx == 1)
+			print("continue loop\n")
+			idx = idx + 1
+			continue
+		endif
+		print("using citingspace :: __CS_IN_FUNC__ :: csb\n")
+		using citingspace :: __CS_IN_FUNC__ :: csb
+		testfunc4cs()
+		idx = idx + 1
+	loop
+	print("out of while loop, try to call testfunc4cs\n")
+	try
+		testfunc4cs()
+	catch
+		print("testfunc4cs cannot be found out of while loop\n")
+	endtry
+	
+	// test do until loop
+	idx = 0
+	do
+		print("in do until loop, idx = " + idx + "\n")
+		try
+			testfunc4cs()
+		catch
+			print("testfunc4cs cannot be found before using :: __CS_IN_FUNC__ :: csa or :: __CS_IN_FUNC__ :: csb\n")
+		endtry
+		print("using citingspace :: __CS_IN_FUNC__ :: csa\n")
+		using citingspace :: __CS_IN_FUNC__ :: csa
+		testfunc4cs()
+		if and(b < 0, idx == 1)
+			print("break loop\n")
+			break
+		elseif and(b == 0, idx == 1)
+			print("continue loop\n")
+			idx = idx + 1
+			continue
+		endif
+		print("using citingspace :: __CS_IN_FUNC__ :: csb\n")
+		using citingspace :: __CS_IN_FUNC__ :: csb
+		testfunc4cs()
+		idx = idx + 1
+	until idx > 2
+	print("out of do until loop, try to call testfunc4cs\n")
+	try
+		testfunc4cs()
+	catch
+		print("testfunc4cs cannot be found out of do until loop\n")
+	endtry
+endf
+
+
+Help
+this is ::__ABCDE__ :: Abcde ::kgb::Test_useCS_in_Select(1)
+endh
+function Test_useCS_in_Select(a)
+	using citingspace :: __CS_IN_FUNC__ :: csf
+	select a
+	using citingspace :: __CS_IN_FUNC__ :: cse
+	case 1
+		print("In case 1\n")
+		using citingspace :: __CS_IN_FUNC__ :: csa
+		testfunc4cs()
+	case 2
+		print("In case 2\n")
+		testfunc4cs()
+		using citingspace :: __CS_IN_FUNC__ :: csb
+		testfunc4cs()
+		break
+		print("In case 2 after break\n")
+	case 3
+		print("In case 3\n")
+		testfunc4cs()
+		using citingspace :: __CS_IN_FUNC__ :: csc
+		testfunc4cs()
+		using citingspace :: __CS_IN_FUNC__ :: cse
+		variable xx,yy
+		solve xx
+			xx**2 == 9
+		slvreto yy
+		testfunc4cs()
+		break
+	default
+		print("In default\n")
+		try
+			using citingspace :: __CS_IN_FUNC__ :: csd
+			testfunc4cs()
+			using citingspace :: __CS_IN_FUNC__ :: csa
+		catch
+			print("sin(7) = " + sin(7) + "\n")
+			testfunc4cs()
+		endtry
+	ends
+	testfunc4cs()
+endf
+
+endcs
+
+Help
+this is ::wolfCastle(2)
+endh
+function wolfCastle(a, b)
+	print("this is ::wolfCastle(2)\n")
+endf
+
+citingspace __SIN_TEST__
+Help
+this is ::__SIN_TEST__ :: sin()
+endh
+function sin(a)
+	print("this is ::__SIN_TEST__ :: sin(" + a + ")\n")
+endf
+
+Help
+this is ::__SIN_TEST__ :: cos()
+endh
+function cos(a)
+	//print("this is ::__SIN_TEST__ :: cos(" + a + ")\n")
+	if a > 45
+		return cosd(a)
+	else
+		return sind(a)
+	endif
+endf
+
+endcs
+
+Help
+this is :: testfunc4cs1()
+endh
+function testfunc4cs1()
+	print("this is :: testfunc4cs1()\n")
+endf
+
+
+Help
+this is :: testfunc4cs2()
+endh
+function testfunc4cs2()
+	print("this is :: testfunc4cs2()\n")
+	return 88
+endf
+
+citingspace __CS_IN_FUNC__ :: csa
+Help
+this is __CS_IN_FUNC__ :: csa :: testfunc4cs()
+endh
+function testfunc4cs()
+	print("this is __CS_IN_FUNC__ :: csa :: testfunc4cs()\n")
+endf
+
+Help
+this is __CS_IN_FUNC__ :: csa :: testfunc4cs1()
+endh
+function testfunc4cs1()
+	print("this is __CS_IN_FUNC__ :: csa :: testfunc4cs1()\n")
+endf
+
+Help
+this is __CS_IN_FUNC__ :: csa :: sqrt(1)
+endh
+function sqrt(a)
+	print("this is __CS_IN_FUNC__ :: csa :: sqrt(a)\n")
+	return log_exp::sqrt(a) + 100
+endf
+
+endcs
+
+citingspace :: __CS_IN_FUNC__
+citingspace CsB
+Help
+this is __CS_IN_FUNC__ :: csb :: testfunc4cs()
+endh
+function testfunc4cs()
+	print("this is __CS_IN_FUNC__ :: csb :: testfunc4cs()\n")
+endf
+
+Help
+this is __CS_IN_FUNC__ :: csb :: testfunc4cs1()
+endh
+function testfunc4cs1()
+	print("this is __CS_IN_FUNC__ :: csb :: testfunc4cs1()\n")
+endf
+
+Help
+this is __CS_IN_FUNC__ :: csb :: sqrt(1)
+endh
+function sqrt(b)
+	print("this is __CS_IN_FUNC__ :: csb :: sqrt(b)\n")
+	return log_exp::sqrt(b) + 200
+endf
+
+endcs
+citingspace CsC
+Help
+this is __CS_IN_FUNC__ :: csc :: testfunc4cs()
+endh
+function testfunc4cs()
+	print("this is __CS_IN_FUNC__ :: csc :: testfunc4cs()\n")
+endf
+
+Help
+this is __CS_IN_FUNC__ :: csc :: testfunc4cs1()
+endh
+function testfunc4cs1()
+	print("this is __CS_IN_FUNC__ :: csc :: testfunc4cs1()\n")
+endf
+
+endcs
+citingspace CsD
+Help
+this is __CS_IN_FUNC__ :: csd :: testfunc4cs(). This is with throw
+endh
+function testfunc4cs()
+	print("this is __CS_IN_FUNC__ :: csd :: testfunc4cs()\n")
+	using citingspace :: __SIN_TEST__
+	using citingspace ::mfp::math::trigon
+	try
+		using citingspace :: __SIN_TEST__
+		throw "testfunc4cs throws exception 1\n"
+	catch
+		print("sin(3) = " + sin(3) + "\n")
+	endtry
+	try
+		using citingspace :: __SIN_TEST__
+		throw
+	catch
+		using citingspace :: __SIN_TEST__
+		print("cos(3) = " + cos(3) + "\n")
+	endtry
+	print("out of try, sin(3) = " + sin(3) + "\n")
+	throw "testfunc4cs throws exception 2\n"
+endf
+
+Help
+this is __CS_IN_FUNC__ :: csd :: testfunc4cs1(). This is with throw
+endh
+function testfunc4cs1()
+	print("this is __CS_IN_FUNC__ :: csd :: testfunc4cs1()\n")
+	using citingspace :: __SIN_TEST__
+	using citingspace ::mfp::math::trigon
+	try
+		using citingspace :: __SIN_TEST__
+		throw "testfunc4cs throws exception 1\n"
+	catch
+		print("sin(3) = " + sin(3) + "\n")
+	endtry
+	try
+		using citingspace :: __SIN_TEST__
+		throw
+	catch
+		using citingspace :: __SIN_TEST__
+		print("cos(3) = " + cos(3) + "\n")
+	endtry
+	print("out of try, sin(3) = " + sin(3) + "\n")
+	throw "testfunc4cs throws exception 2\n"
+endf
+
+Help
+this is __CS_IN_FUNC__ :: csc :: testfunc4cs2()
+endh
+function testfunc4cs2()
+	print("this is __CS_IN_FUNC__ :: csc :: testfunc4cs2()\n")
+	return 91
+endf
+
+endcs
+
+citingspace CsE
+Help
+this is __CS_IN_FUNC__ :: cse :: testfunc4cs()
+endh
+function testfunc4cs()
+	print("this is __CS_IN_FUNC__ :: cse :: testfunc4cs()\n")
+endf
+
+Help
+this is __CS_IN_FUNC__ :: cse :: testfunc4cs1()
+endh
+function testfunc4cs1()
+	print("this is __CS_IN_FUNC__ :: cse :: testfunc4cs1()\n")
+endf
+
+Help
+this is __CS_IN_FUNC__ :: cse :: testfunc4cs2()
+endh
+function testfunc4cs2()
+	print("this is __CS_IN_FUNC__ :: cse :: testfunc4cs2()\n")
+	return 9
+endf
+
+endcs
+citingspace CsF
+Help
+this is __CS_IN_FUNC__ :: csf :: testfunc4cs()
+endh
+function testfunc4cs()
+	print("this is __CS_IN_FUNC__ :: csf :: testfunc4cs()\n")
+endf
+
+Help
+this is __CS_IN_FUNC__ :: csf :: testfunc4cs1()
+endh
+function testfunc4cs1()
+	print("this is __CS_IN_FUNC__ :: csf :: testfunc4cs1()\n")
+endf
+
+endcs
+endcs
+
+citingspace __sqrt_test__::csa
+Help
+this is __sqrt_test__::csa :: sqrt(1)
+endh
+function sqrt(a)
+	print("this is __sqrt_test__::csa :: sqrt(1)\n")
+	return log_exp::sqrt(a) + 100
+endf
+endcs
+
+citingspace __sqrt_test__::csb
+Help
+this is __sqrt_test__::csb :: sqrt(1)
+endh
+function sqrt(b)
+	print("this is __sqrt_test__::csb :: sqrt(1)\n")
+	return log_exp::sqrt(b) + 200
+endf
+endcs
+
+citingspace ::aaaa1::aaaa2
+citingspace ::bbbb1::bbbb2
+Help
+this is ::bbbb1::bbbb2 :: toRad(1)
+endh
+function torad(a)
+	print("this is ::bbbb1::bbbb2 :: toRad(1)\n")
+	return trigon::torad(a)**0.5
+endf
+endcs
+
+Help
+this is ::aaaa1::aaaa2 :: toRad(1)
+endh
+function torad(a)
+	print("this is ::aaaa1::aaaa2 :: toRad(1)\n")
+	return trigon::torad(a)**2
+endf
+
+endcs

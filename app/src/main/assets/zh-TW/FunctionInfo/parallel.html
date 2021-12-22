@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>程式開發科學計算器幫助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">程式開發科學計算器幫助:並行計算函數</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函數名</th>
+<th>函數幫助信息</th>
+</tr>
+<tr>
+<td><center>accept</center></td>
+<td><p>::mfp::paracomp::connect::accept(1) :</p>
+<p>accept函數接收一個從遠端到一個本地網絡界面的連接請求然後返回接收端（也就是位於本地網絡界面的）連接對象。它只有一個參數，也就是本地網絡界面對象信息。網絡界面對象信息通常是generate_interface函數的返回值。註意如果沒有連接請求到來，該函數調用會阻塞當前線程。該函數的一個例子是accept(local_info)。</p>
+</td>
+</tr>
+<tr>
+<td><center>close_connection</center></td>
+<td><p>::mfp::paracomp::connect::close_connection(1) :</p>
+<p>close_connection關閉一個連接對象。它只有一個參數，就是connect函數，accept函數或者get_incoming_connect函數返回的連接對象。本函數的一個例子為close_connection(conn_obj)。</p>
+</td>
+</tr>
+<tr>
+<td><center>close_local</center></td>
+<td><p>::mfp::paracomp::connect::close_local(1) :</p>
+<p>close_local關閉一個本地網絡界面。它只有一個參數，就是generate_interface函數返回的連接對象。本函數的一個例子為close_local(local_info)。</p>
+</td>
+</tr>
+<tr>
+<td><center>connect</center></td>
+<td><p>::mfp::paracomp::connect::connect(3) :</p>
+<p>connect(local_info, remote_info, not_reuse_exist)函數建立一條從local_info所定義的本地網絡界面到remote_info所定義的遠端網絡界面的網絡連接。參數local_info和remote_info均可通過調用generate_interface函數獲得。第三個參數也就是not_reuse_exist是一個可以省略的布爾值，其缺省值為false。如果它是true，本函數會重用本地網絡界面和遠端網絡界面之間已存在的網絡連接（如果有的話）。註意網絡連接是雙向的。一個網絡連接無論是從本地網絡界面連接到遠端網絡界面還是反過來，都是可以被本函數重用的。但需要註意的是，對於TCPIP協議，在服務端重用一個連入的網絡連接不是那麽容易。原因有兩個，第一，當客戶端發起一個連接時，客戶端所使用的IP端口是由操作系統而不是MFP語言決定的，然而，在服務端，如果想要找到一個連入的網絡連接，客戶端的地址必須完整而精確，也就是說客戶端的IP端口必不可少；其次，如果客戶端和服務端之間存在NAT層，服務端不可能知道位於NAT層內部客戶端實際的IP地址和端口。在這種情況下，如果想要重用已有的反向網絡連接，MFP語言需要分析從客戶端發送到服務端的消息，讀取消息的"TransConnectDestRemote"值。該值就是該網絡連接的客戶端的地址的精確完整信息，如果該連接基於TCPIP協議，該值就是客戶端的IP地址加IP端口。註意如果NAT層存在的話，該地址是從服務端看到的客戶端地址而並非NAT層內部客戶端實際的地址。獲取客戶端詳細地址後再將該地址作為一個參數傳入generate_interface函數便可獲取準確的遠端網絡界面的信息，也就是remote_info。connect函數返回一個字典對象，如果調用成功，其"CONNECT"關鍵字的值便是連接對象的詳細信息；反之，如果調用失敗，"CONNECT"的值則是NULL，而額外的"ERROR"關鍵字的值就是出錯信息。</p>
+</td>
+</tr>
+<tr>
+<td><center>generate_interface</center></td>
+<td><p>::mfp::paracomp::connect::generate_interface(2) :</p>
+<p>generate_interface(protocol, address)返回一個本地interface對象的定義。它需要兩個參數。第一個參數是基於字符串的通信協議名，比如"TCPIP"；第二個參數是基於字符串的地址，比如"10.32.202.78"。第二個參數是可選參數，缺省值為本機的localhost地址，比如，對於"TCPIP"協議，本機localhost地址是"127.0.0.1"。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_connect_call_ids</center></td>
+<td><p>::mfp::paracomp::connect::get_all_connect_call_ids(1...) :</p>
+<p>get_all_connect_call_ids返回一個網絡界面所有的連接id或者一個連接的所有call沙盒id。它有兩種模式。第一種調用模式只有一個參數，為一個代表本地網絡界面信息的對象。 該對象為generate_interface函數的返回值。在這種模式下，本函數的返回值為所有從連入和連出的網絡連接的id數組。註意如果本地信息不合法，本函數將拋出異常。第二種調用模式有三個參數。第一個參數為一個代表本地網絡界面信息的對象。 該對象為generate_interface函數的返回值。第二個參數為一個連接對象的id（如果該連接是從本地到遠端的連出網絡連接，該id是遠端地址，如果是連入網絡連接，該id可以通過調用get_call_info函數得到）。第三個參數是一個布爾值，如果是true，這個函數返回所有通過該連接的連入的call沙盒id的數組，否則，這個函數返回所有通過該連接的連出的call沙盒id的數組。註意如果本地信息不合法，本函數將拋出異常。如果連接id不存在，將返回NULL。本函數的一個例子是get_all_connect_call_ids(server_interface, connect_id, false)。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_host_addresses</center></td>
+<td><p>::mfp::paracomp::host::get_all_host_addresses(1) :</p>
+<p>get_all_host_addresses(protocol_name)返回protocol_name協議在本機的所有界面的所有地址。參數protocol_name是可選的。如果沒有給出protocol_name參數或者給出是一個空的字符串，本函數返回本機所有被支持的通信協議在本機所有界面的所有地址。本函數的一個例子是get_all_host_addresses("TCPIP")。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_call_info</center></td>
+<td><p>::mfp::paracomp::connect::get_call_info(0) :</p>
+<p>本函數如果不是在一個call沙盒中被調用，將會返回NULL。否則本函數返回一個數組。數組的第一個元素是調用本函數的call沙盒的id。數組的第二個元素是調用本函數的call沙盒所在的連接的id，數組的第三個元素是存有本地信息的對象。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_incoming_connect</center></td>
+<td><p>::mfp::paracomp::connect::get_incoming_connect(2) :</p>
+<p>get_incoming_connect函數返回一個從遠端地址連入一個本地網絡界面的網絡連接對象，或者如果沒有這樣一個網絡連接存在則返回null。這個函數接受兩個參數。第一個參數為一個代表本地網絡界面信息的對象。 該對象為generate_interface函數的返回值。第二個參數是遠端，也就是網絡連接發起端（或者說客戶端）的地址。註意對於TCPIP協議，客戶端的地址必須是包括IP地址和端口的完整地址。此外，如果在遠端和本地之間存在NAT層，客戶端地址必須是在本地看到的遠端地址，也就是客戶端在NAT層外側的地址。本函數的一個例子是get_incoming_connect(local_interface, "192.168.1.100:53521")。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_local_host_address</center></td>
+<td><p>::mfp::paracomp::host::get_local_host_address(1) :</p>
+<p>get_local_host_address(protocol_name)返回protocol_name協議在本機的localhost地址。本函數的一個例子是get_local_host_address("TCPIP")。</p>
+</td>
+</tr>
+<tr>
+<td><center>initialize_local</center></td>
+<td><p>::mfp::paracomp::connect::initialize_local(2) :</p>
+<p>initialize_local(local_info, settings)初始化一個本地interface對象。該對象由local_info定義（local_info是調用generate_interface的返回結果）。這個函數的第二個參數是本地網絡界面的設置。這個參數現在還沒有被使用，所以可以省略。本函數如果成功返回true，否則返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>listen</center></td>
+<td><p>::mfp::paracomp::connect::listen(1) :</p>
+<p>listen(local_info)在一個本地interface對象上偵聽外部的連接請求。參數local_info是調用generate_interface函數的返回值。listen如果成功，返回true，否則返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>receive_sandbox_message</center></td>
+<td><p>::mfp::paracomp::connect::receive_sandbox_message(1...) :</p>
+<p>receive_sandbox_message函數返回沙盒或者MFP主進程發送的信息。發送者可能位於一個和本地有直接連接（這裏指的是通過MFP的connect函數構成的連接）的遠端MFP實例中（可能是一個call沙盒或者該MFP實例的主進程），也可能就是本地MFP實例的一個call沙盒或者該MFP實例的主進程。它有兩種工作模式。第一種工作模式只有一個參數，也就是等待的時間。如果是0，則意味著沒有等待，立即返回。如果隊列中有消息，則返回隊列中的第一個消息，否則，返回NULL。如果等待時間小於0，則意味著阻塞模式。也就是說如果隊列中沒有消息，函數將會阻塞。如果等待時間是正數，則代表等待的毫秒數。如果等待時間過去之後隊列中仍然沒有消息，則返回NULL。如果本函數是在沙盒中被調用，則必須采用第一種工作模式。第二種工作模式有兩個參數。第一個參數為一個代表本地信息（也就是監聽地址）的對象。它告訴本函數選擇哪一個本地地址收取消息。該信息對象可由調用generate_interface函數返回得到。第二個參數則是等待時間，其具體意義參見第一種工作模式。如果本函數是在MFP主進程中被調用，則必須采用第二種工作模式。本函數如果返回一個合法的消息，該返回值則是一個基於數組的字典。其中，“InterfaceInfo”的字段是發送端的本地信息，包括協議和地址。如果發送端和接收端位於同一個MFP實例中，並且接收端是該MFP實例的一個call沙盒而發送端是該MFP實例的主進程，這個字段則為NULL。“ConnectId”的字段是發送端的連接ID，如果發送端是MFP實例的主進程，該字段為一個空字符串。“CallId”的字段是發送端的call沙盒ID，如果發送端是MFP實例的主進程，該字段為0。“TransConnectSrcLocal”字段是傳輸連接發送端自己看到的本地地址。這裏，傳輸連接未必是發送或者接收端call沙盒的發起連接。但傳輸連接的兩端必然分別位於發送端和接收端所在的MFP實例中。發送端，無論是call沙盒還是MFP主進程，將要發送的消息交給MFP實例，然後發送端MFP實例將該消息通過傳輸連接發送到接收端的MFP實例，再由接收端MFP實例將消息配送到目標沙盒或者MFP主進程。註意由於傳輸連接是雙向的，發送端不一定是傳輸連接的客戶端，相應地，接收端也不一定是傳輸連接的服務端。類似地，字段“TransConnectSrcRemote”是傳輸連接發送端看到的接收端地址；字段“TransConnectDestLocal”是傳輸連接接收端自己看到的本地地址；字段“TransConnectDestRemote”是傳輸連接接收端看到的發送端地址。通常情況下，字段“TransConnectSrcLocal”和“TransConnectDestRemote”的值應該是一致的，字段“TransConnectSrcRemote”和“TransConnectDestLocal”的值應該是一致的。但是，如果是TCPIP協議並且發送端和接收端之間存在NAT層，這些字段的值不見得會一致。如果接收端位於傳輸連接的服務端，“TransConnectDestRemote”字段的值會非常有用，因為它可以告訴MFP傳輸連接在服務端的id，只有知道id該連接才可以被重用，並且還可以通過該連接發送回復的消息。如果發送端和接收端位於同一個MFP實例中，則不需要通過傳輸連接發送消息，這種情況下上述4個字段的內容都是空字符串。最後，消息的“Message”的字段是消息的內容。本函數的兩個例子為receive_sandbox_message(-1)和receive_sandbox_message(local_info, -1)。</p>
+</td>
+</tr>
+<tr>
+<td><center>send_sandbox_message</center></td>
+<td><p>::mfp::paracomp::connect::send_sandbox_message(1...) :</p>
+<p>send_sandbox_message函數將消息發送到沙盒或MFP主進程。它具有四種工作模式。第一種工作模式是從沙盒向其本地MFP主進程發送消息。在這種情況下，該功能只有一個參數，即消息內容。請註意，消息內容不必是字符串。例如，send_sandbox_message([1,2,3])從沙盒向本地MFP主進程發送[1,2,3]。第二種工作模式是將消息從MFP主進程或沙盒發送到本地沙盒。在這種情況下，該功能需要四個參數。第一個參數是本地信息對象。可以從generate_interface函數獲得此本地信息對象。啟動接收方沙盒的call請求被本地信息對象所代表的接口地址接受。第二個參數是接收方沙盒的連接ID。註意這個連接是啟動接收方沙盒call對象的連接。第三個參數是接收方沙盒的call沙盒Id。最後一個參數是消息內容。此模式的一個示例是send_sandbox_message(local_info,"127.0.0.1",1,238.975+3.01i)。第三種工作模式是將消息從本地沙盒或MFP主進程發送到遠端MFP主進程。請註意，本地MFP實例必須已經通過調用connect函數連接到遠端MFP實例。此模式需要兩個參數。第一個是從connect函數返回的連接對象（即返回值的“CONNECT”字段）。第二個參數是消息內容。一個示例是send_sandbox_message(conn1,"Hello!")。最後一種工作模式是將消息從本地沙盒或MFP主進程發送到遠端沙盒。請註意，本地MFP實例必須通過調用connect函數連接到遠端MFP實例。此模式需要五個參數。第一個參數是從連接函數返回的連接對象（即返回值的“CONNECT”字段）。第二個參數是從generate_interface函數獲得的遠程接口對象。此遠程接口位於連接的另一端。遠程接口接受了啟動接收方沙盒的call請求。第三個參數是接收方沙盒的連接ID。註意這個連接是啟動接收方沙盒call對象的連接。第四個參數是接收方沙盒的call沙盒ID。最後一個參數是消息內容。此模式的一個示例是send_sandbox_message(conn1,remote_info,"192.168.1.139",4,[[1,2],[3,4]])。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_local_host_address</center></td>
+<td><p>::mfp::paracomp::host::set_local_host_address(4) :</p>
+<p>set_local_host_address函數用於設置所選通信協議的本地地址。它有四個參數。第一個參數是通信協議的的名字。當前只支持WEBRTC協議所以它只能是字符串"WEBRTC"。第二個參數是通信接口的名稱，當前支持"main"作爲參數值。第三個參數是通信地址。由於僅支持WEBRTC協議，通信地址必須是一個合法的電子郵件地址。推薦使用微軟的outlook郵件或者騰訊公司的QQ郵件。第四個參數是一個字符串數組。數組中的第一個元素為"0"，代表該email地址支持smtp和imap協議。數組中的第二個元素為電子郵件的密碼。註意這是smtp和imap協議收發郵件所使用的密碼，該密碼未見得和登錄網頁信箱所需要的密碼一樣。如果開發人員使用微軟的outlook郵件或者hotmail郵箱，或者谷歌的gmail，以及騰訊的QQ郵件，以上信息就足夠了。但是，如果是其他的郵件地址，開發人員則需要提供smtp服務器和imap服務器的信息。這包括smtp服務器的地址，端口，是否支持SSL協議，和imap服務器的地址，端口，以及是否支持SSL協議。其中，是否支持SSL協議也是一個字符串，"0"表示不支持，"1"表示支持，"-1"表示不清楚。這些信息將分別填入第四個參數的第三號到第八號元素中。本函數的一個例子是set_local_host_address("WEBRTC", "main", "abcxyz@yahoo.com", ["0", "xxxxyyyyzzzzwwww", "smtp.mail.yahoo.com", "465", "1", "imap.mail.yahoo.com", "993", "1"])。另外一個例子是set_local_host_address("WEBRTC", "main", "mnopqrst@outlook.com", ["0", "abcd1234"])。</p>
+</td>
+</tr>
+<tr>
+<td><center>suspend_until_cond</center></td>
+<td><p>::mfp::paracomp::threading::suspend_until_cond(4) :</p>
+<p>此函數將掛起當前線程，直到滿足特定條件為止。它有四個參數。第一個參數為變量名稱。請註意，變量名不是字符串。第二個參數是布爾值。如果為TRUE，則該函數僅在寫入變量的值（不必更改）之後才開始檢查條件是否滿足。否則，函數將在調用函數時立即檢查是否滿足條件。此參數是可選的。默認情況下為TRUE。第三個參數是運算符字符串。當前此參數僅支持以下值，即""，"=="，"!="，">"，"<"，">="和"<="。""表示如果變量值被寫入（未必是被更改），則滿足條件。其他運算符意味著使用運算符比較變量的值。如果比較返回TRUE，則滿足條件。此參數也是可選的。默認情況下為""。最後一個參數是要比較的值。這也是一個可選參數。如果運算符為""，此參數沒有任何作用。對於其他運算符，默認情況下，此參數的值為變量的當前值。例如，suspend_until_cond(a)等於調用suspend_until_cond(a,TRUE,"")，這意味著掛起當前線程，直到變量a被另一個線程寫入。另一個示例是suspend_until_cond(a,FALSE,"!=")，這意味著掛起當前線程，直到變量a的值更改為止。第三個示例是suspend_until_cond(a,TRUE,">=",37)，這意味著掛起當前線程，直到寫入變量a（不一定更改a的值），並且寫入後的值不小於37。如果寫入後的值無法和37進行比較，例如a新的值為"Hello"，則當前線程仍然被阻塞。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

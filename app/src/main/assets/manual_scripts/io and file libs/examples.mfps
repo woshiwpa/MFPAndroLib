@@ -1,0 +1,657 @@
+#!/usr/bin/mfplang
+
+@execution_entry mfpexample :: printfscanf ()
+
+citingspace ::mfpexample
+
+Help
+@language:
+  test input, pause and print functions
+@end
+@language:simplified_chinese
+  测试input，pause和print函数
+@end
+endh
+function io2console1()
+  variable a = input("Please input a number") //输入一个数字
+  variable b = input("Please iinput a string:", "S") //请输入一个字符串
+  pause("Press ENTER to continue!") //按回车键继续
+  //print what has been input
+  //打印出输入的数字和字符串
+  print("You have input " + a + b)
+  print("\n\"\\")
+endf
+
+Help
+@language:
+  test printf and scanf functions
+@end
+@language:simplified_chinese
+  测试printf和scanf函数
+@end
+endh
+function printfscanf()
+  printf("Now test printf function (现在测试printf）\n")
+  printf("%f,%s %Xabc%dfinish",8.776,"Hello",1234,255)
+  printf("\n")
+  printf("%d", 123)
+  printf("\n")
+  printf("%f", 123.1)
+  printf("\n")
+  printf("%f", 123)
+  printf("\n")
+  printf("%d", 123.1)
+  printf("\n")
+  printf("%d + %di", 123, 123)  //print 123 + 123i
+  printf("\n")
+  printf("[%f, %f]", 1.2, 2.3)  //print [1.200000, 2.300000]
+  printf("\n")
+  printf("%s", 123 + 123i)  //print 123 + 123i
+  printf("\n")
+  printf("%s", [1.2,2.3])  //print [1.2, 2.3]
+  printf("\n")
+  printf("%3s", "abcdefg")
+  printf("\n")
+  printf("%019.6f", 12.2342154577) // print 000000000012.234215
+  printf("\n")
+  printf("abc\ndef")
+  printf("\n")
+
+  printf("Now test scanf function (现在测试scanf）\n")
+  variable result_of_scanf
+  printf("Please input （请用户输入）:\n123abd\n")
+  result_of_scanf = scanf("%d%s")
+  // remember, to simply print % using printf, we need to use %%
+  // 记住，如果想用printf输出一个%符号，需要使用%%
+  printf("scanf(\"%%d%%s\") returns " + result_of_scanf)
+  printf("\n")
+  
+  printf("Please input （请用户输入）:\n1.23  xabd\n")
+  result_of_scanf = scanf("%f %d%s")
+  print("scanf(\"%f %d%s\") returns " + result_of_scanf)
+  printf("\n")
+  
+  printf("Please input （请用户输入）:\n8.67   6E8d 232ABC hello 12\n")
+  result_of_scanf = scanf("%f\n%x%dABC%s%d%s %e")
+  print("scanf(\"%f\n%x%dABC%s%d%s %e\") returns " + result_of_scanf)
+  printf("\n")
+  
+  printf("Please input （请用户输入）:\n1235.324 aerf\n")
+  result_of_scanf = scanf("%3f %2s")
+  print("scanf(\"%3f %2s\") returns " + result_of_scanf)
+  printf("\n")
+  
+  printf("Please input （请用户输入）:\n12.34,5\n")
+  result_of_scanf = scanf("%d,%f")
+  print("scanf(\"%d,%f\") returns " + result_of_scanf)
+  printf("\n")
+endf
+
+Help
+@language:
+  test sprintf and sscanf functions
+@end
+@language:simplified_chinese
+  测试sprintf和sscanf函数
+@end
+endh
+function sprintfsscanf()
+  variable result_str
+  printf("Now test sprintf function (现在测试sprintf）\n")
+  result_str = sprintf("%f,%s %Xabc%dfinish",8.776,"Hello",1234,255)
+  printf(result_str + "\n")
+  result_str = sprintf("%d", 123)
+  printf(result_str + "\n")
+  result_str = sprintf("%f", 123.1)
+  printf(result_str + "\n")
+  result_str = sprintf("%f", 123)
+  printf(result_str + "\n")
+  result_str = sprintf("%d", 123.1)
+  printf(result_str + "\n")
+  result_str = sprintf("%d + %di", 123, 123)  //return 123 + 123i
+  printf(result_str + "\n")
+  result_str = sprintf("[%f, %f]", 1.2, 2.3)  //return [1.200000, 2.300000]
+  printf(result_str + "\n")
+  result_str = sprintf("%s", 123 + 123i)  //return 123 + 123i
+  printf(result_str + "\n")
+  result_str = sprintf("%s", [1.2,2.3])  //return [1.2, 2.3]
+  printf(result_str + "\n")
+  result_str = sprintf("%3s", "abcdefg")
+  printf(result_str + "\n")
+  result_str = sprintf("%019.6f", 12.2342154577) // return 000000000012.234215
+  printf(result_str + "\n")
+  result_str = sprintf("abc\ndef")
+  printf(result_str + "\n")
+
+  printf("Now test sscanf function (现在测试sscanf）\n")
+  variable result_of_sscanf
+  result_of_sscanf = sscanf("123abd","%d%s")
+  // remember, to simply print % using printf, we need to use %%
+  // 记住，如果想用printf输出一个%符号，需要使用%%
+  printf("scanf(\"123abd\",\"%%d%%s\") returns " + result_of_sscanf)
+  printf("\n")
+  
+  result_of_sscanf = sscanf("1.23  xabd","%f %d%s")
+  print("scanf(\"1.23  xabd\",\"%f %d%s\") returns " + result_of_sscanf)
+  printf("\n")
+  
+  // read string including multiple lines
+  // 读取包括多行的字符串
+  result_of_sscanf = sscanf("8.67   6E8d 232ABC\nhello 12","%f\n%x%dABC%s%d%s %e")
+  print("scanf(\"8.67   6E8d 232ABC\\nhello 12\",\"%f\n%x%dABC%s%d%s %e\") returns " + result_of_sscanf)
+  printf("\n")
+  
+  result_of_sscanf = sscanf("1235.324 aerf","%3f %2s")
+  print("scanf(\"1235.324 aerf\",\"%3f %2s\") returns " + result_of_sscanf)
+  printf("\n")
+  
+  result_of_sscanf = sscanf("12.34,5","%d,%f")
+  print("scanf(\"12.34,5\",\"%d,%f\") returns " + result_of_sscanf)
+  printf("\n")
+endf
+
+Help
+@language:
+  test reading text file
+@end
+@language:simplified_chinese
+  测试读取文本文件
+@end
+endh
+function readTextFile()
+  // here assume current directory is AnMath and test_read.txt
+  // is saved in scripts/manual/io and file libs/ folder.
+  // 这里假设当前目录是AnMath目录，test_read.txt文件保存在
+  // scripts/manual/io and file libs/ folder文件夹中。
+  // Content of the file （文件内容如下：）
+  //123 456
+  //Good,2*9=18
+  //Hello!
+  //abc
+  variable fd = fopen("scripts/manual/io and file libs/test_read.txt", "r")
+  // read two integers
+  // 读取两个整数
+  variable int_array = fscanf(fd, "%d%d")
+  // print what has been read
+  // 打印出读取的内容
+  printf("read " + int_array + "\n")
+  variable read_str = ""
+  // if we are not at the end of the file and we haven't read string Hello!
+  // 如果还没有到达文件尾部，并且还没有读到字符串Hello!
+  while and(feof(fd) == false, read_str != "Hello!")
+    read_str = freadline(fd)
+    // print what has been read
+    // 打印出读取的内容
+    printf("read " + read_str + "\n")
+  loop
+  variable str_array = fscanf(fd, "%s")
+  // print what has been read
+  // 打印出读取的内容
+  printf("read " + str_array + "\n")
+  if (feof(fd))
+    // it is right if we are at the end of the file
+    // 到达文件尾部意味着程序工作正常
+    print("End of the file found!\n")
+  else
+    // it is wrong if we are still not at the end of file
+    // 如果还没有到达文件尾部，意味着出错
+    print("Something wrong!\n")
+  endif
+  fclose(fd) //close the file （别忘记关闭文件）
+endf
+
+Help
+@language:
+  test writing text file
+@end
+@language:simplified_chinese
+  测试写入文本文件
+@end
+endh
+function writeTextFile()
+  // first test write to replace mode. If file does not exist, it will be
+  // created. If file does exist, its content will be wiped off.
+  // 首先测试写模式。如果要打开的文件不存在，那么它将会被创建。如果文件已经
+  // 存在，它的原有的内容将会被新写入的内容所覆盖。
+  variable fd = fopen("scripts/manual/io and file libs/test_write.txt", _
+    "w", "UTF-8")
+  // first inputs some numbers and string with prompt information
+  // 首先输入一些数字和字符（包括一些提示信息）
+  fprintf(fd, "The first line includes %d, %f, %s\n", 123.71, 56.48, "hi")
+  // then input 4 Chinese characters with prompt information
+  // 然后输入四个汉字（包括一些提示信息）
+  fprintf(fd, "Now input some Chinese characters： " + "汉字中文\n")
+  fclose(fd) // close the file（关闭文件）
+  
+  // Then test append mode. If file does not exist, it will be
+  // created. If file does exist, fprintf will append some text to its
+  // current content.
+  // 然后测试添加模式。如果要打开的文件不存在，那么它将会被创建。如果文件
+  // 已经存在，将在它的原有的内容后添加新的内容。
+  fd = fopen("scripts/manual/io and file libs/test_write.txt", _
+    "a", "UTF-8")
+  // inputs some numbers and string with prompt information
+  // 输入一些数字和字符（包括一些提示信息）
+  fprintf(fd, "Now add a new line %d, %f, %s\n", -999, -48.73, "why?")
+  fclose(fd) // close the file（关闭文件） 
+endf
+
+Help
+@language:
+  test reading & writing binary file
+@end
+@language:simplified_chinese
+  测试读写二进制文件
+@end
+endh
+function readWriteBinaryFile()
+  // remember write binary file should use "wb" not "w"
+  // 记住写二进制文件需要用"wb"而不是"w"
+  variable fd = fopen("scripts/manual/io and file libs/test_rw.bin", "wb")
+  fwrite(fd, 108) // write one byte whose value is 108
+                  // 写入一个字节，值为108。
+  // note that buffer should be an array of bytes (i.e. integer whose
+  // value is no less than -127 and no greater than 128). Here 1000
+  // is larger than 128 so that it will be casted to a byte whose
+  // value is -24 when write to a binary file. Its upper bits will lose
+  // 注意这里的缓存必须是一个字节数组（字节，这里必须是不大于128不小于-127
+  //的整数）。buffer的最后一个元素1000大于255，所以在写入二进制文件时，
+  //将会被强制转化为一个字节范围内的整数也就是-24，在此过程中它的高位比特
+  // 信息丢失。
+  variable buffer = [-18,79,126,-55,48,-23,-75,7,98,6,0,-34,1000]
+  fwrite(fd,buffer) //write every thing in the buffer into the file
+                    //写入buffer中的所有内容
+  fclose(fd)
+  
+  // remember append binary file should use "ab" not "a"
+  // 记住向二进制文件尾部添加内容需要用"ab"而不是"a"
+  fd = fopen("scripts/manual/io and file libs/test_rw.bin", "ab")
+  // write 7 bytes from index 3 of buffer
+  // 向文件中写7个字节，这七个字节从buffer的索引3（也就是第4个字符）开始。
+  fwrite(fd,buffer, 3, 7)
+  fclose(fd)
+  
+  //print original buffer content
+  //打印出最开始buffer的内容
+  print("Originally buffer includes " + buffer + "\n")
+  // remember read binary file should use "rb" not "r"
+  // 记住读二进制文件需要用"rb"而不是"r"
+  fd = fopen("scripts/manual/io and file libs/test_rw.bin", "rb")
+  // read 5 bytes from file, and store the read bytes in buffer from
+  // index 2
+  // 从二进制文件中读入5个字节，并把读入的字节保存在buffer中，
+  //保存位置从索引2开始，也就是第三个字符  
+  fread(fd, buffer, 2, 5)
+  print("Now buffer is " + buffer + "\n") //打印出buffer的内容
+  variable byte_value = fread(fd) // read 1 byte （读一个字节）
+  print("Read one byte which is " + byte_value + "\n")
+  variable read_byte_cnt = fread(fd, buffer) // try to read buffer length
+                                             // bytes
+                                             // 尝试读取buffer长度个字节
+  print("Read " + read_byte_cnt + " bytes" + "\n") // print how many
+                                                   // bytes read
+                                            // 打印出读出的字节数
+  print("Now buffer is " + buffer + "\n") //打印出buffer的内容
+  read_byte_cnt = fread(fd, buffer) // try to read buffer length bytes
+                                    // again
+                                    // 再次尝试读取buffer长度个字节
+  print("Read " + read_byte_cnt + " bytes" + "\n") // print how many
+                                                   // bytes read
+                                            // 打印出读出的字节数
+  // check if we have arrived at the end of file
+  // 检查是否到达文件尾了
+  if (feof(fd))
+    // check how many bytes we can read if we have arrived at the
+    // end of file
+    // 检查到达文件尾后还能读多少字节
+    print("We have arrived at the end of file.\n")
+    print("Now check how many bytes can be read.\n")
+    read_byte_cnt = fread(fd, buffer) // try to read buffer length
+                                    // bytes again
+                                    // 再次尝试读取buffer长度个字节
+    print("Read " + read_byte_cnt + " bytes" + "\n") // print how 
+                                                   // many bytes
+                                                   // read
+                                            // 打印出读出的字节数
+  endif
+  fclose(fd)
+endf
+
+Help
+@language:
+  test file properties operators
+@end
+@language:simplified_chinese
+  测试读写文件属性的函数
+@end
+endh
+function fileProperties()
+  //假设当前的工作目录为AnMath目录（安卓下）或者
+  //JCmdLine.jar所在目录（基于JAVA的可编程科学计算器）
+  // Assume current working directory is AnMath in Android
+  // or the folder where JCmdline.jar is located (for 
+  // Scientific Calculator for JAVA)
+  print("Current working directory is "+get_working_dir()+"\n")
+  variable retval
+  // open current function's source code file
+  // 打开本函数所在的源代码文件
+  variable strPath = "scripts/manual/io and file libs/examples.mfps"
+  variable fd = fopen(strPath, "r")
+  
+  // get source code file's absolute path
+  // 获得源代码文件的绝对路径
+  retval = get_absolute_path(fd)
+  print("Current source file's absolute path is " + retval + "\n")
+  
+  fclose(fd)
+  
+  // get source code file's canonical path
+  // 获得源代码文件不包括符号链接的绝对路径
+  retval = get_canonical_path(strPath)
+  print("Current source file's canonical path is " + retval + "\n")
+  
+  // get source code file's last modified time
+  // 获得源代码文件上一次修改时间
+  retval = get_file_last_modified_time(strPath)
+  print("Current source file's last modify time is " + retval + "\n")
+  
+  // set source code file's last modified time to be 1970/01/01
+  // 将源代码文件上一次修改时间设置为1970/01/01
+  set_file_last_modified_time(strPath, 0)
+  retval = get_file_last_modified_time(strPath)
+  print("After set last modify time to be 0, " _
+    + "current source file's last modify time is " + retval + "\n")
+  
+  // get source code file's size
+  // 获得源代码文件尺寸
+  retval = get_file_size(strPath)
+  print("Current source file's size is " + retval + "\n")
+  
+  // is source code file a directory?
+  // 源代码文件是一个目录吗？
+  retval = is_directory(strPath)
+  print("Is current source file a directory: " + retval + "\n")
+  
+  // is source code file executable?
+  // 源代码文件可执行吗？
+  retval = is_file_executable(strPath)
+  print("Is current source file executable: " + retval + "\n")
+  
+  // is source code file existing?
+  // 源代码文件存在吗？
+  retval = is_file_existing(strPath)
+  print("Is current source file existing: " + retval + "\n")
+  
+  // is source code file hidden?
+  // 源代码文件是隐藏的吗？
+  retval = is_file_hidden(strPath)
+  print("Is current source file hidden: " + retval + "\n")
+  
+  // is source code file normal?
+  // 源代码文件是常规文件吗？
+  retval = is_file_normal(strPath)
+  print("Is current source file normal: " + retval + "\n")
+  
+  // is source code file readable?
+  // 源代码文件可读吗？
+  retval = is_file_readable(strPath)
+  print("Is current source file readable: " + retval + "\n")
+  
+  // is source code file writable?
+  // 源代码文件可写吗？
+  retval = is_file_writable(strPath)
+  print("Is current source file writable: " + retval + "\n")
+  
+  // is source code file path absolute?
+  // 源代码文件路径是绝对路径吗？
+  retval = is_path_absolute(strPath)
+  print("Is current source file path absolute: " _
+    + retval + "\n")
+ 
+  // is source code file path a symbol link?
+  // 源代码文件路径是符号链接吗？
+  retval = is_symbol_link(strPath)
+  print("Is current source file path symbol link: " _
+    + retval + "\n")
+ 
+  // is path1 the parent of source code file path?
+  // Path1是源代码路径的上层路径吗？
+  Variable strPath1 = "scripts/manual/io and file libs"
+  retval = is_path_parent(strPath1, strPath)
+  print("Is " + strPath1 + " parent of " + strPath + " : " _
+    + retval + "\n")
+ 
+  // is path2 the same as source code file path?
+  // Path2和源代码路径是同一路径吗？
+  Variable strPath2 = "scripts/./../scripts/manual/../manual/io and file libs/examples.mfps"
+  retval = is_path_same(strPath2, strPath)
+  print("Is " + strPath2 + " same as " + strPath + " : " _
+    + retval + "\n")
+endf
+
+Help
+@language:
+  test file operation commands
+@end
+@language:simplified_chinese
+  测试文件整体操作函数
+@end
+endh
+function fileOpr()
+  //假设当前的工作目录为AnMath目录（安卓下）或者
+  //JCmdLine.jar所在目录（基于JAVA的可编程科学计算器）
+  // Assume current working directory is AnMath in Android
+  // or the folder where JCmdline.jar is located (for 
+  // Scientific Calculator for JAVA)
+  Variable strOriginalPWD = pwd()
+  printf("Current directory is " + strOriginalPWD + "\n")
+  
+  // now move to scripts/manual/io and file libs/
+  //改变目录至scripts/manual/io and file libs/
+  cd("scripts/manual/io and file libs/")
+  printf("After cd, current directory is " + pwd() + "\n")
+  
+  // now print content in the folder
+  // 现在显示当前目录下的内容
+  dir(pwd())
+  
+  // now create a file in a sub-folder
+  create_file("test_folder/test_file.txt")
+
+  // print content in the folder after create_file
+  // 在调用create_file之后显示当前目录下的内容
+  print("After create test_folder/test_file.txt, run dir:\n")
+  dir(pwd())
+  print("After create test_folder/test_file.txt, run dir for test_folder:\n")
+  dir("test_folder")
+  
+  move_file("test_folder","test_folder1")
+  // print content in the folder after move_file
+  // 在调用move_file之后显示当前目录下的内容
+  print("After move folder test_folder to test_folder1, run dir:\n")
+  dir(pwd())
+  
+  if delete_file("test_folder1") == false
+    print("Cannot delete a folder with file inside " _
+      + "if delete_children_in_folder flag is not set\n")
+    if delete_file("test_folder1", true)
+      print("Can delete a folder with file inside " _
+        + "if delete_children_in_folder flag is set to true\n")
+    endif
+  endif
+  // print content in the folder after delete_file
+  // 在调用delete_file之后显示当前目录下的内容
+  print("After delete folder test_folder1, run dir:\n")
+  dir(pwd())
+  
+  // return to original working directory
+  // 返回原来的工作目录。
+  cd(strOriginalPWD)
+endf
+
+Help
+@language:
+  a complicated file operation example
+@end
+@language:simplified_chinese
+  一个复杂的文件操作的例子
+@end
+endh
+function fileOpr2()
+  Variable strConfirm
+  // first get current working directory, should be AnMath
+  // in Android or the folder where JCmdline.jar is located
+  // (for  Scientific Calculator for JAVA)
+  // 首先获取当前工作目录，必须位于AnMath目录（安卓下）或者
+  // JCmdLine.jar所在目录（基于JAVA的可编程科学计算器）
+  Variable strOriginalPWD = pwd()
+  printf("Current directory is " + strOriginalPWD + "\n")
+  // confirm it is the right working folder
+  // 请用户确认是正确的工作目录
+  printf("Is this AnMath folder in Android " _
+    + "or if you are working on Scientific Calculator for JAVA, " _
+    + "is the folder where JCmdline.jar is located?\n")
+  strConfirm = input("Y for yes and other for no:", "S")
+  if and(stricmp(strConfirm, "Y") != 0, stricmp(strConfirm, "Yes") !=0)
+    //exit if not in the right working directory
+    //不是在正确的工作目录，退出
+    print("You are not in the right working directory, exit!\n")
+    return
+  endif
+  
+  // the scripts folder
+  Variable strScriptsPath = strOriginalPWD + get_file_separator() _
+                          + "scripts"
+  
+  // Please back up your source code first
+  // 请先备份您的源代码
+  Print("Please back up your source codes before run the program!!!\n")
+  // have you backed up your source codes, if no I cannot continue.
+  //您备份了您的源代码吗？如果不是Y，我没法进行下一步。
+  Print("Have you backed up your source codes?\n")
+  strConfirm = input("Y for yes and other for no:", "S")
+  if and(stricmp(strConfirm, "Y") != 0, stricmp(strConfirm, "Yes") !=0)
+    // If you haven't backed up your codes, I will do it for you.
+    // 如果还没有备份您的源代码，我来帮您
+    print("If haven't been backed up, I will do it for you!\n")
+    // source code folder, i.e. scripts, will be copied to scripts.bakup
+    // 源代码目录scripts将会被拷贝为scripts.bakup目录
+    print("scripts folder in current folder will be copied to" _
+          + "scripts.bakup!\n")
+    // 按回车键开始备份
+    pause("Press ENTER to start back up.")
+    copy_file(strScriptsPath, strScriptsPath + ".bakup", true)
+  endif
+  
+  // ok, now it is the right working directory and source code has been
+  // backed up. Preparation work has finished, press enter to continue.
+  // 现在我确信，工作目录是对的了并且代码已经被备份。准备工作完成，按回车继续
+  pause("Now preparation work has finished, press Enter to continue")
+  
+  // all_mfps_files is a 1D array with each element path of a .mfps src
+  // all_mfps_files是一个一维数组，每一个元素是一个mfps源文件路径
+  Variable all_mfps_files = []
+  // all_folders is also a 1D array, each element is path of a folder
+  // including source codes
+  // all_folders是一个一维数组，每一个元素是自定目录本身或者其下的
+  // 一个子目录的路径。
+  Variable all_folders = [strScriptsPath]
+  Variable folder_idx = 0
+  // Go through all_folders, note that in the procedure all_folders is
+  // increasing
+  // 遍历all_folders数组，注意在遍历过程中，all_folders还在增长
+  While(folder_idx  < size(all_folders)[0])
+    // list all the files in a folder
+    // 列出一个folder内的所有文件
+    Variable these_files = list_files(all_folders[folder_idx])
+    // Go through the files. Note that these_files is a 1D array so
+    // size(these_files)[0] must be equal to the length of the array
+    // Also note that index is from 0 to array length - 1.
+    // 遍历这些文件。注意these_files是一个一维数组，所以
+    // size(these_files)[0]必然是一个等于该数组长度的正整数，
+    // 此外还要注意数组的索引是从0开始到数组长度-1。
+    For variable idx = 0 to size(these_files)[0] - 1 step 1
+      Variable this_file_name = these_files[idx]
+      this_file_name = all_folders[folder_idx] + get_file_separator() _
+        + this_file_name
+      If(is_directory(this_file_name))
+        // If this file is actually a folder, append it to all_folders
+        //如果这个文件名对应的文件实际上是一个目录，将其
+        //添加到all_folders数组中。
+        All_folders = set_array_elem(all_folders, _
+                            size(all_folders), _
+                            this_file_name)
+      Elseif and(stricmp(strsub(this_file_name, _
+                         strlen(this_file_name)-5), ".mfps") == 0, _
+                is_file_normal(this_file_name))
+        // If this file is a .mfps source file, append it to
+        // all_mfps_files
+        //如果这个名称对应的文件确实为以.mfps为后缀的源文件，
+        //将其添加到all_mfp_files数组中。
+        all_mfps_files = set_array_elem(all_mfps_files, _
+                             size(all_mfps_files), _
+                             this_file_name)
+      Endif
+    Next
+    folder_idx = folder_idx + 1
+  Loop
+
+  // Now all_mfps_files includes all the .mfps files
+  // 现在all_mfps_files包含了所有的.mfps文件
+  For variable idx = 0 to size(all_mfps_files)[0] - 1 step 1
+    // create a temporary source file to write the modified code in
+    // set encode is UTF-8 to ensure that unicode (e.g. Chinese and
+    // Japanese characters) is supported
+    // 创建一个临时源文件以写入修改后的代码。设置编码模式为UTF-8以确保
+    // 文件中的Unicode字符（也就是中文汉字）能够被支持。
+    Variable fd1 = fopen("temporary_src_file","w", "UTF-8")
+    print("Now analyse " + all_mfps_files[idx] + "\n")
+    Variable fd = fopen(all_mfps_files[idx], "r", "UTF-8")
+    Variable idxLine = 0
+    while (!feof(fd))
+      idxLine = idxLine + 1
+      Variable strLine = freadline(fd)
+      // Note that the regex string for "(" is "\\(" not "(" because
+      // split function uses "(" as a regex control character so that
+      // have to escape.
+      //注意这里用括号分割字符串是使用"\\("而不是"("，原因在于括号
+      //对于split函数来说是一个特殊的控制字符，所以要用两个反斜杆
+      //规避。
+      Variable strarray1 = split(strline, "\\(")
+      // If at least 2 sub strings after splitting and the first one
+      // is set_array_elem after trimming the white spaces
+      //如果分割后至少有两个子字符串，并且分割后的第一个子字符串是
+      //set_array_elem，注意这里要调用trim函数去除头尾空格。
+      If and(size(strarray1)[0] >= 2, _
+            Stricmp(trim(strarray1[0]), "set_array_elem") == 0)
+        // need not to escape "," for regex, different from "("
+        //和括号不同，逗号不是split函数的特殊控制字符，所以不用规避
+        Variable strarray2 = split(strarray1[1], ",")
+        If size(strarray2)[0] >= 2
+          // Should have at least two sub strings, otherwise may mean
+          // no comma.
+          //必须至少有两个子字符串，否则可能意味着没有逗号
+          // Now we can confirm that this line needs change.
+          //是set_array_elem的旧调用方式，现在进行修改
+          print("\tset_elem_array calling statement to change at" _
+                + " Line " + idxLine + "\n")
+          print("\tBefore change is : " + strLine + "\n")
+          StrLine = strarray2[0] + " = " + trim(strLine)
+          print("\tAfter change is : " + strLine + "\n")
+        Endif
+      EndIf
+      // write strLine into temporary source file
+      // 将strLine写入临时文件中
+      fprintf(fd1, "%s\n", strLine)
+    Loop
+    fclose(fd1)
+    fclose(fd)
+    //move temporary file to replace all_mfps_files[idx]
+    //用临时源代码文件替换all_mfps_files[idx]
+    move_file("temporary_src_file", all_mfps_files[idx], true)
+  Next
+  //Done!（搞定了！）
+  printf("Done!\n")
+endf
+
+endcs

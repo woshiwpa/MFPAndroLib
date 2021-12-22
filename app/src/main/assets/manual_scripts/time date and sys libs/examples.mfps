@@ -1,0 +1,87 @@
+#!/usr/bin/mfplang
+
+@execution_entry mfpexample :: testTimeDate ()
+
+citingspace ::mfpexample
+
+Help
+@language:
+  test time and date functions
+@end
+@language:simplified_chinese
+  测试日期和时间相关函数
+@end
+endh
+function testTimeDate()
+  variable var1
+  print("\n\nget_time_stamp(\"1970-01-01 00:00:00.0\") = " _
+    + get_time_stamp("1970-01-01 00:00:00.0"))
+
+  // test to convert an invalid time string to a time stamp.
+  // Result depends on OS
+  //测试将一个不合法的时间表达式转换为时标，
+  //在不同的操作系统上会有不同的结果。
+  try
+    print("\n\nget_time_stamp(\"1980-12-71 00:00:00.0\") = ")
+    print(get_time_stamp("1980-12-71 00:00:00.0"))
+  catch  (var1 = info) == info
+    print("throws an exception")
+  endtry
+
+  // test now function
+  //测试now函数
+  printf("\n\nnow year = %d, month = %d, day of year = %d, " _
+    + "day of month = %d, day of week = %d, hour = %d, " _
+	+ "minute = %d, second = %d, ms = %d", _
+	get_year(now()), get_month(now()), get_day_of_year(now()), _
+    get_day_of_month(now()), get_day_of_week(now()), _
+	get_hour(now()), get_minute(now()), get_second(now()), _
+	get_millisecond(now()))
+
+  // test time stamp conversions
+  //测试时标转换函数
+  print("\n\nget_millisecond(get_time_stamp(2015, 3, 8, 21, 22, 9, 7)) = " _
+    + get_millisecond(get_time_stamp(2015, 3, 8, 21, 22, 9, 7)))
+  print("\n\nget_second(get_time_stamp(2015, 3, 8, 21, 22, 19, 700)) = " _
+    + get_second(get_time_stamp(2015, 3, 8, 21, 22, 19, 700)))
+  print("\n\nget_month(get_time_stamp(2000, 2,29, 16, 58, 9, 700)) = " _
+    + get_month(get_time_stamp(2000, 2,29, 16, 58, 9, 700)))
+  print("\n\nget_year(get_time_stamp(2014, 12,15, 16, 58, 9, 700)) = " _
+    + get_year(get_time_stamp(2014, 12,15, 16, 58, 9, 700)))
+  print("\n\nget_day_of_week(get_time_stamp(2014, 12,15, 16, 58, 9, 700)) = " _
+    + get_day_of_week(get_time_stamp(2014, 12,15, 16, 58, 9, 700)))
+  print("\n\nget_day_of_month(get_time_stamp(2001, 2,29, 16, 58, 9, 700)) = " _
+    + get_day_of_month(get_time_stamp(2001, 2,29, 16, 58, 9, 700)))
+  print("\n\nget_day_of_year(get_time_stamp(2014, 12,15, 16, 58, 9, 700)) = " _
+    + get_day_of_year(get_time_stamp(2014, 12,15, 16, 58, 9, 700)))
+
+  // test conversion of an invalid time. Result depends on OS
+  //测试转化一个非法的时间，在不同的操作系统上会有不同的结果。
+  try
+    print("\n\nget_hour(get_time_stamp(2014, 12,15, 116, 58, 9, 700)) = " _
+	  + get_hour(get_time_stamp(2014, 12,15, 116, 58, 9, 700)))
+  catch  (var1 = info) == info
+    print("\n\nget_hour(get_time_stamp(2014, 12,15, 116, 58, 9, 700)) " _
+	  + "throws an exception")
+  endtry
+endf
+
+Help
+@language:
+  test sleep and system functions
+@end
+@language:simplified_chinese
+  测试sleep和system函数
+@end
+endh
+function testSleepSys()
+  print("Now sleep 3 seconds\n")
+  sleep(3000)
+  print("Now wake up!\n")
+  // If you have installed Smart Photographic Calculator, this will work
+  //如果您已经安装了智慧拍照计算器软件，下述语句将启动它
+  pause("Now try to start Smart Photographic Calculator. Press Enter to continue")
+  system("am start –n com.cyzapps.SmartMath/com.cyzapps.SmartMath.ActivitySmartCalc")
+endf
+
+endcs

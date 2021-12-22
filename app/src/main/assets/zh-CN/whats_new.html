@@ -1,0 +1,733 @@
+﻿<html>
+	<head>
+		<title>可编程科学计算器帮助</title>
+	</head>
+	<body style="background-color:white;">
+		<h2 style="color:blue">可编程科学计算器的新特性</h2>
+		
+		<p style="font-family:verdana;color:red;">
+<b>可编程科学计算器已经在百度贴吧安家了，请到<a href="http://tieba.baidu.com/f?kw=mfp" target="_blank">百度MFP吧</a>参加对可编程科学计算器以及MFP编程语言的讨论以获得最快捷的帮助和最新的信息。</b>
+		</p>
+
+		<p style="font-family:verdana;color:magenta;">
+<b>2.1.0版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 开始在安卓系统上支持基于WebRTC的多媒体库，这样游戏玩家就可以边玩游戏边视频聊天了。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 开始支持双向通信连接。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 开始支持JSON格式的文件的读写。
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>2.0.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 开始在安卓系统上支持基于电子邮件地址的WebRTC通信协议，以实现点对点通讯编程。
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>2.0.0版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 开始支持面向对象的程序设计，也就是声明和管理类和对象。
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.8.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 增加了支持并行计算的消息函数send_sandbox_message和read_sandbox_message。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加了更多并行计算的示例，包括一个采用消息同步机制的多玩家贪吃蛇的游戏，以及采用call程序块参数进行同步的分布式人工神经网的例子。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 修正了很多错误。
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.8.0版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 增加了对并行计算的支持。事实上，MFP语言就是Mathematical language For Parallel computing的缩写。这种新的功能允许用户通过自己的手机或者任何支持MFP语言的设备在另外一个支持MFP语言的设备上运行一段代码（比如，一种算法或者一个游戏）。需要注意的是这一部分现在还是处于测试阶段。仅仅只有TCP/IPv4协议被支持，并且不排除有错误。但是对更多协议的支持会逐步被加入，MFP语言也会更加完善。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加了对多线程的支持。并且多线程计算和并行计算采用的是同样的程序界面，大大降低了开发的难度。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 提供了信号函数suspend_until_cond，该函数可以实现（跨进程）线程同步。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 修正了很多错误，现在本软件可以在安卓N及其以上版本稳定运行。
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.7.4版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 增加了通过email进行数据，语音和视频通信的功能（还处于测试阶段）并且从1.7.4.70版开始增加了详细的使用文档。需要注意的是，可编程科学计算器引入的这些功能和微信、QQ不同。微信和QQ本质上是通过客户机-服务器的方式实现数据，语音和视频通信，而可编程科学计算器则是真正支持端到端（Peer-to-Peer）的，去中心化的通信。当然，可编程科学计算器引入的这些功能并非是为了和微信、QQ等通信软件竞争，这些功能的引入是为了实现真正意义上的分布式计算。换句话说，引入这些功能将成为可编程科学计算器和MFP语言发展的一个里程碑。端到端通信的另外一个好处是，架设一个远程监控系统可以用两部安卓手机加本应用轻松实现。
+		</p>
+		<p style="font-family:verdana;color:black;">
+		由于还处于非常初级的测试阶段，端到端通信的功能现在仅能收发短消息和进行语音和视频的对话。用户如果想测试其功能，请在打开可编程科学计算器之后，点击“设置”，选择“远程连接设置”，然后点击确定，进入远程连接设置，然后输入Email邮箱地址和密码。推荐微软的outlook或者hotmail的邮件地址，这样用户就不用输入端口和服务器地址，软件会自动补全。也可以使用qq邮箱，但需要注意的是，由于采用的客户端的方式读和发送邮件，此时qq邮箱的密码和通过网页登陆qq邮箱的密码不同。qq邮箱的端口和服务器地址，软件也可以自动补全。如果用户使用其他邮箱，从理论上也是可以的，但是需要注意的是该邮箱必须支持客户端收发邮件，同时不能够有太严格的垃圾邮件过滤机制，另外用户还必须自己填写服务器地址和端口。
+		</p>
+		<p style="font-family:verdana;color:black;">
+		设置填写完毕之后，用户如果点击确定，可以将设置保存，如果点击测试则弹出输入文本的对话框，要求输入对方邮件地址。如果不输入地址，软件将会尝试连接自己。然后点击确定，等待对方（对方也需要进行相应的设置，并且允许后台服务启动视频通信窗口，然后点击确定），在打开远程测试后5分钟左右，连接建立，可以看到对方的头像，听到对方的声音并还可以发送短消息。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.7.3版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 提高了MFP语言的性能。相比1.7.2，MFP总体的速度提高了一倍，运行游戏速度提高更多。当然，为了确保精度，MFP使用JAVA的BigDecimal类型进行数据计算。而BigDecimal在安卓系统上没有优化，速度比使用double慢1000倍。这造成了MFP语言的运行速度也比其他语言慢。MFP在未来将引入double数据类型，对于对精度要求不高的计算，使用double类型，将大大提高运行效率；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 实现了将MFP示例自动打包为APK的功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 1.7.3.66增加了一个超级小白兔的游戏；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.7.2版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 实现了MFP的二维游戏引擎。此游戏引擎还处在初始阶段，但已经能够支持多达70多个函数，能够灵活使用各种绘图方法，演奏音乐，以及对鼠标触摸屏事件进行侦测。本版本的软件包括了两个用MFP语言编写的小游戏，一个是削宝石，一个是贪吃蛇。用户可在探索例子中看到这两个游戏。新用户直接点击探索示例图标即可。已经安装过旧版本的用户需要先点击帮助，选择拷贝示例代码和图像，待代码更新完毕后，点击探索示例图标方能看到例子游戏。用户可以运行游戏，也可以阅读游戏代码，还可以把游戏代码打包成为apk文件发布到各大网站供人下载。由于MFP脚本的跨平台性，MFP游戏既可以在安卓上运行，也可以在电脑上运行（需要java支持）。在电脑上运行游戏，一般不会有性能问题。但在手机上运行，如果手机比较旧（超过2年），运行速度会很慢。此外，如果手机屏幕分辨率很高，而游戏没有注意图像压缩，可能会很快消耗掉所有内存而崩溃。用户可以参考削宝石的游戏代码看如何压缩图像；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 引入字典和序列的数据结构。这两个数据结构都是基于MFP的矩阵。但是和set_array_elem函数不一样的是，读写这两个数据结构，都是读写的引用，而不是原始数值的拷贝。相关的函数是：append_elem_to_ablist，concat_ablists，create_abdict，get_elem_from_ablist，get_value_from_abdict，insert_elem_into_ablist，remove_elem_from_ablist，set_elem_in_ablist以及set_value_in_abdict。用户可以参考在线帮助获得详细信息；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 增加了用于编译MFP应用的@build_asset注解。该注解可以在打包MFP脚本时自动将图像声音文件打入包中。同时修改了@compulsory_link注解的使用方法；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 1.7.2.60版更新了用户手册，通过阅读用户手册，用户可以获取编写游戏的详细指南；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.7.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 将脚本管理和图形管理工具合并为单一的文件管理工具，现在用户打开文件管理器，看到的是可编程科学计算器的根目录（也就是AnMath目录）下的所有目录，但要注意，用户自定义的脚本文件必须放在根目录下的scripts目录中方能在启动的时候加载，否则，即便文件中定义了@execution_entry标注，可以长按运行，运行完之后，也将会被卸载，文件中的函数将无法在智慧计算器和命令提示符中找到。另外，scripts目录下的examples子目录现在被移动到根目录下的examples下的scripts子目录了。从1.7.1版开始，scripts目录下的任何子目录中的任何mfps脚本文件都将会被软件在启动的时候加载。；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 引入@execution_entry标注并为基于JAVA的可编程科学计算器添加了一个基于系统命令行（也就是Windows下的Cmd或者Powershell窗口或是Linux下的终端）的MFP语言解释器。如果一个mfps脚本在头部正确声明了一条@execution_entry语句，那么该脚本可以像其他任何脚本语言（比如Python）一样执行。在安卓系统中，用户只需要启动可编程科学计算器的文件管理工具，长按该脚本的图标，即可运行该脚本。在个人电脑中，用户运行一个基于系统命令行的命令，比如mfplang.cmd myscript.mfps，同样也可以调用并执行该脚本；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 增加了gamma函数和beta函数；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 修改了derivative和integrate函数的实现方法，现在在计算不定积分和求导数表达式时，输出的结果仅包括最短的引用空间路径。在一般情况下，输出结果只会包含函数名，不会包含引用空间，除非有位于不同引用空间的同名和同定义的函数；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 为命令提示符添加了一个新的历史纪录键盘，并且在设置中，用户可以选择当计算开始后，不让命令提示符的输入键盘缩回。这两项新功能大大方便了一些需要进行高频和重复输入的用户；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	6. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.7.0版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 引入引用空间（citingspace）的概念。引用空间和C++语言的名字空间（namespace）很相似。现在用户可以在不同的引用空间中定义同名同参数个数的函数而不会相互影响。如果用户想调用一个不可见引用空间的函数，调用方法是引用空间路径：：函数名（参数列表）。比如，::csa::func1()。由于可编程科学计算器和过去的版本100%的兼容，用户也可以保留以前的编程习惯，完全不管引用空间直接定义和调用函数；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加了对计算微分和导数的支持；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.6.7版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 为用户提供了完整的中英文的PDF版的使用手册（中文版手册从1.6.7.54版中开始提供，英文版手册从1.6.7.55版中开始提供）、MFP语言编程指南以及示例代码。进入可编程科学计算器后用户点击帮助图标即可以打开或共享PDF版帮助文档或者阅读示例代码；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 允许用户直接调用底层绘图函数plot_2d_curves，plot_polar_curves和plot_3d_surfaces。这三个函数是由JAVA语言实现的，所以绘图速度比使用对应的MFP语言实现的函数plot2dEx，plot_polar和plot3d快很多。此外，这三个函数可以最多在一张图上绘制出1024条曲线（面），原来的plot2dEx，plot_polar和plot3d仅能最多绘制出8条曲线（面）。Plot2dEx，plot_polar和plot3d依然能够被使用，但将逐步废弃；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 对三维绘图进行了微调，现在图像绘制完成后x、y和z的比例就自动设置为1：1：1，而坐标轴将会自动隐藏（用户可以设置它们重新显示）。此外，还在“绘制三维图像”工具中增加了绘制上海东方明珠电视塔的例子。用户点击菜单按钮，选择“填充示例”，即可以运行这个例子。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 如果用户是通过谷歌商店安装的本应用，则可以在应用内购买创建无广告MFP应用的许可。这样用户自己创建的MFP应用就不再显示任何广告了；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 增强了System函数的功能，用户现在可以通过System函数在安卓上运行一些Shell的基本命令了（但要注意System函数的调用方法也有一些变化）；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	6. 很多错误得到了修正；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.6.6版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 从1.6.6.50版开始，可编程科学计算器可以编译任何文件名包括汉字的mfps代码文件。这意味着，当创建一个APK包的时候，可编程科学计算器不再拷贝所有用户自定义的mfps代码文件而仅仅抽取相关的代码。在某些时候，比如调用integrate或者plot_exprs函数时，函数参数是一个字符串或者基于字符串的变量。这样一来，可编程科学计算器在编译的时候无法判断哪些函数在运行时将会被调用。用户在这种情况下需要在代码中，最好在integrate或者plot_exprs函数调用语句的前一行，增加一个注释指令@complusory_link告知可编程科学计算器哪些用户自定义的函数需要链接入APK包。比如
+		</p>
+		<p style="font-family:verdana;color:black;">
+		...
+		</p>
+		<p style="font-family:verdana;color:black;">
+		@compulsory_link function(myf_expr1, myf_expr2(2))
+		</p>
+		<p style="font-family:verdana;color:black;">
+		integrated_result = integrate(expression_str, variable_str)
+		</p>
+		<p style="font-family:verdana;color:black;">
+		...
+		</p>
+		<p style="font-family:verdana;color:black;">
+		在上面例子中，myf_expr1和myf_expr2是用户自定义的函数。它们在运行时将会被integrate函数调用用于计算积分。所有的名字叫做myf_expr1的函数都会被链接入APK包。但是对于名字叫myf_expr2的函数，当且仅当它正好有两个参数或者有可选参数时，该函数才会被链接入APK包。
+		</p>
+		<p style="font-family:verdana;color:black;">
+		如果用户想把所有自己定义的函数链接入APK包，请用如下语句
+		</p>
+		<p style="font-family:verdana;color:black;">
+		@compulsory_link all_functions
+		</p>
+		<p style="font-family:verdana;color:black;">
+		。这样一来，可编程科学计算器将链接所有函数。但是用户创建的应用装载速度会比较慢。并且，用户还必须保证所有的函数都必须已经定义，否则打包时会出现编译错误。
+		</p>
+		<p style="font-family:verdana;color:black;">
+		还要注意@compulsory_link指令必须位与一个函数的内部，如果它在function语句前面或者endf语句之后，它不会有任何作用。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. MFP将从1.7.x版开始对set_array_elem函数进行一些修改。在当前版本中，set_array_elem将会改变第一个参数的值，哪怕第一个参数只是单个的数而不是数组。从1.7.x版开始，所有非数组参数的值将无法在函数体中被修改。所以，如果用户代码中有如下语句
+		</p>
+		<p style="font-family:verdana;color:black;">
+		set_array_elem(x, [1,2], 2+3i)
+		</p>
+		<p style="font-family:verdana;color:black;">
+		并且用户期待x的值在调用该语句后发生改变，请将上述语句修改为
+		</p>
+		<p style="font-family:verdana;color:black;">
+		x = set_array_elem(x, [1,2], 2+3i)
+		</p>
+		<p style="font-family:verdana;color:black;">
+		在从当前版本开始的1.6.x版中，新的和老的调用方法都可以用，也就是set_array_elem(x, [1,2], 2+3i)和x = set_array_elem(x, [1,2], 2+3i)都能够正确更新x的值。我们希望这项兼容性能为用户修改代码留下充足的时间。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 用户现在可以将任意一个MFP函数编译打包为安卓安装包（APK文件）。用户可以设置APK安装包的应用名称，包id，图标，还可以决定函数的哪些参数需要输入，哪些不需要，以及应用的帮助信息。如果用户是使用公共签名文件或者生成公共签名文件对APK包进行签名，则可以将APK包在谷歌商店或者其他任何应用发布网站上发布。这项新的激动人心的功能也可以在基于JAVA，运行于个人电脑上的可编程科学计算器上使用。换句话说，用户现在可以轻松地在安卓设备或者个人电脑上创建自己的应用。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 很多错误得到了修正；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.6.5版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 二维图形表达式绘图引擎在1.6.5.48中得到显著改进。由于引入缓存技术以及对拖动事件响应进行了优化，现在计算器对图形各种操作更加快速和敏感。但要注意，由于对表达式绘图必须在新的值计算表达式结果，如果表达式过于复杂，用户仍然会感觉到明显的延迟。
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 支持绘制2维或3维隐函数图形。注意只有当隐函数可解，才能够绘制图形。4次或者4次以上的多项式由于根表达式过于复杂，虽然可解，但无法绘图。。如果绘制包含两个变量的隐函数，最多4个根表达式将会被绘制出。如果是3个变量的隐函数，根据情况计算器可能会对每个变量求根，然后为每个变量绘制出最多2个解表达式。这样一来，一个单一的3变量的隐函数，可能意味着绘制出6条图形，整个求解绘图过程将会花费比较长的时间。还要注意，隐函数必须是等式，而不能是赋值式，比如x**2+y**2=4-z**2是非法的，而x**2+y**2==4-z**2则是正确的；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 函数size，zeros和ones的返回值和参数定义有所改变。现在，如果是计算一个数值，而不是矩阵的尺寸，size函数返回[]而不是[0]。同理，如果参数是[]，zeros返回0而ones返回1；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 一定程度的性能提升；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 很多错误得到了修正；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.6.4版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 1.6.4.46版在数学表达式识别正确率和速度方面有了进一步的提升，此外不定积分功能也进一步加强；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 加入数学公式拍照识别的功能。用户可以进入智慧计算器后点击照相机图标按钮进入数学公式拍照识别。注意现阶段只支持打印体数学公式识别，手写体识别还在发展完善中；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 提供了Unicode字符串和整数数组相互转换的函数conv_str_to_ints以及conv_ints_to_str；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 提供了system函数直接运行一个系统命令；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 允许用户隐藏3维图形的坐标轴和标题；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	6. 一些小的错误的修正；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.6.3版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 从1.6.3.44开始对启动智慧计算器和命令提示符时预定义函数库装载过程进行了优化，启动速度大大加快；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 提供了一整套完整的文件操作函数包括create_file、copy_file、delete_file、cd、dir、pwd、fopen、fclose、fprintf、fscanf、freadline、fread、fwrite等等。现在命令提示符完全可以当成安卓设备的一个外壳程序（shell）来使用。用户可以在里面对安卓设备中的任何文件进行读写操作，只要用户有这个权限。当然，这项新功能虽然强大，但也很危险。强烈建议用户把所有的文件操作限制在应用的目录（AnMath）中。同时，建议用户在应用的目录（AnMath）下创建一个data目录用于保存个人数据，以方便管理；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 提供了计算矩阵的秩的rank函数；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 提供了新的输入输出函数包括printf、scanf、sprintf、sscanf；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 提供了新的字符串操作函数包括split、trim、trim_left和trim_right；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	6. 提供了pause函数用于暂停运行中的程序，用户可以敲击Enter键继续；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	7. 提供了一整套日期和时间的函数；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	8. 一些小的错误的修正；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.6.2版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 支持不定积分以及用自适应Gauss-Kronrod法做定积分计算；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 界面支持西班牙文，但帮助文档的翻译还在进行中，感谢网友Gabriel Horacio Diez的协助；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 一些其他小的改进和错误修正；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 从1.6.2版开始，本软件中嵌入了百度移动广告服务。这一新的特性是针对国内的用户，只有当系统语言为简体中文时才会被激活，世界其他地方的用户不受影响。百度移动广告服务需要读取用户大致位置和移动设备状态，以针对不同人群推送不同的广告。我们郑重承诺，百度和我们均不会存储用户的私人数据，用户的隐私得到充分保护；
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.6.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 在同一幅图中绘制更多的曲线。现在不论是2D，3D还是极坐标图形都能包含最多8条曲线（曲面）；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 优化了极坐标图形的绘制；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 一些其他小的改进和错误修正；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.6.0版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 更快的计算速度。经过测试，基于JAVA的可编程科学计算器在电脑上计算速度是以前各版本的10倍，在安卓设备上，由于速度瓶颈未必是在计算上，并且用户通常一次只运行一个小的命令，对计算速度的提高，用户感受可能并非非常明显。但对于大部分计算，速度仍然可以达到以前的1.5到3倍，具体取决于安卓设备的硬件条件；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. MFP编程语言现在可以处理任意大的数，比如，如果计算1000的1000次方，以前的版本会报溢出错误，现在用户可以得到结果为10的3000次方；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 计算结果更精确。著名的类Matlab数学软件Octave采用双精度数进行内部计算所以其实际精度只能达到约10E-17。但MFP则可以达到5*10E-48。当数值小于这个值时，MFP会视该值为0；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 支持无穷大和NaN。由于这项新的特征，本软件将不会再抛出除0异常。用户必须自己在代码中处理。MFP提供了一系列的新函数，比如is_nan_or_inf、is_inf、includes_nan以及includes_inf。使用这些函数用户可以轻松判断一个数是否是无穷或者NaN，或者一个复数或者矩阵是否包括无穷或者NaN。用户也可以用系统预定义的变量inf和nan来生成无穷和NaN值并进行计算；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 计算特征值和特征向量。注意这是非常消耗内存和CPU资源的计算。强烈建议，在安卓设备上不要计算超过6*6的矩阵，在个人电脑不要计算超过8*8的矩阵。否则可能会内存不足或者用户陷入长时间等待；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	6. 支持自定义智慧计算器和命令提示符的键盘。用户现在不但可以自定义函数键盘，还可以自定义数字和运算符键盘。用户还可以自由改变按键高度，宽度以及按键上的字的颜色；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	7. 一些其他小的改进和错误修正；
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.5.6版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 完全支持2进制，8进制和16进制整数和小数。2进制由0b起头，比如0b0011101和0b11.1001。8进制由一个额外的0起头，比如02751和00.23561。16进制0x起头，比如0xEFF6和0x23FAB.DF24。此外，还提供了新的进制转换函数。原有的进制转换函数，也就是int*to*（比如int10to2以及int2to16），被新的conv_*_to_*（比如conv_hex_to_dec）函数所取代，并将在1.6版中被移除。新的进制转换函数全部支持整数和小数；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加新的函数sum_over和product_over；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 改进了智慧计算器的自定义输入面板；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 改善了主界面；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 为避免和if语句混淆，将if函数重命名为iff；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	6. 一些其他小的改进和错误修正；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.5.5版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 支持绘制极坐标曲线图。在智慧计算器工具中，如果用户输入的一个或者一组表达式仅仅包含两个变量，并且这两个变量中至少有一个是希腊字母α、β、γ或者θ，智慧计算器将生成极坐标曲线图。智慧计算器自带的输入键盘中也带有一个θ按钮，以方便用户输入；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加了input函数，用户可以在程序运行的时候输入变量值；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 支持多SD卡存储器，用户可以选择将可编程科学计算器的数据和基于JAVA的可编程科学计算器保存在任何一个SD卡存储器中；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 改进了其它一些小的功能，修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.5.4版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 为命令提示符，程序编辑器，绘图和积分计算提供了输入键盘，方便用户快速输入函数和参数，输入键盘类似于智慧计算器的输入键盘，可以左右滑动以切换到不同的输入模式，在普通键盘模式下会启动字典功能，大大加快了输入速度；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加了计算伴随矩阵和余因子阵的函数adj和cofactor；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 注意：在google的AdView控件中存在一个bug，会造成在横竖屏切换或者多线程并发运行时智慧计算器无法载入输入结果，此外历史纪录和帮助窗口也会一片空白。我们正在和google沟通，希望能尽快解决这个问题，与此同时，在本版中，智慧计算器，命令提示符，绘图和积分计算暂时不允许横竖屏切换，但功能没有任何变化。如果用户在使用本版软件时依然发现存在输入结果一片空白的问题，可以按退回键退出软件（注意不是仅仅退出智慧计算器），再重启软件即可。同时希望发现问题的用户能够和我们联系。我们的email是cyzsoft@gmail.com；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.5.3版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 在智慧计算器结果窗口和历史纪录中显示出绘制出的图形；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加了三个快捷方便的绘图函数，plot_exprs，plot_2d_data和plot_3d_data，用户只需要在命令提示符中运行命令诸如plot_exprs("2*log(x)", "sin(x)"), plot_2d_data([2, 4, 5, 7], [1.8, 2.2, 3.4, 5.8]), plot_3d_data([[5,6,8],[4,9,3],[8,1,6],[2,4,7]])就可以绘制出图形而不必考虑图形各种的设置；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.5.2版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 增加了通过表达式直接绘制图形的功能。用户只需要在智慧计算器中输入一个或多个（不多于4个）表达式，比如：2*x、y=4 + sin(x)、 x + y == z，然后点击绘制图形按钮，智慧计算器将自动为用户绘制出二维或三维图形（取决于变量的总数）。图形绘制好后，用户还可以调整变量的绘制范围；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.5.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 增加了自由缩放，旋转，平移，调整3维图形的功能。增加了绘制填充表面和网格的功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.5版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 增加了绘制3维图形的功能。该功能通过调用plot3D或者plot_multi_xyz函数来实现。用户也可以通过内置的绘制3维图形工具来设置和绘制3维图形；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.4.2版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 增加了侦测曲线奇异点的功能（也就是x或者y的值不是有限大的实数），现在诸如双曲线，y == tan(x)的曲线可以被正确绘制出来了。需要注意的是，如果想侦测曲线奇异点，用户必须设置步长为自动；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加了IF函数，本函数类似于Excel中的IF函数但是更强大，现在用户可以用一行语句来实现一个if程序块的功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.4.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 支持安卓3安卓4的界面风格，安卓3安卓4的用户将会看到这项变化；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加了快速傅立叶变换函数FFT和逆函数IFFT；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 修改了版本号的显示方式，在版本号的末尾添加了修改批次，比如1.4.1.21，21就是修改批次；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 大大缩短了将基于JAVA的可编程科学计算器拷贝到SD卡上的时间；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.4版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 增加了解数学方程式的功能，也就是说现在用户可以通过本软件求解诸如x**2 + 2*x == 3或x + y == 9和y - x == i的方程和方程组。请参考solve和slvreto帮助以获取更多信息；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 将计算器程序升级为智慧计算器程序，智慧计算器支持变量和解方程；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 增加忽略大小写的字符串比较函数；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.3.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 增加了roots函数用于计算高次多项式的根。比如，运行roots(5+4i, 0.79i, 0, 5.41-3.83i, 0.788)我们可以得到多项式方程(5+4i)*x**4 + 0.79i*x**3 +(5.41 - 3.83i)*x + 0.788 = 0的根；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加nCr和nPr函数用于计算排列组合；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 增加对数组连续多次索引的支持，比如，如果数组a = [[1,2],[3,4]]，那么a[1,0](=3)、a[1][0](=3)、[[1,2],[3,4]][0,1](=2)和[[1,2],[3,4]][0][0](=1)都是合法的了；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 允许在声明变量时对之进行初始化，也就是说，类似variable a = "hello, world", b, c = a + 7, d=[2,3,[5,8]]的语句现在都是合法的了；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 允许在多行命令中使用块语句（也就是for ... next、if ... elseif ... else ... endif、try ... catch ... endtry等等）。但要注意的是，运行于Windows，Linux和MacOSX的可编程科学计算器和运行于安卓的可编程科学计算器的命令提示符换行操作略有不同。在安卓系统中，用户在命令中插入一个ENTER键可以在本命令中开始新的一行，如果ENTER在命令末尾被键入，则完成输入开始运行命令；在个人电脑中，用户键入SHIFT-ENTER在本命令中开始新的一行，而不论在命令末尾或中间键入ENTER，都会完成输入开始运行命令；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	6. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.3版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.增加了计算助手，该助手提供使用者常数值，也可以进行单位转换，该计算助手可以在进入计算器或者命令行工具后，点击手机菜单键来启动；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 增加了绘制图形时自动决定步长的功能，同时增加了x，y等比例缩放，放大，缩小，充满窗口按键用于缩放图形；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 增加了文件管理器的剪切复制粘贴功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 更高的计算精度；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5. 增加了将本软件安装到SD卡的功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	6. 修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.2.7版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.支持科学计数，也就是说从本版本开始用户输入1.23e-003都是合法的了；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.更高的计算精度，对非常小的数值更好的支持；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.2.5版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.修正了一个非常严重的错误，此错误会导致用户在输入英文字符时一并重复输入前面已经输入的字符。此错误是由一些输入法的单词智能辨识预测功能（predictive texting）造成的，在以前的版本中用户需要手动关闭输入法的这项功能，现在软件自动禁止此功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.增加命令提示符窗口横向纵向切换的功能；
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.2.4版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.针对大屏幕高分辨率设备对界面进行了优化；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.2.3版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.本软件增加了在命令提示符中定义变量和快速输入上一次命令或结果的功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.增加了函数plot2dEx并且显著提高了绘图速度；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.增加了函数is_zeros和is_eye functions用于判断一个矩阵是否为0矩阵或者单位阵；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4.针对大屏幕设备对界面进行了优化；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5.增加了字符串加的功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	6.增加了积分和绘图的例子以帮助使用者了解如何使用这两个功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	7.修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.2.2版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.本软件增加了增加了用于计算行列式值的函数deter，以及用于生成全部包括0元素或者1元素的函数zeros和ones；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.本软件增加了正负号对矩阵的支持；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.2.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.本软件增加了增加了矩阵左除，右除和整数次方的功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.本软件增加矩阵计算的函数；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.2版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.本软件增加了增加了一个新的强大工具，用户现在可以自定义计算器的输入键盘，这样一来，用户可以非常快捷地输入他们开发的函数，大大提高了工作效率；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.提供了对二进制，十进制和16进制数进行转换的函数以及基于角度计算的三角函数；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.1.2版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1. 增加了一个主界面以列出本软件的所有功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2. 当软件从后台切换到前台时自动加载函数库；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3. 大大减少了启动时间；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4. 修正了一些错误。
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.1.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.本软件增加了显示启动状态的功能。可编程科学计算器启动时需要将内置的，预定义的和用户定义的函数库载入，需要将预定义的函数拷贝到存储卡的例子文件夹中，还需要将基于JAVA的，可运行于任何安装了JAVA支持的Windows、MacOSX和Linux的可编程科学计算器拷贝到存储卡中（此操作仅仅当用户安装或升级本软件时才会进行），如果移动设备硬件性能较低，启动过程可能需要花费比较长的时间。如果启动过程太长，界面不再响应，用户可能会认为软件程序已经死机。而这一新的特性将可以告诉用户启动时本软件在做什么；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.对界面作了一些小的改进。
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.本软件增加了自带了基于JAVA的，可运行于任何安装了JAVA支持的Windows、MacOSX和Linux的可编程科学计算器。用户只需要用一根USB连接线连接移动设备和个人电脑，在移动磁盘中找到 AnMath子目录，进入子目录并在个人电脑中运行JMathCmd.jar。用户可以在个人电脑中编写和测试程序并存入移动设备中，以便以后在移动设备中使用；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.加强了对三角，双曲三角和指数对数函数的复数支持，换句话说， 类似于sin(3 + 4i)、atan(0.9-47.33i)和log(-7-9.2*i)都是合法的了；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.修正了一些错误；
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.0.5版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.用户可以开启或者禁止按键震动，缺省为禁止；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.修正了当使用中文输入法时，命令提示符对话框可能会崩溃的错误；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.修改了帮助窗口的字体和颜色，并且用户可以扩大或缩小字体；
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.0.4版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.支持矩阵除法，换言之，表达式如[[19, 22],[43, 50]]/[[1, 2],[3, 4]]是合法的了；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.支持try/catch语句。这样一来，开发人员可以侦测和处理运行时的异常；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.支持复数次幂（底数必须是正数），换言之，表达式如exp(3 + 2i) and 5 **(-3.1i)是合法的了；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4.增加了在程序启动时显示新特性显示对话框的功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5.修正了矩阵操作和switch/case语句执行时的一些错误。
+		</p>
+		<p style="font-family:verdana;color:magenta;">
+<b>1.0.3版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.支持矩阵的加减乘法和转秩，换言之，表达式如[3 + 4i, 5 + 7i] * [[2], [9-3.56i]]和[[5 - 6i, 3.1] - [4.83, 2.88i], [3*8.48 + sqrt(4.2)*i]]'现在是合法的了；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.支持多行语句，也就是说一条长的语句现在可以分成若干行编辑；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.修正了矩阵操作和位操作时的一些错误。
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.0.2版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.修正了使用“//”作为语句注释时的一个错误；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.修正了在图形标题中使用“；”和“：”的一个错误；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.改进了用户界面；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4.改进了当用户把移动设备连接到PC时软件的性能。
+		</p>
+		<p style="font-family:verdana;color:green;">
+<b>1.0.1版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.修正了当用户把移动设备连接到PC时程序可能崩溃的错误；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.添加了在图形中显示网格的新功能；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.当绘制图形或者积分时如果用户输入有误显示详细出错信息。
+		</p>
+		<p style="font-family:verdana;color:red;">
+<b>1.0版</b>
+		</p>
+		<p style="font-family:verdana;color:black;">
+	1.支持复数；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	2.支持数组和矩阵；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	3.支持（高次）积分；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	4.能够绘制二维图形；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	5.支持字符串；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	6.可编程；
+		</p>
+		<p style="font-family:verdana;color:black;">
+	7.支持其他计算器所具有的基本操作。
+		</p>
+	</body>
+</html>

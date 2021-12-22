@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Scientific Calculator Plus Help</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">Scientific Calculator Plus Help : platform & hardware functions</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>Function name</th>
+<th>Function info</th>
+</tr>
+<tr>
+<td><center>get_asset_file_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_asset_file_path(1) :</p>
+<p>get_asset_file_path(asset_file_entry) tells developer the path of an asset file (i.e. string based parameter asset_file_entry) if the running script is actually an MFP app. If it is not an MFP app, this functions returns null.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_country_language</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_country_language(0) :</p>
+<p>This function returns a two element array. The first element is string based country code. Country code should be either the empty string, an uppercase ISO 3166 2-letter code, or a UN M.49 3-digit code. User may check https://en.wikipedia.org/wiki/ISO_3166 for country code list. The second element is string based language code. It generally follows ISO 639 standard. However, please note that ISO 639 is not a stable standard. Some languages' codes have changed. This function always returns old code. User may check https://en.wikipedia.org/wiki/ISO_639 for language code list.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sandbox_session_lib_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_sandbox_session_lib_path(0) :</p>
+<p>Function get_sandbox_session_lib_path returns a string based path which is the folder where current sandbox session's MFP user defined libs are located. A sandbox session is a session which runs in server side after a call request from a client is received. A sandbox session has its independant MFP user libs, resources and stack from other sessions in this server. Its user libs, resources and stack are copied from the client who sent the call request whether the client is local or remote. This function has no parameter. If this function is called not by a sandbox session but a normal session, e.g. in a command line box, it returns NULL .</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sandbox_session_resource_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_sandbox_session_resource_path(0) :</p>
+<p>Function get_sandbox_session_resource_path returns a string based path which is the folder where current sandbox session's MFP resources, e.g. image files, database files and sound files, are located. A sandbox session is a session which runs in server side after a call request from a client is received. A sandbox session has its independant MFP user libs, resources and stack from other sessions in this server. Its user libs, resources and stack are copied from the client who sent the call request whether the client is local or remote. This function has no parameter. If this function is called not by a sandbox session but a normal session, e.g. in a command line box, it returns NULL .</p>
+</td>
+</tr>
+<tr>
+<td><center>is_mfp_app</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_mfp_app(0) :</p>
+<p>is_mfp_app() tells developer whether the script is running in an MFP app. It returns true if running in an MFP app.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_running_on_android</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_running_on_android(0) :</p>
+<p>is_running_on_android() tells developer whether the script is running on Android or a JAVA platform. It returns true if running on Android, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_sandbox_session</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_sandbox_session(0) :</p>
+<p>Function is_sandbox_session tells developer if the current MFP code is running in a sandbox session or not. A sandbox session is a session which runs in server side after a call request from a client is received. A sandbox session has its independant MFP user libs, resources and stack from other sessions in this server. Its user libs, resources and stack are copied from the client who sent the call request whether the client is local or remote. This function has no parameter. It returns true if this is a sandbox session. Otherwise false .</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,194 @@
+#!/usr/bin/mfplang
+
+@execution_entry mfpexample :: plotGraphs 
+
+citingspace ::mfpexample
+
+Help
+@language:
+  demonstrate how to use the plotting functions
+  provided by MFP
+@end
+@language:simplified_chinese
+  向用户展示如何使用MFP语言所提供的一系列绘图函数
+@end
+endh
+function plotGraphs()
+  // test plot_exprs function in a 2d coordinate.
+  // 在常规二维坐标系中测试plot_exprs函数，按Enter键继续。
+  print("Now test plot_exprs in a 2d coordinate," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  plot_exprs("ln(x)+2*x-6", "x**3+0.9*x")
+  
+  // test plot_exprs function in a polar coordinate.
+  // 在极坐标系中测试plot_exprs函数，按Enter键继续。
+  print("Now test plot_exprs in a polar coordinate," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  plot_exprs("r**2==α**2+9","r==cos(α)","α==sin(r)")
+
+  // test plot_exprs function in a 3d coordinate.
+  // 在三维坐标系中测试plot_exprs函数，按Enter键继续。
+  print("Now test plot_exprs in a 3d coordinate," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  plot_exprs("x**2+2*y**2+z**2==20", _
+    "z=ln(3*x**2+y**2+2*y+2)*sin(x*y/10)")  
+  plot_exprs("x**2-z**2==20","x**2-y**2==6")
+  
+  // test Plot_2d_curves function.
+  // 测试Plot_2d_curvesEx函数，按Enter键继续。
+  print("Now test Plot_2d_curves function," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  Plot_2d_curves("chart 1", "plot_2d_curves chart", "x", "y", "black", "true", "cv1", "red", "diamond", 3, "blue", "solid", 1, "t", -5, 5, 0.3, "t", "t**2/2.5 - 4*t + 6 ", "cv2", "green", "point", 2, "green", "solid", 2, "t", 0, 2*pi, 0.02*pi, "2*cos(t)", "4*sin(t)") 
+  plot_2d_curves("char 2", "plot_2d_curves chart", "x", "y", "black", "true", "cv1", "red", "point", 3, "red", "solid", 1, "t", -sqrt(3), 0, 0.02, "t", "sqrt(3)*t+2", "cv2", "green", "point", 3, "green", "solid", 1, "t", 0, sqrt(3), 0.02, "t", "-sqrt(3)*t+2", "cv3", "blue", "point", 3, "blue", "solid", 1, "t", -sqrt(3), sqrt(3), 0.02, "t", "-1")
+
+  // test plot_2d_data function.
+  // 测试plot_2d_data函数，按Enter键继续。
+  print("Now test plot_2d_data function," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  Plot_2d_data([1,7,8,6])
+  Plot_2d_data([-1.71, 8.93, 3.11, 4.28, 5.99], _
+    [6.24, -7.08, 5.85, -5.76, -3.24], _
+    [1.88, 2.41, 5.71, 7.66, 12.47, 15.19], _
+    [-3.69, 2.12, -1.74, Nan, 2.98,8.71])
+
+  // test plot_multi_xy function.
+  // 测试plot_multi_xy函数，按Enter键继续。
+  print("Now test plot_multi_xy function," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  plot_multi_xy("chart2", "chart_type:multiXY;chart_title:1 chart;x_title:x;x_min:-6;x_max:6;x_labels:6;y_title:y;y_min:-4;y_max:4;y_labels:5;background_color:black;show_grid:true", _
+    "curve_label:cv2;point_color:blue;point_style:circle;point_size:3;line_color:blue;line_style:solid;line_size:1", _
+    [-5, -3, -1, 0, 1, 2, 3, 4, 5], _
+    [-3.778, -2.9793, -2.0323, -1.1132, 0.2323, 1.2348, 3.9865, 2.3450, 0.4356])
+    
+  // test plot_polar_curves function.
+  // 测试plot_polar_curves函数，按Enter键继续。
+  print("Now test plot_polar_curves function," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  plot_polar_curves("LotusAndButterfly", "Lotus & Butterfly", "R", "Angle", "black", "true", "Lotus", "yellow", "point", 0, "red", "solid", 3, "t", 0, 4*pi, 0.05, "sin(t)+sin(2.5*t)**3", "t", "Butterfly", "green", "circle", 4, "blue", "solid",1,"t",-pi, pi,0.02,"0.6*exp(sin(t))-2*cos(4*t)+sin((2*t-pi)/24)**5","t")
+
+  // test plot_polar_data function.
+  // 测试plot_polar_data函数，按Enter键继续。
+  print("Now test plot_polar_data function," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  plot_polar_data([2.47, 3.53, 4.88, 9.42], _
+    [8.49, 6.76, 5.31, 0.88], _
+    [-9, -7, Nan, -3, -1, 1], _
+    [28, 42, 33, 16, 7, 0])
+
+  // test plot_multi_xy function in a polar coordinate.
+  // 在极坐标中测试plot_multi_xy函数，按Enter键继续。
+  print("Now test plot_multi_xy function," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  plot_multi_xy("chart2", _
+    "chart_type:multiRangle;chart_title:1 chart;x_title:x;x_min:-6;x_max:6;x_labels:6;y_title:y;y_min:-4;y_max:4;y_labels:5;background_color:black;show_grid:true", _
+    "curve_label:cv2;point_color:blue;point_style:circle;point_size:3;line_color:blue;line_style:solid;line_size:1", _
+    [-5, -3, -1, 0, 1, 2, 3, 4, 5], [-3.778, -2.9793, -2.0323, -1.1132, 0.2323, 1.2348, 3.9865, 2.3450, 0.4356])
+    
+  // test Plot_3d_surfaces function to draw a cubic box.
+  // 调用Plot_3d_surfaces函数绘制三维立方体，按Enter键继续。
+  print("Now test Plot_3d_surfaces function to draw a 3D box," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  Plot_3d_surfaces("3dBox", "3D Box", "x", "y", "z", _
+    "",false,"red","red",null,"red","red",null,"u",-1,1,2,"v",-1,1,2,"u","v","1", _
+    "",false,"green","green",null,"green","green",null,"u",-1,1,2,"v",-1,1,2,"u","1","v", _
+    "",false,"blue","blue",null,"blue","blue",null,"u",-1,1,2,"v",-1,1,2,"1","u","v", _
+    "",false,"yellow","yellow",null,"yellow","yellow",null,"u",-1,1,2,"v",-1,1,2,"u","v","-1", _
+    "",false,"cyan","cyan",null,"cyan","cyan",null,"u",-1,1,2,"v",-1,1,2,"u","-1","v", _
+    "",false,"magenta","magenta",null,"magenta","magenta",null,"u",-1,1,2,"v",-1,1,2,"-1","u","v")
+    
+  // test Plot_3d_surfaces function to draw pyramid.
+  // 调用Plot_3d_surfaces函数金字塔，按Enter键继续。
+  print("Now test Plot_3d_surfaces function to draw a pyramid," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  Plot_3d_surfaces("pyramid", "Pyramid", "x", "y", "z", _
+    "",false,"red","red",null,"red","red",null,"u",0,1,1,"v",-1,1,2,"1-u","v*(1-u)","1.67*u", _	// east
+    "",false,"magenta","magenta",null,"magenta","magenta",null,"u",0,1,1,"v",-1,1,2,"u-1","v*(1-u)","1.67*u", _	// west
+    "",false,"blue","blue",null,"blue","blue",null,"u",0,1,1,"v",-1,1,2,"v*(1-u)","1-u","1.67*u", _	// north
+    "",false,"yellow","yellow",null,"yellow","yellow",null,"u",0,1,1,"v",-1,1,2,"v*(1-u)","u-1","1.67*u", _	// south
+    "",false,"green","green",null,"green","green",null,"u",-1,1,2,"v",-1,1,2,"u","v","0") // bottom
+
+  // test Plot_3d_surfaces function to draw Beijing landmark "Bird's nest".
+  // 调用Plot_3d_surfaces函数绘制北京地标鸟巢，按Enter键继续。
+  print("Now test Plot_3d_surfaces function to draw Beijing landmark \"Bird's nest\"," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  Plot_3d_surfaces("birdnest", "Bird 's  Nest", "x", "y", "z", _	//设定图像的名字
+    "", false, "red", "blue", null, "cyan", "ltgray", null, "u", -pi, pi, 0, "v", 0, 5, 0, "(14 + v * (1 + 0.3 * cos(2*u))/5) * cos(u)", "(14 + v * (1 + 0.3 * cos(2*u))/5) * sin(u)", "v * (1 + 0.3 * cos(2*u))", _  // 绘制鸟巢的四周围墙
+    "", false, "magenta", "red", null, "yellow", "green", null, "u",  -pi, pi, 0, "v", 7.5, 15, 0, "v*(1 + 0.02 * cos(2*u)*v/15)*cos(u)", "v*(1 + 0.02 * cos(2*u)*v/15)*sin(u)", "5*(1 + 0.3 * cos(2*u)*v/15)", _   // 绘制鸟巢的顶部
+    "", false, "green", "cyan", null, "green", "cyan", null, "u",  -pi, pi, 0, "v", 0, 14, 0, "v*cos(u)", "v*sin(u)", "0")  // 绘制鸟巢的底部
+
+
+  // test plot_3d_surfaces function to draw Shanghai landmark "Oriental pearl tower".
+  // 调用plot_3d_surfaces函数绘制上海地标东方明珠电视塔，按Enter键继续。
+  print("Now test plot_3d_surfaces function to draw Shanghai landmark \"Oriental pearl tower\"," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  plot_3d_surfaces("Oriental_Pearl_Tower","Oriental Pearl Tower","x","y","z", _
+  "",false,"red","red",null,"yellow","yellow",null,"u",0,2,0.25,"v",0,20,20,"3*cos(u*pi)-(20-v)*sqrt(3)/2","3*sin(u*pi)+(20-v)/2","v", _ //Plot the 1st supporting leaning pillar（绘制底部第一根支撑斜柱体）
+  "",false,"green","green",null,"cyan","cyan",null,"u",0,2,0.25,"v",0,20,20,"3*cos(u*pi)","3*sin(u*pi)-(20-v)*sqrt(3)/2","v", _ //Plot the 2nd supporting leaning pillar（绘制底部第二根支撑斜柱体）
+  "",false,"blue","blue",null,"magenta","magenta",null,"u",0,2,0.25,"v",0,20,20,"3*cos(u*pi)+(20-v)*sqrt(3)/2","3*sin(u*pi)+(20-v)/2","v", _ //Plot the 3rd supporting leaning pillar（绘制底部第三根支撑斜柱体）
+  "",false,"white","white",null,"dkgray","dkgray",null,"u",-1,1,0.25,"v",0,20,20,"cos(u*pi)*2","sin(u*pi)*2","v", _ //plot connection column（绘制连接柱）
+  "",false,"red","red",null,"cyan","cyan",null,"u",-pi,pi,pi/10,"v",-pi/2,pi/2,pi/10,"10*cos(u)*cos(v)","10*sin(u)*cos(v)","10*sin(v)+20", _	//plot the big ball（绘制大球）
+  "",false,"magenta","magenta",null,"green","green",null,"u",0,2,0.25,"v",20,70,50,"1.5*cos(u*pi)-2","1.5*sin(u*pi)+2/sqrt(3)","v", _ //plot the 1st connection column between the big ball and the small ball（绘制大球和小球之间的第一根连接柱）
+  "",false,"red","red",null,"blue","blue",null,"u",0,2,0.25,"v",20,70,50,"1.5*cos(u*pi)","1.5*sin(u*pi)- 4/sqrt(3)","v", _ //plot the 2nd connection column between the big ball and the small ball（绘制大球和小球之间的第二根连接柱）
+  "",false,"yellow","yellow",null,"cyan","cyan",null,"u",0,2,0.25,"v",20,70,50,"1.5*cos(u*pi)+2","1.5*sin(u*pi)+2/sqrt(3)","v", _ //plot the 3rd connection column between the big ball and the small ball（绘制大球和小球之间的第三根连接柱）
+  "",false,"magenta","magenta",null,"white","white",null,"u",-pi,pi,pi/10,"v",-pi/2,pi/2,pi/10,"6*cos(u)*cos(v)","6*sin(u)*cos(v)","6*sin(v)+70", _ //plot the small（绘制小球）
+  "",false,"yellow","yellow",null,"green","green",null,"u",0,2,0.25,"v",70,85,15,"cos(u*pi)*1.5","sin(u*pi)*1.5","v", _ //plot another column above the small ball（绘制小球上部的立柱）
+  "",false,"red","red",null,"cyan","cyan",null,"u",-pi,pi,pi/10,"v",-pi/2,pi/2,pi/10,"2*cos(u)*cos(v)","2*sin(u)*cos(v)","2*sin(v)+85", _ //Plot the smaller ball（绘制更小的球）
+  "",false,"red","red",null,"ltgray","ltgray",null,"u",-1,1,0.2,"v",85,115,10,"0.5*max(0.2,(115-v)/30)*cos(u*pi)","0.5*max(0.2,(115-v)/30)*sin(u*pi)","v") //Plot the antenna on top（绘制顶部天线）
+
+
+  // test plot_3d_surfaces function to draw a spiral line.
+  // 调用plot_3d_surfaces函数绘制螺旋线，按Enter键继续。
+  print("Now test Plot_3d_surfaces function to draw a spiral line," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  Plot_3d_surfaces("spiralline", "Spiral Line", "x", "y", "z", "", true, "cyan", "cyan", null, "red", "red", null, "u", -2*pi, 2*pi, pi/50, "v", 0, 1, 1, "5 * cos(u)", "5 * sin(u)", "u")
+  
+  // test plot_3d_data function.
+  // 测试plot_3d_data函数，按Enter键继续。
+  print("Now test plot_3d_data function," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  Plot_3d_data([[7,5,3,6,10,14],[4,7,2,8,9,14],[4,3,9,2,9,15],[2,8,NaN,5,8,16],[-1,9,11,6,8,17],[-4,7,12,5,9,20]])  
+  
+  // test plot_3d_data function to draw volatility surfaces.
+  // 测试plot_3d_data函数绘制波动率曲面，按Enter键继续。
+  print("Now test plot_3d_data function to draw volatility surfaces," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  plot_3d_data([48.000000, 50.000000, 52.000000, 54.000000, 56.000000, 58.000000, 60.000000, 62.000000, 64.000000, 66.000000, 68.000000, 70.000000, 72.000000, 74.000000, 76.000000, 78.000000, 80.000000, 82.000000, 84.000000, 86.000000, 88.000000, 90.000000, 92.000000, 94.000000, 96.000000, 98.000000, 100.000000, 105.000000], [30, 58, 121, 212, 576, 940], _ //x and y values in volatility surface 1 （曲面1的x，y坐标）
+    [[NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, 0.49508067351396218000, 0.45756582984888738000, 0.41913711426069727000, 0.37990131595995524000, 0.34996178524456606000, 0.30776619051400522000, 0.28462015821129766000, 0.27075500739772851000, 0.26301012549556918000, 0.24950232072545608000, 0.24019484695203744000, 0.23175291515931623000, 0.21112501922301888000, 0.20651763047720664000, 0.21070439806536975000, 0.22206990800626822000, 0.23691523835915387000, 0.26035129175640970000, NAN, 0.35693427858118065000], _
+    [NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, 0.36859505107478957000, 0.34682167993243251000, 0.33284975263494410000, 0.32119915959842893000, 0.31050760053766019000, 0.29974406021726552000, 0.29453798692550298000, 0.28157889138027392000, 0.27318479365993703000, 0.26342709777494933000, 0.25752572211832075000, 0.24780946658943892000, 0.24166776632146400000, 0.23722978504246392000, 0.23195815505284242000, 0.22898424812758009000, 0.22833835748043799000, 0.23681894432023268000, 0.26478408970435013000], _
+    [NAN, NAN, NAN, NAN, NAN, NAN, NAN, 0.36447017097320361000, 0.35449192506546090000, 0.34516619206807542000, 0.34261461130215798000, 0.32635501530861477000, 0.32107173363018415000, 0.31233375990009160000, 0.30479530303155050000, 0.29817914152719677000, 0.29058822590764583000, 0.28282080501333134000, 0.27496574457106382000, 0.26851242637016437000, 0.26141077894592291000, 0.25587622110424685000, 0.25097496943207720000, 0.24646926304153294000, 0.24360994236677280000, 0.24074283746453087000, 0.23796452973380869000, 0.23534059389240872000], _
+    [0.42886625487784302000, 0.42275377605823883000, 0.41329219686969904000, 0.40460391970410370000, 0.39481551194770520000, 0.38291712255814248000, 0.37662551028641211000, 0.36478616087804611000, 0.36022367426251140000, 0.35255567514870667000, 0.34632136686091713000, 0.33619033083866695000, 0.32940848011458052000, 0.32550914476490195000, 0.31762251703077932000, 0.31380139485946612000, 0.30905226419037485000, 0.30338087644402684000, 0.29873679230470152000, 0.28685190784393211000, 0.28138845244953115000, 0.27662410367186036000, 0.27058634105931750000, 0.26931959970842401000, 0.26493899498451701000, 0.26164809336719214000, 0.25887643135300442000, 0.25318504482282400000], _
+    [NAN, NAN, NAN, NAN, NAN, NAN, NAN, 0.36501592858551429000, 0.36002318219714213000, 0.35559613466145090000, 0.34848867397787564000, 0.34653605316601327000, 0.34331817675589471000, 0.33758506685395551000, 0.33494376931090725000, 0.33249369924862260000, 0.32894957372789690000, 0.32563131380755028000, 0.32252394427107839000, 0.31590635444985415000, 0.31230809418058103000, 0.30891316532484459000, 0.30690810447495731000, NAN, NAN, NAN, NAN, NAN], _
+    [NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, 0.35115605953314510000, 0.34821397817102240000, 0.34569662266907020000, 0.34358159686638989000, 0.34085234801142689000, 0.34839263577550034000, 0.33660760870094886000, 0.33959719768707108000, 0.33713092050360410000, 0.33603184408546544000, NAN, NAN, NAN, NAN, NAN]], _ // 2d matrix of the vols in volatility surface 1 （曲面1的波动率二维矩阵）
+    [50.000000, 52.000000, 54.000000, 56.000000, 58.000000, 60.000000, 62.000000, 64.000000, 66.000000, 68.000000, 70.000000, 72.000000, 74.000000, 76.000000, 78.000000, 80.000000, 82.000000, 82.500000, 83.000000, 84.000000, 86.000000, 88.000000, 90.000000, 92.000000, 94.000000, 96.000000], [24, 52, 143, 233, 506, 877], _ //x and y values in volatility surface 2 （曲面2x和y坐标）
+    [[NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, 0.22964633802072443000, 0.18031707781034231000, 0.13034337245591013000, 0.11131700480412310000, NAN, 0.10619822668851642000, 0.10041352495351766000, 0.10939206628254365000, 0.14908566947743185000, 0.16602982367522820000, NAN, NAN, NAN], _
+    [NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN, 0.22540094145088913000, 0.19705350522103846000, 0.16395345741263651000, 0.14144557031336311000, 0.12637305801604665000, NAN, 0.11119409065181833000, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN], _
+    [NAN, NAN, NAN, NAN, NAN, NAN, 0.25715041824992257000, 0.23621769883269250000, 0.21525558611698195000, 0.20045165924029371000, 0.18541707800373045000, 0.17359058112818165000, 0.16231450779286907000, 0.14916833017145850000, 0.13963488906422594000, 0.13177711734828756000, 0.12730661724897638000, NAN, NAN, 0.10557373569647757000, 0.10119196691910112000, 0.10116033427429517000, 0.10388742349750228000, 0.10620359931911844000, 0.11622872282660483000, 0.12972672550374550000], _
+    [NAN, NAN, NAN, NAN, NAN, NAN, NAN, 0.20352671403747510000, 0.19298953607665226000, 0.18372653703149414000, 0.17460337106727522000, 0.16855579275820740000, 0.16219673193089182000, 0.15533583755104832000, 0.15143304483201725000, 0.14966908624163464000, 0.14551826337243573000, NAN, NAN, 0.13133944009346873000, 0.12356296864493185000, 0.11899060584716444000, 0.11960170233648706000, 0.11951725172463327000, 0.11866793224195711000, 0.12167362000206712000], _
+    [0.24384524786557735000, 0.23533516044988553000, 0.22716883635794988000, 0.21453230778081070000, 0.21474513249393276000, 0.20918925878245592000, 0.20609984918018193000, 0.20191453785290187000, 0.19781979463707985000, 0.19448827786958967000, 0.19106299814050737000, 0.19227308566292306000, 0.18922818688715029000, 0.18886743252564508000, 0.18912087690028995000, 0.18990974472166203000, 0.19268838899006788000, NAN, NAN, 0.13665902914514916000, 0.13309865533237508000, 0.13053916709176369000, 0.12692797194421160000, 0.12528654150114951000, NAN, NAN], _
+    [NAN, NAN, NAN, NAN, 0.20896766837849659000, 0.20149697646213488000, NAN, NAN, NAN, NAN, NAN, 0.20549683791479759000, 0.20493999835449925000, 0.20823799582345237000, 0.21129319127054960000, 0.21169404646035919000, 0.19212457911706818000, NAN, NAN, 0.18574033886119370000, 0.17054792142025460000, NAN, NAN, NAN, NAN, NAN]]) // 2d matrix of the vols in volatility surface 2 （曲面2的波动率二维矩阵）
+
+  // test plot_multi_xyz function.
+  // 测试plot_multi_xyz函数，按Enter键继续。
+  print("Now test plot_multi_xyz function," _
+    + " press ENTER key to start!")
+  pause() // wait for the ENTER key （等待用户输入ENTER）
+  plot_multi_xyz("chartII", "chart_type:multiXYZ;chart_title:This is a graph;x_title:x;x_min:-5;x_max:5;x_labels:6;y_title:Y;y_min:-6;y_max:6;y_labels:3;z_title:Z;z_min:-3;z_max:1;z_labels:4", "curve_label:cv1;min_color:blue;min_color_1:green;max_color:yellow;max_color_1:red", [[-4, -2, 0, 2, 4],[-4, -2, 0, 2, 4],[-4, -2, 0, 2, 4]], [[-5, -5, -5, -5, -5], [0, 0, 0, 0, 0], [-5, -5, -5, -5, -5]], [[-2.71, -2.65, -2.08, -1.82, -1.77], [-2.29, -2.36, -1.88, -1.45, -1.01], [-1.74, -1.49, -0.83, -0.17, 0.44]])     
+endf
+
+endcs

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<example>
+<description>
+<english>Parallel Computing Example</english>
+<simplified_chinese>并行计算的简单实例</simplified_chinese>
+<traditional_chinese>並行計算的簡單實例</traditional_chinese>
+<spanish>Ejemplo para computación paralela</spanish>
+</description>
+<application>
+<applicationName></applicationName>
+<applicationPkgName>com.cyzapps.parcsamp</applicationPkgName>
+<applicationWorkingFolder>ParCSamp</applicationWorkingFolder>
+<applicationVersionStr>1.0.0.1805</applicationVersionStr>
+<applicationVersionCode>1801</applicationVersionCode>
+<functionInfo>
+<name>  mfpexample :: runTCPParaComp </name>
+<description>The entry function of this script is runTCPParaComp. It runs parallel computing example. It has three modes. The first one is to run local tcpip parallel computing test. In this mode both client and server are using localhost address, i.e. 127.0.0.1. The second mode is server mode. User needs to input input server address, which is the TCPIP address of this device. After server starts it will bind the address and listen to any incoming connection requests. The last one is client mode. User needs to input both client address and server address. Then the program will send a call block to the remote server and run the call block there. After the call block returns, the client program prints the returned value and updated values of call block parameters.本脚本文件的入口函数是runTCPParaComp。这个函数是并行计算的一个例子。它有三种模式。第一种模式是本地模式。在这种模式下，客户端和服务器均使用本地localhost地址，也就是127.0.0.1。第二种模式是服务器模式。用户需要输入服务器的地址，也就是本机的IP地址。在服务器启动之后，它将会绑定这个IP地址并监听从其它进程传来的连接请求。第三种模式是客户端模式。用户需要输入客户端地址和服务器地址。然后客户端会向远端的服务器发送一个call程序块。远端的服务器运行这个call程序块并返回结果。客户端将会把返回的结果和call程序块的参数变量的新值打印出来。</description>
+<includesOptionalParam>FALSE</includesOptionalParam>
+<parameters>
+<parameter>
+<prompt>Please input calculation mode (1 for local mode, 2 for server mode and 3 for client mode): </prompt>
+<isString>FALSE</isString>
+<needsInput>TRUE</needsInput>
+<defaultValue>1</defaultValue>
+</parameter>
+</parameters>
+</functionInfo>
+<helpInfo></helpInfo>
+</application>
+<sourceFiles>
+<sourceFile>examples.mfps</sourceFile>
+</sourceFiles>
+<apkFile>paracomp.apk</apkFile>
+<info>
+<english>Run a parallel computing example. It has three modes. The first one is to run local tcpip parallel computing test. In this mode both client and server are using localhost address, i.e. 127.0.0.1. The second mode is server mode. User needs to input input server address, which is the TCPIP address of this device. After server starts it will bind the address and listen to any incoming connection requests. The last one is client mode. User needs to input both client address and server address. Then the program will send a call block to the remote server and run the call block there. After the call block returns, the client program prints the returned value and updated values of call block parameters.</english>
+<simplified_chinese>并行计算的一个例子。它有三种模式。第一种模式是本地模式。在这种模式下，客户端和服务器均使用本地localhost地址，也就是127.0.0.1。第二种模式是服务器模式。用户需要输入服务器的地址，也就是本机的IP地址。在服务器启动之后，它将会绑定这个IP地址并监听从其它进程传来的连接请求。第三种模式是客户端模式。用户需要输入客户端地址和服务器地址。然后客户端会向远端的服务器发送一个call程序块。远端的服务器运行这个call程序块并返回结果。客户端将会把返回的结果和call程序块的参数变量的新值打印出来。</simplified_chinese>
+<traditional_chinese>並行計算的一個例子。它有三種模式。第一種模式是本地模式。在這種模式下，客戶端和服務器均使用本地localhost地址，也就是127.0.0.1。第二種模式是服務器模式。用戶需要輸入服務器的地址，也就是本機的IP地址。在服務器啟動之後，它將會綁定這個IP地址並監聽從其它進程傳來的連接請求。第三種模式是客戶端模式。用戶需要輸入客戶端地址和服務器地址。然後客戶端會向遠端的服務器發送一個call程序塊。遠端的服務器運行這個call程序塊並返回結果。客戶端將會把返回的結果和call程序塊的參數變量的新值打印出來。</traditional_chinese>
+<spanish>Un ejemplo de computación paralela. Tiene tres modos. El primer modo es el modo local. En este modo, tanto el cliente como el servidor usan la dirección local localhost, que es 127.0.0.1. El segundo modo es el modo servidor. El usuario debe ingresar la dirección del servidor, que es la dirección IP de la máquina. Una vez que se inicia el servidor, vinculará esta dirección IP y escuchará las solicitudes de conexión de otros procesos. El tercer modo es el modo cliente. El usuario debe ingresar la dirección del cliente y la dirección del servidor. El cliente luego envía un bloqueo de llamadas al servidor remoto. El servidor remoto ejecuta el bloqueo de llamadas y devuelve el resultado. El cliente imprimirá el resultado devuelto y el nuevo valor de la variable de parámetro del bloque de llamada.</spanish>
+</info>
+</example>

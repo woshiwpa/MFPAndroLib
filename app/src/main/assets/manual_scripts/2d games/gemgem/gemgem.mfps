@@ -1,0 +1,1121 @@
+
+#This is a typical gem stone game. Note that this game needs decent computing
+#resources. If in an old Android mobile (>= 3 years old), this game may run very
+#slowly or even crash because out of memory. However, no performance issue or
+#out of memory issue has been found when running in a PC based JAVA platform.
+#这是一个典型的削削乐游戏。注意运行这个游戏需要手机的硬件性能比较高。对于很老旧的安卓手机（出厂
+#于最少三年前），这个游戏会运行的很慢，甚至会出现内存不够而奔溃的问题。但如果在PC上运行则不会有
+#性能问题。
+@execution_entry gdi_test::game_test::gemgem::start_gemgem()
+
+citingspace ::gdi_test::game_test::gemgem 
+
+function print_line_(s)
+    // for debugging purpose, ignore this function
+	//用于调试，请忽略本函数
+endf 
+
+function FPS()
+	// Sleeping interval adjuster. The larger this value is, the smaller sleeping interval
+	// 用户调整睡眠时间。这个函数的返回值越大，睡眠时间越短
+	return 20
+endf 
+ 
+function WINDOWDEFAULTWIDTH() 
+	return 1024 // width of the program's window, in pixels // 基于像素的游戏显示窗口宽度
+endf 
+ 
+function WINDOWDEFAULTHEIGHT() 
+	return 728 // height in pixels  // 基于像素的游戏显示窗口高度
+endf 
+ 
+function BOARDWIDTH() 
+	return 8 // how many columns in the board // 游戏网格面板有多少列
+endf 
+ 
+function BOARDHEIGHT() 
+	return 8 // how many rows in the board  // 游戏网格面板有多少行
+endf 
+
+function ScalingRatio()
+	return 2 // scaling ratio // 缩放比例
+endf
+ 
+function GEMIMAGESIZE(windowWidth, windowHeight)
+    // width & height of each cell space in pixels
+	// 每个单元格基于像素的宽度和高度
+	if windowWidth < windowHeight
+		return 64 * windowWidth / 640
+	else
+		return 64 * windowHeight / 640
+	endif
+endf 
+ 
+function NUMGEMIMAGES() 
+	// NUMGEMIMAGES is the number of gem types. You will need .png image 
+	// files named gem0.png, gem1.png, etc. up to gem(N-1).png. 
+	// NUMGEMIMAGES是宝石的种类数量，每一种宝石样子将会保存在一个png文件中，这些文件
+	// 的名字是gem0.png，gem1.png，gem2.png，以此类推。
+	return 7 // game needs at least 5 types of gems to work // 至少需要五种不同的宝石游戏才能运行
+endf 
+ 
+function NUMMATCHSOUNDS() 
+	// NUMMATCHSOUNDS is the number of different sounds to choose from when 
+	// a match is made. The .wav files are named match0.wav, match1.wav, etc. 
+	// NUMMATCHSOUNDS是当代表成功削去的声音的类型数量。这些声音的音频文件为match0.wav，
+	// match1.wav，match2.wav，以此类推。
+	return 6 
+endf 
+ 
+function MOVERATE()
+	// 1 to 100, and 100 has to be its integer times. larger num means faster animations 
+	// 1到100，并且100必须是MOVERATE的整数倍，越大的MOVERATE意味者越快的动画
+	return 25
+endf 
+ 
+function DEDUCTSPEED() 
+	 // reduces score by 1 point every DEDUCTSPEED milliseconds. 
+	 // 每800毫秒将用户的分数减一。
+	return 800
+endf 
+ 
+function PURPLE() //紫色
+	return [255, 0, 255] 
+endf 
+function LIGHTBLUE() //淡蓝
+	return [170, 190, 255] 
+endf 
+function BLUE() //蓝色
+	return [0, 0, 255] 
+endf 
+function RED() //红色
+	return [255, 100, 100] 
+endf 
+function BLACK() //黑色
+	return [0, 0, 0] 
+endf 
+function BROWN() //灰色
+	return [85, 65, 0] 
+endf 
+function HIGHLIGHTCOLOR() 
+	// color of the selected gem's border 
+	// 被选中的宝石单元格的边框的颜色
+	return PURPLE()
+endf 
+function BGCOLOR() 
+	return LIGHTBLUE() // background color on the screen //屏幕背景色
+endf 
+function GRIDCOLOR() 
+	return BLUE() // color of the game board //游戏面板的颜色
+endf 
+function GAMEOVERCOLOR() 
+	return RED() // color of the "Game over" text. // "Game Over"文字的颜色
+endf 
+function GAMEOVERBGCOLOR() 
+	return BLACK() // background color of the "Game over" text. // "Game Over"文字的背景色
+endf 
+function SCORECOLOR() 
+	return BROWN() // color of the text for the player's score //玩家分数的文字的颜色
+endf 
+ 
+// The amount of space from the sides of the board to the edge of the window 
+// is used several times, so calculate it once here and store in variables. 
+// 从网格面板到游戏窗口的边沿的横向和纵向宽度，由于这两个值在游戏中将多次用到，因此xmargin
+// 和ymargin函数计算完之后，必须把值保存在变量中以加快计算速度。
+function XMARGIN(windowWidth, windowHeight) 
+	return floor((windowWidth - GEMIMAGESIZE(windowWidth, windowHeight) * BOARDWIDTH()) / 2) 
+endf 
+function YMARGIN(windowWidth, windowHeight) 
+	return floor((windowHeight - GEMIMAGESIZE(windowWidth, windowHeight) * BOARDHEIGHT()) / 2) 
+endf 
+ 
+// constants for direction values 
+// 移动方向的常量
+function UP() // 上
+	return "up" 
+endf 
+function DOWN() // 下
+	return "down" 
+endf 
+function LEFT() // 左
+	return "left" 
+endf 
+function RIGHT() // 右
+	return "right" 
+endf 
+ 
+function EMPTY_SPACE() // empty space // 空的空间
+	return -1	// an arbitrary, nonpositive value // 任意的非负数值
+endf 
+function ROWABOVEBOARD() 
+	return "row above board" // an arbitrary, noninteger value //一个任意的非整数值
+endf 
+ 
+// entry point of gemgem game
+// 削宝石游戏的入口函数
+function start_gemgem() 
+	variable DISPLAYSURF, GEMIMAGES, BOARDRECTS 
+	// open screen display window for the game
+	// 为游戏开启一个显示窗口
+	DISPLAYSURF = open_screen_display("Gem gem", BGCOLOR(), true, [WINDOWDEFAULTWIDTH(), WINDOWDEFAULTHEIGHT()], false) 
+	
+	// set constant value into variables to accelerate calculation
+	// 将常数值保存在变量中避免重复计算以加快计算速度
+	variable windowWidth = get_display_size(DISPLAYSURF)[0], windowHeight = get_display_size(DISPLAYSURF)[1]
+	// it is possible that in some very small devices, DISPLAYSURF is still not ready when get_display_size is called,
+	// so wait for a few seconds.
+	// 在一些很慢的设备上，有可能出现调用get_display_size函数时，DISPLAYSURF还没有初始化好（也就是它的宽度高度为0），所以，必须等待几秒钟。
+	variable waitSecond = 0
+	while and(or(windowWidth <= 0, windowHeight <= 0), waitSecond <= 4)
+		sleep(1000)
+		windowWidth = get_display_size(DISPLAYSURF)[0]
+		windowHeight = get_display_size(DISPLAYSURF)[1]
+		waitSecond = waitSecond + 1
+	loop	
+	variable shrinkingRatio = 1/ScalingRatio()
+	variable xMargin = XMARGIN(windowWidth, windowHeight)  
+	variable yMargin = YMARGIN(windowWidth, windowHeight)  
+	variable gemImgSize = GEMIMAGESIZE(windowWidth, windowHeight) // gem image size //宝石图案的尺寸 
+	variable mvRate = MOVERATE()  
+	
+	// Load the images of the GEMs into an array named GEMIMAGES
+	// 装入宝石图案，图像的句柄将被保存在数组GEMIMAGES中
+	GEMIMAGES = alloc_array([NUMGEMIMAGES()]) 
+	// copy image files to Apk asset when building MFP app.
+	// 在创建MFP应用时，必须将图像文件拷贝到应用APK包的asset目录中
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "charts", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "charts"], _
+									get_upper_level_path(get_src_file_path())), "charts")
+	for variable idx = 1 to NUMGEMIMAGES() 
+		variable gemImage
+		if is_sandbox_session()
+			// if in a sandbox session // 如果是在一个沙盒中运行
+			gemImage = load_image(get_sandbox_session_resource_path() + "charts/gem" + idx + ".png")
+		elseif is_mfp_app()
+			// if mfp app is running // 如果是MFP应用
+			gemImage = load_image_from_zip(get_asset_file_path("resource"), "charts/gem" + idx + ".png", 1)
+		else
+			// if a script file is running // 如果运行的是脚本
+			gemImage = load_image(get_upper_level_path(get_src_file_path()) + "gem" + idx + ".png") 
+		endif
+		variable gemImageSize = get_image_size(gemImage) 
+		GEMIMAGES[idx - 1] = clone_image(gemImage, 0, 0, gemImageSize[0], gemImageSize[1], gemImgSize * shrinkingRatio, gemImgSize * shrinkingRatio) 
+	next 
+	 
+	// No need to load the sounds. Sounds can be loaded on the spot. 
+	// 没有必要现在就读入声音文件，声音文件可以在需要的时候读入
+ 
+	// Create a 2D array to store left, top, width and height of each cell on the board
+	// 创建一个二维数组，数组的每一个元素是游戏面板上每一个单元格的左，上，长和宽（基于像素）
+	BOARDRECTS = alloc_array([BOARDWIDTH(), BOARDHEIGHT()]) 
+	for variable x = 0 to BOARDWIDTH() - 1 
+		for variable y = 0 to BOARDHEIGHT() - 1 
+			BOARDRECTS[x,y] = [xMargin + (x * gemImgSize), yMargin + (y * gemImgSize), _ 
+							 gemImgSize, gemImgSize] 
+		next 
+	next 
+	 
+	variable up = UP(), down = DOWN(), left = LEFT(), right = RIGHT() 
+	variable rowAboveBoard = ROWABOVEBOARD() 
+	
+	// create an image display and drop board grid on it.
+	// 创建一个图像“显示窗口”，在上面绘制网格
+	variable boardImageDisplay = open_image_display(null) 
+	set_display_size(boardImageDisplay, windowWidth, windowHeight)
+	for variable x = 0 to BOARDWIDTH() - 1 
+		for variable y = 0 to BOARDHEIGHT() - 1 
+			draw_rect("gemgem", boardImageDisplay, [BOARDRECTS[x][y][0], BOARDRECTS[x][y][1]], _ 
+				BOARDRECTS[x][y][2], BOARDRECTS[x][y][3], GRIDCOLOR(), 1) 
+		next 
+	next 
+	update_display(boardImageDisplay) 
+	// Use this image display's snapshot as background of game display window
+	// 图像“显示窗口”的截屏图像用作游戏显示窗口的背景图像
+	variable boardImage = get_display_snapshot(boardImageDisplay, false) 
+	set_display_bgrnd_image(DISPLAYSURF, boardImage, 0) 
+	 
+	// main loop of the game
+	// 游戏的主循环
+	while run_game(DISPLAYSURF, GEMIMAGES, BOARDRECTS, gemImgSize, windowWidth, windowHeight, _ 
+		xMargin, yMargin, mvRate, up, down, left, right, rowAboveBoard) 
+	loop 
+	 
+	shutdown_display(boardImageDisplay) 
+	
+	if get_country_language()[1] == "zh"
+		print_line("本游戏是由MFP语言开发。MFP语言是一种非常容易上手的跨平台脚本编程语言。它的代码无需修改和编译，就可以在安卓和其他任意支持JAVA的个人电脑上运行。如果您对MFP编程语言感兴趣，请到百度手机或者酷安网下载MFP语言的IDE，可编程科学计算器，进行游戏开发。可编程科学计算器的安卓版自带运行于电脑上的MFP解释器，还可以创建APK安装包，真正实现电脑上编程调试，安卓上运行。还等什么，赶快试一下吧！")
+	elseif get_country_language()[1] == "es"
+		print_line("Este juego fue desarrollado por el lenguaje de programación MFP. MFP es un lenguaje de scripts multiplataforma para Android y cualquier PC con soporte para JAVA. Es fácil de aprender y fácil de programar. Usted puede desarrollar su script en PC y ejecutarlo sin ninguna modificación en Android. El IDE de MFP es Scientific Calculator Plus, que se puede descargar en Google Play https://play.google.com/store/apps/details?id=com.cyzapps.AnMath. Scientific Calculator Plus puede ejecutarse en Android y PC y puede crear el paquete de instalación de Android (APK) de los scripts MFP. Pruébalo y nunca te decepcionará.")
+	else
+		print_line("This game was developed by MFP programming language. MFP is a very easy-to-learn and cross-platform scripting language for Android and any PC with JAVA support. You develop an MFP script on PC once and run it everywhere (including Android and PC with a different OS). If you are interested in it, please download MFP's ide, i.e. Scientific Calculator Plus, from Google Play at https://play.google.com/store/apps/details?id=com.cyzapps.AnMath . Scientific Calculator Plus can run on Android and PC and can build Android installation package (APK) from MFP scripts. You will enjoy the easy and quick game programming.")
+	endif
+endf 
+ 
+function run_game(DISPLAYSURF, GEMIMAGES, BOARDRECTS, gemImgSize, windowWidth, windowHeight, xMargin, yMargin, mvRate, up, down, left, right, rowAboveBoard) 
+	// Plays through a single game. When the game is over, this function returns.
+	// 运行一轮游戏。如果游戏结束，这个函数会退出。
+	// initalize the board. returned value of this function is 2D array. Each element is a gem's info
+	// 初始化游戏面板。返回的是一个二维数组。数组中的每一个元素是一个宝石的信息。
+	variable gameBoard = get_blank_board() 
+	variable score = 0 
+	// drop the initial gems. 
+	// 宝石落下
+	variable gemsImageAndDisplay = init_Board_And_Animate(DISPLAYSURF, GEMIMAGES, BOARDRECTS, gameBoard, windowWidth, windowHeight, mvRate)
+	variable gemsImage = gemsImageAndDisplay[0] // the image which includes all the gems // 包括所有宝石的图像的句柄
+	variable gemsImageDisplay = gemsImageAndDisplay[1] // the image display of gemsImage // gemsImage的“显示窗口”
+	// now gemsImageDisplay is updated. // gemsImageDisplay已经被更新了
+	 
+	// initialize variables for the start of a new game 
+	// 在游戏开始时初始化一些变量
+	variable firstSelectedGem = Null // first selected gem //第一个被选中的宝石
+	variable lastMouseDownX = Null // last mouse down x // 上一次鼠标或手指按下的x坐标
+	variable lastMouseDownY = Null // last mouse down y // 上一次鼠标或手指按下的y坐标
+	variable gameIsOver = False // is game over? // 游戏结束了吗？
+	variable lastScoreDeduction = now() // last score deduction timestamp // 上一次开始倒计时的时标
+	 
+	// for gem, a 3-element or 4-element array stores gem information.
+	// gem[0] is imageNum, gem[1] is x, gem[2] is y, gem[3] is direction.
+	// 对于宝石，用一个包含3个或者4个元素的数组存储宝石的信息。数组的第一个元素是该宝石对应的图像的序号，
+	// 也就是gem0.png还是gem1.png等，第二个元素是宝石在网格的横向坐标，第三个元素是宝石在网格的纵向坐标，
+	// 第四个元素是宝石的运动方向。
+	variable infoNum = 0, infoX = 1, infoY = 2, infoDirect = 3 
+	// shrinking ratio and scaling ratio
+	// 缩小比例和放大比例
+	variable shrinkingRatio = 1/ScalingRatio(), scaledRatio = scalingRatio()
+ 
+	while true // main game loop // 主循环
+		drop_old_painting_requests("gemgem", DISPLAYSURF)
+		
+		variable clickedSpace = null 
+		do // processing player's input events // 处理玩家输入事件
+			variable giEvent = pull_event(DISPLAYSURF) 
+			if giEvent == Null 
+				// no event to handle // 没有需要处理的事件
+				break 
+			elseif get_event_type_name(giEvent) == "GDI_CLOSE" 
+				// quit // 退出
+				return false 
+			elseif get_event_type_name(giEvent) == "POINTER_UP" 
+				if gameIsOver 
+					// after games ends, click screen display window to start a new game 
+					// 本轮游戏结束后，点击游戏显示窗口开始新的一轮游戏
+					return true
+				endif 
+				// find out clicked cell space. we do not consider drag.
+				// 找到被点击的单元格。我们不考虑拖拽的情况。
+				clickedSpace = check_For_Gem_Click([lastMouseDownX, lastMouseDownY], BOARDRECTS) 
+			elseif get_event_type_name(giEvent) == "POINTER_DOWN" 
+				// this is the start of a mouse click/finger tap or mouse/finger drag 
+				// 这是一个点击或者拖拽事件的开始。
+				lastMouseDownX = get_event_info(giEvent, "x") 
+				lastMouseDownY = get_event_info(giEvent, "y") 
+			endif 
+		until false 
+		
+		if and(clickedSpace != Null, firstSelectedGem == Null) 
+			// This was the first gem clicked on. 
+			// 第一个宝石被点中
+			firstSelectedGem = clickedSpace	 
+		elseif and(clickedSpace != Null, firstSelectedGem != Null) 
+			// Two gems have been clicked on and selected. Swap the gems. 
+			// 已经有两个宝石被点击和选中了，交换这两个宝石。
+			variable swappedGems = get_Swapping_Gems(gameBoard, firstSelectedGem, clickedSpace) 
+			variable firstSwappingGem = swappedGems[0] 
+			variable secondSwappingGem = swappedGems[1] 
+			if and(firstSwappingGem == null, secondSwappingGem == null) 
+				// If both of the gems are None, then they are not adjacent 
+				// deselect the first gem 
+				// 如果两个宝石均为Null，它们比如不相邻，那么撤回对第一个宝石的选择。
+				firstSelectedGem = null
+				continue 
+			endif 
+			 
+			// Show the swap animation on the screen. 
+			// 在屏幕上显示交换宝石的动画。
+			variable boardCopy = clone(gameBoard) 
+			variable x1 = firstSwappingGem[infoX], y1 = firstSwappingGem[infoY], x2 = secondSwappingGem[infoX], y2 = secondSwappingGem[infoY] 
+			variable theX1 = xMargin + gemImgSize * x1, theY1 = yMargin + gemImgSize * y1, theX2 = xMargin + gemImgSize * x2, theY2 = yMargin + gemImgSize * y2 
+			boardCopy[x1][y1] = EMPTY_SPACE() 
+			boardCopy[x2][y2] = EMPTY_SPACE() 
+			// first clear the two gems which will be swapped from the background image of game's screen display
+			// 首先，把这两个要交换的宝石从游戏显示窗口的背景图案中抹掉
+			clear_rect("gemgem", gemsImageDisplay, [theX1, theY1], gemImgSize, gemImgSize) 
+			clear_rect("gemgem", gemsImageDisplay, [theX2, theY2], gemImgSize, gemImgSize) 
+			// update gemsImageDisplay and then take snapshot of this image display
+			// 更新图像“显示窗口”gemsImageDisplay，然后截取它的视图
+			gemsImage = get_display_snapshot(gemsImageDisplay, true, shrinkingRatio, shrinkingRatio)
+			// animate the gem swapping.
+			// 模拟宝石换位的动画过程。
+			animate_Swapping_Gems(DISPLAYSURF, GEMIMAGES, BOARDRECTS, boardCopy, gemsImage, [firstSwappingGem, secondSwappingGem], [], score, _ 
+				gemImgSize, xMargin, yMargin, mvRate, up, down, left, right, rowAboveBoard) 
+			 
+			// Swap the logic gems in the board data structure. 
+			// 交换宝石在游戏面板数据结构中的逻辑位置
+			gameBoard[x1][y1] = secondSwappingGem[infoNum] 
+			gameBoard[x2][y2] = firstSwappingGem[infoNum] 
+			
+			// send draw request for the swapped gems
+			// 为这两个交换位置的宝石发送绘制请求
+			draw_image("gemgem", gemsImageDisplay, GEMIMAGES[gameBoard[x1][y1]], theX1, theY1, scaledRatio, scaledRatio) 
+			draw_image("gemgem", gemsImageDisplay, GEMIMAGES[gameBoard[x2][y2]], theX2, theY2, scaledRatio, scaledRatio) 
+			 
+			// See if this is a matching move. A matching means at least three identical gems are adjacent in a row or in a column.
+			// 现在我们开始检查是否有至少三个同样的宝石连成一串的情况（包括一横条或者一竖列）。
+			variable matchedGems = find_Matching_Gems(gameBoard) 
+			if matchedGems == [] 
+				// was not a matcing move, swap the gems back and play bad swap sound.
+				// 没有找到连成一串的情况，把交换位置的两个宝石换回来并且发出错误换位的声音。
+				@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "badswap.wav", _
+												is_mfp_app(), [1, get_asset_file_path("resource"), "badswap.wav"], _
+												get_upper_level_path(get_src_file_path()) + "badswap.wav"), "sounds/badswap.wav")
+				if is_sandbox_session()
+					play_sound(get_sandbox_session_resource_path() + "sounds/badswap.wav", false)
+				elseif is_mfp_app()
+					play_sound_from_zip(get_asset_file_path("resource"), "sounds/badswap.wav", 1, false)
+				else
+					play_sound(get_upper_level_path(get_src_file_path()) + "badswap.wav", false) 
+				endif
+				// first clear the two gems which will be swapped back from the background image of game's screen display
+				// 首先，把这两个要交换回来的宝石从游戏显示窗口的背景图案中抹掉
+				clear_rect("gemgem", gemsImageDisplay, [theX1, theY1], gemImgSize, gemImgSize) 
+				clear_rect("gemgem", gemsImageDisplay, [theX2, theY2], gemImgSize, gemImgSize) 
+				// update gemsImageDisplay and then take snapshot of this image display
+				// 更新图像“显示窗口”gemsImageDisplay，然后截取它的视图
+				update_display(gemsImageDisplay) 
+				gemsImage = get_display_snapshot(gemsImageDisplay, false, shrinkingRatio, shrinkingRatio) //this is static gems image. 
+				firstSwappingGem[infoNum] = gameBoard[x1][y1]
+				secondSwappingGem[infoNum] = gameBoard[x2][y2]
+				// animate the gem swapping.
+				// 模拟宝石换位的动画过程。
+				animate_Swapping_Gems(DISPLAYSURF, GEMIMAGES, BOARDRECTS, boardCopy, gemsImage, [firstSwappingGem, secondSwappingGem], [], score, _ 
+					gemImgSize, xMargin, yMargin, mvRate, up, down, left, right, rowAboveBoard) 
+				// Swap the logic gems in the board data structure. 
+				// 交换宝石在游戏面板数据结构中的逻辑位置
+				gameBoard[x1][y1] = secondSwappingGem[infoNum] 
+				gameBoard[x2][y2] = firstSwappingGem[infoNum] 
+				// send draw request for the swapped gems
+				// 为这两个交换位置的宝石发送绘制请求
+				draw_image("gemgem", gemsImageDisplay, GEMIMAGES[gameBoard[x1][y1]], theX1, theY1, scaledRatio, scaledRatio) 
+				draw_image("gemgem", gemsImageDisplay, GEMIMAGES[gameBoard[x2][y2]], theX2, theY2, scaledRatio, scaledRatio) 
+				// update gemsImageDisplay
+				// 更新图像“显示窗口”gemsImageDisplay
+				update_display(gemsImageDisplay)  
+			else 
+				// This is a matching move. A matching means at least three identical gems are adjacent in a row or in a column.
+				// 找到了三个宝石连成一串的情况
+				variable scoreAdd = 0 
+				while matchedGems != [] 
+					// Remove matched gems, then pull down more gems to the board.
+					// 将连成一串的宝石削掉，然后落下更多的宝石。
+ 
+					// point is the number of points player earned from this match.
+					// points is a list of arrays telling fill_Board_And_Animate() 
+					// where on the screen to display text to show how many points 
+					// the player got. points is a list because if the player gets 
+					// multiple matches after one swap, then multiple points text
+					// should appear. For each point text, a 3-element array stores
+					// its information. In the array, element 0 is point, element 1
+					// is x, element 2 is y.
+					// point是玩家在消去一组宝石之后的得分。points是一个数组序列，它告诉函数
+					// fill_Board_And_Animate()需要在屏幕的哪里显示玩家得分的文字。Points
+					// 之所以是一个序列是因为在玩家交换两个宝石之后，可能会出现多组三个宝石连
+					// 成一串的情况。这样就需要多个得分文字。对于每一个得分文字，程序用包含3个
+					// 元素的数组保存它的信息。在这个数组里，第一个元素是得分，第二个元素是文字
+					// 的x坐标，第三个元素是文字的y坐标。
+					variable points = [] 
+					for variable idx = 0 to size(matchedGems)[0] - 1 
+						variable gemSet = matchedGems[idx] 
+						scoreAdd = scoreAdd + (10 + (size(gemSet)[0] - 3) * 10) 
+						variable gem = null 
+						for variable idx1 = 0 to size(gemSet)[0] - 1 
+							gem = gemSet[idx1] 
+							gameBoard[gem[0]][gem[1]] = EMPTY_SPACE() 
+							// clear empty gem (empty gem is the gem which has been matched)
+							// 清除削去的宝石
+							clear_rect("gemgem", gemsImageDisplay, [xMargin + gem[0] * gemImgSize, yMargin + gem[1] * gemImgSize], gemImgSize, gemImgSize) 
+						next 
+						if gem != null 
+							// if we did get match(es), add point to points list
+							// 如果我们削去了宝石，将积分加入积分序列
+							points = append_elem_to_ablist(points, [scoreAdd, gem[0] * gemImgSize + xMargin, gem[1] * gemImgSize + yMargin]) 
+						endif 
+					next 
+ 
+					// play matching sound
+					// 演奏削去音乐
+					@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "sounds", _
+													is_mfp_app(), [1, get_asset_file_path("resource"), "sounds"], _
+													get_upper_level_path(get_src_file_path())), "sounds")
+					if is_sandbox_session()
+						play_sound(get_sandbox_session_resource_path() + "sounds/match" + floor(rand() * NUMMATCHSOUNDS()) + ".wav", false)
+					elseif is_mfp_app()
+						play_sound_from_zip(get_asset_file_path("resource"), "sounds/match" + floor(rand() * NUMMATCHSOUNDS()) + ".wav", 1, false)
+					else
+						play_sound(get_upper_level_path(get_src_file_path()) + "match" + floor(rand() * NUMMATCHSOUNDS()) + ".wav", false) 
+					endif
+					score = score + scoreAdd 
+					 
+					// Drop the new gems 
+					// no need to update_display(gemsImageDisplay), fill_board_and_animate will do this 
+					// 落下新的宝石，这里无需调用update_display(gemsImageDisplay)，fill_board_and_animate函数内部会调用它
+					fill_board_and_animate(DISPLAYSURF, GEMIMAGES, BOARDRECTS, gameBoard, gemsImageDisplay, points, score, _ 
+						gemImgSize, windowWidth, windowHeight, xMargin, yMargin, mvRate, up, down, left, right, rowAboveBoard) 
+					 
+					// check if there are any new matches 
+					// 检查是否又有新的3个同样的宝石拍成一串的情况
+					matchedGems = find_Matching_Gems(gameBoard) 
+				Loop 
+			endif 
+			firstSelectedGem = null 
+			gemsImage = get_display_snapshot(gemsImageDisplay, true, shrinkingRatio, shrinkingRatio)
+		endif  
+		
+		if !gameIsOver 
+			// game hasn't been over 
+			// Draw the board 
+			// 游戏还没有结束，绘制游戏面板
+			draw_image("gemgem", DISPLAYSURF, gemsImage, 0, 0, scaledRatio, scaledRatio)  
+			if firstSelectedGem != Null
+				// if any gem is selected, highlight it
+				// 如果有宝石被选中，给它加高亮边框
+				highlight_Space(DISPLAYSURF, BOARDRECTS, firstSelectedGem[0], firstSelectedGem[1])  
+			endif  
+			if and(score > 0, now() - lastScoreDeduction > DEDUCTSPEED())  
+				// score drops over time  
+				// 玩家的分数随着时间而降低
+				score = score - 1  
+				lastScoreDeduction = now()  
+			endif  
+			// draw player's total score
+			// 绘制玩家当前的总得分
+			draw_score(DISPLAYSURF, score, windowWidth, windowHeight)
+			update_display(DISPLAYSURF)
+			// check gameIsOver immediately after update_display so that player will not detect time elapse.
+			// 在更新游戏显示窗口之后立即检查游戏是否结束，这样玩家将不会感觉到时延。
+			if !can_make_move(gameBoard)
+				gameIsOver = true  
+			endif 
+		else 
+			// game has been over, show final score
+			// 游戏结束了，显示最终得分
+			drop_old_painting_requests("gemgem", DISPLAYSURF) 
+			variable text = "Final Score: " + score + "\nClick to continue!"  
+			clear_rect("gemgem", DISPLAYSURF, [0, 0], windowWidth, windowHeight)
+			variable textOrigin = calculate_text_origin(DISPLAYSURF, text, [0, 0], windowWidth, windowHeight, 0, 0) 
+			draw_text("gemgem", DISPLAYSURF, text, textOrigin, GAMEOVERCOLOR())  
+			update_display(DISPLAYSURF)  
+		endif 
+		// sleep a while to avoid blinking because updating screen too fast.
+		// 休眠一会儿，避免更新屏幕太快以至于出现闪烁。 
+		sleep(1500/FPS())
+		// update gemsImageDisplay and clear its queue and then use its current snapshot as background image.
+		// 更新gemsImageDisplay并清空它的绘图事件调度器，然后用它当前的截图作为它的背景图像。
+		update_display(gemsImageDisplay)
+		set_display_snapshot_as_bgrnd(gemsImageDisplay, true, true)
+	loop 
+	shutdown_display(gemsImageDisplay) 
+	return false 
+endf 
+
+// return the information of the two to-be-swapped gems. Their 'direction' keys are set
+// to the appropriate direction value to be swapped with each other. If the two gems are
+// not adjacent, [Null, NUll] is returned.
+// 返回两个将要换位的宝石的信息。信息中的移动方向是这个两个宝石的相对方向。如果这两个宝石不是紧挨着，返回
+// [Null, Null]。
+function get_Swapping_Gems(board, firstXY, secondXY)			 
+	variable firstGem = [board[firstXY[0]][firstXY[1]], firstXY[0], firstXY[1], ""] 
+	variable secondGem = [board[secondXY[0]][secondXY[1]], secondXY[0], secondXY[1], ""] 
+	variable highlightedGem = Null 
+	if and(firstGem[1] == secondGem[1] + 1, firstGem[2] == secondGem[2]) 
+		firstGem[3] = LEFT() 
+		secondGem[3] = RIGHT() 
+	elseif and(firstGem[1] == secondGem[1] - 1, firstGem[2] == secondGem[2]) 
+		firstGem[3] = RIGHT() 
+		secondGem[3] = LEFT() 
+	elseif and(firstGem[1] == secondGem[1], firstGem[2] == secondGem[2] + 1) 
+		firstGem[3] = UP() 
+		secondGem[3] = DOWN() 
+	elseif and(firstGem[1] == secondGem[1], firstGem[2] == secondGem[2] - 1) 
+		firstGem[3] = DOWN() 
+		secondGem[3] = UP() 
+	else 
+		// These gems are not adjacent and can"t be swapped.
+		// 这两块宝石不是紧挨着的，无法换位。
+		return [Null, NUll] 
+	endif 
+	return [firstGem, secondGem] 
+endf 
+ 
+// return a blank data array which represent a blank board without any gems.
+// 返回一个空的二维数组代表一个空白的游戏面板。
+function get_blank_board() 
+	variable board = alloc_array([BOARDWIDTH()]) 
+	for variable idx = 0 to BOARDWIDTH() - 1 
+		board[idx] = alloc_array([BOARDHEIGHT()], EMPTY_SPACE()) 
+	next 
+	return board 
+endf 
+ 
+function can_Make_Move(board) 
+	// Return True if the board is in a state where a matching 
+	// move can be made on it. Otherwise return False. 
+	// 如果存在只交换一次就会出现至少3个同样的宝石串成一串的情况，返回True，否则返回False。
+ 
+	// The patterns in oneOffPatterns represent gems that are configured 
+	// in a way where it only takes one move to make a triplet.
+	// 以下模式列出了所有的只交换一次就会出现至少3个同样的宝石串成一串的情况
+	variable oneOffPatterns = [[[0,1], [1,0], [2,0]], _ 
+							  [[0,1], [1,1], [2,0]], _ 
+							  [[0,0], [1,1], [2,0]], _ 
+							  [[0,1], [1,0], [2,1]], _ 
+							  [[0,0], [1,0], [2,1]], _ 
+							  [[0,0], [1,1], [2,1]], _ 
+							  [[0,0], [0,2], [0,3]], _ 
+							  [[0,0], [0,1], [0,3]]] 
+ 
+	// The x and y variables iterate over each space on the board. 
+	// If we use + to represent the currently iterated space on the 
+	// board, then this pattern: ((0,1), (1,0), (2,0))refers to identical 
+	// gems being set up like this: 
+	// 
+	//	 +BC 
+	//	 A 
+	// 
+	// 
+	// That is, gem A is offset from the + by (0,1), gem B is offset 
+	// by (1,0), and gem C is offset by (2,0). In this case, gem A can 
+	// be swapped to the left to form a vertical three-in-a-row triplet. 
+	// 
+	// There are eight possible ways for the gems to be one move 
+	// away from forming a triple, hence oneOffPattern has 8 patterns. 
+	// Also, notice that we can change the order of x and y, i.e. (0,1)
+	// may mean x = 0 and y = 1 but can also mean x = 1 and y = 0. So
+	// in total we have to consider 16 situations. This is why ther are
+	// two if branches in the following 3 level for loops.
+  
+	// 变量x和y是横向和纵向的单元格的索引。我们将搜索整个
+	// 游戏面板。在这里我们用+表示当前的搜索位置，然后我们
+	// 用((0,1), (1,0), (2,0))代表以下独一无二的宝石排列模式：
+	//
+	// +BC
+	// A
+	//
+	//
+	// 上面的意思是，宝石A从当前位置偏移(0,1)，其中，0表示x
+	// 方向的偏移，1表示y方向的偏移，宝石B从当前位置偏移(1,
+	// 0)，宝石C从当前位置偏移(2,0)，如果宝石A和B和C是同样
+	// 的宝石，那么将宝石A和当前位置的宝石互换，就出现了至
+	// 少3个同样的宝石串成一串的情况。
+	// 经过枚举，我们发现存在八种宝石排列模式，满足交换一次
+	// 就出现三个同样的宝石拍成一串的情况，每种排列模式通过
+	// x，y对调，总共有16种可能性。这就是为什么oneOffPatterns
+	// 里面包含8个元素，而在下面的循环中我们用了两个if语句处
+	// 理先x后y和先y后x两种不同的情况。
+	variable boardWidth = BOARDWIDTH(), boardHeight = BOARDHEIGHT()
+	for variable x = 0 to boardWidth - 1 
+		for variable y = 0 to boardHeight - 1 
+			for variable patIdx = 0 to size(oneOffPatterns)[0] - 1 
+				// check each possible pattern of "match in next move" to 
+				// see if a possible move can be made.
+				// 检查每一种可能的模式，看看是否交换两个宝石就会有三个同样的宝石排成一串的情况。
+				variable pat = oneOffPatterns[patIdx]  
+				variable x00 = x+pat[0][0], x10 = x+pat[1][0], x20 = x+pat[2][0], x01 = x+pat[0][1], x11 = x+pat[1][1], x21 = x+pat[2][1] 
+				variable y00 = y+pat[0][0], y10 = y+pat[1][0], y20 = y+pat[2][0], y01 = y+pat[0][1], y11 = y+pat[1][1], y21 = y+pat[2][1]
+				// x first then y
+				// 先x后y
+				if and(x00 < boardWidth, x10 < boardWidth, x20 < boardWidth, y01 < boardHeight, y11 < boardHeight, y21 < boardHeight)
+					variable gem0001 = board[x00][y01] 
+					variable gem1011 = board[x10][y11] 
+					variable gem2021 = board[x20][y21]  
+					if (and(gem0001 == gem1011, gem1011 == gem2021))  
+						return true  
+					endif 
+				endif 
+				// y first then x
+				// 先y后x
+				if and(x01 < boardWidth, x11 < boardWidth, x21 < boardWidth, y00 < boardHeight, y10 < boardHeight, y20 < boardHeight)
+					variable gem0100 = board[x01][y00] 
+					variable gem1110 = board[x11][y10] 
+					variable gem2120 = board[x21][y20] 
+					if (and(gem0100 == gem1110, gem1110 == gem2120))  
+						return true  
+					endif 
+				endif 
+			next 
+		next 
+	next 
+	return False 
+endf 
+ 
+function draw_Moving_Gem(DISPLAYSURF, GEMIMAGES, gem, absProgress, up, down, left, right, rowAboveBoard, xMargin, yMargin, gemImgSize) 
+	// Draw a gem sliding in the direction that its 'direction' key (the 3rd element in the gem's info array)
+	// indicates. The absprogress parameter is a number from 0 (just starting) to 100 (slide complete). 
+	// 绘制一个移动的宝石。宝石的移动方向由代表宝石的数据结构（一个数组）的第三个元素决定。absProgress参数代表移动的进度，0表示
+	// 刚刚开始，100表示移动结束。
+	variable movex = 0 
+	variable movey = 0 
+	variable scaledratio =scalingratio()
+	 
+	variable gemDirection = gem[3] 
+	if gemDirection == up 
+		movey = -absProgress 
+	elseif gemDirection == down 
+		movey = absProgress 
+	elseif gemDirection == right 
+		movex = absProgress 
+	elseif gemDirection == left 
+		movex = -absProgress 
+	endif 
+ 
+	variable basex = gem[1] 
+	variable basey = gem[2] 
+	if basey == rowAboveBoard 
+		basey = -1 
+	endif 
+ 
+	variable pixelx = xMargin + (basex * gemImgSize) 
+	variable pixely = yMargin + (basey * gemImgSize) 
+	variable gemAtImgNum = GEMIMAGES[gem[0]] 
+	draw_image("gemgem", DISPLAYSURF, gemAtImgNum, pixelx + movex, pixely + movey, scaledRatio, scaledRatio) 
+endf 
+ 
+function get_Drop_Slots(GEMIMAGES, board, boardWidth, boardHeight, emptySpace) 
+	// Creates a "drop slot" for each column and fills the slot with a 
+	// number of gems that that column is lacking.
+	// 为每一个宝石列创建一个“下落块”。块中宝石的数量是这一列中缺少的宝石的数量。
+	 
+	variable boardCopy = alloc_array([boardWidth, boardHeight], emptySpace) 
+	variable dropSlots = alloc_array([boardWidth]) 
+	// pulls down gems on the board to the bottom to fill in any gaps 
+	// 将这一列的宝石按照重力的特性拉到列的底部堆积，完成之后宝石和宝石间将不会有间隔。
+	for variable x = 0 to boardWidth - 1 
+		variable yCopy = boardHeight 
+		for variable y = boardHeight - 1 to 0 step -1 
+			if board[x][y] != emptySpace 
+				yCopy = yCopy - 1 
+				boardCopy[x][yCopy] = board[x][y] 
+			endif 
+		next 
+		dropSlots[x] = alloc_array([yCopy], emptySpace) 
+	next 
+ 
+	// count the number of empty spaces after removing matched gems in each column on the board 
+	// 计算每一列中由于宝石被削去而空出来的格子数。
+	for variable x = 0 to boardWidth - 1 
+		variable yCopy = 0 
+		for variable y = boardHeight - 1 to 0 step -1 // start from bottom, going up //从底部向上
+			if boardCopy[x][y] == emptySpace 
+				// offset Positions are [1, 0], [0, 1], [-1, 0]. Note that no need to consider 
+				// the one above emptySpace because it must be empty. 
+				// x，y偏移分别为[1,0]，[0,1]和[-1, 0]。我们不用考虑空白单元格上面的空间因为它必然为空。
+				variable gemExceptions = alloc_array([3], emptySpace) 
+				if x < boardWidth - 1 
+					gemExceptions[0] = boardCopy[x + 1][y] 
+				elseif y < boardHeight - 1 
+					gemExceptions[1] = boardCopy[x][y + 1] 
+				else 
+					gemExceptions[2] = boardCopy[x - 1][y] 
+				endif 
+				variable possibleGems = alloc_array(size(GEMIMAGES)) 
+				variable possibleGemsLen = 0 
+				for variable idx = 0 to size(possibleGems)[0] - 1 
+					// Narrow down the possible gems we should put in the 
+					// blank space so we don't end up putting an two of 
+					// the same gems next to each other when they drop. 
+					// 选择合适的宝石落入空白单元格中，注意我们要避免同样的宝石放在一起
+					if and(idx != gemExceptions[0], idx != gemExceptions[1], idx != gemExceptions[2]) 
+						possibleGems[possibleGemsLen] = idx 
+						possibleGemsLen = possibleGemsLen + 1 
+					endif 
+				next 
+				 
+				variable newGem = possibleGems[floor(possibleGemsLen * rand())] 
+				boardCopy[x][y] = dropSlots[x][yCopy] = newGem 
+				yCopy = yCopy + 1 
+			endif 
+		Next 
+	Next 
+	return dropSlots 
+endf 
+
+// look for matching triplets
+// 寻找3个同样的，串成一串的宝石
+function find_Matching_Gems(board)
+	// gemsToRemove is a list of lists of gems in matching triplets that should be removed 
+	// gemsToRemove是一系列不少于3个排成一串的宝石，它们将会被削掉。
+	variable gemsToRemove = []
+	variable boardCopy = clone(board) 
+ 
+	variable emptySpace = EMPTY_SPACE() 
+	variable boardWidth = BOARDWIDTH() 
+	variable boardHeight = BOARDHEIGHT() 
+	// loop through each space, checking for 3 adjacent identical gems 
+	// 搜索每一个单元格，寻找三个排成一串的宝石
+	for variable x = 0 to boardWidth - 1 
+		for variable y = 0 to boardHeight - 1 
+			variable targetGem = boardCopy[x][y] 
+			if targetGem != emptySpace 
+				if x < boardWidth - 2 
+					// look for horizontal matches 
+					// 寻找水平的成串宝石
+					if and(targetGem == boardCopy[x+1][y], targetGem == boardCopy[x+2][y]) 
+						variable offset = 0 
+						variable removeSet = [] 
+						while x + offset < boardWidth 
+							if boardCopy[x + offset][y] == targetGem 
+								// keep checking if there's more than 3 gems in a row
+								// 继续寻找看是否有多于三个同样的宝石排成一条的情况
+								removeSet = append_elem_to_ablist(removeSet, [x + offset, y]) 
+								boardCopy[x + offset][y] = emptySpace 
+								offset = offset + 1 
+							else 
+								break 
+							endif 
+						Loop 
+						gemsToRemove = append_elem_to_ablist(gemsToRemove, removeSet) 
+					endif 
+				endif 
+ 
+				if y < boardHeight - 2 
+					// look for vertical matches 
+					// 寻找垂直的成串的宝石
+					if and(targetGem == boardCopy[x][y+1], targetGem == boardCopy[x][y+2]) 
+						variable offset = 0 
+						variable removeSet = [] 
+						while y + offset < boardHeight 
+							if boardCopy[x][y + offset] == targetGem 
+								// keep checking, in case there's more than 3 gems in a row 
+								// 继续寻找看是否有多于三个同样的宝石排成一列的情况
+								removeSet = append_elem_to_ablist(removeSet, [x, y + offset]) 
+								boardCopy[x][y + offset] = emptySpace 
+								offset = offset + 1 
+							else 
+								break 
+							endif 
+						loop 
+						gemsToRemove = append_elem_to_ablist(gemsToRemove, removeSet) 
+					endif 
+				endif 
+			endif 
+		next 
+	next  
+	return gemsToRemove 
+endf 
+
+// highlight the selected space
+// 用不同的颜色绘制选中的单元格的边框
+function highlight_Space(DISPLAYSURF, BOARDRECTS, x, y) 
+	draw_rect("gemgem", DISPLAYSURF, [BOARDRECTS[x][y][0], BOARDRECTS[x][y][1]], BOARDRECTS[x][y][2], BOARDRECTS[x][y][3], HIGHLIGHTCOLOR(), 4) 
+endf 
+ 
+// animate gems swapping
+// 模拟宝石换位的过程
+function animate_Swapping_Gems(DISPLAYSURF, GEMIMAGES, BOARDRECTS, board, gemsOnBoardImage, gems, pointsText, score, _ 
+		gemImgSize, xMargin, yMargin, mvRate, up, down, left, right, rowAboveBoard) 
+	// pointsText is an array, first element (index 0) is number of points, second is x and last is y
+	// pointsText是一个数组，第一个元素是得分，第二个元素是x，第三个元素是y
+	// progress at 0 represents beginning, 100 means finished.
+	// progress参数代表移动的进度，0表示 刚刚开始，100表示移动结束。
+	variable progress = 0
+	variable numOfGems = size(gems)[0] // should be 2 
+	variable scaledRatio = scalingRatio()
+	 
+	while progress <= 100 // animation loop // 循环模拟动画
+		drop_old_painting_requests("gemgem", DISPLAYSURF) 
+		draw_image("gemgem", DISPLAYSURF, gemsOnBoardImage, 0, 0, scaledRatio, scaledRatio) 
+		variable absProgress = round(0.01*progress*gemImgSize) 
+		for variable gemIdx = 0 to numOfGems - 1 // Draw each gem. // 绘制宝石
+			draw_Moving_Gem(DISPLAYSURF, GEMIMAGES, gems[gemIdx], absProgress, up, down, left, right, rowAboveBoard, xMargin, yMargin, gemImgSize) 
+		next 
+		update_display(DISPLAYSURF) 
+		sleep(300/FPS()) 
+		progress = progress + mvRate
+	loop 
+endf 
+
+// animate moving gem (gem moving is a multi-step process. This function animate a single step).
+// If a match is found and several gems are removed, the gems above them start to move down.
+// These are the moving gems.
+// 模拟下面的宝石削去后上面的宝石落下来的过程。注意这是一个多步的过程，本函数仅仅只是模拟其中一步。
+function animate_Moving_Gems_Single_Step(DISPLAYSURF, GEMIMAGES, BOARDRECTS, gemsOnBoardImage, movingGemsImage, progress, _ 
+		pointsText, score, gemImgSize, windowWidth, windowHeight) 
+	// pointsText is an array, first element (index 0) is number of points, second is x and last is y
+	// pointsText是一个数组，第一个元素是得分，第二个元素是x，第三个元素是y
+	// progress tells the function which step it is animating. 0 means the very first step, 100 means last step.
+	// progress参数告诉本函数它在模拟哪一步，0表示刚刚开始的一步，100表示最后一步。
+	variable scaledratio = scalingratio()
+	if progress <= 100 // animation loop // 循环模拟动画
+		drop_old_painting_requests("gemgem", DISPLAYSURF) 
+		draw_image("gemgem", DISPLAYSURF, gemsOnBoardImage, 0, 0, scaledRatio, scaledRatio) 
+		variable absProgress = round(0.01*progress*gemImgSize) 
+		draw_image("gemgem", DISPLAYSURF, movingGemsImage, 0, absProgress, scaledRatio, scaledRatio) 
+		draw_Score(DISPLAYSURF, score, windowWidth, windowHeight) 
+		for variable pointTextIdx = 0 to size(pointsText)[0] - 1 
+			variable pointText = pointsText[pointTextIdx] 
+			variable strPointText = to_string(pointText[0]) 
+			draw_text("gemgem", DISPLAYSURF, strPointText, [pointText[1], pointText[2]], SCORECOLOR(), 20) 
+		next 
+		update_display(DISPLAYSURF) 
+		sleep(300/FPS()) 
+	endif 
+endf 
+ 
+// initialize the game board and animate all the gems dropping down
+// 初始化游戏面板，并且模拟所有的宝石落下的过程
+function init_Board_And_Animate(DISPLAYSURF, GEMIMAGES, BOARDRECTS, board, windowWidth, windowHeight, mvRate) 
+	variable gemsImageDisplay = open_image_display(null) 
+	set_display_size(gemsImageDisplay, windowWidth, windowHeight) 
+	variable numGemImages = NUMGEMIMAGES() 
+	variable boardWidth = BOARDWIDTH() 
+	variable boardHeight = BOARDHEIGHT() 
+	variable shrinkingRatio = 1 / ScalingRatio(), scaledRatio = ScalingRatio()
+	for variable x = 0 to boardWidth - 1 
+		for variable y = boardHeight - 1 to 0 step -1 // start from bottom, going up // 从下往上
+			// board[x][y] is the gem id used for cell at [x,y]
+			// board[x][y]存储的是单元格[x,y]里面是第几种宝石
+			board[x][y] = floor(rand() * numGemImages)
+			// loop to check. Ensure that adjacent gems are different.
+			// 循环检查，保证相邻的宝石总是不一样。
+			for variable toAdjustBoardXY = 0 to 1 step 1 // loop twice is enough // 循环两次就够了
+				if x > 0 
+					if board[x][y] == board[x-1][y] 
+						if board[x][y] > 0 
+							board[x][y] = board[x][y] - 1 
+						else 
+							board[x][y] = numGemImages - 1 
+						endif 
+					endif 
+				endif 
+				if y < boardHeight - 1 
+					if board[x][y] == board[x][y+1] 
+						if board[x][y] > 0 
+							board[x][y] = board[x][y] - 1 
+						else 
+							board[x][y] = numGemImages - 1 
+						endif 
+					endif 
+				endif 
+			next 
+			variable gemAtImgNum = GEMIMAGES[board[x][y]]
+			variable imgSize = get_image_size(gemAtImgNum) 
+			draw_image("gemgem", gemsImageDisplay, gemAtImgNum, BOARDRECTS[x][y][0], BOARDRECTS[x][y][1], scaledRatio, scaledRatio) 
+		Next 
+	Next 
+	update_display(gemsImageDisplay) 
+	variable gemsImage = get_display_snapshot(gemsImageDisplay, false, shrinkingRatio, shrinkingRatio) 
+
+	// progress at 0 represents beginning, 100 means finished.
+	// progress参数代表移动的进度，0表示 刚刚开始，100表示移动结束。
+	variable progress = 0
+	variable step_length = mvRate 
+	while progress <= windowHeight // animation loop // 循环模拟动画
+		drop_old_painting_requests("gemgem", DISPLAYSURF) 
+		draw_image("gemgem", DISPLAYSURF, gemsImage, 0, (windowHeight - progress)*shrinkingRatio, windowWidth*shrinkingRatio, windowHeight*shrinkingRatio, 0, 0, windowWidth, progress) 
+		update_display(DISPLAYSURF) 
+		sleep(500/FPS()) 
+		progress = progress + step_length
+	loop 
+	return [gemsImage, gemsImageDisplay]
+endf 
+
+// fill the game board and animate the moving of the gems
+// 模拟新的宝石落下填满游戏面板的动画过程
+function fill_Board_And_Animate(DISPLAYSURF, GEMIMAGES, BOARDRECTS, board, gemsImageDisplay, points, score, _ 
+		gemImgSize, windowWidth, windowHeight, xMargin, yMargin, mvRate, up, down, left, right, rowAboveBoard) 
+	variable emptySpace = EMPTY_SPACE() 
+	variable boardWidth = BOARDWIDTH() 
+	variable boardHeight = BOARDHEIGHT() 
+	variable shrinkingRatio = 1/ScalingRatio(), scaledRatio = ScalingRatio()
+	variable dropSlots = get_Drop_Slots(GEMIMAGES, board, boardWidth, boardHeight, emptySpace) 
+	variable dropSlotsIdx = alloc_array([size(dropSlots)[0]], 0) 
+	variable droppingGems = alloc_array([boardWidth], []) 
+	variable boardCopy = clone(board) 
+	variable movingGemsColumnDisplays = alloc_array([boardWidth], null) 
+	// This function creates an image display for each column
+	// 本函数为每一列单元格创建一个图像“显示窗口”
+	variable thisColumnImgs = alloc_array([boardWidth])
+	// initialize column image displays
+	// 初始化每一列的图像“显示窗口”
+	for variable idx = 0 to boardWidth - 1
+		if size(dropSlots[idx])[0] <= dropSlotsIdx[idx] 
+			continue
+		endif
+		movingGemsColumnDisplays[idx] = open_image_display(Null) 
+		set_display_size(movingGemsColumnDisplays[idx], gemImgSize, windowHeight) 
+	next
+	// draw moving gems in each column image display.
+	// 在每一列的图像“显示窗口”中绘制正在下落的宝石。
+	for variable x = 0 to boardWidth - 1 
+		if dropSlots[x] != [] 
+			variable yLast = boardHeight 
+			for variable y = boardHeight - 2 to 0 step -1 
+				if and(boardCopy[x][y + 1] == emptySpace, boardCopy[x][y] != emptySpace) 
+					// The gem in this space drops
+					// 这个单元格的宝石会落下
+					if y + 1 < yLast	// no gem immediately below this gem is falling // 这个宝石的下面没有宝石
+						// start a new bunch, not add dropping direction because it is default.
+						// 开启一个新的宝石串，不用定义新的宝石串的运动方向，因为缺省就是下落
+						droppingGems[x] = append_elem_to_ablist(droppingGems[x], [[boardCopy[x][y], x, y]])
+					else // a gem immediately below this gem is falling // 这个宝石的下面还有宝石也在往下掉
+						// append this gem to existing bunch //将这个宝石加在已有的宝石串中
+						droppingGems[x][size(droppingGems[x])[0] - 1] = append_elem_to_ablist(droppingGems[x][size(droppingGems[x])[0] - 1], [boardCopy[x][y], x, y])
+					endif
+					yLast = y
+					variable theX = xMargin + x * gemImgSize, theY = yMargin + y * gemImgSize 
+					clear_rect("gemgem", gemsImageDisplay, [theX, theY], gemImgSize, gemImgSize) 
+					draw_image("gemgem", movingGemsColumnDisplays[x], GEMIMAGES[boardCopy[x][y]], 0, theY, scaledRatio, scaledRatio) 
+					boardCopy[x][y] = emptySpace 
+				endif 
+			next 
+		endif 
+	next 
+		
+	// get snapshot of each column's image display and draw the image to the board image display
+	// then animate the gem dropping process by moving the board image down and meanwhile drawing
+	// it in the game's display window.
+	// 首席，截取每一列的图像“显示窗口”的截屏，然后把这些截屏图案绘制在一个游戏面板的图像“显示窗口”中，然后截取该
+	// 图像“显示窗口”的截屏，然后循环在游戏显示窗口上下移再绘制截取出来的图像，实现宝石下落的动画效果。
+	while true 
+		variable movingGemsDisplay = open_image_display(Null) 
+		set_display_size(movingGemsDisplay, windowWidth, windowHeight) 
+		for variable x = 0 to boardWidth - 1 
+			if size(dropSlots[x])[0] > dropSlotsIdx[x] 
+				// moving down is the default direction. So no need to write direction in droppingGems[x] here..
+				// 向下移动是缺省的移动方向，所以不必在droppingGems[x]中添加移动方向
+				if size(droppingGems[x])[0] == 0
+					droppingGems[x] = append_elem_to_ablist(droppingGems[x], [[dropSlots[x][dropSlotsIdx[x]], x, rowAboveBoard]])
+				else
+					variable lastDroppingGemBunch = droppingGems[x][size(droppingGems[x])[0] - 1] // this one should not be empty //这个值不可能为空
+					variable yLast = lastDroppingGemBunch[size(lastDroppingGemBunch)[0] - 1][2]
+					if yLast == 0
+						// append to existing bunch // 添加到现有的一串中
+						droppingGems[x][size(droppingGems[x])[0] - 1] = append_elem_to_ablist(lastDroppingGemBunch, [dropSlots[x][dropSlotsIdx[x]], x, rowAboveBoard])
+					else
+						// add to new bunch //增加新的串
+						droppingGems[x] = append_elem_to_ablist(droppingGems[x], [[dropSlots[x][dropSlotsIdx[x]], x, rowAboveBoard]])
+					endif
+				endif
+				variable theX = xMargin + x * gemImgSize, theY = yMargin - gemImgSize 
+				// draw the newly generated gem
+				// 绘制新产生的宝石
+				draw_image("gemgem", movingGemsColumnDisplays[x], GEMIMAGES[dropSlots[x][dropSlotsIdx[x]]], 0, theY, scaledRatio, scaledRatio)
+				set_display_snapshot_as_bgrnd(movingGemsColumnDisplays[x], true, true)
+				thisColumnImgs[x] = get_display_snapshot(movingGemsColumnDisplays[x], false, shrinkingRatio, shrinkingRatio)
+				draw_image("gemgem", movingGemsDisplay, thisColumnImgs[x], theX, 0, scaledRatio, scaledRatio)	// draw this column // 绘制这一列
+			endif 
+		next 
+		 
+		variable gemsImage = get_display_snapshot(gemsImageDisplay, true, shrinkingRatio, shrinkingRatio) 
+		variable movingGemsImage = get_display_snapshot(movingGemsDisplay, true, shrinkingRatio, shrinkingRatio) 
+		animate_Moving_Gems_Single_Step(DISPLAYSURF, GEMIMAGES, BOARDRECTS, gemsImage, movingGemsImage, 25, points, score, gemImgSize, windowWidth, windowHeight) 
+ 
+		shutdown_display(movingGemsDisplay) 
+		// If a bunch of dropping gems drop to the bottom, the gems stop to drop,
+		// so the bunch of gems will be removed from drop slots. 
+		// 如果一串下落的宝石落到底部，就不能再落了，那么那么该宝石串中所有的宝石将从下落的宝石串中移除。
+		variable isDropSlotsUsed = true 
+		for variable x = 0 to size(dropSlots)[0] - 1 
+			if size(dropSlots[x])[0] > dropSlotsIdx[x] 
+				dropSlotsIdx[x] = dropSlotsIdx[x] + 1 
+				if size(dropSlots[x])[0] > dropSlotsIdx[x] 
+					isDropSlotsUsed = false 
+				endif 
+			endif 
+		next 
+		animate_Moving_Gems_Single_Step(DISPLAYSURF, GEMIMAGES, BOARDRECTS, gemsImage, movingGemsImage, 50, points, score, gemImgSize, windowWidth, windowHeight) 
+			
+		// logically moving the gems to next row 
+		// 逻辑上移动下落的宝石到下一行
+		for variable x = 0 to boardWidth - 1 
+			for variable idxBunch = 0 to size(droppingGems[x])[0] - 1
+				variable gemBunch = droppingGems[x][idxBunch] // go through each bunch //检查每一个下落的宝石串
+				for variable idx = 0 to size(gemBunch)[0] - 1
+					variable gem = gemBunch[idx] 
+					if gem[2] != rowAboveBoard  // gem[2] is the Y position of the gem before dropping // gem[2]是gem宝石下落前所在行的id（也就是y坐标）
+						board[gem[1]][gem[2]] = emptySpace
+						gem[2] = gem[2] + 1
+					else 
+						// gem is located above the board (where new gems come from) 
+						// 宝石刚刚产生出来，还没有下落进入游戏面板
+						gem[2] = 0
+					endif 
+					board[gem[1]][gem[2]] = gem[0] // move to next row //移动到下一行
+				next
+			next
+		next 
+		animate_Moving_Gems_Single_Step(DISPLAYSURF, GEMIMAGES, BOARDRECTS, gemsImage, movingGemsImage, 75, points, score, gemImgSize, windowWidth, windowHeight) 
+			
+		// physically moving the gems to next row
+		// 物理上移动宝石到下一行
+		for variable x = 0 to boardWidth - 1 
+			if size(droppingGems[x])[0] > 0
+				variable gemSettledBunch = droppingGems[x][0]
+				if gemSettledBunch[0][2] == boardHeight - 1 // have dropped to the bottom // 已经落到底部
+					droppingGems[x] = remove_elem_from_ablist(droppingGems[x], 0)
+				elseif board[gemSettledBunch[0][1]][gemSettledBunch[0][2] + 1] != emptySpace // no emptySpace // 没有空的位置
+					droppingGems[x] = remove_elem_from_ablist(droppingGems[x], 0)
+				else
+					gemSettledBunch = null
+				endif
+				if size(droppingGems[x])[0] > 0 // still some gems generated to drop // 仍然还有一些宝石生成并落下
+					variable theY = yMargin - gemImgSize 
+					clear_rect("gemgem", movingGemsColumnDisplays[x], [0, theY], gemImgSize, gemImgSize * (boardHeight + 1)) // clear the whole column //清空整列
+					draw_image("gemgem", movingGemsColumnDisplays[x], thisColumnImgs[x], 0, gemImgSize, scaledRatio, scaledRatio)	// gems drop by one cell // 宝石下落一格
+					if gemSettledBunch != null	// front bunch is settled // 最前面的一串下坠的宝石已经落到底了
+						variable yBottom = (gemSettledBunch[0][2] + 1) * gemImgSize + yMargin
+						variable yTop = gemSettledBunch[size(gemSettledBunch)[0] - 1][2] * gemImgSize + yMargin
+						clear_rect("gemgem", movingGemsColumnDisplays[x], [0, yTop], gemImgSize, (yBottom - yTop)) // clear the settled gems' cells // 清除已经落到底的宝石的单元空间
+						variable clonedSettledImg = clone_image(thisColumnImgs[x], 0, (yTop - gemImgSize)*shrinkingRatio, gemImgSize*shrinkingRatio, (yBottom - gemImgSize)*shrinkingRatio, gemImgSize*shrinkingRatio, (yBottom - yTop)*shrinkingRatio)
+						variable theX = xMargin + x * gemImgSize
+						// draw the settled gems on board's image display
+						// 在游戏面板的图像显示窗口上绘制落到底的宝石
+						draw_image("gemgem", gemsImageDisplay, clonedSettledImg, theX, yTop, scaledRatio, scaledRatio)
+					endif
+				else	// all gems settled // 所有的宝石都落到底了
+					variable theX = xMargin + x * gemImgSize
+					// draw the settled gems on board's image display
+					// 在游戏面板的图像显示窗口上绘制落到底的宝石
+					draw_image("gemgem", gemsImageDisplay, thisColumnImgs[x], theX, gemImgSize, scaledRatio, scaledRatio)
+					if (movingGemsColumnDisplays[x] != null)
+						shutdown_display(movingGemsColumnDisplays[x])
+						movingGemsColumnDisplays[x] = null // no more gems to drop in this column. //这一列没有更多的宝石落下了
+					endif
+				endif
+			else
+				if (movingGemsColumnDisplays[x] != null)
+					shutdown_display(movingGemsColumnDisplays[x])
+					movingGemsColumnDisplays[x] = null // no more gems to drop in this column. //这一列没有更多的宝石落下了
+				endif
+			endif
+		next
+		animate_Moving_Gems_Single_Step(DISPLAYSURF, GEMIMAGES, BOARDRECTS, gemsImage, movingGemsImage, 100, points, score, gemImgSize, windowWidth, windowHeight) 
+		drop_old_painting_requests("gemgem", DISPLAYSURF) 
+		if isDropSlotsUsed 
+			break 
+		endif 
+	loop 
+endf 
+ 
+// check where the player tapped
+// 检查玩家的点击位置
+function check_For_Gem_Click(pos, BOARDRECTS) 
+	// See if the mouse click was on the board 
+	variable x = (pos[0] - BOARDRECTS[0][0][0])/BOARDRECTS[0][0][2] 
+	variable y = (pos[1] - BOARDRECTS[0][0][1])/BOARDRECTS[0][0][3] 
+	if or(x < 0, x >= BOARDWIDTH(), y < 0, y >= BOARDHEIGHT()) 
+		return Null // Click was not on the game board, return null. // 玩家没有点击在游戏面板上，返回Null
+	else 
+		return [floor(x), floor(y)] // clicked a gem, returns the cell's position // 玩家点击到了一个宝石，返回单元格的所在位置
+	endif 
+endf 
+ 
+// draw the score player has gained
+// 绘制玩家当前的总得分
+function draw_Score(DISPLAYSURF, score, windowWidth, windowHeight) 
+	draw_text("gemgem", DISPLAYSURF, ""+score, [10, windowHeight - 32], SCORECOLOR(), 25) 
+endf 
+	 
+endcs				 
+				 
+				 
+				

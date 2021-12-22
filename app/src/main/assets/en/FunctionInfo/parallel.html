@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Scientific Calculator Plus Help</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">Scientific Calculator Plus Help : parallel computing functions</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>Function name</th>
+<th>Function info</th>
+</tr>
+<tr>
+<td><center>accept</center></td>
+<td><p>::mfp::paracomp::connect::accept(1) :</p>
+<p>accept function accepts a connecting request from remote to a local interface and returns the receiver side connection object, i.e. the connection object in this local interface. It has only one parameter, i.e. the local interface object which was returned from generate_interface function. Note that before a new connecting request arrives, this function is blocked. An example of this function is accept(local_info).</p>
+</td>
+</tr>
+<tr>
+<td><center>close_connection</center></td>
+<td><p>::mfp::paracomp::connect::close_connection(1) :</p>
+<p>close_connection closes a connection. It has one parameter which is the connection object returned from connect function, accept function or get_incoming_connect function. A example of this function is close_connection(conn_obj).</p>
+</td>
+</tr>
+<tr>
+<td><center>close_local</center></td>
+<td><p>::mfp::paracomp::connect::close_local(1) :</p>
+<p>close_local closes a local interface. It has one parameter which is the local interface object returned from generate_interface function. A example of this function is close_local(local_info).</p>
+</td>
+</tr>
+<tr>
+<td><center>connect</center></td>
+<td><p>::mfp::paracomp::connect::connect(3) :</p>
+<p>connect(local_info, remote_info, not_reuse_exist) initializes a connection from a local interface object defined by local_info to a remote interface object defined by remote_info. Both local_info and remote_info are returned by calling generate_interface function. The third parameter, not_reuse_exist, is a boolean value. This parameter is optional. Its default value is false. If it is true, this function always creates a new connection instead of using an existing one (if there is). Note that a connection is two way. A connection can be reused by this function whether it is connected from the remote interface to the local interface or the other way around. However, reusing an incoming connection at server side is not straightforward for TCPIP protocol. This is because of two reasons. First, when a new connection is initialized at client side, the client side IP port is selected by operating system and is invisible to MFP. However, to reuse the incoming connection at server side, parameter remote_info has to include full client side address including both IP address and IP port. Second, if NAT layer exists between client side and server side, server side has no idea about client's real IP address and IP port anyway. In this case, MFP needs to analyze any message sent from the client side via this connection, read the field "TransConnectDestRemote" from the message where the accurate client side IP address and port are stored. Note that this client address is client's external address, i.e. client's address seen from server side, if NAT exists. Then generate_interface function can be called using the accurate client side IP address + port as a parameter to return the correct remote_info object. This function returns a dictionary with "CONNECT" key points to the definition of the connection object if successful, otherwise the "CONNECT" key corresponds to NULL and there is an "ERROR" key points to the error message.</p>
+</td>
+</tr>
+<tr>
+<td><center>generate_interface</center></td>
+<td><p>::mfp::paracomp::connect::generate_interface(2) :</p>
+<p>generate_interface(protocol, address) returns definition of a local interface object. It needs two parameters. The first parameter is string based protocol, like "TCPIP". The second parameter is address, also string based, like "10.32.202.78". This parameter is optional. By default, it is local host address, e.g. "127.0.0.1" for "TCPIP" protocol.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_connect_call_ids</center></td>
+<td><p>::mfp::paracomp::connect::get_all_connect_call_ids(1...) :</p>
+<p>get_all_connect_call_ids returns all connection ids of a network interface or all call ids of a connection. It has two modes. The first mode has one parameter which is an interface object returned by generate_interface function. The returned value is ids of all incoming and outgoing connections of this interface. If the interface is unavailable, an exception is thrown. The second mode has three parameters. The first one is an infterface object returned by generate_interface function. The second one is a connection id (which is remote address if the connection is outgoing or can be returned by get_call_info function if the connection is incoming). The third parameter is a boolean value. If it is true, this function's returned value is an array of all the incoming call ids of this connection. Otherwise, the returned value is all the outgoing call ids of this connection. If the interface is unavailable, an exception is thrown. If the connection id does not exist, it returns null. An example of this function is get_all_connect_call_ids(server_interface, connect_id, false).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_host_addresses</center></td>
+<td><p>::mfp::paracomp::host::get_all_host_addresses(1) :</p>
+<p>get_all_host_addresses(protocol_name) returns all string based addresses for all the interfaces of the protocol named by protocol_name. Parameter protocol_name is optional. If not given or is an empty string, this function returns all string based addresses for all the interfaces of all supported protocols. An example of this function is get_all_host_addresses("TCPIP").</p>
+</td>
+</tr>
+<tr>
+<td><center>get_call_info</center></td>
+<td><p>::mfp::paracomp::connect::get_call_info(0) :</p>
+<p>This function returns NULL if not called within a call sandbox. Otherwise, it returns an array whose first element is its call sandbox id, second element is its connect id and third element is an local info object.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_incoming_connect</center></td>
+<td><p>::mfp::paracomp::connect::get_incoming_connect(2) :</p>
+<p>get_incoming_connect returns a connection object from a remote address to a local network interface, or null if no such a connection exists. It accepts two parameters. The first parameter is local interface info, which can be returned by calling generate_interface function. The second parameter is the remote address where the incoming connection is initialized. Note that for TCPIP protocol, this remote address, i.e. client side address, should include both IP address and IP port. Moreover, if NAT exists between client and server, the remote address should be the client's external address, i.e. client's address seen from server side. An example of this function is get_incoming_connect(local_interface, "192.168.1.100:53521").</p>
+</td>
+</tr>
+<tr>
+<td><center>get_local_host_address</center></td>
+<td><p>::mfp::paracomp::host::get_local_host_address(1) :</p>
+<p>get_local_host_address(protocol_name) returns local host address of the protocol named by protocol_name. An example of this function is get_local_host_address("TCPIP").</p>
+</td>
+</tr>
+<tr>
+<td><center>initialize_local</center></td>
+<td><p>::mfp::paracomp::connect::initialize_local(2) :</p>
+<p>initialize_local(local_info, settings) initializes a local interface object defined by local_info which is a returned value of generate_interface function. The second parameter, settings, currently is not used and, as such, is optional. This function returns true if successful, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td><center>listen</center></td>
+<td><p>::mfp::paracomp::connect::listen(1) :</p>
+<p>listen(local_info) listens on the local object defined by local_info. The parameter, local_info, is a returned value from generate_interface function. This function returns true if successful, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td><center>receive_sandbox_message</center></td>
+<td><p>::mfp::paracomp::connect::receive_sandbox_message(1...) :</p>
+<p>receive_sandbox_message function retrieves a message sent from a sandbox or main entity. Sender can be either in a remote MFP instance but directly connected to receiver's MFP instance, or in local MFP instance same as receiver. It has two working modes. The first mode uses only one parameter which is waiting time. 0 means no waiting time (i.e. immediately return the first message from message queue or NULL if no message available). Less than 0 means this function will be blocked if no message available. Otherwise this function will wait at most the number of ms defined in the parameter until a message comes, or returns NULL if still no message available after expiry. This working mode is called within a sandbox. The second working mode has two parameters. The first parameter is a local info object which is returned value of generate_interface function. The second parameter is waiting time with the same meaning as in the first working mode. This working mode is called within main entity. The first parameter tells the function which local interface (i.e. a listening address) to monitor. If a message is returned, the returned value is an array based dictionary whose "InterfaceInfo" field is sender's local interface info including protocol and sender's local address. This field is NULL if the sender and receiver are in the same MFP instance, and receiver is a sandbox and sender is receiver's main entity. "ConnectId" field is the Id of the connection which initialized sender sand box or an empty string if sender is main entity; "CallId" field is sender's call Id or 0 if sender is main entity. "TransConnectSrcLocal" is the transmission connection's sender side local address seen from sender side. A transmission connection may not be the initializing connection of the sender or receiver call sandbox. However, the two ends of a transmission connection must be located in the same MFP instance as the sender and receiver respectively. Sender call sandbox or main entity passes its message to its MFP instance, this MFP instance then gives the message to the transmission connection to transmit. After the receiver side of the transmission connection receives the message, it passes this message to its MFP instance and finally the MFP instance at the receiver side gives the message to the receiver call sandbox or main entity. Note that since a transmission is two-way, sender isn't necessarily located at the client side of the transmission connection, and receiver isn't necessarily at the server side. Similarly, "TransConnectSrcRemote" is the transmission connection's receiver side address seen from sender side; "TransConnectDestLocal" is the transmission connection's receiver side address seen from receiver side; and "TransConnectDestRemote" is the transmission connection's sender side address seen from receiver side. Note that in general, value of "TransConnectSrcRemote" should be the same as value of "TransConnectDestLocal" and "TransConnectDestRemote" should be equal to "TransConnectSrcLocal". However, this is not the case for TCPIP protocol if NAT layer exists between sender and receiver. In this case value of field "TransConnectDestRemote" is especially useful because, if the receiver is at server side of the transmission connection, it tells server side MFP the id of the transmission connection which enables reuse of this connection and sending messages back. If sender and receiver are located in the same MFP instance, values of all the four fields are empty. Finally, "Message" field gives out sender's message content. Examples of this function are receive_sandbox_message(-1) and receive_sandbox_message(local_info, -1).</p>
+</td>
+</tr>
+<tr>
+<td><center>send_sandbox_message</center></td>
+<td><p>::mfp::paracomp::connect::send_sandbox_message(1...) :</p>
+<p>send_sandbox_message function sends a message to a sandbox or main entity. It has four working modes. The first working mode is to send a message from a sandbox to its local main entity. In this case the function has just one parameter which is message content. Note that message content is not necessarily to be a string. For example, send_sandbox_message([1,2,3]) sends [1,2,3] from a sandbox to local main entity. The second working mode is to send a message from main entity or a sandbox to a local sandbox. In this case the function needs four parameters. The first parameter is a local interface object. This local interface object can be obtained from generate_interface function. And the call request which started the receiver sandbox was accepted by the local interface. The second parameter is the connection id of the receiver sandbox. Here the connection initialized the call of the receiver sandbox. The third parameter is the receiver sandbox's call id. The last parameter is message content. An example of this mode is send_sandbox_message(local_info, "127.0.0.1", 1, 238.975 + 3.01i). The third working mode is to send a message from local sandbox or main entity to a remote main entity. Note that the local MFP instance must have been connected to the remote MFP instance by calling connect function. This mode needs two parameters. The first one is a connection object which should be returned from connect function (i.e. the "CONNECT" field of the returned value). The second parameter is message content. An example is send_sandbox_message(conn1, "Hello!"). The last working mode is to send a message from local sandbox or main entity to a remote sandbox. Note that the local MFP instance must be connected to the remote MFP instance by calling connect function. This mode needs five parameters. The first parameter is a connection object which should be returned from connect function (i.e. the "CONNECT" field of the returned value). The second parameter is a remote interface object which can be obtained from generate_interface function. This remote interface is the other side of the connection. And the call request which started the receiver sandbox was accepted by the remote interface. The third parameter is the connection id of the receiver sandbox. Here the connection initialized the call of the reciever sandbox. The fourth parameter is the receiver sandbox' call id. The last parameter is message content. An example for this mode is send_sandbox_message(conn1, remote_info, "192.168.1.139", 4, [[1,2],[3,4]]).</p>
+</td>
+</tr>
+<tr>
+<td><center>set_local_host_address</center></td>
+<td><p>::mfp::paracomp::host::set_local_host_address(4) :</p>
+<p>set_local_host_address function sets local host address for an interface of the selected  protocol. It has four parameters. The first parameter is protocol name. Currently only WebRTC protocol is supported so that it can only be string "WEBRTC". The second is interface name, currently only "main" is the supported value. The third parameter is the address, which should be a valid email address for WEBRTC protocol. The email server should support smtp and imap protocols. Microsoft outlook email addresses are recommended. The last parameter includes additional information for this email. It is an array of strings whose first element should be "0", which means this email supports smtp and imap protocols. The second element is the password to send and receive emails using this email address. Please note that this password could be different from the password for webmail login. If the email is Microsoft hotmail or outlook mail, Google gmail or Tecent qq mail, no other information is required. Otherwises, developer needs to provide smtp server address, smtp server port, smtp support to SSL, imap server address, imap server port and imap support to SSL as the third to eighth parameters respectively. Please note that smtp support to SSL and imap support to SSL are "0" if SSL is not supported, "1" if SSL is supported, or "-1" if not sure. An example of this function is set_local_host_address("WEBRTC", "main", "abcxyz@yahoo.com", ["0", "xxxxyyyyzzzzwwww", "smtp.mail.yahoo.com", "465", "1", "imap.mail.yahoo.com", "993", "1"]). Another example is set_local_host_address("WEBRTC", "main", "mnopqrst@outlook.com", ["0", "abcd1234"]).</p>
+</td>
+</tr>
+<tr>
+<td><center>suspend_until_cond</center></td>
+<td><p>::mfp::paracomp::threading::suspend_until_cond(4) :</p>
+<p>This function suspends the current thread until a certain condition is satisfied. It has four parameters. The first parameter variable name. Note that variable name is not a string. The second parameter is a boolean value. If it is true, the function starts to check if the condition is satisfied only after the variable's value is written (not necessarily changed). Otherwise, the function starts to check if the condition is satisfied immediately when the function is called. This parameter is optional. By default it is TRUE. The third parameter is an operator string. Currently only the following inputs for this parameter are supported, i.e. "", "==", "!=", ">", "<", ">=" and "<=". "" means if a writing happens, the condition is satisfied. Other operators means to compare the variable's value using the operator. If comparison returns TRUE, the condition is satisifed. This parameter is also optional. By default it is "". The last parameter is the value to be compared with. This is also an optional parameter. It is useless if operator is "". For other operators, this parameter's value is current value of the variable by default. For example, suspend_until_cond(a) equals to call suspend_until_cond(a, TRUE, ""), which means to suspend the current thread until variable a is written by another thread. The other example is suspend_until_cond(a, FALSE, "!="), which means to suspend the current thread until variable a's value is changed. The third example is suspend_until_cond(a, TRUE, ">=", 37), which means to suspend the current thread until variable a is written (not necessarily changed), and the updated value is no smaller than 37. If the comparison is invalid, e.g. the updated value is "Hello", which cannot be compared with 37, the condition is not satisfied and the current thread is still blocked.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

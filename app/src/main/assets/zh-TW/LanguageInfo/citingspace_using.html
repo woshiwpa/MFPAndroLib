@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>程式開發科學計算器幫助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body style="background-color:white;">
+<h2 style="color:blue">MFP編程語言citingspace和using語句：</h2>
+<p style="font-family:verdana;color:black;">
+</p>
+<p style="font-family:verdana;color:black;">
+MFP編程語言的citingspace語句和C++/C#語言中的namespace語句非常相似。Citingspace是一組函數的容器，這些函數可以彼此之間直接調用而不用給出被調用函數的citingspace的路徑名。一個citingspace可以在一個或者多個MFPS檔案中被聲明。同樣地，一個MFPS檔案也可以包括任意個citingspace的聲明。如果一個MFPS檔案沒有citingspace的聲明，MFP則認為該檔中所定義的所有的函數都位於頂層的citingspace中。比如，在檔File1.mfps中，定義了如下citingspace和函數：</p>
+<pre style="font-family:verdana;color:black;">
+citingspace ::Abc::def
+function Aaa()
+    Bbb()
+endf
+endcs
+</pre>
+<p style="font-family:verdana;color:black;">
+，在File2.mfps檔中，開發者又定義了同樣的一個citingspace和一個新的函數：</p>
+<pre style="font-family:verdana;color:black;">
+Citingspace ::ABC::def	// citingspace的名字不分大小寫的。
+function Bbb()
+    Aaa()
+	::Abc::hij::Ccc()
+endf
+endcs
+</pre>
+<p style="font-family:verdana;color:black;">
+，這樣一來，函數Aaa和Bbb都是相互可見的。換句話說，在函數Aaa中，Bbb可以被直接調用，反之亦然。然而，如果用戶在以上兩個檔或者一個新的檔中聲明了一個新的citingspace，並且在這個新的citingspace中又定義了一個新的函數Ccc()，那麼在函數Ccc中必須使用citingspace的路徑來調用Aaa或者Bbb：</p>
+<pre style="font-family:verdana;color:black;">
+Citingspace ::Abc::hij
+function Ccc()
+    ::Abc::def::Aaa()
+endf
+endcs
+</pre>
+<p style="font-family:verdana;color:black;">
+。Citingspace的聲明可以嵌套，比如：</p>
+<pre style="font-family:verdana;color:black;">
+citingspace ::a1
+citingspace ::b1 // 如果是聲明citingspace b1，那麼這個citingspace的完整路徑就變成了::a1::b1
+endcs
+endcs
+</pre>
+<p style="font-family:verdana;color:black;">
+。還要注意頂級citingspace的全路徑名是一個空字元串。</p>
+<p style="font-family:verdana;color:black;">
+Using語句告訴MFP程式哪一個citingspace被使用。調用using語句所聲明將要使用的citingspace中的函數無需在函數名前面添加citingspace的路徑。在上述例子中，如果一開始就聲明using citingspace ::Abc::def，那麼調用Aaa就不需要使用::Abc::def的首碼了。</p>
+<pre style="font-family:verdana;color:black;">
+Citingspace ::Abc::hij
+function Ccc()
+    using citingspace ::Abc::def // 注意在def的後面不能夠有：：
+    Aaa()
+endf
+endcs
+</pre>
+<p style="font-family:verdana;color:black;">
+。需要注意的是using語句可以放在函數體的內部或者外部。在缺省時，頂級citingspace，MFP語言的citingspace和其所有的子citingspace（也就是::mfp::*，*是表示所有子citingspace和其本身的通配符）都被使用。</p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Scientific Calculator Plus Help</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">Scientific Calculator Plus Help : reflection functions</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>Function name</th>
+<th>Function info</th>
+</tr>
+<tr>
+<td><center>get_func_fullname</center></td>
+<td><p>::mfp::reflection::get_func_fullname(3) :</p>
+<p>get_func_fullname(function_name, number_of_params, citing_spaces_to_check) returns the full name (i.e. full citingspace followed by "::" followed by function's own name) of a function. It has three parameters. The first parameter is string based function name without citingspace or with partial citingspace. The second parameter is number of parameters. This is an optional parameter. Its default value is -1 which means just searching function name without considering number of parameters. The third parameter is citingspaces to check. It is a string array like ["::mfp_compiler", "::mfp::*"]. In this example, this function will first search citingspace ::mfp_compiler and then search citingspace ::mfp and all sub-citingspaces of ::mfp to find function_name. This parameter is also optional. It's default value is the citingspaces currently used in context. If the function_name is not a valid function name or the number of parameters is incorrect or the citingspaces don't include the function, it throws an exception. An example of this function is get_func_fullname("reflection:: get_func_fullname", 2) with returned value being "::mfp::reflection::get_func_fullname". Note that the number of parameters is 2, not 3 because get_func_fullname has two optional parameters so its number of parameters can be 1 or 2 or 3.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_type_fullname</center></td>
+<td><p>::mfp::reflection::get_type_fullname(1) :</p>
+<p>get_type_fullname returns the full name, i.e. name with citingspace path, of the type of the parameter. For example, if developer has defined a class A in citingspace ::abc::def, and has already created an object named objA from class A, then get_type_fullname(objA) will return a string which is ::abc::def::a . Note that A is changed to a since MFP is case insensitive and internally all the variable names and types are turned to small case. Also note that this function can return the full name of MFP builtin types. However, user is recommended to only use it to identify if two variables have the same type during program run. User cannot assume that the full name of an MFP builtin type will never change in the future versions.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

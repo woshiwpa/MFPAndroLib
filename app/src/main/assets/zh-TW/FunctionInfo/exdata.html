@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>程式開發科學計算器幫助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">程式開發科學計算器幫助：數據交換檔案格式函數</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函數名</th>
+<th>函數幫助資訊</th>
+</tr>
+<tr>
+<td><center>get_json_field</center></td>
+<td><p>::mfp::exdata::json::get_json_field(3) :</p>
+<p>此函數從一個代表JSON數據的字符串中獲取一個域的值。此函數有三個參數。第一個參數為一個代表JSON數據的字符串，第二個參數為JSON域的名字，第三個參數為JSON域的類型。如果第三個參數值為"s"，則意味著這個JSON域是一個字符串，如果是"b"，則意味著這個JSON域是一個布爾值，如果是"f"，則意味著這個JSON域是一個浮點數值，如果是"d"，則意味著這個JSON域是一個整數值，如果是"a"，則意味著這個JSON域是一個數組，如果是"j"，則意味著這個JSON域是一個代表JSON數據的字符串，如果是其他值或者這個參數被省略，則由MFP自己偵測這個JSON域的數據類型。註意第一個參數和第二個參數都是區分大小寫的，但第三個參數不區分大小寫。這個函數的返回值是這個JSON域的數據值。本函數的一個例子是get_json_field("{\"ABC\": null, \"JJJ\": {\"DEF\":[1, 8, [\"Welcome\", 9.99]],\"ZZ\":\"hello boy\"}}", "JJJ", "j")。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_json_field</center></td>
+<td><p>::mfp::exdata::json::set_json_field(3) :</p>
+<p>此函數將一個值設置到代表JSON數據的字符串中。此函數有三個參數。第一個參數為一個代表JSON數據的字符串，第二個參數為JSON域的名字，第三個參數為JSON域的值。註意這三個參數都是區分大小寫的。如果這個JSON域已經存在，則將新值寫入，否則，將創建一個新的JSON域。這個函數的返回值是設置後的新的JSON域的字符串，或者如果數據類型不支持或JSON域的名字錯誤則拋出異常。本函數的一個例子是set_json_field("{\"ABC\": null, \"JJJ\": {\"DEF\":[1, 8, [\"Welcome\", 9.99]],\"ZZ\":\"hello boy\"}}", "JJJ", "New value")。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>可编程科学计算器帮助</title>
+		<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+	</head>
+	<body style="background-color:white;">
+		<h2 style="color:blue">可编程科学计算器帮助：创建APK安装包</h2>
+		<p style="color:black">可编程科学计算器的每一次计算都实际上是基于其数学引擎，MFP编程语言，的一个函数。为了方便用户，可编程科学计算器提供了将一个MFP函数编译打包为独立的安卓APK安装包的功能。</p>
+		<p style="color:black">用户需要进行3步设置以生成一个安卓APK安装包。第一步，用户需要输入应用名称，应用包ID和应用版本信息。需要注意应用包ID必须是20个字节长的独一无二的ID，否则用户创建的应用无法在诸如谷歌商店的网站上发布。用户还可以在这一步为应用选择图标和输入应用的帮助信息。如果用户选择使用缺省帮助信息，MFP函数的帮助信息将会在应用帮助页面中显示。</p>
+		<p style="color:black">第二步用户需输入函数名和需要APK的最终使用者输入的参数。注意APK的最终使用者需要输入的参数和函数的参数不见得完全一样。APK的创建者可以为函数的一些参数设置缺省值，这样可以APK的最终使用者就不必进行太多的输入。</p>
+		<p style="color:black">需要注意的是，当创建一个APK包的时候，可编程科学计算器不是拷贝所有用户自定义的mfps代码文件而仅仅抽取相关的代码。在某些时候，比如调用integrate或者plot_exprs函数时，函数参数是一个字符串或者基于字符串的变量。这样一来，可编程科学计算器在编译的时候无法判断哪些函数在运行时将会被调用。又比如，如果函数的参数是一个对象，该对象的类型在运行前往往无法确定。用户在这种情况下需要在代码中，最好在相关函数调用语句的前一行，增加一个注释指令@complusory_link告知可编程科学计算器哪些用户自定义的函数和类需要链接入APK包。比如
+		</p>
+		<p style="font-family:verdana;color:black;">
+		...
+		</p>
+		<p style="font-family:verdana;color:red;">
+		@compulsory_link get_functions("::abc::myf_expr1", "myf_expr2(2)")
+		</p>
+		<p style="font-family:verdana;color:blue;">
+		integrated_result = integrate(expression_str, variable_str)
+		</p>
+		<p style="font-family:verdana;color:red;">
+		@compulsory_link get_classes("::def::hij::my_class1", "::my_class2", "my_class3")
+		</p>
+		<p style="font-family:verdana;color:black;">
+		...
+		</p>
+		<p style="color:black;">
+		在上面例子中，::abc::myf_expr1和myf_expr2是用户自定义的函数。它们在运行时将会被integrate函数调用用于计算积分。所有的名字叫做::abc::myf_expr1的函数都会被链接入APK包。但是对于名字叫myf_expr2的函数，当且仅当它是位于一个被使用的引用空间中并且它正好有两个参数或者有可选参数时，该函数才会被链接入APK包。
+		</p>
+		<p style="color:black;">
+		类似地，::def::hij::my_class1，::my_class2和my_class3是用户自定义的类。需要注意的是类my_class3不包括完整的引用空间路径，所以compulsory_link语句将会搜索引用空间，找到第一个名字符合my_class3的类，如果存在这个类的话。
+		</p>
+		<p style="color:black;">
+		如果用户想把所有自己定义的函数和类链接入APK包，请用如下语句
+		</p>
+		<p style="font-family:verdana;color:red;">
+		@compulsory_link get_all_referred_units()
+		</p>
+		<p style="color:black;">
+		。这样一来，可编程科学计算器将链接所有函数和类。但是用户创建的应用装载速度会比较慢。并且，用户还必须保证所有的函数和类都必须已经定义，否则打包时会出现编译错误。
+		</p>
+		<p style="color:black;">
+		需要指出的是，get_functions，get_classes和get_all_referred_units实际上都是MFP语言的函数。但是和普通函数不一样的是，这几个函数位于mfp_compiler引用空间中。该引用空间仅仅在打包链接的时候被加载，一般情况下用户不会用到。
+		</p>
+		<p style="color:black;">
+		还要注意@compulsory_link指令必须位于一个函数的内部，如果它在function语句前面或者endf语句之后，它不会有任何作用。</p>
+		<p style="color:black">最后一步是设置APK文件名以及设置如何为APK文件签名。如果用户使用测试用签名，APK文件可以被安装，但不能被发布。如果想发布，就必须使用已有的签名或者创建一个新的签名。用户所有的签名都保存在AnMath\signkeys目录中。</p>
+		<p style="color:black">以上3步完成之后，将会出现一个提示对话框询问用户下一步是安装还是共享创建的APK包，抑或直接退出。如果用户选择退出，他（她）仍然可以在以后访问位于AnMath\apks目录的APK包。</p>
+	</body>
+</html>

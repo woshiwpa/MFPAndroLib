@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Scientific Calculator Plus Help</title>
+	</head>
+	<body style="background-color:white;">
+		<h2 style="color:blue">Scientific Calculator Plus Help : Calculator GUI</h2>
+		
+		<p style="font-family:verdana;color:purple;">
+			<b>Input</b>:
+		</p>
+		<p style="color:black">User is able to input an expression using keyboard or function buttons (function buttons are configurable in <a href="config_inputpads.html" target="_self">inputpads config</a> tool), or copy a historical record from history screen or by (long) clicking the output box, or input a constant or unit-converted value from calculator assistant. An expression is made up of operands, operators, functions and parameters. An operand or a parameter may not be a number, it can be an expression. Blank characters between expression elements, i.e. operands, operators, functions and parameters, do not affect calculation result. Capitalized and uncapitalized characters are both supported. An example of expression is pow(4.01i,3.1) *(8.31 - 0.0731 * i)+ sin(toRAD(sum(17, 21, avg(3.71, log(198.2), -9.99,112.7),abs(-11.2))))/(2!) .</p>
+		<p style="color:black">If user is not sure how to use a function or a operator, he/she can press QuickHelp button <img src="quickhelp.jpg"  alt="icon" /> and then press the function or operator button or type the function name or the operator by keyboard.</p>
+		<p style="font-family:verdana;color:purple;">
+			<b>Output</b>: 
+		</p>
+		<p style="color:black">The output text box shows user the result of calculation. If syntax of the input expression is incorrect, output box shows error message. User can also place last calculation result in the input text box by clicking the output box. If the last calculation result includes error, expression will be put into input box instead of result. Note that print outputs in functions is not shown in calculator GUI output text box.</p>
+		<p style="font-family:verdana;color:purple;">
+			<b>History</b>:
+		</p>
+		<p style="color:black">The history screen shows user the recent calculation history of calculator GUI. By clicking one of the records, user is able to place either expression or result into input box, which saves typing time. Note that if result includes error, expression will be put into input by default.</p>
+		<p style="font-family:verdana;color:purple;">
+			<b>Calculator Assistant</b>:
+		</p>
+		<p style="color:black">The calculator assistant screen is accessible by clicking Android menu button and select "Calc Assistant" button. This tool provides two functions. One is inserting a constant into input. The other is converting value from one unit to another unit. The unit conversion functionality is supported by an underlying function called convert_unit. If last calculating result is a valid real value, it is placed in the units conversion tab as initial value to-be-converted. If last calculating result is not a valid real value, but text in the input box is a valid real value, units conversion tab will use the value in the input box as initial value to-be-converted. Otherwise, units conversion tab does not place an initial value. If conversion is successful, user is able to select the converted value or conversion expression to insert.</p>
+	</body>
+</html>

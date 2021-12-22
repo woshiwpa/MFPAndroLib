@@ -1,0 +1,1245 @@
+
+#This is a hungry snake game for multi-players. At most 4 people (using
+#4 different devices) can play together. The entry point of this game is
+#the run function. This run function takes no parameter. Player needs to
+#input local IP address (i.e. player's device IP address) and remote server
+#IP address if not the first player when the game starts. Remote server can
+#be any of the other players who have already joined the game. Player can
+#control the snake moving direction by tapping the Left, Top, Right and
+#Bottom button. Player can also achieve the same thing by dragging/dropping
+#mouse or swipping the finger on the non-button area of the display window.
+#If player's snake eats a piece of food, its length increases. If player's
+#snake hits the body of another snake or itself, the player loses.
+#这是一款适合多人游戏的贪吃蛇游戏。最多可以有4个人（使用4种不同的设备）一起玩。该游戏的
+#切入点是run函数。此函数没有参数。游戏开始时，玩家需要输入玩家的设备IP地址。如果玩家不
+#是第一个，就还需要输入前面已经加入游戏的另一个玩家的IP地址。玩家可以通过点击“左”，“上”，
+#“右”和“下”按钮来控制蛇的移动方向。玩家还可以通过在显示窗口的非按钮区域上拖放鼠标或滑
+#动手指来实现相同的目的。如果玩家的蛇吃了一块食物，它的长度就会增加。如果玩家的蛇碰到了
+#另一条蛇或者它自己的身体，则玩家会输。
+@execution_entry gdi_test::game_test::oo_hungry_snake_parallel::run
+
+citingspace gdi_test::game_test::oo_hungry_snake_parallel 
+
+function print_line_(s)
+    // for debugging purpose, ignore this function
+	//用于调试，请忽略本函数
+endf 
+
+// Sleep interval between two updates of screen (ms)
+// 两次屏幕刷新之间的睡眠时间（毫秒）
+function MOVEINTERVAL()
+    if is_running_on_android()
+        // if running on android, sleep interval is shorter because
+        // MFP takes longer time in calculation than in a PC.
+        // 在安卓系统上，睡眠时间较短，原因是MFP在安卓系统上运行得跟慢，需要更多
+        // 时间进行计算，留给睡眠的时间就少了。
+        return 20
+    else
+        return 100
+    endif
+endf
+
+// width of the game display window in pixels (for pc only)
+// 基于像素的游戏视频窗口的宽度（对安卓不起作用）
+function WINDOWDEFAULTWIDTH()  
+    return 1024
+endf  
+  
+// height of the game display window in pixels (for pc only)
+// 基于像素的游戏视频窗口的高度（对安卓不起作用）
+function WINDOWDEFAULTHEIGHT()  
+    return 480
+endf  
+
+// width of button
+// 按钮的宽度
+function BUTTONWIDTH()
+    return 80
+endf
+
+// height of button
+// 按钮的高度
+function BUTTONHEIGHT()
+    return 60
+endf
+
+// font size of button
+// 按钮的字体大小
+function BUTTONTEXTFONT()
+    return 20
+endf
+
+// font size of level information
+// 等级信息的字体大小
+function INFOFONTSIZE()
+    return 23
+endf
+
+// gap between buttons
+// 按钮之间的间隔
+function BUTTONGAP()
+    return 20
+endf
+ 
+// number of columns in snake's moving space
+// 蛇的移动空间包含小方格的列数
+function GRIDWIDTHDIM() 
+    return 20 
+endf 
+ 
+// number of rows in snake's moving space
+// 蛇的移动空间包含小方格的行数
+function GRIDHEIGHTDIM() 
+    return 16 
+endf 
+ 
+// size of grid cell in snake's moving space
+// 蛇移动空间的每一个单元小方格的大小
+function CELLSIZE(windowWidth, windowHeight, gridWidthDim, gridHeightDim) 
+    return round(min(windowWidth/1.2/gridWidthDim, windowHeight/1.2/gridHeightDim)) 
+endf 
+ 
+// the width from the left side of display window to
+// the left side of snake's moving space.
+// 蛇的移动空间的左边界到屏幕的左边界的距离。
+function XMARGIN(windowWidth, windowHeight, gridWidthDim, gridHeightDim)
+    variable widthEdge = (windowWidth - CELLSIZE(windowWidth, windowHeight, gridWidthDim, gridHeightDim) * gridWidthDim)
+    variable heightEdge = (windowHeight - CELLSIZE(windowWidth, windowHeight, gridWidthDim, gridHeightDim) * gridHeightDim)
+    if widthEdge > heightEdge
+        return round(widthEdge / 3)
+    else
+        return round(widthEdge / 2)
+    endif
+endf 
+ 
+// the height from the top side of display window to
+// the top side of snake's moving space.
+// 蛇的移动空间的上边界到屏幕的上边界的距离。
+function YMARGIN(windowWidth, windowHeight, gridWidthDim, gridHeightDim) 
+    variable widthEdge = (windowWidth - CELLSIZE(windowWidth, windowHeight, gridWidthDim, gridHeightDim) * gridWidthDim)
+    variable heightEdge = (windowHeight - CELLSIZE(windowWidth, windowHeight, gridWidthDim, gridHeightDim) * gridHeightDim)
+    if widthEdge > heightEdge
+        return round(heightEdge / 2)
+    else
+        return round(heightEdge / 3)
+	endif
+endf 
+ 
+// background color
+// 背景色
+function BGCOLOR()  
+    return [170, 190, 255]  
+endf  
+ 
+// color of the board of snake's moving space
+// 蛇的移动空间的边界的颜色。
+function borderCOLOR() 
+    return [125, 255, 100, 100] 
+endf 
+ 
+// color of the wall
+// 墙的颜色。
+function WALLCOLOR() 
+    return [125, 100, 100, 255] 
+endf 
+ 
+// color of the snake's body, idx is the snake idx
+// 蛇的身体的颜色。idx是第几号蛇（也就是玩家）
+function SNAKECOLOR(idx) 
+	// four integers from 0 to 255 to define a color. First is alpha, second to third are R, G and B respectively.
+	// 定义颜色可以用四个小于256的正整数。第一个是Alpha，剩下的三个分别是红绿和蓝。
+    return [155, 100 - idx * 30, 255 - idx * 40, 160 + idx * 30] 
+endf 
+ 
+// color of the score
+// 玩家得分的颜色。
+function SCORECOLOR() 
+    return [125, 90, 70, 0] 
+endf 
+ 
+// color of the text
+// 文字的颜色。
+function TEXTCOLOR() 
+    return [225, 20, 20, 20] 
+endf
+
+// color of front edge (facing light edge) in the buttons
+// 按钮上的向光边缘的颜色。
+function BUTTONFRONTCOLOR()
+    return [255, 255, 255]
+endf
+
+// color of back edge (not facing light edge) in the buttons
+// 按钮上的背光边缘的颜色。
+function BUTTONBACKCOLOR()
+    return [0, 0, 0]
+endf
+
+// color of game over text
+// 游戏结束文字的颜色
+function GAMEOVERCOLOR() 
+    return [225, 230, 230, 230] 
+endf 
+
+// scaling ratio
+// 缩放比例
+function SCALINGRATIO()
+    return 0.5
+endf
+
+// calculate left top coordinate (in pixel) of a cell whose grid coordinate is coord
+// 基于一个网格单元左上角基于像素点的坐标，网格单元的网格坐标为coord
+function calcTopLeft(coord, cellSize, xMargin, yMargin) 
+    return [coord[0] * cellSize + xMargin, coord[1] * cellSize + yMargin] 
+endf 
+
+// calculate initial place of food based on the grid coordinate.
+// It depends on the level of the game
+// 计算食物起始位置（基于蛇移动空间的网格坐标），注意食物的起始位置随游戏通关等级变化。
+function calcFoodInitPlace(gridWidthDim, gridHeightDim)
+    return [gridWidthDim/2, gridHeightDim/2]
+endf
+
+// draw snake or wall, points means the cells' grid coordinates
+// 绘制蛇的身体或者墙，points参数用于存储构成墙或蛇的身体的网格单元的网格坐标
+function drawPoints(drawBGOwner, display, points, color, cellSize, xMargin, yMargin, scalingRatio) 
+    for variable idx = 0 to size(points)[0] - 1 step 1
+		// draw rectangle cell by cell
+		// 一个单元格一个单元格地画方块
+        draw_rect(drawBGOwner, display, calcTopLeft(points[idx], cellSize, xMargin, yMargin) * scalingRatio, cellSize * scalingRatio, cellSize * scalingRatio, color, 0)  
+    next 
+endf 
+
+// draw button text which must be horizontally and vertically center aligned with the rectangular button border
+// 绘制按钮的文字。这写文字必须在水平和垂直方向都位于长方形按钮的中心
+function drawButtonText(display, topLeft, width, height, text, isPushed, scalingRatio)
+    variable btnTxtFnt = BUTTONTEXTFONT()
+    variable textOrigin = calculate_text_origin(display, text, topLeft, width, height, 0, 0, btnTxtFnt)  
+    draw_text("static element", display, text, textOrigin * scalingRatio, TEXTCOLOR(), btnTxtFnt * scalingRatio)
+endf
+
+// draw button's border on screen display. There are two states, pushed or unpushed. If the button is not pushed, left
+// and top edges have front light color while right and bottom edges have back light color. Otherwise, left and top have
+// back light color while right and bottom have front light color.
+// 在显示窗口绘制按钮边界。注意按钮有两种状态：按下和没有按下。按钮在按下状态时，左上边界是背光色，右下边界是向光色；反之，左上是向光色右下背光色。
+function drawButtonBorderOnScreen(info, display, topLeft, width, height, isPushed, btnFrontColor, btnBackColor)
+    variable color1 = btnFrontColor, color2 = btnBackColor
+    if isPushed // is button pushed? // 按钮按下了没有？
+        color1 = btnBackColor // back light color // 背光色
+        color2 = btnFrontColor // front light color // 向光色
+    endif
+    draw_line(info, display, topLeft, [topLeft[0], topLeft[1] + height], color1, 2) // left border // 左边界
+    draw_line(info, display, topLeft, [topLeft[0] + width, topLeft[1]], color1, 2) // top border // 上边界
+    draw_line(info, display, [topLeft[0], topLeft[1] + height], [topLeft[0] + width, topLeft[1] + height], color2, 2)  // bottom border // 下边界
+    draw_line(info, display, [topLeft[0] + width, topLeft[1]], [topLeft[0] + width, topLeft[1] + height], color2, 2)  // right border // 右边界
+endf
+
+Help 
+@language: 
+  This function all the TCPIP addresses on each interface of the device. The
+  output is well-formated so that user can clearly see what TCPIP addresses this
+  device has. If an interface doesn't have any TCPIP address, it is skipped.
+@end 
+@language:simplified_chinese 
+  这个函数打印出本地设备的所有网络界面的TCPIP地址。打印输出的文本是经过格式处理的以方便阅读。如果某
+  一个网络界面没有TCPIP地址，它将被跳过，不在打印输出中显示出来。
+@end 
+endh
+function print_all_host_tcp_addresses()
+	variable all_local_addresses
+	all_local_addresses = get_all_host_addresses("TCPIP")[0,1]
+	for variable index = 0 to size(all_local_addresses)[0] - 1 step 1
+		variable all_interface_addresses = all_local_addresses[index]
+		if size(all_interface_addresses[1])[0] == 0
+			continue
+		endif
+		print("============= " + all_local_addresses[index, 0] + " =============\n")
+		for variable index1 = 0 to size(all_interface_addresses)[1] - 1 step 1
+			variable interface_addr = all_interface_addresses[1,index1]
+			print(interface_addr + "\n")
+		next
+	next	
+endf
+
+function MAX_NUM_PLAYERS()
+	return 4
+endf
+
+class OtherPlayer
+	// default values are [null, 0, "", null, -1, null, false]
+	variable self connectId = null
+	variable self state = 0
+	variable self remoteAddr = ""
+	variable self connectObj = null
+	variable self currentStep = -1
+	variable self foodPosition = null
+	variable self foodEatenByMe = false
+	
+	function __init__(self, connectId, state, remoteAddr, connectObj, currentStep, foodPosition, foodEatenByMe)
+		self.connectId = connectId
+		self.state = state
+		self.remoteAddr = remoteAddr
+		self.connectObj = connectObj
+		self.currentStep = currentStep
+		self.foodPosition = foodPosition
+		self.foodEatenByMe = foodEatenByMe
+		return self
+	endf
+	
+	function __equals__(self, obj)
+		if (self.__is_same__(obj))
+			return true
+		elseif (get_type_fullname(obj) != get_type_fullname(self))
+			return false
+		else
+			return and(self.connectId == obj.connectId, self.state == obj.state, self.remoteAddr == obj.remoteAddr, self.connectObj == obj.connectObj, _
+						self.currentStep == obj.currentStep, self.foodPosition == obj.foodPosition, self.foodEatenByMe == obj.foodEatenByMe)
+		endif
+	endf
+endclass
+
+// determine if a pixel based xy coordinate is in a button's area (yes means the button is hit if xy is where player taps)
+// 检测一个基于像素的xy的坐标是否位于按钮内（如果是，并且玩家点击位置位于xy，则意味者按钮被点中）
+function isButtonHit(xy, btnLeftTop, btnW, btnH)
+    if and(xy[0] >= btnLeftTop[0], xy[0] < btnLeftTop[0] + btnW, xy[1] >= btnLeftTop[1], xy[1] < btnLeftTop[1] + btnH)
+        return true
+    else
+        return false
+    endif
+endf
+
+function isANewPlayer(other_players, next_player_id, connect_id)
+	if size(other_players)[0] < next_player_id
+		return false
+	endif
+	for variable idx = 0 to size(other_players)[0] - 1 step 1
+		if other_players[idx].connectId == connect_id
+			return false
+		endif
+	next
+	return true
+endf
+
+function isAnExistingPlayer(other_players, connect_id, test_active)
+	for variable idx = 0 to size(other_players)[0] - 1 step 1
+		if other_players[idx].connectId == connect_id
+			if or(and(test_active, other_players[idx].state >= 0), !test_active)
+				return true
+			else
+				return false
+			endif
+		endif
+	next
+	return false
+endf
+
+function getAnExistingPlayerId(other_players, connect_id)
+	for variable idx = 0 to size(other_players)[0] - 1 step 1
+		if other_players[idx].connectId == connect_id
+			return idx + 1
+		endif
+	next
+	return -1
+endf
+
+function is2ndHit1st(snake_A, head_of_snake_B)
+	for variable idx = 0 to size(snake_A)[0] - 1 step 1
+		if snake_A[idx] == head_of_snake_B
+			return true
+		endif
+	next
+	return false
+endf
+
+function isHitSelf(snake)
+	for variable idx = 1 to size(snake)[0] - 1 step 1
+		if snake[idx] == snake[0]
+			return true
+		endif
+	next
+	return false
+endf
+
+class SnakeInfo
+	variable self currentStep	// current step. 当前步数。
+	// it is an array. Its first element is local player's snake position array,
+	// second element is the first remote position array, third element is the
+	// second remote position array etc.
+	// snakePositions是一个数组。它的第一个元素是本地玩家的的蛇的位置数组，第二个元素是第
+	// 一个远程玩家的蛇的位置数组，第三个元素是第二个远程玩家的蛇的位置数组...
+	variable self snakePositions
+	// food position. If it is null, means no food.
+	// foodPosition是食物的当前位置。如果食物位置是null就意味着没有食物。
+	variable self foodPosition
+	function __init__(self, numOfPlayers)
+		self.currentStep = 0
+		self.snakePositions = alloc_array([MAX_NUM_PLAYERS()], null)
+		self.foodPosition = null
+		return self
+	endf
+endclass
+
+// calculate the next place for food. It should be a randomly selected cell neither in wall nor
+// in snake's body
+// 计算食物的下一处位置。这应该是随机选择的非墙非蛇体的网格单元。
+function getNextFoodPlace(snakes_info, other_players, gridWidthDim, gridHeightDim)
+	variable allPlace = alloc_array([gridWidthDim, gridHeightDim])
+	variable sumOfSnakeLens = 0
+		for variable idx = 0 to MAX_NUM_PLAYERS() - 1 step 1
+			if idx == 0
+				// this is local player
+				// 这是本地玩家
+				sumOfSnakeLens = sumOfSnakeLens + size(snakes_info.snakePositions[0])[0]
+				for variable idx1 = 0 to size(snakes_info.snakePositions[0])[0] - 1 step 1
+					allPlace[snakes_info.snakePositions[0][idx1][0]][snakes_info.snakePositions[0][idx1][1]] = 1
+				next
+			elseif other_players[idx - 1].state > 0
+				// this is remote player
+				// 这是远程玩家
+				sumOfSnakeLens = sumOfSnakeLens + size(snakes_info.snakePositions[idx])[0]
+				for variable idx1 = 0 to size(snakes_info.snakePositions[idx])[0] - 1 step 1
+					allPlace[snakes_info.snakePositions[idx][idx1][0]][snakes_info.snakePositions[idx][idx1][1]] = 1
+				next
+			endif
+		next
+    variable numOfPlaces = gridWidthDim * gridHeightDim - sumOfSnakeLens
+    if numOfPlaces <= 0 
+        return Null 
+    endif 
+    variable randomSelected = rand() * numOfPlaces 
+    variable row = floor(randomSelected/gridWidthDim), col = mod(randomSelected, gridWidthDim) 
+    while allPlace[col, row] != 0 
+		// go through the cells until we find a cell not in snake's body.
+		// 顺序检查每一个网格直到找到一个非蛇体的网格单元。
+        col = col + 1 
+        if col >= gridWidthDim 
+            col = 0 
+            row = row + 1 
+            if row >= gridHeightDim 
+                row = 0 
+            endif 
+        endif 
+    loop 
+    return [col, row] 
+endf 
+
+// snakes_info is an array. The first element is current step; The 2nd one is
+// players' snake positions. The second element is also an array. Its first element
+// is local player's snake position array, second element is the first remote
+// position array, third element is the second remote position array etc. The 3rd
+// element of snakes_info is food position. If it is null, it means no food.
+// snakes_info是一个数组，第一个元素是当前的步数，元素2也是一个数组。它的第一个元素是本地玩家的
+// 的蛇的位置数组，第二个元素是第一个远程玩家的蛇的位置数组，第三个元素是第二个远程玩家的蛇的位
+// 置数组... snakes_info的第三个元素是食物的当前位置。如果食物位置是null就意味着没有食物。
+// other_players is a list of remote player infos. Each other_players element is a array whose structure is [null, 0, "", null, -1, null, false]
+// null is connect_id, 0 is remote player status, "" is remote address, null is the connect from local player to remote player, -1 is current step
+// note that if current step is -1, it is invalid, if current step is 0, it means start, if current step > 0, it is a valid current step. null is
+// food position, false is food just eaten by me or not.
+// other_players是一列远端玩家的信息。它的每一个元素是一个结构类似于[null, 0, "", null, -1, null, false]的一维矩阵。
+// null是connect_id，0是远程玩家的状态，""是远程玩家的地址，null是从本地玩家到远程玩家的连接对象，-1是当前步数。注意如果当前步数是-1，意味着当前步数是非法的。0意味着玩
+// 家开始，大于0是合法步数。null是食物的位置，false是食物是否被我吃掉。
+// connect_id is incoming connect's id, conn object is outgoing connect object.
+// connect_id是连入的连结的id，conn对象是连出的连接的对象。
+function startGame(DISPLAYSURF, server_local_interface, local_address, snakes_info, other_players, player_id, gridPosition, shouldDrawButtons, btnsLeft, btnsRight, btnsTop, btnsBottom, upBtnLT, downBtnLT, leftBtnLT, rightBtnLT)
+	// No need to start another thread to listen to other players
+	// 没有必要开启一个新的线程用于监听其他玩家
+	
+	variable local_player_id = MAX_NUM_PLAYERS() - 1
+	variable moveDirection = i // initial move direction is up.最开始移动的方向是向上。
+	variable my_state = 1	// state is 0 means start, 1 means normal move, 2 means I win, -1 means I fail
+	if snakes_info.foodPosition == null
+		my_state = 0
+	endif
+	
+	// load food image. Note that for MFP app, the way to load image is different.
+	// 将作为食物的图片装入内存。注意对于安卓应用，读取图片的方法和常规办法不同。
+	variable foodImage
+	// when building MFP App, we need copy the image to asset's resource.zip, then when we run the app, call
+	// load_image_from_zip to load image from apk's asset's resource.zip.
+	// 当创建Apk包时，我们需要图片拷贝到APK的asset的resource.zip文件中。在运行MFP应用时，调用load_image_from_zip从APK的
+	// asset的resource.zip文件中读出图片
+	@build_asset copy_to_resource(get_upper_level_path(get_src_file_path()) + "food.png", "images/food.png")
+	if is_mfp_app()
+		foodImage = load_image_from_zip(get_asset_file_path("resource"), "images/food.png", 1)
+	else
+		foodImage = load_image(get_upper_level_path(get_src_file_path()) + "food.png")
+	endif
+	variable stateText = ""
+	variable stateTextTS = now()
+	while my_state >= 0
+		variable msg = receive_sandbox_message(server_local_interface, -1)	// block mode.阻塞模式。
+		// snakes_info is an array. Element 0 is current step. Element 1 is an array, its first member is local snake position
+		// second member is remote player 1's snake postion, third member is remote player 2's nake position etc. Element 2 is
+		// food position
+		// snakes_info是一个数组。0号元素是当前步数，1号元素是一个数组，第一个成员是本地蛇的位子，第二个成员是1号远端玩家的蛇的位置，第三个成员是
+		// 2号远端玩家蛇的位子...。2号元素是食物的位置。
+		variable current_step = snakes_info.currentStep
+		if msg != null
+			// connect_id is client side connect id.
+			// connect_id是远程端的connect id。
+			variable msg_remote_address = ::mfp::data_struct::array_based::get_value_from_abdict(msg, "TransConnectDestRemote")
+			variable call_id = ::mfp::data_struct::array_based::get_value_from_abdict(msg, "CallId")
+			variable msg_data = ::mfp::data_struct::array_based::get_value_from_abdict(msg, "Message")
+			variable connect_id = msg_data[1]
+			if size(msg_data)[0] == 2
+				if msg_data[0] == "hs-ilose"
+					if isAnExistingPlayer(other_players, connect_id, true)
+						stateText = connect_id + " lost the game!"
+						stateTextTS = now()
+						// this is an existing remote player_id
+						// 这是一个现有的远程玩家
+						variable this_player_id = getAnExistingPlayerId(other_players, connect_id)
+						other_players[this_player_id - 1].state = -1	// it is dead now. 现在它已经死了。
+						// disconnect remote player
+						// 和远程玩家断开连接
+						variable ret = get_incoming_connect(server_local_interface, msg_remote_address)
+						print("get_incoming_connect connect_id = " + connect_id + " ret = " + ret + "\n")
+						variable conn = ::mfp::data_struct::array_based::get_value_from_abdict(ret, "CONNECT")
+						close_connection(conn)
+					endif
+				elseif msg_data[0] == "hs-start"
+					if isANewPlayer(other_players, player_id, connect_id)
+						stateText = connect_id + " joined the game!"
+						stateTextTS = now()
+						// this is a new player_id
+						// 这是一个新玩家
+						other_players[player_id - 1] = OtherPlayer().__init__(connect_id, 0, msg_data[1], null, 0, null, false)
+						// connect to new player
+						// 连接到新玩家
+						variable ret = ::mfp::paracomp::connect::initialize_local(server_local_interface) // initialize client first. 初始化客户端。
+						print("initialize_local client ret = " + ret + "\n")
+						//variable remote_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", msg_data[1])
+						//ret = ::mfp::paracomp::connect::connect(server_local_interface, remote_interface)
+						//print("connect ret = " + ret + "\n")
+						ret = get_incoming_connect(server_local_interface, msg_remote_address)
+						print("get_incoming_connect connect_id = " + connect_id + " ret = " + ret + "\n")
+						variable conn = ::mfp::data_struct::array_based::get_value_from_abdict(ret, "CONNECT")
+						other_players[player_id - 1].connectObj = conn
+						// create other players' info for the new player
+						// 给新的玩家其他玩家的信息
+						variable other_players_2_reply = alloc_array(player_id)
+						for variable idx1 = 1 to player_id - 1 step 1
+							other_players_2_reply[idx1] = other_players[idx1 - 1]
+						next
+						// note that connect_id and connect object is not known until remote player get the connected object.
+						// Now they are null.
+						// 注意connect_id和connect对象只有当远端玩家收到消息之后才知道。现在它们都是null。
+						other_players_2_reply[0] = OtherPlayer().__init__(null, my_state, local_address, null, current_step, snakes_info.foodPosition, false)
+						player_id = player_id + 1
+						// now lets send start message to new player's server.
+						// 现在发送启动消息给新玩家的服务端
+						::mfp::paracomp::connect::send_sandbox_message(conn, ["hs-start-reply", local_address, other_players_2_reply])
+					endif
+				endif
+			elseif size(msg_data)[0] == 3
+				if msg_data[0] == "hs-start-reply"
+					stateText = "greetings from " + connect_id + "!"
+					stateTextTS = now()
+					my_state = 1
+					variable other_players_2_reply = msg_data[2]
+					variable remote_addr = other_players_2_reply[0].remoteAddr
+					variable remote_state = other_players_2_reply[0].state
+					variable remote_current_step = other_players_2_reply[0].currentStep
+					variable remote_food_place = other_players_2_reply[0].foodPosition
+					variable remote_food_eaten_by_me = other_players_2_reply[0].foodEatenByMe
+					for variable idx1 = 0 to size(other_players)[0] - 1 step 1
+						if other_players[idx1].remoteAddr == other_players_2_reply[0].remoteAddr
+							// connect object is set when sending hs-start.
+							// connect对象是在发送hs-start消息时设置。
+							other_players[idx1].connectId = connect_id
+							other_players[idx1].state = other_players_2_reply[0].state
+							other_players[idx1].currentStep = other_players_2_reply[0].currentStep
+							other_players[idx1].foodPosition = other_players_2_reply[0].foodPosition
+							other_players[idx1].foodEatenByMe = other_players_2_reply[0].foodEatenByMe
+							break
+						endif
+					next
+					for variable idx1 = 1 to size(other_players_2_reply)[0] - 1 step 1
+						variable found_player = false
+						variable idx2
+						for idx2 = 0 to size(other_players)[0] - 1 step 1
+							if other_players[idx2].remoteAddr == other_players_2_reply[idx1].remoteAddr
+								found_player = true
+								break
+							endif
+						next
+						if !found_player
+							// a new remote player. 一个新的远端玩家。
+							// connect it! 连接他！
+							// local_address is a parameter initialized before.
+							// local_address是一个已经被初始化好的参数。
+							variable server_address = other_players_2_reply[idx1].remoteAddr	// server address
+							variable remote_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", server_address)
+							variable ret = ::mfp::paracomp::connect::connect(server_local_interface, remote_interface)
+							print("connect ret = " + ret + "\n")
+							variable conn = ::mfp::data_struct::array_based::get_value_from_abdict(ret, "CONNECT")
+							if other_players_2_reply[idx1].state != -1
+								// if the other player hasn't lost the game, I need to connect it
+								// 如果这个玩家还没有失败，我们需要连接它
+								other_players[player_id - 1] = OtherPlayer().__init__(null, 0, other_players_2_reply[idx1].remoteAddr, conn, 0, null, false)
+								// now lets send start message to server.
+								// 现在发送启动消息给服务端
+								::mfp::paracomp::connect::send_sandbox_message(conn, ["hs-start", local_address])
+							else
+								// if the other player hasn lost the game, I need not to connect it
+								// 如果这个玩家已经失败，我们不需要连接它
+								other_players[player_id - 1] = OtherPlayer().__init__(null, other_players_2_reply[idx1].state, other_players_2_reply[idx1].remoteAddr, conn, 0, null, false)
+							endif
+							player_id = player_id + 1
+						endif
+					next
+				endif
+			elseif size(msg_data)[0] == 6
+				//msg_data[0] is message type, msg_data[1] is remote's connectid, msg_data[2] is step, msg_data[3] is remote player's new position, msg_data[4] is food eaten by me, msg_data[5] is food position
+				//msg_data[0]是消息类型，msg_data[1]是远端玩家的connectId，msg_data[2]当前步数，msg_data[3]是远端玩家的新位置，msg_data[4]是食物是否被我吃掉，msg_data[5]是食物的位置。
+				if and(msg_data[0] == "hs-move", isAnExistingPlayer(other_players, connect_id, true), size(size(msg_data[3]))[0] == 2)
+					if size(msg_data[3])[1] == 2
+						stateText = ""
+						// do not set stateTextTS
+						// 不为状态文字设置时标
+						// this is an existing player_id
+						// 这是一个已有的玩家
+						variable this_player_id = getAnExistingPlayerId(other_players, connect_id)
+						if other_players[this_player_id - 1].currentStep < msg_data[2]
+							// this is a new step. 这是新的一步。
+							other_players[this_player_id - 1].currentStep = msg_data[2]
+							other_players[this_player_id - 1].state = 1
+							variable remote_player_new_pos = msg_data[3]
+							snakes_info.snakePositions[this_player_id] = remote_player_new_pos
+							other_players[this_player_id - 1].foodEatenByMe = msg_data[4]
+							other_players[this_player_id - 1].foodPosition = msg_data[5]
+							if other_players[this_player_id - 1].foodEatenByMe
+								// update food position
+								// 更新食物的位置。
+								snakes_info.foodPosition = other_players[this_player_id - 1].foodPosition
+							endif
+							if and(msg_data[2] > current_step, current_step > 0)
+								// local player is not at starting stage
+								// 本地玩家不是在开始阶段
+								current_step = msg_data[2]
+							endif
+						endif
+					endif
+				endif
+			endif
+		endif
+		// if all active remote players have updated their snakes' position and food state, we go to next step.
+		// Note that if I eat the food, before I go to next step, I need to update food position first, then send
+		// hs-food message to other players, then go to next step.
+		// 如果所有的活跃的远程玩家更新了他们的蛇的位置和食物的状态，我们就进入下一步。
+		// 注意，如果是本地玩家吃掉了食物，本地玩家需要首先更新食物的位置，然后发送hs-food消息给其他玩家，最后才进入下一步。
+		variable can_go_next_step = true
+		variable min_step = current_step
+		variable number_of_failed = 0, number_of_not_started = 0
+		variable gameMsg = "My address is\n" + local_address + "\n"
+		variable participantsMsg = "Other players:\n"
+		variable losersMsg = "Losers:\n"
+		for variable idx = 0 to MAX_NUM_PLAYERS() - 2 step 1
+			if other_players[idx].state != -1
+				if and(other_players[idx].currentStep < min_step, other_players[idx].currentStep > 0)
+					min_step = other_players[idx].currentStep
+				endif
+				if other_players[idx].state == 0
+					number_of_not_started = number_of_not_started + 1
+				else
+					participantsMsg = participantsMsg + other_players[idx].remoteAddr + "\n"
+				endif
+			else
+				number_of_failed = number_of_failed + 1
+				losersMsg = losersMsg + other_players[idx].remoteAddr + "\n"
+			endif
+		next
+		gameMsg = gameMsg + participantsMsg + losersMsg
+		if min_step < current_step
+			// make sure all step index is min_step or plus
+			// 确保所有的step index是min_step or plus
+			can_go_next_step = false
+		elseif number_of_failed == MAX_NUM_PLAYERS() - 1
+			// all remote players failed, I win.
+			// 所有的远程玩家都失败了，我赢了!
+			my_state = 2
+			stateText = "I win the game!"
+			stateTextTS = now()
+		elseif number_of_failed + number_of_not_started == MAX_NUM_PLAYERS() - 1
+			// some players have failed, others even haven't started, so only local player is active
+			// 有些玩家已经失败了，剩下的玩家还没有开始，所以只有本地玩家还在玩
+			min_step = current_step
+		endif
+
+		variable last_step = current_step	// save previous step. 保存上一步信息。
+		variable btnStates = [false, false, false, false]
+		if can_go_next_step
+			snakes_info.currentStep = current_step = min_step + 1
+			moveDirection = user_action(DISPLAYSURF, moveDirection, shouldDrawButtons, btnsLeft, btnsRight, btnsTop, btnsBottom, upBtnLT, downBtnLT, leftBtnLT, rightBtnLT, btnStates)
+			my_state = update_snakes_info(local_address, snakes_info, other_players, moveDirection, my_state)
+			updateGameInfo(DISPLAYSURF, gameMsg, gridPosition[0], gridPosition[1])
+			updateStatus(DISPLAYSURF, stateText, stateTextTS, gridPosition)
+			updateView(DISPLAYSURF, my_state, snakes_info, other_players, last_step, gridPosition, shouldDrawButtons, upBtnLT, downBtnLT, leftBtnLT, rightBtnLT, btnStates, foodImage)
+		endif
+	loop
+
+	input("Press enter to quit the program\n", "S")
+
+endf
+
+function user_action(DISPLAYSURF, moveDirection, shouldDrawButtons, btnsLeft, btnsRight, btnsTop, btnsBottom, upBtnLT, downBtnLT, leftBtnLT, rightBtnLT, btnStates)
+    variable btnW = BUTTONWIDTH(), btnH = BUTTONHEIGHT() // width and height of buttons // 按钮尺寸
+    // moving direction: 1 right, -1 left, i up, -i down 
+    // 移动方向，1表示向右，-1表示向左，i表示向上，-i表示向下
+    variable upBtnPushed = false, downBtnPushed = false, leftBtnPushed = false, rightBtnPushed = false // the buttons haven't been pushed down //四个按钮还没有按下
+	variable clickedSpace = null
+	variable oldMoveDirection = moveDirection
+	do  // looping to read player's input events // 循环读取玩家输入事件
+		variable giEvent = pull_event(DISPLAYSURF)  
+		if giEvent == Null  
+			// no event to handle // 没有输入事件
+			break  
+		elseif get_event_type_name(giEvent) == "GDI_CLOSE"  
+			// quit  // 游戏退出事件
+			return 0
+		elseif get_event_type(giEvent) == 106 // mouse or finger slided // 鼠标或手指滑动事件
+			// x1 and y1 are the coordinate when sliding starts, x2 and y2 are the coordinate when sliding finishes
+			// x1和y1是滑动开始时的坐标位置，x2和y2是滑动结束时的坐标位置
+			variable x1 = get_event_info(giEvent, "last_x")
+			variable y1 = get_event_info(giEvent, "last_y")
+			variable x2 = get_event_info(giEvent, "x")
+			variable y2 = get_event_info(giEvent, "y")
+			// ensure sliding event to control snake moving direction doesnt happen in button area.
+			// 确保用于控制蛇移动方向的滑动事件不是在按钮区域发生
+			if or(!shouldDrawButtons, x1 < btnsLeft, x1 > btnsRight, y1 < btnsTop, y1 > btnsBottom)
+				// calculate moving direction
+				// 计算蛇的移动方向
+				if abs(y2 - y1) > abs(x2 - x1) 
+					if y2 > y1    // move down //向下移动
+						moveDirection = -i 
+					else // move up  //向上移动
+						moveDirection = i 
+					endif 
+				elseif abs(y2 - y1) < abs(x2 - x1) 
+					if x2 > x1    // move right  //向右移动
+						moveDirection = 1 
+					else // move left  //向左移动
+						moveDirection = -1 
+					endif 
+				endif // if y2 - y1 == x2 - x1, do nothing // 如果移动方向正好是45°或者135°，就不改变当前的运动方向
+			endif
+		elseif get_event_type_name(giEvent) == "POINTER_DOWN" // mouse or finger tapped down // 鼠标或手指按下事件   
+			if (shouldDrawButtons)
+				// if game is not over at this level, identify if a button is hit
+				// 如果这一关游戏还未结束，判断是否有按钮被按下
+				variable xHit = get_event_info(giEvent, "x")
+				variable yHit = get_event_info(giEvent, "y")
+				if and(xHit >= leftBtnLT[0], yHit >= upBtnLT[1])
+					// this event happens in the button area. If any button is hit,
+					// set button pushed state to be true and change snake moving direction.
+					// 这个事件发生在按钮区域。如果有按钮被按下，更新按钮的状态并重置蛇的移动方向。
+					if isButtonHit([xHit, yHit], upBtnLT, btnW, btnH)
+						upBtnPushed = true
+						moveDirection = i
+					elseif isButtonHit([xHit, yHit], downBtnLT, btnW, btnH)
+						downBtnPushed = true
+						moveDirection = -i
+					elseif isButtonHit([xHit, yHit], leftBtnLT, btnW, btnH)
+						leftBtnPushed = true
+						moveDirection = -1
+					elseif isButtonHit([xHit, yHit], rightBtnLT, btnW, btnH)
+						rightBtnPushed = true
+						moveDirection = 1 
+					endif
+				endif
+			endif
+		endif  
+	until false
+	btnStates[0] = upBtnPushed
+	btnStates[1] = downBtnPushed
+	btnStates[2] = leftBtnPushed
+	btnStates[3] = rightBtnPushed
+	if oldMoveDirection == -moveDirection
+		// cannot turn to opposite way
+		// 无法调转蛇的运动方向
+		return oldMoveDirection
+	else
+		return moveDirection
+	endif
+endf
+
+function update_snakes_info(local_address, snakes_info, other_players, moveDirection, my_state)
+    variable gridWidthDim = GRIDWIDTHDIM(), gridHeightDim = GRIDHEIGHTDIM()  // dim of grid (i.e. snake's moving space) //蛇的运动空间的网格维度
+	variable deltaX = 0, deltaY = 0 
+	select (moveDirection) // determine snake head movement from move direction // 根据运动方向计算蛇头移动的量
+	case 1 
+		deltaX = 1 
+		deltaY = 0 
+		break 
+	case -1 
+		deltaX = -1 
+		deltaY = 0 
+		break 
+	case i 
+		deltaX = 0 
+		deltaY = -1 
+		break 
+	case -i 
+		deltaX = 0 
+		deltaY = 1 
+		break 
+	default 
+		// do nothing 
+	ends 
+	variable foodPlace = snakes_info.foodPosition
+	variable snakePlace = snakes_info.snakePositions[0]
+	// calculate the new snake head place (in grid coordinate)
+	// 计算蛇头基于网格坐标的新的位置
+	variable newX = mod(snakePlace[0][0] + deltaX, gridWidthDim) 
+	variable newY = mod(snakePlace[0][1] + deltaY, gridHeightDim) 
+	variable head2Add = null    // the things to draw. // 需要绘制的东西
+	head2Add = [newX, newY]
+	variable food_is_eaten = false
+	if foodPlace != null
+		if and(newX == foodPlace[0], newY == foodPlace[1])
+			food_is_eaten = true
+		endif
+	endif
+	if food_is_eaten
+		// eat the food. play the eat food sound.
+		// 吃到食物，演奏吃到食物的声音。
+		@build_asset copy_to_resource(get_upper_level_path(get_src_file_path()) + "eatfood.wav", "sounds/eatfood.wav")
+		if is_mfp_app()
+			play_sound_from_zip(get_asset_file_path("resource"), "sounds/eatfood.wav", 1, false)
+		else
+			play_sound(get_upper_level_path(get_src_file_path()) + "eatfood.wav", false)
+		endif
+		// snake head is at old food's place
+		// insert new head's position in the snake position list
+		// 蛇头现在在食物的旧的位置
+		// 将新的蛇头的位置插入蛇的身体空间位置数组
+		snakePlace = insert_elem_into_ablist(snakePlace, 0, head2Add)
+		// update my snake's place.
+		// 更新我的蛇的位子。
+		snakes_info.snakePositions[0] = snakePlace
+		// calculate new food place
+		// 计算食物的新的位置
+		snakes_info.foodPosition = foodPlace = getNextFoodPlace(snakes_info, other_players, gridWidthDim, gridHeightDim) 
+		// tell remote players this move.
+		// 告知远端玩家我的这次移动。
+		my_state = sendMoveMessage(local_address, snakes_info, other_players, true, my_state)
+	else
+		// normal move 
+		// 常规移动
+		// insert the new snake head place into snakePlace list
+		// 将新的蛇头的位置插入蛇的身体空间位置数组
+		snakePlace = insert_elem_into_ablist(snakePlace, 0, head2Add)
+		// remove tail of the snake
+		// 将蛇尾的最后一个单元格移去
+		variable tailIdx = size(snakePlace)[0] - 1
+		// remove the old snake tail place into snakePlace list
+		// 将旧的蛇尾的位置从蛇的身体空间位置数组中去掉
+		snakePlace = remove_elem_from_ablist(snakePlace, tailIdx) 
+		// update my snake's place.
+		// 更新我的蛇的位子。
+		snakes_info.snakePositions[0] = snakePlace
+		// tell remote players this move.
+		// 告知远端玩家我的这次移动。
+		my_state = sendMoveMessage(local_address, snakes_info, other_players, false, my_state)
+	endif
+	return my_state
+endf
+
+function updateView(DISPLAYSURF, my_state, snakes_info, other_players, last_step, gridPosition, shouldDrawButtons, upBtnLT, downBtnLT, leftBtnLT, rightBtnLT, btnStates, foodImage)
+    // Initial set up color values
+    // 设置颜色变量
+    variable snakeColor = SNAKECOLOR(0), scoreColor = SCORECOLOR(), borderColor = borderCOLOR()
+    variable btnFrontColor = BUTTONFRONTCOLOR(), btnBackColor = BUTTONBACKCOLOR()
+    
+    // first of all, we store window size, grid dim, x, y margins, button size and gap, and scaling ratio 1/scaling ratio
+    // in variables. This avoids calling functions repeatedly so that saves computing time.
+    // 首先，我们把窗体的大小，蛇运动空间的网格尺寸，窗体和运动空间的边缘大小，按钮尺寸和间隔，缩放比例保存在变量中，这样避免了重复调用
+    // 函数进行计算，节省了计算时间
+    variable windowWidth = get_display_size(DISPLAYSURF)[0], windowHeight = get_display_size(DISPLAYSURF)[1] // window size // 显示窗体的大小
+    variable gridWidthDim = GRIDWIDTHDIM(), gridHeightDim = GRIDHEIGHTDIM()  // dim of grid (i.e. snake's moving space) //蛇的运动空间的网格维度
+    variable cellSize = CELLSIZE(windowWidth, windowHeight, gridWidthDim, gridHeightDim)  
+    variable xMargin = gridPosition[0]  // left margin // 左边缘宽度
+    variable yMargin = gridPosition[1]  // top margin // 上边缘宽度
+    variable btnW = BUTTONWIDTH(), btnH = BUTTONHEIGHT() // width and height of buttons // 按钮尺寸
+	if my_state != -1 
+		// if game is not over, we need to repaint the dynamic object
+		// drop old button border painting requests and then send new button border painting requests
+		// 如果游戏还没有结束，我们需要重新绘制所有的非静止的物件
+		// 移除按钮边缘的旧的绘制请求事件，发送新的按钮边缘的绘制请求事件
+		drop_old_painting_requests("button border", DISPLAYSURF)
+		if(shouldDrawButtons)
+			// draw button border directly to the game screen display at original size
+			// 直接在屏幕上绘制按钮的边缘，保存按钮原始大小而不进行缩放
+			drawButtonBorderOnScreen("button border", DISPLAYSURF, upBtnLT, btnW, btnH, btnStates[0], btnFrontColor, btnBackColor)
+			drawButtonBorderOnScreen("button border", DISPLAYSURF, downBtnLT, btnW, btnH, btnStates[1], btnFrontColor, btnBackColor)
+			drawButtonBorderOnScreen("button border", DISPLAYSURF, leftBtnLT, btnW, btnH, btnStates[2], btnFrontColor, btnBackColor)
+			drawButtonBorderOnScreen("button border", DISPLAYSURF, rightBtnLT, btnW, btnH, btnStates[3], btnFrontColor, btnBackColor)
+		endif
+		//update_display(DISPLAYSURF)    // too frequent update display may cause blink //太频繁刷新屏幕会造成闪烁
+		 		 
+		// game hasn't been over so that redraw the snake, food and score
+		// 本游戏还未结束，所以重画蛇，食物和分数
+		// remove all the old painting event requests for snake from the painting request scheduler
+		// 将旧的蛇的绘图事件从绘图事件调度器中移除
+		for variable idx = 0 to MAX_NUM_PLAYERS() - 1 step 1
+			if idx == 0
+				// this is local player
+				// 这是本地玩家
+				// remove all the old painting event requests for snake from the painting request scheduler
+				// do not use drop_old_painting_requests(["snake0", last_step], DISPLAYSURF) because we may
+				// not able to remove all the previous drawing requests if just delete requests from
+				// last_step.
+				// 将旧的蛇的绘图事件从绘图事件调度器中移除。注意不调用
+				// drop_old_painting_requests(["snake0", last_step], DISPLAYSURF)
+				// 原因是我们如果只是清除上一步的绘图请求，无法保证把以前所有相关绘图请求清除。
+				drop_old_painting_requests("snake0", DISPLAYSURF)
+				// redraw snake body cell by cell
+				// 重新一个一个单元格地绘制蛇的身体
+				for variable idx1 = 0 to size(snakes_info.snakePositions[0])[0] - 1
+					draw_rect(["snake0", snakes_info.currentStep], DISPLAYSURF, calcTopLeft(snakes_info.snakePositions[0][idx1], cellSize, xMargin, yMargin), cellSize, cellSize, snakeColor, 0)
+				next
+			else
+				// this is remote player
+				// 这是远程玩家
+				// remove all the old painting event requests for snake from the painting request scheduler
+				// 将旧的蛇的绘图事件从绘图事件调度器中移除
+				drop_old_painting_requests("snake" + idx, DISPLAYSURF)
+				if and(snakes_info.snakePositions[idx] != NULL, other_players[idx - 1].state > 0)
+					// we have to check both other_players and snakes_info as snakes_info is updated later than other_players
+					// 我们必须检查other_players和snakes_info，这是因为snakes_info迟于other_players被更新。
+					// redraw snake body cell by cell
+					// 重新一个一个单元格地绘制蛇的身体
+					for variable idx1 = 0 to size(snakes_info.snakePositions[idx])[0] - 1
+						draw_rect(["snake" + idx, snakes_info.currentStep], DISPLAYSURF, calcTopLeft(snakes_info.snakePositions[idx][idx1], cellSize, xMargin, yMargin), cellSize, cellSize, SNAKECOLOR(idx), 0)
+					next
+				endif
+			endif
+		next
+		if and(my_state > 0, snakes_info.foodPosition != NULL)
+			// remove the old painting event request for food from the painting request scheduler
+			// 将旧的食物的绘图事件从绘图事件调度器中移除
+			drop_old_painting_requests("food", DISPLAYSURF)
+			// calculate food's position and redraw the food
+			// 计算食物的位置并且重绘食物
+			variable foodPlaceXY = calcTopLeft(snakes_info.foodPosition, cellSize, xMargin, yMargin)
+			variable foodImageSize = get_image_size(foodImage)
+			draw_image("food", DISPLAYSURF, foodImage, foodPlaceXY[0], foodPlaceXY[1], cellSize/foodImageSize[0], cellSize/foodImageSize[1])
+		endif
+		update_display(DISPLAYSURF) // update game display window // 更新游戏显示窗口
+	else
+		// game at this level has been over. Drop all the painting events.
+		// 本关游戏结束，移除所有的绘图事件。  
+		drop_old_painting_requests("Hungry snake", DISPLAYSURF)
+		for variable idx = 0 to MAX_NUM_PLAYERS() - 1 step 1
+			if idx == 0
+				// this is local player
+				// 这是本地玩家
+				// remove all the old painting event requests for snake from the painting request scheduler
+				// 将旧的蛇的绘图事件从绘图事件调度器中移除
+				drop_old_painting_requests("snake0", DISPLAYSURF)
+			elseif other_players[idx - 1].state != -1
+				// this is remote player
+				// 这是远程玩家
+				// remove all the old painting event requests for snake from the painting request scheduler
+				// 将旧的蛇的绘图事件从绘图事件调度器中移除
+				drop_old_painting_requests("snake" + idx, DISPLAYSURF)
+			endif
+		next
+		drop_old_painting_requests("food", DISPLAYSURF)
+		// set game screen display window's background to black
+		// 设置游戏显示窗口的背景为黑色
+		set_display_bgrnd_image(DISPLAYSURF, null, 1)
+		// construct text to tell player what happens.
+		// 创建文本告诉玩家发生了什么。
+		variable text = "You lose!"
+		text = text + "\nPlease close the game window."
+		clear_rect("Hungry snake", DISPLAYSURF, [0, 0], windowWidth, windowHeight) 
+		// ensure the text is in the middle of the game display window
+		// 确保文本位于游戏显示窗口的中央
+		variable textOrigin = calculate_text_origin(DISPLAYSURF, text, [0, 0], windowWidth, windowHeight, 0, 0, 30)  
+		// send draw text request
+		// 发出绘制文本的请求
+		draw_text("Hungry snake", DISPLAYSURF, text, textOrigin, GAMEOVERCOLOR(), 30)   
+		update_display(DISPLAYSURF)  // update game display window // 更新游戏显示窗口
+	endif 
+	// No need to sleep if we use blocking mode to pump out message
+	// 如果用阻塞模式，就無需休眠。
+	sleep(MOVEINTERVAL())  // sleep a while //休眠一会儿
+
+endf
+
+function updateStatus(DISPLAYSURF, text, textTS, gridPixelPosition)
+	if or(text != "", now() - textTS >= 5000)
+		// update status text only if new status coming or old status text has been shown for more than 3 seconds.
+		// 当且仅当新的状态到来或者旧的状态文字显示多于三秒我们更新状态文字。
+		drop_old_painting_requests("game status", DISPLAYSURF)
+		variable gridPixelLeft = gridPixelPosition[0]
+		variable gridPixelTop = gridPixelPosition[1]
+		variable gridPixelWidth = gridPixelPosition[2]
+		variable gridPixelHeight = gridPixelPosition[3]
+		// ensure the text is in the middle of the snake moving grid
+		// 确保文本位于游戏显示窗口的中央
+		variable textOrigin = calculate_text_origin(DISPLAYSURF, text, [gridPixelLeft, gridPixelTop], gridPixelWidth, gridPixelHeight, 0, 0, INFOFONTSIZE())  
+		// send draw text request
+		// 发出绘制文本的请求
+		draw_text("game status", DISPLAYSURF, text, textOrigin, GAMEOVERCOLOR(), INFOFONTSIZE())   
+	endif
+endf
+
+function sendMoveMessage(local_address, snakes_info, other_players, food_eaten_by_me, my_state)
+	variable local_player_head_pos = snakes_info.snakePositions[0][0]
+	for variable idx = 0 to MAX_NUM_PLAYERS() - 1 step 1
+		if idx == 0
+			if isHitSelf(snakes_info.snakePositions[0])
+				my_state = -1
+				break
+			endif
+		elseif snakes_info.snakePositions[idx] != NULL
+			if is2ndHit1st(snakes_info.snakePositions[idx], local_player_head_pos)
+				my_state = -1
+				break
+			endif
+		endif
+	next
+
+	for variable idx = 0 to size(other_players)[0] - 1 step 1
+		variable conn = other_players[idx].connectObj
+		if and(other_players[idx].state != -1, conn != null)
+			// now lets send moving or failure message to server.
+			// 现在发送移动或者失敗的消息给服务端
+			if my_state == -1
+				// after the local player lost the game, it sends 'ilose' to all remote players
+				// 当本地玩家失败之后，它发送'ilose'消息给其他远程玩家
+				send_sandbox_message(conn, ["hs-ilose", local_address])
+				// close_connection(conn)	// let remote active players close connection, this avoids message sending failure.	// 让远端还没有失败的玩家优雅地关闭连接，避免发送消息失败
+			else
+				::mfp::paracomp::connect::send_sandbox_message(conn, ["hs-move", local_address, snakes_info.currentStep, snakes_info.snakePositions[0], food_eaten_by_me, snakes_info.foodPosition])
+			endif
+		endif
+	next
+	
+	if my_state == -1
+		// hit myself or others. play the hitting sound.
+		// 撞到自己或者別的蛇，演奏撞擊的声音。
+		@build_asset copy_to_resource(get_upper_level_path(get_src_file_path()) + "hitothers.wav", "sounds/hitothers.wav")
+		if is_mfp_app()
+			play_sound_from_zip(get_asset_file_path("resource"), "sounds/hitothers.wav", 1, false)
+		else
+			play_sound(get_upper_level_path(get_src_file_path()) + "hitothers.wav", false)
+		endif
+		// do not close interface because other players may still send messages to me.
+		// 由于其他玩家仍然可能发送消息，所以不关闭界面对象
+		//close_local(server_local_interface)	// close client interface.关闭本地的界面对象
+	endif
+	return my_state
+endf
+
+function updateGameInfo(DISPLAYSURF, gameMsg, xMargin, yMargin)
+	// calculate text origin
+	// 计算信息文字的起始位置
+    variable textOrigin = [10, 10]
+    variable infoFontSize = INFOFONTSIZE()
+	variable windowWidth = get_display_size(DISPLAYSURF)[0], windowHeight = get_display_size(DISPLAYSURF)[1]
+    if xMargin > yMargin
+		// text is in the center of left edge rectangle
+		// 文字位于左边缘长方形的正中
+        textOrigin = calculate_text_origin(DISPLAYSURF, gameMsg, [0, 0], xMargin, windowHeight, 0, 0, infoFontSize)
+    else
+		// text is in the center of top edge rectangle
+		// 文字位于上边缘长方形的正中
+        textOrigin = calculate_text_origin(DISPLAYSURF, gameMsg, [0, 0], windowWidth, yMargin, 0, 0, infoFontSize)
+    endif
+	drop_old_painting_requests("game info", DISPLAYSURF)
+	// draw static information text. Note that the text is scaled down to fit the image.
+	// 绘制静态信息文字。注意由于图像显示窗口的真实尺寸比游戏真实显示窗口的尺寸要小，文字被相应缩小了。
+    draw_text("game info", DISPLAYSURF, gameMsg, textOrigin, ScoreColor(), infoFontSize) 
+endf
+
+// entry function. It actually needs 0 parameter. But to show info in the initial screen, player is allowed to input any parameters.
+// 入口函数。它沒有參數，但是爲了方便在起始屏幕上顯示游戲信息，玩家允許輸入任何參數。
+function run(...)
+	variable protocol = "TCPIP", local_address, server_address, local_interface, remote_interface, ret
+	variable gameMsg = "My address:\n"	
+	print("Please select a valid TCPIP address from your local addresses:\n")
+	print_all_host_tcp_addresses()
+	print("\n")
+	variable my_address = input("My TCPIP address is:\n", "S")
+	variable another_player_address = input("TCPIP address of another player who has joined the game, or simply press ENTER if you are the first player:\n", "S")
+	my_address = trim(my_address)
+	another_player_address = trim(another_player_address)
+	local_address = my_address
+	local_interface = ::mfp::paracomp::connect::generate_interface(protocol, local_address)
+	if strlen(another_player_address) == 0
+		// the player is server. 玩家是服务端。
+		ret = ::mfp::paracomp::connect::initialize_local(local_interface)	// make local_interface a server. 讓local_interface做服務器
+		print("initialize_local server ret = " + ret + "\n")
+		ret = ::mfp::paracomp::connect::listen(local_interface)
+		print("listen ret = " + ret + "\n")
+		if !ret
+			throw "Cannot listen to " + local_interface
+		endif
+	else
+		// the player is client. 玩家是客户端。
+		server_address = another_player_address
+		ret = ::mfp::paracomp::connect::initialize_local(local_interface) // make local_interface a client. 讓local_interface做客戶端。
+		print("initialize_local client ret = " + ret + "\n")
+	endif
+	gameMsg = gameMsg + local_address
+
+	// open a screen display window for game.
+	// 为游戏打开一个显示窗口。
+    variable DISPLAYSURF = open_screen_display("Hungry snake", BGCOLOR(), true, [WINDOWDEFAULTWIDTH(), WINDOWDEFAULTHEIGHT()], false)
+    // Initial set up color values
+    // 设置颜色变量
+    variable scoreColor = SCORECOLOR(), borderColor = borderCOLOR()
+    variable btnFrontColor = BUTTONFRONTCOLOR(), btnBackColor = BUTTONBACKCOLOR()
+    
+    // first of all, we store window size, grid dim, x, y margins, button size and gap, and scaling ratio 1/scaling ratio
+    // in variables. This avoids calling functions repeatedly so that saves computing time.
+    // 首先，我们把窗体的大小，蛇运动空间的网格尺寸，窗体和运动空间的边缘大小，按钮尺寸和间隔，缩放比例保存在变量中，这样避免了重复调用
+    // 函数进行计算，节省了计算时间
+    variable windowWidth = get_display_size(DISPLAYSURF)[0], windowHeight = get_display_size(DISPLAYSURF)[1] // window size // 显示窗体的大小
+    variable gridWidthDim = GRIDWIDTHDIM(), gridHeightDim = GRIDHEIGHTDIM()  // dim of grid (i.e. snake's moving space) //蛇的运动空间的网格维度
+    variable cellSize = CELLSIZE(windowWidth, windowHeight, gridWidthDim, gridHeightDim)  
+    variable xMargin = XMARGIN(windowWidth, windowHeight, gridWidthDim, gridHeightDim)  // left margin // 左边缘宽度
+    variable yMargin = YMARGIN(windowWidth, windowHeight, gridWidthDim, gridHeightDim)  // top margin // 上边缘宽度
+    variable btnW = BUTTONWIDTH(), btnH = BUTTONHEIGHT() // width and height of buttons // 按钮尺寸
+    variable btnGap = BUTTONGAP() // gap of button // 按钮间隔
+    variable scalingRatio = SCALINGRATIO() // scaling ratio // 缩放比例
+    variable oneOverScalingRatio = 1/scalingRatio // 1/scaling ratio // 缩放比例的倒数
+    variable scaledCellSize = cellSize * scalingRatio // scaled cell size // 缩放后的网格单元的大小
+    
+    // right and bottom of snake's moving space(in pixels)
+    // 蛇的运动空间的右侧和下侧（基于像素）
+    variable gridRight = xMargin + gridWidthDim * cellSize, gridBottom = yMargin + gridHeightDim * cellSize
+    // up, down, left, right buttons' left top positions
+    // 上下左右按钮的左上角的位置
+    variable upBtnLT = [-1, -1], downBtnLT = [-1, -1], leftBtnLT = [-1, -1], rightBtnLT = [-1, -1]
+    variable shouldDrawButtons = true // should we draw the button? // 需要绘制按钮吗？
+    // are the up, down, left, right buttons pushed?
+    // 上下左右按钮是否被按下？
+    variable upBtnPushed = false, downBtnPushed = false, leftBtnPushed = false, rightBtnPushed = false
+    if (windowWidth - gridRight > btnW * 3)    // buttons are on right hand side // 按钮放在右边
+        upBtnLT = [(windowWidth + gridRight)/2 - 0.5 * (btnW + btnGap), windowHeight / 2 - 1.5 * btnH - btnGap]
+        downBtnLT = [(windowWidth + gridRight)/2 - 0.5 * (btnW + btnGap), windowHeight / 2 + 0.5 * btnH + btnGap]
+        leftBtnLT = [(windowWidth*0.25+ gridRight*0.75) - 0.5 * (btnW + btnGap), windowHeight / 2 - 0.5 * btnH]
+        rightBtnLT = [(windowWidth*0.75+ gridRight*0.25) - 0.5 * (btnW + btnGap), windowHeight / 2 - 0.5 * btnH]
+    elseif (windowHeight - gridBottom > btnH * 3)    // bottons are in bottom // 按钮放在屏幕下部
+        upBtnLT = [windowWidth /2 - 0.5 * (btnW + btnGap), (windowHeight + gridBottom)/2 - 1.5 * btnH - btnGap]
+        downBtnLT = [windowWidth /2 - 0.5 * (btnW + btnGap), (windowHeight + gridBottom)/2 + 0.5 * btnH + btnGap]
+        leftBtnLT = [windowWidth /4 - 0.5 * (btnW + btnGap), (windowHeight + gridBottom)/2 - 0.5 * btnH]
+        rightBtnLT = [windowWidth * 0.75 - 0.5 * (btnW + btnGap), (windowHeight + gridBottom)/2 - 0.5 * btnH]
+    else
+        shouldDrawButtons = false // buttons are not needed // 不需要按钮
+    endif
+    
+	// open an empty image display
+	// 打开一个空的图像显示窗口（image display）
+    variable boardImageDisplay = open_image_display(null) 
+	// adjust it's size to game display window's size times scaling ratio
+	// 将图像显示窗口的大小调整为游戏真实显示窗口的大小乘以缩放系数
+    set_display_size(boardImageDisplay, windowWidth * scalingRatio, windowHeight * scalingRatio) 
+
+	// draw the border of snake's moving space. Note that the rectangle is scaled down to fit the image.
+	// 绘制蛇的移动空间的边界。注意由于图像显示窗口的真实尺寸比游戏真实显示窗口的尺寸要小，边界矩形被相应缩小了。
+	variable gridPixelWidth = gridWidthDim * cellSize, gridPixelHeight = gridHeightDim * cellSize
+    draw_rect("static element", boardImageDisplay, [xMargin * scalingRatio, yMargin * scalingRatio], gridPixelWidth * scalingRatio, gridPixelHeight * scalingRatio, borderColor, 1)  
+    if(shouldDrawButtons)
+        // we draw text only for each button because button text is static while button border is not.
+		// 在这里仅仅绘制按钮上的文字而不绘制按钮的边框因为文字不会变化，而边框会随着按下弹起发生变化。
+        drawButtonText(boardImageDisplay, upBtnLT, btnW, btnH, "Up", false, scalingRatio)
+        drawButtonText(boardImageDisplay, downBtnLT, btnW, btnH, "Down", false, scalingRatio)
+        drawButtonText(boardImageDisplay, leftBtnLT, btnW, btnH, "Left", false, scalingRatio)
+        drawButtonText(boardImageDisplay, rightBtnLT, btnW, btnH, "Right", false, scalingRatio)
+    endif
+	// get snapshot of the image display, note that we update the image display before taking snapshot
+	// 取回图像显示窗口的截图。注意在获取截图前，先将图像显示窗口更新。
+    variable boardImage = get_display_snapshot(boardImageDisplay, true)
+	// shutdown image display
+	// 关闭图像显示窗口
+    shutdown_display(boardImageDisplay)
+	// set the snapshot of the image display to be game's display window's background image.
+	// note that the mode is stretching the background image to fit the whole game's display window
+	// as the snapshot image is smaller than the game's display window.
+	// 将上述图像显示窗口的截屏设置为游戏真实显示窗口的背景图案。注意背景图案的设置模式是1，也就是缩放背景图案让它和
+	// 游戏真实显示窗口大小一致。
+    set_display_bgrnd_image(DISPLAYSURF, boardImage, 1)
+	
+	// calculate text origin and display game info
+	// 计算信息文字的起始位置并且顯示
+	updateGameInfo(DISPLAYSURF, gameMsg, xMargin, yMargin)
+	
+	updateStatus(DISPLAYSURF, "Waiting for other players to connect...", now(), [xMargin, yMargin, gridPixelWidth, gridPixelHeight])
+	// show message before game start
+	// 在游戏开始前显示信息。
+	update_display(DISPLAYSURF)
+
+	// button area (i.e. the minimum rectangle which includes left, right, top and bottom buttons)
+	// 游戏显示窗口的按钮区域位置，也就是包括上下左右四个按钮的最小长方形。
+    variable btnsLeft = leftBtnLT[0], btnsRight = rightBtnLT[0] + btnW, btnsTop = upBtnLT[1], btnsBottom = downBtnLT[1] + btnH
+	
+	variable snakes_info = SnakeInfo().__init__(MAX_NUM_PLAYERS())
+
+	// null is connect_id, 0 is remote player status, "" is remote address, null is the connect from local player to remote player, -1 is current step
+	// note that if current step is -1, it is invalid, if current step is 0, it means start, if current step > 0, it is a valid current step. null is
+	// food position, false is food just eaten by me or not.
+	// null是connect_id，0是远程玩家的状态，""是远程玩家的地址，null是从本地玩家到远程玩家的连接对象，-1是当前步数。注意如果当前步数是-1，意味着当前步数是非法的。0意味着玩
+	// 家开始，大于0是合法步数。null是食物的位置，false是食物是否被我吃掉。
+	// connect_id is incoming connect's id, conn object is outgoing connect object.
+	// connect_id是连入的连结的id，conn对象是连出的连接的对象。
+	variable other_players = alloc_array([MAX_NUM_PLAYERS() - 1], OtherPlayer())	
+	// player_id starts from 0. However, player_id == 0 means local player. Remote player's id starts from 1.
+	// player_id works as an index telling code what's the next remote player's id.
+	// player_id也就是玩家的id从0开始。但是0号玩家是本地玩家，远程玩家从1号开始。该变量在消息处理循环中代码下一个遠程玩家的id是什么。
+	variable player_id = 1
+	if strlen(another_player_address) == 0
+		// the player is server. 玩家是服务端。
+		// initial place of food
+		// 食物起始位置
+		variable foodPlace = calcFoodInitPlace(GRIDWIDTHDIM(), GRIDHEIGHTDIM())
+		// initial place of snake
+		// 蛇起始位置
+		variable snakePlace = [[3, 3], [3, 4], [3, 5]]
+		snakes_info.snakePositions[0] = snakePlace
+		snakes_info.foodPosition = foodPlace
+		startGame(DISPLAYSURF, local_interface, local_address, snakes_info, other_players, player_id, [xMargin, yMargin, gridPixelWidth, gridPixelHeight], shouldDrawButtons, btnsLeft, btnsRight, btnsTop, btnsBottom, upBtnLT, downBtnLT, leftBtnLT, rightBtnLT)
+	else
+		// the player is client. 玩家是客户端。
+		remote_interface = ::mfp::paracomp::connect::generate_interface(protocol, server_address)	// server address
+		ret = ::mfp::paracomp::connect::connect(local_interface, remote_interface)
+		print("connect ret = " + ret + "\n")
+
+		variable conn = ::mfp::data_struct::array_based::get_value_from_abdict(ret, "CONNECT")
+		ret = ::mfp::paracomp::connect::initialize_local(local_interface)
+		print("initialize_local server ret = " + ret + "\n")
+		ret = ::mfp::paracomp::connect::listen(local_interface)
+		print("listen ret = " + ret + "\n")
+		if !ret
+			throw "Cannot listen to " + local_interface
+		endif
+			
+		other_players[player_id - 1] = OtherPlayer().__init__(null, 0, server_address, conn, 0, null, false)
+		player_id = 2
+		// now lets send start message to server.
+		// 现在发送启动消息给服务端
+		::mfp::paracomp::connect::send_sandbox_message(conn, ["hs-start", local_address])
+		// initial place of snake. initial place of a client snake may overlap other snakes. But this will not always happen.
+		// 蛇起始位置。客户端的蛇的起始位置可能与其他的蛇的位置有重叠，但这不会总是发送。
+		variable snakePlace = [[floor(GRIDWIDTHDIM() * rand()), floor(GRIDHEIGHTDIM() * rand())]]
+		snakes_info.snakePositions[0] = snakePlace
+		startGame(DISPLAYSURF, local_interface, local_address, snakes_info, other_players, player_id, [xMargin, yMargin, gridPixelWidth, gridPixelHeight], shouldDrawButtons, btnsLeft, btnsRight, btnsTop, btnsBottom, upBtnLT, downBtnLT, leftBtnLT, rightBtnLT)
+	endif
+	
+	// do not close local as other players may send messages to me.
+	// 不要关闭local，否则别的玩家可能会发送消息失败。
+	//close_local(local_interface)
+	if get_country_language()[1] == "zh"
+		print("本游戏是由MFP语言开发。MFP语言是一种非常容易上手的跨平台脚本编程语言。它的代码无需修改和编译，就可以在安卓和其他任意支持JAVA的个人电脑上运行。如果您对MFP编程语言感兴趣，请到百度手机或者酷安网下载MFP语言的IDE，可编程科学计算器，进行游戏开发。可编程科学计算器的安卓版自带运行于电脑上的MFP解释器，还可以创建APK安装包，真正实现电脑上编程调试，安卓上运行。还等什么，赶快试一下吧！\n")
+	elseif get_country_language()[1] == "es"
+		print("Este juego fue desarrollado por el lenguaje de programación MFP. MFP es un lenguaje de scripts multiplataforma para Android y cualquier PC con soporte para JAVA. Es fácil de aprender y fácil de programar. Usted puede desarrollar su script en PC y ejecutarlo sin ninguna modificación en Android. El IDE de MFP es Scientific Calculator Plus, que se puede descargar en Google Play https://play.google.com/store/apps/details?id=com.cyzapps.AnMath. Scientific Calculator Plus puede ejecutarse en Android y PC y puede crear el paquete de instalación de Android (APK) de los scripts MFP. Pruébalo y nunca te decepcionará.\n")
+	else
+		print("This game was developed by MFP programming language. MFP is a very easy-to-learn and cross-platform scripting language for Android and any PC with JAVA support. You develop an MFP script on PC once and run it everywhere (including Android and PC with a different OS). If you are interested in it, please download MFP's ide, i.e. Scientific Calculator Plus, from Google Play at https://play.google.com/store/apps/details?id=com.cyzapps.AnMath . Scientific Calculator Plus can run on Android and PC and can build Android installation package (APK) from MFP scripts. You will enjoy the easy and quick game programming.\n")
+	endif
+endf
+endcs 
+

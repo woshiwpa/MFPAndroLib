@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>程式開發科學計算器幫助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">程式開發科學計算器幫助：系統平臺和硬體函數</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函數名</th>
+<th>函數幫助資訊</th>
+</tr>
+<tr>
+<td><center>get_asset_file_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_asset_file_path(1) :</p>
+<p>get_asset_file_path(asset_file_entry)告訴開發人員一個asset檔（檔案名由字串參數asset_file_entry給出）的路徑。注意，如果正在運行的腳本不是一個MFP應用，本函數返回null。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_country_language</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_country_language(0) :</p>
+<p>本函數程式返回一個包含兩個元素的矩陣。第一個元素是一個基於字串的國家代碼。國家代碼要麼是一個空字元串，要麼是一個大寫的，符合ISO 3166國際標準的兩字母的代碼，要麼是一個符合UN M.49的3個數字的代碼。用戶可以查詢https://en.wikipedia.org/wiki/ISO_3166獲取ISO 3166國家代碼的列表。第二個元素是基於字串的語言代碼。它基本上符合ISO 639國際標準，除了極少數例外。出現例外的原因是ISO 639標準在變化，一些語言的代碼已經發生了改變，而這個函數總是返回舊的代碼。用戶可以查詢https://en.wikipedia.org/wiki/ISO_639獲取ISO 639所有的語言代碼列表。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sandbox_session_lib_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_sandbox_session_lib_path(0) :</p>
+<p>函數get_sandbox_session_lib_path返回一個基於字符串的路徑，該路徑是當前沙盒的用戶代碼庫的所在目錄。沙盒是在服務端運行的一個線程。這個線程在服務端收到一個客戶端的call指令後啟動。這個客戶端是一個獨立於服務端的進程，它可能位於本機，也可能位於另外一臺電腦。該線程擁有獨立於服務端其它線程的MFP用戶代碼庫，資源和棧。它的用戶代碼庫,資源和棧是拷貝自發送call指令的客戶端。這個函數沒有參數。如果當前運行的代碼不是位於沙盒中（比如，當前代碼是在常規的命令提示符下運行），這個函數返回NULL 。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sandbox_session_resource_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_sandbox_session_resource_path(0) :</p>
+<p>函數get_sandbox_session_resource_path返回一個基於字符串的路徑，該路徑是當前沙盒的資源文件（比如圖像文件，聲音文件和數據庫文件）的所在目錄。沙盒是在服務端運行的一個線程。這個線程在服務端收到一個客戶端的call指令後啟動。這個客戶端是一個獨立於服務端的進程，它可能位於本機，也可能位於另外一臺電腦。該線程擁有獨立於服務端其它線程的MFP用戶代碼庫，資源和棧。它的用戶代碼庫,資源和棧是拷貝自發送call指令的客戶端。這個函數沒有參數。如果當前運行的代碼不是位於沙盒中（比如，當前代碼是在常規的命令提示符下運行），這個函數返回NULL 。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_mfp_app</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_mfp_app(0) :</p>
+<p>is_running_on_android()告訴開發人員腳本是否在MFP應用中運行，如果是，返回true，如果不是，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_running_on_android</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_running_on_android(0) :</p>
+<p>is_running_on_android()告訴開發人員腳本是否在安卓平臺上運行，如果是，返回true，如果不是，而是在普通的JAVA平臺上運行，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_sandbox_session</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_sandbox_session(0) :</p>
+<p>函數is_sandbox_session告訴開發者當前的MFP代碼是否運行在一個沙盒中。沙盒是在服務端運行的一個線程。這個線程在服務端收到一個客戶端的call指令後啟動。這個客戶端是一個獨立於服務端的進程，它可能位於本機，也可能位於另外一臺電腦。該線程擁有獨立於服務端其它線程的MFP用戶代碼庫，資源和棧。它的用戶代碼庫，資源和棧是拷貝自發送call指令的客戶端。這個函數沒有參數，如果當前代碼位於一個沙盒中它返回True，否則返回False 。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

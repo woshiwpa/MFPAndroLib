@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>可编程科学计算器帮助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">可编程科学计算器帮助：MFP编译函数</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函数名</th>
+<th>函数帮助信息</th>
+</tr>
+<tr>
+<td><center>copy_to_resource</center></td>
+<td><p>::mfp_compiler::annotation::build_asset::copy_to_resource(2) :</p>
+<p>copy_to_resource(source_path, destination_path)是一个用于编译的函数，也就是说它在打包脚本生成MFP应用时发挥作用。本函数source_path所指向的目标文件会被函数拷贝到assets目录下的destination_path所指向的文件。这样一来，一个从本脚本生成的MFP应用仍然能够在该应用的assets中找到程序中引用的图像或者声音文件。本函数返回一个包含三个元素的数组，第一个元素是一个字符串包含源文件路径，第二个是基于字符串的资源文件名，第三个是目标路径。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_referred_units</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_all_referred_units(0) :</p>
+<p>get_all_referred_units()是一个用于编译的函数，也就是说它在打包脚本生成MFP应用时发挥作用。本函数返回一个数组，其中包括所有的用户定义的MFP函数和类的引用信息。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_classes</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_classes(0...) :</p>
+<p>get_classes(...) 是一个用于编译的函数，也就是说它在打包脚本生成MFP应用时发挥作用。本函数返回一个数组，其中包括所有的出现在参数中的MFP类的引用信息。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_functions</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_functions(0...) :</p>
+<p>get_functions(...) 是一个用于编译的函数，也就是说它在打包脚本生成MFP应用时发挥作用。本函数返回一个数组，其中包括所有的出现在参数中的MFP函数的引用信息。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

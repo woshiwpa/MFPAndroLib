@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cyzapps.MFPLibTester"
+    android:versionCode="1936"
+    android:versionName="1.1.1.1936" >
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <!--uses-permission android:name="android.permission.READ_PHONE_STATE" /--><!-- for adwo and baidu ads -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /--><!-- for baidu ads -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /><!-- for baidu ads -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+    <uses-feature android:name="android.hardware.faketouch" android:required="false" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:resizeable="true" />
+
+    <application
+        android:name="com.cyzapps.AnMFPApp.AppAnMFP"
+        android:icon="@drawable/icon_app"
+        android:label="@string/app_name" >
+        <service
+            android:name="com.cyzapps.EmailService.EmailSignalService"
+            android:exported="false"
+            android:process=":EmailSignalService"
+            android:stopWithTask="true" />
+
+        <activity
+            android:name="com.cyzapps.AnMFPApp.ActivityAnMFPMain"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustPan|stateUnchanged">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.cyzapps.AnMFPApp.ActivityShowHelp"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+        <activity android:name="com.cyzapps.GraphDaemon.ActivityChartDaemon"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+        <activity android:name="com.cyzapps.GI2DAdapter.ActivityGDIDaemon"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+        <activity android:name="com.cyzapps.GraphDaemon.ActivityConfig2DExprGraph"
+            android:theme="@android:style/Theme.Dialog"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+        <activity android:name="com.cyzapps.GraphDaemon.ActivityConfigPolarExprGraph"
+            android:theme="@android:style/Theme.Dialog"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+        <activity android:name="com.cyzapps.GraphDaemon.ActivityConfigXYZGraph"
+            android:theme="@android:style/Theme.Dialog"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+        <activity android:name="com.cyzapps.GraphDaemon.ActivityConfig3DExprGraph"
+            android:theme="@android:style/Theme.Dialog"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+
+        <receiver
+            android:name="com.cyzapps.adapter.StorageActionReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.MEDIA_UNMOUNTED" />
+                <action android:name="android.intent.action.MEDIA_EJECT" />
+                <action android:name="android.intent.action.MEDIA_BAD_REMOVAL" />
+                <action android:name="android.intent.action.MEDIA_CHECKING" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

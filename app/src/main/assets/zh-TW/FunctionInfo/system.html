@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>程式開發科學計算器幫助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">程式開發科學計算器幫助：系統函數</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函數名</th>
+<th>函數幫助資訊</th>
+</tr>
+<tr>
+<td><center>input</center></td>
+<td><p>::mfp::io::console::input(3) :</p>
+<p>input(prompt,input_type,default_value)在命令主控台上列印出基於字串的提示符prompt並等待用戶輸入。第二個參數input_type，以及第三個參數default_value，都是可選參數。在現階段，如果第二個參數存在，並且它值是字串"s"或者"S"，用戶的輸入將會被當作一個字串並且函數將會返回這個字串。如果第二個和第三個參數均存在，並且第二個參數是"default"或者"DEFAULT"，第三個參數將會作為缺省值。這個缺省值將在用戶直接輸入回車或者空格再回車的時候被函數作為返回值。除了前述這兩種情況，本函數將把用戶的輸入看作是一個運算式，運算式的值作為返回值返回。如果用戶輸入不是一個合法的運算式，本函數會重新列印提示符要求用戶再次輸入。用戶的一次輸入由ENTER鍵結束。如果用戶輸入了多行，僅僅第一行會被讀取。比如，用戶運行input("$", "S")，然後在提示符後輸入4 + 3，再按回車，這個函數返回一個字串"4 + 3"，如果用戶運行input("%")，然後再提示符後輸入4 + 3，再按回車，這個函數返回7。 如果用戶運行input("#", "default", "e")，然後再提示符後輸入空格並回車，本函數返回字串"e"。</p>
+</td>
+</tr>
+<tr>
+<td><center>pause</center></td>
+<td><p>::mfp::system::pause(1) :</p>
+<p>pause(message)將暫停當前運行的程式，等待用戶輸入一個回車，然後繼續。字串參數message可以省略。如果不省略，message將作為提示被打印在熒幕上。</p>
+</td>
+</tr>
+<tr>
+<td><center>print</center></td>
+<td><p>::mfp::io::console::print(1) :</p>
+<p>print(x)向輸出端列印任意資料類型x的值。</p>
+</td>
+</tr>
+<tr>
+<td><center>print_line</center></td>
+<td><p>::mfp::io::console::print_line(1) :</p>
+<p>print_line(x)向輸出端打印任意數據類型x的值然後再起一行。注意x是一個可選參數，它的缺省值是空字元串""。</p>
+</td>
+</tr>
+<tr>
+<td><center>printf</center></td>
+<td><p>::mfp::io::console::printf(1...) :</p>
+<p>printf(format_string, ...)，sprintf(format_string, ...)和fprintf(fd, format_string, ...)和C/C++中的对应函数程式工作方式相似。这些函数程式通过format_string和其后的数值参数构造出一个新的字串，printf将字串打印到标准输出，sprintf将字串作为返回值返回，fprintf则将字串输出到档案号为fd的文本档案。字串format_string支持输入整数（%d、%i、%x等），浮点数（%e、%f等），字符和字串（%c和%s）等等。用户可以在C语言的帮助手册中找到format_string的构造方法。例如，printf("Hello world!%f", 3.14)将会打印输出"Hello world!3.140000"，而sprintf("%c%d", "A", 9)则返回"A9"（注意MFP不支持单一字符数据类型，所以单一的字符将会存储为一个只包括一个字符的字串）。</p>
+</td>
+</tr>
+<tr>
+<td><center>scanf</center></td>
+<td><p>::mfp::io::console::scanf(1) :</p>
+<p>scanf(format_string)，sscanf(input_from, format_string)和fscanf(fd, format_string)和C/C++中的對應函數程式工作方式相似。scanf讀取用戶的一行輸入，sscanf讀取字串input_from，fscanf從檔案（檔案號fd）中讀取檔案內容。字串format_string支持輸入整數（%d、%i、%x等），浮點數（%e、%f等），字符和字串（%c和%s）等等。用戶可以在C語言的幫助文檔中找到format_string的構造方法。但是，和C語言有所不同，MFP中的這些函數程式不需要輸入用於存儲讀取數值的參數。所有的讀取的數值將會保存在一個數組中作為返回值返回。比如，sscanf("3Hello world!", "%d%c%c%s")將會返回[3, "H", "e", "llo"]（註意MFP不支持單一字符數據類型，所以單一的字符將會存儲為一個只包括一個字符的字串）。</p>
+</td>
+</tr>
+<tr>
+<td><center>sleep</center></td>
+<td><p>::mfp::system::sleep(1) :</p>
+<p>sleep(x)休眠x毫秒（x必須為正實數），此函數不返回任何值。</p>
+</td>
+</tr>
+<tr>
+<td><center>system</center></td>
+<td><p>::mfp::system::system(1) :</p>
+<p>system(str_array)有一個參數。該參數必須是一個字串或者是一個字串數組。如果該參數是一個字串，system運行該字串所代表的系統指令並且返回該系統指令的返回值。註意系統指令必須是一個可執行的檔案以及它的命令參數。由於這個原因，在Windows操作系統上，諸如system("dir")無法正確執行是因為dir並非是一個單獨的可執行檔案，而是cmd.exe的一個內部功能。要執行dir指令，用戶需要運行system("cmd /c dir")。如果該參數是一個字串數組，那麽該數組的每一個元素是一個將為system函數運行的系統指令的一部分。比如，在Linux操作系統上，用戶想要把檔案file1重命名為file2需要運行系統指令"sh -c mv file1 file2"，註意由於我們不是在shell中，這裏的"sh -c"是不可以省略的。這時，如果要調用system函數程式執行上述命令，正確的寫法是system(["sh", "-c", "mv file1 file2"])，原因是"mv file1 file2"是sh的一個內部指令，它不能夠被分割為幾個部分。還要註意，在現階段，這個函數程式只能將系統指令的輸出打印出來，還無法接受在運行中用戶對於該系統指令的輸入。此外，如果該系統指令不存在，則會拋出異常。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

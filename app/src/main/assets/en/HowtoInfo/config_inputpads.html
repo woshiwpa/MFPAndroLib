@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Scientific Calculator Plus Help</title>
+	</head>
+	<body style="background-color:white;">
+		<h2 style="color:blue">Scientific Calculator Plus Help : Config InputPads</h2>
+		
+		<p style="font-family:verdana;color:black;">
+			User is able to define a number of their own inputpads and use the inputpads to quickly input user developed functions in calculator. Based on the orientation, each inputpad has portrait mode and landscape mode which correspond to a portrait and a landscape inputpad of calculator. By using the menu, user is able to add or delete an inputpad.
+		</p>
+		<p style="font-family:verdana;color:black;">
+			Each inputpad has a name which is used internally by system and must be unique. There are also long name, wrapped name (lines 1 and 2) and short name. <!--Long name is reserved for future use. Wrapped name (lines 1 and 2) is shown in the go to left/right button when calculator is in portrait mode and short name is shown in the go to left/right button when calculator is in landscape mode. As such user will be able to know which inputpad will be switched to. -->If user unticks "Visible" check box, the inputpad will be hidden when user uses the calculator.
+		</p>
+		<p style="font-family:verdana;color:black;">
+			Each inputpad is a table includes a number of columns (the number of columns may be different in portrait mode and in landscape mode). Each input key is a cell in the inputpad table. Each key has a shown name (which will be shown in the button in the GUI) and an input name (which will be input to calculator). User can edit an input key by clicking it or cut/copy/paste/delete an input key by long-clicking it and select a context menu. The last button in each table is not an input key. It is used to add a number of buttons in the tail of the input key list.
+		</p>
+		<p style="font-family:verdana;color:black;">
+			The inputpad config file is stored in mobile device's SD card/AnMath/config folder with name inputpad.cfg (for Smart Calculator) or inputpad_cl.cfg (for Command Line). If this file does not exist, Scientific Calculator Plus will load default inputpads. In this way, user can mannually delete this file to force Scientific Calculator Plus to reload default inputpads.
+		</p>
+	</body>
+</html>

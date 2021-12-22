@@ -1,0 +1,894 @@
+#This is a super bunny game. Rabbit bunny jumps from one side of the
+#cliff to another side through several moving lifts. If it hits a lift
+#or any carnivore moving with lift, then it dies. If it can pass all
+#the lifts and arrive at the other side of the cliff, it will eat
+#carrot and become a super bunny. It will jump back to where it is
+#from, through the moving lifts. This time it tries to eat all the
+#moving carnivores. Clearly, it will die if it hit a lift. After it
+#jumps back, it gets a score depends on the carnivores it has eaten.
+
+@execution_entry gdi_test::game_test::super_bunny::run
+
+citingspace gdi_test::game_test::super_bunny 
+
+function print_line_(s)
+    // for debugging purpose, ignore this function
+	//用于调试，请忽略本函数
+endf 
+
+// Sleep interval between two updates of screen (ms)
+// 两次屏幕刷新之间的睡眠时间（毫秒）
+function MOVEINTERVAL()
+    if is_running_on_android()
+        // if running on android, sleep interval is shorter because
+        // MFP takes longer time in calculation than in a PC.
+        // 在安卓系统上，睡眠时间较短，原因是MFP在安卓系统上运行得跟慢，需要更多
+        // 时间进行计算，留给睡眠的时间就少了。
+        return 35
+    else
+        return 150
+    endif
+endf
+
+// each time the move of lift between two adjacent refreshings.
+// 屏幕每次刷新电梯移动距离
+function GETLIFTMOVESTEPPERINTERVAL()
+	return 15
+endf
+function BGCOLOR() 
+	return [125,100, 80] // background color on the screen //屏幕背景色
+endf 
+
+// width of the game display window in pixels (for pc only)
+// 基于像素的游戏视频窗口的宽度（对安卓不起作用）
+function WINDOWDEFAULTWIDTH()  
+    return 960
+endf  
+  
+// height of the game display window in pixels (for pc only)
+// 基于像素的游戏视频窗口的高度（对安卓不起作用）
+function WINDOWDEFAULTHEIGHT()
+    return 480
+endf
+
+// color of ceiling in each cell
+// 每个单元格的天花板的颜色
+function CELLCEILCOLOR()
+	return [85, 65, 0] 
+endf
+
+// thickness of ceiling in each cell
+// 每个单元格的天花板的厚度
+function CELLCEILTHICKNESS()
+	return 10
+endf
+
+// font size of level information
+// 游戏通关信息的字体大小
+function LEVELINFOTEXTFONT(windowHeight)
+    return 20 * windowHeight / WINDOWDEFAULTHEIGHT()
+endf
+
+// font color of level information
+// 游戏通关信息的字体颜色
+function LEVELINFOTEXTCOLOR()
+    return [0,200,160]
+endf
+
+// font size of hint information
+// 提示信息的字体大小
+function NOTEINFOTEXTFONT(windowHeight)
+    return 12 * windowHeight / WINDOWDEFAULTHEIGHT()
+endf
+
+// font color of hint information
+// 提示信息的字体颜色
+function NOTEINFOTEXTCOLOR()
+    return [0,0,0]
+endf
+
+// font size of score information
+// 得分信息的字体大小
+function SCOREINFOTEXTFONT(windowHeight)
+    return 16 * windowHeight / WINDOWDEFAULTHEIGHT()
+endf
+
+// font color of score information
+// 得分信息的字体颜色
+function SCOREINFOTEXTCOLOR()
+    return [200,100,200]
+endf
+
+function loadAllImages()
+	// copy image files to Apk asset when building MFP app.
+	// 在创建MFP应用时，必须将图像文件拷贝到应用APK包的asset目录中
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "charts/background.png", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "charts/background.png"], _
+									get_upper_level_path(get_src_file_path()) + "background.png"), "charts/background.png")
+	variable backgrndImage
+	if is_sandbox_session()
+		// if in a sandbox session // 如果是在一个沙盒中运行
+		backgrndImage = load_image(get_sandbox_session_resource_path() + "charts/background" + ".png")
+	elseif is_mfp_app()
+		// if mfp app is running // 如果是MFP应用
+		backgrndImage = load_image_from_zip(get_asset_file_path("resource"), "charts/background" + ".png", 1)
+	else
+		// if a script file is running // 如果运行的是脚本
+		backgrndImage = load_image(get_upper_level_path(get_src_file_path()) + "background" + ".png") 
+	endif
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "charts/rabbit.png", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "charts/rabbit.png"], _
+									get_upper_level_path(get_src_file_path()) + "rabbit.png"), "charts/rabbit.png")
+	variable littleRabbitImage
+	if is_sandbox_session()
+		// if in a sandbox session // 如果是在一个沙盒中运行
+		littleRabbitImage = load_image(get_sandbox_session_resource_path() + "charts/rabbit" + ".png")
+	elseif is_mfp_app()
+		// if mfp app is running // 如果是MFP应用
+		littleRabbitImage = load_image_from_zip(get_asset_file_path("resource"), "charts/rabbit" + ".png", 1)
+	else
+		// if a script file is running // 如果运行的是脚本
+		littleRabbitImage = load_image(get_upper_level_path(get_src_file_path()) + "rabbit" + ".png") 
+	endif
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "charts/super_rabbit.png", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "charts/super_rabbit.png"], _
+									get_upper_level_path(get_src_file_path()) + "super_rabbit.png"), "charts/super_rabbit.png")
+	variable superRabbitImage
+	if is_sandbox_session()
+		// if in a sandbox session // 如果是在一个沙盒中运行
+		superRabbitImage = load_image(get_sandbox_session_resource_path() + "charts/super_rabbit" + ".png")
+	elseif is_mfp_app()
+		// if mfp app is running // 如果是MFP应用
+		superRabbitImage = load_image_from_zip(get_asset_file_path("resource"), "charts/super_rabbit" + ".png", 1)
+	else
+		// if a script file is running // 如果运行的是脚本
+		superRabbitImage = load_image(get_upper_level_path(get_src_file_path()) + "super_rabbit" + ".png") 
+	endif
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "charts/carrot.png", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "charts/carrot.png"], _
+									get_upper_level_path(get_src_file_path()) + "carrot.png"), "charts/carrot.png")
+	variable carrotImage
+	if is_sandbox_session()
+		// if in a sandbox session // 如果是在一个沙盒中运行
+		carrotImage = load_image(get_sandbox_session_resource_path() + "charts/carrot" + ".png")
+	elseif is_mfp_app()
+		// if mfp app is running // 如果是MFP应用
+		carrotImage = load_image_from_zip(get_asset_file_path("resource"), "charts/carrot" + ".png", 1)
+	else
+		// if a script file is running // 如果运行的是脚本
+		carrotImage = load_image(get_upper_level_path(get_src_file_path()) + "carrot" + ".png") 
+	endif
+	
+	// the carnivores' image: // 食肉动物的图标 
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "charts/tiger.png", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "charts/tiger.png"], _
+									get_upper_level_path(get_src_file_path()) + "tiger.png"), "charts/tiger.png")
+	variable tigerImage
+	if is_sandbox_session()
+		// if in a sandbox session // 如果是在一个沙盒中运行
+		tigerImage = load_image(get_sandbox_session_resource_path() + "charts/tiger" + ".png")
+	elseif is_mfp_app()
+		// if mfp app is running // 如果是MFP应用
+		tigerImage = load_image_from_zip(get_asset_file_path("resource"), "charts/tiger" + ".png", 1)
+	else
+		// if a script file is running // 如果运行的是脚本
+		tigerImage = load_image(get_upper_level_path(get_src_file_path()) + "tiger" + ".png") 
+	endif
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "charts/lion.png", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "charts/lion.png"], _
+									get_upper_level_path(get_src_file_path()) + "lion.png"), "charts/lion.png")
+	variable lionImage
+	if is_sandbox_session()
+		// if in a sandbox session // 如果是在一个沙盒中运行
+		lionImage = load_image(get_sandbox_session_resource_path() + "charts/lion" + ".png")
+	elseif is_mfp_app()
+		// if mfp app is running // 如果是MFP应用
+		lionImage = load_image_from_zip(get_asset_file_path("resource"), "charts/lion" + ".png", 1)
+	else
+		// if a script file is running // 如果运行的是脚本
+		lionImage = load_image(get_upper_level_path(get_src_file_path()) + "lion" + ".png") 
+	endif
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "charts/wolf.png", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "charts/wolf.png"], _
+									get_upper_level_path(get_src_file_path()) + "wolf.png"), "charts/wolf.png")
+	variable wolfImage
+	if is_sandbox_session()
+		// if in a sandbox session // 如果是在一个沙盒中运行
+		wolfImage = load_image(get_sandbox_session_resource_path() + "charts/wolf" + ".png")
+	elseif is_mfp_app()
+		// if mfp app is running // 如果是MFP应用
+		wolfImage = load_image_from_zip(get_asset_file_path("resource"), "charts/wolf" + ".png", 1)
+	else
+		// if a script file is running // 如果运行的是脚本
+		wolfImage = load_image(get_upper_level_path(get_src_file_path()) + "wolf" + ".png") 
+	endif
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "charts/hawk.png", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "charts/hawk.png"], _
+									get_upper_level_path(get_src_file_path()) + "hawk.png"), "charts/hawk.png")
+	variable hawkImage
+	if is_sandbox_session()
+		// if in a sandbox session // 如果是在一个沙盒中运行
+		hawkImage = load_image(get_sandbox_session_resource_path() + "charts/hawk" + ".png")
+	elseif is_mfp_app()
+		// if mfp app is running // 如果是MFP应用
+		hawkImage = load_image_from_zip(get_asset_file_path("resource"), "charts/hawk" + ".png", 1)
+	else
+		// if a script file is running // 如果运行的是脚本
+		hawkImage = load_image(get_upper_level_path(get_src_file_path()) + "hawk" + ".png") 
+	endif
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "charts/snake.png", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "charts/snake.png"], _
+									get_upper_level_path(get_src_file_path()) + "snake.png"), "charts/snake.png")
+	variable snakeImage
+	if is_sandbox_session()
+		// if in a sandbox session // 如果是在一个沙盒中运行
+		snakeImage = load_image(get_sandbox_session_resource_path() + "charts/snake" + ".png")
+	elseif is_mfp_app()
+		// if mfp app is running // 如果是MFP应用
+		snakeImage = load_image_from_zip(get_asset_file_path("resource"), "charts/snake" + ".png", 1)
+	else
+		// if a script file is running // 如果运行的是脚本
+		snakeImage = load_image(get_upper_level_path(get_src_file_path()) + "snake" + ".png") 
+	endif
+	variable carnivoreImages = [null, null, null, null, null]
+	carnivoreImages[0] = snakeImage
+	carnivoreImages[1] = hawkImage
+	carnivoreImages[2] = wolfImage
+	carnivoreImages[3] = lionImage
+	carnivoreImages[4] = tigerImage
+	
+	return [backgrndImage, littleRabbitImage, superRabbitImage, carrotImage, carnivoreImages]
+endf
+
+// entry function.
+// 入口函数
+function run()
+	variable allImages = loadAllImages()
+	variable bkgrndImg = allImages[0]
+	// open a screen display window for game.
+	// 为游戏打开一个显示窗口。
+    variable DISPLAYSURF = open_screen_display("Super bunny", BGCOLOR(), false, [WINDOWDEFAULTWIDTH(), WINDOWDEFAULTHEIGHT()], false, 0)
+	
+    variable level = 0 // game level // 游戏通关等级
+	variable totalScore = [0] // total score // 总得分
+    while true
+        drop_old_painting_requests("Hungry snake", DISPLAYSURF)
+		// only if result > 0 (i.e. player collects more scores than needed), the game goes to next level.
+		// 只有当result > 0，也就是用户成功返回悬崖的左岸，游戏才能通关。
+        variable result = start_super_bunny(DISPLAYSURF, allImages, level, totalScore)
+        if result < 0
+            break // exit //退出
+        elseif result >= 0
+            level = level + 1
+			if level > 3
+				level = 3	// at most four levels (0-3) // 最多四关 (0-3)
+			endif
+        endif
+    loop
+	
+	if get_country_language()[1] == "zh"
+		print_line("本游戏是由MFP语言开发。MFP语言是一种非常容易上手的跨平台脚本编程语言。它的代码无需修改和编译，就可以在安卓和其他任意支持JAVA的个人电脑上运行。如果您对MFP编程语言感兴趣，请到百度手机或者酷安网下载MFP语言的IDE，可编程科学计算器，进行游戏开发。可编程科学计算器的安卓版自带运行于电脑上的MFP解释器，还可以创建APK安装包，真正实现电脑上编程调试，安卓上运行。还等什么，赶快试一下吧！")
+	elseif get_country_language()[1] == "es"
+		print_line("Este juego fue desarrollado por el lenguaje de programación MFP. MFP es un lenguaje de scripts multiplataforma para Android y cualquier PC con soporte para JAVA. Es fácil de aprender y fácil de programar. Usted puede desarrollar su script en PC y ejecutarlo sin ninguna modificación en Android. El IDE de MFP es Scientific Calculator Plus, que se puede descargar en Google Play https://play.google.com/store/apps/details?id=com.cyzapps.AnMath. Scientific Calculator Plus puede ejecutarse en Android y PC y puede crear el paquete de instalación de Android (APK) de los scripts MFP. Pruébalo y nunca te decepcionará.")
+	else
+		print_line("This game was developed by MFP programming language. MFP is a very easy-to-learn and cross-platform scripting language for Android and any PC with JAVA support. You develop an MFP script on PC once and run it everywhere (including Android and PC with a different OS). If you are interested in it, please download MFP's ide, i.e. Scientific Calculator Plus, from Google Play at https://play.google.com/store/apps/details?id=com.cyzapps.AnMath . Scientific Calculator Plus can run on Android and PC and can build Android installation package (APK) from MFP scripts. You will enjoy the easy and quick game programming.")
+	endif
+
+endf
+
+// game's main function, DISPLAYSURF is the handle of screen display window, allImages includes all images loaded, level is game's level
+// 游戏主函数，DISPLAYSURF是显示窗口的句柄，allImages是所有装入的图像文件，level是游戏通关等级。
+function start_super_bunny(DISPLAYSURF, allImages, level, totalScore)
+	variable backgrndImage = allImages[0], littleRabbitImage = allImages[1], superRabbitImage = allImages[2], carrotImage = allImages[3], carnivoreImages = allImages[4]
+	// all below are constant variables: // 以下均为常数
+	variable backgrndImgSize = get_image_size(backgrndImage)
+	variable widthZoomRatio = backgrndImgSize[0]/800, heightZoomRatio = backgrndImgSize[1]/600
+	variable panelOriginW = backgrndImgSize[0], panelOriginH = backgrndImgSize[1], numOfLifts = level + 3, liftLeftSide = 130 * widthZoomRatio, liftRightSide = 670 * widthZoomRatio, liftCellHDim = 80 * widthZoomRatio, liftCellVDim = 80 * heightZoomRatio
+	variable liftCellsInfoArray = alloc_array(numOfLifts)
+	variable oneLiftSpan = (liftRightSide - liftLeftSide)/numOfLifts
+	variable carnivoreInterval = 3 	// 3 empty cells between two carnivores // 每两个食肉动物中间有3个空的单元
+	variable liftMoveStepPerInterval = GETLIFTMOVESTEPPERINTERVAL()	// one interval the lift move 5 by default //一个绘制间隔lift缺省移动5个单位
+	variable windowWidth = get_display_size(DISPLAYSURF)[0], windowHeight = get_display_size(DISPLAYSURF)[1]
+	variable panelZoomRatio = 1
+	variable panelLeftTop = [0,0] // set left top to 0, 0 so that we have enough space for text // panelLeftTop被设置为0，0以便给文字留下足够空间。
+	variable windowWHRatio = windowWidth/windowHeight, panelWHRatio = panelOriginW/panelOriginH
+	if windowWHRatio > panelWHRatio
+		panelZoomRatio = panelOriginH/windowHeight
+	else
+		panelZoomRatio = panelOriginW/windowWidth
+	endif
+	// it is possible that in some very small devices, DISPLAYSURF is still not ready when get_display_size is called,
+	// so wait for a few seconds.
+	// 在一些很慢的设备上，有可能出现调用get_display_size函数时，DISPLAYSURF还没有初始化好（也就是它的宽度高度为0），所以，必须等待几秒钟。
+	variable waitSecond = 0
+	while and(or(windowWidth <= 0, windowHeight <= 0), waitSecond <= 4)
+		sleep(1000)
+		windowWidth = get_display_size(DISPLAYSURF)[0]
+		windowHeight = get_display_size(DISPLAYSURF)[1]
+		waitSecond = waitSecond + 1
+	loop	
+	variable txtLevelInfo = "", txtScoreInfo = "", txtNote = ""
+	variable levelTxtFontSize = LEVELINFOTEXTFONT(windowHeight), scoreTxtFontSize = SCOREINFOTEXTFONT(windowHeight), noteTxtFontSize = NOTEINFOTEXTFONT(windowHeight)
+	initializeLifts(liftCellsInfoArray, panelOriginH, liftCellVDim, carnivoreImages, 3)
+	variable rabbitXY = [liftLeftSide - oneLiftSpan/2, panelOriginH/2]
+	
+	variable rabbitXIdx = -1, rabbitYIdx = 0
+	variable isSuperRabbit = false
+	variable gameState = 1 // 1 means on going, 0 means exit successfuly, -1 means exit with failure, -2 means GDI close.
+	@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "sounds/littleRabbit.mp3", _
+									is_mfp_app(), [1, get_asset_file_path("resource"), "sounds/littleRabbit.mp3"], _
+									get_upper_level_path(get_src_file_path()) + "littleRabbit.mp3"), "sounds/littleRabbit.mp3")
+	variable littleRabbitMusic	// play little rabbit music only when the rabbit is still a little rabbit // 当还是小白兔的时候，放小白兔的音乐
+	if is_sandbox_session()
+		littleRabbitMusic = play_sound(get_sandbox_session_resource_path() + "sounds/littleRabbit.mp3", true)
+	elseif is_mfp_app()
+		littleRabbitMusic = play_sound_from_zip(get_asset_file_path("resource"), "sounds/littleRabbit.mp3", 1, true)
+	else
+		littleRabbitMusic = play_sound(get_upper_level_path(get_src_file_path()) + "littleRabbit.mp3", true)
+	endif
+	variable superRabbitMusic = null
+	while gameState == 1 // main game loop // 主循环
+		drop_old_painting_requests("super_bunny", DISPLAYSURF)
+		
+		variable moveX = 0, moveY = 0
+		do // processing player's input events // 处理玩家输入事件
+			variable giEvent = pull_event(DISPLAYSURF) 
+			if giEvent == Null 
+				// no event to handle // 没有需要处理的事件
+				break 
+			elseif get_event_type_name(giEvent) == "GDI_CLOSE" 
+				// quit // 退出
+				gameState = -2
+				break
+            elseif get_event_type(giEvent) == 106 // mouse or finger slided // 鼠标或手指滑动事件
+				// x1 and y1 are the coordinate when sliding starts, x2 and y2 are the coordinate when sliding finishes
+				// x1和y1是滑动开始时的坐标位置，x2和y2是滑动结束时的坐标位置
+                variable x1 = get_event_info(giEvent, "last_x")
+                variable y1 = get_event_info(giEvent, "last_y")
+                variable x2 = get_event_info(giEvent, "x")
+                variable y2 = get_event_info(giEvent, "y")
+				// calculate moving direction
+				// 计算移动方向
+				moveX = (x2 - x1) + moveX
+				moveY = -(y2 - y1) - moveY
+			endif 
+		until false 
+        if gameState == 1 
+			variable rabbitCell = null
+			if and(rabbitXIdx >= 0, rabbitXIdx < numOfLifts)
+				rabbitCell = liftCellsInfoArray[rabbitXIdx][rabbitYIdx]
+			endif
+			variable rabbitXYIdices = [rabbitXIdx, rabbitYIdx]
+			variable rabbitIsOK = moveAllLift(liftCellsInfoArray, rabbitCell, rabbitXY, rabbitXYIdices, panelOriginH, liftCellVDim, carnivoreImages, carnivoreInterval, liftMoveStepPerInterval)
+			rabbitXIdx = rabbitXYIdices[0]
+			rabbitYIdx = rabbitXYIdices[1]
+			if !rabbitIsOK
+				gameState = -1 	// rabbit is dead //兔子死了
+				rabbitXY = null // rabbit xy places are set to null so that we will not draw duplicate rabbits // 避免画两个兔子。
+				@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "sounds/drop2death.wav", _
+												is_mfp_app(), [1, get_asset_file_path("resource"), "sounds/drop2death.wav"], _
+												get_upper_level_path(get_src_file_path()) + "drop2death.wav"), "sounds/drop2death.wav")
+				if is_sandbox_session()
+					play_sound(get_sandbox_session_resource_path() + "sounds/drop2death.wav", false)
+				elseif is_mfp_app()
+					play_sound_from_zip(get_asset_file_path("resource"), "sounds/drop2death.wav", 1, false)
+				else
+					play_sound(get_upper_level_path(get_src_file_path()) + "drop2death.wav", false)
+				endif
+			elseif or(moveX != 0, moveY != 0)
+				// jump //跳
+				variable cellIconSize = get_image_size(littleRabbitImage)[1]
+				if isSuperRabbit
+					cellIconSize = get_image_size(superRabbitImage)[1]
+				endif
+				rabbitXY = jumpRabbit(rabbitXIdx, rabbitYIdx, moveX, moveY, liftCellsInfoArray, liftCellVDim, liftLeftSide, liftRightSide, panelOriginH)
+				if (rabbitCell != null)
+					rabbitCell[2] = null // no rabbit image in the previous rabbit cell // 在原来兔子所在的单元格内没有兔子图像了。
+				endif
+				variable rabbitNewIdices = checkPositionValid(rabbitXY, liftCellsInfoArray, cellIconSize, liftCellVDim, liftLeftSide, liftRightSide, panelOriginH, level)
+				if rabbitNewIdices == null
+					gameState = -1 	// rabbit is dead //兔子死了
+					@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "sounds/drop2death.wav", _
+													is_mfp_app(), [1, get_asset_file_path("resource"), "sounds/drop2death.wav"], _
+													get_upper_level_path(get_src_file_path()) + "drop2death.wav"), "sounds/drop2death.wav")
+					if is_sandbox_session()
+						play_sound(get_sandbox_session_resource_path() + "sounds/drop2death.wav", false)
+					elseif is_mfp_app()
+						play_sound_from_zip(get_asset_file_path("resource"), "sounds/drop2death.wav", 1, false)
+					else
+						play_sound(get_upper_level_path(get_src_file_path()) + "drop2death.wav", false)
+					endif
+				else
+					rabbitXIdx = rabbitNewIdices[0]
+					rabbitYIdx = rabbitNewIdices[1]
+					if and(!isSuperRabbit, rabbitXIdx == numOfLifts)
+						// the rabbit has jumped to the right side of the cliff, it now turns to a super rabbit
+						// 兔子已经跳到悬崖的另一边，现在它成为一个超级兔子
+						isSuperRabbit = true
+						totalScore[0] = totalScore[0] + 100
+						stop_sound(littleRabbitMusic)
+						@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "sounds/eatcarrot.wav", _
+														is_mfp_app(), [1, get_asset_file_path("resource"), "sounds/eatcarrot.wav"], _
+														get_upper_level_path(get_src_file_path()) + "eatcarrot.wav"), "sounds/eatcarrot.wav")
+						if is_sandbox_session()
+							play_sound(get_sandbox_session_resource_path() + "sounds/eatcarrot.wav", false)
+						elseif is_mfp_app()
+							play_sound_from_zip(get_asset_file_path("resource"), "sounds/eatcarrot.wav", 1, false)
+						else
+							play_sound(get_upper_level_path(get_src_file_path()) + "eatcarrot.wav", false)
+						endif
+						@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "sounds/superrabbit.mp3", _
+														is_mfp_app(), [1, get_asset_file_path("resource"), "sounds/superrabbit.mp3"], _
+														get_upper_level_path(get_src_file_path()) + "superrabbit.mp3"), "sounds/superrabbit.mp3")
+						if is_sandbox_session()
+							superRabbitMusic = play_sound(get_sandbox_session_resource_path() + "sounds/superrabbit.mp3", true)
+						elseif is_mfp_app()
+							superRabbitMusic = play_sound_from_zip(get_asset_file_path("resource"), "sounds/superrabbit.mp3", 1, true)
+						else
+							superRabbitMusic = play_sound(get_upper_level_path(get_src_file_path()) + "superrabbit.mp3", true)
+						endif
+					elseif and(isSuperRabbit, rabbitXIdx == -1)
+						// the rabbit has jumped back, pass the game.
+						gameState = 0
+						@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "sounds/passgame.wav", _
+														is_mfp_app(), [1, get_asset_file_path("resource"), "sounds/passgame.wav"], _
+														get_upper_level_path(get_src_file_path()) + "passgame.wav"), "sounds/passgame.wav")
+						if is_sandbox_session()
+							play_sound(get_sandbox_session_resource_path() + "sounds/passgame.wav", false)
+						elseif is_mfp_app()
+							play_sound_from_zip(get_asset_file_path("resource"), "sounds/passgame.wav", 1, false)
+						else
+							play_sound(get_upper_level_path(get_src_file_path()) + "passgame.wav", false)
+						endif
+					elseif and(rabbitXIdx >= 0, rabbitXIdx < numOfLifts)
+						if or(rabbitYIdx < 0, rabbitYIdx >= size(liftCellsInfoArray[rabbitXIdx])[0])
+							gameState = -1 	// rabbit is dead //兔子死了
+						elseif liftCellsInfoArray[rabbitXIdx][rabbitYIdx][2] != null
+							// there is a carnivore in the rabbit's cell // 在这个单元格内有一个野兽
+							if isSuperRabbit
+								// eat the carnivore // 吃掉这个野兽
+								for variable idxCarnivore = 0 to size(carnivoreImages)[0] step 1
+									if liftCellsInfoArray[rabbitXIdx][rabbitYIdx][2] == carnivoreImages[idxCarnivore]
+										totalScore[0] = totalScore[0] + (idxCarnivore + 1) * 10
+										@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "sounds/eatbeast.wav", _
+																		is_mfp_app(), [1, get_asset_file_path("resource"), "sounds/eatbeast.wav"], _
+																		get_upper_level_path(get_src_file_path()) + "eatbeast.wav"), "sounds/eatbeast.wav")
+										if is_sandbox_session()
+											play_sound(get_sandbox_session_resource_path() + "sounds/eatbeast.wav", false)
+										elseif is_mfp_app()
+											play_sound_from_zip(get_asset_file_path("resource"), "sounds/eatbeast.wav", 1, false)
+										else
+											play_sound(get_upper_level_path(get_src_file_path()) + "eatbeast.wav", false)
+										endif
+										break
+									endif
+								next
+								liftCellsInfoArray[rabbitXIdx][rabbitYIdx][2] = superRabbitImage
+							else
+								// eaten by the carnivore // 被野兽吃掉
+								gameState = -1
+								@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "sounds/beeaten.wav", _
+																is_mfp_app(), [1, get_asset_file_path("resource"), "sounds/beeaten.wav"], _
+																get_upper_level_path(get_src_file_path()) + "beeaten.wav"), "sounds/beeaten.wav")
+								if is_sandbox_session()
+									play_sound(get_sandbox_session_resource_path() + "sounds/beeaten.wav", false)
+								elseif is_mfp_app()
+									play_sound_from_zip(get_asset_file_path("resource"), "sounds/beeaten.wav", 1, false)
+								else
+									play_sound(get_upper_level_path(get_src_file_path()) + "beeaten.wav", false)
+								endif
+							endif
+						else
+							// there is no carnivore in the rabbit's cell // 在这个单元格内没有野兽
+							if isSuperRabbit
+								liftCellsInfoArray[rabbitXIdx][rabbitYIdx][2] = superRabbitImage
+							else
+								liftCellsInfoArray[rabbitXIdx][rabbitYIdx][2] = littleRabbitImage
+							endif
+						endif
+					endif
+				endif
+			endif
+		endif
+		variable rabbitXY2Draw = rabbitXY
+		if and(rabbitXIdx > -1, rabbitXIdx < numOfLifts, gameState > 0)
+			// if rabbit is in a cell of a lift, we do not draw it again because it will be drawn with lift
+			// 如果兔子在电梯的某一个单元格内，我们就不需要再单独画它了，因为我们在绘制电梯的时候会将它一起画
+			rabbitXY2Draw = null
+		endif
+
+		drop_old_painting_requests("super_bunny", DISPLAYSURF)
+		variable image2Paint = paintScreen(backgrndImage, littleRabbitImage, superRabbitImage, carrotImage, carnivoreImages, rabbitXY2Draw, isSuperRabbit, liftCellsInfoArray, liftCellHDim, liftLeftSide, liftRightSide, panelOriginH)
+		draw_image("super_bunny", DISPLAYSURF, image2Paint, panelLeftTop[0], panelLeftTop[1], 1/panelZoomRatio, 1/panelZoomRatio)
+		variable txtAndSize = get_text_and_size(txtLevelInfo, txtScoreInfo, txtNote, levelTxtFontSize, scoreTxtFontSize, noteTxtFontSize, level, totalScore[0], windowWHRatio, panelWHRatio)
+		variable newTxtLevelInfo = txtAndSize[0], newTxtScoreInfo = txtAndSize[1], newTxtNote = txtAndSize[2], newLevelTxtFontSize = txtAndSize[3], newScoreTxtFontSize = txtAndSize[4], newNoteTxtFontSize = txtAndSize[5]
+		if windowWHRatio >= panelWHRatio * 1.1
+			variable txtLevelInfoOrigin = calculate_text_origin(DISPLAYSURF, newTxtLevelInfo, [panelOriginW/panelZoomRatio, 0], windowWidth - panelOriginW/panelZoomRatio, windowHeight, 0, -1, newLevelTxtFontSize)
+			variable txtScoreInfoOrigin = calculate_text_origin(DISPLAYSURF, newTxtScoreInfo, [panelOriginW/panelZoomRatio, 0], windowWidth - panelOriginW/panelZoomRatio, windowHeight, 1, 1, newScoreTxtFontSize)
+			variable txtNoteOrigin = calculate_text_origin(DISPLAYSURF, newTxtNote, [panelOriginW/panelZoomRatio, 0], windowWidth - panelOriginW/panelZoomRatio, windowHeight, 0, 0, newNoteTxtFontSize)
+			draw_text("super_bunny", DISPLAYSURF, newTxtLevelInfo, txtLevelInfoOrigin, LEVELINFOTEXTCOLOR(), newLevelTxtFontSize)
+			draw_text("super_bunny", DISPLAYSURF, newTxtScoreInfo, txtScoreInfoOrigin, SCOREINFOTEXTCOLOR(), newScoreTxtFontSize)
+			draw_text("super_bunny", DISPLAYSURF, newTxtNote, txtNoteOrigin, NOTEINFOTEXTCOLOR(), newNoteTxtFontSize)
+		elseif windowWHRatio <= panelWHRatio * 0.9
+			variable txtLevelInfoOrigin = calculate_text_origin(DISPLAYSURF, newTxtLevelInfo, [0, panelOriginH/panelZoomRatio], windowWidth, windowHeight - panelOriginH/panelZoomRatio, -1, 0, newLevelTxtFontSize)
+			variable txtScoreInfoOrigin = calculate_text_origin(DISPLAYSURF, newTxtScoreInfo, [0, panelOriginH/panelZoomRatio], windowWidth, windowHeight - panelOriginH/panelZoomRatio, 1, 0, newScoreTxtFontSize)
+			variable txtNoteOrigin = calculate_text_origin(DISPLAYSURF, newTxtNote, [0, panelOriginH/panelZoomRatio], windowWidth, windowHeight - panelOriginH/panelZoomRatio, 0, 0, newNoteTxtFontSize)
+			draw_text("super_bunny", DISPLAYSURF, newTxtLevelInfo, txtLevelInfoOrigin, LEVELINFOTEXTCOLOR(), newLevelTxtFontSize)
+			draw_text("super_bunny", DISPLAYSURF, newTxtScoreInfo, txtScoreInfoOrigin, SCOREINFOTEXTCOLOR(), newScoreTxtFontSize)
+			draw_text("super_bunny", DISPLAYSURF, newTxtNote, txtNoteOrigin, NOTEINFOTEXTCOLOR(), newNoteTxtFontSize)
+		endif
+		update_display(DISPLAYSURF)
+		sleep(MOVEINTERVAL())
+	loop
+	stop_sound(littleRabbitMusic)
+	if (superRabbitMusic != null)
+		stop_sound(superRabbitMusic)
+	endif
+	return gameState
+endf
+
+function paintScreen(backgrndImage, littleRabbitImage, superRabbitImage, carrotImage, carnivoreImages, rabbitXY, isSuperRabbit, liftCellsInfoArray, liftCellHDim, liftLeftSide, liftRightSide, panelOriginH)
+	
+	variable displayImgWH = get_image_size(backgrndImage)
+	// draw lifts
+	//绘制电梯
+	variable numOfLifts = size(liftCellsInfoArray)[0]
+	variable oneLiftSpan = (liftRightSide - liftLeftSide)/numOfLifts
+	variable boardImageDisplay = open_image_display(backgrndImage) 
+	set_display_size(boardImageDisplay, displayImgWH[0], displayImgWH[1])
+	for variable idx0 = 0 to numOfLifts - 1
+		variable thisLift = liftCellsInfoArray[idx0]
+		variable liftSpanLeft = liftLeftSide + idx0 * oneLiftSpan
+		variable cellLeft = liftSpanLeft + (oneLiftSpan - liftCellHDim) / 2
+		variable numOfCells = size(thisLift)[0]
+		for variable idx1 = 0 to numOfCells - 1
+			variable thisCell = thisLift[idx1]
+			draw_rect("floor", boardImageDisplay, [cellLeft, thisCell[1]], liftCellHDim, CELLCEILTHICKNESS(), CELLCEILCOLOR(), 0)
+			if thisCell[2] != null
+				variable imgSize = get_image_size(thisCell[2])
+				variable imgPlaceLeft = cellLeft + (liftCellHDim - imgSize[0]) / 2
+				variable imgPlaceTop = thisCell[1] - imgSize[1]
+				draw_image("animal", boardImageDisplay, thisCell[2], imgPlaceLeft, imgPlaceTop)
+			endif
+		next 
+	next 
+	
+	// draw rabbit
+	// 绘制兔子
+	if rabbitXY != null
+		variable rabbitImage = littleRabbitImage
+		variable rabbitImageWidth = get_image_size(rabbitImage)[0]
+		variable rabbitImgHeight = get_image_size(rabbitImage)[1]
+		if isSuperRabbit
+			rabbitImage = superRabbitImage
+		endif
+		draw_image("animal", boardImageDisplay, rabbitImage, rabbitXY[0] - rabbitImageWidth/2, rabbitXY[1] - rabbitImgHeight)
+	endif
+	
+	// draw carrot
+	// 绘制胡萝卜
+	if !isSuperRabbit
+		variable x = liftRightSide + oneLiftSpan/2 - get_image_size(carrotImage)[1]/2
+		variable y = panelOriginH/2 - get_image_size(carrotImage)[1]
+		draw_image("animal", boardImageDisplay, carrotImage, x, y)
+	endif
+	variable image2Paint = get_display_snapshot(boardImageDisplay, true)
+	return image2Paint
+endf
+
+// this function check if position [x,y] is valid
+// 本函数检查是否位置[x,y]是合法的
+function checkPositionValid(xy, liftCellsInfoArray, cellIconSize, liftCellVDim, liftLeftSide, liftRightSide, panelOriginH, level)
+	variable numOfLifts = size(liftCellsInfoArray)[0]
+	variable oneLiftSpan = (liftRightSide - liftLeftSide)/numOfLifts
+	variable liftIdx = floor((xy[0] - liftLeftSide)/oneLiftSpan)
+	if or(liftIdx == -1, liftIdx == numOfLifts)
+		if xy[1] > panelOriginH/2
+			return null	// hit the cliff // 撞到悬崖了
+		else
+			xy[1] = panelOriginH/2	// adjust y // 调整y
+			return [liftIdx, 0] // return cell idx //返回电梯单元格索引
+		endif
+	else // jump to a lift // 跳到电梯里
+		variable liftCellsInfo = liftCellsInfoArray[liftIdx]
+		// a bit tolerance so that when the foot of rabbit overlaps the floor, we do not think it goes to next cell.
+		// 在计算兔子的位置是，给予一定的宽裕空间，这样如果兔子的脚和地板有一点点交集，我们不会认为兔子跳到下一个单元格。
+		variable tolerance = CELLCEILTHICKNESS() * max(0.5, 1.5 - level *0.2) // make it harder when level is higher // 等级越高越难。
+		variable adjustedRabbitfootPos = xy[1] - tolerance
+		variable footPosition = mod(adjustedRabbitfootPos - liftCellsInfo[0][1], liftCellVDim) + tolerance
+		variable footInCellIdx = ceil((adjustedRabbitfootPos - liftCellsInfo[0][1]) / liftCellVDim)
+		if (cellIconSize / 2 < footPosition) // use cellIconSize/2 instead of cellIconSize to give rabbit enough space buffer.
+			// do not hit the ceiling // 没有撞到天花板
+			xy[1] = footInCellIdx * liftCellVDim + liftCellsInfo[0][1]
+			return [liftIdx, footInCellIdx] // return cell idx //返回电梯单元格索引
+		else // hit the ceiling // 撞到天花板
+			return null
+		endif
+	endif
+endf
+
+// liftIdx is from -1 to size(liftCellsInfoArray)[0]. -1 means on the left cliff, size(liftCellsInfoArray)[0] means
+// on the right cliff. Other values means on a lift.
+// liftIdx从-1到size(liftCellsInfoArray)[0]。-1意味着在左边悬崖上，size(liftCellsInfoArray)[0]意味着在右边悬崖上，其他的值意
+// 味着在某一部电梯上。
+function jumpRabbit(liftIdx, cellIdx, moveX, moveY, liftCellsInfoArray, liftCellVDim, liftLeftSide, liftRightSide, panelOriginH)
+	// assume rabbit is always making linear movement.
+	// 假设兔子的跳跃是线性的。
+	variable x, y // x is middle and y is bottom
+	variable numOfLifts = size(liftCellsInfoArray)[0]
+	variable oneLiftSpan = (liftRightSide - liftLeftSide)/numOfLifts
+	if liftIdx == -1 // on the left cliff //在左边悬崖上
+		x = liftLeftSide - oneLiftSpan/2
+		y = panelOriginH/2
+	elseif liftIdx == numOfLifts // on the right cliff //在右边悬崖上
+		x = liftRightSide + oneLiftSpan/2
+		y = panelOriginH/2
+	else	// on a lift //在电梯上
+		x = (liftIdx + 0.5) * oneLiftSpan + liftLeftSide
+		y = liftCellsInfoArray[liftIdx][cellIdx][1]
+	endif
+	variable newX = x, newY = y
+	if and(moveX >= 0, liftIdx < numOfLifts)
+		if moveY > moveX
+			// jump to right top
+			// 向右上方跳
+			newX = x + oneLiftSpan
+			newY = y - liftCellVDim
+		elseif moveY > 0
+			// jump to right
+			// 向右方跳
+			newX = x + oneLiftSpan
+			newY = y
+		else
+			// jump to right bottom
+			// 向右下方跳
+			newX = x + oneLiftSpan
+			newY = y + liftCellVDim
+		endif
+	elseif and(moveX < 0, liftIdx > -1)
+		if moveY > -moveX
+			// jump to left top
+			// 向左上方跳
+			newX = x - oneLiftSpan
+			newY = y - liftCellVDim
+		elseif moveY > 0
+			// jump to left
+			// 向左方跳
+			newX = x - oneLiftSpan
+			newY = y
+		else
+			// jump to left bottom
+			// 向左下方跳
+			newX = x - oneLiftSpan
+			newY = y + liftCellVDim
+		endif
+	endif
+	if or(newX < liftLeftSide, newX > liftRightSide)
+		// the rabbit is not in a lift. It is on a cliff
+		// 兔子不在电梯上，兔子已经跳到悬崖上了。
+		if (newY <= panelOriginH/2)
+			newY = panelOriginH/2
+		else
+			newY = panelOriginH // fall // 掉下悬崖
+		endif
+	endif
+	return [newX, newY]
+endf
+
+// initialize the lift cells
+// 初始化lift的每一个单元
+function initializeLifts(liftCellsInfoArray, panelOriginH, liftCellVDim, carnivoreImages, carnivoreInterval)
+	// info of each cell. A info structure includes left, floor, icon
+	// 一个电梯单元的信息。该数据结构包括left，floor，以及icon
+	variable maxNumOfCells = floor(panelOriginH / liftCellVDim) + 1
+	for variable idx0 = 0 to size(liftCellsInfoArray)[0] - 1
+		liftCellsInfoArray[idx0] = alloc_array(maxNumOfCells)
+		variable liftCellsInfo = liftCellsInfoArray[idx0]
+		for variable idx = 0 to maxNumOfCells - 1
+			variable img2Draw = null
+			if mod(idx - idx0, carnivoreInterval) == 0
+				img2Draw = carnivoreImages[floor(rand() * size(carnivoreImages)[0])]
+			endif
+			liftCellsInfo[idx] = [0, (idx + 1) * liftCellVDim, img2Draw]
+		next
+	next
+endf
+
+// if this function returns true, it means the rabbit is not in the lift or rabbit hasn't hit top or bottom. Otherwise, returns false
+// 如果本函数返回true，表示兔子不在电梯里或则兔子所在的单元格没有撞到顶部或底部，否则返回false
+function moveAllLift(liftCellsInfoArray, rabbitCell, rabbitXY, rabbitXYIdices, panelOriginH, liftCellVDim, carnivoreImages, carnivoreInterval, liftMoveStepPerInterval)
+	for variable idx0 = 0 to size(liftCellsInfoArray)[0] - 1
+		variable liftCellsInfo = liftCellsInfoArray[idx0]
+		// odd lift moving down while even lift moving up
+		// 奇数号电梯向上移动，偶数号电梯向下移动
+		variable liftMvStpPerInterval = liftMoveStepPerInterval
+		if mod(idx0, 2) == 1
+			liftMvStpPerInterval = -liftMoveStepPerInterval
+		endif
+		variable liftCellCnt = size(liftCellsInfo)[0]
+		variable rabbitInThisLift = false
+		for variable idx = 0 to liftCellCnt - 1
+			liftCellsInfo[idx, 1] = liftCellsInfo[idx, 1] + liftMvStpPerInterval
+			if rabbitCell == liftCellsInfo[idx]
+				if mod(idx0, 2) == 0
+					if rabbitCell[1] > panelOriginH
+						return false	// rabbit hits bottom, return false // 兔子撞到底部，返回 false
+					endif
+				elseif (rabbitCell[1] - liftCellVDim/2) < 0
+					return false	// rabbit hits top, return false // 兔子撞到顶部，返回 false
+				endif
+				rabbitXY[1] = rabbitXY[1] + liftMvStpPerInterval // move rabbit // 移动兔子
+				rabbitInThisLift = true
+			endif
+		next
+		while true
+			if liftCellsInfo[0, 1] > liftCellVDim - CELLCEILTHICKNESS()
+				// ok, a new cell appears from top // 新的一个单元空间在电梯的顶部出现
+				variable newCell = [0, liftCellsInfo[0, 1] - liftCellVDim, null]
+				variable cellImage = liftCellsInfo[carnivoreInterval - 1][2]
+				for variable idx = 0 to size(carnivoreImages)[0] - 1
+					if cellImage == carnivoreImages[idx]
+						// OK, we have to add a carnivore image in this cell
+						// 这个单元空间上面有一个食肉动物的图像
+						newCell[2] = carnivoreImages[floor(rand() * size(carnivoreImages)[0])]
+						break
+					endif
+				next
+				liftCellsInfoArray[idx0] = insert_elem_into_ablist(liftCellsInfo, 0, newCell)
+				liftCellsInfo = liftCellsInfoArray[idx0]
+				if rabbitInThisLift
+					rabbitXYIdices[1] = rabbitXYIdices[1] + 1 // shift rabbit cell Y index by 1 // 将兔子所在单元的Y索引加一。
+				endif
+			elseif liftCellsInfo[0, 1] <= -CELLCEILTHICKNESS()
+				// the top cell has disappeared so that it should be removed // 电梯顶部单元空间消失了，所以得把它去掉
+				if rabbitCell == liftCellsInfo[0]
+					return false
+				endif
+				liftCellsInfoArray[idx0] = remove_elem_from_ablist(liftCellsInfo, 0)
+				liftCellsInfo = liftCellsInfoArray[idx0]
+				if rabbitInThisLift
+					rabbitXYIdices[1] = rabbitXYIdices[1] - 1 // shift rabbit cell Y index by 1 // 将兔子所在单元的Y索引减一。
+				endif
+			else
+				break
+			endif
+		loop
+		while true
+			liftCellCnt = size(liftCellsInfo)[0]
+			if liftCellsInfo[liftCellCnt - 1, 1] >= panelOriginH + liftCellVDim
+				// the bottom cell has disappeared so that it should be removed // 电梯底部单元空间消失了，所以得把它去掉
+				if rabbitCell == liftCellsInfo[liftCellCnt - 1]
+					return false
+				endif				
+				liftCellsInfoArray[idx0] = remove_elem_from_ablist(liftCellsInfo, liftCellCnt - 1)
+				liftCellsInfo = liftCellsInfoArray[idx0]
+			elseif liftCellsInfo[liftCellCnt - 1, 1] < panelOriginH
+				// ok, a new cell appears from bottom // 新的一个单元空间在电梯的底部出现
+				variable newCell = [0, liftCellsInfo[liftCellCnt - 1, 1] + liftCellVDim, null]
+				variable cellImage = liftCellsInfo[liftCellCnt - carnivoreInterval][2]
+				for variable idx = 0 to size(carnivoreImages)[0] - 1
+					if cellImage == carnivoreImages[idx]
+						// OK, we have to add a carnivore image in this cell
+						// 这个单元空间上面有一个食肉动物的图像
+						newCell[2] = carnivoreImages[floor(rand() * size(carnivoreImages)[0])]
+						break
+					endif
+				next
+				liftCellsInfoArray[idx0] = append_elem_to_ablist(liftCellsInfo, newCell)
+				liftCellsInfo = liftCellsInfoArray[idx0]
+			else
+				break
+			endif
+		loop
+	next
+	return true
+endf
+
+function get_text_and_size(txtLevelInfo, txtScoreInfo, txtNote, levelTxtFontSize, scoreTxtFontSize, noteTxtFontSize, level, totalScore, windowWHRatio, panelWHRatio)
+	level = level + 1 // level shown to user should start from 1 // 显示给用户的级别从第一关开始。
+	if get_country_language()[1] == "zh"
+		if windowWHRatio >= panelWHRatio * 1.3
+			txtLevelInfo = "第" + level + "关"
+			txtScoreInfo = "总得分：" + totalScore
+			txtNote = "提示：滑动手指或鼠标控制兔子的跳动！\n注意由于重力的缘故，兔子跳动的方向\n相对于手指或鼠标移动的方向总是偏下。\n当兔子位于左边的悬崖向右边跳动时，\n要避免跳入食肉动物所在单元格，\n否则它会被食肉动物给吃掉。但是，\n当兔子跳到右边悬崖就可以吃到胡萝卜\n变成超级兔子，这时兔子应该向左跳动\n返回左边的悬崖，这时的兔子可以\n反过来吃食肉动物并得分。当兔子返回\n左边悬崖，这一关就通过了。"
+		elseif windowWHRatio >= panelWHRatio * 1.2
+			txtLevelInfo = "第" + level + "关"
+			txtScoreInfo = "总得分：" + totalScore
+			txtNote = "提示：滑动手指或鼠标\n控制兔子的跳动！\n注意由于重力的缘故，\n兔子跳动的方向相对于\n手指或鼠标移动的方向\n总是偏下。"
+		elseif windowWHRatio >= panelWHRatio * 1.1
+			txtLevelInfo = "第" + level + "关"
+			txtScoreInfo = "得分：" + totalScore[0]
+			txtNote = "滑动手指\n或鼠标控\n制兔子的\n跳动！注\n意由于重\n力，兔子\n跳动相对\n于手指或\n鼠标移动\m的方向总\n是偏下。"
+			levelTxtFontSize = levelTxtFontSize * 0.8
+			scoreTxtFontSize = scoreTxtFontSize * 0.8
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		elseif windowWHRatio <= panelWHRatio * 0.6
+			txtLevelInfo = "第\n" + level + "\n关"
+			txtScoreInfo = "得分\n" + totalScore
+			txtNote = "提示：滑动手指或鼠标控制兔子的跳动！注意由于重力的缘故，兔子跳动的方向\n相对于手指或鼠标移动的方向总是偏下。当兔子位于左边的悬崖向右边跳动时，\n要避免跳入食肉动物所在单元格，否则它会被食肉动物给吃掉。但是，\n当兔子跳到右边悬崖就可以吃到胡萝卜变成超级兔子，这时兔子应该向左跳动\n返回左边的悬崖，这时的兔子可以反过来吃食肉动物并得分。当兔子返回\n左边悬崖，这一关就通过了。"
+			levelTxtFontSize = levelTxtFontSize * 0.8
+			scoreTxtFontSize = scoreTxtFontSize * 0.8
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		elseif windowWHRatio <= panelWHRatio * 0.8
+			txtLevelInfo = "第" + level + "关"
+			txtScoreInfo = "总得分：" + totalScore
+			txtNote = "提示：滑动手指或鼠标控制兔子的跳动！\n注意由于重力的缘故，兔子跳动的方向\n相对于手指或鼠标移动的方向总是偏下。"
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		elseif windowWHRatio <= panelWHRatio * 0.9
+			txtLevelInfo = "第" + level + "关"
+			txtScoreInfo = "总得分：" + totalScore
+			txtNote = "提示：滑动手指或鼠标控制兔子的跳动！注意由于重力，\n兔子跳动相对于手指或鼠标移动的方向总是偏下。"
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		endif
+	elseif get_country_language()[1] == "es"
+		if windowWHRatio >= panelWHRatio * 1.3
+			txtLevelInfo = "Nivel " + level
+			txtScoreInfo = "Puntaje total: " + totalScore
+			txtNote = "Sugerencia: deslice el dedo\no el ratón para controlar el\nconejo para saltar!\nDebido a la gravedad, el conejo\nsiempre salta más hacia abajo\nque la dirección del dedo.\nCuando el conejo está en el\nacantilado izquierdo y salta a\nla derecha, usted tiene que\nevitar saltar en una célula\ncarnívora, de lo contrario será\ncomido por el carnívoro. Pero cuando\nel conejo salta al lado derecho\ny come la zanahoria, se convierte\nen un súper conejo. El súper\nconejo debe saltar de nuevo al\nacantilado izquierdo. Esta vez el\nconejo puede comer carnívoros y\nobtener marcas. Cuando el conejo\nregresa al acantilado izquierdo,\neste nivel se pasa."
+		elseif windowWHRatio >= panelWHRatio * 1.2
+			txtLevelInfo = "Nivel " + level
+			txtScoreInfo = "Puntaje total: " + totalScore
+			txtNote = "Sugerencia:\ndeslice el dedo\no el ratón para\ncontrolar el conejo\npara saltar!\nDebido a la\ngravedad, el conejo\nsiempre salta más\nhacia abajo que la\ndirección del dedo."
+		elseif windowWHRatio >= panelWHRatio * 1.1
+			txtLevelInfo = "Nivel " + level
+			txtScoreInfo = "Puntaje: " + totalScore
+			txtNote = "Sugerencia:\ndeslice el\ndedo o el\nratón para\ncontrolar\nel conejo\npara saltar!\nDebido a la\ngravedad,\nel conejo\nsiempre salta\nmás hacia\nabajo que\nla dirección\ndel dedo."
+			levelTxtFontSize = levelTxtFontSize * 0.8
+			scoreTxtFontSize = scoreTxtFontSize * 0.8
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		elseif windowWHRatio <= panelWHRatio * 0.6
+			txtLevelInfo = "Nivel\n  " + level
+			txtScoreInfo = "Puntaje\n" + totalScore
+			txtNote = "Sugerencia: deslice el dedo o el ratón para controlar el conejo para saltar!\nDebido a la gravedad, el conejo siempre salta más hacia abajo que la dirección del dedo.\nCuando el conejo está en el acantilado izquierdo y salta a la derecha, usted tiene\nque evitar saltar en una célula carnívora, de lo contrario será comido por el carnívoro.\nPero cuando el conejo salta al lado derecho y come la zanahoria, se convierte en un\nsúper conejo. El súper conejo debe saltar de nuevo al acantilado izquierdo. Esta vez el\nconejo puede comer carnívoros y obtener marcas. Cuando el conejo regresa al acantilado\nizquierdo, este nivel se pasa."
+			levelTxtFontSize = levelTxtFontSize * 0.8
+			scoreTxtFontSize = scoreTxtFontSize * 0.8
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		elseif windowWHRatio <= panelWHRatio * 0.8
+			txtLevelInfo = "Nivel " + level
+			txtScoreInfo = "Puntaje total: " + totalScore
+			txtNote = "Sugerencia: deslice el dedo o el ratón\npara controlar el conejo para saltar!\nDebido a la gravedad, el conejo siempre\nsalta más hacia abajo que la dirección del dedo."
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		elseif windowWHRatio <= panelWHRatio * 0.9
+			txtLevelInfo = "Nivel " + level
+			txtScoreInfo = "Puntaje total: " + totalScore
+			txtNote = "Sugerencia: deslice el dedo o el ratón para controlar el conejo para saltar!\nDebido a la gravedad, el conejo siempre salta más hacia abajo que la dirección del dedo."
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		endif
+	else
+		if windowWHRatio >= panelWHRatio * 1.3
+			txtLevelInfo = "Level " + level
+			txtScoreInfo = "Total score: " + totalScore
+			txtNote = "Hint: Glide your finger or your\nmouse to control rabbit to jump!\nDue to gravity, rabbit always jumps\nmore downward than finger or\nmouse steering. When the rabbit is\non the left side cliff and jumping\nto right, it has to avoid jumping\ninto a carnivorous cell, otherwise\nit will be eaten by the carnivore.\nBut when the rabbit jumps to the right\nside and eats the carrot, it turns\ninto a super rabbit. The super\nrabbit should jump back to the left\ncliff. This time the rabbit can eat\ncarnivores and get mark. When the\nrabbit returns to the left cliff,\nthis level is passed."
+		elseif windowWHRatio >= panelWHRatio * 1.2
+			txtLevelInfo = "Level " + level
+			txtScoreInfo = "Total score: " + totalScore
+			txtNote = "Hint: Glide your\nfinger or your\nmouse to control\nrabbit to jump!\nDue to gravity,\nrabbit always jumps\nmore downward\nthan finger or\nmouse steering."
+		elseif windowWHRatio >= panelWHRatio * 1.1
+			txtLevelInfo = "Level " + level
+			txtScoreInfo = "Score: " + totalScore
+			txtNote = "Hint:\nGlide your\nfinger\nor your\nmouse to\ncontrol\nrabbit\nto jump!\nDue to\ngravity,\nrabbit\nalways jumps\nmore\ndownward\nthan finger\nor mouse\nsteering."
+			levelTxtFontSize = levelTxtFontSize * 0.8
+			scoreTxtFontSize = scoreTxtFontSize * 0.8
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		elseif windowWHRatio <= panelWHRatio * 0.6
+			txtLevelInfo = "Level\n  " + level
+			txtScoreInfo = "Score\n" + totalScore
+			txtNote = "Hint: Glide your finger or your mouse to control rabbit to jump!\nDue to gravity, rabbit always jumps more downward than finger or\nmouse steering. When the rabbit is on the left side cliff and jumping\nto right, it has to avoid jumping into a carnivorous cell, otherwise\nit will be eaten by the carnivore. But when the rabbit jumps to the right\nside and eats the carrot, it turns into a super rabbit. The super\nrabbit should jump back to the left cliff. This time the rabbit can eat\ncarnivores and get mark. When the rabbit returns to the left cliff,\nthis level is passed."
+			levelTxtFontSize = levelTxtFontSize * 0.8
+			scoreTxtFontSize = scoreTxtFontSize * 0.8
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		elseif windowWHRatio <= panelWHRatio * 0.8
+			txtLevelInfo = "Level " + level
+			txtScoreInfo = "Total score: " + totalScore
+			txtNote = "Hint: Glide your finger or your mouse\nto control rabbit to jump!\nDue to gravity, rabbit always jumps more\ndownward than finger ormouse steering."
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		elseif windowWHRatio <= panelWHRatio * 0.9
+			txtLevelInfo = "Level " + level
+			txtScoreInfo = "Total score: " + totalScore
+			txtNote = "Hint: Glide your finger or your mouse to control rabbit to jump!\nDue to gravity, rabbit always jumps more downward than finger or\nmouse steering."
+			noteTxtFontSize = noteTxtFontSize * 0.8
+		endif
+	endif
+	return [txtLevelInfo, txtScoreInfo, txtNote, levelTxtFontSize, scoreTxtFontSize, noteTxtFontSize]
+endf
+endcs

@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.0"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    sourceSets {
+        main {
+            java.srcDir('src/main/coresrc')
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.0.0' // was androidx.appcompat:appcompat:1.4.0 which needs sdk31
+    implementation 'com.google.android.material:material:1.1.0'
+    //implementation files('libs/google-webrtc-1.0.19742.aar')
+    implementation project(":WebRtcLib")//, configuration = "default")
+
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation('com.google.apis:google-api-services-gmail:v1-rev83-1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+
+    implementation files('libs/commons-compress-1.9.jar')
+    implementation files('libs/commons-lang3-3.3.1.jar')
+    implementation 'com.sun.mail:android-mail:1.6.6'
+    implementation 'com.sun.mail:android-activation:1.6.6'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

@@ -1,0 +1,4 @@
+include ':MFPAnLib'
+include ':app'
+include ':WebRtcLib'
+rootProject.name = "MFPAndroLib"

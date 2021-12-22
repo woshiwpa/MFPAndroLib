@@ -1,0 +1,207 @@
+citingspace Metta ::	dddK:: fghi
+Help
+this is ::Metta::dddK::fghi::fghiB()
+endh
+function fghiB()
+	print("this is ::Metta::dddK::fghi::fghiB()\n")
+	try
+	fghi(3,4)
+	catch
+		print("cannot find fghi(3,4)\n")
+	endtry
+endf
+
+	using citingspace :: Metta ::	dddK
+Help
+this is ::Metta::dddK::fghi::fghiA()
+endh
+
+function fghiA()
+	print("this is ::Metta::dddK::fghiNo::fghiA()\n")
+	fghi(3,4)
+	Cia :: b::callfghics()
+endf
+endcs
+
+using citingspace meTta
+
+citingspace Metta ::dDdK
+using citingspace :: __ABCDE__ :: Abcde ::kgb
+using citingspace :: __ABCDE__ :: Abcde 
+using citingspace :: __ABCDE__ 
+Help
+test is ::Metta::dddK::testCompulsoryLink1()
+endh
+function testCompulsoryLink1()
+@compulsory_link get_functions( "abcde" )
+	try
+@compulsory_link get_functions ( "dddK :: testCompulsoryLink1(0)", "CIA  :: jjJJ"  )
+	catch
+		print("catch!\n")
+	endtry
+endf
+
+Help
+test is ::Metta::dddK::testCompulsoryLink2()
+endh
+function testCompulsoryLink2()
+	try
+	catch
+@compulsory_link get_functions("abcde" )
+		print("catch!\n")
+	endtry
+endf
+
+Help
+test is ::Metta::dddK::testCompulsoryLink3()
+endh
+function testCompulsoryLink3()
+	try
+	catch
+		print("catch!\n")
+	endtry
+@compulsory_link	get_functions (  "::metta::dddK::v5__::v6::oooo1(1)",	"v5__::v6::oooo1(0)",	"::　　wolfCastle ( 2 )" )
+endf
+
+Help
+test is ::Metta::dddK::testCompulsoryLink4()
+endh
+function testCompulsoryLink4()
+	try
+	catch
+		print("catch!\n")
+	endtry
+@compulsory_link	　get_functions (　" fghI( 3)")
+endf
+
+Help
+test is ::Metta::dddK::testCompulsoryLink5()
+endh
+function testCompulsoryLink5()
+	try
+	catch
+		print("catch!\n")
+	endtry
+@compulsory_link	get_functions (　"", "abs(1  )", "::  wolfCastle ( 2 )")
+endf
+
+Help
+test is ::Metta::dddK::testCompulsoryLink6()
+endh
+function testCompulsoryLink6()
+	variable var1 = "a", var2 = "b"
+	print("var1 + var2 is " + (var1 + var2 = "hello"))
+endf
+
+Help
+this is ::Metta::dddK::fghiA()
+endh
+using citingspace fghi
+function fghiA()
+	print("this is ::Metta::dddK::fghiA()\n")
+	fghi(3,4)
+	fghi()
+	fghi::fghiB()
+	fghiB()
+	try
+		metta::abcde(7,3,6,8)
+	catch
+		print("cannot find metta::abcd(7,3,6,8)\n")
+	endtry
+	try
+		abcde(7,3,6,8)
+	catch
+		print("cannot find (metta::)abcd(7,3,6,8)\n")
+	endtry
+endf
+
+citingspace Cia :: b
+
+function callfghics()
+	print("this is ::Metta::dddK::Cia::b::callfghics()\n")
+	fghi(7,8)
+	fghi()
+endf
+
+citingspace  	
+function callfghics2()
+	print("this is ::callfghics2()\n")
+	callfghics()
+	fghi()
+	fghiA()
+	oooo()
+	testFGHIOOOO(8)
+	Abcde:: testFGHIOOOO(18)
+endf
+endcs
+endcs
+endcs
+
+Help
+this is ::fghiA()
+endh
+function fghiA()
+	try
+		metta::abcde(7,3,6,8)
+	catch
+		print("cannot find metta::abcd(7,3,6,8)\n")
+	endtry
+	abcde(7,3,6,8)
+	abcde(7,3,6,8,9)
+	abcde(7,3)
+	dddK::fghi::fghiA()
+endf
+
+Help
+this function is to test conflict between mfp's sin and ::sin
+endh
+function my_sin1234567(a)
+	print("this is ::my_sin1234567(a)\n")
+    return a**2
+endf
+
+Help
+this function is to test my_sin1234567(a) in ::
+endh
+function test_my_sin1234567(a)
+	print("this is ::test_my_sin1234567(a)\n")
+    return my_sin1234567(a)
+endf
+
+
+citingspace mfp::math :: Trigon
+Help
+this function is to test conflict between trigon's my_sin1234567 and ::my_sin1234567 in trigon cs
+endh
+function my_sin1234567(a)
+	print("this is mfp::math :: Trigon::my_sin1234567(a)\n")
+	return sin(a)
+endf
+
+
+Help
+this function is to test my_sin1234567(a) in mfp::math :: Trigon
+endh
+function test_my_sin1234567(a)
+	print("this is ::mfp::math :: Trigon::test_my_sin1234567(a)\n")
+    return my_sin1234567(a)
+endf
+
+endcs
+citingspace mfp :: MATH
+Help
+this function is to test conflict between math's my_sin1234567 and ::my_sin1234567 in math cs
+endh
+function my_sin1234567(a)
+	print("this is mfp :: MATH::my_sin1234567(a)\n")
+	return 8*a
+endf
+
+Help
+this function is to test my_sin1234567(a) in mfp::math 
+endh
+function test_my_sin1234567(a)
+	print("this is ::mfp::math :: test_my_sin1234567(a)\n")
+    return my_sin1234567(a)
+endf
+endcs

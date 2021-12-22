@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>程式開發科學計算器幫助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body style="background-color:white;">
+<h2 style="color:blue">MFP編程語言@compulsory_link標註：</h2>
+<p style="font-family:verdana;color:black;">
+</p>
+<p style="font-family:verdana;color:black;">
+當創建一個APK包的時候，程式開發科學計算器不是拷貝所有用戶自定義的mfps代碼文檔而僅僅抽取相關的代碼。在某些時候，比如調用integrate或者plot_exprs函數程式時，函數程式參數是一個字符串或者基於字符串的變量。這樣一來，程式開發科學計算器在編譯的時候無法判斷哪些函數程式在運行時將會被調用。又比如，如果函數程式的參數是一個對象，該對象的類型在運行前往往無法確定。用戶在這種情況下需要在代碼中，最好在相關函數程式調用語句的前一行，增加一個註釋指令@complusory_link告知程式開發科學計算器哪些用戶自定義的函數程式和類需要鏈接入APK包。比如
+</p>
+<p style="font-family:verdana;color:black;">
+...
+</p>
+<p style="font-family:verdana;color:black;">
+@compulsory_link get_functions("::abc::myf_expr1", "myf_expr2(2)")
+</p>
+<p style="font-family:verdana;color:black;">
+integrated_result = integrate(expression_str, variable_str)
+</p>
+<p style="font-family:verdana;color:black;">
+@compulsory_link get_classes("::def::hij::my_class1", "::my_class2", "my_class3")
+</p>
+<p style="font-family:verdana;color:black;">
+...
+</p>
+<p style="font-family:verdana;color:black;">
+在上面例子中，::abc::myf_expr1和myf_expr2是用戶自定義的函數程式。它們在運行時將會被integrate函數程式調用用於計算積分。所有的名字叫做::abc::myf_expr1的函數程式都會被鏈接入APK包。但是對於名字叫myf_expr2的函數程式，當且僅當它是位於一個被使用的引用空間中並且它正好有兩個參數或者有可選參數時，該函數程式才會被鏈接入APK包。
+</p>
+<p style="font-family:verdana;color:black;">
+類似地，::def::hij::my_class1，::my_class2和my_class3是用戶自定義的類。需要註意的是類my_class3不包括完整的引用空間路徑，所以compulsory_link語句將會搜索引用空間，找到第一個名字符合my_class3的類，如果存在這個類的話。
+</p>
+<p style="font-family:verdana;color:black;">
+如果用戶想把所有自己定義的函數程式和類鏈接入APK包，請用如下語句
+</p>
+<p style="font-family:verdana;color:black;">
+@compulsory_link get_all_referred_units()
+</p>
+<p style="font-family:verdana;color:black;">
+。這樣一來，程式開發科學計算器將鏈接所有函數程式和類。但是用戶創建的應用裝載速度會比較慢。並且，用戶還必須保證所有的函數程式和類都必須已經定義，否則打包時會出現編譯錯誤。
+</p>
+<p style="font-family:verdana;color:black;">
+需要指出的是，get_functions，get_classes和get_all_referred_units實際上都是MFP語言的函數程式。但是和普通函數程式不一樣的是，這幾個函數程式位於mfp_compiler引用空間中。該引用空間僅僅在打包鏈接的時候被加載，一般情況下用戶不會用到。
+</p>
+<p style="font-family:verdana;color:black;">
+還要註意@compulsory_link指令必須位於一個函數程式的內部，如果它在function語句前面或者endf語句之後，它不會有任何作用。
+</p>
+</body>
+</html>

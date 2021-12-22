@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hola!</string>
+    <string name="app_name">Scientific Calculator Plus</string>
+    <string name="alert_dialog_ok">OK</string>
+    <string name="alert_dialog_cancel">Cancelar</string>
+    <string name="yes_i_know">Si, yo sé</string>
+    <string name="read_next_time">Leer la próxima vez</string>
+    <string name="menu_cmdline">Línea de comandos</string>
+    <string name="menu_calcassist">Asistente de la calculadora</string>
+    <string name="menu_calculate">Calcular</string>
+    <string name="menu_plotgraph">Trazar gráfica</string>
+    <string name="menu_plot2dgraph">Trazar gráfica 2D</string>
+    <string name="menu_plot3dgraph">Trazar gráfica 3D</string>
+    <string name="menu_chartmgr">Administrador de gráficas</string>
+    <string name="menu_integrate">Integrar</string>
+    <string name="menu_history">História</string>
+    <string name="menu_alwayshidesoftkeyboard">Ocultar el teclado de software</string>
+    <string name="menu_enablesoftkeyboard">Habilitar el teclado de software</string>
+    <string name="menu_settings">Configuración</string>
+    <string name="menu_configinputpads">Configurar InputPads</string>
+    <string name="menu_fill_example">Llenar el ejemplo</string>
+    <string name="menu_help">Ayuda</string>
+    <string name="setting_number_format_prompt">Establecer bits de precisión</string>
+    <string name="setting_variable_range_prompt">Establecer el rango de variables para trazar gráficos en Smart Calc</string>
+    <string name="setting_record_length_prompt">Establecer longitud de registro</string>
+    <string name="setting_extreme_value_prompt">Establecer valor extremo</string>
+    <string name="setting_auto_start_prompt">Auto iniciar programa</string>
+    <string name="setting_application_data_storage_prompt">Almacenamiento para guardar datos de la aplicación</string>
+    <string name="do_you_know">Usted sabe ...</string>
+    <string name="whats_new">Lo nuevo</string>
+    <string name="do_not_show_whats_new_again">No mostrar este cuadro de diálogo la próxima vez.</string>
+    <string name="welcome_message">Ayuda de entrada o una expresión como 3 + log(4.1 / avg(1,5,-3)), Luego presione Ir!</string>
+    <string name="welcome_message2">Sugerencias: \ n * Toque el cuadro de edición de texto para mostrar el teclado en software. Deslice el teclado a la izquierda o a la derecha para seleccionar números, operadores o ingresar diferentes funciones.\n* Escriba ayuda(haciendo click en el botón del salvavidas) y luego el nombre de la función o el nombre del operador para obtener ayuda rápida, o una expresión como 3 + log(4.1 / avg(1,5,-3)), o un grupo de expresiones como\ny1*3+4*y2-3*y3==7\ny2/2-3*y3+y1==9\ny3/3-6*y1+y2==2.4\n, luego oprima ejecutar para calcular!\n* Recuerde que el opperador igual es  \'==\' mientras que \'=\' significa asignar un valor a una variable. Además, el operador de potenciación es \'**\' no \'^\'.</string>
+    <string name="welcome_message3">Sugerencias: \ n * Toque el cuadro de edición de texto para mostrar el teclado en software. Deslice el teclado a la izquierda o a la derecha para seleccionar números, operadores o ingresar funciones.\n* Escriba ayuda(haciendo click en el botón del salvavidas) y luego el nombre de la función o el nombre del operador para obtener ayuda rápida.\n* Ingrese una expresión simple como 3+log(4.1/avg(1,5,-3)), o expresiones como\ny1*(3.8+i)==7+4*y2\ny2/2-3*y1==9.4\n, luego oprima el botón ejecutar para calcular el(los) valor(es).\nIngrese ecuaciones como r = cos(θ), y==sin(x) y/o z==x+y, luego oprima el botón graficar para dibujar gráficas 2D, polares o 3D!\n* Recuerde que el operador igual es \'==\' mientras que \'=\' se utiliza para asignar un valor a una variable. Además, el operador de potenciación es \'**\' no \'^\'.</string>
+    <string name="welcome_message4">Sugerencias:\n* Haga clic en el botón de la cámara para tomar la foto de expresiones matemáticas y luego reconocer.\n&lt;div align=&quot;left&quot;&gt;&lt;img src=&quot;file:///android_asset/en/HowtoInfo/main_window_big.jpg&quot; alt=&quot;take_photo&quot; WITH_HEIGHT_TO_RECALC(800,480) /&gt;&lt;/div&gt;\n* Toque el cuadro de edición de texto para mostrar el teclado en software. Deslice el teclado a la izquierda o a la derecha para seleccionar números, operadores o ingresar funciones.\n&lt;div align=&quot;left&quot;&gt;&lt;img src=&quot;file:///android_asset/en/HowtoInfo/main_window_popup_keyboard_big.jpg&quot; alt=&quot;input_by_keyboard&quot; WITH_HEIGHT_TO_RECALC(800,480) /&gt;&lt;/div&gt;\n* Escriba ayuda(haciendo click en el botón del salvavidas) y luego el nombre de la función o el nombre del operador para obtener ayuda rápida.\n&lt;div align=&quot;left&quot;&gt;&lt;img src=&quot;file:///android_asset/en/HowtoInfo/find_help_of_functions_big.jpg&quot; alt=&quot;find_help_of_functions&quot; WITH_HEIGHT_TO_RECALC(800,480) /&gt;&lt;/div&gt;</string>
+    <string name="calculation_result_clearly_shown">Resultado del cálculo</string>
+    <string name="copy_result_to_input">Copiar resultado</string>
+    <string name="copy_expression_to_input">Copiar entrada</string>
+    <string name="long_click_calculate_output">De un clic prolongado sobre el cuadro de texto de salida para ver los resultados más claramente!</string>
+    <string name="EXPERROR_NO_EXPRESSION">Se rerquiere una expresión!</string>
+    <string name="EXPERROR_MULTIPLE_EXPRESSIONS">Múltiples expresiones!</string>
+    <string name="EXPERROR_LACK_OPERATOR_BETWEEN_TWO_OPERANDS">Falta operador entre 2 operandos!</string>
+    <string name="EXPERROR_NUM_CAN_NOT_HAVE_TWO_DECIMAL_POINT">Número con 2 puntos decimales!</string>
+    <string name="EXPERROR_NUM_DO_NOT_ACCORD_DECIMAL_NUM_WRITING_STANDARD">No hay coincidencia con la escritura de números decimales estándar!</string>
+    <string name="EXPERROR_OPERATOR_NOT_EXIST">Operador No-existe!</string>
+    <string name="EXPERROR_UNMATCHED_RIGHTPARENTHESE">Falta paréntesis izquierdo que coincida con el derecho!</string>
+    <string name="EXPERROR_UNMATCHED_LEFTPARENTHESE">Falta paréntesis derecho que coincida con el izquierdo!</string>
+    <string name="EXPERROR_WRONG_OPERAND_TYPE">Tipo de operando incorrecto!</string>
+    <string name="EXPERROR_INCORRECT_ANSWER_OF_POWER_FUNCTION_OPERANDS">Repuesta incorrecta del operando de la función potencia!</string>
+    <string name="EXPERROR_INCORRECT_BINARY_OPERATOR">Operador binario incorrecto!</string>
+    <string name="EXPERROR_INCORRECT_MONADIC_OPERATOR">Operador monádico incorrecto!</string>
+    <string name="EXPERROR_LACK_OPERAND">Falta operando!</string>
+    <string name="EXPERROR_CAN_NOT_IDENTIFIED_CHARACTER">Imposible identificar el caracter!</string>
+    <string name="EXPERROR_DATATYPE_IS_NOT_DEFINED">Tipo de dato indefinido!</string>
+    <string name="EXPERROR_CAN_NOT_CHANGE_A_NOTEXIST_DATUM_TO_ANY_OTHER_DATATYPE">No se puede cambiar un dato no-exist a cualquier otro tipo de dato!</string>
+    <string name="EXPERROR_NEW_DATATYPE_IS_NOT_DEFINED">Nuevo tipo de dato indefinido!</string>
+    <string name="EXPERROR_INTEGER_OVERFLOW">Desbordamiento de número entero!</string>
+    <string name="EXPERROR_DOUBLE_OVERFLOW">Desbordamiento de número doble!</string>
+    <string name="EXPERROR_CHANGE_FROM_DOUBLE_TO_INTEGER_OVERFLOW">Desbordamiento al convertir número doble a entero!</string>
+    <string name="EXPERROR_OPERAND_OF_FACTORIAL_MAY_BE_TOO_LARGE">Operando demasiado grande para la función factorial!</string>
+    <string name="EXPERROR_DIVISOR_CAN_NOT_BE_ZERO">División por cero!</string>
+    <string name="EXPERROR_OPERAND_OF_FACTORIAL_CAN_NOT_LESS_THAN_ZERO">Operando negativo en la función factorial!</string>
+    <string name="EXPERROR_OPERAND_OF_BIT_OPERATION_MUST_BE_GREATER_THAN_ZERO">Operando No-positivo en una operación de bit!</string>
+    <string name="EXPERROR_INCORRECT_NUM_OF_PARAMETER">Número de parámetros incorrecto!</string>
+    <string name="EXPERROR_INVALID_PARAMETER_RANGE">Rango de parámetro no válido!</string>
+    <string name="EXPERROR_INVALID_PARAMETER_TYPE">Tipo de parámetro no válido!</string>
+    <string name="EXPERROR_UNDEFINED_FUNCTION">Función indefinida!</string>
+    <string name="EXPERROR_UNDEFINED_VARIABLE">Variable indefinida!</string>
+    <string name="go_button">Ejecutar!</string>
+    <string name="numbers_operators_button_long">números\noperadores</string>
+    <string name="common_functions_button_long">Funciones\ncomunes</string>
+    <string name="more_functions_button_long">Más\nfunciones</string>
+    <string name="numbers_operators_button_short">1+2*3</string>
+    <string name="common_functions_button_short">f(x)</string>
+    <string name="more_functions_button_short">f()...</string>
+    <string name="left_button">Izquierda</string>
+    <string name="right_button">Derecha</string>
+    <string name="eraze_button">Borrar</string>
+    <string name="help_button">Ayuda</string>
+    <string name="x_help_info">X es el nombre de la variable a resolver, a graficar o parte del nombre de otra variable como x1, xy, xx etc.</string>
+    <string name="y_help_info">Y es el nombre de la variable a resolver, a graficar o parte del nombre de otra variable como like y3, xy, yyyy etc.</string>
+    <string name="z_help_info">Z es el nombre de la variable a resolver, a graficar o parte del nombre de otra variable como z2, zx, zzz etc.</string>
+    <string name="u_help_info">U es el nombre de la variable a resolver, a graficar o parte del nombre de otra variable como u1, uy, uu etc.</string>
+    <string name="v_help_info">V es el nombre de la variable a resolver, a graficar o parte del nombre de otra variable como v3, xv, vvvv etc.</string>
+    <string name="t_help_info">T es el nombre de la variable a resolver, a graficar o parte del nombre de otra variable como t2, tx, ttt etc.</string>
+    <string name="r_help_info">R es el nombre de la variable r a resolver o graficar (habitualmente utilizada para trazar gráficas polares) o parte del nombre de otra variable como r2, rx, rrr etc.</string>
+    <string name="theta_help_info">θ es el nombre de la variable r a resolver o graficar θ o parte del nombre de otra variable como θ2. Note that if plot variable θ and another variable, i.e. 2D chart, a polar graph will be generated.</string>
+    <string name="assign_help_info">Operqador de asignación, el cual asigna un valor a una variable, ejemplo. x = 3 + 4 asigna 7 a la variable x.</string>
+    <string name="equal_help_info">Signo igual el cual significa que la expresión de la derecha tiene el mismo valor que la expresión de la derecha. Por ejemplo, x + 1 == 7 + 3 significa x + 1 tiene el mismo valor que 7 + 3 (i.e. 10). Por lo tanto, x puede ser resuelta y su valor es 9.</string>
+    <string name="parenthesis_help_info">Paréntesis izquierdo. La expresión dentro de los paréntesis debería ser calculada primero. Por ejemplo, x * (y + 3).</string>
+    <string name="closeparenthesis_help_info">Paréntesis derecho. La expresión dentro de los paréntesis debería ser calculada primero. Por ejemplo, x * (y + 3).</string>
+    <string name="squarebracket_help_info">Corchete de apertura indica el comienzo de un arreglo. Por ejemplo, [[1,2,3],[4,5,6]] es una matriz de 2*3 cuya primera línea incluye los elementos 1, 2 y 3 y la segunda línea incluye los elementos 4, 5 y 6.</string>
+    <string name="closesquarebracket_help_info">Corchete de cierre indica el fin de un arreglo. Por ejemplo, [[1,2,3],[4,5,6]] es una matriz de 2*3 cuya primera línea incluye los elementos 1, 2 y 3 y la segunda línea incluye los elementos 4, 5 y 6.</string>
+    <string name="comma_help_info">Coma caracter que sepera elementos individuales de un arreglo. Por ejemplo, el vector [2,3,4,5] tiene 4 elementos separados por comas.</string>
+    <string name="plus_help_info">Signo mas (soporta números complejos, matrices y cadenas) o signo positivo.</string>
+    <string name="minus_help_info">Signo menos (soporta números complejos, matrices y cadenas) o signo negativo.</string>
+    <string name="multiplication_help_info">Multiplicación (soporta números complejos y matrices).</string>
+    <string name="division_help_info">División (soporta números complejos y matrices).</string>
+    <string name="leftdivision_help_info">División izquierda (principalmente para matrices para calcular x de Ax=b (i.e. x = A\\b), note que el primer operando es el divisor y realiza la misma operación de división si el divisor no es una matriz).</string>
+    <string name="power_help_info">Potencia. Note que tanto el primer operando como el segundo pueden ser números complejos.</string>
+    <string name="exclaimation_help_info">Signo no (negación) si actúa como operador unario izquierdo o factorial si es operador unario derecho. El operando deberá ser no negativo y será convertido a entero.</string>
+    <string name="transpose_help_info">Matriz transpuesta 2D, si el operando es un vector 1D, convertirlo a una matriz 2D, si el operando no es un arreglo, retorna el operando mismo.</string>
+    <string name="doublequote_help_info">Comilla doble caracter que delimita una cadena.</string>
+    <string name="percentage_help_info">Porcentaje. Por ejemplo, 403.77% = 4.0377.</string>
+    <string name="bit_and_help_info">Operador binario(bit a bit) Y. Sólo acepta operandos enteros  no-negativos.</string>
+    <string name="bit_or_help_info">Operador binario(bit a bit) O. Sólo acepta operandos enteros  no-negativos.</string>
+    <string name="bit_xor_help_info">Operador binario(bit a bit) O exclusivo (XOR). Sólo acepta operandos enteros no-negativos.</string>
+    <string name="bit_not_help_info">Operador binario(bit a bit) NO. Sólo acepta operandos enteros  no-negativos.</string>
+    <string name="image_i_help_info">Unidad imagen para valores complejos.</string>
+    <string name="pi_constant_help_info">Valor de la constante PI.</string>
+    <string name="e_constant_help_info">Valor de la constante e. Note que e también se usa en notación científica, por ejemplo 1.23e-002.</string>
+    <string name="null_constant_help_info">Valor nulo.</string>
+    <string name="true_constant_help_info">Valor booleano VERDADERO.</string>
+    <string name="false_constant_help_info">Valor booleano FALSO.</string>
+    <string name="inf_constant_help_info">Valor infinito.</string>
+    <string name="infi_constant_help_info">Valor de imagen para infinito.</string>
+    <string name="nan_constant_help_info">Valor indefinido, como 0 dividido por 0.</string>
+    <string name="nani_constant_help_info">Valor de imagen para indefinido.</string>
+    <string name="hex_oct_bin_initial_help_info">0x es el comienzo de un número hexadecimal; por ejemplo 0xFA36.BCEE, 0b es el comienzo de un número binario, por ejemplo. 0b0011; y 0 es el comienzo de un número octal, por ejemplo 0376.774.</string>
+    <string name="no_quick_help_info">No existe ayuda rápida para </string>
+    <string name="calculator_settings">Configurar la calculadora</string>
+    <string name="digits_shown"> digitos</string>
+    <string name="let_calculator_decide">Permitir que la calculadora decida</string>
+    <string name="never_sci_notation">Nunca use notación científica</string>
+    <string name="always_sci_notation">Siempre use notación científica</string>
+    <string name="if_log10_abs_result">Si log10(abs(resultado)) &gt;= </string>
+    <string name="records_shown"> registros</string>
+    <string name="enable_btn_press_vibration_prompt">Vibrar al oprimir el botón calcular</string>
+    <string name="external_storage_mnt_folder_prompt">Dispositivo de almacenamiento externo(por ejemplo tarjeta SD) montado en carpeta :</string>
+    <string name="app_folder_prompt">Carpeta de datos de aplicación en un dispositivo de almacenamiento externo es :</string>
+    <string name="default_storage">Almacenamiento predeterminado</string>
+    <string name="auto">Auto</string>
+    <string name="internal_storage">Almacenamiento interno</string>
+    <string name="external_sd_card">Tarjeta SD externa</string>
+    <string name="script_folder_prompt">Las funciones definidas por el usuario se almancenan en la carpeta del dispositivo de almacenamiento externo :</string>
+    <string name="chart_folder_prompt">Las gráficas generadas por el usuario se almancenan en la carpeta del dispositivo de almacenamiento externo :</string>
+    <string name="apk_folder_prompt">Archivos APK de usuario generados se almacenan en la carpeta del dispositivo de almacenamiento externo :</string>
+    <string name="signature_key_folder_prompt">Generado por el Usuario claves de firma se almacenan en la carpeta del dispositivo de almacenamiento externo :</string>
+    <string name="settings_saved">Configuración guardada</string>
+    <string name="select_record_title">Registros de cálculo</string>
+    <string name="no_records">No hay registros!</string>
+    <string name="select_input_type">Por favor, seleccione una opción o ingrrese el dato solicitado</string>
+    <string name="error_answer_shown">Error</string>
+    <string name="return_nothing_answer_shown">Respuesta nula</string>
+    <string name="variables_declared_shown">Las siguientes variables declaradas :</string>
+    <string name="calculator_help">Ayuda de la calculadora</string>
+    <string name="cmd_line_title">Línea de comandos</string>
+    <string name="cmd_line_welcome_message">Por favro, ingrese una expresión o escriba ayuda/help seguida por el nombre de una función, luego oprima ENTER.</string>
+    <string name="command_prompt">$&gt;</string>
+    <string name="session_starts">Inicio de sesión</string>
+    <string name="session_returns">Retorno de sesión</string>
+    <string name="last_cmd">Último comando</string>
+    <string name="last_return">Última respuesta</string>
+    <string name="last_input">Última entrada</string>
+    <string name="interrupt_task">Finalizar la tarea en ejecución</string>
+    <string name="clear_screen">Borrar la pantalla</string>
+    <string name="pop_up_soft_key">Mostrar teclado de software</string>
+    <string name="pop_up_system_soft_key">Mostrar teclado de software del sistema</string>
+    <string name="hide_system_soft_key">Ocultar teclado de software del sistema</string>
+    <string name="new_script">Nueva secuencia de comandos</string>
+    <string name="manage_scripts">Administrar secuencia de comandos</string>
+    <string name="view_charts">Ver gráficas</string>
+    <string name="error">Error!</string>
+    <string name="retry_or_not">Reintentar?</string>
+    <string name="warning">Precaución!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="close">Cerrar</string>
+    <string name="clear">Borrar</string>
+    <string name="next_step">Siguiente paso</string>
+    <string name="back">Atras</string>
+    <string name="skip">Omitir</string>
+    <string name="script_file_manager_title">Administador de archivos de secuencias de comandos</string>
+    <string name="chart_file_manager_title">Administrador de archivos de gráficas</string>
+    <string name="apk_file_manager_title">Administrador de archivos APK</string>
+    <string name="file_manager_title">Administrador de archivos</string>
+    <string name="script_editor_title">Editor de secuencias de comandos</string>
+    <string name="script_file_saved">Archivo guardado</string>
+    <string name="file_folder_icon">Ícono de archivo o carpeta</string>
+    <string name="file_manager_menu_new">Nuevo</string>
+    <string name="file_manager_menu_open">Abrir</string>
+    <string name="file_manager_menu_run">Ejecutar</string>
+    <string name="file_manager_menu_save">Guardar</string>
+    <string name="file_manager_menu_cut">Cortar</string>
+    <string name="file_manager_menu_copy">Copiar</string>
+    <string name="file_manager_menu_paste">Pegar</string>
+    <string name="file_manager_menu_rename">Renombrar</string>
+    <string name="file_manager_menu_delete">Borrar</string>
+    <string name="cannot">No se puede</string>
+    <string name="file_copy_action">copiar archivo</string>
+    <string name="file_move_action">mover archivo</string>
+    <string name="file_rename_action">renombrar archivo</string>
+    <string name="to_path">a</string>
+    <string name="file_manager_file_io_error">Error de archivo!</string>
+    <string name="file_manager_source_file_does_not_exist">no existe archivo fuente!</string>
+    <string name="file_manager_invalid_operation">Operación de archivo no válida!</string>
+    <string name="file_manager_to_cover_existing_file">Se reemplazará un archivo existente (o combinar en una carpeta existente), desea continuar?</string>
+    <string name="loading_chart">Cragando gráfica ...</string>
+    <string name="file_manager_invalid_path">Ruta no válida!</string>
+    <string name="example_scripts_not_loaded">La carpeta Ejemplos es sólo para ejemplos. Cualquier cambio en esta carperta o sus sub carpetas no se aplicará!</string>
+    <string name="file_manager_copy_examples_confirm">No se encontró el archivo. Desea copiar archivos de ejemplo en la carpeta?</string>
+    <string name="file_manager_new_file_type_script_file">Nuevo archivo de secuencia de comandos</string>
+    <string name="file_manager_new_file_type_folder">Nueva carpeta</string>
+    <string name="file_manager_new_file_prompt">Por favor entre el nombre :</string>
+    <string name="file_manager_new_file_title">Crear nuevo ítem</string>
+    <string name="file_manager_new_file_failed_msg">No se puede crear el nuevo ítem!</string>
+    <string name="file_manager_file_rename_title">Renombar</string>
+    <string name="file_manager_file_new_name_prompt">Por favor entre el nuevo nombre :</string>
+    <string name="file_manager_file_rename_failed_msg">No se puede renombrar el ítem!</string>
+    <string name="file_manager_file_cannot_be_renamed_to_the_same_file">El archivo renombrado tiene el mismo nombre del archivo original!</string>
+    <string name="file_manager_file_cannot_be_copied_moved_or_renamed_to_folder_or_vice_versa">El archivo no puede ser copiado, movido o renombrado como una carpeta o viceversa!</string>
+    <string name="file_manager_folder_cannot_be_copied_moved_or_renamed_to_its_child">La carpeta no puede ser copiada, movida o renombrada como uno de sus hijos!</string>
+    <string name="file_manager_renamed_file_name_cannot_be_empty">El nombre del archivo renombrado no puede estar en blanco!</string>
+    <string name="file_manager_file_delete_title">Borrar</string>
+    <string name="file_manager_file_delete_confirm">Está seguro de borrar? </string>
+    <string name="file_manager_file_delete_failed_msg">No se puede borrar el ítem!</string>
+    <string name="file_editor_file_open_fail">No se puede abrir el archivo!</string>
+    <string name="file_not_found">Archivo no encontrado!</string>
+    <string name="file_editor_file_io_error">Error de entrada/saldia!</string>
+    <string name="file_editor_file_changed">El archvio ha sido cambiado, desea guardarlo?</string>
+    <string name="file_editor_new_file">Nuevo archivo</string>
+    <string name="file_editor_file">Archivo</string>
+    <string name="file_editor_inside">En</string>
+    <string name="file_editor_menu_new">Nuevo</string>
+    <string name="file_editor_menu_open">Abrir</string>
+    <string name="file_editor_menu_run">Ejecutar</string>
+    <string name="file_editor_menu_save">Guardar</string>
+    <string name="file_editor_menu_save_as">Guardar como</string>
+    <string name="file_editor_menu_goto_line">Ir a la línea</string>
+    <string name="file_editor_menu_search">Buscar</string>
+    <string name="file_editor_goto_line">Ir a la línea</string>
+    <string name="file_editor_search">Buscar</string>
+    <string name="file_editor_save_file_before_run">Por favor, guarde el archivo, a continuación, ejecutar!</string>
+    <string name="choose_inputpad_2_config">Por favor, elija el programa para configurar su método de entrada:</string>
+    <string name="choose_sc_inputpad_config">Configurar método de entrada de Smart Calculator</string>
+    <string name="choose_cl_inputpad_config">Configurar método de entrada de línea de comandos</string>
+    <string name="choose_se_inputpad_config">Configurar método de entrada del editor de secuencias de comandos</string>
+    <string name="choose_integ_plot_inputpad_config">Configurar otros métodos de entrada</string>
+    <string name="choose_graph_plotter">Por favor, elija el tipo de gráfica:</string>
+    <string name="choose_2d_graph_plotter">Trazar gráfica 2D</string>
+    <string name="choose_polar_graph_plotter">Trazar gráfica de coordenadas polares</string>
+    <string name="choose_3d_graph_plotter">Trazar gráfica 3D</string>
+    <string name="plot_2d_title">Trazar gráfica 2D</string>
+    <string name="plot_polar_title">Trazar gráfica de coordenadas plares</string>
+    <string name="plot_3d_title">Trazar gráfica 2D</string>
+    <string name="graph_name_prompt">Nombre de la gráfica:</string>
+    <string name="graph_title_prompt">Título de la gráfica:</string>
+    <string name="graph_Xtitle_prompt">Título del eje X:</string>
+    <string name="graph_Ytitle_prompt">Título del eje Y:</string>
+    <string name="graph_Ztitle_prompt">Título del eje Z:</string>
+    <string name="graph_Rtitle_prompt">Título del eje r:</string>
+    <string name="graph_Angletitle_prompt">θ título:</string>
+    <string name="graph_name_hint">Gráfica1</string>
+    <string name="graph_title_hint">Ejemplo de trazado</string>
+    <string name="oriental_pearl_tower">Shanghai Oriental Pearl TV Tower</string>
+    <string name="graph_Xtitle_hint">Valor X</string>
+    <string name="graph_Ytitle_hint">Valor Y</string>
+    <string name="graph_Ztitle_hint">Valor Z</string>
+    <string name="graph_Rtitle_hint">R</string>
+    <string name="graph_Angletitle_hint">Ángulo</string>
+    <string name="graph_show_grid_chkbox_prompt">Mostrar\nrejilla</string>
+    <string name="add_curve_btn_text">Añadir curva</string>
+    <string name="clear_all_btn_text">Borrar</string>
+    <string name="generate_chart_btn_text">Ver</string>
+    <string name="curve_title_prompt">Título:</string>
+    <string name="surface_is_grid_prompt">Es rejilla?</string>
+    <string name="curve_color_prompt">Color:</string>
+    <string name="max_color_prompt">Color:</string>
+    <string name="max_color_value_prompt">Valor máximo:</string>
+    <string name="max_value_colors_prompt">Valor máximo y colores</string>
+    <string name="min_color_prompt">Color:</string>
+    <string name="min_color_value_prompt">Valor mínimo:</string>
+    <string name="min_value_colors_prompt">Valor mínimo y colores</string>
+    <string name="curve_point_style_prompt">Estilo del punto:</string>
+    <string name="curve_show_line_chkbox_prompt">Mostrar líneas</string>
+    <string name="t_from_prompt">t: desde</string>
+    <string name="t_to_prompt">hasta</string>
+    <string name="t_step_prompt">incremento</string>
+    <string name="u_from_prompt">u: desde</string>
+    <string name="u_to_prompt">hasta</string>
+    <string name="u_step_prompt">incremento</string>
+    <string name="v_from_prompt">v: desde</string>
+    <string name="v_to_prompt">hasta</string>
+    <string name="v_step_prompt">incremento</string>
+    <string name="curve_title_hint">curva1</string>
+    <string name="curve_title_hint1">curva2</string>
+    <string name="curve_title_hint2">curva3</string>
+    <string name="t_from_hint">-50</string>
+    <string name="t_to_hint">50</string>
+    <string name="t_step_hint">0.1</string>
+    <string name="auto_value">Auto</string>
+    <string name="x_t_hint">sin(2*t+2)</string>
+    <string name="y_t_hint">cos(3*t-5)</string>
+    <string name="delete_curve_btn_text">Borrar curva</string>
+    <string name="clear_curve_btn_text">Borrar definición de curva</string>
+    <string-array name="curve_point_style_array">
+        <item>Círculo</item>
+        <item>Triángulo</item>
+        <item>Cuadrado</item>
+        <item>Diamante</item>
+        <item>X</item>
+        <item>Punto</item>
+    </string-array>
+    <string name="circle_point_style">Círculo</string>
+    <string name="triangle_point_style">Triángulo</string>
+    <string name="square_point_style">Cuadrado</string>
+    <string name="diamond_point_style">Diamante</string>
+    <string name="x_point_style">X</string>
+    <string name="point_point_style">Punto</string>
+    <string-array name="curve_color_array">
+        <item>Negro</item>
+        <item>Azul</item>
+        <item>Cian</item>
+        <item>Gris oscuro</item>
+        <item>Gris</item>
+        <item>Verde</item>
+        <item>Gris claro</item>
+        <item>Magenta</item>
+        <item>Rojo</item>
+        <item>Transparente</item>
+        <item>Blanco</item>
+        <item>Amarillo</item>
+    </string-array>
+    <string name="black_color">Negro</string>
+    <string name="blue_color">Azul</string>
+    <string name="cyan_color">Cian</string>
+    <string name="dkgray_color">DKGray</string>
+    <string name="gray_color">Gris</string>
+    <string name="green_color">Verde</string>
+    <string name="ltgray_color">Gris claro</string>
+    <string name="magenta_color">Magenta</string>
+    <string name="red_color">Rojo</string>
+    <string name="transparent_color">Transparente</string>
+    <string name="white_color">Blanco</string>
+    <string name="yellow_color">Amarillo</string>
+    <string name="graph_settings_wrong">La configuración de la gráfica tiene problemas y no puede ser trazada!</string>
+    <string name="no_graph_input">No hay gráfica de entrada!</string>
+    <string name="graph_file_cannot_be_read">Ocurrió un error al abrir el archivo de la gráfica!</string>
+    <string name="graph_file_cannot_be_saved">Ocurrió un error al guardar el archivo de la gráfica!</string>
+    <string name="too_many_points_in_graph">Más de 1000 puntos serán trazados. EL procesamiento de la gráfica podría ser lento en algunos equipos con bajo desempeño. Si la memoria del dispositivo es limitada, esta se podría agotar. Seguro desea continuar?</string>
+    <string name="please_wait">Por favor espere</string>
+    <string name="calculating_chart_data">Calculando datos para trazar la gráfica...</string>
+    <string name="calculating_chart_data_cancelable">Calculando datos para trazar la gráfica ahora. El usuario puede pulsar la tecla Atrás para cancelar.</string>
+    <string name="not_show_axis_and_title">No mostrar eje y título</string>
+    <string name="not_show_axis">No mostrar eje</string>
+    <string name="not_show_title">No mostrar título</string>
+    <string name="integrate_title">Integrar</string>
+    <string name="integrated_expr_prompt">Expresión\nIntegrada:</string>
+    <string name="you_want_to_calculate">Desea calcular:</string>
+    <string-array name="multiple_integral_array">
+        <item>Integral indefinida</item>
+        <item>Integral sencilla</item>
+        <item>Integral doble</item>
+        <item>Integral triple</item>
+    </string-array>
+    <string name="x_variable_name">Nombre de la primera variable:</string>
+    <string name="y_variable_name">Nombre de la segunda variable:</string>
+    <string name="z_variable_name">Nombre de la tercera variable:</string>
+    <string name="variable_from">desde</string>
+    <string name="variable_to">hasta</string>
+    <string name="variable_number_of_steps">Número\nde pasos</string>
+    <string name="default_number_of_steps_integ"/>
+    <string name="integ_settings_wrong">Los parámetros de integración tienen problemas de modo que no se puede integrar!</string>
+    <string name="calculating_integrating_result">Calculando resultado de integración...</string>
+    <string name="integrating_result">Resultado</string>
+    <string name="integrate_note">Nota : Si el número de pasos es 0 , se utiliza el método de Gauss- Kronrod adaptativa . Este algoritmo es más exacto . Sin embargo, en algunos casos extremos , podría ser muy lento. Así que no lo utilizan para calcular integrales de orden superior .</string>
+    <string name="derivative_title">Derivado</string>
+    <string-array name="multiple_derivative_array">
+        <item>En primer lugar Derivative</item>
+        <item>Segunda derivada</item>
+        <item>Tercera derivada</item>
+    </string-array>
+    <string name="deri_settings_wrong">Cálculo elementos tienen un problema. No se obtiene ningún resultado!</string>
+    <string name="calculating_derivative">Calculando derivada...</string>
+    <string name="derivative_result">Resultado</string>
+    <string name="derivative_note">Nota : Si el usuario establece el valor de la variable, se calcula el valor de la derivada. De lo contrario, se proporciona una expresión.</string>
+    <string name="cannot_create_app_folder">La carpeta de la aplicación no se puede crear. Los usuarios no podrán guardar sus secuencias de comandos o ver sus gráficas!</string>
+    <string name="cannot_create_script_folder">La carpeta de secuencias de comandos no se puede crear. Los usuarios no podrán guardar sus secuencias de comandos!</string>
+    <string name="cannot_create_chart_folder">La carpeta de gráficas no se puede crear. Los usuarios no podrán ver sus gráficas!</string>
+    <string name="function_name">Nombre de función</string>
+    <string name="function_info">Información de función</string>
+    <string name="all_functions">todas las funciones</string>
+    <string name="builtin_functions">funciones integradas</string>
+    <string name="predefined_functions">funciones predefinidas</string>
+    <string name="integer_operation_functions">funciones para operaciones con enteros</string>
+    <string name="logic_functions">funciones lógicas</string>
+    <string name="statistic_and_stochastic_functions">funciones estadísticas y estocásticas</string>
+    <string name="trigononmetric_functions">funciones trigonométricas</string>
+    <string name="exponential_and_logarithmic_functions">funciones logarítimicas y exponenciales</string>
+    <string name="complex_number_functions">funciones con números complejos</string>
+    <string name="system_functions">funciones del sistema</string>
+    <string name="array_or_matrix_functions">funciones de arreglos o matrices</string>
+    <string name="graphic_functions">funciones gráficas</string>
+    <string name="expression_and_calculus_functions">Funciones y expresiones de cálculo</string>
+    <string name="string_functions">funcions de cadena</string>
+    <string name="hyperbolic_trigononmetric_functions">funciones trigronométricas hiperbólicas</string>
+    <string name="sorting_functions">funciones de ordenación</string>
+    <string name="others_functions">otras funciones</string>
+    <string name="exception">Excepción!</string>
+    <string name="back_to_normal">Volver a normal.</string>
+    <string name="unmounted_external_storage">EL almacenamiento externo no ha sido montado o fue removido!</string>
+    <string name="mounting_external_storage">Montando almacenamiento externo. Los cálculos podrían interrumpirse.</string>
+    <string name="mounted_external_storage">Dispositivo de almacenamiento externo montado.</string>
+    <string name="initializing_application">Inicializando la aplicación ...</string>
+    <string name="copying_files">Copia de archivos de ejemplo del programa y Scientific Calculator Plus para Windows / MacOSX / Linux a la tarjeta SD ...</string>
+    <string name="copying_scpp4Java">Copiando Scientific Calculator Plus basado en Java para Windows / MacOSX / Linux a la tarjeta SD. Por favor, mantener Scientific Calculator Plus en primer plano, de lo contrario, la copia puede no tener éxito.</string>
+    <string name="loading_pre_defined_libs">Cargando librerías predefinidas ...</string>
+    <string name="loading_user_defined_libs">Cargando librerías defindas por el usuario ...</string>
+    <string name="error_in_copying_example_files">Error al copiar archivos a tarjeta SD. El usuario podría tener problemas para leer los programas de ejemplo, crear archivos de programa o crear gráficos en el dispositivo móvil!</string>
+    <string name="error_in_copying_scpp4Java_files">Error al copiar archivos a tarjeta SD. El usuario podría tener problemas usar Scientific Calculator Plus para Windows / MacOSX / Linux!</string>
+    <string name="you_can_still_copy_example_java">Usted aún puede copiar ejemplos u usar Scientific Calculator Plus para Windows / MacOSX / Linux haciendo clic en el botón copiar ejemplos o ejecutar el ícono en el panel principal del PC o MAC!</string>
+    <string name="copying_scpp4Java_step1">Scientific Calculator Plus basado en Java para  Windows / MacOSX / Linux será copiado a la tarjeta SD. Si ha hecho esto antes de la última instalación o actualización de esta aplicación, puede saltar este paso.</string>
+    <string name="copying_scpp4Java_step2">Java based Scientific Calculator Plus basado en Java para Windows / MacOSX / Linux ha sido copiado en la carpeta AnMath de la tarjeta SD. Ahora puede usar un cable USB para conectar este dispositivo a un computador con JAVA (v. 1.6+) instalado, permitir la copia de archivos a través de USB y transferir y ejecutar JMathCmd.jar en la carpeta AnMath del disco USB extraíble del equipo. Si el equipo no tiene JAVA (v. 1.6 +) instalado, usted puede ir a www.java.com para descargarlo.</string>
+    <string name="copy_examples_step1_old">Los programas de ejemplo serán copiados a la carpeta AnMath/scripts/examples y las gráficas de ejemplo serán copiadas a la carpeta AnMath/charts in la tarjeta SD. Si ya lo hizo en la última instalación o actualización, no es necesario hacerlo de nuevo.</string>
+    <string name="copy_examples_step1">Los programas de ejemplo serán copiados a la carpeta AnMath/scripts y las gráficas de ejemplo serán copiadas a la carpeta AnMath/charts in la tarjeta SD.</string>
+    <string name="copy_examples_step2">Los programas y gráficás de ejemplo han sido copiados en su tarjeta SD. Ahora puede abrir el administrador de archivos e ir a la tarjeta de ejemplos para leer los archivos.</string>
+    <string name="select_script_examples_to_read">Leer archivos de secuencias de comandos de ejemplo</string>
+    <string name="select_chart_examples_to_read">Ver gráficas de ejemplo</string>
+    <string name="see_what_has_been_copied">Ir a ejemplos</string>
+    <string name="smartcalc_prog_name">Smart Calculator</string>
+    <string name="calc_prog_name">Calculadora de funciones</string>
+    <string name="inputpadcfg_prog_name">Configuración de método de entrada</string>
+    <string name="cmdline_prog_name">Línea de comandos</string>
+    <string name="graph_prog_name">Trazador de gráficas</string>
+    <string name="integr_prog_name">Integración</string>
+    <string name="scriptmngr_prog_name">Administrador de secuencias de comandos</string>
+    <string name="filemngr_prog_name">Administrador de archivos</string>
+    <string name="scripteditor_prog_name">Editor de secuencias de comandos</string>
+    <string name="chartmngr_prog_name">Administrador de gráficas</string>
+    <string name="settings_prog_name">Configuración</string>
+    <string name="runonpc_prog_name">Ejecutar en PC o MAC</string>
+    <string name="cpexample_prog_name">Copiar ejemplos</string>
+    <string name="exploreexample_prog_name">Explorar ejemplos</string>
+    <string name="cpexample_name">Copiar ejemplos</string>
+    <string name="exploreexample_name">Explorar ejemplos</string>
+    <string name="help_prog_name">Ayuda</string>
+    <string name="inputpad_config">Configurar método de entrada</string>
+    <string name="inputpad_name_prompt">Nombre del pad:</string>
+    <string name="inputpad_long_name_prompt">Nombre largo:</string>
+    <string name="inputpad_short_name_prompt">Nombre corto:</string>
+    <string name="inputpad_wrapped_name_1_2_prompt">Nombre ajustado (2 Líneas):</string>
+    <string name="key_height_prompt">Altura de tecla:</string>
+    <string name="times_standard_height"> * estándar</string>
+    <string name="inputpad_number_of_rows_prompt">Filas:</string>
+    <string name="inputpad_number_of_columns_prompt">Columnas:</string>
+    <string name="inputpad_visibility_prompt">Visibilidad:</string>
+    <string name="inputpad_visible">Visible</string>
+    <string name="no_inputpad_defined">Método de entrada no disponible</string>
+    <string name="inputkey_config">Configurar tecla de entrada</string>
+    <string name="inputkey_shown_prompt">Nombre mostrado:</string>
+    <string name="inputkey_shown_color_prompt">Color de texto:</string>
+    <string name="inputkey_input_string_prompt">Ingrese texto:</string>
+    <string name="inputkey_input_match_shown">Ingrese texto como en Nombre Mostrado</string>
+    <string name="cursorplace_front_prompt">Ubicación de Cursor (número de caracteres contados hacia atrás):</string>
+    <string name="inputkey_hint_4_context_menu">Sugerencia: si usted quiere cortar, copiar, pegar, eliminar o insertar un botón de entrada haga clic sostenido en él.</string>
+    <string name="menu_add">Agregar</string>
+    <string name="menu_addleft">Agregar a la izquierda</string>
+    <string name="menu_addright">Agregar a la derecha</string>
+    <string name="menu_delete">Borrar</string>
+    <string name="menu_save">Guardar</string>
+    <string name="what_do_you_want">Qué desea?</string>
+    <string name="cut_key">Cortar</string>
+    <string name="copy_key">Copiar</string>
+    <string name="paste_before_key">Pegar antes</string>
+    <string name="paste_on_key">Pegar en</string>
+    <string name="paste_after_key">Pegar después</string>
+    <string name="create_before_key">Crear antes</string>
+    <string name="create_after_key">Crear después</string>
+    <string name="delete_key">Borrar</string>
+    <string name="edit_key">Editar</string>
+    <string name="error_two_inputpads_with_same_name">Dos métodos de entrada tienen el mismo nombre</string>
+    <string name="error_cannot_save_to_file">No se puede guardar el archivo!</string>
+    <string name="how_many_inputkeys_to_add">Cuántas teclas desea agregar?</string>
+    <string name="inputpad_cfg_changed">Inputpad config has been changed, save it?</string>
+    <string name="calculating_result">Calculando ...</string>
+    <string name="calculating_result_cancelable">Calcular ahora. El usuario puede pulsar la tecla Atrás para cancelar.</string>
+    <string name="loading_libs_history">Cargando librerías e histórico...</string>
+    <string name="loading_libs">Cargando librerías ...</string>
+    <string name="loading_history">Cargando histórico ...</string>
+    <string name="calculator_assistant">Asistente de la calculadora</string>
+    <string name="read_constants">Constantes</string>
+    <string name="convert_units">Unidades</string>
+    <string name="digit_after_decimal_point_prompt">Número de dígitos significativos :</string>
+    <string name="insert_constant_value_text">Insertar valor</string>
+    <string name="select_unit_type">Seleccione tipo de unidad :</string>
+    <string name="use_sci_notation">Usar notación científica</string>
+    <string name="is_equal_to_prompt">es igual a</string>
+    <string name="underlying_function_is">La función subyacente es</string>
+    <string name="invalid_input">Valor de entrada o unidad no válidos!</string>
+    <string name="invalid_input_simple">Entrada inválida!</string>
+    <string name="cannot_convert_unit">No se puede convertir la unidad!</string>
+    <string name="insert_converted_value_text">Insertar valor</string>
+    <string name="insert_function_text">Insertar función</string>
+    <string name="pi_comment">Relación entre la circunferencia de un círculo y su diámetro</string>
+    <string name="e_comment">Logaritmo natural</string>
+    <string name="light_speed_in_vacuum_comment">Velocidad de la luz en el vacío</string>
+    <string name="gravitational_constant_comment">Constante gravitacional</string>
+    <string name="planck_constant_comment">Constante de Planck</string>
+    <string name="magnetic_constant_comment">Constante magnética</string>
+    <string name="electric_constant_comment">Constante eléctrica</string>
+    <string name="elementary_charge_constant_comment">Carga elemental</string>
+    <string name="avogadro_constant_comment">Cosntante de Avogadro</string>
+    <string name="faraday_constant_comment">Constante de Faraday</string>
+    <string name="molar_gas_constant_comment">Constante molar de los gases</string>
+    <string name="boltzman_constant_comment">Constante de Boltzman</string>
+    <string name="standard_gravity_comment">Peso específico</string>
+    <string-array name="unit_type_array">
+        <item>Longitud</item>
+        <item>Área</item>
+        <item>Volumen</item>
+        <item>Masa</item>
+        <item>Velocidad</item>
+        <item>Tiempo</item>
+        <item>Fuerza</item>
+        <item>Presión</item>
+        <item>Energía</item>
+        <item>Potencia</item>
+        <item>Temperatura</item>
+    </string-array>
+    <string name="length_unit_type">Longitud</string>
+    <string name="area_unit_type">Área</string>
+    <string name="volume_unit_type">Volumen</string>
+    <string name="mass_unit_type">Masa</string>
+    <string name="speed_unit_type">Velocidad</string>
+    <string name="time_unit_type">Tiempo</string>
+    <string name="force_unit_type">Fuerza</string>
+    <string name="pressure_unit_type">Presión</string>
+    <string name="energy_unit_type">Energía</string>
+    <string name="power_unit_type">Potencia</string>
+    <string name="temperature_unit_type">Temperatura</string>
+    <string-array name="length_unit_type_array">
+        <item>Micrones</item>
+        <item>Milímetros</item>
+        <item>Centímetros</item>
+        <item>Metros</item>
+        <item>Kilómetros</item>
+        <item>Pulgadas</item>
+        <item>Pies</item>
+        <item>Yardas</item>
+        <item>Millas</item>
+        <item>Millas náuticas</item>
+        <item>Unidad astronómica</item>
+        <item>Años luz</item>
+        <item>Parsecs</item>
+    </string-array>
+    <string name="micron_unit">Micrones</string>
+    <string name="millimetre_unit">Milímetros</string>
+    <string name="centimetre_unit">Centímetros</string>
+    <string name="metre_unit">Metros</string>
+    <string name="kilometre_unit">Kilómetros</string>
+    <string name="inch_unit">Pulgadas</string>
+    <string name="foot_unit">Pies</string>
+    <string name="yard_unit">Yardas</string>
+    <string name="mile_unit">Millas</string>
+    <string name="nautical_mile_unit">Millas náuticas</string>
+    <string name="astronomical_unit_unit">Unidad astronómica</string>
+    <string name="light_year_unit">Años luz</string>
+    <string name="parsec_unit">Parsecs</string>
+    <string-array name="area_unit_type_array">
+        <item>Milímetros cuadrados</item>
+        <item>Centímetros cuadrados</item>
+        <item>Metros cuadrados</item>
+        <item>Hectáreass</item>
+        <item>Kilómetros cuadrados</item>
+        <item>Pulgadas cuadradas</item>
+        <item>Pies cuadrados</item>
+        <item>Yardas cuadradas</item>
+        <item>Acres</item>
+        <item>Millas cuadradas</item>
+    </string-array>
+    <string name="mm2_unit">Milímetros cuadrados</string>
+    <string name="cm2_unit">Centímetros cuadrados</string>
+    <string name="metre2_unit">Metros cuadrados</string>
+    <string name="hectare_unit">Hectáreas</string>
+    <string name="km2_unit">Kilómetros cuadrados</string>
+    <string name="inch2_unit">Pulgadas cuadradas</string>
+    <string name="foot2_unit">Pies cuadrados</string>
+    <string name="yard2_unit">Yardas cuadradas</string>
+    <string name="acre_unit">Acres</string>
+    <string name="mile2_unit">Millas cuadradas</string>
+    <string-array name="volume_unit_type_array">
+        <item>Mililitros (cc)</item>
+        <item>Litros</item>
+        <item>Centímetros cúbicos</item>
+        <item>Pulgadas cúbicas</item>
+        <item>Pies cúbicos</item>
+        <item>Yardas cúbicas</item>
+        <item>Kilómetros cúbicos</item>
+        <item>Onzas líquidas(Imp)</item>
+        <item>Pintas (Imp)</item>
+        <item>Galones (Imp)</item>
+        <item>Onzas líquidas (US)</item>
+        <item>Pintas (US)</item>
+        <item>Galonens (US)</item>
+    </string-array>
+    <string name="ml_unit">Milímetros (cc)</string>
+    <string name="litre_unit">Litros</string>
+    <string name="metre3_unit">Metros cúbicos</string>
+    <string name="inch3_unit">Pulgadas cúbicas</string>
+    <string name="foot3_unit">Pies cúbicos</string>
+    <string name="yard3_unit">Yardas cúbicas</string>
+    <string name="km3_unit">Kilómetros cúbicos</string>
+    <string name="founce_imp_unit">Onzas líquidas (Imp)</string>
+    <string name="pint_imp_unit">Pintas (Imp)</string>
+    <string name="gallon_imp_unit">Galones (Imp)</string>
+    <string name="founce_us_unit">Onzas líquidas (US)</string>
+    <string name="pint_us_unit">Pintas (US)</string>
+    <string name="gallon_us_unit">Galones (US)</string>
+    <string-array name="mass_unit_type_array">
+        <item>Microgramos</item>
+        <item>Milligramos</item>
+        <item>Gramos</item>
+        <item>Kilogramos</item>
+        <item>Toneladas</item>
+        <item>Onzas</item>
+        <item>Libras</item>
+        <item>Market catties</item>
+        <item>Catties (HK)</item>
+        <item>Catties (TW)</item>
+    </string-array>
+    <string name="microgram_unit">Microgramos</string>
+    <string name="milligram_unit">Milligramos</string>
+    <string name="gram_unit">Gramos</string>
+    <string name="kg_unit">Kilogramos</string>
+    <string name="ton_unit">Toneladas</string>
+    <string name="ounce_unit">Onzas</string>
+    <string name="lb_unit">Libras</string>
+    <string name="market_catty_unit">Market catties</string>
+    <string name="hk_catty_unit">Catties (HK)</string>
+    <string name="tw_catty_unit">Catties (TW)</string>
+    <string-array name="speed_unit_type_array">
+        <item>Metros por segundo</item>
+        <item>Kilómetros por hora</item>
+        <item>Pies por segundo</item>
+        <item>Millas por hora</item>
+        <item>Nudos</item>
+    </string-array>
+    <string name="metre_s_unit">Metros por segundo</string>
+    <string name="km_h_unit">Kilómetros por hora</string>
+    <string name="foot_s_unit">Pies por segundo</string>
+    <string name="mile_h_unit">Millas por hora</string>
+    <string name="knot_unit">Nudos</string>
+    <string-array name="time_unit_type_array">
+        <item>Nanosegundos</item>
+        <item>Microsegundos</item>
+        <item>Milisegundos</item>
+        <item>Segundos</item>
+        <item>Minutos</item>
+        <item>Horas</item>
+        <item>Días</item>
+        <item>Semanas</item>
+        <item>Años</item>
+    </string-array>
+    <string name="nanosecond_unit">Nanosegundos</string>
+    <string name="microsecond_unit">Microsegundos</string>
+    <string name="millisecond_unit">Milisegundos</string>
+    <string name="second_unit">Segundos</string>
+    <string name="minute_unit">Minutos</string>
+    <string name="hour_unit">Horas</string>
+    <string name="day_unit">Días</string>
+    <string name="week_unit">Semanas</string>
+    <string name="year_unit">Años</string>
+    <string-array name="force_unit_type_array">
+        <item>Newtons</item>
+        <item>Kilogramo-fuerza</item>
+        <item>Libra-fuerza</item>
+    </string-array>
+    <string name="newton_unit">Newtons</string>
+    <string name="kgf_unit">Kilogramo-fuerza</string>
+    <string name="lbf_unit">Libra-fuerza</string>
+    <string-array name="pressure_unit_type_array">
+        <item>Pascal</item>
+        <item>Hectopascal</item>
+        <item>Kilopascal</item>
+        <item>Megapascal</item>
+        <item>Atmósfera</item>
+        <item>Libras por pulgada cuadrada</item>
+        <item>Torricelli</item>
+    </string-array>
+    <string name="pascal_unit">Pascal</string>
+    <string name="hectopascal_unit">Hectopascal</string>
+    <string name="kilopascal_unit">Kilopascal</string>
+    <string name="megapascal_unit">Megapascal</string>
+    <string name="atmosphere">Atmósfera</string>
+    <string name="pound_square_inche_unit">Libras por pulgada cuadrada</string>
+    <string name="torr_unit">Torricelli</string>
+    <string-array name="energy_unit_type_array">
+        <item>Julio</item>
+        <item>Kilojulios</item>
+        <item>Megajulios</item>
+        <item>Kilovatios-Hora</item>
+        <item>Calorías</item>
+        <item>Kilocalorías</item>
+        <item>Unidades Térmicas Británicas</item>
+    </string-array>
+    <string name="joule_unit">Julio</string>
+    <string name="kilojoule_unit">Kilojulios</string>
+    <string name="megajoule_unit">Megajulios</string>
+    <string name="kwh_unit">Kilovatios-Hora</string>
+    <string name="calorie_unit">Calories</string>
+    <string name="kilocalorie_unit">Kilocalories</string>
+    <string name="btu_unit">Unidades Térmicas Británicas</string>
+    <string-array name="power_unit_type_array">
+        <item>Vatios</item>
+        <item>Kilovatios</item>
+        <item>Megavatios</item>
+        <item>Calorías por segundo</item>
+        <item>BTUs por hora</item>
+        <item>Caballo de fuerza</item>
+    </string-array>
+    <string name="watt_unit">Vatios</string>
+    <string name="kilowatt_unit">Kilovatios</string>
+    <string name="megawatt_unit">Megavatios</string>
+    <string name="calorie_second_unit">Calorías por segundo</string>
+    <string name="btu_hour_unit">BTUs por hora</string>
+    <string name="horsepower_unit">Caballo de fuerza</string>
+    <string-array name="temperature_unit_type_array">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+        <item>Kelvin</item>
+    </string-array>
+    <string name="celsius_unit">Celsius</string>
+    <string name="fahrenheit_unit">Fahrenheit</string>
+    <string name="kelvin_unit">Kelvin</string>
+    <string name="merge_inputpad_cfg">Combinar configuración de métodos de entrada</string>
+    <string name="merging_inputpad_cfg">Configurando archivos de configuración de métodos de entrada ...</string>
+    <string name="upgrading_inputpad_cfg">Actualizando archivos de configuración de métodos de entrada ...</string>
+    <string name="confirm_to_merge_inputpad_cfg">¿Desea combinar la última config de métodos de entrada con la que ha definido? Si lo desea, por favor, asegúrese de que su dispositivo Android esté DESCONECTADO del computador.</string>
+    <string name="update_sdcard_files">Actualizar archivos en tarjeta SD</string>
+    <string name="confirm_to_update_sdcard_files">¿Desea actualizar los archivos en la tarjeta SD (incluyendo Scientific Calculator Pus basado en Java y los ejemplos)? Si lo desea, por favor, asegúrese de que su dispositivo Android esté DESCONECTADO del computador.</string>
+    <string name="error_in_upgrading_input_keypad_config">Error al actualizar la configuración de los métodos de entrada!</string>
+    <string name="error_in_merging_input_keypad_config">Error al combinar la configuración de los métodos de entrada!</string>
+    <string name="title_activity_activity_smart_calc">Smart Calculator</string>
+    <string name="error_in_help_requirement">Solicitud de ayuda incorrecta</string>
+    <string name="invalid_expr_type_to_solve">Expresión de tipo no válida para resolver</string>
+    <string name="did_you_use_assign">Utilizó == (igual) en vez de = (asignar) en la ecuación?</string>
+    <string name="invalid_expr_to_solve">Expresiones no válidas para resolver</string>
+    <string name="expr_cannot_solve">Expresión no puede ser resuelta</string>
+    <string name="line">Línea</string>
+    <string name="config_3D_title">Configurar gráfica 3D</string>
+    <string name="config_2D_title">Configurar gráfica 2D</string>
+    <string name="config_polar_title">Configurar gráfica de coordenadas polares</string>
+    <string name="polar_chart_r_range_note">Nota: r debe estar entre 0 y un valor positivo.</string>
+    <string name="polar_chart_angle_range_note">Nota: el ángulo se basa en</string>
+    <string name="degree">grados</string>
+    <string name="radius">radio</string>
+    <string name="zoom_box_prompt">Zoom (0.01 ~ 100)</string>
+    <string name="zoom_whole_chart_prompt">Gráfica completa</string>
+    <string name="zoom_x_prompt">x</string>
+    <string name="zoom_y_prompt">y</string>
+    <string name="zoom_z_prompt">z</string>
+    <string name="shift_box_prompt">Cambiar</string>
+    <string name="shift_x_prompt">x</string>
+    <string name="shift_y_prompt">y</string>
+    <string name="shift_z_prompt">z</string>
+    <string name="rotate_box_prompt">Rotar (grados)</string>
+    <string name="rotate_x_prompt">vertical</string>
+    <string name="rotate_y_prompt">horizontal</string>
+    <string name="rotate_z_prompt">anti-horario</string>
+    <string name="apply">Aplicar</string>
+    <string name="help_statement_cannot_be_plotted">Declaración Ayuda no se puede trazar!</string>
+    <string name="no_variable_to_plot">No hay variable para trazar!</string>
+    <string name="invalid_expr_to_plot">Expresión no válida para trazar!</string>
+    <string name="cannot_assign_value_to_anything_except_variable_use_equal_instead">No se puede asignar valor a nada, excepto la variable! Por favor, use la signo igual en su lugar.</string>
+    <string name="invalid_input_to_plot">Entrada no válida para trazar!</string>
+    <string name="cannot_plot_more_than_3d_chart">No se pueden trazar gráficas de más de 3 dimensiones!</string>
+    <string name="cannot_plot_more_than_4_curves">No se pueden trazar de más de 4 curvas!</string>
+    <string name="cannot_plot_too_many_curves">No se pueden trazar demasiadas curvas!</string>
+    <string name="chart_name_default">Predeterminada</string>
+    <string name="chart_title_default">Gráfica inteligente</string>
+    <string name="curve_title_default">Curva</string>
+    <string name="cannot_plot">No se puede trazar</string>
+    <string name="graph_is_plotted">Gráfica trazada!</string>
+    <string name="graph_is_plotted_but_graph_file_cannot_be_saved">Gráfica trazada pero no se puede guardar el archivo!</string>
+    <string name="from">desde</string>
+    <string name="to">hasta</string>
+    <string name="number_of_steps">número de pasos</string>
+    <string name="detect_singular_points">Detectar puntos singulares</string>
+    <string name="press_back_again_to_exit">Presione atrás nuevamente para salir!</string>
+    <string name="fail_to_take_picture">No se puede tomar fotos!</string>
+    <string name="copying_data">Copia de datos ...</string>
+    <string name="error_in_copying_data_files">Error en el proceso de copiar los datos!</string>
+    <string name="recognizing_math_expressions">Reconociendo expresiones matemáticas ...</string>
+    <string name="recognizing_math_expressions_press_back_2_cancel">Reconociendo expresiones matemáticas. El usuario puede pulsar la tecla Atrás para cancelar.</string>
+    <string name="expression_might_not_valid">Las expresiones seleccionados pueden no ser válidos. Por favor, vuelva a seleccionar expresiones de reconocer.</string>
+    <string name="recognizing_error">Se produjo un error al identificación de expresiones matemáticas, por favor intente de nuevo.</string>
+    <string name="cannot_find_valid_expression">Incapaz de encontrar una expresión legítima de la imagen. Por favor, inténtelo de nuevo.</string>
+    <string name="preprocessing_image">imagen pre-procesamiento ...</string>
+    <string name="please_confirm_recognized_result">Por favor, confirme las siguientes expresiones identificar si es lo que quieres. Si usted no está satisfecho con los resultados del reconocimiento, haga clic en</string>
+    <string name="please_confirm_recognized_result_and_calculation_result">Por favor, confirme los siguientes resultados no están satisfechos, por favor haga clic en</string>
+    <string name="here">aquí</string>
+    <string name="stop_charater">.</string>
+    <string name="invalid_expr_to_analyse">Expresión matemática ilegal no puede ser posterior análisis.</string>
+    <string name="please_modify_the_input_expression">Por favor, modifique la expresión de entrada en el cuadro de entrada que es:</string>
+    <string name="menu_plotcomplicatedgraph">Dibuje el gráfico complicado</string>
+    <string name="rotate_90_degrees">Gire 90 grados</string>
+    <string name="rotate_180_degrees">La rotación de 180 grados</string>
+    <string name="rotate_270_degrees">Giraron 270 grados</string>
+    <string name="rotate_any_degrees">Cualquier ángulo de rotación</string>
+    <string name="enter_rotate_degrees_prompt">Por favor indica el ángulo de rotación:</string>
+    <string name="rotate_clockwise">Giro a la derecha</string>
+    <string name="rotate_anti_clockwise">Giro a la izquierda</string>
+    <string name="insufficient_memory_to_recognize_complicated_expr">Expresión equipo demasiado complejo no hay suficiente memoria para procesar.</string>
+    <string name="error_in_save_img">No se puede guardar la imagen.</string>
+    <string name="loading_img_proc_libs">Cargando libs para procesar la imagen ...</string>
+    <string name="setting_flash_mode_prompt">Modo de flash Ajuste</string>
+    <string name="clear_input_txt_before_take_photo_prompt">Eliminar texto de entrada antes de tomar fotos</string>
+    <string name="on">Siempre abierto</string>
+    <string name="off">Siempre apagado</string>
+    <string name="touch_screen_to_take_photo">Tocar la pantalla para tomar la foto.</string>
+    <string name="select_expr_to_recognize">Por favor, seleccione una expresión para ser reconocido.</string>
+    <string name="setting_photo_taken_from_prompt">Ajuste la fuente de donde la foto se tomará de</string>
+    <string name="screen">La pantalla del ordenador</string>
+    <string name="white_paper">Papel blanco</string>
+    <string name="no_back_facing_camera">Error! Ninguna cámara trasera o la cámara no tiene las funciones necesarias!</string>
+    <string name="fail_to_initialize_camera">No se puede inicializar la cámara!</string>
+    <string name="camera_preview_clicked">Ventana preivew cámara se hace clic!</string>
+    <string name="camera_preview_clicked_and_autofocused">Cámara de previsualización hizo clic y autofocused!</string>
+    <string name="camera_preview_fail_to_autofocus">Incapaz de cámara de enfoque automático!</string>
+    <string name="start">Comienzo</string>
+    <string name="turn_on_flash_prompt">Open Flash</string>
+    <string name="preview_start_to_calculate">Contado</string>
+    <string name="preview_start_to_plot">Dibujar</string>
+    <string name="preview_start_to_recognize">Leer</string>
+    <string name="preview_edit_image">Editar</string>
+    <string name="preview_verify_correct_image">Verificar</string>
+    <string name="reset_image_size">Restaurar tamaño de la imagen</string>
+    <string name="width_of_image">Ancho de la Imagen</string>
+    <string name="height_of_image">Altura de la Imagen</string>
+    <string name="image_is_too_large">La imagen es demasiado grande!</string>
+    <string name="image_size_cannot_be_zero">Tamaño de la imagen no puede ser cero!</string>
+    <string name="unsatisfactory_recog">Resultado Insatisfactorio reconocimiento!</string>
+    <string name="please_type_what_you_want_to_tell_us">Por favor, escribe lo que quiere decirnos:</string>
+    <string name="choose_an_email_provider">Por favor, seleccione el servicio de correo electrónico</string>
+    <string name="please_do_not_change_the_follows">Por favor, no cambiar el texto siguiente:</string>
+    <string name="recognized_result">Resultado del reconocimiento</string>
+    <string name="input_text">Entrada de texto</string>
+    <string name="output_text">Salida de texto</string>
+    <string name="handwriting_recog_notice">Ahora usted está entrando en el modo de reconocimiento de escritura a mano matemáticas fuera de línea. Tenga en cuenta que esta funcionalidad está todavía en desarrollo. En este modo sólo se admiten números, operadores básicos y número limitado de funciones. También es necesario para escribir con claridad y evitar desconexiones o derrames cerebrales conjuntas.</string>
+    <string name="print_recog_notice">Ahora usted está entrando en el modo de reconocimiento de matemáticas en línea impresa. Más funciones, las letras y los operadores pueden ser reconocidos en este modo. Sin embargo, observamos que asumimos usuario sólo selecciona rango de reconocimiento, conecta golpes rotos o desconecta golpes conjuntas aquí. Por favor, no escribir a mano expresión (s) de reconocer.</string>
+    <string name="dont_show_it_next_time">No mostrar la próxima vez</string>
+    <string name="photo_taken_tutorial">Tutorial cómo reconocer foto</string>
+    <string name="calculating_result_after_recognition">Reconocimiento termina y ahora estoy calculando. El usuario puede pulsar la tecla Atrás para cancelar y modificar el texto de entrada.</string>
+    <string name="calculating_chart_data_after_recognition">Reconocimiento termina y ahora estoy calculando valores para dibujar gráfico. El usuario puede pulsar la tecla Atrás para cancelar y modificar el texto de entrada.</string>
+    <string name="calculating_result_after_recognition2">Reconocimiento termina y ahora estoy calculando. Esto toma un tiempo para la integración o expresión muy complicado (s). Sin embargo, si el cálculo todavía toma mucho tiempo a pesar de expresión simple, que podría ser causada por resultado del reconocimiento incorrecto. En este caso el usuario puede cancelar el cálculo con la tecla "BACK" tocar y modificar entrada.</string>
+    <string name="calculating_chart_data_after_recognition2">Reconocimiento termina y ahora estoy calculando valores para dibujar gráfico. Esto puede tomar un tiempo si la expresión es expresiones complicadas o varios. Sin embargo, si el cálculo todavía toma mucho tiempo a pesar de una expresión simple, podría ser causado por resultado del reconocimiento incorrecto. En este caso el usuario puede cancelar el cálculo con la tecla "BACK" tocar y modificar entrada.</string>
+    <string name="ok_i_have_known">Sí, lo sé</string>
+    <string name="never_show_it_again">No mostrar esto la próxima vez</string>
+    <string name="what_you_need_to_know_before_start_to_use">Lo que usted necesita saber antes de empezar a utilizar ...</string>
+    <string name="no_valid_expr_recognized">No se identificaron expresión legal!</string>
+    <string name="recognition_interrupted">Proceso de reconocimiento se termina!</string>
+    <string name="application_name_prompt">Por favor introduce el nombre de la aplicación. Nombre de la aplicación debe ser no más de 32 bytes, lo que significa 32 letras inglesas o en la mayoría de 16 caracteres Unicode (chino, japonés y coreano, etc.).</string>
+    <string name="application_pkg_id_prompt">Por favor, introduzca su ID de aplicación que incluye exactamente 20 caracteres. Este identificador debe ser único si quieres publicar tu aplicación en Google Play o cualquier otros sitios de distribución. Sólo debe incluir los puntos, números y las letras inglesas. Punto no puede ser la primera o la última letra y no puede ser adyacentes entre sí. Número no puede ser el primero o inmediatamente después punto. Entre dos puntos no debería ser como máximo 10 letras o números. com.cyzapps.AnMFPApp es un ejemplo.</string>
+    <string name="application_version_prompt">Por favor introduzca el código de la versión (entrada izquierda) y el número de versión (entrada derecha). Código de versión de la aplicación es una cadena de diez letras inglesas, puntos o caracteres numéricos, como 1.0.0.0001. Número de versión es un número entero positivo no mayor que 65535.</string>
+    <string name="application_icon_selector_prompt">Por favor, seleccione el icono de su aplicación. Archivo Icono debe ser una forma cuadrada y por lo menos 128 * 128 archivo png. Si no se selecciona, se le asignará un icono por defecto. El icono seleccionado se mostrará en el botón de selección.</string>
+    <string name="application_working_folder_prompt">Por favor introduce el directorio de trabajo de su aplicación</string>
+    <string name="selected_icon_invalid">Archivo Icono debe ser una forma cuadrada y por lo menos 128 * 128 archivo png.</string>
+    <string name="select">Seleccionar</string>
+    <string name="application_description_prompt">Por favor, describa brevemente su aplicación (por ejemplo, lo que se hará, lo que hay a la entrada, etc.). Esto no es un manual. Debe incluir menos de 256 caracteres. Se mostrará en el inicio de la aplicación. Puede dejarlo en blanco.</string>
+    <string name="go_to_next">Continuar</string>
+    <string name="mfpapp_prog_name">Construir MFP App</string>
+    <string name="long_click_to_open">Larga haga clic para abrir un archivo o carpeta</string>
+    <string name="app_name_invalid">Nombre de la aplicación no es válido!</string>
+    <string name="app_pkg_id_invalid">Paquete de aplicación no válida Id!</string>
+    <string name="app_ver_str_invalid">Cadena de versión no válido!</string>
+    <string name="app_ver_code_invalid">Número de versión no válido!</string>
+    <string name="app_working_folder_invalid">Trabajar nombre de la carpeta no es válido!</string>
+    <string name="help_use_default_app_description_or_type">Utilice la página de ayuda generada automáticamente cuando el usuario selecciona el menú de ayuda. Por defecto la página de ayuda se creó a partir de la función de información de ayuda, y también incluye tu correo electrónico y dirección del sitio web. Si no marca esta casilla, por favor escriba su ayuda de la aplicación en el cuadro siguiente. Y la página de ayuda con crear a partir de su descripción.</string>
+    <string name="function_name_prompt">Nombre de la función</string>
+    <string name="function_name_invalid">Nombre de la función no es válido!</string>
+    <string name="function_description_prompt">Por favor, describa brevemente su función (por ejemplo, lo que se hará, lo que hay a la entrada, etc.). Esto no es un manual. Debe incluir menos de 1024 caracteres. Se mostrará en el inicio de la función. Puede dejarlo en blanco.</string>
+    <string name="function_description_invalid">Descripción de la función es demasiado largo!</string>
+    <string name="function_help">Función de Ayuda</string>
+    <string name="information_about_parameter">Información sobre el parámetro</string>
+    <string name="parameter_default_value">El valor por defecto del parámetro</string>
+    <string name="with_optional_params">Con parámetros opcionales</string>
+    <string name="param_is_a_string">Parámetro es una cadena</string>
+    <string name="param_needs_no_input">Parámetro de entrada no necesita</string>
+    <string name="add">Añadir</string>
+    <string name="delete">Borrar</string>
+    <string name="delete_all">Eliminar todos</string>
+    <string name="please_input_apk_name">Por favor, introduzca el nombre de su archivo APK. Archivo APK se generará en la carpeta AnMath\apks en su tarjeta SD.</string>
+    <string name="select_apk_signiture_key">Seleccionar clave</string>
+    <string name="please_input_keystore_name">Por favor, introduzca el nombre del almacén de claves. Almacén de claves es un archivo ubicado en el directorio AnMath\signkeys en su tarjeta SD.</string>
+    <string name="please_input_keystore_password">La contraseña del almacén de claves</string>
+    <string name="please_input_password_again">Contraseña de nuevo</string>
+    <string name="please_input_key_name">Nombre de clave</string>
+    <string name="please_input_key_valid_period">Años válidos</string>
+    <string name="please_input_key_password">Contraseña de clave</string>
+    <string name="please_input_your_personal_information">Por favor, introduzca su información personal o de su empresa. Esto será incluido en el firma. Puede dejar algunos de los campos en blanco si desea.</string>
+    <string name="please_input_your_name">Tu nombre</string>
+    <string name="please_input_your_department">Tu departamento</string>
+    <string name="please_input_your_company">Tu compañía</string>
+    <string name="please_input_your_street_no">Tu dirección de la calle</string>
+    <string name="please_input_your_city">Tu ciudad</string>
+    <string name="please_input_your_state">Tu provincia</string>
+    <string name="please_input_your_state_code">Tu código de provincia</string>
+    <string name="please_input_your_country">Tu país</string>
+    <string name="please_input_your_contact_details">Por favor introduce tus datos de contacto. Esto se muestra en la APP help.You puede dejarlos en blanco si desea.</string>
+    <string name="please_input_your_email">Tu correo electrónico</string>
+    <string name="please_input_your_website">Tu sitio web</string>
+    <string name="test_key">clave de la prueba</string>
+    <string name="new_key">nueva clave</string>
+    <string name="cannot_delete_and_recreate_apk_tmp_folder">No se puede eliminar y volver a crear una carpeta temporal para generar el archivo APK!</string>
+    <string name="cannot_create_apk_file">No se puede crear el archivo APK!</string>
+    <string name="do_you_want_to_replace_same_name_file">¿Quieres reemplazar el archivo con el mismo nombre?</string>
+    <string name="cannot_replace_existing_keystore_file">No se puede reemplazar almacén de claves existente!</string>
+    <string name="invalid_keystore_file">Almacén de claves no válido!</string>
+    <string name="invalid_keystore_password">La contraseña del almacén de claves no válido!</string>
+    <string name="password_requirement">La contraseña debe tener al menos 8 caracteres de longitud y sólo incluyen letras y números.</string>
+    <string name="invalid_keystore_again_password">Dos entradas de la contraseña del almacén de claves no coinciden!</string>
+    <string name="invalid_key_name">Nombre de clave no es válida!</string>
+    <string name="invalid_key_valid_period">Válido período debe ser de al menos 30 años!</string>
+    <string name="invalid_key_password">Contraseña de clave no válida!</string>
+    <string name="invalid_key_again_password">Dos entradas de la contraseña de la clave no coinciden!</string>
+    <string name="cannot_create_key">No se puede crear clave!</string>
+    <string name="done">Esta hecho</string>
+    <string name="apk_is_created">Se crea el archivo apk. Se puede instalar o compartir con otras personas. Si se firma con una clave pública (cualquier tecla creado por usted u otras personas), puede publicar en Google jugar o cualquier otra tienda APP. El archivo apk se guarda en </string>
+    <string name="help">Ayuda</string>
+    <string name="brief_introduction">Esta aplicación se crea a partir de una función de MFP. Introducción de aplicaciones, el uso de la función y desarrollador datos de contacto se enumeran a continuación.</string>
+    <string name="email_address">Email</string>
+    <string name="web_site">Sitio web</string>
+    <string name="developer_contact_details">Datos de contacto del desarrollador</string>
+    <string name="cannot_sign_apk">No se puede firmar el archivo APK!</string>
+    <string name="creating_and_signing_apk">Se está creando el archivo APK ...</string>
+    <string name="install">Instalar</string>
+    <string name="share">Cuota</string>
+    <string name="compilation_terminated_unexpectedly">Compilación abortado!</string>
+    <string name="undefined_function">Función Indefinido</string>
+    <string name="app_working_folder">Carpeta de trabajo App</string>
+    <string name="your_sd_card">Su tarjeta SD</string>
+    <string name="choose_help_doc">Elige lo que quieres hacer</string>
+    <string name="choose_open_html_help">Abrir documentos de ayuda HTML</string>
+    <string name="choose_open_pdf_help">Abrir pdf Manual</string>
+    <string name="choose_share_pdf_help">Compartir pdf Manual</string>
+    <string name="open">Abrir</string>
+    <string name="open_or_share">Abrir o Compartir</string>
+    <string name="choose_copy_examples">Copiar scripts de ejemplo y gráficos</string>
+    <string name="choose_copy_examples_notes">Si opta por copiar scripts de ejemplo y gráficos. Todos los scripts de ejemplo se copiarán a la carpeta scripts en tu tarjeta SD. Esto significa que puede ejecutar ningún ejemplo en el manual PDF. Sin embargo, esto también significa cuando se inicia la calculadora, se necesita más tiempo para cargar los códigos.</string>
+    <string name="number_of_ads_free_apk_builds">El número de MFP aplicaciones sin publicidad que se puede crear es de </string>
+    <string name="purchase_ads_free_apk_builds">Compre Más</string>
+    <string name="build_ads_free_app">Construir una aplicación sin anuncios</string>
+    <string name="failed_to_query_inventory">Error al consultar el inventario</string>
+    <string name="error_purchasing">Compra de error</string>
+    <string name="error_purchasing_authenticity_verification_failed">Compra de error. Verificación de la autenticidad falló.</string>
+    <string name="error_while_consuming">Error al consumir</string>
+    <string name="problem_setting_up_in_app_billing">In-app problema de facturación, no in-app productos se pueden comprar</string>
+    <string name="in_app_pending_please_wait">In-app compra está pendiente, por favor espere ...</string>
+    <string name="list_citingspace_info">Todos los citingspaces se enumeran a continuación de prioridad más alta a la más baja. Un ! antes del nombre del citingspace significa que no se puede eliminar.</string>
+    <string name="add_citingspace_succeeded">Citingspace ha sido añadido con más alta prioridad</string>
+    <string name="add_citingspace_failed">Citingspace no se puede añadir.</string>
+    <string name="delete_citingspace_succeeded">Citingspace ha sido borrada.</string>
+    <string name="delete_citingspace_failed">Citingspace no se puede eliminar.</string>
+    <string name="invalid_shellman_command">comando shellman no válido.</string>
+    <string name="add_citingspace_succeeded2">Citingspace ha sido añadido. Ahora tiene la prioridad mayor que cualquier otro citingspace, excepto el citingspace de nivel superior (TOP LEVEL Citingspace).</string>
+    <string name="shellman_command_need_cs_parameter">Shellman comando necesita citingspace como parámetro.</string>
+    <string name="derivative_expr_prompt">Expresión</string>
+    <string name="variable_name">Nombre de\nla variable</string>
+    <string name="variable_value">Valor de\nla variable</string>
+    <string name="menu_calculus">Cálculo</string>
+    <string name="menu_derivative">Derivado</string>
+    <string name="derivative_input_title">Configuraciones de cálculo</string>
+    <string name="first_order_derivative">En primer lugar Derivative</string>
+    <string name="third_order_derivative">Tercera derivada</string>
+    <string name="second_order_derivative">Segunda derivada</string>
+    <string name="calculus_prog_name">Cálculo</string>
+    <string name="choose_calculus_calculation">Por favor, seleccione el cálculo:</string>
+    <string name="calculate_integral">Cálculo de la integral</string>
+    <string name="calculate_derivative">Calcular derivada</string>
+    <string name="cannot_open_file">No se puede abrir el archivo!</string>
+    <string name="invalid_entry_function">punto de entrada no válido. @execution_entry ha sido declarado correctamente en el archivo?</string>
+    <string name="invalid_number_of_parameters">Número de parámetros no válido.</string>
+    <string name="please_input_parameters">Parámetros de entrada</string>
+    <string name="please_input_parameters_prompt">Por favor, parámetros de entrada para ejecutar el archivo de secuencia de comandos. Los parámetros están separadas por el espacio.</string>
+    <string name="command_finished">Operación ha terminado, pulse la tecla Atrás para salir.</string>
+    <string name="not_mfps_file">No es un archivo de MFPS!</string>
+    <string name="cannot_start_multiple_cmdline">Una ventana de línea de comandos se está ejecutando. No se puede iniciar otra!</string>
+    <string name="keep_inputpad_when_run_cmdline_prompt">No ocultar el teclado cuando se ejecuta un comando en la línea de comandos</string>
+    <string name="allow_screen_off_when_run_cmdline_prompt">Permitir que la pantalla se apague cuando la ventana de la línea de comandos está abierta</string>
+    <string name="manage_examples">Administrar ejemplos</string>
+    <string name="manage_script_libs">Administrar secuencias de comandos</string>
+    <string name="choose_folder_to_manage">Por favor, elija carpeta para administrar</string>
+    <string name="variable_has_been_added">Variable se ha añadido.</string>
+    <string name="invalid_command_option">Opción inválida.</string>
+    <string name="shellman_command_need_parameter">Shellman comando necesita parámetro.</string>
+    <string name="variable_has_been_deleted">Variable ha sido eliminada.</string>
+    <string name="variable_not_exist_or_cannot_delete">Variable no existe o no se puede eliminar.</string>
+    <string name="scripts_should_be_saved_in_scripts_folder">mfps archivos definidos por el usuario deben ser almacenadas en la carpeta scripts. De lo contrario, los archivos no se pueden cargar cuando se inicia la aplicación.</string>
+    <string name="do_you_want_to_exit">Desea dejar de todos modos?</string>
+    <string name="cannot_find_text">No se puede encontrar el texto!</string>
+    <string name="input_text_to_search">Qué buscar</string>
+    <string name="ignore_case">Insensible a las mayúsculas</string>
+    <string name="search_from_bottom_to_top">De abajo hacia arriba</string>
+    <string name="wrap_around">Ciclo de búsqueda</string>
+    <string name="run_example_text">Ejecutar ejemplo</string>
+    <string name="run">Ejecutar</string>
+    <string name="read_example_code_text">Leer</string>
+    <string name="share_example_source_text">Compartir código fuente</string>
+    <string name="build_example_source_text">Construir APK</string>
+    <string name="select_file">Seleccione un archivo</string>
+    <string name="cannot_share_example">No puedo compartir el ejemplo!</string>
+    <string name="calculator_general_settings">Configuración general</string>
+    <string name="calculator_connect_settings">Configuración de conexión remota</string>
+    <string name="input_dest_email_address">Correo electrónico de destino</string>
+    <string name="test_connect">Prueba de conexión remota</string>
+    <string name="your_email_address">Por favor ingrese su dirección de correo electrónico. Se recomiendan los correos electrónicos de Microsoft hotmail y Outlook. Google gmail y, si se encuentra en China continental, también se aceptan los correos electrónicos qq de Tencent. Otros servicios de correo electrónico están bien, siempre y cuando no tengan filtros de spam muy agresivos.</string>
+    <string name="your_email_password">Ingrese su contraseña para enviar y verificar el correo electrónico usando un cliente. Tenga en cuenta que esta puede no ser la misma contraseña que cuando inicia sesión en su correo web. Por ejemplo, Google gmail y Tencent qq mail generan diferentes contraseñas para los clientes de correo electrónico desde el correo web. Sin embargo, los correos electrónicos de Microsoft generalmente usan la misma contraseña que el correo web. Por favor, póngase en contacto con su proveedor de servicios de correo electrónico para obtener la contraseña correcta.</string>
+    <string name="your_smtp_server">Ingrese la dirección del servidor smtp de su correo electrónico. Si está utilizando gmail, el correo qq o el correo Outlook de Microsoft y hotmail, la dirección del servidor smtp se completará automáticamente. De lo contrario, el usuario debe ingresar manualmente.</string>
+    <string name="your_smtp_port">Ingrese el puerto del servidor smtp de su correo electrónico. Si está utilizando gmail, el correo qq o el correo Outlook de Microsoft y hotmail, el puerto del servidor smtp se completará automáticamente. De lo contrario, el usuario debe ingresar manualmente.</string>
+    <string name="your_imap_server">Ingrese la dirección del servidor imap de su correo electrónico. Si está utilizando gmail, el correo qq o el correo Outlook de Microsoft y hotmail, la dirección del servidor imap se completará automáticamente. De lo contrario, el usuario debe ingresar manualmente.</string>
+    <string name="your_imap_port">Ingrese el puerto del servidor imap de su correo electrónico. Si está utilizando gmail, el correo qq o el correo Outlook de Microsoft y hotmail, el puerto del servidor imap se completará automáticamente. De lo contrario, el usuario debe ingresar manualmente.</string>
+    <string name="keep_signal_service_running">Mantenga el servicio de señal de fondo en ejecución incluso después de que la GUI de la aplicación salga. Tenga en cuenta que el usuario puede recibir una solicitud de conexión solo si el servicio de señal de fondo está habilitado. Si no se selecciona este elemento, es posible que el usuario no pueda recibir ninguna solicitud de conexión remota. Sin embargo, habilitar el servicio en segundo plano significa que la batería se consume rápidamente. Algunos teléfonos, como OPPO, Xiaomi, Huawei y Samsung, predeterminan la suspensión de aplicaciones que se ejecutan en segundo plano. Para habilitar el servicio de señal de fondo en estos teléfonos, el usuario primero debe seleccionar esta opción y luego desactivar manualmente la configuración de ahorro de batería para esta aplicación. Por ejemplo, en el teléfono OPPO, el usuario debe navegar a la configuración, seleccionar la batería, en la lista de aplicaciones, encontrar esta aplicación y desactivar \'Pausar cuando esté en segundo plano \' y \'Optimizar automáticamente cuando se detecte una anomalía\'.</string>
+    <string name="set_destination_prompt">Por favor ingrese el destino de la conexión. Si lo deja en blanco o usa su propia dirección como destino, se conectará.</string>
+    <string name="test">Prueba</string>
+    <string name="send">Enviar</string>
+    <string name="why_request_permissions">Necesito permisos de cámara y micrófono para video y audio.</string>
+    <string name="service_started">El servicio de correo electrónico P2P comenzó.</string>
+    <string name="incoming_call_from">Llamada P2P entrante de</string>
+    <string name="there_is_an_incoming_call">Hay una llamada entrante P2P.</string>
+    <string name="allow_service_to_start_activity">Permitir que el servicio de señal de fondo comience la actividad cuando llegue una solicitud de conexión.</string>
+    <string name="allow_service_to_start_dest_addr">Permite que el servicio en segundo plano inicie automáticamente el cuadro de diálogo de entrada de la dirección de destino después de un período de tiempo. Para algunos dispositivos, como OPPO, esto es importante. De lo contrario, el sistema apagará automáticamente el servicio en segundo plano después de un período de tiempo.</string>
+    <string name="title_activity_set_local_email">Configura tu correo local</string>
+    <string name="action_next">Próximo paso</string>
+    <string name="action_next_in_short">Próximo paso</string>
+    <string name="error_invalid_email">Esta dirección de correo electrónico no es válida</string>
+    <string name="error_invalid_password">Esta contraseña parece no ser correcta</string>
+    <string name="error_field_required">este campo es requerido</string>
+    <string name="cannot_find_server_port">Lo siento, no puedo encontrar direcciones y puertos del servicio de correo electrónico para usted. Por favor ingrésalos tú mismo.</string>
+    <string name="error_connect_failed">La prueba de conexión no es exitosa. El error es:</string>
+    <string name="error_connect_failed_AddressException">¿Escribiste el correo electrónico o smtp o imap direcciones correctamente?</string>
+    <string name="error_connect_failed_AuthenticationFailedException">¿Estás usando la contraseña correcta? Esta contraseña es para que la aplicación del cliente acceda al correo electrónico. Puede ser diferente de su contraseña de correo web.</string>
+    <string name="error_connect_failed_NoSuchProviderException">¿Escribiste smtp e imap direcciones y puertos de servicio correctamente?</string>
+    <string name="error_connect_failed_SendFailedException">Si está seguro de que escribe direcciones de correo electrónico, contraseña y servicio correctamente, este error puede implicar que su servicio de correo electrónico no le permite enviar correos electrónicos con mucha frecuencia. Si está utilizando uno de los servicios de correo electrónico recomendados (por ejemplo, correo de Outlook, gmail y correo qq), es posible que se le haya enviado un correo electrónico del sistema indicándole qué hacer para habilitar el envío frecuente de correo electrónico.</string>
+    <string name="error_connect_failed_ReadOnlyFolderException">Parece que el servicio de correo electrónico que selecciona no es totalmente compatible con el protocolo IMAP. Si está utilizando los servicios de correo electrónico recomendados, podría ser su problema de configuración. Tal vez algunas carpetas de correo electrónico son de solo lectura?</string>
+    <string name="error_connect_failed_Exception">¿Ha permitido que las aplicaciones de los clientes accedan a este correo electrónico? ¿Estás usando la contraseña correcta (que podría ser diferente de tu contraseña de correo web)? ¿Son correctas las direcciones y los puertos del servicio de correo electrónico? ¿Su servicio de correo electrónico le permite enviar correos electrónicos con mucha frecuencia?</string>
+    <string name="error_connect_failed_CannotReceiveAllEmails">No puedo recibir todos los correos electrónicos que me envié a mí mismo. ¿Podría iniciar sesión en su correo electrónico para ver si el sistema le ha impedido enviar correos electrónicos con frecuencia? ¿Podría también verificar si algunos correos electrónicos se movieron a la papelera por error? De ser así, ¿podría actualizar su configuración de correo electrónico para evitar este error?</string>
+    <string name="connect_is_ok">La prueba de conexión es exitosa. Puede enviar y recibir correos electrónicos usando la dirección de correo electrónico que proporcione. Sin embargo, los correos electrónicos de otras personas pueden identificarse incorrectamente como spams y moverse a la papelera. Deberías revisar tus casillas de correo electrónico en caso de que no puedas conectarte al lado remoto.</string>
+    <string name="error_connect_failed_IOException">Se produce un error al leer o escribir un correo electrónico.</string>
+    <string name="error_connect_failed_MessagingException">No puedo enviar o recibir correo electrónico. Es posible que el token haya caducado. Por favor reinicie la aplicación.</string>
+    <string name="error_connect_failed_ParseException">Un correo electrónico incluye una fecha no válida.</string>
+    <string name="test_connection">Conexión de Prueba</string>
+    <string name="support_ssl">Soporte SSL</string>
+    <string name="no_support_ssl">Sin SSL</string>
+    <string name="not_sure">Incierto</string>
+    <string name="settings">Configuración</string>
+    <string name="config_your_email">configurar el correo local</string>
+    <string name="config_your_email_service">configurar el servicio</string>
+    <string name="other_settings">Otros ajustes</string>
+    <string name="show_state_as_toasts">Mostrar información de estado como brindis</string>
+    <string name="show_state_in_log_box">Mostrar información de estado en el cuadro de registro</string>
+    <string name="show_email_send_recv_as_toasts">Mostrar correo electrónico enviando y recibiendo información en Toast</string>
+    <string name="show_email_send_recv_in_log_box">Mostrar el envío de correo electrónico y recibir información en el cuadro de registro</string>
+    <string name="show_email_send_error_as_toasts">Mostrar errores como Toast al enviar correos electrónicos</string>
+    <string name="show_email_fetch_error_as_toasts">Mostrar errores como Toast cuando recupera correos electrónicos</string>
+    <string name="show_email_send_error_in_log_box">Mostrar los errores de envío de correo electrónico en el cuadro de registro</string>
+    <string name="show_email_fetch_error_in_log_box">Mostrar errores en el cuadro de registro al recuperar correos electrónicos</string>
+    <string name="show_email_fetch_stale_as_toasts">Mostrar Toast cuando se reciben correos electrónicos obsoletos</string>
+    <string name="show_email_fetch_stale_in_log_box">Mostrar información en el cuadro de registro cuando se reciben correos electrónicos obsoletos</string>
+    <string name="show_dc_send_recv_as_toasts">Mostrar enviando y recibiendo información de control de correo electrónico en Toast</string>
+    <string name="show_dc_send_recv_error_as_toasts">Mostrar errores como Toasts al enviar y recibir información de control de correo electrónico</string>
+    <string name="show_dc_send_recv_in_log_box">Mostrar el envío y la recepción de información de control de correo electrónico en el cuadro de registro</string>
+    <string name="show_dc_send_recv_error_in_log_box">Mostrar errores en el cuadro de registro al enviar y recibir información de control de correo electrónico</string>
+    <string name="save_settings">Guardar ajustes</string>
+    <string name="please_tell_me_local_email_type">Dígame qué tipo de cuenta de correo electrónico utilizará como su dirección de correo electrónico local:</string>
+    <string name="saved_gmail_account">Cuenta de gmail guardada</string>
+    <string name="exchange_account">Cuenta Exchange</string>
+    <string name="general_smtp_imap_account">Cuenta general SMTP e IMAP</string>
+    <string name="token_cannot_be_retrieved">El token no se puede obtener</string>
+    <string name="select_email_type">Elige el tipo de tu email</string>
+    <string name="i_am_gonna_test_connectivity">Voy a probar la conectividad para</string>
+    <string name="please_select_local_email_account">Por favor seleccione su cuenta de correo electrónico local:</string>
+    <string name="set_your_own_exchange_account">establecer una cuenta Exchange</string>
+    <string name="set_your_own_smtp_imap_account">establecer una cuenta SMTP &amp; IMAP</string>
+    <string name="use_back_camera_if_any">Si hay una cámara trasera, use la cámara trasera</string>
+    <string name="nothing_selected">Nada ha sido seleccionado</string>
+    <string name="has_been_selected">IIIT ha sido seleccionado</string>
+    <string name="force_connection_restart">reiniciar la conexión</string>
+    <string name="remote_is_coming_in">Conexión recibida</string>
+    <string name="remote_is_going_out">Conectar a</string>
+    <string name="remote_is_to_go_out">Yendo a conectarse a</string>
+    <string name="keep_connection">Mantener la conexión</string>
+    <string name="add_new_connection">Añadir nueva conexión</string>
+    <string name="max_number_active_connections_is">El número máximo de conexiones activas es</string>
+    <string name="you_havent_input_a_valid_address_connect_to_self">No se han ingresado direcciones válidas, ¿desea conectarse a sí mismo para realizar pruebas?</string>
+    <string name="send_to">Enviar a</string>
+    <string name="every_remote">@Cada usuario remoto@</string>
+    <string name="tap_me_to_select_address">!Por favor, tócame para seleccionar direcciones de destino!</string>
+    <string name="config_calculator">Configuración de la calculadora</string>
+    <string name="config_storage">Configuración de almacenamiento</string>
+    <string name="config_keyboard">Configuración del teclado</string>
+    <string name="config_remote_connection">Configuración de conexión remota</string>
+    <string name="storage_settings">Configuración de almacenamiento</string>
+    <string name="baidu_ad_words_China">中 国</string>
+</resources>

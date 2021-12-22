@@ -1,0 +1,319 @@
+<html>
+<head>
+<title>Scientific Calculator Plus Help</title>
+</head>
+<body style="background-color:white;">
+<h2 style="color:blue">MFP language class and endclass statements:</h2>
+<p style="font-family:verdana;color:black;">
+</p>
+<h3 style="color:pink">* Class declaration</h3>
+<p style="font-family:verdana;color:black;">
+The <i>class</i> and <i>endclass</i> statements define the boundary of an MFP class. The <i>class</i> statement is the beginning of an MFP class. If there is no super class included in the declaration, which means the class is derived from <i>object</i>, basic-most MFP type, the <i>class</i> statement is like:
+</p>
+<p style="font-family:verdana;color:blue;">
+class Class_Name
+</p>
+<p style="font-family:verdana;color:black;">
+. If, on the other hand, the class is directly derived from one or multiple super classes, the <i>class</i> statement is like:
+</p>
+<p style="font-family:verdana;color:blue;">
+class Class_Name: Super_Class1, Super_Class2, ..., Super_ClassN
+</p>
+<p style="font-family:verdana;color:black;">
+. Here, directly derived means this class is child but not grand child of the super class(es). Also, super class name could include part or full citingspace path. For example,
+<p style="font-family:verdana;color:blue;">
+class Class_Name: aaa::bbb::Super_Class1, ::ccc::Super_Class2, ..., Super_ClassN
+</p>
+<p style="font-family:verdana;color:black;">
+is totally valid. MFP will find out super class definitions by parsing the citingspace path based on the citingspace context, i.e. in which citingspace this class statement is and how many <i>using citingspace</i> statements have been declared.
+</p>
+
+<h3 style="color:pink">* Nested class and class members</h3>
+<p style="font-family:verdana;color:black;">
+Inside a class body are nested classes and/or class members, i.e. variables and functions. To nested class, the host class is just a citingspace. For example, if class A is defined in citingspace ::AAA::bbb and a nested class B is defined in class A, then the full citingspace path of class A is ::AAA::bbb::A and the full citingspace path of class B is ::AAA::bbb::A::B. Except the similarity of citingspace path, a nested class is independent of host class and is always visible inside and outside of the host class.
+</p>
+<p style="font-family:verdana;color:black;">
+Class members are parts of class definition. There are two access modes for class members, i.e. <i>private</i> and <i>public</i>. Private members can only be accessed by same class member functions while public members can be accessed by any functions inside and outside the class. For example:
+</p>
+<pre style="font-family:verdana;color:blue;">
+public variable self memberA = 7, memberB = "Hello", memberC
+</pre>
+<pre style="font-family:verdana;color:blue;">
+private function memberFunc(a, b, c)
+...
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+. If no access mode keyword exists, the class memeber is public.
+</p>
+<p style="font-family:verdana;color:black;">
+Class member variable is declared a bit different from variable declaration statements in function. First, an access mode keyword, i.e. <i>public</i> or <i>private</i>, may exist in the beginning of the statement. Second, a <i>self</i> keyword must follow the <i>variable</i> keyword, which means the variable(s) declared in this statement are NOT static. At this moment, MFP does NOT support static member variable so that without a <i>self</i> keyword, the whole variable declaration statement is ignored. Last, a class member variable can be initialized in declaration statement. However, its initializer has to be a pure value, and cannot be a function. For example,
+</p>
+<pre style="font-family:verdana;color:blue;">
+variable self varA = [[1,2]]
+</pre>
+<p style="font-family:verdana;color:black;">
+is right while
+</p>
+<pre style="font-family:verdana;color:blue;">
+variable self varA = func(3,4)
+</pre>
+<p style="font-family:verdana;color:black;">
+is wrong. More examples of member variable declaration are:
+</p>
+<pre style="font-family:verdana;color:blue;">
+variable self varA, varB = "Hello", varC = [[1,2],[3,4]]
+private variable self varD
+</pre>
+<p style="font-family:verdana;color:black;">
+Like member variables, class member function declaration may have an access mode keyword, i.e. <i>public</i> or <i>private</i> in front. Also, if its parameter list starts with <i>self</i>, this function is not static. Inside the member function, MFP uses keyword <i>self</i> followed by a dot to access  other members in the class. For example:
+</p>
+<pre style="font-family:verdana;color:blue;">
+public function memberFunc(self, a, b, c)
+	self.MemberA = a
+	self.MemberB = b
+	return self.MemberA * self.MemberB * self.memberFunc(c)
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+. Without <i>self</i> in the parameter list, the member function is static. Clearly, a static member function cannot access non-static members in the same class. An example for static member function is shown below:
+</p>
+<pre style="font-family:verdana;color:blue;">
+public function memberStaticFunc(a, b, c)
+	return a+b+c
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+.
+</p>
+<p style="font-family:verdana;color:black;">
+The <i>self</i> keyword can access members in the class and public members in the super class(es). However, if the class and one of its super classes have the same name member, <i>self</i> keyword can only access the member in the class not the super class. For example: 
+</p>
+<pre style="font-family:verdana;color:blue;">
+class SuperClassA
+	public function memberFunc(self, a)
+		return a
+	endf
+endclass
+class SuperClassB
+	public function memberFunc(self, a)
+		return 2*a
+	endf
+endclass
+class ChildClass : SuperClassA, SuperClassB
+	public function memberFunc(self, a)
+		return 3*a
+	endf
+	public function memberFunc1(self)
+		return self.memberFunc(3)	<i style="font-family:verdana;color:green;">// call memberFunc in ChildClass, not SuperClassA or SuperClassB</i>
+	endf
+endclass
+</pre>
+<p style="font-family:verdana;color:black;">
+. To access same name super class member, <i>super</i> member variable is provided. This member variable is an array whose first element is the object of the class's first super, second element is the object of its second super, etc. Here, an object of its super class is a sliced object, which means the super class object is actually a part of the object of the class. As such, in the above example, if developer wants to call <i>memberFunc</i> in the super classes, the code should be:
+</p>
+<pre style="font-family:verdana;color:blue;">
+class SuperClassA
+	public function memberFunc(self, a)
+		return a
+	endf
+endclass
+class SuperClassB
+	public function memberFunc(self, a)
+		return 2*a
+	endf
+endclass
+class ChildClass : SuperClassA, SuperClassB
+	public function memberFunc(self, a)
+		return 3*a
+	endf
+	public function memberFunc1(self)
+		variable x = self.super[0].memberFunc(3)	<i style="font-family:verdana;color:green;">// call memberFunc in SuperClassA</i>
+		variable y = self.super[1].memberFunc(4)	<i style="font-family:verdana;color:green;">// call memberFunc in SuperClassB</i>
+		return x + y
+	endf
+endclass
+</pre>
+<p style="font-family:verdana;color:black;">
+. If a class is not declared with any super class, its only super class is <i>object</i>. In this case <i>self.super[0]</i> returns a sliced object of <i>object</i> type.
+</p>
+<p style="font-family:verdana;color:black;">
+Both member variables and member functions can be overridden in MFP. In this way, when MFP refers to an object's member (variable or function), it always calls the most "bottom" member. For example, if class A is derived from class B, and both A and B have a member variable named C, and we have defined a function as
+</p>
+<pre style="font-family:verdana;color:blue;">
+function func(objOfClass)
+	print(objOfClass.C)
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+, then if an object of A is passed into this function, A's C value is printed. If an object of B is passed into this function, B's C value is printed.
+</p>
+<p style="font-family:verdana;color:black;">
+However, the above rule sometimes causes confusions. Consider, for example, class B in the above example has a public member function reading member variable C's value. The developer of class B doesn't know another developer will derive class A from B. Thus he assumes that <i>self.C</i> in class B's memeber function always refers to B's member variable C. However, if the third developer creates an object from class A and calls the member function of class B (which is super class of class A), class A's C value is read. 
+</p>
+<pre style="font-family:verdana;color:blue;">
+class B
+	variable self C = 1
+	function printC(self)
+		print("self.C = " + self.C + "\n")
+	endf
+endclass
+
+class A : B
+	variable self C = 2
+endclass
+
+function printABC()
+	variable bObj = B(), aObj = A()
+	bObj.printC()	<i style="font-family:verdana;color:green;">// self.C = 1</i>
+	aObj.printC()	<i style="font-family:verdana;color:green;">// self.C = 2</i>
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+If the first developer wants to ensure that <i>self.C</i> only refers to class B's C member variable in class B's member function(s), <i>this</i> variable should be used. Basically <i>this</i> variable returns a (sliced) object of current class where the calling function is located, as shown in the following code:
+</p>
+<pre style="font-family:verdana;color:blue;">
+class B
+	variable self C = 1
+	function printC(self)
+		print("self.this.C = " + self.this.C + "\n")
+	endf
+endclass
+
+class A : B
+	variable self C = 2
+endclass
+
+function printABC()
+	variable bObj = B(), aObj = A()
+	bObj.printC()	<i style="font-family:verdana;color:green;">// self.this.C = 1</i>
+	aObj.printC()	<i style="font-family:verdana;color:green;">// self.this.C = 1</i>
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+. Different from <i>super</i> member variable, which is <i>public</i>, <i>this</i> member variable is <i>private</i>.
+</p>
+
+<h3 style="color:pink">* Constructor and magic functions</h3>
+<p style="font-family:verdana;color:black;">
+When creating an object from an MFP class, constructor function should be called. Different from other programming languages, MFP class constructor is a built-in function with no parameter. Developer CANNOT define, override or overload constructor. For example, if a class Abcd is defined in citingspace ::AAA::bbb, then the class constructor is function Abcd() and the full citingspace path of the function is ::AAA::bbb::Abcd(), as shown in the following code:
+</p>
+<pre style="font-family:verdana;color:blue;">
+citingspace ::AAA::bbb
+class Abcd
+	variable self a = 1, b = "Hello", c
+	public function printMembers(self)
+		print("self.a = " + self.a + " self.b = " + self.b + " self.c = " + self.c)
+	endf
+endclass
+
+endcs
+
+function printABC()
+	variable obj = ::AAA::bbb::abcd()
+	obj.printMembers()	<i style="font-family:verdana;color:green;">// self.a = 1 self.b = Hello self.c = NULL</i>
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+What a constructor does is simply setting member variables to be the values assigned to them in the <i>variable</i> statement. If no initializing value in the <i>variable</i> statement, the member variable is set as <i>NULL</i>. Constructor returns an object of the class.
+</p>
+<p style="font-family:verdana;color:black;">
+Since user cannot define or overload a constructor, customized initialization work has to be done in a member function. The name, return type and parameter list of an initialization member function is up the the developer. However, MFP recommends to use <i>__init__</i> as the function name and return the object itself. Keep in mind that <i>__init__</i> is just a normal user defined function with no magic. It can be called multiple times at anytime and can be overloaded. For example:
+</p>
+<pre style="font-family:verdana;color:blue;">
+citingspace ::AAA::bbb
+class Abcd
+	variable self a = 1, b = "Hello", c
+	public function printMembers(self)
+		print("self.a = " + self.a + " self.b = " + self.b + " self.c = " + self.c)
+	endf
+	public function __init__(self)
+		self.a = 7
+		self.c = (3-i) * self.a
+		return self
+	endf
+	public function __init__(self, a, b, c)	<i style="font-family:verdana;color:green;">// like any user defined member function, __init__ can be overloaded.</i>
+		self.a = a
+		self.b = b
+		self.c = c
+		return self
+	endf
+endclass
+
+endcs
+
+function printABC()
+	using citingspace ::AAA::bbb
+	variable obj = abcd().__init__()
+	obj.__init__(3, 2, 1)
+	obj.__init__([5,4],[2,3],"WWW").printMembers()	<i style="font-family:verdana;color:green;">// self.a = [5, 4] self.b = [2, 3] self.c = WWW</i>
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+MFP class has a number of magic built-in member functions which can be overridden. Function <i>__to_string__</i> converts the object to a string. It is called when adding the object to a string or when MFP built-in function <i>to_string</i> is called with the object as the only parameter.
+</p>
+<p style="font-family:verdana;color:black;">
+Function <i>__deep_copy__</i> returns a deep copy of the object. It is called when MFP built-in function <i>clone</i> is called with the object as the only parameter.
+</p>
+<p style="font-family:verdana;color:black;">
+Function <i>__equals__</i> identifies if the object equals to the value of a variable. It is called when operator <i>==</i> is used to identify the equality of two variables.
+</p>
+<p style="font-family:verdana;color:black;">
+Function <i>__hash__</i> returns hash code of the object. It is called when MFP built-in function <i>hash_code</i> is called with the object as the only parameter.
+</p>
+<p style="font-family:verdana;color:black;">
+Function <i>__copy__</i> returns a shallow copy of the object. Its default behavior is to create a new object but all the member variables refer to the corresponding member variables of the old object.
+</p>
+<p style="font-family:verdana;color:black;">
+Function <i>__is_same__</i> identifies if the object is the same as another object referred by the parameter variable. This function simply compares reference so that its action is the same as the default behavior of operator <i>==</i>. This function is useful when developer overrides <i>__equals__</i> and wants to compare reference inside the overridden <i>__equals__</i> function. MFP does NOT recommend to override this function.
+</p>
+<p style="font-family:verdana;color:black;">
+The following example demonstrates the usage of the above functions:
+</p>
+<pre style="font-family:verdana;color:blue;">
+class SampleClass
+	variable self a = 1, b = 2
+	public function __equals__(self, o)
+		print("User defined __equals__\n")
+		if self.__is_same__(o) <i style="font-family:verdana;color:green;">// identify if self and o refer to the same object.</i>
+			return true
+		elseif null == o
+			return false
+		elseif get_type_fullname(self) != get_type_fullname(o)
+			return false
+		elseif or(self.a != o.a, self.b != o.b)
+			return false
+		else
+			return true
+		endif
+	endf
+	public function __to_string__(self)
+		return "Class SampleClass, a = " + a + " b = " + b
+	endf
+	public function __hash__(self)
+		print("User defined __hash__\n")
+		return a + b * 19
+	endf
+	public function __copy__(self)
+		print("User defined __copy__\n")
+		return self
+	endf
+	public function __deep_copy__(self)
+		print("User defined __deep_copy__\n")
+		variable o = SampleClass()
+		o.a = self.a
+		o.b = self.b
+		return o
+	endf
+endclass
+
+function testOverriddenMagicFunctions()
+	variable obj1 = SampleClass()
+	print(obj1)	<i style="font-family:verdana;color:green;">// will output Class SampleClass, a = 1 b = 2</i>
+	variable obj2 = clone(obj1)	<i style="font-family:verdana;color:green;">// will output User defined __deep_copy__</i>
+	print("obj1 == obj2 is " + (obj1 == obj2))	<i style="font-family:verdana;color:green;">// will first output User defined __equals__, then output obj1 == obj2 is true</i>
+	print(hash_code(obj2)) <i style="font-family:verdana;color:green;">// will first output User defined __hash__, then output 39</i>
+endf
+</pre>
+</body>
+</html>

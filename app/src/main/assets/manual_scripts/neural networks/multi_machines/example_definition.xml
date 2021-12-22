@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<example>
+<description>
+<english>A simple ANN example running on multiple devices</english>
+<simplified_chinese>一个在多个设备上运行的简单人工神经网示例</simplified_chinese>
+<traditional_chinese>一個在多個設備上運行的簡單人工神經網示例</traditional_chinese>
+<spanish>Un ejemplo de una red neuronal artificial simple que se ejecuta en varios dispositivos</spanish>
+</description>
+<application>
+<applicationName>A Simple Parallel ANN</applicationName>
+<applicationPkgName>com.SimpANN.Parallel</applicationPkgName>
+<applicationWorkingFolder>SimpANNParallel</applicationWorkingFolder>
+<applicationVersionStr>1.0.1.1883</applicationVersionStr>
+<applicationVersionCode>1883</applicationVersionCode>
+<functionInfo>
+<name>mfpexample::ann_class::run_ANN</name>
+<description>This is a simple ANN example running on a single device or multiple devices. There are 8 nodes distributed to at most three devices. This program has one parameter, i.e. the working mode. If the parameter is 0,  the program enters server mode. User in this case needs to input device's IP address which accepts call requests from the client. If the parameter is not 0, the program enters client mode. User in this case needs to input local device's IP address as well as server address(es). The program first sends 200 training data to set up ANN weight parameters. After that more data are sent to ANN to identify and group. Once the whole process finishes, a chart is plotted to visualize the result. 
+这是一个人工神经网分布式计算的简单例子。这个人工神经网有8个节点，可以最多分布在3个设备上进行计算。运行这个例子的程序有一个参数，也就是运行模式。如果这个参数的值是0，该程序进入服务器模式。在这种模式下运行者需要输入设备的IP地址。如果参数值不为0，该程序进入客户模式。在这种模式下运行者需要输入本地设备的IP地址和服务器的IP地址。这个程序首先发送200组训练数据训练这个人工神经网络以设置权重参数，然后发送更多的数据给这个人工神经网络进行识别。在所有的过程结束之后，该程序会把结果用图形的方式显示出来。
+</description>
+<includesOptionalParam>FALSE</includesOptionalParam>
+<parameters>
+<parameter>
+<prompt>Please input calculation mode (1 for client mode, 0 for server mode): </prompt>
+<isString>FALSE</isString>
+<needsInput>TRUE</needsInput>
+<defaultValue>1</defaultValue>
+</parameter>
+</parameters>
+</functionInfo>
+<helpInfo></helpInfo>
+</application>
+<sourceFiles>
+<sourceFile>ann_class_example.mfps</sourceFile>
+</sourceFiles>
+<apkFile>ann_parallel.apk</apkFile>
+<info>
+<english>This is a simple ANN example running on a single device or multiple devices. There are 8 nodes distributed to at most three devices. This program has one parameter, i.e. the working mode. If the parameter is 0,  the program enters server mode. User in this case needs to input device's IP address which accepts call requests from the client. If the parameter is not 0, the program enters client mode. User in this case needs to input local device's IP address as well as server address(es). The program first sends 200 training data to set up ANN weight parameters. After that more data are sent to ANN to identify and group. Once the whole process finishes, a chart is plotted to visualize the result.</english>
+<simplified_chinese>这是一个人工神经网分布式计算的简单例子。这个人工神经网有8个节点，可以最多分布在3个设备上进行计算。运行这个例子的程序有一个参数，也就是运行模式。如果这个参数的值是0，该程序进入服务器模式。在这种模式下运行者需要输入设备的IP地址。如果参数值不为0，该程序进入客户模式。在这种模式下运行者需要输入本地设备的IP地址和服务器的IP地址。这个程序首先发送200组训练数据训练这个人工神经网络以设置权重参数，然后发送更多的数据给这个人工神经网络进行识别。在所有的过程结束之后，该程序会把结果用图形的方式显示出来。</simplified_chinese>
+<traditional_chinese>這是一個人工神經網分布式計算的簡單例子。這個人工神經網有8個節點，可以最多分布在3個設備上進行計算。運行這個例子的程序有一個參數，也就是運行模式。如果這個參數的值是0，該程序進入服務器模式。在這種模式下運行者需要輸入設備的IP地址。如果參數值不為0，該程序進入客戶模式。在這種模式下運行者需要輸入本地設備的IP地址和服務器的IP地址。這個程序首先發送200組訓練數據訓練這個人工神經網絡以設置權重參數，然後發送更多的數據給這個人工神經網絡進行識別。在所有的過程結束之後，該程序會把結果用圖形的方式顯示出來。</traditional_chinese>
+<spanish>Este es un ejemplo simple de computación distribuida con redes neuronales artificiales. Esta red neuronal artificial tiene 8 nodos y se puede distribuir en hasta 3 dispositivos para el cálculo. El programa para ejecutar este ejemplo tiene un parámetro, que es el modo de ejecución. Si el valor de este parámetro es 0, el programa entra en modo servidor. En este modo, el operador debe ingresar la dirección IP del dispositivo. Si el valor del parámetro no es 0, el programa entra en modo cliente. En este modo, el operador debe ingresar la dirección IP del dispositivo local y la dirección IP del servidor. Este programa primero envía 200 conjuntos de datos de entrenamiento para entrenar a la red neuronal artificial para que establezca los parámetros de peso y luego envía más datos a la red neuronal artificial para su reconocimiento. Una vez finalizados todos los procesos, el programa mostrará los resultados gráficamente.</spanish>
+</info>
+</example>

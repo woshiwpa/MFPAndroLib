@@ -1,0 +1,318 @@
+<html>
+<head>
+<title>程式開發科學計算器幫助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body style="background-color:white;">
+<h2 style="color:blue">MFP編程語言class和endclass語句：</h2>
+<p style="font-family:verdana;color:black;">
+</p>
+<h3 style="color:pink">* 類的聲明</h3>
+<p style="font-family:verdana;color:black;">
+<i>class</i>和<i>endclass</i>語句定義了MFP語言的類。<i>class</i>語句是類定義的開始。如果<i>class</i>語句中沒有父類聲明，class就是直接派生於MFP語言的最基本的<i>object</i>類型。這樣的<i>class</i>語句的例子如下：
+</p>
+<p style="font-family:verdana;color:blue;">
+class Class_Name
+</p>
+<p style="font-family:verdana;color:black;">
+反之，如果類是從一個或者多個父類中直接派生而來，<i>class</i>語句則如下面的例子所示：
+</p>
+<p style="font-family:verdana;color:blue;">
+class Class_Name: Super_Class1, Super_Class2, ..., Super_ClassN
+</p>
+<p style="font-family:verdana;color:black;">
+這裏，直接派生是指該類是父類的子類，而不是孫類，曾孫類甚至更後輩。
+</p>
+<p style="font-family:verdana;color:black;">
+還需要註意，在<i>class</i>語句中，父類的名字是可以包含完整或者部分的引用空間路徑的，比如：
+</p>
+<p style="font-family:verdana;color:blue;">
+class Class_Name: aaa::bbb::Super_Class1, ::ccc::Super_Class2, ..., Super_ClassN
+</p>
+<p style="font-family:verdana;color:black;">
+上述語句是完全合法的。MFP將根據當前引用的所有引用空間以及它們的優先次序來找到每一個父類。
+</p>
+
+<h3 style="color:pink">* 嵌套的類和類的成員</h3>
+<p style="font-family:verdana;color:black;">
+類可以定義在另外一個類的裏面。這種類被稱為嵌套的類。在這種情況下，被嵌入的類僅僅只相當於嵌套類的引用空間。比如，類A定義在引用空間::AAA::bbb中，而一個嵌套的類B定義在A中，則類A的完整引用空間路徑為::AAA::bbb::A而類B的完整引用空間路徑為::AAA::bbb::A::B。除了它們引用空間路徑上的相似，嵌套類和被嵌入的類是相互獨立的。此外，嵌套類總是對外部可見的。
+</p>
+<p style="font-family:verdana;color:black;">
+類的成員則包括函數和變量。它們分為兩大類，私有（使用<i>private</i>關鍵字，只有類成員函數可訪問，外部不可見）和公有（使用<i>public</i>關鍵字，外部可見），比如：
+</p>
+<pre style="font-family:verdana;color:blue;">
+public variable self memberA = 7, memberB = "Hello", memberC
+</pre>
+<pre style="font-family:verdana;color:blue;">
+private function memberFunc(a, b, c)
+...
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+需要註意的是，如果聲明類成員時既沒有使用<i>private</i>也沒有使用<i>public</i>關鍵字，那麽該成員被視為公有，也就是<i>public</i>。
+</p>
+<p style="font-family:verdana;color:black;">
+類成員變量的聲明和普通變量的聲明略有不同。首先，如上面指出的，類成員變量的聲明語句前面可以加上<i>private</i>或者<i>public</i>關鍵字；其次，在<i>variable</i>關鍵字之後，必須加入一個<i>self</i>關鍵字。這個<i>self</i>關鍵字意思是該語句聲明的變量不是靜態變量。需要註意的是，在現階段，MFP不支持靜態變量，所以，如果類成員變量的聲明語句沒有<i>self</i>關鍵字將會被忽略；最後，和函數內的變量一樣，類成員變量可以在聲明語句中被初始化。但是，MFP只允許用存粹的值而不是函數來初始化類成員變量。比如：
+</p>
+<pre style="font-family:verdana;color:blue;">
+variable self varA = [[1,2]]
+</pre>
+<p style="font-family:verdana;color:black;">
+是對的而
+</p>
+<pre style="font-family:verdana;color:blue;">
+variable self varA = func(3,4)
+</pre>
+<p style="font-family:verdana;color:black;">
+則會出錯。更多的類成員變量聲明語句示例如下：
+</p>
+<pre style="font-family:verdana;color:blue;">
+variable self varA, varB = "Hello", varC = [[1,2],[3,4]]
+private variable self varD
+</pre>
+<p style="font-family:verdana;color:black;">
+和成員變量一樣，類的成員函數聲明語句前面可以加入<i>public</i>或者<i>private</i>關鍵字。此外，如果函數的第一個參數是<i>self</i>，這個函數就不是靜態的，否則，這個函數就是靜態的。在函數的內部，使用<i>self</i>關鍵字再加一個點可以訪問類的成員，比如：
+</p>
+<pre style="font-family:verdana;color:blue;">
+public function memberFunc(self, a, b, c)
+	self.MemberA = a
+	self.MemberB = b
+	return self.MemberA * self.MemberB * self.memberFunc(c)
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+如果類的成員函數是靜態的，它顯然就不能訪問類的非靜態成員。一個靜態成員函數的例子如下：
+</p>
+<pre style="font-family:verdana;color:blue;">
+public function memberStaticFunc(a, b, c)
+	return a+b+c
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+雖然<i>self</i>關鍵字可以用於訪問類的成員和類的父類（包括父類的父類和更上輩的類）的公共（<i>public</i>）成員，但如果類和它的某些父類擁有同樣名字的成員變量或者相同聲明的成員函數，<i>self</i>關鍵字則只能夠訪問本類中的成員而無法訪問父類中的成員。比如：
+</p>
+<pre style="font-family:verdana;color:blue;">
+class SuperClassA
+	public function memberFunc(self, a)
+		return a
+	endf
+endclass
+class SuperClassB
+	public function memberFunc(self, a)
+		return 2*a
+	endf
+endclass
+class ChildClass : SuperClassA, SuperClassB
+	public function memberFunc(self, a)
+		return 3*a
+	endf
+	public function memberFunc1(self)
+		return self.memberFunc(3)	<i style="font-family:verdana;color:green;">// 調用ChildClass的memberFunc函數，而不是SuperClassA或者SuperClassB的對應函數。</i>
+	endf
+endclass
+</pre>
+<p style="font-family:verdana;color:black;">
+為了訪問父類成員，則必須使用<i>super</i>成員變量。這個成員變量是一個數組，第一個元素是第一個父類的對象，第二個元素是第二個父類的對象，...，以此類推。註意這裏的對象都是切片的對象，也就是說通過<i>super</i>返回的父類的對象是本類對象的一部分。這樣一來，如果在上面的示例中開發者想調用父類的memberFunc函數，代碼應該這樣寫：
+</p>
+<pre style="font-family:verdana;color:blue;">
+class SuperClassA
+	public function memberFunc(self, a)
+		return a
+	endf
+endclass
+class SuperClassB
+	public function memberFunc(self, a)
+		return 2*a
+	endf
+endclass
+class ChildClass : SuperClassA, SuperClassB
+	public function memberFunc(self, a)
+		return 3*a
+	endf
+	public function memberFunc1(self)
+		variable x = self.super[0].memberFunc(3)	<i style="font-family:verdana;color:green;">// 調用SuperClassA的memberFunc函數</i>
+		variable y = self.super[1].memberFunc(4)	<i style="font-family:verdana;color:green;">// 調用SuperClassB的memberFunc函數</i>
+		return x + y
+	endf
+endclass
+</pre>
+<p style="font-family:verdana;color:black;">
+註意，如果一個類的聲明語句沒有包括任何父類，那麽該類有一個唯一的父類，就是MFP語言的<i>object</i>類型。在這種情況下，<i>self.super[0]</i>返回被切片的<i>object</i>對象。
+</p>
+<p style="font-family:verdana;color:black;">
+在MFP語言中，成員函數和成員變量均可以被覆寫（override）。如果MFP通過<i>self</i>關鍵字訪問一個成員（函數或者變量），而該成員已經被繼承樹上的多個類覆寫，那麽它總是訪問的最“下層”的成員。比如，如果類A是從類B派生而來，A和B均有一個成員變量叫C，並且我們已經定義了如下函數：
+</p>
+<pre style="font-family:verdana;color:blue;">
+function func(objOfClass)
+	print(objOfClass.C)
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+那麽，如果一個A的對象作為參數被傳入這個函數，那麽A的成員變量C的值將會被打印出來。而如果一個B的對象作為參數被傳入這個函數，那麽B的成員變量C的值將會被打印出來。
+</p>
+<p style="font-family:verdana;color:black;">
+但是，上面的規定有時候會給開發者帶來困惑。比如，在上面的例子中類B有一個公共成員函數，它讀取成員變量C的值。類B的開發者並不知道別的程序員會從類B派生出類A，所以他假定成員變量C一定是類B的成員變量C。但如果第三個開發者創建了一個類A的對象，並且調用了該對象從類B那裏繼承的讀取成員變量C的值的成員函數，那麽這時該成員函數實際上讀取的是類A而不是類B的成員變量C的值。
+</p>
+<pre style="font-family:verdana;color:blue;">
+class B
+	variable self C = 1
+	function printC(self)
+		print("self.C = " + self.C + "\n")
+	endf
+endclass
+
+class A : B
+	variable self C = 2
+endclass
+
+function printABC()
+	variable bObj = B(), aObj = A()
+	bObj.printC()	<i style="font-family:verdana;color:green;">// self.C = 1</i>
+	aObj.printC()	<i style="font-family:verdana;color:green;">// self.C = 2</i>
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+如果類B的開發者想要確保在類B的成員函數中讀取的是類B的成員變量C，那麽就必須通過類的<i>this</i>成員變量訪問成員變量C。所有的類都有一個<i>this</i>成員變量，該變量返回當前函數所在的類的一個（被切片的）的對象。一個例子如下：
+</p>
+<pre style="font-family:verdana;color:blue;">
+class B
+	variable self C = 1
+	function printC(self)
+		print("self.this.C = " + self.this.C + "\n")
+	endf
+endclass
+
+class A : B
+	variable self C = 2
+endclass
+
+function printABC()
+	variable bObj = B(), aObj = A()
+	bObj.printC()	<i style="font-family:verdana;color:green;">// self.this.C = 1</i>
+	aObj.printC()	<i style="font-family:verdana;color:green;">// self.this.C = 1</i>
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+和公共的<i>super</i>成員變量不同的是，<i>this</i>是私有的。
+</p>
+
+<h3 style="color:pink">* 構造函數和魔術函數</h3>
+<p style="font-family:verdana;color:black;">
+如果開發者想要以一個MFP類作為模板創造一個對象，必須調用構造函數。和其他的編程語言不同，MFP類的構造函數是內置的，不能夠開發者自定義，不能被重載，也不能夠被覆寫。構造函數沒有參數。它所做的一切工作就是就是根據成員變量的聲明初始化成員變量。如果一個成員變量在聲明中沒有給出初始值，那麽它就會被初始化為<i>NULL</i>。構造函數返回值是該類的一個對象。構造函數的一個例子如下。在該例子中，類Abcd定義在引用空間::AAA::bbb中，這個類的構造函數就是Abcd()，包括引用空間路徑的完整名稱為::AAA::bbb::Abcd()。
+</p>
+<pre style="font-family:verdana;color:blue;">
+citingspace ::AAA::bbb
+class Abcd
+	variable self a = 1, b = "Hello", c
+	public function printMembers(self)
+		print("self.a = " + self.a + " self.b = " + self.b + " self.c = " + self.c)
+	endf
+endclass
+
+endcs
+
+function printABC()
+	variable obj = ::AAA::bbb::abcd()
+	obj.printMembers()	<i style="font-family:verdana;color:green;">// self.a = 1 self.b = Hello self.c = NULL</i>
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+由於開發者無法自定義構造函數，所以自定義的初始化步驟應該放在公共的成員函數中。這種成員函數的名稱，返回類型和參數都可以由開發者來決定，但是MFP語言推薦使用<i>__init__</i>作為函數名，並且函數返回值為該對象自身。註意<i>__init__</i>只是一個普通的成員函數，而並非一個魔術函數，它可以被重載（overload），也可以在任何時候被多次調用。一個例子如下：
+</p>
+<pre style="font-family:verdana;color:blue;">
+citingspace ::AAA::bbb
+class Abcd
+	variable self a = 1, b = "Hello", c
+	public function printMembers(self)
+		print("self.a = " + self.a + " self.b = " + self.b + " self.c = " + self.c)
+	endf
+	public function __init__(self)
+		self.a = 7
+		self.c = (3-i) * self.a
+		return self
+	endf
+	public function __init__(self, a, b, c)	<i style="font-family:verdana;color:green;">// __init__函數和其他用戶自定義的普通成員函數一樣，它可以被重載</i>
+		self.a = a
+		self.b = b
+		self.c = c
+		return self
+	endf
+endclass
+
+endcs
+
+function printABC()
+	using citingspace ::AAA::bbb
+	variable obj = abcd().__init__()
+	obj.__init__(3, 2, 1)
+	obj.__init__([5,4],[2,3],"WWW").printMembers()	<i style="font-family:verdana;color:green;">// self.a = [5, 4] self.b = [2, 3] self.c = WWW</i>
+endf
+</pre>
+<p style="font-family:verdana;color:black;">
+MFP的類還提供了一些內置的魔術函數。這些魔術函數可以被用戶自定義相同聲明的函數所覆寫。函數<i>__to_string__</i>是最常用的魔術函數。這個函數吧一個對象轉換為字符串。當把一個對象和字符串相加，或者以這個對象為參數調用MFP內置的<i>to_string</i>函數時，這個函數將會被調用。
+</p>
+<p style="font-family:verdana;color:black;">
+函數<i>__deep_copy__</i>返回該對象的深度拷貝。當以這個對象為參數調用MFP內置的<i>clone</i>函數時該魔術函數將會被調用。
+</p>
+<p style="font-family:verdana;color:black;">
+函數<i>__equals__</i>判斷該對象是否和另外一個變量的值相等。當使用<i>==</i>操作符並且操作符的左操作數為該對象時該魔術函數將會被調用。
+</p>
+<p style="font-family:verdana;color:black;">
+函數<i>__hash__</i>返回該對象的哈希值。當以這個對象為參數調用MFP內置的<i>hash_code</i>函數時該魔術函數將會被調用。
+</p>
+<p style="font-family:verdana;color:black;">
+函數<i>__copy__</i>返回該對象的淺拷貝。它的默認行為是創建一個新的對象，但是該對象成員變量均引用舊的對象的對應值。
+</p>
+<p style="font-family:verdana;color:black;">
+函數<i>__is_same__</i>判斷該對象是否和另外一個變量的值相同（註意不是相等）。這個函數僅僅判斷兩個對象的引用是否一樣。所以，實際上它也和未重載的操作符<i>==</i>的功能是一致的。這個函數在開發者覆寫<i>__equals__</i>函數，需要直接比較引用時很有用。MFP不推薦覆寫這個函數。
+</p>
+<p style="font-family:verdana;color:black;">
+以下例子給出了上述函數的使用方法：
+</p>
+<pre style="font-family:verdana;color:blue;">
+class SampleClass
+	variable self a = 1, b = 2
+	public function __equals__(self, o)
+		print("User defined __equals__\n")
+		if self.__is_same__(o) <i style="font-family:verdana;color:green;">// 判斷self和o是否指向同一個對象</i>
+			return true
+		elseif null == o
+			return false
+		elseif get_type_fullname(self) != get_type_fullname(o)
+			return false
+		elseif or(self.a != o.a, self.b != o.b)
+			return false
+		else
+			return true
+		endif
+	endf
+	public function __to_string__(self)
+		return "Class SampleClass, a = " + a + " b = " + b
+	endf
+	public function __hash__(self)
+		print("User defined __hash__\n")
+		return a + b * 19
+	endf
+	public function __copy__(self)
+		print("User defined __copy__\n")
+		return self
+	endf
+	public function __deep_copy__(self)
+		print("User defined __deep_copy__\n")
+		variable o = SampleClass()
+		o.a = self.a
+		o.b = self.b
+		return o
+	endf
+endclass
+
+function testOverriddenMagicFunctions()
+	variable obj1 = SampleClass()
+	print(obj1)	<i style="font-family:verdana;color:green;">// 將會輸出Class SampleClass, a = 1 b = 2</i>
+	variable obj2 = clone(obj1)	<i style="font-family:verdana;color:green;">// 將會輸出User defined __deep_copy__</i>
+	print("obj1 == obj2 is " + (obj1 == obj2))	<i style="font-family:verdana;color:green;">// 將會先輸出User defined __equals__，然後再輸出obj1 == obj2 is true</i>
+	print(hash_code(obj2)) <i style="font-family:verdana;color:green;">// 將會先輸出User defined __hash__，然後再輸出39</i>
+endf
+</pre>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Scientific Calculator Plus Help</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">Scientific Calculator Plus Help : data interchange format functions</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>Function name</th>
+<th>Function info</th>
+</tr>
+<tr>
+<td><center>get_json_field</center></td>
+<td><p>::mfp::exdata::json::get_json_field(3) :</p>
+<p>This function gets a field value from a JSON string. It has three parameters. The first parameter is the JSON string. The second parameter is the field name. The third parameter is the field type. "s" means the field is a string, "b" means it is a boolean, "f" means it is float value, "d" means it is an integer, "a" means it is an array, "j" means it is a JSON string and other values or ignored means let MFP detect the type of the field. Note that JSON string and field name are both case sensitive while field type, if it is a string, is case insensative. It returns the field value. An example of this function is get_json_field("{\"ABC\": null, \"JJJ\": {\"DEF\":[1, 8, [\"Welcome\", 9.99]],\"ZZ\":\"hello boy\"}}", "JJJ", "j").</p>
+</td>
+</tr>
+<tr>
+<td><center>set_json_field</center></td>
+<td><p>::mfp::exdata::json::set_json_field(3) :</p>
+<p>This function sets a field value to a JSON string and returns the new JSON string. It has three parameters. The first parameter is the original JSON string. The second parameter is the field name. The third parameter is the field value. Note that all parameters are case-sensative. If the field name exists, this function refreshes the field's value. Otherwise, it adds a new field into the JSON string. It returns the new JSON string or throws an exception if the setting fails because of invalid field name or unsupported field value type. An example of this function is set_json_field("{\"ABC\": null, \"JJJ\": {\"DEF\":[1, 8, [\"Welcome\", 9.99]],\"ZZ\":\"hello boy\"}}", "JJJ", "New value").</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

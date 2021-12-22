@@ -1,0 +1,221 @@
+#!/usr/bin/mfplang
+
+@execution_entry mfpexample :: testString ()
+
+citingspace ::mfpexample
+
+Help
+@language:
+  test round, ceil, floor and mod functions
+@end
+@language:simplified_chinese
+  测试round，ceil，floor和mod等几个函数
+@end
+endh
+function testRoundsMod()
+  print("\n round(1.6) == " + round(1.6))
+  print("\n round(1.4) == " + round(1.4))
+  print("\n round(-1.6) == " + round(-1.6))
+  print("\n round(-1.4) == " + round(-1.4))
+  print("\n ceil(1.6) == " + ceil(1.6))
+  print("\n ceil(-1.6) == " + ceil(-1.6))
+  print("\n ceil(-5.0) == " + ceil(-5.0))
+  print("\n floor(1.6) == " + floor(1.6))
+  print("\n floor(-1.4) == " + floor(-1.4))
+  print("\n floor(-5.0) == " + floor(-5.0))
+  print("\n round(-1.82347, 4) == " + round(-1.82347, 4))
+  print("\n ceil(-1.82347, 4) == " + ceil(-1.82347, 4))
+  print("\n floor(-1.82347, 1) == " + floor(-1.82347, 1))
+  print("\n mod(-17.8214, 4.665) == " + Mod(-17.8214, 4.665))
+  print("\n mod(17.8214, 4.665) == " + Mod(17.8214, 4.665))
+endf
+
+Help
+@language:
+  test conversion functions between bin, oct, dec and hex
+@end
+@language:simplified_chinese
+  测试进制转换函数
+@end
+endh
+function testBinOctDecHex()
+  print("\n\nconv_bin_to_dec(\"00111001.000110\") = " _
+    + conv_bin_to_dec("00111001.000110"))
+  print("\n\nconv_bin_to_hex(\".1000110001\") = " _
+    + conv_bin_to_hex(".1000110001"))
+  print("\n\nconv_bin_to_oct(\"1000110001\") = " _
+    + conv_bin_to_oct("1000110001"))
+  print("\n\nconv_dec_to_bin(\".487960\") = " _
+    + conv_dec_to_bin(".487960"))
+  print("\n\nconv_dec_to_bin(.487960) = " _
+    + conv_dec_to_bin(.487960))
+  print("\n\nconv_dec_to_bin(0.48700) = " _
+    + conv_dec_to_bin(0.48700))
+  print("\n\nconv_dec_to_hex(\"153439.000\") = " _
+    + conv_dec_to_hex("153439.000"))
+  print("\n\nconv_dec_to_hex(153439.000) = " _
+    + conv_dec_to_hex(153439.000))
+  print("\n\nconv_dec_to_hex(153) = " _
+    + conv_dec_to_hex(153))
+  print("\n\nconv_dec_to_oct(\"1356.2341\") = " _
+    + conv_dec_to_oct("1356.2341"))
+  print("\n\nconv_dec_to_oct(1356.2341) = " _
+    + conv_dec_to_oct(1356.2341))
+  print("\n\nconv_dec_to_oct(1356) = " _
+    + conv_dec_to_oct(1356))
+  print("\n\nconv_hex_to_bin(\"0AB0039BA.FFE01BBC64\") = " _
+    + conv_hex_to_bin("0AB0039BA.FFE01BBC64"))
+  print("\n\nconv_hex_to_dec(\"0AB0039BA.FFE01BBC64\") = " _
+    + conv_hex_to_dec("0AB0039BA.FFE01BBC64"))
+  print("\n\nconv_hex_to_oct(\"0AB0039BA\") = " + conv_hex_to_oct("0AB0039BA"))
+  print("\n\nconv_oct_to_bin(\"027400330.017764\") = " + conv_oct_to_bin("027400330.017764"))
+  print("\n\nconv_oct_to_dec(\"027400330.017764\") = " + conv_oct_to_dec("027400330.017764"))
+  print("\n\nconv_oct_to_hex(\"027400330\") = " + conv_oct_to_hex("027400330"))
+endf
+
+Help
+@language:
+  test logic operation functions
+@end
+@language:simplified_chinese
+  测试逻辑函数
+@end
+endh
+function testLogic()
+  print("\n and(True, 3>2, 1-1) = " + and(True, 3>2, 1-1))
+  print("\n and(True, 3>2, 1-2) = " + and(True, 3>2, 1-2))
+  print("\n or(True, 3>2, 1-1) = " + or(True, 3>2, 1-1))
+  print("\n or(False, 3<2, 1-1) = " + or(False, 3<2, 1-1))
+  print("\n 7&8 = " + (7&8)) // result is 0 （结果为0）
+  print("\n and(7, 8) = " + and(7, 8)) // result is true （结果为true）
+  print("\n iff(true, 3, 2) = " + iff(true, 3, 2))
+  print("\n iff(3 < 2, 3, 2) = " + iff(3 < 2, 3, 2))
+  print("\n iff(3 < 2, 3, 5 > 4, 5, 6 == 9, 6, 9) = " _
+    + iff(3 < 2, 3, 5 > 4, 5, 6 == 9, 6, 9))
+  print("\n iff(3 < 2, 3, 5 < 4, 5, 6 == 9, 6, 9) = " _
+    + iff(3 < 2, 3, 5 < 4, 5, 6 == 9, 6, 9))
+endf
+
+Help
+@language:
+  test complex functions
+@end
+@language:simplified_chinese
+  测试复数操作函数
+@end
+endh
+function testComplexFuncs()
+  print("\nreal(-3+2*i) = " + real(-3+2i))
+  print("\nimage(-3+2*i) = " + image(-3+2*i))
+  print("\nabs(-3+2*i) = " + abs(-3+2 * i))
+  print("\nangle(-3+2*i) = " + angle(-3+2i))
+endf
+
+Help
+@language:
+  test string functions
+@end
+@language:simplified_chinese
+  测试字符串操作函数
+@end
+endh
+function testString()
+  print("\nstrlen(\"abcdefg!\") = " + strlen("abcdefg!"))
+  print("\nstrsub(\"abcdefg!\", 2, 4) = " + strsub("abcdefg!", 2, 4))
+  print("\nstrsub(\"abcdefg!\", 2, 3) = " + strsub("abcdefg!", 2, 3))
+  print("\nstrsub(\"abcdefg!\", 2) = " + strsub("abcdefg!", 2))
+  print("\nstrcat(\"abc\",\"hello\", \" 1,3,4\") = " _
+    + strcat("abc","hello", " 1,3,4"))
+  print("\nsplit(\" ab  kkk\\t6\\nd\", \"\\\\s+\") = " _
+    + split(" ab  kkk\t6\nd", "\\s+"))
+  print("\nsplit(\"boo:and:foo\", \":\") = " _
+    + split("boo:and:foo", ":"))
+  print("\nsplit(\"boo:and:foo\", \"o\") = " _
+    + split("boo:and:foo", "o"))
+  print("\nsplit(\",Hello,world,\", \",\") = " _
+    + split(",Hello,world,", ","))
+  print("\nTrim(\"\\t \\tabc   def  \\n  \") = " _
+    + Trim("\t \tabc   def  \n  "))
+  print("\nto_lowercase_string(\"abEfg\") = " _
+    + to_lowercase_string("abEfg"))
+  print("\nto_string(123) = " + to_string(123))
+  print("\nstricmp(\"abc\",\"ABc\") = " + stricmp("abc","ABc"))
+  print("\nstrcmp(\"abcdefgk\", \"defik\", 5, 8, 2, 5) = " _
+    + strcmp("abcdefgk", "defik", 5, 8, 2, 5))
+  print("\nconv_str_to_ints(\"中文汉字¥∑⑨\") = " _
+    + conv_str_to_ints("中文汉字¥∑⑨"))
+  print("\nconv_ints_to_str([20013, 25991, 27721, 23383, 165, 8721, 9320]) = " _
+    + conv_ints_to_str([20013, 25991, 27721, 23383, 165, 8721, 9320]))
+endf
+
+Help
+@language:
+  test array construction functions
+@end
+@language:simplified_chinese
+  测试创建数组的函数
+@end
+endh
+function createArray()
+  print("\nalloc_array(3) = " + alloc_array(3))
+  print("\nalloc_array(2,3,4) = " + alloc_array(2,3,4))
+  print("\nalloc_array([2,3,4]) = " + alloc_array([2,3,4]))
+  print("\nalloc_array([2,1],\"hello\") = " + alloc_array([2,1],"hello"))
+  print("\neye(3) = " + eye(3))
+  print("\nones(2,3) = " + ones(2,3))
+  print("\nzeros([2,3]) = " + zeros([2,3]))
+endf
+
+Help
+@language:
+  acquire array's properties functions
+@end
+@language:simplified_chinese
+  获取数组特性的函数
+@end
+endh
+function getArrayProperty()
+  print("\nsize([1, 2+3i, [5, \"hello\", [9, 10], 6], 11, 12]) = " _
+    + size([1, 2+3i, [5, "hello", [9, 10], 6], 11, 12]))
+  print("\nsize([1, 2+3i, [5, \"hello\", [9, 10], 6], 11, 12], 2) = " _
+    + size([1, 2+3i, [5, "hello", [9, 10], 6], 11, 12], 2))
+  print("\nis_eye([[1,1],[0,1]]) = " + is_eye([[1,1],[0,1]]))
+  print("\nis_zeros([[0,0],0]) = " + is_zeros([[0,0],0]))
+  print("\nincludes_nan_or_inf([5, [3, -inf], \"hello\"]) = " _
+    + includes_nan_or_inf([5, [3, -inf], "hello"]))
+  print("\nincludes_null([5, [3, -inf], \"hello\"]) = " _
+    + includes_null([5, [3, -inf], "hello"]))
+endf
+
+Function subfunc1(array_value)
+  Variable my_array = Array_value
+  my_array[2] = 7
+Endf
+
+Function subfunc2(array_value)
+  Variable my_array = clone(Array_value)
+  my_array[2] = 7
+Endf
+
+function assignValue2Array()
+  variable array_val = [1,2,3]
+  print("\narray_val's initial value is " + array_val)
+  subfunc2(array_val)
+  // clone function called in subfunc2, any change inside
+  // will not affect main function.
+  // 由于clone函数被调用，子函数改变数组参数的值不会对主函数有影响。
+  print("\nWith clone, after calling sub function array_val is " + _
+    array_val)
+  subfunc1(array_val)
+  // clone function not called in subfunc2, value changes
+  // of array_val inside will affect main function.
+  // 由于clone函数没有被调用，子函数改变数组参数的值会对主函数有影响。
+  print("\nWithout clone, after calling sub function array_val is " _
+    + array_val)
+  array_val = set_array_elem(array_val, [4], -5.44-6.78i)
+  // array_val now has 5 elements after calling set_array_elem
+  // 在调用set_array_elem函数后，array_val有5个元素了。
+  print("\nAfter set_array_elem array_val is " + array_val)  
+endf
+
+endcs

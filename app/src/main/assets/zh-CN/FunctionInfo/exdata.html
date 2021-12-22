@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>可编程科学计算器帮助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">可编程科学计算器帮助：数据交换文件格式函数</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函数名</th>
+<th>函数帮助信息</th>
+</tr>
+<tr>
+<td><center>get_json_field</center></td>
+<td><p>::mfp::exdata::json::get_json_field(3) :</p>
+<p>此函数从一个代表JSON数据的字符串中获取一个域的值。此函数有三个参数。第一个参数为一个代表JSON数据的字符串，第二个参数为JSON域的名字，第三个参数为JSON域的类型。如果第三个参数值为"s"，则意味着这个JSON域是一个字符串，如果是"b"，则意味着这个JSON域是一个布尔值，如果是"f"，则意味着这个JSON域是一个浮点数值，如果是"d"，则意味着这个JSON域是一个整数值，如果是"a"，则意味着这个JSON域是一个数组，如果是"j"，则意味着这个JSON域是一个代表JSON数据的字符串，如果是其他值或者这个参数被省略，则由MFP自己侦测这个JSON域的数据类型。注意第一个参数和第二个参数都是区分大小写的，但第三个参数不区分大小写。这个函数的返回值是这个JSON域的数据值。本函数的一个例子是get_json_field("{\"ABC\": null, \"JJJ\": {\"DEF\":[1, 8, [\"Welcome\", 9.99]],\"ZZ\":\"hello boy\"}}", "JJJ", "j")。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_json_field</center></td>
+<td><p>::mfp::exdata::json::set_json_field(3) :</p>
+<p>此函数将一个值设置到代表JSON数据的字符串中。此函数有三个参数。第一个参数为一个代表JSON数据的字符串，第二个参数为JSON域的名字，第三个参数为JSON域的值。注意这三个参数都是区分大小写的。如果这个JSON域已经存在，则将新值写入，否则，将创建一个新的JSON域。这个函数的返回值是设置后的新的JSON域的字符串，或者如果数据类型不支持或JSON域的名字错误则抛出异常。本函数的一个例子是set_json_field("{\"ABC\": null, \"JJJ\": {\"DEF\":[1, 8, [\"Welcome\", 9.99]],\"ZZ\":\"hello boy\"}}", "JJJ", "New value")。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

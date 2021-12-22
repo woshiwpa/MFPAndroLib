@@ -1,0 +1,2088 @@
+
+◀◀◀◀break,continue▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language break, continue statments:
+Break statement can be used in looping blocks (i.e. while ... loop, do ... until, for ... next) or select ... case ... default ... ends condition block. MFP jumps out the inner-most looping block or select ... case ... default ... ends condition block if break is hit.
+Continue statement can be used in looping blocks (i.e. while ... loop, do ... until, for ... next). MFP ignores the following statement and goes back to the beginning of the inner-most looping block if continue statement is hit.
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言break语句和continue语句:
+Break语句用于循环（也就是While ... loop, do ... until, for ... next）或者条件程序块select ... case ... default ... ends。Break语句使MFP跳出最内一层循环或者select ... case ... default ... ends程序块。
+Continue语句用于循环（也就是While ... loop, do ... until, for ... next）。Continue语句使MFP忽略最内一层循环中该continue语句之后的语句并跳转到最内一层循环的开始处开始执行。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言break語句和continue語句:
+Break語句用於循環（也就是While ... loop, do ... until, for ... next）或者條件程式塊select ... case ... default ... ends。Break語句使MFP跳出最內一層循環或者select ... case ... default ... ends程式塊。
+Continue語句用於循環（也就是While ... loop, do ... until, for ... next）。Continue語句使MFP忽略最內一層循環中該continue語句之後的語句並跳轉到最內一層循環的開始處開始執行。
+
+◀◀◀◀function,return,endf▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language function, return and endf statements:
+Function statement in MFP is a start of a function. It should be used as
+Function name(parameter1, parameter2, parameter3, ...)
+. Note that "..." here means there are various number of parameters following parameters 1 to 3. If there is no optional parameter, no "..." should be used. For example:
+Function abcd(para1, para2, para3, para4)
+is a function named abcd with four parameters, while
+Function abcdx(para1, para2, para3, para4, ...)
+is a function with >= 4 parameters. The number of optional parameters (excluding para1 to para4) is stored in a system variable named opt_argc. The first to fourth parameters have defined name which are para1, para2, para3 and para4 respectively. The first optional parameter's value is stored in opt_argv[0] where opt_argv is a system array variable. Similarly, the second optional parameter's value is opt_argv[1], the third is opt_argv[2], etc.
+A function statement can return a value or return nothing. However, user needs not to clare the return variable name in function statement. MFP can automatically process the return.
+Return statement in MFP is used to exit from a function and return a value (which can be any data type) to caller if needed. For example:
+Return "Hello word"    // return a string "Hello word"
+or
+Return    // return nothing
+.
+Endf statement is the end of function block. It is simple and does not take any parameter.
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言function，return和endf语句：
+在MFP语言中Function语句是一个函数的开始。Function语句的语法为：
+Function name(parameter1, parameter2, parameter3, ...)
+。注意这里"..."意味着在parameter3参数之后还可能有任意个数个参数。如果一个函数没有可选参数，函数的声明应该类似于
+Function abcd(para1, para2, para3, para4)
+。换句话说不能够在参数列中有"..."。
+如果一个函数有可选参数，可选参数的个数保存在一个系统变量中，该系统变量名字叫做opt_argc。所有的可选参数作为一个数组保存于系统变量opt_argv中。换句话说，第一个可选参数的值为opt_argv[0]，第二个为opt_argv[1]，以此类推。
+一个函数可以返回一个任意类型的数值或者什么都不返回。但使用者不用在Function语句中声明返回值，MFP会自动处理返回值。
+Return语句用于退出函数并返回数值。比如：
+Return "Hello word"    // 返回字符串"Hello word"
+或
+Return    // 什么都不返回
+。
+Endf语句用于标记函数的结尾，该语句不接受任何参数。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言function，return和endf語句：
+在MFP語言中Function語句是一個函數的開始。Function語句的語法為：
+Function name(parameter1, parameter2, parameter3, ...)
+。注意這裡"..."意味著在parameter3參數之後還可能有任意個數個參數。如果一個函數沒有可選參數，函數的聲明應該類似於
+Function abcd(para1, para2, para3, para4)
+。換句話說不能夠在參數列中有"..."。
+如果一個函數有可選參數，可選參數的個數儲存在一個系統變數中，該系統變數名字叫做opt_argc。所有的可選參數作為一個陣列保存於系統變數opt_argv中。換句話說，第一個可選參數的值為opt_argv[0]，第二個為opt_argv[1]，以此類推。
+一個函數可以返回一個任意類型的數值或者什麼都不返回。但使用者不用在Function語句中聲明返回值，MFP會自動處理返回值。
+Return語句用於退出函數並返回數值。比如：
+Return "Hello word"    // 返回字串"Hello word"
+或
+Return    // 什麼都不返回
+。
+Endf語句用於標記函數的結尾，該語句不接受任何參數。
+
+◀◀◀◀help,endh,@language▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language help, endh statments and @language annotation:
+Help is the start of a help block in MFP language and endh is the end of help block.
+Note that although the statements in a help block does not have any impact in the running of the function, it is useful to show user help information when user types "help function_name" or "help function_name(number_of_parameters_in_this_function)" if this help block is right above the function declaration. MFP is also able to feed different help information for different system language. For example, assume a help block is right above function abcd:
+Help
+  This line will be shown for any system language.
+  @language:
+  This line will be shown for default system language.
+  @end
+    This line will also be shown for any system language.
+  @language:simplified_chinese
+  这一行将在系统语言为中文时显示（This line will be shown when system language is simplified Chinese.）。
+  @end
+    This line is also a line for any system language.
+Endh
+Function abcd(x, y)
+Endf
+. So when user types "help abcd" or "help abcd(2)", he/she will see
+  This line will be shown for any system language.
+  This line will be shown for default system language.
+    This line will also be shown for any system language.
+    This line is also a line for any system language.
+if system language is English which is also the default language. He/she will see
+  This line will be shown for any system language.
+    This line will also be shown for any system language.
+    This line is also a line for any system language.
+if system language is Japansee which is not the default language. He/she will see
+  This line will be shown for any system language.
+    This line will also be shown for any system language.
+  这一行将在系统语言为中文时显示（This line will be shown when system language is simplified Chinese.）。
+    This line is also a line for any system language.
+if system language is simplified Chinese which is not the default language. He/she will see
+  This line will be shown for any system language.
+  This line will be shown for default system language.
+    This line will also be shown for any system language.
+  这一行将在系统语言为中文时显示（This line will be shown when system language is simplified Chinese.）。
+    This line is also a line for any system language.
+if system language is simplified Chinese which is also the default language.
+If user simply wants to add comment for a line, "//" can be used. Like C++, words following "//" will be comments. "//" can start a new line or follow a statement.
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言help和endh语句和@language标注：
+在MFP语言中，Help语句是一个帮助信息块的开始而endh语句是一个帮助信息块的终止。
+注意虽然在一个帮助信息块中的语句不会影响函数的运行，当用户输入"help 函数名"或者"help 函数名(函数参数个数)"时帮助信息块却能提供必要的帮助信息。条件是该帮助信息块正好位于函数声明的上方。在以下例子中一个帮助信息块位于函数abcd的上方：
+Help
+  This line will be shown for any system language.
+  @language:
+  This line will be shown for default system language.
+  @end
+    This line will also be shown for any system language.
+  @language:simplified_chinese
+  这一行将在系统语言为中文时显示（This line will be shown when system language is simplified Chinese.）。
+  @end
+    This line is also a line for any system language.
+Endh
+Function abcd(x, y)
+Endf
+。当用户输入"help abcd"或者"help abcd(2)"时，如果系统语言是英语并且英语也是默认语言，该用户将看到如下帮助信息：
+  This line will be shown for any system language.
+  This line will be shown for default system language.
+    This line will also be shown for any system language.
+    This line is also a line for any system language.
+，如果系统语言是日语但是日语不是默认语言，该用户将看到如下帮助信息：
+  This line will be shown for any system language.
+    This line will also be shown for any system language.
+    This line is also a line for any system language.
+，如果系统语言是简体中文但简体中文不是默认语言，，该用户将看到如下帮助信息：
+  This line will be shown for any system language.
+    This line will also be shown for any system language.
+  这一行将在系统语言为中文时显示（This line will be shown when system language is simplified Chinese.）。
+    This line is also a line for any system language.
+，如果系统语言是简体中文而且简体中文是默认语言，，该用户将看到如下帮助信息：
+  This line will be shown for any system language.
+  This line will be shown for default system language.
+    This line will also be shown for any system language.
+  这一行将在系统语言为中文时显示（This line will be shown when system language is simplified Chinese.）。
+    This line is also a line for any system language.
+。
+如果用户仅仅只是想在一行的末尾加一些注释，可以使用类似于C++的"//"，在一行中，"//"之后的内容均为注释。"//"可以位于一行最开始。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言help和endh語句和@language標註：
+在MFP語言中，Help語句是一個幫助資訊塊的開始而endh語句是一個幫助資訊塊的終止。
+注意雖然在一個幫助資訊塊中的語句不會影響函數的運行，當使用者輸入"help 函數名"或者"help 函數名(函數參數個數)"時幫助資訊塊卻能提供必要的幫助資訊。條件是該幫助資訊塊正好位於函數聲明的上方。在以下例子中一個幫助資訊塊位於函數abcd的上方：
+Help
+  This line will be shown for any system language.
+  @language:
+  This line will be shown for default system language.
+  @end
+    This line will also be shown for any system language.
+  @language:simplified_chinese
+  這一行將在系統語言為中文時顯示（This line will be shown when system language is simplified Chinese.）。
+  @end
+    This line is also a line for any system language.
+Endh
+Function abcd(x, y)
+Endf
+。當使用者輸入"help abcd"或者"help abcd(2)"時，如果系統語言是英文並且英文也是預設語言，該使用者將看到如下幫助資訊：
+  This line will be shown for any system language.
+  This line will be shown for default system language.
+    This line will also be shown for any system language.
+    This line is also a line for any system language.
+，如果系統語言是日文但是日文不是預設語言，該使用者將看到如下幫助資訊：
+  This line will be shown for any system language.
+    This line will also be shown for any system language.
+    This line is also a line for any system language.
+，如果系統語言是簡體中文但簡體中文不是預設語言，，該使用者將看到如下幫助資訊：
+  This line will be shown for any system language.
+    This line will also be shown for any system language.
+  這一行將在系統語言為中文時顯示（This line will be shown when system language is simplified Chinese.）。
+    This line is also a line for any system language.
+，如果系統語言是簡體中文而且簡體中文是預設語言，，該使用者將看到如下幫助資訊：
+  This line will be shown for any system language.
+  This line will be shown for default system language.
+    This line will also be shown for any system language.
+  這一行將在系統語言為中文時顯示（This line will be shown when system language is simplified Chinese.）。
+    This line is also a line for any system language.
+。
+如果使用者僅僅只是想在一行的末尾加一些註釋，可以使用類似於C++的"//"，在一行中，"//"之後的內容均為註釋。"//"可以位於一行最開始。
+
+◀◀◀◀if,elseif,else,endif▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language if, elseif, else, endif statements:
+If, elseif, else and endif comprise condition block in MFP. They should be used like the following example:
+If conditionA
+    ......
+elseif conditionB
+    ......
+elseif conditionC
+    ......
+......
+......
+......
+else
+    ......
+endif
+, where conditionA, conditionB, conditionC, etc. are expressions which have boolean values. If they are not boolean values, MFP converts them to boolean first (if MFP can).
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言if，elseif，else和endif语句：
+If，elseif，else和endif组成了MFP语言中的条件程序块。它们的语法如下：
+If conditionA
+    ......
+elseif conditionB
+    ......
+elseif conditionC
+    ......
+......
+......
+......
+else
+    ......
+endif
+。在上述例子中，conditionA，conditionB和conditionC均为表达式，它们的运算结果应该为布尔值。如果它们运算值不是布尔值，MFP将会将运算结果转换为布尔值。如果做不到这一点，MFP将报错。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言if，elseif，else和endif語句：
+If，elseif，else和endif組成了MFP語言中的條件程式塊。它們的語法如下：
+If conditionA
+    ......
+elseif conditionB
+    ......
+elseif conditionC
+    ......
+......
+......
+......
+else
+    ......
+endif
+。在上述例子中，conditionA，conditionB和conditionC均為運算式，它們的運算結果應該為布林值。如果它們運算值不是布林值，MFP將會將運算結果轉換為布林值。如果做不到這一點，MFP將報錯。
+
+◀◀◀◀select,case,default,ends▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language select, case, default, ends statments:
+Select, case, default and ends comprise another type of condition block besides if. They should be used like the following example: 
+select expr
+case value1
+    ......
+    break
+case value2
+    ......
+    break 
+......
+......
+......
+default
+    ......
+ends
+. Note that if there is no break at the end of a block of case, MFP will continue to execute the statements in the following case or default block. 
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言select，case，default和ends语句：
+Select，case，default和ends构成了MFP中除if之外的另外一种条件程序块。他们的语法如下：
+select expr
+case value1
+    ......
+    break
+case value2
+    ......
+    break 
+......
+......
+......
+default
+    ......
+ends
+。注意如果一个case块的结尾没有break语句，MFP将会执行下一个case块或者default块（如果下个条件分支为default）的语句。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言select，case，default和ends語句：
+Select，case，default和ends構成了MFP中除if之外的另外一種條件程式塊。他們的語法如下：
+select expr
+case value1
+    ......
+    break
+case value2
+    ......
+    break 
+......
+......
+......
+default
+    ......
+ends
+。注意如果一個case塊的結尾沒有break語句，MFP將會執行下一個case塊或者default塊（如果下個條件分支為default）的語句。
+
+◀◀◀◀solve,slvreto▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language solve and slvreto statements:
+Solve statement starts an in-line solver block. It takes an arbitary number of variables as parameters. These variables must be declared before. These variables will be the to-be-solved variables in the solve block. In the following example, user first defines three variables x, y and z, then starts a solve block to solve the values of variables x, y and z.
+variable x = 3, y, z = [2, 7]
+solve x, y, z
+...
+It doesn't matter what the initial values of x, y and z are. If in the solve block x, y or z is solved it will be assigned a new value. If the solve block cannot solve any or all of the variables, the value of the variable(s) does not change.
+Slvreto statement finishes an in-line solver block. It has one optional parameter, a variable declared before the solve block. This variable is used to store all the roots of each to-be-solved variables (i.e. variables as parameters in solve statement). However, to retrive roots of a variable or a result set, user should use built-in functions including get_num_of_results_sets, get_solved_results_set and get_variable_results. For example, the following statements are all valid:
+slvreto
+slvreto all_results
+The follows are a solve example.
+Function testtry2()
+	Variable a, b, c, x, y, z
+	a = 3
+	b = 4
+	c = 5
+	x = 6
+	y = 7
+	z = 8
+	solve x, y, z 	// x, y and z are to-be-solved variables in the solve block.
+		// a, b and c are also used in the solve block.
+		// However, different from x, y and z, they are
+		// not to solve variables so that their values
+		// are not gonna change.
+		a * x**2 + 7 * log(b) *x + 6.5 == 8 // note that '==' should be used
+											// instead of '=' because '='
+											// assigns value to a variable.
+		y * b - z + 6 == 3.7 + x/(a + 7)
+		y * x + z/(c - 3) == 6 + a + y
+	slvreto a	// a is optional. If used, solve block saves all roots of all
+				// variables to a.
+	print("\nx == " + x + "\ny == " + y + "\nz == " + z)
+	print("\nNumber of results sets is " + get_num_of_results_sets(a))
+	
+	// it's possible that MFP cannot solve the expressions in a solve block. In
+	// this case solve block does not throw any exception but simply returns an
+	// empty result to returned variable (which is a in this function).
+	if (get_num_of_results_sets(a) > 0)
+		
+		// 0 means the first results set, 1 means the second, etc.
+		print("\nResults set No. 2 is " + get_solved_results_set(a, 1))
+		
+		// note that get_variable_results has two parameters, first is solve
+		// returned result, second is the variable place in the corresponding
+		// solve statement. 0 means the first variable (which is x in this
+		// example), 1 means the second variable (which is y in this example),
+		// etc. It is also possible that some variables can be solved in a
+		// solve block while other variables cannot be solved. In this case,
+		// roots of unsolved variables are NULL.
+		print("\nAll results of y are " + get_variable_results(a, 1))
+	else
+		print("\nSorry, cannot solve the expressions and get x, y, z's values")
+	endif
+	return
+Endf
+In the above example, we get
+x == 0.14781939
+y == 6.84549421
+z == 29.66719489
+Number of results sets is 2
+Results set No. 2 is [-3.38250623, -3.22386342, -10.25720306]
+All results of y are [6.84549421, -3.22386342] .
+To write a solve block, user needs to know the following things:
+1. There are two types of variables in a solve block, normal variables and to-be-solved variables. To-be-solved variables are the variables in the solve statement definition. In the above example, to-be-solved variables are x, y and z while a, b and c are normal variables. Values of normal variables are known to solve block while values of to-be-solved variables will be assigned in a solve block. Also, both normal variables and to-be-solved variables should be declared before a solve block.
+2. To set up a to-be-solved expression in a solve block, '==' should be used instead of '=' since '=' is to assign value to a variable. However, it is fine if user assigns value to a variable (whether normal or to-be-solved) in a solve block. An example is:
+variable a = 3, b = 4, c = 5, x, y
+solve x, y
+	a * x + y / c == 9
+	c = 7
+	y * b - x * c  == 6
+slvreto
+In the above example, if we comment the line c = 7, we actually solve an expression group which includes 3 * x + y / 5 == 9 and y * 4 - x * 5 == 6. But if we have the line c = 7, we actually solve an expression group which includes 3 * x + y / 5 == 9 and y * 4 - x * 7 == 6.
+If user assigns value to a to-be-solved variable, this to-be-solved variable is no longer unknown so that it becomes a normal variable. However, user has to be very careful because assigning may affect expressions before it. An example is:
+variable a = 3, b = 4, c = 5, x, y
+solve x, y
+	a * x + y / c == 9
+	x = 7
+	y * b - x * c  == 6
+slvreto
+In the above example, if we comment the line x = 7, we actually solve an expression group which includes 3 * x + y / 5 == 9 and y * 4 - x * 5 == 6. But if we have the line x = 7, we actually solve a single expression which is y * 4 - 7 * 5 == 6. This is because, clearly, MFP cannot solve x and y values only from the first expression a * x + y / c == 9 so it goes to the next statement. In the second statement, x is assigned a value, which is 7, and becomes a normal variable. In the third statement, variables b, c and x are normal variables with valid value so that MFP uses their values and gets that y should be 10.25. Then MFP goes back to the first expression a * x + y / c == 9. But now both x and y become normal variables and have known values so that MFP uses their values and simplifies the expression to 3 * 7 + 10.25 / 5 == 9. This is a compare expression and its value is FALSE. In this way, MFP solves x should be 7 and y should be 10.25.
+3. We can see all the roots of all the variables are stored in the returned variable in slvreto statement. In current MFP language, the returned variable is actually a 2-D matrix, each row is a root set for every variable. However, please note that in the future the data structure of solve returned value may change. As such make sure to use functions provided by system (i.e. get_num_of_results_sets, get_solved_results_set, get_variable_results, etc.) to obtain the roots. After solve block finishes, the value of each to-be-solved variable is the root of this variable in the first root set. Only exception is that in the first root set this variable cannot be solved.
+MFP in-line solver is not almighty. It is possible that MFP cannot solve some mathematic expressions. In this case, slvreto returns empty result to its returned variable. Function get_num_of_results_sets returns zero. The to-be-solved variables keep their original values before solve block. It is also possible that some to-be-solved variables are solved while others cannot be solved. In this case, the unsolved to-be-solved variables keep their original values before solve block. If we use get_solved_results_set or get_variable_results function to obtain the unsolved variable values, we get NULL.
+4. The number of results sets returned by solve block is determined by multiplying number of roots of each individual to-be-solved variable. For example,
+variable x, y, z
+solve x, y
+	log(x) == 3
+	y**3 + 3 * y**2 + 3 * y+ 1 == 0
+slvreto z
+returns three sets of results. All of them are [20.08553692318766792368478490971028804779052734375, -1]. This is because y**3 + 3 * y**2 + 3 * y+ 1 == 0 has three roots but with same value. Although log(x) == 3 has only one root, each y root should has a corresponding x value so that we get three sets of results.
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言solve和slvreto语句：
+Solve语句开始了一个内联求解代数方程程序块。Solve语句可以拥有任意个数的变量作为参数。这些变量必须预先声明。这些作为参数的变量将成为内联求解代数方程程序块的待解变量。在以下例子中，程序员首先声明了三个变量x，y和z，然后开始执行一个内联求解代数方程程序块以解出这三个变量的值。
+variable x = 3, y, z = [2, 7]
+solve x, y, z
+...
+待解变量x，y和z的初始值是什么无关紧要。如果solve程序块能够解出x，y或z的值，x，y或z将被赋予这个新值，否则，x，y或z的值将保持为进入solve程序块之前的值不变。.
+Slvreto语句结束了一个内联求解代数方程程序块。它有一个可选参数。该参数必须为内联求解代数方程程序块之前声明的一个变量。该变量用于储存每一个待解变量的所有的根。程序员需要调用系统提供的函数get_num_of_results_sets，get_solved_results_set和get_variable_results去获得所有变量的一组解或者某一个变量的所有的根。比如，以下语句都是合法的：
+slvreto
+slvreto all_results
+以下代码是一个内联求解代数方程程序块的完整示例
+Function testtry2()
+	Variable a, b, c, x, y, z
+	a = 3
+	b = 4
+	c = 5
+	x = 6
+	y = 7
+	z = 8
+	solve x, y, z 	//x，y和z为待解变量
+		//变量a，b和c也用于本内联求解代数方程程序块
+		//但是，a，b和c不是待解变量所以它们的值不会改变。
+		a * x**2 + 7 * log(b) *x + 6.5 == 8 //注意必须使用‘==’而不是赋值符号‘=’。
+		y * b - z + 6 == 3.7 + x/(a + 7)
+		y * x + z/(c - 3) == 6 + a + y
+	slvreto a	//a用于存放每一个变量的所有的根，可以省略
+	print("\nx == " + x + "\ny == " + y + "\nz == " + z)
+	print("\n解集个数为" + get_num_of_results_sets(a))
+	
+	//存在MFP无法解出方程的情况，如果是这样，
+	//内联求解代数方程程序块返回一个空值。
+	if (get_num_of_results_sets(a) > 0)
+		
+		//0意味着第一组解，1是第二组解，依次类推。
+		print("\n第二组解是" + get_solved_results_set(a, 1))
+		
+		//注意get_variable_results有两个参数，第一个是solve程序块返回的包含所有解的变量，
+		//第二个是待解变量在solve语句中的位子。0表示第一个待解变量，1表示第二个，依次类推。
+		//也有可能一些变量能够解出但另一些变量无法解出，在这种情况下，在solve程序块返回值
+		//中，没有解出的变量的值为NULL。
+		print("\ny的所有根为" + get_variable_results(a, 1))
+	else
+		print("\n对不起，无法通过上述方程解出x，y和z的值。")
+	endif
+	return
+Endf
+在以上例子中，我们可以得到
+x == 0.14781939
+y == 6.84549421
+z == 29.66719489
+解集个数为2
+第二组解是[-3.38250623, -3.22386342, -10.25720306]
+y的所有根为[6.84549421, -3.22386342] 。
+如果想编写内联求解代数方程程序块，程序员需要注意以下事项：
+1. 在内联求解代数方程程序块有两种变量，普通变量和待解变量。待解变量为solve语句的参数。在上述例子里，x，y和z为待解变量而a，b和c为常规变量。常规变量的值在内联求解代数方程程序块中是已知的而待解变量的值是未知的。无论是哪一种变量，都必须在内联求解代数方程程序块之前预先声明。
+2. 在内联求解代数方程程序块中的方程表达式必须使用‘==’而不是赋值号‘=’。但是，在内联求解代数方程程序块中程序员可以赋值给普通变量和待解变量（虽然不推荐这样做）。比如：
+variable a = 3, b = 4, c = 5, x, y
+solve x, y
+	a * x + y / c == 9
+	c = 7
+	y * b - x * c  == 6
+slvreto
+在上述例子中，如果我们删掉c = 7这一行，我们所解的方程为3 * x + y / 5 == 9和y * 4 - x * 5 == 6。但如果我们保留c = 7这一行，我们所解的方程则为3 * x + y / 5 == 9和y * 4 - x * 7 == 6。
+如果程序员给一个待解变量赋值，该待解变量将不再待解而自动转变为普通变量。这样做必须非常小心，因为赋值待解变量可能会影响到赋值语句之前的方程式。比如：
+variable a = 3, b = 4, c = 5, x, y
+solve x, y
+	a * x + y / c == 9
+	x = 7
+	y * b - x * c  == 6
+slvreto
+在上述例子中，如果我们删掉x = 7这一行，我们所解的方程为3 * x + y / 5 == 9和y * 4 - x * 5 == 6。但如果我们保留x = 7这一行，我们实际上解得方程为y * 4 - 7 * 5 == 6。这是由于一开始，MFP语言无法通过第一个方程式解出x或者y，所以，它继续分析第二个表达式。在这个表达式中，x被赋值为7，这样一来，x和a，b以及c一样不再为待解变量，所以，第三个方程式变成了y * 4 - 7 * 5 == 6。我们可以得到y的值为10.25。然后MFP语言回过头来分析第一个方程式，这时，x，y和a，b以及c一样都不再为待解变量，该方程式变成3 * 7 + 10.25 / 5 == 9。这是一个比较表达式，返回值为FALSE。所以，我们最后得到的解是x为7而y为10.25。
+3. 从上述例子中可以看到，每一个待解变量的所有的根都存放在内联求解代数方程程序块的最后的slvreto语句的返回变量中。在当前的MFP语言中，slvreto语句的返回变量实际上是一个2维矩阵，矩阵的每一列为所有待解变量的一个解集。但是，请注意在后续版本中slvreto语句返回变量的数据结构可能会发生改变。所以，程序员必须使用系统所提供的函数，也就是get_num_of_results_sets，get_solved_results_set和get_variable_results等函数从slvreto语句的返回变量提取待解变量的根。所有待解变量在第一个解集中的根为待解变量在内联求解代数方程程序块运行完毕之后的值，除非在第一个解集中该待解变量无解。
+很显然，MFP语言内联求解代数方程的功能并非是万能的。过于复杂的代数方程（组）无法被MFP语言解出。在这种情况下，slvreto语句返回空值，调用函数get_num_of_results_sets返回值为0。而待解变量则都保持它们进入solve程序块之前的原始值不变。还有一种可能是一些待解变量能够被MFP语言解出，但另外的待解变量的值无法被解出。这时，无法被解出的待解变量保持它们的原始值不变。而如果我们使用函数get_solved_results_set或者get_variable_results从slvreto语句返回值中取回无解变量的值，我们取回的是NULL。
+4. MFP语言内联求解代数方程所获得的解集个数为每个待解变量的解的个数的乘积。比如，
+variable x, y, z
+solve x, y
+	log(x) == 3
+	y**3 + 3 * y**2 + 3 * y+ 1 == 0
+slvreto z
+返回3组解集，每一组解集都是[20.08553692318766792368478490971028804779052734375, -1]。这是由于y**3 + 3 * y**2 + 3 * y+ 1 == 0有三个相同的根。这样一来，虽然log(x) == 3只有一个根，但每一个y的根必须有一个x来对应，所以我们最后得到3组解集。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP程式solve和slvreto語句：
+Solve語句開始了一個內聯求解代數方程程式塊。Solve語句可以擁有任意個數的變數作為參數。這些變數必須預先聲明。這些作為參數的變數將成為內聯求解代數方程程式塊的待解變數。在以下例子中，程式開發人員首先聲明了三個變數x，y和z，然後開始執行一個內聯求解代數方程程式塊以解出這三個變數的值。
+variable x = 3, y, z = [2, 7]
+solve x, y, z
+...
+待解變數x，y和z的初始值是什麽無關緊要。如果solve程式塊能夠解出x，y或z的值，x，y或z將被賦予這個新值，否則，x，y或z的值將保持為進入solve程式塊之前的值不變。.
+Slvreto語句結束了一個內聯求解代數方程程式塊。它有一個可選參數。該參數必須為內聯求解代數方程程式塊之前聲明的一個變數。該變數用於儲存每一個待解變數的所有的根。程式開發人員需要調用系統提供的函數程式get_num_of_results_sets，get_solved_results_set和get_variable_results去獲得所有變數的一組解或者某一個變數的所有的根。比如，以下語句都是合法的：
+slvreto
+slvreto all_results
+以下代碼是一個內聯求解代數方程程式塊的完整示例
+Function testtry2()
+	Variable a, b, c, x, y, z
+	a = 3
+	b = 4
+	c = 5
+	x = 6
+	y = 7
+	z = 8
+	solve x, y, z 	//x，y和z為待解變數
+		//變數a，b和c也用於本內聯求解代數方程程式塊
+		//但是，a，b和c不是待解變數所以它們的值不會改變。
+		a * x**2 + 7 * log(b) *x + 6.5 == 8 //註意必須使用‘==’而不是賦值符號‘=’。
+		y * b - z + 6 == 3.7 + x/(a + 7)
+		y * x + z/(c - 3) == 6 + a + y
+	slvreto a	//a用於存放每一個變數的所有的根，可以省略
+	print("\nx == " + x + "\ny == " + y + "\nz == " + z)
+	print("\n解集個數為" + get_num_of_results_sets(a))
+	
+	//存在MFP無法解出方程的情況，如果是這樣，
+	//內聯求解代數方程程式塊返回一個空值。
+	if (get_num_of_results_sets(a) > 0)
+		
+		//0意味著第一組解，1是第二組解，依次類推。
+		print("\n第二組解是" + get_solved_results_set(a, 1))
+		
+		//註意get_variable_results有兩個參數，第一個是solve程式塊返回的包含所有解的變數，
+		//第二個是待解變數在solve語句中的位子。0表示第一個待解變數，1表示第二個，依次類推。
+		//也有可能一些變數能夠解出但另一些變數無法解出，在這種情況下，在solve程式塊返回值
+		//中，沒有解出的變數的值為NULL。
+		print("\ny的所有根為" + get_variable_results(a, 1))
+	else
+		print("\n對不起，無法通過上述方程解出x，y和z的值。")
+	endif
+	return
+Endf
+在以上例子中，我們可以得到
+x == 0.14781939
+y == 6.84549421
+z == 29.66719489
+解集個數為2
+第二組解是[-3.38250623, -3.22386342, -10.25720306]
+y的所有根為[6.84549421, -3.22386342] 。
+如果想編寫內聯求解代數方程程式塊，程式開發人員需要註意以下事項：
+1. 在內聯求解代數方程程式塊有兩種變數，普通變數和待解變數。待解變數為solve語句的參數。在上述例子裏，x，y和z為待解變數而a，b和c為常規變數。常規變數的值在內聯求解代數方程程式塊中是已知的而待解變數的值是未知的。無論是哪一種變數，都必須在內聯求解代數方程程式塊之前預先聲明。
+2. 在內聯求解代數方程程式塊中的方程表達式必須使用‘==’而不是賦值號‘=’。但是，在內聯求解代數方程程式塊中程式開發人員可以賦值給普通變數和待解變數（雖然不推薦這樣做）。比如：
+variable a = 3, b = 4, c = 5, x, y
+solve x, y
+	a * x + y / c == 9
+	c = 7
+	y * b - x * c  == 6
+slvreto
+在上述例子中，如果我們刪掉c = 7這一行，我們所解的方程為3 * x + y / 5 == 9和y * 4 - x * 5 == 6。但如果我們保留c = 7這一行，我們所解的方程則為3 * x + y / 5 == 9和y * 4 - x * 7 == 6。
+如果程式開發人員給一個待解變數賦值，該待解變數將不再待解而自動轉變為普通變數。這樣做必須非常小心，因為賦值待解變數可能會影響到賦值語句之前的方程式。比如：
+variable a = 3, b = 4, c = 5, x, y
+solve x, y
+	a * x + y / c == 9
+	x = 7
+	y * b - x * c  == 6
+slvreto
+在上述例子中，如果我們刪掉x = 7這一行，我們所解的方程為3 * x + y / 5 == 9和y * 4 - x * 5 == 6。但如果我們保留x = 7這一行，我們實際上解得方程為y * 4 - 7 * 5 == 6。這是由於一開始，MFP語言無法通過第一個方程式解出x或者y，所以，它繼續分析第二個表達式。在這個表達式中，x被賦值為7，這樣一來，x和a，b以及c一樣不再為待解變數，所以，第三個方程式變成了y * 4 - 7 * 5 == 6。我們可以得到y的值為10.25。然後MFP語言回過頭來分析第一個方程式，這時，x，y和a，b以及c一樣都不再為待解變數，該方程式變成3 * 7 + 10.25 / 5 == 9。這是一個比較表達式，返回值為FALSE。所以，我們最後得到的解是x為7而y為10.25。
+3. 從上述例子中可以看到，每一個待解變數的所有的根都存放在內聯求解代數方程程式塊的最後的slvreto語句的返回變數中。在當前的MFP語言中，slvreto語句的返回變數實際上是一個2維矩陣，矩陣的每一列為所有待解變數的一個解集。但是，請註意在後續版本中slvreto語句返回變數的數據結構可能會發生改變。所以，程式開發人員必須使用系統所提供的函數程式，也就是get_num_of_results_sets，get_solved_results_set和get_variable_results等函數程式從slvreto語句的返回變數提取待解變數的根。所有待解變數在第一個解集中的根為待解變數在內聯求解代數方程程式塊運行完畢之後的值，除非在第一個解集中該待解變數無解。
+很顯然，MFP語言內聯求解代數方程的功能並非是萬能的。過於復雜的代數方程（組）無法被MFP語言解出。在這種情況下，slvreto語句返回空值，調用函數程式get_num_of_results_sets返回值為0。而待解變數則都保持它們進入solve程式塊之前的原始值不變。還有一種可能是一些待解變數能夠被MFP語言解出，但另外的待解變數的值無法被解出。這時，無法被解出的待解變數保持它們的原始值不變。而如果我們使用函數程式get_solved_results_set或者get_variable_results從slvreto語句返回值中取回無解變數的值，我們取回的是NULL。
+4. MFP語言內聯求解代數方程所獲得的解集個數為每個待解變數的解的個數的乘積。比如，
+variable x, y, z
+solve x, y
+	log(x) == 3
+	y**3 + 3 * y**2 + 3 * y+ 1 == 0
+slvreto z
+返回3組解集，每一組解集都是[20.08553692318766792368478490971028804779052734375, -1]。這是由於y**3 + 3 * y**2 + 3 * y+ 1 == 0有三個相同的根。這樣一來，雖然log(x) == 3只有一個根，但每一個y的根必須有一個x來對應，所以我們最後得到3組解集。
+
+◀◀◀◀try,throw,catch,endtry▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language try, throw, catch, endtry statements:
+Try statement starts a try block. It does not take any parameter. Any exception triggered by MFP in the try block will be thrown to the following catch statements until one of the catch statements process it. If no catch statement following this try block is able to process the thrown exception, it is thrown to the higher level.
+Throw statement has a string as parameter. MFP exits if a throw statement is hit, and the string following throw keyword is printed.
+Catch statement may have an expression as parameter. If it does not take any parameter, it catches any exception. If it is followed by an expression, the expression is an exception filter which identifies an exception should be processed by this catch block or not. If exception filter value is true, the exception is caught. Otherwise, the exception is conveyed to the next catch statement, or thrown to upper level. Catch statement provides three string type internal parameters, i.e. level, type and info. Parameter level is exception level, its value can be either "LANGUAGE" (i.e. language level exception like no endif statement follows a if statement or a user defined expression to throw a string) or "EXPRESSION" (i.e. expression level exception like divided by zero or lack of right parenthesis). Parameter type is exception type which is internally defined in MFP language. Parameter info is the information provided by the exception. If developer uses a throw statement to throw a string, info value is the string. These three parameters can only be used in exception filter in a catch statement. However, exception filter can use any variables defined in the name scope. If a variable has the same name as any of the three internal parameters, it's overridden by the internal parameter.
+Endtry statement finishes a try/catch block. It does not take any parameter.
+The follows are a try/throw/catch/endtry example.
+Function testtry1()
+	Variable a, b, c
+	a = 3
+	Try
+		Select a
+		Case 3
+			print("a == 1\n")
+			Try
+				print (NULL==FALSE)
+				dbc
+			Catch
+				print ("Cannot cvt NULL to boolean or dbc is undefined\n")
+			EndTry
+		EndS
+		Throw "my exception"
+	Catch (1+2)==4
+		print ("IN (1+2) == 4")
+	catch false
+		print ("In false")
+	Catch and((b=level)=="LANGUAGE", (c=info) == "my exception")
+		print ("In catch and, b = ")
+		print (b)
+		print ("\n")
+		Help
+		 Try 
+		 	c = adb
+		 Catch
+		 	print (" c= adb")
+		 EndTry
+			Help
+		Endh
+		Try
+			c = 3/0
+		Catch And((c= info)==c, level == "LANGUAGE")
+			print ("In Language\n")
+			print (c) 
+		Catch And((c= info)==c, level=="EXPRESSION")
+			print ("In Expression\n")
+			print (c)
+		EndTry
+		print ("In upper level try\n")
+		print (b)
+		print (" , c = ")
+		print (c)
+		print ("\n")
+	Catch or((b=level)=="LANGUAGE", (c=info) == "my exception")
+		print ("In catch or, b = ")
+		print (b)
+		print (" , c = ")
+		print (c)
+		print ("\n")
+	Endtry
+Endf
+And the output of this function would be:
+a == 1
+FALSECannot cvt NULL to boolean or dbc is undefined
+In catch and, b = LANGUAGE
+In Expression
+Zero division!In upper level try
+LANGUAGE , c = Zero division!
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言try，throw，catch，endtry语句：
+Try语句用于开始一个Try程序块。Try语句没有任何参数。在Try程序块中，任何由于MFP语言触发的异常将会被抛出并传递到跟随try程序块的某一个catch语句中处理。当然，如果没有一个catch语句能够处理这个被抛出来的异常，该异常将会被抛向外层的程序块或函数。
+Throw语句有一个字符串参数。如果throw语句被执行，MFP打印出字符串参数然后退出。
+Catch语句可以接受一个表达式作为参数，也可以不接受参数。如果不接受参数，该catch语句捕获任何由该语句对应的try程序块抛出的异常。如果它有一个表达式参数，该表达式参数作为一个异常过滤器用于决定一个异常是否由该catch语句处理。如果异常过滤器表达式的值是布尔值true，该异常被捕获，否则，该异常被传递到下一个catch语句，或者被抛向外层的程序块或函数。Catch语句提供三个字符串类型的内部参数，也就是level，type和info。参数level存储异常的层级，它的值是"LANGUAGE"（也就是编程语言级别的异常，比如没有endif语句跟随if语句或者一个用户定义的抛出字符串的异常）或者"EXPRESSION"（也就是表达式级别的异常，比如被零除或者缺少右括号），参数type是MFP编程语言内部定义异常的类型，参数info是异常的内容。如果开发人员用一个throw语句抛出一个字符串，info的值就是这个字符串。这三个参数仅能用于catch语句中的异常过滤器。但是异常过滤器可以使用变量名和函数名空间中的任意变量和函数。如果一个变量和这三个catch语句的内部参数重名，它将被重名内部参数重载。
+Endtry用于结束一个try/catch程序块，它不接受任何参数。
+以下是try/throw/catch/endtry的例子。
+Function testtry1()
+	Variable a, b, c
+	a = 3
+	Try
+		Select a
+		Case 3
+			print("a == 1\n")
+			Try
+				print (NULL==FALSE)
+				dbc
+			Catch
+				print ("Cannot cvt NULL to boolean or dbc is undefined\n")
+			EndTry
+		EndS
+		Throw "my exception"
+	Catch (1+2)==4
+		print ("IN (1+2) == 4")
+	catch false
+		print ("In false")
+	Catch and((b=level)=="LANGUAGE", (c=info) == "my exception")
+		print ("In catch and, b = ")
+		print (b)
+		print ("\n")
+		Help
+		 Try 
+		 	c = adb
+		 Catch
+		 	print (" c= adb")
+		 EndTry
+			Help
+		Endh
+		Try
+			c = 3/0
+		Catch And((c= info)==c, level == "LANGUAGE")
+			print ("In Language\n")
+			print (c) 
+		Catch And((c= info)==c, level=="EXPRESSION")
+			print ("In Expression\n")
+			print (c)
+		EndTry
+		print ("In upper level try\n")
+		print (b)
+		print (" , c = ")
+		print (c)
+		print ("\n")
+	Catch or((b=level)=="LANGUAGE", (c=info) == "my exception")
+		print ("In catch or, b = ")
+		print (b)
+		print (" , c = ")
+		print (c)
+		print ("\n")
+	Endtry
+Endf
+这个函数的输出结果如下：
+a == 1
+FALSECannot cvt NULL to boolean or dbc is undefined
+In catch and, b = LANGUAGE
+In Expression
+Zero division!In upper level try
+LANGUAGE , c = Zero division!
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言try，throw，catch，endtry語句：
+Try語句用於開始一個Try程式塊。Try語句沒有任何參數。在Try程式塊中，任何由於MFP語言觸發的異常將會被拋出並傳遞到跟隨try程式塊的某一個catch語句中處理。當然，如果沒有一個catch語句能夠處理這個被拋出來的異常，該異常將會被拋向外層的程式塊或函數。
+Throw語句有一個字串參數。如果throw語句被執行，MFP列印出字串參數然後退出。
+Catch語句可以接受一個表達式作為參數，也可以不接受參數。如果不接受參數，該catch語句捕獲任何由該語句對應的try程式塊拋出的異常。如果它有一個表達式參數，該表達式參數作為一個異常過濾器用於決定一個異常是否由該catch語句處理。如果異常過濾器表達式的值是布爾值true，該異常被捕獲，否則，該異常被傳遞到下一個catch語句，或者被拋向外層的程式塊或函數。Catch語句提供三個字串類型的內部參數，也就是level，type和info。參數level存儲異常的層級，它的值是"LANGUAGE"（也就是程式語言級別的異常，比如沒有endif語句跟隨if語句或者一個用戶定義的拋出字符串的異常）或者"EXPRESSION"（也就是表達式級別的異常，比如被零除或者缺少右括號），參數type是MFP編程語言內部定義異常的類型，參數info是異常的內容。如果開發人員用一個throw語句拋出一個字串，info的值就是這個字串。這三個參數僅能用於catch語句中的異常過濾器。但是異常過濾器可以使用變量名和函數名空間中的任意變量和函數。如果一個變量和這三個catch語句的內部參數重名，它將被重名內部參數重載。
+Endtry用於結束一個try/catch程式塊，它不接受任何參數。
+以下是try/throw/catch/endtry的例子。
+Function testtry1()
+	Variable a, b, c
+	a = 3
+	Try
+		Select a
+		Case 3
+			print("a == 1\n")
+			Try
+				print (NULL==FALSE)
+				dbc
+			Catch
+				print ("Cannot cvt NULL to boolean or dbc is undefined\n")
+			EndTry
+		EndS
+		Throw "my exception"
+	Catch (1+2)==4
+		print ("IN (1+2) == 4")
+	catch false
+		print ("In false")
+	Catch and((b=level)=="LANGUAGE", (c=info) == "my exception")
+		print ("In catch and, b = ")
+		print (b)
+		print ("\n")
+		Help
+		 Try 
+		 	c = adb
+		 Catch
+		 	print (" c= adb")
+		 EndTry
+			Help
+		Endh
+		Try
+			c = 3/0
+		Catch And((c= info)==c, level == "LANGUAGE")
+			print ("In Language\n")
+			print (c) 
+		Catch And((c= info)==c, level=="EXPRESSION")
+			print ("In Expression\n")
+			print (c)
+		EndTry
+		print ("In upper level try\n")
+		print (b)
+		print (" , c = ")
+		print (c)
+		print ("\n")
+	Catch or((b=level)=="LANGUAGE", (c=info) == "my exception")
+		print ("In catch or, b = ")
+		print (b)
+		print (" , c = ")
+		print (c)
+		print ("\n")
+	Endtry
+Endf
+這個例子的輸出結果如下：
+a == 1
+FALSECannot cvt NULL to boolean or dbc is undefined
+In catch and, b = LANGUAGE
+In Expression
+Zero division!In upper level try
+LANGUAGE , c = Zero division!
+
+◀◀◀◀variable▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language variable statement:
+Variable statement is used to define one or several variables. It should be always like
+variable var1{=expr1}, var2{=expr2}, var3{=expr3}, ..., varN{=exprN}
+, where var1, var2, var3, ..., varN are variables' names. N can be any positive integer. And {=expr*} means the initial value assignment can be ignored (with default initial value is NULL). For example, statement
+variable a = "hello, world", b, c = a + 7, d=[2,3,[5,8]]
+declares four variables whose name are a, b, c, and d and whose initial values are "hello, world", NULL, "hello, world7" and [2, 3, [5, 8]] respectively.
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言variable语句：
+Variable语句用于定义一个或任意多个变量，其语法为：
+variable var1{=expr1}, var2{=expr2}, var3{=expr3}, ..., varN{=exprN}
+，这里var1，var2，var3，...，varN为变量名，N为一个正整数，{=expr*}含义为变量初始化的部分可以省略（变量缺省初始值为NULL）。例如：语句
+variable a = "hello, world", b, c = a + 7, d=[2,3,[5,8]]
+定义了4个变量名字分别为a, b, c和d。它们的初始值分别是"hello, world"，NULL，"hello, world7"和[2, 3, [5, 8]]。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言variable語句：
+Variable語句用於定義一個或任意多個變數，其語法為：
+variable var1{=expr1}, var2{=expr2}, var3{=expr3}, ..., varN{=exprN}
+，這裡var1，var2，var3，...，varN為變數名，N為一個正整數，{=expr*}含義為變數初始化的部分可以省略（變數缺省初始值為NULL）。例如：語句
+variable a = "hello, world", b, c = a + 7, d=[2,3,[5,8]]
+定義了4個變數名字分別為a, b, c和d。它們的初始值分別是"hello, world"，NULL，"hello, world7"和[2, 3, [5, 8]]。
+
+◀◀◀◀while,loop,do,until,for,next▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language while, loop, do, until, for, next statements:
+While and loop, do and until, and for and next are three pairs of looping statements in MFP.  They should be used in the following way: 
+While condition
+    ......
+Loop
+Do
+    ......
+Until condition
+For variable var = from_value to to_value step step_value
+    ......
+Next
+where condition is an expression which has boolean value (or can be converted to boolean value). Var is the name of for statement's index variable. From_value is the initial value of var, step_value is how much var increase each time, note that step_value can be negative. To_value is the destination value of var variable. Var variable stops to change if it is beyond to_value. Note that if var is defined before, the variable keyword following for can be ignored.
+Note that all the three looping blocks support break and continue statement. When break is hit, MFP jumps out the current inner-most looping block. When continue is hit, MFP ignores the following statements in the inner-most looping block and goes back to the beginning of the looping block.
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言while，loop，do，until，for和next语句：
+While和loop，do和until，以及for和next构成MFP语言中的三对循环语句。它们语法如下：
+While condition
+    ......
+Loop
+Do
+    ......
+Until condition
+For variable var = from_value to to_value step step_value
+    ......
+Next
+。在上述例子中，condition为一个表达式，其计算值为布尔值（或者可以被转换为布尔值）。Var是for语句索引变量的名字。From_value为var变量的起始值，step_value为var变量每次增加多少，注意step_value可正可负。To_value为var的目标值。如果Var的值超出了to_value，var将会停止改变。注意如果var曾经定义过，variable关键字可以被省略掉。
+注意这些循环均支持break和continue语句。如果break语句被执行，MFP跳出最内一层循环。如果continue语句被执行，MFP忽略最内层循环中的continue语句之后的语句并跳转到循环开始处开始执行。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言while，loop，do，until，for和next語句：
+While和loop，do和until，以及for和next構成MFP語言中的三對循環語句。它們語法如下：
+While condition
+    ......
+Loop
+Do
+    ......
+Until condition
+For variable var = from_value to to_value step step_value
+    ......
+Next
+。在上述例子中，condition為一個運算式，其計算值為布林值（或者可以被轉換為布林值）。Var是for語句索引變數的名字。From_value為var變數的起始值，step_value為var變數每次增加多少，注意step_value可正可負。To_value為var的目標值。如果Var的值超出了to_value，var將會停止改變。注意如果var曾經定義過，variable關鍵字可以被省略掉。
+注意這些循環均支持break和continue語句。如果break語句被執行，MFP跳出最內一層循環。如果continue語句被執行，MFP忽略最內層循環中的continue語句之後的語句並跳轉到循環開始處開始執行。
+
+◀◀◀◀using,citingspace▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language using and citingspace statements:
+Citingspace in MFP programming language is similar to namespace in C++/C#.net. Basically a citingspace is a container for a group of functions. These functions can call each other directly without implicitly or explicitly declaring used citingspaces. One citingspace can be declared in one or several MFPS source files and one MFPS source file can include any number of citingspace declarations. If in a file no citingspace is declared, MFP assumes all the functions are in the top level citingspace. For example, in File1.mfps, developer declares:
+citingspace ::Abc::def
+function Aaa()
+    Bbb()
+endf
+endcs
+, in File2.mfps, developer declares the same citingspace with a new function in it:
+Citingspace ::ABC::def	// citingspace name is case insensitive
+function Bbb()
+    Aaa()
+	::Abc::hij::Ccc()
+endf
+endcs
+, then functions Aaa and Bbb are visible to each other. In other words, inside function Aaa, Bbb can be called directly, and vice versa. However, if user declares a new citingspace in one of the mfps files or in a new mfps file, and has a function Ccc() inside the new citingspace, then Ccc has to use citingspace path before calling Aaa or Bbb, as shown below:
+Citingspace ::Abc::hij
+function Ccc()
+    ::Abc::def::Aaa()
+endf
+endcs
+. Citingspace can be nested, for example:
+citingspace ::a1
+citingspace ::b1 // if declare the citingspace as citingspace b1, then its full path is ::a1::b1 .
+endcs
+endcs
+. Also note that top level citingspace's name is an empty string.
+Using statement tells MFP program which citingspace is used. Calling functions in a used citingspace needs no citingspace path in front of function name. In the above example, if programmer declares using citingspace ::Abc::def in the beginning of the function, then calling Aaa needs no ::Abc::def prefix.
+Citingspace ::Abc::hij
+function Ccc()
+    using citingspace ::Abc::def // no :: after def.
+    Aaa()
+endf
+endcs
+. Note that using statement can be placed in and out of function body and is only effective in its scope. By default, top level citingspace, MFP language citingspace and its child and grandchild citingspaces (i.e. ::mfp::*, wild-card character * means including all the sub-citingspaces) are used.
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言using和citingspace语句：
+MFP编程语言的citingspace语句和C++/C#语言中的namespace语句非常相似。Citingspace是一组函数的容器，这些函数可以彼此之间直接调用而不用给出被调用函数的citingspace的路径名。一个citingspace可以在一个或者多个MFPS源文件中被声明。同样地，一个MFPS源文件也可以包括任意个citingspace的声明。如果一个MFPS源文件没有citingspace的声明，MFP则认为该文件中所定义的所有的函数都位于顶层的citingspace中。比如，在文件File1.mfps中，定义了如下citingspace和函数：
+citingspace ::Abc::def
+function Aaa()
+    Bbb()
+endf
+endcs
+，在File2.mfps文件中，开发者又定义了同样的一个citingspace和一个新的函数：
+Citingspace ::ABC::def	// citingspace的名字不分大小写的。
+function Bbb()
+    Aaa()
+	::Abc::hij::Ccc()
+endf
+endcs
+，这样一来，函数Aaa和Bbb都是相互可见的。换句话说，在函数Aaa中，Bbb可以被直接调用，反之亦然。然而，如果用户在以上两个文件或者一个新的文件中声明了一个新的citingspace，并且在这个新的citingspace中又定义了一个新的函数Ccc()，那么在函数Ccc中必须使用citingspace的路径来调用Aaa或者Bbb：
+Citingspace ::Abc::hij
+function Ccc()
+    ::Abc::def::Aaa()
+endf
+endcs
+。Citingspace的声明可以嵌套，比如：
+citingspace ::a1
+citingspace ::b1 // 如果是声明citingspace b1，那么这个citingspace的完整路径就变成了::a1::b1
+endcs
+endcs
+。还要注意顶级citingspace的全路径名是一个空字符串。
+Using语句告诉MFP程序哪一个citingspace被使用。调用using语句所声明将要使用的citingspace中的函数无需在函数名前面添加citingspace的路径。在上述例子中，如果一开始就声明using citingspace ::Abc::def，那么调用Aaa就不需要使用::Abc::def的前缀了。
+Citingspace ::Abc::hij
+function Ccc()
+    using citingspace ::Abc::def // 注意在def的后面不能够有：：
+    Aaa()
+endf
+endcs
+。需要注意的是using语句可以放在函数体的内部或者外部。在缺省时，顶级citingspace，MFP语言的citingspace和其所有的子citingspace（也就是::mfp::*，*是表示所有子citingspace和其本身的通配符）都被使用。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言using和citingspace語句：
+MFP編程語言的citingspace語句和C++/C#語言中的namespace語句非常相似。Citingspace是一組函數的容器，這些函數可以彼此之間直接調用而不用給出被調用函數的citingspace的路徑名。一個citingspace可以在一個或者多個MFPS源文件中被聲明。同樣地，一個MFPS源文件也可以包括任意個citingspace的聲明。如果一個MFPS源文件沒有citingspace的聲明，MFP則認為該文件中所定義的所有的函數都位於頂層的citingspace中。比如，在文件File1.mfps中，定義了如下citingspace和函數：
+citingspace ::Abc::def
+function Aaa()
+    Bbb()
+endf
+endcs
+，在File2.mfps文件中，開發者又定義了同樣的一個citingspace和一個新的函數：
+Citingspace ::ABC::def	// citingspace的名字不分大小寫的。
+function Bbb()
+    Aaa()
+	::Abc::hij::Ccc()
+endf
+endcs
+，這樣一來，函數Aaa和Bbb都是相互可見的。換句話說，在函數Aaa中，Bbb可以被直接調用，反之亦然。然而，如果用戶在以上兩個文件或者一個新的文件中聲明了一個新的citingspace，並且在這個新的citingspace中又定義了一個新的函數Ccc()，那麽在函數Ccc中必須使用citingspace的路徑來調用Aaa或者Bbb：
+Citingspace ::Abc::hij
+function Ccc()
+    ::Abc::def::Aaa()
+endf
+endcs
+。Citingspace的聲明可以嵌套，比如：
+citingspace ::a1
+citingspace ::b1 // 如果是聲明citingspace b1，那麽這個citingspace的完整路徑就變成了::a1::b1
+endcs
+endcs
+。還要註意頂級citingspace的全路徑名是一個空字符串。
+Using語句告訴MFP程序哪一個citingspace被使用。調用using語句所聲明將要使用的citingspace中的函數無需在函數名前面添加citingspace的路徑。在上述例子中，如果一開始就聲明using citingspace ::Abc::def，那麽調用Aaa就不需要使用::Abc::def的前綴了。
+Citingspace ::Abc::hij
+function Ccc()
+    using citingspace ::Abc::def // 註意在def的後面不能夠有：：
+    Aaa()
+endf
+endcs
+。需要註意的是using語句可以放在函數體的內部或者外部。在缺省時，頂級citingspace，MFP語言的citingspace和其所有的子citingspace（也就是::mfp::*，*是表示所有子citingspace和其本身的通配符）都被使用。
+
+◀◀◀◀@build_asset▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language @build_asset annotation:
+When creating an APK package, @build_asset annotation tells Scientific Calculator Plus the resource files to be copied to APK asset. For example
+
+...
+@build_asset copy_to_resource(get_upper_level_path(get_src_file_path()) + "eatfood.wav", "sounds/eatfood.wav")
+if is_mfp_app()
+    play_sound_from_zip(get_asset_file_path("resource"), "sounds/eatfood.wav", 1, false)
+else
+    play_sound(get_upper_level_path(get_src_file_path()) + "eatfood.wav", false)
+endif
+...
+
+In this example, there is a resource file called eatfood.wav. It is placed in the same folder as the current running mfps source file. In this way, its path is get_upper_level_path(get_src_file_path()) + "eatfood.wav". If not an MFP app, play_sound can be called to play the wave file using this path as a parameter. However, for an MFP app, mfps source is not physically located in an SD card or hard drive but in the APK. As such no way to find resource file using the above technique. However, developer may save resource files in a zip file the app asset. In the above example, the zip file's name is resource.zip (the only supported zip file at this monent) and the entry for the resource is sounds/eatfood.wav. Then play_sound_from_zip has to be called to replace play_sound to play the wave file.
+
+When user builds up the APK installation package, the @build_asset annotation copies the wave resource file from hard disk or SD card to the zip file in app Asset. copy_to_resource is an MFP function telling software that the target zip file name should be resource.zip. Its second parameter tells Scientfic Calculator Plus where the resource file is located inside the zip file.
+
+Like @compulsory_link annotation, @build_asset should be located inside the body of the called function. If it is above function statement or below endf statement, it will not take any effect.
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言@build_asset标注：
+当创建一个APK包的时候，@build_asset标注告诉可编程科学计算器哪些资源文件将会被拷贝到新建APP的asset中的一个叫做resource的压缩文件中。比如
+
+...
+@build_asset copy_to_resource(get_upper_level_path(get_src_file_path()) + "eatfood.wav", "sounds/eatfood.wav")
+if is_mfp_app()
+    play_sound_from_zip(get_asset_file_path("resource"), "sounds/eatfood.wav", 1, false)
+else
+    play_sound(get_upper_level_path(get_src_file_path()) + "eatfood.wav", false)
+endif
+...
+
+在上面例子中，资源文件的文件名叫做eatfood.wav。这个资源文件被放在当前正在运行的MFPS脚本文件的所在目录中。这样一来，该资源文件的路径是get_upper_level_path(get_src_file_path()) + "eatfood.wav"。如果不是运行MFP应用，开发者可以调用play_sound函数，根据该资源文件的路径，直接从硬盘或者SD卡中读取该资源文件并演奏。但是，如果是运行的MFP应用，MFPS脚本文件被打包在APK文件中，开发者则必须从APK的asset下的resource.zip文件中加载资源。APK的asset下的resource.zip文件的路径由get_asset_file_path("resource")给出，"sounds/eatfood.wav"代表该资源文件在压缩文件中的位置，1表示安卓asset资源文件，play_sound_from_zip将该资源文件抽取出来并演奏。
+
+当用户创建APK包时，@build_asset标注所起的作用就是将资源文件从硬盘或者SD卡上拷贝到APK的asset下的resource.zip文件中。copy_to_resource实际上是一个MFP函数。它的第一个参数是资源文件的源路径（也就是在硬盘或SD卡上的路径），第二个参数是目标路径，也就是在resource.zip文件中的位置。和普通函数不一样的是，copy_to_resource函数位于mfp_compiler引用空间中。该引用空间仅仅在打包链接的时候被加载，一般情况下用户不会用到。
+
+还要注意@build_asset指令必须位于一个函数的内部，如果它在function语句前面或者endf语句之后，它不会有任何作用。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言@build_asset標註：
+當創建一個APK包的時候，@build_asset標注告訴可編程科學計算器哪些資源檔將會被拷貝到新建APP的asset中的一個叫做resource的壓縮檔中。比如
+
+...
+@build_asset copy_to_resource(get_upper_level_path(get_src_file_path()) + "eatfood.wav", "sounds/eatfood.wav")
+if is_mfp_app()
+    play_sound_from_zip(get_asset_file_path("resource"), "sounds/eatfood.wav", 1, false)
+else
+    play_sound(get_upper_level_path(get_src_file_path()) + "eatfood.wav", false)
+endif
+...
+
+在上面例子中，資源檔的檔案名叫做eatfood.wav。這個資源檔被放在當前正在運行的MFPS腳本檔的所在目錄中。這樣一來，該資源檔的路徑是get_upper_level_path(get_src_file_path()) + "eatfood.wav"。如果不是運行MFP應用，開發者可以調用play_sound函數，根據該資源檔的路徑，直接從硬碟或者SD卡中讀取該資源檔並演奏。但是，如果是運行的MFP應用，MFPS腳本檔被打包在APK檔中，開發者則必須從APK的asset下的resource.zip檔中加載資源。APK的asset下的resource.zip檔的路徑由get_asset_file_path("resource")給出，"sounds/eatfood.wav"代表該資源檔在壓縮檔中的位置，1表示安卓asset資源檔，play_sound_from_zip將該資源檔抽取出來並演奏。
+
+當用戶創建APK包時，@build_asset標注所起的作用就是將資源檔從硬碟或者SD卡上拷貝到APK的asset下的resource.zip檔中。copy_to_resource實際上是一個MFP函數。它的第一個參數是資源檔的源路徑（也就是在硬碟或SD卡上的路徑），第二個參數是目標路徑，也就是在resource.zip檔中的位置。和普通函數不一樣的是，copy_to_resource函數位於mfp_compiler引用空間中。該引用空間僅僅在打包鏈接的時候被加載，一般情況下用戶不會用到。
+
+還要注意@build_asset指令必須位於一個函數的內部，如果它在function語句前面或者endf語句之後，它不會有任何作用。
+
+◀◀◀◀@compulsory_link▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language @compulsory_link annotation:
+When creating an APK package, Scientific Calculator Plus does not copy all user defined .mfps files. Instead, it extracts related .mfps files which includes all referred functions and classes. In some situations, e.g. calling integrate or plot_exprs function, parameter is a string or string based variable so that Scientific Calculator Plus is not able to identify which function will be called in the run at compiling time. Also, if function parameter is an object, its class type is usually unknown before running. User, therefore, needs to add an annotation, @complusory_link, before the calling statement explicitly telling Scientific Calculator Plus what functions and classes should be linked into package. For instance
+
+...
+
+@compulsory_link get_functions("::abc::myf_expr1", "myf_expr2(2)")
+
+integrated_result = integrate(expression_str, variable_str)
+
+@compulsory_link get_classes("::def::hij::my_class1", "::my_class2", "my_class3")
+
+...
+
+In this example, ::abc::myf_expr1 and myf_expr2 are user-defined functions which may be called by function integrate to be integrated. All the functions with name ::abc::myf_expr1 will be compiled into APK package, no matter how many parameters they have. However, only function whose name is myf_expr2 and who is located in a used citingspace and who has exactly 2 parameters or has optional parameter(s) are compiled into APK package.
+
+Similiarly, get_classes links user defined classes ::def::hij::my_class1, ::my_class2 and my_class3. Note that my_class3 doesn't include a full citingspace. compulsory_link statement therefore will search citingspace stack and link in the first matched class (if there is).
+
+If user wants to include all user defined functions and classes, please use annotation statement
+
+@compulsory_link get_all_referred_units()
+
+. Scientific Calculator Plus will link-in all the functions and classes defined by user. But this takes much longer time and the compilation process may throw an error if a class or function is referred but not defined.
+
+Note that get_functions, get_classes and get_all_referred_units are actually MFP functions. However, they are placed under the mfp_compiler citingspace and are only used when packaging APK files.
+
+Also note that the @compulsory_link annotation should be located inside the body of the called function. If it is above function statement or below endf statement, it will not take any effect. 
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言@compulsory_link标注：
+当创建一个APK包的时候，可编程科学计算器不是拷贝所有用户自定义的mfps代码文件而仅仅抽取相关的代码。在某些时候，比如调用integrate或者plot_exprs函数时，函数参数是一个字符串或者基于字符串的变量。这样一来，可编程科学计算器在编译的时候无法判断哪些函数在运行时将会被调用。又比如，如果函数的参数是一个对象，该对象的类型在运行前往往无法确定。用户在这种情况下需要在代码中，最好在相关函数调用语句的前一行，增加一个注释指令@complusory_link告知可编程科学计算器哪些用户自定义的函数和类需要链接入APK包。比如
+
+...
+
+@compulsory_link get_functions("::abc::myf_expr1", "myf_expr2(2)")
+
+integrated_result = integrate(expression_str, variable_str)
+
+@compulsory_link get_classes("::def::hij::my_class1", "::my_class2", "my_class3")
+
+...
+
+在上面例子中，::abc::myf_expr1和myf_expr2是用户自定义的函数。它们在运行时将会被integrate函数调用用于计算积分。所有的名字叫做::abc::myf_expr1的函数都会被链接入APK包。但是对于名字叫myf_expr2的函数，当且仅当它是位于一个被使用的引用空间中并且它正好有两个参数或者有可选参数时，该函数才会被链接入APK包。
+
+类似地，::def::hij::my_class1，::my_class2和my_class3是用户自定义的类。需要注意的是类my_class3不包括完整的引用空间路径，所以compulsory_link语句将会搜索引用空间，找到第一个名字符合my_class3的类，如果存在这个类的话。
+
+如果用户想把所有自己定义的函数和类链接入APK包，请用如下语句
+
+@compulsory_link get_all_referred_units()
+
+。这样一来，可编程科学计算器将链接所有函数和类。但是用户创建的应用装载速度会比较慢。并且，用户还必须保证所有的函数和类都必须已经定义，否则打包时会出现编译错误。
+
+需要指出的是，get_functions，get_classes和get_all_referred_units实际上都是MFP语言的函数。但是和普通函数不一样的是，这几个函数位于mfp_compiler引用空间中。该引用空间仅仅在打包链接的时候被加载，一般情况下用户不会用到。
+
+还要注意@compulsory_link指令必须位于一个函数的内部，如果它在function语句前面或者endf语句之后，它不会有任何作用。 
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言@compulsory_link標註：
+當創建一個APK包的時候，程式開發科學計算器不是拷貝所有用戶自定義的mfps代碼文檔而僅僅抽取相關的代碼。在某些時候，比如調用integrate或者plot_exprs函數程式時，函數程式參數是一個字符串或者基於字符串的變量。這樣一來，程式開發科學計算器在編譯的時候無法判斷哪些函數程式在運行時將會被調用。又比如，如果函數程式的參數是一個對象，該對象的類型在運行前往往無法確定。用戶在這種情況下需要在代碼中，最好在相關函數程式調用語句的前一行，增加一個註釋指令@complusory_link告知程式開發科學計算器哪些用戶自定義的函數程式和類需要鏈接入APK包。比如
+
+...
+
+@compulsory_link get_functions("::abc::myf_expr1", "myf_expr2(2)")
+
+integrated_result = integrate(expression_str, variable_str)
+
+@compulsory_link get_classes("::def::hij::my_class1", "::my_class2", "my_class3")
+
+...
+
+在上面例子中，::abc::myf_expr1和myf_expr2是用戶自定義的函數程式。它們在運行時將會被integrate函數程式調用用於計算積分。所有的名字叫做::abc::myf_expr1的函數程式都會被鏈接入APK包。但是對於名字叫myf_expr2的函數程式，當且僅當它是位於一個被使用的引用空間中並且它正好有兩個參數或者有可選參數時，該函數程式才會被鏈接入APK包。
+
+類似地，::def::hij::my_class1，::my_class2和my_class3是用戶自定義的類。需要註意的是類my_class3不包括完整的引用空間路徑，所以compulsory_link語句將會搜索引用空間，找到第一個名字符合my_class3的類，如果存在這個類的話。
+
+如果用戶想把所有自己定義的函數程式和類鏈接入APK包，請用如下語句
+
+@compulsory_link get_all_referred_units()
+
+。這樣一來，程式開發科學計算器將鏈接所有函數程式和類。但是用戶創建的應用裝載速度會比較慢。並且，用戶還必須保證所有的函數程式和類都必須已經定義，否則打包時會出現編譯錯誤。
+
+需要指出的是，get_functions，get_classes和get_all_referred_units實際上都是MFP語言的函數程式。但是和普通函數程式不一樣的是，這幾個函數程式位於mfp_compiler引用空間中。該引用空間僅僅在打包鏈接的時候被加載，一般情況下用戶不會用到。
+
+還要註意@compulsory_link指令必須位於一個函數程式的內部，如果它在function語句前面或者endf語句之後，它不會有任何作用。
+
+◀◀◀◀@execution_entry▶▶▶▶
+◁◁◁◁English▷▷▷▷
+An mfps script can be executed like any other scripting languages, e.g. Perl and Python. However, when an MFP interpreter calls a mfps script file, it needs to know which function is the entry point. The @execution_entry annotation is the statement telling an MFP interpreter which function to run.
+The syntax of @execution_entry is
+@execution_entry function_name(param_string1, param_string2, …)
+, where function_name is the function name with / without (partial) citing space. Because @execution_entry statement must be located above any citingspace or using citingspace declaration, MFP interpreter therefore only searches default citingspaces (e.g. :: and ::mfp) to locate the function. So if full citingspace path is not provided, user needs to ensure that MFP interpreter can still find the function. Also, the function is unnecessarily defined in the same mfps script file. It can be implemented in another script file or even a built-in function. If MFP interpreter can find the function, then the script file can run.
+The param_string1, param_string2, …, are parameters for the execution entry function. Note that these parameters should be written in the same way as in normal function call except with some placeholder characters, i.e. # and @. For instance, in the following statement, the execution entry function is create_file. This function includes two parameters, the first parameter is a string based file name, the second parameter is a boolean. Then "Date_" + @ means when an MFP interpreter runs the script file from system console, the first parameter is treated as a string, and it is appended to Date_ to construct full file name. Note that user cannot use "Date_@" for the first file parameter because placeholder becomes a plain character in double quotes. Different from @, # means the second parameter is treated as a numeric value.
+@execution_entry create_file("Date_" + @, #)
+So when user calls the script file (assuming the file name is myscript.mfps) in a console using the following command:
+Mfplang.cmd myscript.mfps 20161015.log false
+, MFP interpreter will actually call
+create_file("Date_20161015.log", false)
+. @execution_entry supports optional parameters. @... and ... means all the optional parameters are treated as strings while #... means all the optional parameters are treated as numeric values. Note that an @execution_entry can only have one optional parameter declaration and it must be the last piece in parameter declaration (i.e. exactly before the close bracket).
+@execution_entry can also be used without any parameter declaration, for example
+@execution_entry func1
+. This means @execution_entry will try to match any number of parameters transferred from console. And all these parameters are treated as strings.
+◁◁◁◁Simplified_Chinese▷▷▷▷
+为了让MFP脚本能够像其他任何脚本一样被执行，用户需要在脚本的头部增加一个@execution_entry标注，告诉MFP语言解释器如何运行该脚本。
+@execution_entry标注的语法为
+@execution_entry function_name(param_string1, param_string2, …)
+这里，function_name是（包含或部分包含或者不包含citingspace路径的）函数名，由于@execution_entry标注位于任何citingspace和using citingspace语句之前，寻找函数时MFP解释器仅仅只搜索默认citingspace的搜索路径（比如::和::mfp）。所以，如果完整的citing space路径没有给出，用户需要保证MFP解释器仍然能够找到该函数。此外，调用的入口函数未见得必须是该脚本文件中所定义的函数。它可以是其它脚本文件所定义的函数，甚至还可以是MFP的内建函数。
+Param_string1，param_string2，…是入口函数的参数。注意这些参数的写法和MFP调用函数时参数的写法基本一样，唯一的不同是@execution_entry所需要的函数参数包含两种占位替换符，#和@。比如，在以下语句中，入口函数是create_file。该函数包含两个参数，第一个参数是基于字符的文件名，第二个参数是一个布尔值。在@execution_entry语句中，"Date_" + @的意思是当MFP解释器从命令提示符中运行脚本时，脚本文件名之后的第一个参数被当成一个字符串，并且被添加到字符串"Date_"的尾部，成为create_file函数所生成的文件的文件名。注意这里用户不能直接把第一个参数写成"Date_@"因为占位替换符在双引号中就不再具有占位替换的功能而变成了一个普通的字符。而#的意思是，当MFP解释器从命令提示符中运行脚本时，脚本文件名之后的第二个参数被当作一个数值，@execution_entry语句将求取该参数的值并转换为一个布尔量。
+@execution_entry create_file("Date_" + @, #)
+这样，当用户运行脚本文件时（假设脚本文件的文件名是myscript.mfps），如果使用下述命令
+Mfplang.cmd myscript.mfps 20161015.log false
+MFP解释器将会调用以下MFP函数语句
+create_file("Date_20161015.log", false)
+。@execution_entry也支持可选参数。在参数列表中，位于尾部的@...或...表示存在可选参数并且它们都是字符串，而位于尾部的#...则表示存在可选参数并且它们都是数值。需要强调的是，@execution_entry语句中只能声明一次可选参数的并且它必须位于语句的最后，仅仅在参数列表的终止符，也就是反圆括号，之前。
+@execution_entry语句也可以不申明任何参数，比如
+@execution_entry func1
+的意思是，用户在运行该脚本时，可以提供任何数量的文件参数，并且这些参数都会被当作字符串。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+為了讓MFP腳本能夠像其他任何腳本一樣被執行，用戶需要在腳本的頭部增加一個@execution_entry標註，告訴MFP語言解釋器如何運行該腳本。
+@execution_entry標註的語法為
+@execution_entry function_name(param_string1, param_string2, …)
+這裏，function_name是（包含或部分包含或者不包含citingspace路徑的）程式名，由於@execution_entry標註位於任何citingspace和using citingspace語句之前，尋找函數程式時MFP解釋器僅僅只搜索默認citingspace的搜索路徑（比如::和::mfp）。所以，如果完整的citing space路徑沒有給出，用戶需要保證MFP解釋器仍然能夠找到該函數程式。此外，調用的入口函數程式未見得必須是該腳本文件中所定義的函數程式。它可以是其它腳本文件所定義的函數程式，甚至還可以是MFP的內建程式。
+Param_string1，param_string2，…是入口函數程式的參數。註意這些參數的寫法和MFP調用函數程式時參數的寫法基本一樣，唯一的不同是@execution_entry所需要的參數包含兩種占位替換符，#和@。比如，在以下語句中，入口函數程式是create_file。該函數程式包含兩個參數，第一個參數是基於字符的文件名，第二個參數是一個布爾值。在@execution_entry語句中，"Date_" + @的意思是當MFP解釋器從命令提示符中運行腳本時，腳本文件名之後的第一個參數被當成一個字串，並且被添加到字串"Date_"的尾部，成為create_file函數程式所生成的檔案的檔案名。註意這裏用戶不能直接把第一個參數寫成"Date_@"因為占位替換符在雙引號中就不再具有占位替換的功能而變成了一個普通的字符。而#的意思是，當MFP解釋器從命令提示符中運行腳本時，腳本檔案名之後的第二個參數被當作一個數值，@execution_entry語句將求取該參數的值並轉換為一個布爾量。
+@execution_entry create_file("Date_" + @, #)
+這樣，當用戶運行腳本檔案時（假設腳本檔案的名字是myscript.mfps），如果使用下述命令
+Mfplang.cmd myscript.mfps 20161015.log false
+MFP解釋器將會調用以下MFP語句
+create_file("Date_20161015.log", false)
+。@execution_entry也支持可選參數。在參數列表中，位於尾部的@...或...表示存在可選參數並且它們都是字串，而位於尾部的#...則表示存在可選參數並且它們都是數值。需要強調的是，@execution_entry語句中只能聲明一次可選參數的並且它必須位於語句的最後，僅僅在參數列表的終止符，也就是反圓括號，之前。
+@execution_entry語句也可以不申明任何參數，比如
+@execution_entry func1
+的意思是，用戶在運行該腳本時，可以提供任何數量的檔案執行參數，並且這些參數都會被當作字串。
+
+◀◀◀◀call,endcall▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language call and endcall statments:
+The call and endcall statements define the boundary of a MFP call block which will be executed in a new thread of the current process, a different process in local host or a remote process in a different host. The call statement begins a call block. It is followed by a local keyword if the thread of call block runs in the current process; or a connection object, then on keyword, then the call statement parameter variables if the call block runs in a different process whether remote or local. The call block parameter variables are normal variables declared before the call block. Each variable can only be used by one call block. The endcall statement ends a call block. It has an optional parameter which is returned variable. The returned variable is a normal variable declared before the call block. It cannot be in the call statement parameter variable list and cannot be used by any other call statement or endcall statement.
+Basically a call statement works like a function but runs in a different thread. The current thread which triggers the call statement simply starts the call block in a new thread if local keyword is used in the call statement. Otherwise, the call block is sent to a remote process which is connected to the local process by the connection object included in the call statment. Like running in the current process, a call block running in a different process can see the snapshot of values of all the variables in the current process at the moment when the call block starts. However, a call block running in the current process can modify any visible variables (except the endcall returned variable), while a call block running in a different process can only update the values of the call statement parameter variables. If a call block runs in a different process, the current process can see all the updates of the call statement parameter variables made by the call block but MFP doesn't do real-time sync nor guarantee the sync order. Similarly, the current process can also update values of the call statement parameter variables. The remote call block can see all the updates but MFP doesn't do real-time sync nor guarantee the sync order. MFP can only guarantee that one update of a variable in one process is atomic. Please note that this atomic feature only exists inside process. Since remote process and the current process both have a copy of call statement parameter variables, it is valid that the two copies of a call block variable are updated in different processes simultaneously.
+A call block finishes its running when a return statement is hit or when the call block ends. If the return statement running in the call block does return a value, the endcall statment in the current thread will receive the returned value from the call block thread. If the endcall statement includes a returned variable name, the value of the returned variable will be updated by the received returned value.
+Please note that, different from the parameter variables in the call statement, the returned variable included in the endcall statement is a blocked variable. This means that any statement trying to use its value will be blocked until the call block returns (It doesn't matter if the call block returns a value or not).
+An example of local call block, i.e. starting a new thread, is shown below:
+
+variable a = 3, b = 4
+
+//Because the call block starts a new thread in the current process, every variable,
+//except the endcall returned variable, is readable and writable. As such no need to
+//use on keyword and declare call block parameters.
+call local
+    a = "HELLO"
+    suspend_until_cond(a) // suspend call block thread until variable a's value is changed.
+    sleep(1000) // sleep 1 second to ensure that the thread which launches this call block can arrive at suspend_until_cond
+    b = 24 // set b value 24 so that the thread which launches this call block can continue
+endcall
+
+sleep(1000) // sleep 1 second to ensure that call block thread can arrive at suspend_until_cond
+a = 9 //change variable a's value so that call block thread can continue
+suspend_until_cond(b, false, "==", 24) //block current thread at variable b. If b's value is updated to 24 then continue
+print_line("a = " + a + " b = " + b) //Now a and b have been updated in the call block. The current thread can see the updated values
+
+Another example is for inter-process call block, i.e. call block is sent to run in a different process in local or a remote machine:
+
+variable local_interface, remote_interface, ret
+local_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.101")	// client address
+ret = ::mfp::paracomp::connect::initialize_local(local_interface)
+print("initialize_local ret = " + ret + "\n")
+
+remote_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.107")	// server address
+ret = ::mfp::paracomp::connect::connect(local_interface, remote_interface)	// connect to server from client
+print("connect ret = " + ret + "\n")
+
+// return of connect function is a dictionary. The value of "CONNECT" key is the connection object definition
+// if connect failed, the value of "CONNECT" key is NULL.
+variable conn = ::mfp::data_struct::array_based::get_value_from_abdict(ret, "CONNECT")
+
+variable a = "hekko, 48", b = 3+7i, c=["LCH"]
+variable d = 27	// variable d is used as a lock for synchronization between call block thread and the current thread
+call conn on a, b, d // only updates of variables a, b and d in the call block thread can be seen by the current thread
+    print("Before suspend_until_cond(d, false, \"==\", 888), d = " + d + "\n")
+    suspend_until_cond(d, false, "==", 888)	// block until d's value is updated to 888
+    print("After suspend_until_cond(d, false, \"==\", 888), d = " + d + "\n")
+    sleep(5000)	//sleep 5 seconds to ensure that the thread which launches this call block can arrive at suspend_until_cond
+    d = 213	// change d's value. The thread that launches this call block will receive the new value and then it can resume
+    //sleep the call block thread again. Now the thread which launches this call block should
+    //have arrived at print_line("c = " + c). Because the call block hasn't returned, the thread which
+    //launches this call block cannot read c's value so it is blocked again.
+    sleep(5000)
+    a = 88
+    b = "KIL"
+    return 54
+endcall c
+
+sleep(10000)	//sleep 10 seconds to wait for call block thread to start and arrive at suspend_until_cond
+d = 888	//change d's value to 888. After d's new value is received by the call block, it can continue
+suspend_until_cond(d)	// block the current thread waiting for change of d's value
+print_line("New value of d is " + d)
+//when we can get back c's value, call block must have returned
+print_line("c = " + c) // the current thread is blocked here. It will continue after c's new value is returned from the call block
+//Now a and b's new values can be printed. If we print a and b before we print c, we may not be able to 
+//see the change of a and b's values
+print_line("a = " + a + " b = " + b)
+
+close_connection(conn)	// close connection
+close_local(local_interface)	// close local interface
+
+The above code is for the client process. In the server side, we have to run the following code to accept connection and run call block:
+
+variable local_interface, ret
+local_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.107")	// server address
+ret = ::mfp::paracomp::connect::initialize_local(local_interface)
+print("initialize_local ret = " + ret + "\n")
+// listen to any connection request. A listen thread will work in the background
+ret = ::mfp::paracomp::connect::listen(local_interface)	
+print("listen ret = " + ret + "\n")
+// This input statement prevents server to quit if server code is a simple MFPS script
+// and runs from bash or Windows command line. In Android or MFP JAVA GUI, the following
+// input statement is not required as long as Scientific Calculator Plus app / MFP
+// JCmdline program is still running, because server is not terminated anyway.
+input("Press any key to exit\n", "S")
+
+Start server side code first and then run client side code in a different device. Make sure server address and client address are both correct. In the server side two messages are printed. One is Before suspend_until_cond(d, 888), d = 27, the other is After suspend_until_cond(d, 888), d = 888. In the client side variables a, b, c and d's new values are printed. In particular, variable c is returned as a dictionary with returned value, 54, included.
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言call和endcall语句：
+call和endcall语句定义了MFP语言call程序块的边界。call程序块是一段不在本线程中而是在别的线程中执行的指令。call语句是call程序块的开始。在call语句中，call关键字后面紧跟着连接对象或者local关键字，然后是on关键字，最后是一串call程序块的参数变量。call程序块的参数变量都是在call语句之前就已经声明的普通的变量。每一个参数变量都只能被一个call语句所使用。endcall语句标志着call程序块的中止。endcall语句有一个可选参数。该参数是call程序块在本地进程的返回变量。返回变量也是在call程序块之前声明的普通变量。返回变量只能被一个call程序块所使用而且不能同时作为call程序块的参数变量。
+我们可以把一个call语句看作是一个函数的开始。与普通函数不同的是，call程序块并非是在本地线程中运行，而是在另外一个线程中运行。运行call程序块的线程可以是本进程、本机的另外一个进程、或者是另外一台设备。
+如果call程序块是在本进程中运行另外一个线程，call关键字后面紧跟着的并非一个连接对象，而是关键字local。在这种情况下，由于call语句仍然在本进程空间中运行，本进程空间中的任何变量对于call程序块来说都是可读可写的，所以on关键字和其后的一串call程序块的参数变量不起任何作用，可以省略。call程序块生成的线程在读写本进程空间中的变量时，操作是原子性的，也就是说，只有一个线程对变量的值修改完成之后，另外一个线程才能够读，反之亦然。
+如果call程序块是在另外一个进程中运行，运行call程序块的进程通过call语句中的连接对象和本地进程连接。运行call程序块的进程可以看到call程序块参数变量的值的变化，也可以修改call程序块参数变量的值。call程序块对自己的参数变量的值的修改会反应到本地进程。但是需要注意的是，MFP语言并不保证本地进程和call程序块进程对程序块参数变量的值的修改会被实时同步到对方，也不保证按修改的顺序进行同步传递。MFP语言唯一保证的是在一个进程内对一个call程序块参数变量的修改是原子性的，也就是只有上一次修改完成了之后，对值的新的修改，不管是来自客户端还是服务器端，才能开始。需要注意的是这个原子性只是应用于一个进程。由于call程序块进程和本地进程都有一份程序块参数变量的拷贝，对于一个程序块参数变量的两份拷贝在不同的进程中同时进行修改不违背修改的原子性。其他任何除了返回变量和call序块参数变量的任何变量，call程序块和本地进程都有自己独立的拷贝，在一方修改变量值不会影响到另一方的同名变量的的值。
+由于对call程序块能够实现（跨进程）变量操作的原子性，所以不论call程序块是在本地进程空间还是在另外的进程，都可以通过变量锁（比如调用suspend_until_cond函数）进行（跨进程）线程同步。这一特性是MFP语言的一个重大优势。
+当call程序块遇到endcall语句或者return语句时停止运行并返回。如果return语句返回一个值，位于本地进程的endcall语句将收到返回值并将返回值赋给call程序块在本地进程的返回变量（如果endcall语句声明了返回变量的话）。
+需要注意的是，不同于call程序块的参数变量，call程序块的返回变量采用的是阻塞模式。换句话说，当call程序块被发送到远端执行后，任何在本地进程读取call程序块的返回变量的值的语句都将被阻塞，直到call程序块返回（不管有没有返回值）为止。
+以下例子展示了call程序块在本地进程中如何开启一个新线程：
+
+variable a = 3, b = 4
+
+call local //由于仍然在本地进程空间中，所有的变量都可以直接读写，所以无需使用on关键字以及其后的参数变量
+    a = "HELLO"
+    suspend_until_cond(a) //阻塞call程序块所在线程直到a的值发生变化
+    sleep(1000) //暂停call程序块所在线程，以便让启动线程阻塞在suspend_until_cond函数
+    b = 24 //将b的值设置为24，启动线程才能摆脱阻塞状态继续运行
+endcall
+
+sleep(1000) //暂停启动线程1秒钟，以便让call程序块所在线程启动并阻塞在suspend_until_cond函数
+a = 9 //修改变量a的值，call程序块所在线程得以运行
+suspend_until_cond(b, false, "==", 24) //启动线程阻塞在变量b，直到变量b的值等于24
+print_line("a = " + a + " b = " + b) //现在a和b的值都已经在call程序块中更新了
+
+以下则是call程序块应用于不同进程一个实例：
+
+variable local_interface, remote_interface, ret
+local_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.101")	//客户端（本地进程）地址
+ret = ::mfp::paracomp::connect::initialize_local(local_interface)
+print("initialize_local ret = " + ret + "\n")
+
+remote_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.107")	//服务器端（运行call程序块的进程）地址
+ret = ::mfp::paracomp::connect::connect(local_interface, remote_interface)	//从客户端连接到服务器端
+print("connect ret = " + ret + "\n")
+
+//connect函数的返回值是一个基于数组的字典，"CONNECT"关键字所对应的就是连接对象的定义。如果connect函数失败，"CONNECT"关键字对应的值为NULL。
+variable conn = ::mfp::data_struct::array_based::get_value_from_abdict(ret, "CONNECT")
+
+variable a = "hekko, 48", b = 3+7i, c=["LCH"]
+variable d = 27	// 变量d用于同步锁
+call conn on a, b, d // 只有变量a，b和d在call程序块中的赋值修改对启动线程可见，其他变量在call程序块中也可以被赋值修改，但启动线程看不见
+    print("Before suspend_until_cond(d, false, \"==\", 888), d = " + d + "\n")
+    suspend_until_cond(d, false, "==", 888)	// 等d的值变成888，程序继续运行，否则程序阻塞在这里
+    print("After suspend_until_cond(d, false, \"==\", 888), d = " + d + "\n")
+    sleep(5000)	//暂停call程序块所在线程，以便让启动线程阻塞在suspend_until_cond函数
+    d = 213	//改变d的值，启动线程应该能够收到d的新值。启动线程收到新值之后才能摆脱阻塞状态继续运行
+    //再暂停call程序块所在线程。此时启动线程应该已经到达print_line("c = " + c)语句，
+    //但由于call程序块所还未返回，启动线程无法读取返回值c所以被再次阻塞
+    sleep(5000)
+    a = 88
+    b = "KIL"
+    return 54
+endcall c
+
+sleep(10000)	//暂停启动线程10秒钟，以便让call程序块所在线程启动并阻塞在suspend_until_cond函数
+d = 888	//设置d的值为888，call程序块所在线程将会收到该新值
+suspend_until_cond(d)	// 线程阻塞在此，只有d的值发生变化才会继续运行
+print_line("New value of d is " + d)
+//我们必须先取回c的值。c的值能够取回方才意味着call程序块已经返回
+print_line("c = " + c) //线程阻塞在读取变量c的值时刻。只有当c的值从call程序块返回线程才能继续运行
+//当c的值取回之后，我们可以打印出a和b的值。可以看到这时a和b的值已经发生了更改。
+//如果我们在print("c = " + c)语句之前打印a和b的值，我们可能无法观察到a和b的值
+//发生了变化。
+print_line("a = " + a + " b = " + b)
+
+close_connection(conn)	//关闭连接
+close_local(local_interface)	//关闭本地通信协议界面
+
+以上代码是由客户端进程所执行，在服务器端，我们需要运行以下代码接收连接请求并运行call程序块：
+
+variable local_interface, ret
+local_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.107")	//服务器端（运行call程序块的进程）地址
+ret = ::mfp::paracomp::connect::initialize_local(local_interface)
+print("initialize_local ret = " + ret + "\n")
+//监听连接请求。监听线程将在后台工作。
+ret = ::mfp::paracomp::connect::listen(local_interface)	
+print("listen ret = " + ret + "\n")
+//下面这条input语句将阻塞程序的运行。如果服务端代码是一个简单的MFPS脚本并且是在bash或者Windows命令提示符中运行，input语句可以阻止服务器程序的退出所以是必
+//不可少的。但是如果是在安卓或者MFP语言的JAVA界面程序中运行，只要安卓应用或JAVA界面程序不退出input语句就是不必要的。因为这种情况下服务器端的进程并没有中止。
+input("Press any key to exit\n", "S")
+
+先运行以上服务器端代码，然后在不同的设备中运行客户端代码。在运行之前需要确保客户端和服务器端的地址是正确的。开发者可以看到在服务器端两条消息被打印出来，一条是 Before suspend_until_cond(d, 888), d = 27，另一条是After suspend_until_cond(d, 888), d = 888。在客户端会打印出变量a，b，c和d的新值，其中，call程序块的返回变量c的新值是一个基于数组的字典，call程序块的返回值54位于该字典中。
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言call和endcall語句：
+call和endcall語句定義了MFP語言call程序塊的邊界。call程序塊是一段不在本線程中而是在別的線程中執行的指令。call語句是call程序塊的開始。在call語句中，call關鍵字後面緊跟著連接對象或者local關鍵字，然後是on關鍵字，最後是一串call程序塊的參數變量。call程序塊的參數變量都是在call語句之前就已經聲明的普通的變量。每一個參數變量都只能被一個call語句所使用。endcall語句標誌著call程序塊的中止。endcall語句有一個可選參數。該參數是call程序塊在本地進程的返回變量。返回變量也是在call程序塊之前聲明的普通變量。返回變量只能被一個call程序塊所使用而且不能同時作為call程序塊的參數變量。
+我們可以把一個call語句看作是一個函數的開始。與普通函數不同的是，call程序塊並非是在本地線程中運行，而是在另外一個線程中運行。運行call程序塊的線程可以是本進程、本機的另外一個進程、或者是另外一臺設備。
+如果call程序塊是在本進程中運行另外一個線程，call關鍵字後面緊跟著的並非一個連接對象，而是關鍵字local。在這種情況下，由於call語句仍然在本進程空間中運行，本進程空間中的任何變量對於call程序塊來說都是可讀可寫的，所以on關鍵字和其後的一串call程序塊的參數變量不起任何作用，可以省略。call程序塊生成的線程在讀寫本進程空間中的變量時，操作是原子性的，也就是說，只有一個線程對變量的值修改完成之後，另外一個線程才能夠讀，反之亦然。
+如果call程序塊是在另外一個進程中運行，運行call程序塊的進程通過call語句中的連接對象和本地進程連接。運行call程序塊的進程可以看到call程序塊參數變量的值的變化，也可以修改call程序塊參數變量的值。call程序塊對自己的參數變量的值的修改會反應到本地進程。但是需要註意的是，MFP語言並不保證本地進程和call程序塊進程對程序塊參數變量的值的修改會被實時同步到對方，也不保證按修改的順序進行同步傳遞。MFP語言唯一保證的是在一個進程內對一個call程序塊參數變量的修改是原子性的，也就是只有上一次修改完成了之後，對值的新的修改，不管是來自客戶端還是服務器端，才能開始。需要註意的是這個原子性只是應用於一個進程。由於call程序塊進程和本地進程都有一份程序塊參數變量的拷貝，對於一個程序塊參數變量的兩份拷貝在不同的進程中同時進行修改不違背修改的原子性。其他任何除了返回變量和call序塊參數變量的任何變量，call程序塊和本地進程都有自己獨立的拷貝，在一方修改變量值不會影響到另一方的同名變量的的值。
+由於對call程序塊能夠實現（跨進程）變量操作的原子性，所以不論call程序塊是在本地進程空間還是在另外的進程，都可以通過變量鎖（比如調用suspend_until_cond函數）進行（跨進程）線程同步。這一特性是MFP語言的一個重大優勢。
+當call程序塊遇到endcall語句或者return語句時停止運行並返回。如果return語句返回一個值，位於本地進程的endcall語句將收到返回值並將返回值賦給call程序塊在本地進程的返回變量（如果endcall語句聲明了返回變量的話）。
+需要註意的是，不同於call程序塊的參數變量，call程序塊的返回變量采用的是阻塞模式。換句話說，當call程序塊被發送到遠端執行後，任何在本地進程讀取call程序塊的返回變量的值的語句都將被阻塞，直到call程序塊返回（不管有沒有返回值）為止。
+以下例子展示了call程序塊在本地進程中如何開啟一個新線程：
+
+variable a = 3, b = 4
+
+call local //由於仍然在本地進程空間中，所有的變量都可以直接讀寫，所以無需使用on關鍵字以及其後的參數變量
+    a = "HELLO"
+    suspend_until_cond(a) //阻塞call程序塊所在線程直到a的值發生變化
+    sleep(1000) //暫停call程序塊所在線程，以便讓啟動線程阻塞在suspend_until_cond函數
+    b = 24 //將b的值設置為24，啟動線程才能擺脫阻塞狀態繼續運行
+endcall
+
+sleep(1000) //暫停啟動線程1秒鐘，以便讓call程序塊所在線程啟動並阻塞在suspend_until_cond函數
+a = 9 //修改變量a的值，call程序塊所在線程得以運行
+suspend_until_cond(b, false, "==", 24) //啟動線程阻塞在變量b，直到變量b的值等於24
+print_line("a = " + a + " b = " + b) //現在a和b的值都已經在call程序塊中更新了
+
+以下則是call程序塊應用於不同進程一個實例：
+
+variable local_interface, remote_interface, ret
+local_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.101")	//客戶端（本地進程）地址
+ret = ::mfp::paracomp::connect::initialize_local(local_interface)
+print("initialize_local ret = " + ret + "\n")
+
+remote_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.107")	//服務器端（運行call程序塊的進程）地址
+ret = ::mfp::paracomp::connect::connect(local_interface, remote_interface)	//從客戶端連接到服務器端
+print("connect ret = " + ret + "\n")
+
+//connect函數的返回值是一個基於數組的字典，"CONNECT"關鍵字所對應的就是連接對象的定義。如果connect函數失敗，"CONNECT"關鍵字對應的值為NULL。
+variable conn = ::mfp::data_struct::array_based::get_value_from_abdict(ret, "CONNECT")
+
+variable a = "hekko, 48", b = 3+7i, c=["LCH"]
+variable d = 27	// 變量d用於同步鎖
+call conn on a, b, d // 只有變量a，b和d在call程序塊中的賦值修改對啟動線程可見，其他變量在call程序塊中也可以被賦值修改，但啟動線程看不見
+    print("Before suspend_until_cond(d, false, \"==\", 888), d = " + d + "\n")
+    suspend_until_cond(d, false, "==", 888)	// 等d的值變成888，程序繼續運行，否則程序阻塞在這裏
+    print("After suspend_until_cond(d, false, \"==\", 888), d = " + d + "\n")
+    sleep(5000)	//暫停call程序塊所在線程，以便讓啟動線程阻塞在suspend_until_cond函數
+    d = 213	//改變d的值，啟動線程應該能夠收到d的新值。啟動線程收到新值之後才能擺脫阻塞狀態繼續運行
+    //再暫停call程序塊所在線程。此時啟動線程應該已經到達print_line("c = " + c)語句，
+    //但由於call程序塊所還未返回，啟動線程無法讀取返回值c所以被再次阻塞
+    sleep(5000)
+    a = 88
+    b = "KIL"
+    return 54
+endcall c
+
+sleep(10000)	//暫停啟動線程10秒鐘，以便讓call程序塊所在線程啟動並阻塞在suspend_until_cond函數
+d = 888	//設置d的值為888，call程序塊所在線程將會收到該新值
+suspend_until_cond(d)	// 線程阻塞在此，只有d的值發生變化才會繼續運行
+print_line("New value of d is " + d)
+//我們必須先取回c的值。c的值能夠取回方才意味著call程序塊已經返回
+print_line("c = " + c) //線程阻塞在讀取變量c的值時刻。只有當c的值從call程序塊返回線程才能繼續運行
+//當c的值取回之後，我們可以打印出a和b的值。可以看到這時a和b的值已經發生了更改。
+//如果我們在print("c = " + c)語句之前打印a和b的值，我們可能無法觀察到a和b的值
+//發生了變化。
+print_line("a = " + a + " b = " + b)
+
+close_connection(conn)	//關閉連接
+close_local(local_interface)	//關閉本地通信協議界面
+
+以上代碼是由客戶端進程所執行，在服務器端，我們需要運行以下代碼接收連接請求並運行call程序塊：
+
+variable local_interface, ret
+local_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.107")	//服務器端（運行call程序塊的進程）地址
+ret = ::mfp::paracomp::connect::initialize_local(local_interface)
+print("initialize_local ret = " + ret + "\n")
+//監聽連接請求。監聽線程將在後臺工作。
+ret = ::mfp::paracomp::connect::listen(local_interface)	
+print("listen ret = " + ret + "\n")
+//下面這條input語句將阻塞程序的運行。如果服務端代碼是一個簡單的MFPS腳本並且是在bash或者Windows命令提示符中運行，input語句可以阻止服務器程序的退出所以是必
+//不可少的。但是如果是在安卓或者MFP語言的JAVA界面程序中運行，只要安卓應用或JAVA界面程序不退出input語句就是不必要的。因為這種情況下服務器端的進程並沒有中止。
+input("Press any key to exit\n", "S")
+
+先運行以上服務器端代碼，然後在不同的設備中運行客戶端代碼。在運行之前需要確保客戶端和服務器端的地址是正確的。開發者可以看到在服務器端兩條消息被打印出來，一條是 Before suspend_until_cond(d, 888), d = 27，另一條是After suspend_until_cond(d, 888), d = 888。在客戶端會打印出變量a，b，c和d的新值，其中，call程序塊的返回變量c的新值是一個基於數組的字典，call程序塊的返回值54位於該字典中。
+
+◀◀◀◀class,public,private,self,super,this,endclass▶▶▶▶
+◁◁◁◁English▷▷▷▷
+MFP language class and endclass statements:
+* Class declaration
+The class and endclass statements define the boundary of an MFP class. The class statement is the beginning of an MFP class. If there is no super class included in the declaration, which means the class is derived from object, basic-most MFP type, the class statement is like:
+
+class Class_Name
+
+. If, on the other hand, the class is directly derived from one or multiple super classes, the class statement is like:
+
+class Class_Name: Super_Class1, Super_Class2, ..., Super_ClassN
+
+. Here, directly derived means this class is child but not grand child of the super class(es). Also, super class name could include part or full citingspace path. For example,
+
+class Class_Name: aaa::bbb::Super_Class1, ::ccc::Super_Class2, ..., Super_ClassN
+
+is totally valid. MFP will find out super class definitions by parsing the citingspace path based on the citingspace context, i.e. in which citingspace this class statement is and how many using citingspace statements have been declared.
+
+* Nested class and class members
+Inside a class body are nested classes and/or class members, i.e. variables and functions. To nested class, the host class is just a citingspace. For example, if class A is defined in citingspace ::AAA::bbb and a nested class B is defined in class A, then the full citingspace path of class A is ::AAA::bbb::A and the full citingspace path of class B is ::AAA::bbb::A::B. Except the similarity of citingspace path, a nested class is independent of host class and is always visible inside and outside of the host class.
+
+Class members are parts of class definition. There are two access modes for class members, i.e. private and public. Private members can only be accessed by same class member functions while public members can be accessed by any functions inside and outside the class. For example:
+
+public variable self memberA = 7, memberB = "Hello", memberC
+private function memberFunc(a, b, c)
+...
+endf
+. If no access mode keyword exists, the class memeber is public.
+
+Class member variable is declared a bit different from variable declaration statements in function. First, an access mode keyword, i.e. public or private, may exist in the beginning of the statement. Second, a self keyword must follow the variable keyword, which means the variable(s) declared in this statement are NOT static. At this moment, MFP does NOT support static member variable so that without a self keyword, the whole variable declaration statement is ignored. Last, a class member variable can be initialized in declaration statement. However, its initializer has to be a pure value, and cannot be a function. For example,
+
+variable self varA = [[1,2]]
+is right while
+
+variable self varA = func(3,4)
+is wrong. More examples of member variable declaration are:
+
+variable self varA, varB = "Hello", varC = [[1,2],[3,4]]
+private variable self varD
+Like member variables, class member function declaration may have an access mode keyword, i.e. public or private in front. Also, if its parameter list starts with self, this function is not static. Inside the member function, MFP uses keyword self followed by a dot to access other members in the class. For example:
+
+public function memberFunc(self, a, b, c)
+	self.MemberA = a
+	self.MemberB = b
+	return self.MemberA * self.MemberB * self.memberFunc(c)
+endf
+. Without self in the parameter list, the member function is static. Clearly, a static member function cannot access non-static members in the same class. An example for static member function is shown below:
+
+public function memberStaticFunc(a, b, c)
+	return a+b+c
+endf
+.
+
+The self keyword can access members in the class and public members in the super class(es). However, if the class and one of its super classes have the same name member, self keyword can only access the member in the class not the super class. For example:
+
+class SuperClassA
+	public function memberFunc(self, a)
+		return a
+	endf
+endclass
+class SuperClassB
+	public function memberFunc(self, a)
+		return 2*a
+	endf
+endclass
+class ChildClass : SuperClassA, SuperClassB
+	public function memberFunc(self, a)
+		return 3*a
+	endf
+	public function memberFunc1(self)
+		return self.memberFunc(3)	// call memberFunc in ChildClass, not SuperClassA or SuperClassB
+	endf
+endclass
+. To access same name super class member, super member variable is provided. This member variable is an array whose first element is the object of the class's first super, second element is the object of its second super, etc. Here, an object of its super class is a sliced object, which means the super class object is actually a part of the object of the class. As such, in the above example, if developer wants to call memberFunc in the super classes, the code should be:
+
+class SuperClassA
+	public function memberFunc(self, a)
+		return a
+	endf
+endclass
+class SuperClassB
+	public function memberFunc(self, a)
+		return 2*a
+	endf
+endclass
+class ChildClass : SuperClassA, SuperClassB
+	public function memberFunc(self, a)
+		return 3*a
+	endf
+	public function memberFunc1(self)
+		variable x = self.super[0].memberFunc(3)	// call memberFunc in SuperClassA
+		variable y = self.super[1].memberFunc(4)	// call memberFunc in SuperClassB
+		return x + y
+	endf
+endclass
+. If a class is not declared with any super class, its only super class is object. In this case self.super[0] returns a sliced object of object type.
+
+Both member variables and member functions can be overridden in MFP. In this way, when MFP refers to an object's member (variable or function), it always calls the most "bottom" member. For example, if class A is derived from class B, and both A and B have a member variable named C, and we have defined a function as
+
+function func(objOfClass)
+	print(objOfClass.C)
+endf
+, then if an object of A is passed into this function, A's C value is printed. If an object of B is passed into this function, B's C value is printed.
+
+However, the above rule sometimes causes confusions. Consider, for example, class B in the above example has a public member function reading member variable C's value. The developer of class B doesn't know another developer will derive class A from B. Thus he assumes that self.C in class B's memeber function always refers to B's member variable C. However, if the third developer creates an object from class A and calls the member function of class B (which is super class of class A), class A's C value is read.
+
+class B
+	variable self C = 1
+	function printC(self)
+		print("self.C = " + self.C + "\n")
+	endf
+endclass
+
+class A : B
+	variable self C = 2
+endclass
+
+function printABC()
+	variable bObj = B(), aObj = A()
+	bObj.printC()	// self.C = 1
+	aObj.printC()	// self.C = 2
+endf
+If the first developer wants to ensure that self.C only refers to class B's C member variable in class B's member function(s), this variable should be used. Basically this variable returns a (sliced) object of current class where the calling function is located, as shown in the following code:
+
+class B
+	variable self C = 1
+	function printC(self)
+		print("self.this.C = " + self.this.C + "\n")
+	endf
+endclass
+
+class A : B
+	variable self C = 2
+endclass
+
+function printABC()
+	variable bObj = B(), aObj = A()
+	bObj.printC()	// self.this.C = 1
+	aObj.printC()	// self.this.C = 1
+endf
+. Different from super member variable, which is public, this member variable is private.
+
+* Constructor and magic functions
+When creating an object from an MFP class, constructor function should be called. Different from other programming languages, MFP class constructor is a built-in function with no parameter. Developer CANNOT define, override or overload constructor. For example, if a class Abcd is defined in citingspace ::AAA::bbb, then the class constructor is function Abcd() and the full citingspace path of the function is ::AAA::bbb::Abcd(), as shown in the following code:
+
+citingspace ::AAA::bbb
+class Abcd
+	variable self a = 1, b = "Hello", c
+	public function printMembers(self)
+		print("self.a = " + self.a + " self.b = " + self.b + " self.c = " + self.c)
+	endf
+endclass
+
+endcs
+
+function printABC()
+	variable obj = ::AAA::bbb::abcd()
+	obj.printMembers()	// self.a = 1 self.b = Hello self.c = NULL
+endf
+What a constructor does is simply setting member variables to be the values assigned to them in the variable statement. If no initializing value in the variable statement, the member variable is set as NULL. Constructor returns an object of the class.
+
+Since user cannot define or overload a constructor, customized initialization work has to be done in a member function. The name, return type and parameter list of an initialization member function is up the the developer. However, MFP recommends to use __init__ as the function name and return the object itself. Keep in mind that __init__ is just a normal user defined function with no magic. It can be called multiple times at anytime and can be overloaded. For example:
+
+citingspace ::AAA::bbb
+class Abcd
+	variable self a = 1, b = "Hello", c
+	public function printMembers(self)
+		print("self.a = " + self.a + " self.b = " + self.b + " self.c = " + self.c)
+	endf
+	public function __init__(self)
+		self.a = 7
+		self.c = (3-i) * self.a
+		return self
+	endf
+	public function __init__(self, a, b, c)	// like any user defined member function, __init__ can be overloaded.
+		self.a = a
+		self.b = b
+		self.c = c
+		return self
+	endf
+endclass
+
+endcs
+
+function printABC()
+	using citingspace ::AAA::bbb
+	variable obj = abcd().__init__()
+	obj.__init__(3, 2, 1)
+	obj.__init__([5,4],[2,3],"WWW").printMembers()	// self.a = [5, 4] self.b = [2, 3] self.c = WWW
+endf
+MFP class has a number of magic built-in member functions which can be overridden. Function __to_string__ converts the object to a string. It is called when adding the object to a string or when MFP built-in function to_string is called with the object as the only parameter.
+
+Function __deep_copy__ returns a deep copy of the object. It is called when MFP built-in function clone is called with the object as the only parameter.
+
+Function __equals__ identifies if the object equals to the value of a variable. It is called when operator == is used to identify the equality of two variables.
+
+Function __hash__ returns hash code of the object. It is called when MFP built-in function hash_code is called with the object as the only parameter.
+
+Function __copy__ returns a shallow copy of the object. Its default behavior is to create a new object but all the member variables refer to the corresponding member variables of the old object.
+
+Function __is_same__ identifies if the object is the same as another object referred by the parameter variable. This function simply compares reference so that its action is the same as the default behavior of operator ==. This function is useful when developer overrides __equals__ and wants to compare reference inside the overridden __equals__ function. MFP does NOT recommend to override this function.
+
+The following example demonstrates the usage of the above functions:
+
+class SampleClass
+	variable self a = 1, b = 2
+	public function __equals__(self, o)
+		print("User defined __equals__\n")
+		if self.__is_same__(o) // identify if self and o refer to the same object.
+			return true
+		elseif null == o
+			return false
+		elseif get_type_fullname(self) != get_type_fullname(o)
+			return false
+		elseif or(self.a != o.a, self.b != o.b)
+			return false
+		else
+			return true
+		endif
+	endf
+	public function __to_string__(self)
+		return "Class SampleClass, a = " + a + " b = " + b
+	endf
+	public function __hash__(self)
+		print("User defined __hash__\n")
+		return a + b * 19
+	endf
+	public function __copy__(self)
+		print("User defined __copy__\n")
+		return self
+	endf
+	public function __deep_copy__(self)
+		print("User defined __deep_copy__\n")
+		variable o = SampleClass()
+		o.a = self.a
+		o.b = self.b
+		return o
+	endf
+endclass
+
+function testOverriddenMagicFunctions()
+	variable obj1 = SampleClass()
+	print(obj1)	// will output Class SampleClass, a = 1 b = 2
+	variable obj2 = clone(obj1)	// will output User defined __deep_copy__
+	print("obj1 == obj2 is " + (obj1 == obj2))	// will first output User defined __equals__, then output obj1 == obj2 is true
+	print(hash_code(obj2)) // will first output User defined __hash__, then output 39
+endf
+◁◁◁◁Simplified_Chinese▷▷▷▷
+MFP编程语言class和endclass语句：
+* 类的声明
+class和endclass语句定义了MFP语言的类。class语句是类定义的开始。如果class语句中没有父类声明，class就是直接派生于MFP语言的最基本的object类型。这样的class语句的例子如下：
+
+class Class_Name
+
+反之，如果类是从一个或者多个父类中直接派生而来，class语句则如下面的例子所示：
+
+class Class_Name: Super_Class1, Super_Class2, ..., Super_ClassN
+
+这里，直接派生是指该类是父类的子类，而不是孙类，曾孙类甚至更后辈。
+
+还需要注意，在class语句中，父类的名字是可以包含完整或者部分的引用空间路径的，比如：
+
+class Class_Name: aaa::bbb::Super_Class1, ::ccc::Super_Class2, ..., Super_ClassN
+
+上述语句是完全合法的。MFP将根据当前引用的所有引用空间以及它们的优先次序来找到每一个父类。
+
+* 嵌套的类和类的成员
+类可以定义在另外一个类的里面。这种类被称为嵌套的类。在这种情况下，被嵌入的类仅仅只相当于嵌套类的引用空间。比如，类A定义在引用空间::AAA::bbb中，而一个嵌套的类B定义在A中，则类A的完整引用空间路径为::AAA::bbb::A而类B的完整引用空间路径为::AAA::bbb::A::B。除了它们引用空间路径上的相似，嵌套类和被嵌入的类是相互独立的。此外，嵌套类总是对外部可见的。
+
+类的成员则包括函数和变量。它们分为两大类，私有（使用private关键字，只有类成员函数可访问，外部不可见）和公有（使用public关键字，外部可见），比如：
+
+public variable self memberA = 7, memberB = "Hello", memberC
+private function memberFunc(a, b, c)
+...
+endf
+需要注意的是，如果声明类成员时既没有使用private也没有使用public关键字，那么该成员被视为公有，也就是public。
+
+类成员变量的声明和普通变量的声明略有不同。首先，如上面指出的，类成员变量的声明语句前面可以加上private或者public关键字；其次，在variable关键字之后，必须加入一个self关键字。这个self关键字意思是该语句声明的变量不是静态变量。需要注意的是，在现阶段，MFP不支持静态变量，所以，如果类成员变量的声明语句没有self关键字将会被忽略；最后，和函数内的变量一样，类成员变量可以在声明语句中被初始化。但是，MFP只允许用存粹的值而不是函数来初始化类成员变量。比如：
+
+variable self varA = [[1,2]]
+是对的而
+
+variable self varA = func(3,4)
+则会出错。更多的类成员变量声明语句示例如下：
+
+variable self varA, varB = "Hello", varC = [[1,2],[3,4]]
+private variable self varD
+和成员变量一样，类的成员函数声明语句前面可以加入public或者private关键字。此外，如果函数的第一个参数是self，这个函数就不是静态的，否则，这个函数就是静态的。在函数的内部，使用self关键字再加一个点可以访问类的成员，比如：
+
+public function memberFunc(self, a, b, c)
+	self.MemberA = a
+	self.MemberB = b
+	return self.MemberA * self.MemberB * self.memberFunc(c)
+endf
+如果类的成员函数是静态的，它显然就不能访问类的非静态成员。一个静态成员函数的例子如下：
+
+public function memberStaticFunc(a, b, c)
+	return a+b+c
+endf
+虽然self关键字可以用于访问类的成员和类的父类（包括父类的父类和更上辈的类）的公共（public）成员，但如果类和它的某些父类拥有同样名字的成员变量或者相同声明的成员函数，self关键字则只能够访问本类中的成员而无法访问父类中的成员。比如：
+
+class SuperClassA
+	public function memberFunc(self, a)
+		return a
+	endf
+endclass
+class SuperClassB
+	public function memberFunc(self, a)
+		return 2*a
+	endf
+endclass
+class ChildClass : SuperClassA, SuperClassB
+	public function memberFunc(self, a)
+		return 3*a
+	endf
+	public function memberFunc1(self)
+		return self.memberFunc(3)	// 调用ChildClass的memberFunc函数，而不是SuperClassA或者SuperClassB的对应函数。
+	endf
+endclass
+为了访问父类成员，则必须使用super成员变量。这个成员变量是一个数组，第一个元素是第一个父类的对象，第二个元素是第二个父类的对象，...，以此类推。注意这里的对象都是切片的对象，也就是说通过super返回的父类的对象是本类对象的一部分。这样一来，如果在上面的示例中开发者想调用父类的memberFunc函数，代码应该这样写：
+
+class SuperClassA
+	public function memberFunc(self, a)
+		return a
+	endf
+endclass
+class SuperClassB
+	public function memberFunc(self, a)
+		return 2*a
+	endf
+endclass
+class ChildClass : SuperClassA, SuperClassB
+	public function memberFunc(self, a)
+		return 3*a
+	endf
+	public function memberFunc1(self)
+		variable x = self.super[0].memberFunc(3)	// 调用SuperClassA的memberFunc函数
+		variable y = self.super[1].memberFunc(4)	// 调用SuperClassB的memberFunc函数
+		return x + y
+	endf
+endclass
+注意，如果一个类的声明语句没有包括任何父类，那么该类有一个唯一的父类，就是MFP语言的object类型。在这种情况下，self.super[0]返回被切片的object对象。
+
+在MFP语言中，成员函数和成员变量均可以被覆写（override）。如果MFP通过self关键字访问一个成员（函数或者变量），而该成员已经被继承树上的多个类覆写，那么它总是访问的最“下层”的成员。比如，如果类A是从类B派生而来，A和B均有一个成员变量叫C，并且我们已经定义了如下函数：
+
+function func(objOfClass)
+	print(objOfClass.C)
+endf
+那么，如果一个A的对象作为参数被传入这个函数，那么A的成员变量C的值将会被打印出来。而如果一个B的对象作为参数被传入这个函数，那么B的成员变量C的值将会被打印出来。
+
+但是，上面的规定有时候会给开发者带来困惑。比如，在上面的例子中类B有一个公共成员函数，它读取成员变量C的值。类B的开发者并不知道别的程序员会从类B派生出类A，所以他假定成员变量C一定是类B的成员变量C。但如果第三个开发者创建了一个类A的对象，并且调用了该对象从类B那里继承的读取成员变量C的值的成员函数，那么这时该成员函数实际上读取的是类A而不是类B的成员变量C的值。
+
+class B
+	variable self C = 1
+	function printC(self)
+		print("self.C = " + self.C + "\n")
+	endf
+endclass
+
+class A : B
+	variable self C = 2
+endclass
+
+function printABC()
+	variable bObj = B(), aObj = A()
+	bObj.printC()	// self.C = 1
+	aObj.printC()	// self.C = 2
+endf
+如果类B的开发者想要确保在类B的成员函数中读取的是类B的成员变量C，那么就必须通过类的this成员变量访问成员变量C。所有的类都有一个this成员变量，该变量返回当前函数所在的类的一个（被切片的）的对象。一个例子如下：
+
+class B
+	variable self C = 1
+	function printC(self)
+		print("self.this.C = " + self.this.C + "\n")
+	endf
+endclass
+
+class A : B
+	variable self C = 2
+endclass
+
+function printABC()
+	variable bObj = B(), aObj = A()
+	bObj.printC()	// self.this.C = 1
+	aObj.printC()	// self.this.C = 1
+endf
+和公共的super成员变量不同的是，this是私有的。
+
+* 构造函数和魔术函数
+如果开发者想要以一个MFP类作为模板创造一个对象，必须调用构造函数。和其他的编程语言不同，MFP类的构造函数是内置的，不能够开发者自定义，不能被重载，也不能够被覆写。构造函数没有参数。它所做的一切工作就是就是根据成员变量的声明初始化成员变量。如果一个成员变量在声明中没有给出初始值，那么它就会被初始化为NULL。构造函数返回值是该类的一个对象。构造函数的一个例子如下。在该例子中，类Abcd定义在引用空间::AAA::bbb中，这个类的构造函数就是Abcd()，包括引用空间路径的完整名称为::AAA::bbb::Abcd()。
+
+citingspace ::AAA::bbb
+class Abcd
+	variable self a = 1, b = "Hello", c
+	public function printMembers(self)
+		print("self.a = " + self.a + " self.b = " + self.b + " self.c = " + self.c)
+	endf
+endclass
+
+endcs
+
+function printABC()
+	variable obj = ::AAA::bbb::abcd()
+	obj.printMembers()	// self.a = 1 self.b = Hello self.c = NULL
+endf
+由于开发者无法自定义构造函数，所以自定义的初始化步骤应该放在公共的成员函数中。这种成员函数的名称，返回类型和参数都可以由开发者来决定，但是MFP语言推荐使用__init__作为函数名，并且函数返回值为该对象自身。注意__init__只是一个普通的成员函数，而并非一个魔术函数，它可以被重载（overload），也可以在任何时候被多次调用。一个例子如下：
+
+citingspace ::AAA::bbb
+class Abcd
+	variable self a = 1, b = "Hello", c
+	public function printMembers(self)
+		print("self.a = " + self.a + " self.b = " + self.b + " self.c = " + self.c)
+	endf
+	public function __init__(self)
+		self.a = 7
+		self.c = (3-i) * self.a
+		return self
+	endf
+	public function __init__(self, a, b, c)	// __init__函数和其他用户自定义的普通成员函数一样，它可以被重载
+		self.a = a
+		self.b = b
+		self.c = c
+		return self
+	endf
+endclass
+
+endcs
+
+function printABC()
+	using citingspace ::AAA::bbb
+	variable obj = abcd().__init__()
+	obj.__init__(3, 2, 1)
+	obj.__init__([5,4],[2,3],"WWW").printMembers()	// self.a = [5, 4] self.b = [2, 3] self.c = WWW
+endf
+MFP的类还提供了一些内置的魔术函数。这些魔术函数可以被用户自定义相同声明的函数所覆写。函数__to_string__是最常用的魔术函数。这个函数吧一个对象转换为字符串。当把一个对象和字符串相加，或者以这个对象为参数调用MFP内置的to_string函数时，这个函数将会被调用。
+
+函数__deep_copy__返回该对象的深度拷贝。当以这个对象为参数调用MFP内置的clone函数时该魔术函数将会被调用。
+
+函数__equals__判断该对象是否和另外一个变量的值相等。当使用==操作符并且操作符的左操作数为该对象时该魔术函数将会被调用。
+
+函数__hash__返回该对象的哈希值。当以这个对象为参数调用MFP内置的hash_code函数时该魔术函数将会被调用。
+
+函数__copy__返回该对象的浅拷贝。它的默认行为是创建一个新的对象，但是该对象成员变量均引用旧的对象的对应值。
+
+函数__is_same__判断该对象是否和另外一个变量的值相同（注意不是相等）。这个函数仅仅判断两个对象的引用是否一样。所以，实际上它也和未重载的操作符==的功能是一致的。这个函数在开发者覆写__equals__函数，需要直接比较引用时很有用。MFP不推荐覆写这个函数。
+
+以下例子给出了上述函数的使用方法：
+
+class SampleClass
+	variable self a = 1, b = 2
+	public function __equals__(self, o)
+		print("User defined __equals__\n")
+		if self.__is_same__(o) // 判断self和o是否指向同一个对象
+			return true
+		elseif null == o
+			return false
+		elseif get_type_fullname(self) != get_type_fullname(o)
+			return false
+		elseif or(self.a != o.a, self.b != o.b)
+			return false
+		else
+			return true
+		endif
+	endf
+	public function __to_string__(self)
+		return "Class SampleClass, a = " + a + " b = " + b
+	endf
+	public function __hash__(self)
+		print("User defined __hash__\n")
+		return a + b * 19
+	endf
+	public function __copy__(self)
+		print("User defined __copy__\n")
+		return self
+	endf
+	public function __deep_copy__(self)
+		print("User defined __deep_copy__\n")
+		variable o = SampleClass()
+		o.a = self.a
+		o.b = self.b
+		return o
+	endf
+endclass
+
+function testOverriddenMagicFunctions()
+	variable obj1 = SampleClass()
+	print(obj1)	// 将会输出Class SampleClass, a = 1 b = 2
+	variable obj2 = clone(obj1)	// 将会输出User defined __deep_copy__
+	print("obj1 == obj2 is " + (obj1 == obj2))	// 将会先输出User defined __equals__，然后再输出obj1 == obj2 is true
+	print(hash_code(obj2)) // 将会先输出User defined __hash__，然后再输出39
+endf
+◁◁◁◁Traditional_Chinese▷▷▷▷
+MFP編程語言class和endclass語句：
+* 類的聲明
+class和endclass語句定義了MFP語言的類。class語句是類定義的開始。如果class語句中沒有父類聲明，class就是直接派生於MFP語言的最基本的object類型。這樣的class語句的例子如下：
+
+class Class_Name
+
+反之，如果類是從一個或者多個父類中直接派生而來，class語句則如下面的例子所示：
+
+class Class_Name: Super_Class1, Super_Class2, ..., Super_ClassN
+
+這裏，直接派生是指該類是父類的子類，而不是孫類，曾孫類甚至更後輩。
+
+還需要註意，在class語句中，父類的名字是可以包含完整或者部分的引用空間路徑的，比如：
+
+class Class_Name: aaa::bbb::Super_Class1, ::ccc::Super_Class2, ..., Super_ClassN
+
+上述語句是完全合法的。MFP將根據當前引用的所有引用空間以及它們的優先次序來找到每一個父類。
+
+* 嵌套的類和類的成員
+類可以定義在另外一個類的裏面。這種類被稱為嵌套的類。在這種情況下，被嵌入的類僅僅只相當於嵌套類的引用空間。比如，類A定義在引用空間::AAA::bbb中，而一個嵌套的類B定義在A中，則類A的完整引用空間路徑為::AAA::bbb::A而類B的完整引用空間路徑為::AAA::bbb::A::B。除了它們引用空間路徑上的相似，嵌套類和被嵌入的類是相互獨立的。此外，嵌套類總是對外部可見的。
+
+類的成員則包括函數和變量。它們分為兩大類，私有（使用private關鍵字，只有類成員函數可訪問，外部不可見）和公有（使用public關鍵字，外部可見），比如：
+
+public variable self memberA = 7, memberB = "Hello", memberC
+private function memberFunc(a, b, c)
+...
+endf
+需要註意的是，如果聲明類成員時既沒有使用private也沒有使用public關鍵字，那麽該成員被視為公有，也就是public。
+
+類成員變量的聲明和普通變量的聲明略有不同。首先，如上面指出的，類成員變量的聲明語句前面可以加上private或者public關鍵字；其次，在variable關鍵字之後，必須加入一個self關鍵字。這個self關鍵字意思是該語句聲明的變量不是靜態變量。需要註意的是，在現階段，MFP不支持靜態變量，所以，如果類成員變量的聲明語句沒有self關鍵字將會被忽略；最後，和函數內的變量一樣，類成員變量可以在聲明語句中被初始化。但是，MFP只允許用存粹的值而不是函數來初始化類成員變量。比如：
+
+variable self varA = [[1,2]]
+是對的而
+
+variable self varA = func(3,4)
+則會出錯。更多的類成員變量聲明語句示例如下：
+
+variable self varA, varB = "Hello", varC = [[1,2],[3,4]]
+private variable self varD
+和成員變量一樣，類的成員函數聲明語句前面可以加入public或者private關鍵字。此外，如果函數的第一個參數是self，這個函數就不是靜態的，否則，這個函數就是靜態的。在函數的內部，使用self關鍵字再加一個點可以訪問類的成員，比如：
+
+public function memberFunc(self, a, b, c)
+	self.MemberA = a
+	self.MemberB = b
+	return self.MemberA * self.MemberB * self.memberFunc(c)
+endf
+如果類的成員函數是靜態的，它顯然就不能訪問類的非靜態成員。一個靜態成員函數的例子如下：
+
+public function memberStaticFunc(a, b, c)
+	return a+b+c
+endf
+雖然self關鍵字可以用於訪問類的成員和類的父類（包括父類的父類和更上輩的類）的公共（public）成員，但如果類和它的某些父類擁有同樣名字的成員變量或者相同聲明的成員函數，self關鍵字則只能夠訪問本類中的成員而無法訪問父類中的成員。比如：
+
+class SuperClassA
+	public function memberFunc(self, a)
+		return a
+	endf
+endclass
+class SuperClassB
+	public function memberFunc(self, a)
+		return 2*a
+	endf
+endclass
+class ChildClass : SuperClassA, SuperClassB
+	public function memberFunc(self, a)
+		return 3*a
+	endf
+	public function memberFunc1(self)
+		return self.memberFunc(3)	// 調用ChildClass的memberFunc函數，而不是SuperClassA或者SuperClassB的對應函數。
+	endf
+endclass
+為了訪問父類成員，則必須使用super成員變量。這個成員變量是一個數組，第一個元素是第一個父類的對象，第二個元素是第二個父類的對象，...，以此類推。註意這裏的對象都是切片的對象，也就是說通過super返回的父類的對象是本類對象的一部分。這樣一來，如果在上面的示例中開發者想調用父類的memberFunc函數，代碼應該這樣寫：
+
+class SuperClassA
+	public function memberFunc(self, a)
+		return a
+	endf
+endclass
+class SuperClassB
+	public function memberFunc(self, a)
+		return 2*a
+	endf
+endclass
+class ChildClass : SuperClassA, SuperClassB
+	public function memberFunc(self, a)
+		return 3*a
+	endf
+	public function memberFunc1(self)
+		variable x = self.super[0].memberFunc(3)	// 調用SuperClassA的memberFunc函數
+		variable y = self.super[1].memberFunc(4)	// 調用SuperClassB的memberFunc函數
+		return x + y
+	endf
+endclass
+註意，如果一個類的聲明語句沒有包括任何父類，那麽該類有一個唯一的父類，就是MFP語言的object類型。在這種情況下，self.super[0]返回被切片的object對象。
+
+在MFP語言中，成員函數和成員變量均可以被覆寫（override）。如果MFP通過self關鍵字訪問一個成員（函數或者變量），而該成員已經被繼承樹上的多個類覆寫，那麽它總是訪問的最“下層”的成員。比如，如果類A是從類B派生而來，A和B均有一個成員變量叫C，並且我們已經定義了如下函數：
+
+function func(objOfClass)
+	print(objOfClass.C)
+endf
+那麽，如果一個A的對象作為參數被傳入這個函數，那麽A的成員變量C的值將會被打印出來。而如果一個B的對象作為參數被傳入這個函數，那麽B的成員變量C的值將會被打印出來。
+
+但是，上面的規定有時候會給開發者帶來困惑。比如，在上面的例子中類B有一個公共成員函數，它讀取成員變量C的值。類B的開發者並不知道別的程序員會從類B派生出類A，所以他假定成員變量C一定是類B的成員變量C。但如果第三個開發者創建了一個類A的對象，並且調用了該對象從類B那裏繼承的讀取成員變量C的值的成員函數，那麽這時該成員函數實際上讀取的是類A而不是類B的成員變量C的值。
+
+class B
+	variable self C = 1
+	function printC(self)
+		print("self.C = " + self.C + "\n")
+	endf
+endclass
+
+class A : B
+	variable self C = 2
+endclass
+
+function printABC()
+	variable bObj = B(), aObj = A()
+	bObj.printC()	// self.C = 1
+	aObj.printC()	// self.C = 2
+endf
+如果類B的開發者想要確保在類B的成員函數中讀取的是類B的成員變量C，那麽就必須通過類的this成員變量訪問成員變量C。所有的類都有一個this成員變量，該變量返回當前函數所在的類的一個（被切片的）的對象。一個例子如下：
+
+class B
+	variable self C = 1
+	function printC(self)
+		print("self.this.C = " + self.this.C + "\n")
+	endf
+endclass
+
+class A : B
+	variable self C = 2
+endclass
+
+function printABC()
+	variable bObj = B(), aObj = A()
+	bObj.printC()	// self.this.C = 1
+	aObj.printC()	// self.this.C = 1
+endf
+和公共的super成員變量不同的是，this是私有的。
+
+* 構造函數和魔術函數
+如果開發者想要以一個MFP類作為模板創造一個對象，必須調用構造函數。和其他的編程語言不同，MFP類的構造函數是內置的，不能夠開發者自定義，不能被重載，也不能夠被覆寫。構造函數沒有參數。它所做的一切工作就是就是根據成員變量的聲明初始化成員變量。如果一個成員變量在聲明中沒有給出初始值，那麽它就會被初始化為NULL。構造函數返回值是該類的一個對象。構造函數的一個例子如下。在該例子中，類Abcd定義在引用空間::AAA::bbb中，這個類的構造函數就是Abcd()，包括引用空間路徑的完整名稱為::AAA::bbb::Abcd()。
+
+citingspace ::AAA::bbb
+class Abcd
+	variable self a = 1, b = "Hello", c
+	public function printMembers(self)
+		print("self.a = " + self.a + " self.b = " + self.b + " self.c = " + self.c)
+	endf
+endclass
+
+endcs
+
+function printABC()
+	variable obj = ::AAA::bbb::abcd()
+	obj.printMembers()	// self.a = 1 self.b = Hello self.c = NULL
+endf
+由於開發者無法自定義構造函數，所以自定義的初始化步驟應該放在公共的成員函數中。這種成員函數的名稱，返回類型和參數都可以由開發者來決定，但是MFP語言推薦使用__init__作為函數名，並且函數返回值為該對象自身。註意__init__只是一個普通的成員函數，而並非一個魔術函數，它可以被重載（overload），也可以在任何時候被多次調用。一個例子如下：
+
+citingspace ::AAA::bbb
+class Abcd
+	variable self a = 1, b = "Hello", c
+	public function printMembers(self)
+		print("self.a = " + self.a + " self.b = " + self.b + " self.c = " + self.c)
+	endf
+	public function __init__(self)
+		self.a = 7
+		self.c = (3-i) * self.a
+		return self
+	endf
+	public function __init__(self, a, b, c)	// __init__函數和其他用戶自定義的普通成員函數一樣，它可以被重載
+		self.a = a
+		self.b = b
+		self.c = c
+		return self
+	endf
+endclass
+
+endcs
+
+function printABC()
+	using citingspace ::AAA::bbb
+	variable obj = abcd().__init__()
+	obj.__init__(3, 2, 1)
+	obj.__init__([5,4],[2,3],"WWW").printMembers()	// self.a = [5, 4] self.b = [2, 3] self.c = WWW
+endf
+MFP的類還提供了一些內置的魔術函數。這些魔術函數可以被用戶自定義相同聲明的函數所覆寫。函數__to_string__是最常用的魔術函數。這個函數吧一個對象轉換為字符串。當把一個對象和字符串相加，或者以這個對象為參數調用MFP內置的to_string函數時，這個函數將會被調用。
+
+函數__deep_copy__返回該對象的深度拷貝。當以這個對象為參數調用MFP內置的clone函數時該魔術函數將會被調用。
+
+函數__equals__判斷該對象是否和另外一個變量的值相等。當使用==操作符並且操作符的左操作數為該對象時該魔術函數將會被調用。
+
+函數__hash__返回該對象的哈希值。當以這個對象為參數調用MFP內置的hash_code函數時該魔術函數將會被調用。
+
+函數__copy__返回該對象的淺拷貝。它的默認行為是創建一個新的對象，但是該對象成員變量均引用舊的對象的對應值。
+
+函數__is_same__判斷該對象是否和另外一個變量的值相同（註意不是相等）。這個函數僅僅判斷兩個對象的引用是否一樣。所以，實際上它也和未重載的操作符==的功能是一致的。這個函數在開發者覆寫__equals__函數，需要直接比較引用時很有用。MFP不推薦覆寫這個函數。
+
+以下例子給出了上述函數的使用方法：
+
+class SampleClass
+	variable self a = 1, b = 2
+	public function __equals__(self, o)
+		print("User defined __equals__\n")
+		if self.__is_same__(o) // 判斷self和o是否指向同一個對象
+			return true
+		elseif null == o
+			return false
+		elseif get_type_fullname(self) != get_type_fullname(o)
+			return false
+		elseif or(self.a != o.a, self.b != o.b)
+			return false
+		else
+			return true
+		endif
+	endf
+	public function __to_string__(self)
+		return "Class SampleClass, a = " + a + " b = " + b
+	endf
+	public function __hash__(self)
+		print("User defined __hash__\n")
+		return a + b * 19
+	endf
+	public function __copy__(self)
+		print("User defined __copy__\n")
+		return self
+	endf
+	public function __deep_copy__(self)
+		print("User defined __deep_copy__\n")
+		variable o = SampleClass()
+		o.a = self.a
+		o.b = self.b
+		return o
+	endf
+endclass
+
+function testOverriddenMagicFunctions()
+	variable obj1 = SampleClass()
+	print(obj1)	// 將會輸出Class SampleClass, a = 1 b = 2
+	variable obj2 = clone(obj1)	// 將會輸出User defined __deep_copy__
+	print("obj1 == obj2 is " + (obj1 == obj2))	// 將會先輸出User defined __equals__，然後再輸出obj1 == obj2 is true
+	print(hash_code(obj2)) // 將會先輸出User defined __hash__，然後再輸出39
+endf

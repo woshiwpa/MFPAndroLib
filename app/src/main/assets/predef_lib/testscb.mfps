@@ -1,0 +1,38 @@
+
+@execution_entry test__sc :: scb:: performance_test()
+citingspace test__sc :: scb
+
+function performance_test()
+	variable t = now(), t1
+	variable x, sum = 0, y, ii
+	variable s = 10**4
+	for ii = 0 to s
+		x = rand()*2 - 1
+		y = rand()*2 - 1
+		if (x*x + y*y < 1)
+			sum = sum + 1
+		endif
+	next
+	print(sum/s*4 + "\n")
+	t1 = now()
+	print(t1 - t + "ms")
+endf
+
+function asd(a,b,c)
+    variable sumval =0
+    for variable idx = 9 to 19 step 1
+        sin(a+b-c)
+        sumval =sumval + cosd(idx)
+        using citingspace :: __sin_test__::z
+        sin(a+b-c)
+        sumval = sumval - cos(idx)
+    next
+    return sumval
+endf
+endcs
+
+function testNoReturn(a, b)
+	print("in call ::__sin_test__::sin(3), it is wrong. Otherwise, it is right\n")
+	sin(3)
+	using citingspace ::__sin_test__
+endf

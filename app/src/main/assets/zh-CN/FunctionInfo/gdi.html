@@ -1,0 +1,259 @@
+<html>
+<head>
+<title>可编程科学计算器帮助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">可编程科学计算器帮助：图像显示界面函数</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函数名</th>
+<th>函数帮助信息</th>
+</tr>
+<tr>
+<td><center>calculate_text_boundary</center></td>
+<td><p>::mfp::graph_lib::draw::calculate_text_boundary(4) :</p>
+<p>calculate_text_boundary(display, string, text_origin, text_style)返回一个 文本块的边界长方形。边界长方形是一个4元素数组，第一个元素是左边界，第二个元素是上边界，第三个元素是宽度，第四个元素是高度。Calculate_text_boundary的第一个参数是display，它既可以是screen display，也可以是image display。第二个参数是文本块的文本，可以不止一行。第三个参数是文本块起始点的位置。这是一个两元素数组，第一个元素是起始点横坐标，第二个元素是起始点纵坐标。最后一个参数是可省略参数，用于定义文本的字体和大小。如果它被省略，则字体为系统缺省字体，大小为16。如果它不被省略，那么它必须是一个包含一个或者两个元素的数组。如果是一个元素的数组，那么该元素必须是一个正整数，代表字体的大小，而字体则为系统缺省字体。如果是包含两个元素的数组，那么第一个元素为字体的大小，第二个元素是基于字符串的字体的名字。一个本函数的例子为：calculate_text_boundary(display, txtStr, [108, 190], [27, "SimSun"])。</p>
+</td>
+</tr>
+<tr>
+<td><center>calculate_text_origin</center></td>
+<td><p>::mfp::graph_lib::draw::calculate_text_origin(8) :</p>
+<p>calculate_text_origin(display, string, boundary_rect_left_top, width, height, horAlign, verAlign, text_style)返回指定边界长方形和对齐方式的文本块的起始点。起始点是一个两元素（[x,y]）数组，将会被draw_text作为参数使用。Calculate_text_origin的第一个参数是display，它既可以是screen display，也可以是image display。第二个参数是文本块的文本，可以不止一行。第三个参数是边界长方形的左上角位置。这是一个两元素数组，第一个元素是左边界坐标，第二个元素是上边界坐标。第四个和第五个参数是边界长方形的宽度和高度。第六个参数是文本块的横向对齐方式。-1表示左对齐，0表示中对齐，1表示右对齐。第七个参数是文本块的纵向对齐方式。-1表示上对齐，0表示中对齐，1表示下对齐。最后一个参数是可省略参数，用于定义文本的字体和大小。如果它被省略，则字体为系统缺省字体，大小为16。如果它不被省略，那么它必须是一个包含一个或者两个元素的数组。如果是一个元素的数组，那么该元素必须是一个正整数，代表字体的大小，而字体则为系统缺省字体。如果是包含两个元素的数组，那么第一个元素为字体的大小，第二个元素是基于字符串的字体的名字。一个本函数的例子为：calculate_text_origin(display, "pei is " + peichoices[idx], [256, 72], peiBndrySize[0], peiBndrySize[1], horAlign, verAlign, [22])。</p>
+</td>
+</tr>
+<tr>
+<td><center>clear_oval</center></td>
+<td><p>::mfp::graph_lib::draw::clear_oval(5) :</p>
+<p>clear_oval(owner_info, display, left_top, width, height)为绘图事件调度器添加一个清除椭圆形的事件。在绘图事件调度器调用这个绘制事件时，该事件将在display上清除一个椭圆形。Clear_oval有5个参数。第一个参数是owner_info。Owner_info告诉绘图事件调度器谁拥有这个绘图事件。Owner_info可以是一个字符串，代表拥有者的名字，也可以是一个整数，代表拥有者的id，还可以是NULL，代表系统拥有该事件，更可以是一个包含两个元素的数组，其中第一个元素是一个代表拥有者名字的字符串，或者代表拥有者id的整数，或者代表系统的NULL，第二个元素是一个代表时标的浮点数，但要注意这里的时标不是真正的时标，该浮点数可以是任意值。该浮点数的值在清除本绘图事件时会发挥作用。第二个参数是display，它既可以是screen display，也可以是image display。第三个参数是包含两个元素的数组（[x,y]），表示该椭圆的包络长方形左上顶点的位置。第四个和第五个参数为该椭圆的包络长方形的长度和高度。Clear_oval的例子包括：clear_oval(["my draw", 0.381], d, [128, 45], 18, 30)以及clear_oval(NULL, d, [23, 111], 70, 19)。</p>
+</td>
+</tr>
+<tr>
+<td><center>clear_rect</center></td>
+<td><p>::mfp::graph_lib::draw::clear_rect(5) :</p>
+<p>clear_rect(owner_info, display, left_top, width, height)为绘图事件调度器添加一个清除长方形的事件。在绘图事件调度器调用这个绘制事件时，该事件将在display上清除一个长方形。Clear_rect有5个参数。第一个参数是owner_info。Owner_info告诉绘图事件调度器谁拥有这个绘图事件。Owner_info可以是一个字符串，代表拥有者的名字，也可以是一个整数，代表拥有者的id，还可以是NULL，代表系统拥有该事件，更可以是一个包含两个元素的数组，其中第一个元素是一个代表拥有者名字的字符串，或者代表拥有者id的整数，或者代表系统的NULL，第二个元素是一个代表时标的浮点数，但要注意这里的时标不是真正的时标，该浮点数可以是任意值。该浮点数的值在清除本绘图事件时会发挥作用。第二个参数是display，它既可以是screen display，也可以是image display。第三个参数是包含两个元素的数组（[x,y]），表示该长方形左上顶点的位置。第四个和第五个参数为长方形的长度和高度。Clear_rect的例子包括：clear_rect(["my draw", 0.381], d, [128, 45], 18, 30)以及clear_rect(NULL, d, [23, 111], 70, 19)。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_image</center></td>
+<td><p>::mfp::graph_lib::draw::draw_image(12) :</p>
+<p>draw_image为绘图事件调度器添加一个绘制图像的事件。在绘图事件调度器调用这个绘制事件时，该事件将在display上绘制一个图像。Draw_image有两个不同的重载调用方式。第一个是draw_image(owner_info, display, image_or_path, left, top, width_ratio, height_ratio, painting_extra_info)。第二个是draw_image(owner_info, display, image_or_path, srcx1, srcy1, srcx2, srcy2, destx1, desty1, destx2, desty2, painting_extra_info)。在这两种不同的调用方式中，第一个参数是owner_info。Owner_info告诉绘图事件调度器谁拥有这个绘图事件。Owner_info可以是一个字符串，代表拥有者的名字，也可以是一个整数，代表拥有者的id，还可以是NULL，代表系统拥有该事件，更可以是一个包含两个元素的数组，其中第一个元素是一个代表拥有者名字的字符串，或者代表拥有者id的整数，或者代表系统的NULL，第二个元素是一个代表时标的浮点数，但要注意这里的时标不是真正的时标，该浮点数可以是任意值。该浮点数的值在清除本绘图事件时会发挥作用。第二个参数是display，它既可以是screen display，也可以是image display。第三个参数是图像的句柄或者是一个指向图像文件的地址字符串。最后一个参数是painting_extra_info，它告诉绘图事件调度器采用什么样的porterduff模式来绘制目标图像。这个参数是可选参数。porterduff模式内部机制比较复杂，建议开发者省略这个参数（也就是使用参数的缺省值）。如果开发者想要详细了解painting extra info，可以参考set_porterduff_mode以及get_porterduff_mode的函数帮助信息。如果开发者想要详细了解porterduff模式，建议阅读相关的JAVA文档。在第一种调用方式中，从第四个到第七个参数分别是图像将被绘制的位置的左边界的坐标，图像将被绘制的位置的上边界坐标，图像绘制时沿长度方向的缩放比例（是一个可以省略的参数，它的缺省值为1），以及图像绘制时沿高度方向的缩放比例（是一个可以省略的参数，它的缺省值为1）。在第二种调用方式中，从第四个到第十一个参数分别是选取图像将被绘制的部分的源长方形的左边界，选取图像将被绘制的部分的源长方形的上边界，选取图像将被绘制的部分的源长方形的右边界，选取图像将被绘制的部分的源长方形的下边界，目标位置的左边界，目标位置的上边界，目标位置的右边界以及目标位置的下边界。Draw_image的例子包括：draw_image("image", display, get_upper_level_path(get_src_file_path()) + "gem4.png", 48, 157) ，draw_image("image", display, gem3Img, 148, 257, 3, 0.5)以及draw_image("imagesrc", display, gem3Img, 0, 0, 32, 32, 210, 540, 300, 580, a_painting_extra_info)。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_line</center></td>
+<td><p>::mfp::graph_lib::draw::draw_line(7) :</p>
+<p>draw_line(owner_info, display, start_point_place, end_point_place, color, line_style, painting_extra_info)为绘图事件调度器添加一个绘制线段的事件。在绘图事件调度器调用这个绘制线段的事件时，该事件将在display上绘制一条线。Draw_line有7个参数。第一个参数是owner_info。Owner_info告诉绘图事件调度器谁拥有这个绘图事件。Owner_info可以是一个字符串，代表拥有者的名字，也可以是一个整数，代表拥有者的id，还可以是NULL，代表系统拥有该事件，更可以是一个包含两个元素的数组，其中第一个元素是一个代表拥有者名字的字符串，或者代表拥有者id的整数，或者代表系统的NULL，第二个元素是一个代表时标的浮点数，但要注意这里的时标不是真正的时标，该浮点数可以是任意值。该浮点数的值在清除本绘图事件时会发挥作用。第二个参数是display，它既可以是screen display，也可以是image display。第三个参数和第四个参数是线段的起始位置（[x1,y1]）和终止位置（[x2,y2]），它们均为包含两个元素的数组。第五个参数是color，代表绘制使用的颜色，它是一个4个或3个元素的数组，如果是4个元素，就是[Alpha，R，G，B]，如果是3个元素，就是[R，G，B]，在该数组中，每一个元素的值都是从0到255。第六个参数是line_style。在现阶段它是一个包含一个元素的数组，该元素是一个正整数，代表线的粗细。这个参数是可省略的，它的缺省值是[1]。最后一个参数是painting_extra_info，它告诉绘图事件调度器采用什么样的porterduff模式来绘制目标图像。这个参数也是可选参数。porterduff模式内部机制比较复杂，建议开发者省略这个参数（也就是使用参数的缺省值）。如果开发者想要详细了解painting extra info，可以参考set_porterduff_mode以及get_porterduff_mode的函数帮助信息。如果开发者想要详细了解porterduff模式，建议阅读相关的JAVA文档。</p>
+<p>Draw_line的例子包括：draw_line(["my draw", 0.381], d, [128, 45], [250, -72], [79, 255, 0, 142])以及draw_line(NULL, d, [23, 111], [70, 333], [23, 178, 222], [7])。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_oval</center></td>
+<td><p>::mfp::graph_lib::draw::draw_oval(8) :</p>
+<p>draw_oval(owner_info, display, left_top, width, height, color, frame_or_fill, painting_extra_info)为绘图事件调度器添加一个绘制椭圆形的事件。在绘图事件调度器调用这个绘制事件时，该事件将在display上绘制一个椭圆形。Draw_oval有至少7个参数。第一个参数是owner_info。Owner_info告诉绘图事件调度器谁拥有这个绘图事件。Owner_info可以是一个字符串，代表拥有者的名字，也可以是一个整数，代表拥有者的id，还可以是NULL，代表系统拥有该事件，更可以是一个包含两个元素的数组，其中第一个元素是一个代表拥有者名字的字符串，或者代表拥有者id的整数，或者代表系统的NULL，第二个元素是一个代表时标的浮点数，但要注意这里的时标不是真正的时标，该浮点数可以是任意值。该浮点数的值在清除本绘图事件时会发挥作用。第二个参数是display，它既可以是screen display，也可以是image display。第三个参数是包含两个元素的数组（[x,y]），表示该椭圆的包络长方形左上顶点的位置。第四个和第五个参数为该椭圆的包络长方形的长度和高度。紧接着的参数是color，代表绘制使用的颜色，它是一个4个或3个元素的数组，如果是4个元素，就是[Alpha，R，G，B]，如果是3个元素，就是[R，G，B]，在该数组中，每一个元素的值都是从0到255。倒数第二个参数是是一个整数。它等于或小于零表示填充椭圆形，大于零表示椭圆形的边的宽度。最后一个参数是painting_extra_info，它告诉绘图事件调度器采用什么样的porterduff模式来绘制目标图像。这个参数是可选参数。porterduff模式内部机制比较复杂，建议开发者省略这个参数（也就是使用参数的缺省值）。如果开发者想要详细了解painting extra info，可以参考set_porterduff_mode以及get_porterduff_mode的函数帮助信息。如果开发者想要详细了解porterduff模式，建议阅读相关的JAVA文档。</p>
+<p>Draw_oval的例子包括：draw_oval(["my draw", 0.381], d, [128, 45], 18, 30, [79, 255, 0, 142], 0)以及draw_oval(NULL, d, [23, 111], 70, 19, [23, 178, 222], 3)。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_point</center></td>
+<td><p>::mfp::graph_lib::draw::draw_point(6) :</p>
+<p>draw_point(owner_info, display, point_place, color, point_style, painting_extra_info)为绘图事件调度器添加一个绘制点的事件。在绘图事件调度器调用这个绘制点的事件时，该事件将在display上绘制一个点。Draw_point有六个参数。第一个参数是owner_info。Owner_info告诉绘图事件调度器谁拥有这个绘图事件。Owner_info可以是一个字符串，代表拥有者的名字，也可以是一个整数，代表拥有者的id，还可以是NULL，代表系统拥有该事件，更可以是一个包含两个元素的数组，其中第一个元素是一个代表拥有者名字的字符串，或者代表拥有者id的整数，或者代表系统的NULL，第二个元素是一个代表时标的浮点数，但要注意这里的时标不是真正的时标，该浮点数可以是任意值。该浮点数的值在清除本绘图事件时会发挥作用。第二个参数是display，它既可以是screen display，也可以是image display。第三个参数是point_place，也就是点的位置，他是一个包含两个元素的数组，也就是[x,y]。第四个参数color，代表点的颜色，它是一个4个或3个元素的数组，如果是4个元素，就是[Alpha，R，G，B]，如果是3个元素，就是[R，G，B]，在该数组中，每一个元素的值都是从0到255。第五个参数是point_style。在现阶段它的格式是[point_size, point_shape]。Point_size是点的大小。它是一个正整数。Point_shape是一个字符串，代表点的形状，可以取以下值："dot"（点，注意它的大小只能是1，point_size对它不起作用），"circle"（圆圈），"square"（方块），"diamond"（正菱形），"up_triangle"（尖朝上的三角形），"down_triangle"（尖朝下的三角形），"cross"（十字形）和"x"（叉号）。这个参数是可省略的，它的缺省值是[1, "dot"]。最后一个参数是painting_extra_info，它告诉绘图事件调度器采用什么样的porterduff模式来绘制目标图像。这个参数也是可选参数。porterduff模式内部机制比较复杂，建议开发者省略这个参数（也就是使用参数的缺省值）。如果开发者想要详细了解painting extra info，可以参考set_porterduff_mode以及get_porterduff_mode的函数帮助信息。如果开发者想要详细了解porterduff模式，建议阅读相关的JAVA文档。</p>
+<p>Draw_point的例子包括：draw_point(["my draw", 0.381], d, [128, 45], [79, 255, 0, 142])以及draw_point(NULL, d, [23, 111], [23, 178, 222], [78, "square"])。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_polygon</center></td>
+<td><p>::mfp::graph_lib::draw::draw_polygon(7...) :</p>
+<p>draw_polygon(owner_info, display, point1_place, point2_place, point3_place, ..., color, frame_or_fill, painting_extra_info)为绘图事件调度器添加一个绘制多边形的事件。在绘图事件调度器调用这个绘制事件时，该事件将在display上绘制一个多边形。Draw_polygon有至少7个参数。第一个参数是owner_info。Owner_info告诉绘图事件调度器谁拥有这个绘图事件。Owner_info可以是一个字符串，代表拥有者的名字，也可以是一个整数，代表拥有者的id，还可以是NULL，代表系统拥有该事件，更可以是一个包含两个元素的数组，其中第一个元素是一个代表拥有者名字的字符串，或者代表拥有者id的整数，或者代表系统的NULL，第二个元素是一个代表时标的浮点数，但要注意这里的时标不是真正的时标，该浮点数可以是任意值。该浮点数的值在清除本绘图事件时会发挥作用。第二个参数是display，它既可以是screen display，也可以是image display。从第三个参数开始是多边形顶点的位置，它们均为包含两个元素的数组。紧接着的参数是color，代表绘制使用的颜色，它是一个4个或3个元素的数组，如果是4个元素，就是[Alpha，R，G，B]，如果是3个元素，就是[R，G，B]，在该数组中，每一个元素的值都是从0到255。倒数第二个参数是是一个整数。它等于或小于零表示填充多边形，大于零表示多边形的边的宽度。最后一个参数是painting_extra_info，它告诉绘图事件调度器采用什么样的porterduff模式来绘制目标图像。这个参数是可选参数。porterduff模式内部机制比较复杂，建议开发者省略这个参数（也就是使用参数的缺省值）。如果开发者想要详细了解painting extra info，可以参考set_porterduff_mode以及get_porterduff_mode的函数帮助信息。如果开发者想要详细了解porterduff模式，建议阅读相关的JAVA文档。</p>
+<p>Draw_polygon的例子包括：draw_polygon(["my draw", 0.381], d, [128, 45], [250, -72], [338, 29], [79, 255, 0, 142], 0)以及draw_polygon(NULL, d, [23, 111], [70, 333], [-239, 89], [66, 183], [23, 178, 222], 3)。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_rect</center></td>
+<td><p>::mfp::graph_lib::draw::draw_rect(8) :</p>
+<p>draw_rect(owner_info, display, left_top, width, height, color, frame_or_fill, painting_extra_info)为绘图事件调度器添加一个绘制长方形的事件。在绘图事件调度器调用这个绘制事件时，该事件将在display上绘制一个长方形。Draw_rect有至少7个参数。第一个参数是owner_info。Owner_info告诉绘图事件调度器谁拥有这个绘图事件。Owner_info可以是一个字符串，代表拥有者的名字，也可以是一个整数，代表拥有者的id，还可以是NULL，代表系统拥有该事件，更可以是一个包含两个元素的数组，其中第一个元素是一个代表拥有者名字的字符串，或者代表拥有者id的整数，或者代表系统的NULL，第二个元素是一个代表时标的浮点数，但要注意这里的时标不是真正的时标，该浮点数可以是任意值。该浮点数的值在清除本绘图事件时会发挥作用。第二个参数是display，它既可以是screen display，也可以是image display。第三个参数是包含两个元素的数组（[x,y]），表示该长方形左上顶点的位置。第四个和第五个参数为长方形的长度和高度。紧接着的参数是color，代表绘制使用的颜色，它是一个4个或3个元素的数组，如果是4个元素，就是[Alpha，R，G，B]，如果是3个元素，就是[R，G，B]，在该数组中，每一个元素的值都是从0到255。倒数第二个参数是是一个整数。它等于或小于零表示填充长方形，大于零表示长方形的边的宽度。最后一个参数是painting_extra_info，它告诉绘图事件调度器采用什么样的porterduff模式来绘制目标图像。这个参数是可选参数。porterduff模式内部机制比较复杂，建议开发者省略这个参数（也就是使用参数的缺省值）。如果开发者想要详细了解painting extra info，可以参考set_porterduff_mode以及get_porterduff_mode的函数帮助信息。如果开发者想要详细了解porterduff模式，建议阅读相关的JAVA文档。</p>
+<p>Draw_rect的例子包括：draw_rect(["my draw", 0.381], d, [128, 45], 18, 30, [79, 255, 0, 142], 0)以及draw_rect(NULL, d, [23, 111], 70, 19, [23, 178, 222], 3)。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_text</center></td>
+<td><p>::mfp::graph_lib::draw::draw_text(7) :</p>
+<p>draw_text(owner_info, display, string, origin_place, color, text_style, painting_extra_info)为绘图事件调度器添加一个绘制文本块的事件。在绘图事件调度器调用这个绘制事件时，该事件将在display上绘制一个文本块。Draw_text的第一个参数是owner_info。Owner_info告诉绘图事件调度器谁拥有这个绘图事件。Owner_info可以是一个字符串，代表拥有者的名字，也可以是一个整数，代表拥有者的id，还可以是NULL，代表系统拥有该事件，更可以是一个包含两个元素的数组，其中第一个元素是一个代表拥有者名字的字符串，或者代表拥有者id的整数，或者代表系统的NULL，第二个元素是一个代表时标的浮点数，但要注意这里的时标不是真正的时标，该浮点数可以是任意值。该浮点数的值在清除本绘图事件时会发挥作用。第二个参数是display，它既可以是screen display，也可以是image display。第三个参数是基于字符串的文本块，它可以多于一行。第四个参数是文本块起始点的位置。这是一个两元素数组，第一个元素是起始点横坐标，第二个元素是起始点纵坐标。第五个参数是color，代表绘制使用的颜色，它是一个4个或3个元素的数组，如果是4个元素，就是[Alpha，R，G，B]，如果是3个元素，就是[R，G，B]，在该数组中，每一个元素的值都是从0到255。第六个参数是可省略参数，用于定义文本的字体和大小。如果它被省略，则字体为系统缺省字体，大小为16。如果它不被省略，那么它必须是一个包含一个或者两个元素的数组。如果是一个元素的数组，那么该元素必须是一个正整数，代表字体的大小，而字体则为系统缺省字体。如果是包含两个元素的数组，那么第一个元素为字体的大小，第二个元素是基于字符串的字体的名字。最后一个参数是painting_extra_info，它告诉绘图事件调度器采用什么样的porterduff模式来绘制目标图像。这个参数是可选参数。porterduff模式内部机制比较复杂，建议开发者省略这个参数（也就是使用参数的缺省值）。如果开发者想要详细了解painting extra info，可以参考set_porterduff_mode以及get_porterduff_mode的函数帮助信息。如果开发者想要详细了解porterduff模式，建议阅读相关的JAVA文档。Draw_text的例子包括draw_text("image", display, txtStr, [108, 190], [255, 255, 255], [10 + idx, font])以及draw_text("image", display, txtStr, [108, 190], [255, 255, 255], [idx * 2])。</p>
+</td>
+</tr>
+<tr>
+<td><center>drop_old_painting_requests</center></td>
+<td><p>::mfp::graph_lib::draw::drop_old_painting_requests(2) :</p>
+<p>drop_old_painting_requests(owner_info, display)用于从screen或者image display的绘图事件调度器中移除一些绘图事件。移除的标准为，检查一个绘图事件的owner_info参数（也就是该事件的拥有者和创建时标），如果该绘图事件的拥有者和drop_old_painting_requests的拥有者完全一样，并且创建时标早于（小于）drop_old_painting_requests的创建时标，则该事件被移除。注意，有很多owner_info参数不包括创建时标，这种情况下创建时标为创建时的系统时间。本函数的例子为：drop_old_painting_requests("my owner", display)。该例子等价于drop_old_painting_requests(["my owner", now()], display)。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_color</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_color(1) :</p>
+<p>get_display_bgrnd_color(display)返回一个display的背景色。该display既可以是screen display，也可以是image display。背景色是一个4个或3个元素的数组，如果是4个元素，就是[Alpha，R，G，B]，如果是3个元素，就是[R，G，B]，在该数组中，每一个元素的值都是从0到255。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_image</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_image(1) :</p>
+<p>get_display_bgrnd_image(display)返回一个display的背景图像。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_image_mode</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_image_mode(1) :</p>
+<p>get_display_bgrnd_image_mode(display)返回一个display的背景图像的布置方式。0表示原始背景图像被置于左上角，1表示背景图像被缩放值screen大小以便覆盖整个screen，2表示背景图像如贴瓷砖一样重复整齐排列，但每一片“瓷砖”大小保持原状， 3背景图像位于屏幕正中央。在这种情况下背景图像的大小也不会改变。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_caption</center></td>
+<td><p>::mfp::graph_lib::display::get_display_caption(1) :</p>
+<p>get_display_caption(display)在JAVA平台上返回一个screen display的标题。对于image display，或者是对于安卓平台，get_display_caption总是返回空字符串。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_confirm_close</center></td>
+<td><p>::mfp::graph_lib::display::get_display_confirm_close(1) :</p>
+<p>get_display_confirm_close(display)返回关闭一个screen display是否需要确认。对于image display，get_display_confirm_close总是返回FALSE。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_orientation</center></td>
+<td><p>::mfp::graph_lib::display::get_display_orientation(1) :</p>
+<p>get_display_orientation(display)返回一个screen display是横屏（0）还是竖屏（1）还是横竖均可（-1）。对于image display，或者在JAVA平台上，get_display_orientation总是返回-1。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_resizable</center></td>
+<td><p>::mfp::graph_lib::display::get_display_resizable(1) :</p>
+<p>get_display_resizable(display)用于返回一个布尔量，表示一个screen display是否可以改变大小。对于image display，get_display_resizable总是返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_size</center></td>
+<td><p>::mfp::graph_lib::display::get_display_size(1) :</p>
+<p>get_display_size(display)返回一个display（既可以是screen display，也可以是image display）的长度和高度。返回值是一个包含两个元素的矩阵，第一个元素是长度，第二个元素是高度。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_snapshot</center></td>
+<td><p>::mfp::graph_lib::display::get_display_snapshot(4) :</p>
+<p>get_display_snapshot(display, update_screen_or_not, width_ratio, height_ratio)返回一个display（既可以是screen display，也可以是image display）的截屏。它的第二个参数，update_screen_or_not，告诉MFP在截屏之前该display是否需要刷新；它的第三个和第四个参数，是可选参数，缺省值均为1，分别用于告诉MFP返回的截屏的长度和高度的缩放比例。比如，get_display_snapshot(d, true, 0.5, 3)首先刷新屏幕d，然后截取d的图像，最后将截取的图像长度上压缩为原来的一半，高度上拉伸为原来的三倍并返回新的图像。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_info</center></td>
+<td><p>::mfp::graph_lib::event::get_event_info(2) :</p>
+<p>get_event_info(event, property_name)返回event事件的一个特性。它的第一个参数是事件，第二个参数是基于字符串的特性的名字。GDI_INITIALIZE和GDI_CLOSE事件没有单独的特性。WINDOW_RESIZED事件有四个整数特性，它们是"width"，"height"，"last_width"，"last_height"。它们分别表示当前窗口的宽度和高度，以及事件触发前窗口的宽度和高度。POINT_DOWN，POINT_UP和POINT_CLICKED事件均有三个特性。其中，"button"特性是一个整数，表示鼠标的哪一个键触发了这个事件。注意在安卓平台上，"button"特性总是0。"x"和"y"表示事件触发时的坐标位子，它们均为浮点数。POINT_DRAGGED和POINT_SLICED事件均有5个特性。其中，"button"特性是一个整数，表示鼠标的哪一个键触发了这个事件。注意在安卓平台上，"button"特性总是0。"last_x"和"last_y"表示事件触发前的坐标位子，它们均为浮点数。"x"和"y"表示事件触发后的坐标位子，它们均为浮点数。POINTER_PINCHED事件有八个特性，它们是"last_x"、"last_y"、"last_x2"、"last_y2"、"x"、"y"、"x2"以及"y2"。这些特性定义了参与POINTER_PINCHED事件的两根手指头在事件触发前和事件触发后的坐标位置。这些特性均为浮点数。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_type</center></td>
+<td><p>::mfp::graph_lib::event::get_event_type(1) :</p>
+<p>get_event_type(event)返回一个整数，表示事件event的类型。在现阶段支持以下事件：GDI_INITIALIZE（类型为1，产生于screen display被创建的时候），GDI_CLOSE（类型为10，产生于screen display被关闭的时候），WINDOW_RESIZED（仅仅用于JAVA平台，类型为21，产生于screen display的窗口大小被调整的时候），POINTER_DOWN（类型为102，产生于鼠标按钮被按下或者用户手指点到触摸屏的时候），POINTER_UP（类型为103，产生于鼠标按钮弹起或者用户手指离开触摸屏的时候），POINTER_CLICKED（类型为104，产生于鼠标按钮快速按下再立即弹起或者用户手指轻敲触摸屏的时候），POINTER_DRAGGED（类型为105，产生于鼠标或者用户手指按下并拖动的时候。注意只要拖动还在进行中，这个事件就会连续地触发），POINTER_SLIDED（类型为106，产生于鼠标或者用户手指按下并拖动到终点，鼠标按钮弹起或者用户手指离开触摸屏的时候，注意这个事件只是在拖动事件结束的时候触发一次），POINTER_PINCHED（仅用于安卓平台，类型为201，当用户捏合手指进行类似缩放操作的时候触发）。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_type_name</center></td>
+<td><p>::mfp::graph_lib::event::get_event_type_name(1) :</p>
+<p>get_event_type_name(event)返回一个字符串，表示事件event的类型的名字。在现阶段支持以下事件："GDI_INITIALIZE"（产生于screen display被创建的时候），"GDI_CLOSE"（产生于screen display被关闭的时候），"WINDOW_RESIZED"（仅仅用于JAVA平台，产生于screen display的窗口大小被调整的时候），"POINTER_DOWN"（产生于鼠标按钮被按下或者用户手指点到触摸屏的时候），"POINTER_UP"（产生于鼠标按钮弹起或者用户手指离开触摸屏的时候），"POINTER_CLICKED"（产生于鼠标按钮快速按下再立即弹起或者用户手指轻敲触摸屏的时候），"POINTER_DRAGGED"（产生于鼠标或者用户手指按下并拖动的时候。注意只要拖动还在进行中，这个事件就会连续地触发），"POINTER_SLIDED"（产生于鼠标或者用户手指按下并拖动到终点，鼠标按钮弹起或者用户手指离开触摸屏的时候，注意这个事件只是在拖动事件结束的时候触发一次），"POINTER_PINCHED"（仅用于安卓平台，当用户捏合手指进行类似缩放操作的时候触发）。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_porterduff_mode</center></td>
+<td><p>::mfp::graph_lib::draw::get_porterduff_mode(1) :</p>
+<p>get_porterduff_mode(painting_extra)返回一个painting extra数据结构的porterduff模式。painting extra数据结构在painting事件中被调用。Porterduff模式告诉MFP如何绘制目标区域。它是一个大写的字符串，具有以下可能值："CLEAR"，"SRC"，"DST"，"SRC_OVER"，"DST_OVER"，"SRC_IN"，"DST_IN"，"SRC_OUT"，"DST_OUT"，"SRC_ATOP"，"DST_ATOP"，"XOR"或者""，其中，空字符串""是缺省值。开发者可以参考JAVA文档以获取porterduff模式的详细信息。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_display_on_live</center></td>
+<td><p>::mfp::graph_lib::display::is_display_on_live(1) :</p>
+<p>is_display_on_live(display)函数返回布尔值，表示参数display是否依然有效。display既可以是screen display，也可以是image display。</p>
+</td>
+</tr>
+<tr>
+<td><center>open_screen_display</center></td>
+<td><p>::mfp::graph_lib::display::open_screen_display(6) :</p>
+<p>open_screen_display返回一个screen display的句柄。screen display在JAVA平台上是一个窗口，在安卓平台上函数有6个可选参数：caption，background color，confirm quit，size，resizable， orientation。Caption是display的标题，该参数在安卓平台上不起作用；background color是display的背景色，它是一个4个或3个元素的数组，如果是4个元素，就是[Alpha，R，G，B]，如果是3个元素，就是[R，G，B]，在该数组中，每一个元素的值都是从0到255；confirm quit是一个布尔值，用于告诉screen display在退出时是否需要用户确认；size是screen display的大小，它是一个包含两个元素的数组，第一个元素是宽度，第二个元素是高度；resizable是告诉screen display是否可以调整大小，在安卓平台上，size和resizable都没有作用，orientiation仅仅用于安卓平台，用于指定screen display是横向（0），竖向（1）还是任意（-1）。该函数的示例为：</p>
+<p>variable display = open_screen_display("Hello world", [255, 238, 17], true, [640, 480], true, 0)</p>
+<p>以及</p>
+<p>variable display = open_screen_display("Hello")</p>
+</td>
+</tr>
+<tr>
+<td><center>pull_event</center></td>
+<td><p>::mfp::graph_lib::event::pull_event(1) :</p>
+<p>pull_event(display)从screen display的输入事件（比如，鼠标事件或者触摸屏的手势事件）序列中按顺序取走一个事件。如果没有输入事件，或者不是screen display而是image display，它返回Null，否则返回输入事件。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_bgrnd_color</center></td>
+<td><p>::mfp::graph_lib::display::set_display_bgrnd_color(2) :</p>
+<p>set_display_bgrnd_color(display, color)为一个display设置背景色。该display既可以是screen display，也可以是image display。背景色是一个4个或3个元素的数组，如果是4个元素，就是[Alpha，R，G，B]，如果是3个元素，就是[R，G，B]，在该数组中，每一个元素的值都是从0到255。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_bgrnd_image</center></td>
+<td><p>::mfp::graph_lib::display::set_display_bgrnd_image(3) :</p>
+<p>set_display_bgrnd_image(display, image, mode)为一个display设置背景图像。该display既可以是screen display，也可以是image display。背景图像是一个image句柄。mode是背景图像的布置方式，0表示原始背景图像被置于左上角，1表示背景图像被缩放值screen大小以便覆盖整个screen，2表示背景图像如贴瓷砖一样重复整齐排列，但每一片“瓷砖”大小保持原状， 3背景图像位于屏幕正中央。在这种情况下背景图像的大小也不会改变。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_caption</center></td>
+<td><p>::mfp::graph_lib::display::set_display_caption(2) :</p>
+<p>set_display_caption(display, caption)在JAVA平台上设置一个screen display的标题。set_display_resizable对image display不起作用，在安卓平台上也不起作用。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_confirm_close</center></td>
+<td><p>::mfp::graph_lib::display::set_display_confirm_close(2) :</p>
+<p>set_display_confirm_close(display, confirm_close_or_not)设置关闭一个screen display是否需要确认。set_display_confirm_close对image display不起作用。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_orientation</center></td>
+<td><p>::mfp::graph_lib::display::set_display_orientation(2) :</p>
+<p>set_display_orientation(display, orientation)设置安卓平台上一个screen display是横屏（orientation等于0）还是竖屏（orientation等于1）还是横竖均可（orientation等于-1）。set_display_orientation对image display不起作用，在JAVA平台上也不起作用。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_resizable</center></td>
+<td><p>::mfp::graph_lib::display::set_display_resizable(2) :</p>
+<p>set_display_resizable(display, resizable_or_not)设置一个screen display是否可以改变大小。set_display_resizable对image display不起作用。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_size</center></td>
+<td><p>::mfp::graph_lib::display::set_display_size(3) :</p>
+<p>set_display_size(display, width, height)设置一个display（既可以是screen display，也可以是image display）的长度和高度分别为width和height。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_snapshot_as_bgrnd</center></td>
+<td><p>::mfp::graph_lib::display::set_display_snapshot_as_bgrnd(3) :</p>
+<p>set_display_snapshot_as_bgrnd(display, update_screen_or_not, clear_callbacks_or_not)将一个display（既可以是screen display，也可以是image display）的截屏设置为它的背景图案。它的第二个参数，update_screen_or_not，告诉MFP在截屏之前该display是否需要刷新；它的第三个参数，clear_callbacks_or_not，告诉MFP是否需要将屏幕绘图事件序列清空。比如，set_display_snapshot_as_bgrnd(d, true, true)首先刷新屏幕d，然后将屏幕绘图事件序列清空，最后截屏并将所得图像作为屏幕背景图像。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_porterduff_mode</center></td>
+<td><p>::mfp::graph_lib::draw::set_porterduff_mode(2) :</p>
+<p>set_porterduff_mode(painting_extra, porterduff_mode)为一个painting extra数据结构设置porterduff模式。painting extra数据结构在painting事件中被调用。Porterduff模式告诉MFP如何绘制目标区域。它是一个大写的字符串，具有以下可能值："CLEAR"，"SRC"，"DST"，"SRC_OVER"，"DST_OVER"，"SRC_IN"，"DST_IN"，"SRC_OUT"，"DST_OUT"，"SRC_ATOP"，"DST_ATOP"，"XOR"或者""，其中，空字符串""是缺省值。开发者可以参考JAVA文档以获取porterduff模式的详细信息。由于porterduff模式的使用非常复杂，在不十分清楚porterduff模式内部机制的情况下，不建议用户调用此函数。换句话说，使用porterduff模式的缺省值在一般情况下足以满足用户的需求。</p>
+</td>
+</tr>
+<tr>
+<td><center>shutdown_display</center></td>
+<td><p>::mfp::graph_lib::display::shutdown_display(2) :</p>
+<p>shutdown_display函数用于关闭一个display。该display既可以是一个窗口，也就是screen display，也可以是一个图像，也就是image display。它有两个参数。第一个参数是该display，第二个参数是一个可选参数，它是一个布尔值，true表示关闭screen display时不需要用户确认，而不管在该display创建时，有无设置需要确认退出。它的缺省值是false。注意它对image display不起作用。该函数的例子包括：</p>
+<p>shutdown_display(d)</p>
+<p>以及</p>
+<p>shutdown_display(d, true)</p>
+</td>
+</tr>
+<tr>
+<td><center>update_display</center></td>
+<td><p>::mfp::graph_lib::display::update_display(1) :</p>
+<p>update_display(display)函数刷新一个display。该display既可以是screen display，也可以是image display。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

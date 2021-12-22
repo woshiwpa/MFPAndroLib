@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>可编程科学计算器帮助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body style="background-color:white;">
+<h2 style="color:blue">MFP编程语言call和endcall语句：</h2>
+<p style="font-family:verdana;color:black;">
+</p>
+<p style="font-family:verdana;color:black;">
+call和endcall语句定义了MFP语言call程序块的边界。call程序块是一段不在本线程中而是在别的线程中执行的指令。call语句是call程序块的开始。在call语句中，call关键字后面紧跟着连接对象或者local关键字，然后是on关键字，最后是一串call程序块的参数变量。call程序块的参数变量都是在call语句之前就已经声明的普通的变量。每一个参数变量都只能被一个call语句所使用。endcall语句标志着call程序块的中止。endcall语句有一个可选参数。该参数是call程序块在本地进程的返回变量。返回变量也是在call程序块之前声明的普通变量。返回变量只能被一个call程序块所使用而且不能同时作为call程序块的参数变量。
+</p>
+<p style="font-family:verdana;color:black;">
+我们可以把一个call语句看作是一个函数的开始。与普通函数不同的是，call程序块并非是在本地线程中运行，而是在另外一个线程中运行。运行call程序块的线程可以是本进程、本机的另外一个进程、或者是另外一台设备。
+</p>
+<p style="font-family:verdana;color:black;">
+如果call程序块是在本进程中运行另外一个线程，call关键字后面紧跟着的并非一个连接对象，而是关键字local。在这种情况下，由于call语句仍然在本进程空间中运行，本进程空间中的任何变量对于call程序块来说都是可读可写的，所以on关键字和其后的一串call程序块的参数变量不起任何作用，可以省略。call程序块生成的线程在读写本进程空间中的变量时，操作是原子性的，也就是说，只有一个线程对变量的值修改完成之后，另外一个线程才能够读，反之亦然。
+</p>
+<p style="font-family:verdana;color:black;">
+如果call程序块是在另外一个进程中运行，运行call程序块的进程通过call语句中的连接对象和本地进程连接。运行call程序块的进程可以看到call程序块参数变量的值的变化，也可以修改call程序块参数变量的值。call程序块对自己的参数变量的值的修改会反应到本地进程。但是需要注意的是，MFP语言并不保证本地进程和call程序块进程对程序块参数变量的值的修改会被实时同步到对方，也不保证按修改的顺序进行同步传递。MFP语言唯一保证的是在一个进程内对一个call程序块参数变量的修改是原子性的，也就是只有上一次修改完成了之后，对值的新的修改，不管是来自客户端还是服务器端，才能开始。需要注意的是这个原子性只是应用于一个进程。由于call程序块进程和本地进程都有一份程序块参数变量的拷贝，对于一个程序块参数变量的两份拷贝在不同的进程中同时进行修改不违背修改的原子性。其他任何除了返回变量和call序块参数变量的任何变量，call程序块和本地进程都有自己独立的拷贝，在一方修改变量值不会影响到另一方的同名变量的的值。
+</p>
+<p style="font-family:verdana;color:black;">
+由于对call程序块能够实现（跨进程）变量操作的原子性，所以不论call程序块是在本地进程空间还是在另外的进程，都可以通过变量锁（比如调用suspend_until_cond函数）进行（跨进程）线程同步。这一特性是MFP语言的一个重大优势。
+</p>
+<p style="font-family:verdana;color:black;">
+当call程序块遇到endcall语句或者return语句时停止运行并返回。如果return语句返回一个值，位于本地进程的endcall语句将收到返回值并将返回值赋给call程序块在本地进程的返回变量（如果endcall语句声明了返回变量的话）。
+</p>
+<p style="font-family:verdana;color:black;">
+需要注意的是，不同于call程序块的参数变量，call程序块的返回变量采用的是阻塞模式。换句话说，当call程序块被发送到远端执行后，任何在本地进程读取call程序块的返回变量的值的语句都将被阻塞，直到call程序块返回（不管有没有返回值）为止。
+</p>
+<p style="font-family:verdana;color:black;">
+以下例子展示了call程序块在本地进程中如何开启一个新线程：
+</p>
+<pre style="font-family:verdana;color:blue;">
+variable a = 3, b = 4
+
+call local <i style="font-family:verdana;color:green;">//由于仍然在本地进程空间中，所有的变量都可以直接读写，所以无需使用on关键字以及其后的参数变量</i>
+    a = "HELLO"
+    suspend_until_cond(a) <i style="font-family:verdana;color:green;">//阻塞call程序块所在线程直到a的值发生变化</i>
+    sleep(1000) <i style="font-family:verdana;color:green;">//暂停call程序块所在线程，以便让启动线程阻塞在suspend_until_cond函数</i>
+    b = 24 <i style="font-family:verdana;color:green;">//将b的值设置为24，启动线程才能摆脱阻塞状态继续运行</i>
+endcall
+
+sleep(1000) <i style="font-family:verdana;color:green;">//暂停启动线程1秒钟，以便让call程序块所在线程启动并阻塞在suspend_until_cond函数</i>
+a = 9 <i style="font-family:verdana;color:green;">//修改变量a的值，call程序块所在线程得以运行</i>
+suspend_until_cond(b, false, "==", 24) <i style="font-family:verdana;color:green;">//启动线程阻塞在变量b，直到变量b的值等于24</i>
+print_line("a = " + a + " b = " + b) <i style="font-family:verdana;color:green;">//现在a和b的值都已经在call程序块中更新了</i>
+</pre>
+<p style="font-family:verdana;color:black;">
+以下则是call程序块应用于不同进程一个实例：</p>
+<pre style="font-family:verdana;color:blue;">
+variable local_interface, remote_interface, ret
+local_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.101")	<i style="font-family:verdana;color:green;">//客户端（本地进程）地址</i>
+ret = ::mfp::paracomp::connect::initialize_local(local_interface)
+print("initialize_local ret = " + ret + "\n")
+
+remote_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.107")	<i style="font-family:verdana;color:green;">//服务器端（运行call程序块的进程）地址</i>
+ret = ::mfp::paracomp::connect::connect(local_interface, remote_interface)	<i style="font-family:verdana;color:green;">//从客户端连接到服务器端</i>
+print("connect ret = " + ret + "\n")
+
+<i style="font-family:verdana;color:green;">//connect函数的返回值是一个基于数组的字典，"CONNECT"关键字所对应的就是连接对象的定义。如果connect函数失败，"CONNECT"关键字对应的值为NULL。</i>
+variable conn = ::mfp::data_struct::array_based::get_value_from_abdict(ret, "CONNECT")
+
+variable a = "hekko, 48", b = 3+7i, c=["LCH"]
+variable d = 27	<i style="font-family:verdana;color:green;">// 变量d用于同步锁</i>
+call conn on a, b, d <i style="font-family:verdana;color:green;">// 只有变量a，b和d在call程序块中的赋值修改对启动线程可见，其他变量在call程序块中也可以被赋值修改，但启动线程看不见</i>
+    print("Before suspend_until_cond(d, false, \"==\", 888), d = " + d + "\n")
+    suspend_until_cond(d, false, "==", 888)	<i style="font-family:verdana;color:green;">// 等d的值变成888，程序继续运行，否则程序阻塞在这里</i>
+    print("After suspend_until_cond(d, false, \"==\", 888), d = " + d + "\n")
+    sleep(5000)	<i style="font-family:verdana;color:green;">//暂停call程序块所在线程，以便让启动线程阻塞在suspend_until_cond函数</i>
+    d = 213	<i style="font-family:verdana;color:green;">//改变d的值，启动线程应该能够收到d的新值。启动线程收到新值之后才能摆脱阻塞状态继续运行</i>
+    <i style="font-family:verdana;color:green;">//再暂停call程序块所在线程。此时启动线程应该已经到达print_line("c = " + c)语句，
+    //但由于call程序块所还未返回，启动线程无法读取返回值c所以被再次阻塞</i>
+    sleep(5000)
+    a = 88
+    b = "KIL"
+    return 54
+endcall c
+
+sleep(10000)	<i style="font-family:verdana;color:green;">//暂停启动线程10秒钟，以便让call程序块所在线程启动并阻塞在suspend_until_cond函数</i>
+d = 888	<i style="font-family:verdana;color:green;">//设置d的值为888，call程序块所在线程将会收到该新值</i>
+suspend_until_cond(d)	<i style="font-family:verdana;color:green;">// 线程阻塞在此，只有d的值发生变化才会继续运行</i>
+print_line("New value of d is " + d)
+<i style="font-family:verdana;color:green;">//我们必须先取回c的值。c的值能够取回方才意味着call程序块已经返回</i>
+print_line("c = " + c) <i style="font-family:verdana;color:green;">//线程阻塞在读取变量c的值时刻。只有当c的值从call程序块返回线程才能继续运行</i>
+<i style="font-family:verdana;color:green;">//当c的值取回之后，我们可以打印出a和b的值。可以看到这时a和b的值已经发生了更改。如果我们在print("c = " + c)语句之前打印a和b的值，
+//我们可能无法观察到a和b的值发生了变化</i>
+print("a = " + a + " b = " + b)
+
+close_connection(conn)	<i style="font-family:verdana;color:green;">//关闭连接</i>
+close_local(local_interface)	<i style="font-family:verdana;color:green;">//关闭本地通信协议界面</i>
+</pre>
+<p style="font-family:verdana;color:black;">
+以上代码是由客户端进程所执行，在服务器端，我们需要运行以下代码接收连接请求并运行call程序块：
+</p>
+<pre style="font-family:verdana;color:blue;">
+variable local_interface, ret
+local_interface = ::mfp::paracomp::connect::generate_interface("TCPIP", "192.168.1.107")	<i style="font-family:verdana;color:green;">//服务器端（运行call程序块的进程）地址</i>
+ret = ::mfp::paracomp::connect::initialize_local(local_interface)
+print("initialize_local ret = " + ret + "\n")
+<i style="font-family:verdana;color:green;">//监听连接请求。监听线程将在后台工作。</i>
+ret = ::mfp::paracomp::connect::listen(local_interface)	
+print("listen ret = " + ret + "\n")
+<i style="font-family:verdana;color:green;">//下面这条input语句将阻塞程序的运行。如果服务端代码是一个简单的MFPS脚本并且是在bash或者Windows命令提示符中运行，input语句可以阻止服务器程序的退出所以是必
+//不可少的。但是如果是在安卓或者MFP语言的JAVA界面程序中运行，只要安卓应用或JAVA界面程序不退出input语句就是不必要的。因为这种情况下服务器端的进程并没有中止。</i>
+input("Press any key to exit\n", "S")</pre>
+<p style="font-family:verdana;color:black;">
+先运行以上服务器端代码，然后在不同的设备中运行客户端代码。在运行之前需要确保客户端和服务器端的地址是正确的。开发者可以看到在服务器端两条消息被打印出来，一条是 Before suspend_until_cond(d, false, "==", 888), d = 27，另一条是After suspend_until_cond(d, false, "==", 888), d = 888。在客户端会打印出变量a，b，c和d的新值，其中，call程序块的返回变量c的新值是一个基于数组的字典，call程序块的返回值54位于该字典中。
+</p>
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<html>
+<head>
+<title>Scientific Calculator Plus Help</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">Scientific Calculator Plus Help : graphical display interface functions</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>Function name</th>
+<th>Function info</th>
+</tr>
+<tr>
+<td><center>calculate_text_boundary</center></td>
+<td><p>::mfp::graph_lib::draw::calculate_text_boundary(4) :</p>
+<p>calculate_text_boundary(display, string, text_origin, text_style) returns the boundary rectangle of a text block. The format of returned value is a four element array whose elements are [left, top, width, height]. This function's first parameter, display, can be either a screen display or an image display. The second parameter, string, is the multi-line text block. The third parameter is the text block's origin point ([x, y]). An origin point is used by draw_text function as a parameter to draw text. The last parameter, text_style, is a one or two element array. If it is a one element array. The element is a positve integer which is text font size. And the font is system default font. If it is a two element array, the first element is text font size and the second element is string based font name. Note that the last parameter is optional. By default, the system default font with size being 16 is used. Example of this function is: calculate_text_boundary(display, txtStr, [108, 190], [27, "SimSun"]).</p>
+</td>
+</tr>
+<tr>
+<td><center>calculate_text_origin</center></td>
+<td><p>::mfp::graph_lib::draw::calculate_text_origin(8) :</p>
+<p>calculate_text_origin(display, string, boundary_rect_left_top, width, height, horAlign, verAlign, text_style) returns the origin point of a text block given text block's boundary rectangle and alignments. The returned value, origin point, is a two element array (i.e. [x, y]) which will be used in draw_text function. Its first parameter, display, can be either a screen display or an image display. The second parameter, string, is the multi-line text block. The third parameter is the boundary rectangle's left and top. This is a two element array whose first element is left and second is top. The fourth and fifth parameters are width and height of the boundary rectangle respectively. The sixth parameter is the text block's horizontal alignment. -1 means left aligned, 0 means center aligned and 1 means right aligned. The seventh parameter is the text block's vertical alignment. -1 means top aligned, 0 means center aligned and 1 means bottom aligned. The last parameter, text style, is a one or two element array. If it is a one element array. The element is a positve integer which is text font size. And the font is system default font. If it is a two element array, the first element is text font size and the second element is string based font name. Note that the last parameter is optional. By default, the system default font with size being 16 is used. Example of this function is: calculate_text_origin(display, "pei is " + peichoices[idx], [256, 72], peiBndrySize[0], peiBndrySize[1], horAlign, verAlign, [22]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>clear_oval</center></td>
+<td><p>::mfp::graph_lib::draw::clear_oval(5) :</p>
+<p>clear_oval(owner_info, display, left_top, width, height) adds a painting event in the painting event scheduler. This painting event will clear an oval area from a display when the scheduler calls it. It has at 5 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is a two element array (i.e. [x, y]). It is the left top corner of the rectangle which contains the oval. The next two parameters are the width and height of the rectangle contains the oval. An example of this function is: clear_oval(["my draw", 0.381], d, [128, 45], 18, 30) . And another example is: clear_oval(NULL, d, [23, 111], 70, 19) .</p>
+</td>
+</tr>
+<tr>
+<td><center>clear_rect</center></td>
+<td><p>::mfp::graph_lib::draw::clear_rect(5) :</p>
+<p>clear_rect(owner_info, display, left_top, width, height) adds a painting event in the painting event scheduler. This painting event will clear a rectangle area from a display when the scheduler calls it. It has at 5 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is a two element array (i.e. [x, y]). It is the left top corner of the rectangle. The next two parameters are the width and height of the rectangle. An example of this function is: clear_rect(["my draw", 0.381], d, [128, 45], 18, 30) . And another example is: clear_rect(NULL, d, [23, 111], 70, 19) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_image</center></td>
+<td><p>::mfp::graph_lib::draw::draw_image(12) :</p>
+<p>Function draw_image adds a painting event in the painting event scheduler. This painting event will draw an image in a display when the scheduler calls it. This function has two different overloads. First is draw_image(owner_info, display, image_or_path, left, top, width_ratio, height_ratio, painting_extra_info). Second is draw_image(owner_info, display, image_or_path, srcx1, srcy1, srcx2, srcy2, destx1, desty1, destx2, desty2, painting_extra_info). In both of the overloads, the first parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is an image handle or a path string which points to an image file. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation. In the first overload, the fourth to seventh parameters are, respectively, left of the rectangle where the image will be drawn to, top of the rectangle where the image will be drawn to, the ratio by which the image will be zoomed along width when drawing (optional with 1.0 as its default), and the ratio by which the image will be zoomed along height when drawing (optional with 1.0 as its default). In the second overload, the fourth to eleventh parameters are, respectively, left of source rectangle, top of source rectangle, right of source rectangle, bottom of source rectangle, left of destination rectangle, top of destination rectangle, right of destination rectangle, and bottom of destination rectangle.</p>
+<p>Examples of this function are: draw_image("image", display, get_upper_level_path(get_src_file_path()) + "gem4.png", 48, 157) , draw_image("image", display, gem3Img, 148, 257, 3, 0.5) and draw_image("imagesrc", display, gem3Img, 0, 0, 32, 32, 210, 540, 300, 580, a_painting_extra_info).</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_line</center></td>
+<td><p>::mfp::graph_lib::draw::draw_line(7) :</p>
+<p>draw_line(owner_info, display, start_point_place, end_point_place, color, line_style, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw a line in a display when the scheduler calls it. It has 7 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third one and the fourth one are start_point_place and end_point_place respectively. They both are a two element array (i.e. [x, y]). The fifth one is color. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The sixth parameter is line style. At this moment, it is one element array whose element is a positive integer value representing line width. This parameter is optional, by default, it is [1]. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is also optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>An example of this function is: draw_line(["my draw", 0.381], d, [128, 45], [250, -72], [79, 255, 0, 142]) . And another example is: draw_line(NULL, d, [23, 111], [70, 333], [23, 178, 222], [7]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_oval</center></td>
+<td><p>::mfp::graph_lib::draw::draw_oval(8) :</p>
+<p>draw_oval(owner_info, display, left_top, width, height, color, frame_or_fill, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw an oval in a display when the scheduler calls it. It has at least 7 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is a two element array (i.e. [x, y]). It is the left top corner of the rectangle which contains the oval. The next two parameters are the width and height of the rectangle which contains the oval. Then the parameter is color to draw. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The second last parameter is an integer. If it is less than or equal to zero, the oval is filled. If it is larger than zero, it is the width of the oval's border. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>An example of this function is: draw_oval(["my draw", 0.381], d, [128, 45], 18, 30, [79, 255, 0, 142], 0) . And another example is: draw_oval(NULL, d, [23, 111], 70, 19, [23, 178, 222], 3) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_point</center></td>
+<td><p>::mfp::graph_lib::draw::draw_point(6) :</p>
+<p>draw_point(owner_info, display, point_place, color, point_style, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw a point in a display when the scheduler calls it. It has 6 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third one is point_place. It is a two element array (i.e. [x, y]). The fourth one is color. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The fifth parameter is point style. At this moment, its format is [point_size, point_shape]. Point size is a positive integer value. Point shape is a string which allows the following values: "dot", "circle", "square", "diamond", "up_triangle", "down_triangle", "cross" and "x". Note that if point shape is "dot", point size has no effect because dot point's size is always 1. This parameter is optional, by default, it is [1, "dot"]. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw this point. This parameter is also optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>An example of draw_point is: draw_point(["my draw", 0.381], d, [128, 45], [79, 255, 0, 142]) . And another example is: draw_point(NULL, d, [23, 111], [23, 178, 222], [78, "square"]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_polygon</center></td>
+<td><p>::mfp::graph_lib::draw::draw_polygon(7...) :</p>
+<p>draw_polygon(owner_info, display, point1_place, point2_place, point3_place, ..., color, frame_or_fill, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw a polygon in a display when the scheduler calls it. It has at least 7 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. From the third parameter forward the vertices of the polygon are defined. There should be at least three vertices. All the vertices are a two element array (i.e. [x, y]). The next parameter is color. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The second last parameter is an integer. If it is less than or equal to zero, the polygon is filled. If it is larger than zero, it is the width of the polygon's sides. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>An example of this function is: draw_polygon(["my draw", 0.381], d, [128, 45], [250, -72], [338, 29], [79, 255, 0, 142], 0) . And another example is: draw_polygon(NULL, d, [23, 111], [70, 333], [-239, 89], [66, 183], [23, 178, 222], 3) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_rect</center></td>
+<td><p>::mfp::graph_lib::draw::draw_rect(8) :</p>
+<p>draw_rect(owner_info, display, left_top, width, height, color, frame_or_fill, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw a rectangle in a display when the scheduler calls it. It has at least 7 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is a two element array (i.e. [x, y]). It is the left top corner of the rectangle. The next two parameters are the width and height of the rectangle. Then the parameter is color to draw. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The second last parameter is an integer. If it is less than or equal to zero, the rectangle is filled. If it is larger than zero, it is the width of the rectangle's sides. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>An example of this function is: draw_rect(["my draw", 0.381], d, [128, 45], 18, 30, [79, 255, 0, 142], 0) . And another example is: draw_rect(NULL, d, [23, 111], 70, 19, [23, 178, 222], 3) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_text</center></td>
+<td><p>::mfp::graph_lib::draw::draw_text(7) :</p>
+<p>draw_text(owner_info, display, string, origin_place, color, text_style, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw a text block in a display when the scheduler calls it. The first parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is string based multi-line text block. The fourth parameter is origin place of the text block ([x, y]). The fifth parameter is color to draw. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The sixth parameter, text_style, is a one or two element array. If it is a one element array. The element is a positve integer which is text font size. And the font is system default font. If it is a two element array, the first element is text font size and the second element is string based font name. Note that this parameter is optional. By default, the system default font with size being 16 is used. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>Examples of this function are: draw_text("image", display, txtStr, [108, 190], [255, 255, 255], [10 + idx, font]) and draw_text("image", display, txtStr, [108, 190], [255, 255, 255], [idx * 2]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>drop_old_painting_requests</center></td>
+<td><p>::mfp::graph_lib::draw::drop_old_painting_requests(2) :</p>
+<p>drop_old_painting_requests(owner_info, display) removes selected painting events from painting event scheduler for a screen or image display. The criteria is, if a painting event's owner is the same as drop_old_painting_requests's owner (read from owner_info) and a painting event's owner info's timestamp is older (i.e. smaller) than drop_old_painting_requests's owner info's timestamp, the painting event is dropped. Note that some owner_info parameter doesn't include timestamp. In this case, it's timestamp is the system time when the painting function or drop_old_painting_requests is called. An example is drop_old_painting_requests("my owner", display). This example equals to drop_old_painting_requests(["my owner", now()], display).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_color</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_color(1) :</p>
+<p>get_display_bgrnd_color(display) returns background color of a display (whether screen display or image display). Color is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_image</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_image(1) :</p>
+<p>get_display_bgrnd_image(display) returns background image of a display (whether screen display or image display).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_image_mode</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_image_mode(1) :</p>
+<p>get_display_bgrnd_image_mode(display) returns background image mode of a display (whether screen display or image display). Image mode is an integer whose value is either 0 (original background image is placed on left-top), 1 (background image is scaled to the whole screen), 2 (background image is tiled), or 3 (background image in the middle of screen).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_caption</center></td>
+<td><p>::mfp::graph_lib::display::get_display_caption(1) :</p>
+<p>get_display_caption(display) returns a screen display's caption. If display is an image display or in Android, it always returns an empty string.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_confirm_close</center></td>
+<td><p>::mfp::graph_lib::display::get_display_confirm_close(1) :</p>
+<p>get_display_confirm_close(display) returns whether confirming is required before closing a screen display. If display is an image display, it always returns false.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_orientation</center></td>
+<td><p>::mfp::graph_lib::display::get_display_orientation(1) :</p>
+<p>get_display_orientation(display) returns orientation of a screen display. In Android, if a screen display is landscape, it returns 0; if a screen display is portrait, it returns 1; if a screen display's orientation is unspecified, it returns -1. For image display or on a JAVA platform, it always returns -1.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_resizable</center></td>
+<td><p>::mfp::graph_lib::display::get_display_resizable(1) :</p>
+<p>get_display_resizable(display) tells developer a screen display resizable or not. If display is an image display, it always returns false.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_size</center></td>
+<td><p>::mfp::graph_lib::display::get_display_size(1) :</p>
+<p>get_display_size(display) returns a display (whether screen display or image display)'s size. The returned value is a two element array, i.e. [width, height].</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_snapshot</center></td>
+<td><p>::mfp::graph_lib::display::get_display_snapshot(4) :</p>
+<p>get_display_snapshot(display, update_screen_or_not, width_ratio, height_ratio) returns a display (whether screen display or image display)'s snapshot. Its second parameter, update_screen_or_not, telling MFP whether or not the display should be refreshed so that latest image can be captured. The third and fourth parameters are optional. They tell MFP how to zoom the snapshot. By default, both of them are 1. For example, get_display_snapshot(d, true, 0.5, 3) refreshes display d (i.e. all the painting event callbacks take effect) and then takes snapshot of the display and returns a zoomed image. The width of returned image is 0.5 * original snapshot width and the height of returned image is 3 * original snapshot height.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_info</center></td>
+<td><p>::mfp::graph_lib::event::get_event_info(2) :</p>
+<p>get_event_info(event, property_name) returns a property of event. Its first parameter is the event and its second parameter is string based property name. The GDI_INITIALIZE and GDI_CLOSE events don't have any properties. WINDOW_RESIZED event has four integer properties which are "width" (current width of the window), "height" (current height of the window), "last_width" (width of the window before this event was triggered), "last_height" (height of the window before this event was triggered). POINTER_DOWN event has three properties which are "button" (an integer property telling developer which mouse button triggers this event in PC or always zero in Android), "x" (x coordinate which is a double) and "y" (y coordinate which is a double). Similar to POINTER_DOWN, POINTER_UP event and POINTER_CLICKED event also have three properties which are "button", "x" and "y". POINTER_DRAGGED event and POINTER_SLIDED event both have five properties which are "button", "x", "y", "last_x" and "last_y". Among them, "button" has same meaning as for POINTER_DOWN, "last_x" and "last_y" are coordinates before the event is triggered, and "x" and "y" are coordinates after the event is triggered. POINTER_PINCHED event has eight double value properties which store the coordinates of fingers before pinching and after pinching. The properties are "x", "y", "x2", "y2", "last_x", "last_y", "last_x2", and "last_y2".</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_type</center></td>
+<td><p>::mfp::graph_lib::event::get_event_type(1) :</p>
+<p>get_event_type(event) returns an integer which is type of the event. At this stage it supports the following events: GDI_INITIALIZE (type is 1, when a screen display is created), GDI_CLOSE (type is 10, when a screen display is shutdown), WINDOW_RESIZED (JAVA platform only, type is 21, when a screen display window is resized), POINTER_DOWN (type is 102, when a mouse button is pushed down in PC or user's finger is tapping down in Android), POINTER_UP (type is 103, when a mouse button bounces up in PC or user's finger is moving away from touchpad in Android), POINTER_CLICKED (type is 104, when a mouse button is clicked in PC or user's finger taps touchpad in Android), POINTER_DRAGGED (type is 105, when a mouse or user's finger is dragging. Different from POINTER_SLIDED event, this event is continously triggered during the dragging process), POINTER_SLIDED (type is 106, when a mouse is dragged to the destination and its button is released in PC, or when user's finger drags to the destination and starts to leave touchpad in Android. Different from POINTER_DRAGGED, this event is triggered once-off), POINTER_PINCHED (Android only, type is 201, when user pinches to zoom in Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_type_name</center></td>
+<td><p>::mfp::graph_lib::event::get_event_type_name(1) :</p>
+<p>get_event_type_name(event) returns a string which is type name of the event. At this stage it supports the following events: "GDI_INITIALIZE" (when a screen display is created), "GDI_CLOSE" (when a screen display is shutdown), "WINDOW_RESIZED" (JAVA platform only, when a screen display window is resized), "POINTER_DOWN" (when a mouse button is pushed down in PC or user's finger is tapping down in Android), "POINTER_UP" (when a mouse button bounces up in PC or user's finger is moving away from touchpad in Android), "POINTER_CLICKED" (when a mouse button is clicked in PC or user's finger taps touchpad in Android), "POINTER_DRAGGED" (when a mouse or user's finger is dragging. Different from "POINTER_SLIDED" event, this event is continously triggered during the dragging process), "POINTER_SLIDED" (when a mouse is dragged to the destination and its button is released in PC, or when user's finger drags to the destination and starts to leave touchpad in Android. Different from "POINTER_DRAGGED", this event is triggered once-off), "POINTER_PINCHED" (when user pinches to zoom in Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_porterduff_mode</center></td>
+<td><p>::mfp::graph_lib::draw::get_porterduff_mode(1) :</p>
+<p>get_porterduff_mode(painting_extra) returns porterduff mode of a painting extra information structure. Painting extra information structure is used in a painting event. Porterduff mode tells MFP the way to draw destination area. It is a capitalized string and supports the following modes: "CLEAR", "SRC", "DST", "SRC_OVER", "DST_OVER", "SRC_IN", "DST_IN", "SRC_OUT", "DST_OUT", "SRC_ATOP", "DST_ATOP", "XOR" or "" (empty string means default value). Developer may refer to JAVA documentation to find out detailed meaning of the above modes.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_display_on_live</center></td>
+<td><p>::mfp::graph_lib::display::is_display_on_live(1) :</p>
+<p>is_display_on_live(display) tells developer if a display (whether screen display or image display) is still alive.</p>
+</td>
+</tr>
+<tr>
+<td><center>open_screen_display</center></td>
+<td><p>::mfp::graph_lib::display::open_screen_display(6) :</p>
+<p>open_screen_display(caption, background color, quit_confirm, size, resizable, orientation) returns a screen display handle. A screen display is a window in PC (JAVA) or an activity in Android. It has six parameters. All of them are optional. The first parameter is the caption of the display. This caption will be shown as window's title in PC, and has no use in Android. By default, it is an empty string. The second parameter is the background color. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. By default it is [0, 0, 0, 0]. The third one is confirm quit or not. By default it is false. The fourth one is the size of the screen. It is a 2-elem array ([width, height]) with default value [0, 0]. It doesn't have any effect in Android. The fifth is resizable or not. It doesn't have any effect in Android. Its default value is false. The last one is the orientation of the display in Android. It doesn't have any effect in PC. Orientation is an integer. At this moment, it's value can be -1 (arbitary), 0 (horizontal) and 1 (vertical). By default it is -1. Examples of this function:</p>
+<p>variable display = open_screen_display("Hello world", [255, 238, 17], true, [640, 480], true, 0)</p>
+<p>and</p>
+<p>variable display = open_screen_display("Hello")</p>
+</td>
+</tr>
+<tr>
+<td><center>pull_event</center></td>
+<td><p>::mfp::graph_lib::event::pull_event(1) :</p>
+<p>pull_event(display) pull an input event (e.g. mouse or touch pad event) out from screen display's event list. If there is no event, or the display is not a screen display but an image display, it returns Null. Otherwise, it returns the event.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_bgrnd_color</center></td>
+<td><p>::mfp::graph_lib::display::set_display_bgrnd_color(2) :</p>
+<p>set_display_bgrnd_color(display, color) sets background color for a display (whether screen display or image display). Color is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_bgrnd_image</center></td>
+<td><p>::mfp::graph_lib::display::set_display_bgrnd_image(3) :</p>
+<p>set_display_bgrnd_image(display, image, mode) sets background image for a display (whether screen display or image display). Image is a image handle. Mode is an integer whose value is either 0 (original background image is placed on left-top), 1 (background image is scaled to the whole screen), 2 (background image is tiled), or 3 (background image in the middle of screen).</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_caption</center></td>
+<td><p>::mfp::graph_lib::display::set_display_caption(2) :</p>
+<p>set_display_caption(display, caption) sets a screen display's caption on JAVA platform. It does not affect an image display or a screen display in Android.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_confirm_close</center></td>
+<td><p>::mfp::graph_lib::display::set_display_confirm_close(2) :</p>
+<p>set_display_confirm_close(display, confirm_close_or_not) sets whether confirming is required before closing a screen display. It does not affect an image display.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_orientation</center></td>
+<td><p>::mfp::graph_lib::display::set_display_orientation(2) :</p>
+<p>set_display_orientation(display, orientation) sets orientation of a screen display in Android. If orientation is -1, it is an unspecified orientation; if it is 0, it is landscape; if it is 1, it is portrait. This function does not affect an image display and has no effect on JAVA platform.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_resizable</center></td>
+<td><p>::mfp::graph_lib::display::set_display_resizable(2) :</p>
+<p>set_display_resizable(display, resizable_or_not) sets a screen display resizable or not. It does not affect an image display.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_size</center></td>
+<td><p>::mfp::graph_lib::display::set_display_size(3) :</p>
+<p>set_display_size(display, width, height) sets a display (whether screen display or image display)'s size to be width * height.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_snapshot_as_bgrnd</center></td>
+<td><p>::mfp::graph_lib::display::set_display_snapshot_as_bgrnd(3) :</p>
+<p>set_display_snapshot_as_bgrnd(display, update_screen_or_not, clear_callbacks_or_not) sets a display (whether screen display or image display)'s snapshot as background image. Its second parameter, update_screen_or_not, telling MFP whether or not the display should be refreshed so that latest image can be captured. The third parameter, clear_callbacks_or_not, tells MFP whether or not the painting event callbacks should be cleared. For example, set_display_snapshot_as_bgrnd(d, true, true) refreshes display d (i.e. all the painting event callbacks take effect) and then drops all the painting event callbacks, and then takes snapshot of the display and sets the snapshot to be display's background image.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_porterduff_mode</center></td>
+<td><p>::mfp::graph_lib::draw::set_porterduff_mode(2) :</p>
+<p>set_porterduff_mode(painting_extra, porterduff_mode) sets porterduff mode for a painting extra information structure. Painting extra information structure is used in a painting event. Porterduff mode tells MFP the way to draw destination area. It is a capitalized string and supports the following modes: "CLEAR", "SRC", "DST", "SRC_OVER", "DST_OVER", "SRC_IN", "DST_IN", "SRC_OUT", "DST_OUT", "SRC_ATOP", "DST_ATOP", "XOR" or "" (empty string means default value). Developer may refer to JAVA documentation to find out detailed meaning of the above modes. And because of the intricacy, this function is not recommended to user. Default porterduff mode should generally be enough to draw destination area properly.</p>
+</td>
+</tr>
+<tr>
+<td><center>shutdown_display</center></td>
+<td><p>::mfp::graph_lib::display::shutdown_display(2) :</p>
+<p>shutdown_display(display, no_confirm_dialog_pop_up) shutdown a display. It has two parameters, display and no_confirm_dialog_pop_up. Display is the reference of screen display or image display. no_confirm_dialog_pop_up is an optional flag. By default, it is false. It only takes effect if display is a screen display. If it is true, even if a screen display has set confirm to close flag, it is shutdown immediately. Examples of this function:</p>
+<p>shutdown_display(d)</p>
+<p>and</p>
+<p>shutdown_display(d, true)</p>
+</td>
+</tr>
+<tr>
+<td><center>update_display</center></td>
+<td><p>::mfp::graph_lib::display::update_display(1) :</p>
+<p>update_display(display) update a display (whether screen display or image display).</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<example>
+<description>
+<english>MFP Visualization</english>
+<simplified_chinese>MFP作图功能展示</simplified_chinese>
+<traditional_chinese>MFP作圖功能展示</traditional_chinese>
+<spanish>MFP Visualización</spanish>
+</description>
+<application>
+<applicationName>MFP plotter example</applicationName>
+<applicationPkgName>com.cyzapps.MFPPlotG</applicationPkgName>
+<applicationWorkingFolder>MFPPlotG</applicationWorkingFolder>
+<applicationVersionStr>1.0.0.1707</applicationVersionStr>
+<applicationVersionCode>1707</applicationVersionCode>
+<functionInfo>
+<name>  mfpexample :: plotGraphs  </name>
+<description>demonstrate how to use the plotting functions provided by MFP. 向用户展示如何使用MFP语言所提供的一系列绘图函数。</description>
+<includesOptionalParam>FALSE</includesOptionalParam>
+<parameters>
+</parameters>
+</functionInfo>
+<helpInfo>This is MFP plotting capability demo. It includes many 2D, 3D and polar charts.</helpInfo>
+</application>
+<sourceFiles>
+<sourceFile>examples.mfps</sourceFile>
+</sourceFiles>
+<apkFile>visualization.apk</apkFile>
+<info>
+<english>This example demonstrates visualization of data and expression. 20 different charts based 2d coordinate, polar coordinate and 3d coordinate are generated from data or mathematic formulae. Some of the charts are simple while others are complicated and interesting, e.g. butterfly, flower, 3D box, pyramid, TV tower etc.</english>
+<simplified_chinese>这个例子展示了MFP语言根据数据或者表达式绘制图形的强大能力。这个例子包含20多个基于二维坐标，三维坐标和极坐标的不同的图像。一些图像是基于数据的，另外一些图像是基于表达式的。一些图像比较简单，而另一些图像复杂而有趣，比如，绘制蝴蝶，花朵，立方体，金字塔以及上海东方明珠电视塔等。</simplified_chinese>
+<traditional_chinese>這個例子展示了MFP語言根據數據或者表達式繪製圖形的強大能力。這個例子包含20多個基於二維坐標，三維坐標和極坐標的不同的圖像。一些圖像是基於數據的，另外一些圖像是基於表達式的。一些圖像比較簡單，而另一些圖像複雜而有趣，比如，繪製蝴蝶，花朵，立方體，金字塔以及上海東方明珠電視塔等。</traditional_chinese>
+<spanish>Este ejemplo muestra la visualización de datos. Sobre la base de las coordenadas 2D de los gráficos, y coordenadas polares tridimensionales se generan a partir de los datos o fórmulas. Algunos gráficos son simples, otros son complejos e interesantes. Por ejemplo, mariposas, flores, caja 3D, pirámide, torre de televisión.</spanish>
+</info>
+</example>

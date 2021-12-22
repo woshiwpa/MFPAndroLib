@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>可编程科学计算器帮助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">可编程科学计算器帮助：反射函数</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函数名</th>
+<th>函数帮助信息</th>
+</tr>
+<tr>
+<td><center>get_func_fullname</center></td>
+<td><p>::mfp::reflection::get_func_fullname(3) :</p>
+<p>get_func_fullname(function_name, number_of_params, citing_spaces_to_check)返回一个函数的全名（也就是引用空间加函数名）。它有三个参数。第一个参数是一个基于字符串的函数名，这个函数名可以包含部分或者不包含引用空间。第二个参数是参数的个数。这是一个可选参数，它的缺省值是-1，意思是仅仅搜索比较函数名，不考虑参数个数。第三个参数是将要检视的引用空间列表。这是一个基于数组的一维矩阵，比如["::mfp_compiler", "::mfp::*"]。在这个例子中，本函数将会首先搜索引用空间::mfp_compiler，然后搜索引用空间::mfp以及::mfp的所有子空间。这个参数也是可省略的。它的缺省值就是当前上下文所使用的引用空间。如果get_func_fullname需要寻找的函数在给出的引用空间中没有找到，本函数将会抛出异常。一个函数的例子为get_func_fullname("reflection:: get_func_fullname", 2)。这个例子的返回值为"::mfp::reflection::get_func_fullname"。注意这里参数的个数用的是2而不是3但依然合法，原因是get_func_fullname有两个缺省参数，所以参数个数可以是1或者2或者3。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_type_fullname</center></td>
+<td><p>::mfp::reflection::get_type_fullname(1) :</p>
+<p>get_type_fullname返回参数类型的全名，即带有引用空间路径的名称。例如，如果开发人员在引用空间::abc::def中定义了一个类A，并且已经从类A创建了一个名为objA的对象，则get_type_fullname(objA)将返回一个字符串，该字符串为::abc::def::a。请注意，由于MFP不区分大小写，并且内部所有变量名称和类型都转换为小写字母，所以A更改为a。另请注意，此函数可以返回MFP内置类型的全名。但是，建议用户仅在程序运行期间使用它来识别两个变量是否具有相同的类型。用户不能假定MFP内置类型的全名在以后的版本中永远不会更改。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,1015 @@
+function reg_test_game_apis()
+	reg_test_get_func_fullname()
+	reg_test_data_struct()
+	reg_test_data_struct2()
+	reg_test_platform()
+	variable imgDisplay = open_image_display(null)
+	set_display_size(imgDisplay, 640, 680)
+	if is_running_on_android()
+		reg_test_image_lib("./output/img_test/")
+		reg_test_image_display("./output/image_display_test/")
+		reg_test_display_properties("./output/display_properties_test/")
+		reg_test_draw_lib(imgDisplay, "./output/draw_test_image/")
+		reg_test_draw_lib(null, "./output/draw_test_screen/")
+	else
+		reg_test_image_lib("c:\\temp\\output\\img_test\\")
+		reg_test_image_display("c:\\temp\\output\\image_display_test\\")
+		reg_test_display_properties("c:\\temp\\output\\display_properties_test\\")
+		reg_test_draw_lib(imgDisplay, "c:\\temp\\output\\draw_test_image\\")
+		reg_test_draw_lib(null, "c:\\temp\\output\\draw_test_screen\\")
+	endif
+	shutdown_display(imgDisplay)
+	reg_test_open_close_screen_display()
+	reg_test_sound_lib()
+endf
+
+function reg_test_platform()
+	print_line("is running on android ? " + is_running_on_android())
+	print_line("is mfp app ? " + is_mfp_app())
+	print_line("get_asset_file_path(\"resource\") == " + get_asset_file_path("resource"))
+	print_line("get_country_language() = " + get_country_language())
+endf
+
+citingspace iamok::hahaha
+	function test_cs_func_fullname(a, b)
+	endf
+	
+	function test_cs_opt_params(a, ...)
+	endf
+endcs
+
+citingspace iamok
+	function test_cs_func_fullname(a, b)
+	endf
+endcs
+function reg_test_get_func_fullname()
+	for variable idx = 0 to 9 step 1
+		print_line("====================== idx = " + idx + " =======================")
+		variable funcName = "", numOfParams = 0, cses = null
+		if (idx == 0)
+			funcName = "reg_test_get_func_fullname"
+			numOfParams = 0
+			cses = ["mfp"]
+		elseif (idx == 1)
+			funcName = "  reg_test_get_func_fullname "
+			numOfParams = 0
+			cses = ["   "]
+		elseif (idx == 2)
+			funcName = "  reg_test_get_func_fullname "
+			numOfParams = 0
+			cses = null
+		elseif (idx == 3)
+			funcName = "  test_cs_func_fullname "
+			numOfParams = 2
+			cses = [ "  kdw :: a ::*", " :: iamok  "]
+		elseif (idx == 4)
+			funcName = " hahaha   :: test_cs_func_fullname "
+			numOfParams = 2
+			cses = [ "  kdw :: a ::*", " :: iamok  "]
+		elseif (idx == 5)
+			funcName = " test_cs_func_fullname "
+			numOfParams = 2
+			cses = [ "  kdw :: a ::*", " :: iamok :: hahaha   :: "]
+		elseif (idx == 6)
+			funcName = " test_cs_func_fullname "
+			numOfParams = 2
+			cses = [ "  kdw :: a ::*", " :: iamok :: hahaha "]
+		elseif (idx == 7)
+			funcName = " hahaha :: test_cs_func_fullname "
+			numOfParams = 2
+			cses = [ "  kdw :: a ::*", " :: iamok :: hahaha "]
+		elseif (idx == 8)
+			funcName = " hahaha :: test_cs_func_fullname "
+			numOfParams = 2
+			cses = [ "  kdw :: a ::*", " :: iamok  "]
+		elseif (idx == 9)
+			funcName = " test_cs_opt_params "
+			numOfParams = 2
+			cses = [ "  :: *", " :: iamok ::hahaha "]
+			using citingspace iamok::hahaha
+			try
+				print_line("full name of " + funcName + " 0 is " + get_func_fullname(funcName, 0))
+			catch
+				print_line("full name of " + funcName + " 0 throws an exception")
+			endtry
+			try
+				print_line("full name of " + funcName + " 1 is " + get_func_fullname(funcName, 1))
+			catch
+				print_line("full name of " + funcName + " 1 throws an exception")
+			endtry
+			try
+				print_line("full name of " + funcName + " 2 is " + get_func_fullname(funcName, 2))
+			catch
+				print_line("full name of " + funcName + " 2 throws an exception")
+			endtry
+			try
+				print_line("full name of " + funcName + " 3 is " + get_func_fullname(funcName, 3))
+			catch
+				print_line("full name of " + funcName + " 3 throws an exception")
+			endtry
+		endif
+		using citingspace iamok::hahaha
+		try
+			print_line("full name of " + funcName + " is " + get_func_fullname(funcName))
+		catch
+			print_line("full name of " + funcName + " throws an exception")
+		endtry
+		using citingspace iamok
+		try
+			print_line("full name of " + funcName + " " + numOfParams + " is " + get_func_fullname(funcName, numOfParams))
+		catch
+			print_line("full name of " + funcName + " " + numOfParams + " throws an exception")
+		endtry
+		using citingspace iamok::hahaha
+		try
+			print_line("full name of " + funcName + " -1 is " + get_func_fullname(funcName, -1))
+		catch
+			print_line("full name of " + funcName + " -1 throws an exception")
+		endtry
+		try
+			print_line("full name of " + funcName + " " + (numOfParams + 1) + " is " + get_func_fullname(funcName, numOfParams + 1))
+		catch
+			print_line("full name of " + funcName + " " + (numOfParams + 1) + " throws an exception")
+		endtry
+		try
+			print_line("full name of " + funcName + " " + (numOfParams - 1) + " is " + get_func_fullname(funcName, numOfParams - 1))
+		catch
+			print_line("full name of " + funcName + " " + (numOfParams - 1) + " throws an exception")
+		endtry
+		try
+			print_line("full name of " + funcName + " " + numOfParams + " " + cses + " is " + get_func_fullname(funcName, numOfParams, cses))
+		catch
+			print_line("full name of " + funcName + " " + numOfParams + " " + cses + " throws an exception")
+		endtry
+	next
+	
+	for variable idx = 10 to 13 step 1
+		print_line("====================== idx = " + idx + " =======================")
+		variable funcName = "", numOfParams = 0, cses = null
+		if (idx == 10)
+			funcName = " display :: open_screen_display "
+			numOfParams = 1
+			cses = [ "  mfp_compiler ", " graph_lib :: *  "]
+		elseif (idx == 11)
+			funcName = " display :: open_screen_display "
+			numOfParams = 1
+			cses = [ "  mfp_compiler ", " mfp:: graph_lib :: *  "]
+		elseif (idx == 12)
+			funcName = " get_functions "
+			numOfParams = 1
+			cses = [ "  mfp_compiler :: * "]
+		elseif (idx == 13)
+			funcName = " get_func_fullname "
+			numOfParams = 1
+			cses = [ "  mfp :: reflection :: * "]
+		endif
+		try
+			print_line("full name of " + funcName + " is " + get_func_fullname(funcName))
+		catch
+			print_line("full name of " + funcName + " throws an exception")
+		endtry
+		try
+			print_line("full name of " + funcName + " " + numOfParams + " is " + get_func_fullname(funcName, numOfParams))
+		catch
+			print_line("full name of " + funcName + " " + numOfParams + " throws an exception")
+		endtry
+		try
+			print_line("full name of " + funcName + " -1 is " + get_func_fullname(funcName, -1))
+		catch
+			print_line("full name of " + funcName + " -1 throws an exception")
+		endtry
+		try
+			print_line("full name of " + funcName + " " + (numOfParams + 1) + " is " + get_func_fullname(funcName, numOfParams + 1))
+		catch
+			print_line("full name of " + funcName + " " + (numOfParams + 1) + " throws an exception")
+		endtry
+		try
+			print_line("full name of " + funcName + " " + (numOfParams - 1) + " is " + get_func_fullname(funcName, numOfParams - 1))
+		catch
+			print_line("full name of " + funcName + " " + (numOfParams - 1) + " throws an exception")
+		endtry
+		try
+			print_line("full name of " + funcName + " " + numOfParams + " " + cses + " is " + get_func_fullname(funcName, numOfParams, cses))
+		catch
+			print_line("full name of " + funcName + " " + numOfParams + " " + cses + " throws an exception")
+		endtry
+	next
+	
+	print_line ("====================== idx = 14 =======================")
+	using citingspace iamok
+	try
+		print_line("full name of input 2 [ hahaha :: *, ::kkk::def, ::mfp::io* , abc] is " + get_func_fullname("input", 2, ["  hahaha :: *  ", ":: kkk  :: def  ", " :: mfp  :: io :: *   ", " abc "]))
+	catch
+		print_line("full name of input 2 [ hahaha :: *, ::kkk::def, ::mfp::io* , abc] throws an exception")
+	endtry
+	try
+		print_line("full name of input 2 [ hahaha :: *, abc, ::mfp::io* , ::kkk::def::] is " + get_func_fullname("input", 2, ["  hahaha :: *  ", " abc ", " :: mfp :: io  :: *   ", ":: kkk  :: def :: "]))
+	catch
+		print_line("full name of input 2 [ hahaha :: *, abc, ::mfp::io* , ::kkk::def::] throws an exception")
+	endtry
+	try
+		print_line("full name of input 3 is " + get_func_fullname("input", 3))
+	catch
+		print_line("full name of input 3 throws an exception")
+	endtry
+	try
+		print_line("full name of input 1 is " + get_func_fullname("input", 1))
+	catch
+		print_line("full name of input 1 throws an exception")
+	endtry
+	try
+		print_line("full name of input 4 is " + get_func_fullname("input", 4))
+	catch
+		print_line("full name of input 4 throws an exception")
+	endtry
+	try
+		print_line("full name of input 0 is " + get_func_fullname("input", 0))
+	catch
+		print_line("full name of input 0 throws an exception")
+	endtry
+	try
+		print_line("full name of test_cs_func_fullname 2 [ hahaha :: * ] is " + get_func_fullname("test_cs_func_fullname", 2, ["  hahaha :: *  "]))
+	catch
+		print_line("full name of test_cs_func_fullname 2 [ hahaha :: * ] throws an exception")
+	endtry
+	
+	print_line("full name of ::mfp::io::console::input 2 is " + get_func_fullname("::mfp::io::console::input",2))
+	print_line("full name of mfp::io::console::input 2 is " + get_func_fullname("mfp::io::console::input",2))
+	
+endf
+
+function reg_test_data_struct()
+	variable abdict = create_abdict()
+	print_line("create_abdict() returns " + abdict)
+	abdict = set_value_in_abdict(abdict, "3728", "hello")
+	abdict = set_value_in_abdict(abdict, "[9, ]", 42)
+	abdict = set_value_in_abdict(abdict, "", [6, 6,3])
+	abdict = set_value_in_abdict(abdict, "[9, ]", 55.32i - 47)
+	print_line("abdict == " + abdict)
+	print_line("get_value_from_abdict(\"3728\") == " + get_value_from_abdict(abdict, "3728"))
+	print_line("get_value_from_abdict(\"[9, ]\") == " + get_value_from_abdict(abdict, "[9, ]"))
+	print_line("get_value_from_abdict(\"\") == " + get_value_from_abdict(abdict, ""))
+	try
+		print_line("get_value_from_abdict(0xef) == " + get_value_from_abdict(abdict, 0xef))
+	catch
+		print_line("abdict does not include a key which is 0xef")
+	endtry
+	try
+		print_line("get_value_from_abdict(\"0xe\"f) == " + get_value_from_abdict(abdict, "0xef"))
+	catch
+		print_line("abdict does not include a key which is \"0xef\"")
+	endtry
+	
+	variable ablist = []
+	try
+		print_line("get_elem_from_ablist(0) == " + get_elem_from_ablist(0))
+	catch
+		print_line("ablist does not have an element with index is 0")
+	endtry
+	ablist = append_elem_to_ablist(ablist, 37)
+	ablist = insert_elem_into_ablist(ablist, 0, "hello")
+	set_elem_in_ablist(ablist, 0, [57,i+8])
+	try
+		set_elem_in_ablist(ablist, 8, [57,i+8])
+	catch
+		print_line("ablist does not have an element to set with index is 8")
+	endtry
+	ablist = append_elem_to_ablist(ablist, [[1,2],2,[3,4]])
+	print_line("ablist == " + ablist)
+	try
+		ablist = insert_elem_into_ablist(ablist, -12, -9.81)
+	catch
+		print_line("ablist cannot insert an element with index is -12")
+	endtry
+	try
+		ablist = insert_elem_into_ablist(ablist, 12, 9.81)
+	catch
+		print_line("ablist cannot insert an element with index is 12")
+	endtry
+	ablist = insert_elem_into_ablist(ablist, 2, "value inserted into 2")
+	try
+		ablist = remove_elem_from_ablist(ablist, 81)
+	catch
+		print_line("ablist does not have an element to remove with index is 81")
+	endtry
+	ablist = remove_elem_from_ablist(ablist, 3)
+	print_line("ablist == " + ablist)
+	variable ablist1 = [[832.81, i], "dw", 8.991-0.47i]
+	ablist = concat_ablists(ablist, ablist1)
+	print_line("ablist == " + ablist)
+endf
+
+function reg_test_data_struct2()
+	variable alist = 3, newelem = null
+	variable blist = array_based::append_elem_to_ablist(alist, newelem)
+	print_line("array_based::append_elem_to_ablist(3, null) = " + blist)
+	variable clist = append_elem_to_ablist(blist, [7, 8])
+	variable dlist = append_elem_to_ablist(blist, "hello")
+	variable c1list = append_elem_to_ablist(clist, nan)
+	print_line("After appending new elements to blist twice, blist is " + blist + " and clist is " + clist + " and dlist is " + dlist + " and c1list is " + c1list)
+	blist[0] = "F"
+	c1list[2,1] = infi
+	print_line("After setting blist[0] and c1list[2,1], blist is " + blist + " and clist is " + clist + " and dlist is " + dlist + " and c1list is " + c1list)
+	print_line("append_elem_to_ablist([],[]) = " + append_elem_to_ablist([],[]))
+	print_line("data_struct::array_based::concat_ablists([],[]) = " + data_struct::array_based::concat_ablists([],[]))
+	try
+		print_line("data_struct::array_based::concat_ablists(3,\"hello\") = " + data_struct::array_based::concat_ablists(3,"hello"))
+	catch
+		print_line("data_struct::array_based::concat_ablists(3,\"hello\") throws exception")
+	endtry
+	try
+		print_line("data_struct::array_based::concat_ablists([3],\"hello\") = " + data_struct::array_based::concat_ablists([3],"hello"))
+	catch
+		print_line("data_struct::array_based::concat_ablists([3],\"hello\") throws exception")
+	endtry
+	try
+		print_line("mfp::data_struct::array_based::concat_ablists(3,[\"hello\"]) = " + mfp::data_struct::array_based::concat_ablists(3,["hello"]))
+	catch
+		print_line("mfp::data_struct::array_based::concat_ablists(3,[\"hello\"]) throws exception")
+	endtry
+	print_line("concat_ablists([3],[\"hello\"]) = " + concat_ablists([3],["hello"]))
+	print_line("data_struct::array_based::concat_ablists([3,[]],[nan,\"hello\"]) = " + data_struct::array_based::concat_ablists([3,[]],[nan,"hello"]))
+	alist = [3,[1]]
+	blist = [7]
+	clist = concat_ablists(alist, blist)
+	clist[1,0] = 9
+	print_line("After the above operations, alist = " + alist + " blist = " + blist + " clist = " + clist + " c1list = " + c1list)
+	try
+		print_line("concat_ablists(null, null) = " + concat_ablists(null, null))
+	catch
+		print_line("concat_ablists(null, null) throws an exception!")
+	endtry
+	print_line("get_elem_from_ablist(c1list, 3) = " + get_elem_from_ablist(c1list, 3))
+	try
+		print_line("get_elem_from_ablist(c1list, 4) = " + get_elem_from_ablist(c1list, 4))
+	catch
+		print_line("get_elem_from_ablist(c1list, 4) throws an exception")
+	endtry
+	set_elem_in_ablist(c1list, 3, 77i - 6)
+	print_line("after set_elem_in_ablist(c1list, 3, 77i - 6), c1list is " + c1list)
+	try
+		set_elem_in_ablist(c1list, 4, 6.441)
+		print_line("after set_elem_in_ablist(c1list, 4, 6.441), c1list is " + c1list)
+	catch
+		print_line("set_elem_in_ablist(c1list, 4, 6.441) throws an exception")
+	endtry
+	variable insertedlist1, insertedlist2, insertedlist3, insertedlist4, insertedlist5
+	print_line("insert_elem_into_ablist(c1list, 0, [\"value at 0\"]) = " + (insertedlist1 = insert_elem_into_ablist(c1list, 0, ["value at 0"])))
+	print_line("insert_elem_into_ablist(c1list, 1, [\"value at 1\"]) = " + (insertedlist2 = insert_elem_into_ablist(c1list, 1, ["value at 1"])))
+	print_line("insert_elem_into_ablist(c1list, 2, [\"value at 2\"]) = " + (insertedlist3 = insert_elem_into_ablist(c1list, 2, ["value at 2"])))
+	try
+		print_line("insert_elem_into_ablist(c1list, 3, [\"value at 3\"]) = " + (insertedlist4 = insert_elem_into_ablist(c1list, 3, ["value at 3"])))
+	catch
+		print_line("insert_elem_into_ablist(c1list, 3, [\"value at 3\"]) throws an exception")
+	endtry
+	try
+		print_line("insert_elem_into_ablist(c1list, 4, [\"value at 4\"]) = " + (insertedlist5 = insert_elem_into_ablist(c1list, 4, ["value at 4"])))
+	catch
+		print_line("insert_elem_into_ablist(c1list, 4, [\"value at 4\"]) throws an exception")
+	endtry
+	print_line("after inserting, c1list is " + c1list + " insertedlist1 is " + insertedlist1 + " insertedlist2 is " + insertedlist2 + " insertedlist3 is " + insertedlist3 + " insertedlist4 is " + insertedlist4)
+	c1list[2,1] = 5
+	print_line("after c1list[2,1] = 5, c1list is " + c1list + " insertedlist1 is " + insertedlist1 + " insertedlist2 is " + insertedlist2 + " insertedlist3 is " + insertedlist3 + " insertedlist4 is " + insertedlist4)
+	print_line("remove_elem_from_ablist(insertedlist1, 0) = " + remove_elem_from_ablist(insertedlist1, 0))
+	print_line("remove_elem_from_ablist(insertedlist2, 1) = " + remove_elem_from_ablist(insertedlist2, 1))
+	print_line("remove_elem_from_ablist(insertedlist3, 2) = " + remove_elem_from_ablist(insertedlist3, 2))
+	print_line("remove_elem_from_ablist(insertedlist4, 3) = " + remove_elem_from_ablist(insertedlist4, 3))
+	try
+		print_line("remove_elem_from_ablist(insertedlist4, 4) = " + remove_elem_from_ablist(insertedlist4, 4))
+	catch
+		print_line("remove_elem_from_ablist(insertedlist4, 4) throws an exception")
+	endtry
+	try
+		print_line("remove_elem_from_ablist(insertedlist4, 5) = " + remove_elem_from_ablist(insertedlist4, 5))
+	catch
+		print_line("remove_elem_from_ablist(insertedlist4, 5) throws an exception")
+	endtry
+
+	insertedlist4 = remove_elem_from_ablist(insertedlist4, 3)
+	print_line("insertedlist4 == c1list is " + (insertedlist4 == c1list))
+	c1list[2,1] = 5.5
+	print_line("after c1list[2,1] = 5.5, c1list is " + c1list + " insertedlist1 is " + insertedlist1 + " insertedlist2 is " + insertedlist2 + " insertedlist3 is " + insertedlist3 + " insertedlist4 is " + insertedlist4)
+
+	variable adict = create_abdict()
+	variable aElemValue = [3,4]
+	adict = set_value_in_abdict(adict, "aKey", aElemValue)
+	adict = set_value_in_abdict(adict, "bkey", [nan,"hel", inf])
+	variable bdict = set_value_in_abdict(adict, "akey", [3,5])
+	print_line("After the above operation, adict is " + adict + " bdict is " + bdict)
+	set_value_in_abdict(bdict, "bkey", 2009)
+	print_line("After set_value_in_abdict(bdict, \"bkey\", 2009), adict is " + adict + " bdict is " + bdict)
+	aElemValue[1] = 7
+	print_line("After aElemValue[1] = 7, adict is " + adict + " bdict is " + bdict)
+	print_line("get_value_from_abdict(bdict, \"bkey\") = " + get_value_from_abdict(bdict, "bkey"))
+	try
+		print_line("get_value_from_abdict(bdict, \"bKey\") = " + get_value_from_abdict(bdict, "bKey"))
+	catch
+		print_line("get_value_from_abdict(bdict, \"bKey\") throws an exception!")
+	endtry
+endf
+
+function reg_test_sound_lib()
+	variable snd1 = play_sound(get_upper_level_path(get_src_file_path()) + "只要有你 邓超 纪敏佳 .mp3")
+	sleep(3000)
+	variable snd2 = play_sound(get_upper_level_path(get_src_file_path()) + "只要有你 邓超 纪敏佳 .mp3", true, 1.1, false)
+	print_line("Is snd1 == snd2? " + (snd1 == snd2))
+	print_line("get_sound_path(snd2) == " + get_sound_path(snd2))
+	print_line("get_sound_reference_path(snd2) == " + get_sound_reference_path(snd2))
+	print_line("get_sound_repeat(snd1) == " + get_sound_repeat(snd1))
+	print_line("get_sound_volume(snd1) == " + get_sound_volume(snd1))
+	print_line("get_sound_type(snd1) == " + get_sound_source_type(snd1))
+	sleep(3000)
+	stop_sound(snd1)
+	variable snd3 = play_sound_from_zip(get_upper_level_path(get_src_file_path()) + "zippedSnds.zip", "zippedSnds/01_水边的阿狄丽娜.MP3", 0)
+	sleep(30000)
+	variable snd4 = play_sound_from_zip(get_upper_level_path(get_src_file_path()) + "zippedSnds.zip", "zippedSnds/01_水边的阿狄丽娜.MP3", 0, false, 0.8, true)
+	print_line("Is snd3 == snd4? " + (snd3 == snd4))
+	sleep(30000)
+	stop_all_sounds()
+	sleep(3000)
+	start_sound(snd4)
+	set_sound_volume(snd4, 0.84)
+	print_line("get_sound_volume(snd4) == " + get_sound_volume(snd4))
+	set_sound_repeat(snd4, true)
+	print_line("get_sound_repeat(snd4) == " + get_sound_repeat(snd4))
+	print_line("get_sound_type(snd4) == " + get_sound_source_type(snd4))
+	print_line("Is snd3 == snd4? " + (snd3 == snd4))
+	print_line("get_sound_path(snd4) == " + get_sound_path(snd4))
+	print_line("get_sound_reference_path(snd24) == " + get_sound_reference_path(snd4))
+	sleep(300000)
+	stop_sound(snd4)
+	variable snd5 = play_sound(get_upper_level_path(get_src_file_path()) + "只要有你 邓超 纪敏佳 .mp3", true, 1.1, false)
+	variable waitms = 0
+	while !is_playing(snd5)
+		waitms = waitms + 2
+	loop
+	stop_sound(snd5)
+	print_line("Wait " + waitms + "ms before sound 5 starts!")
+	variable snd6 = play_sound_from_zip(get_upper_level_path(get_src_file_path()) + "zippedSnds.zip", "zippedSnds/01_水边的阿狄丽娜.MP3", 0, false, 0.8, true)
+	waitms = 0
+	while !is_playing(snd6)
+		waitms = waitms + 2
+	loop
+	stop_sound(snd6)
+	print_line("Wait " + waitms + "ms before sound 6 starts!")
+endf
+
+function reg_test_image_lib(savedImgPath)
+	variable img0 = create_image(335, 217)
+	variable img1 = load_image(get_upper_level_path(get_src_file_path()) + "gem1.png")
+	variable img2 = load_image_from_zip(get_upper_level_path(get_src_file_path()) + "zippedimg.zip", "张 三 封/testzip/gem2.png", 0)
+	print_line("img0 is a valid image handle == " + is_valid_image_handle(img0) + " its size is " + get_image_size(img0))
+	print_line("img1 is a valid image handle == " + is_valid_image_handle(img1) + " its size is " + get_image_size(img1))
+	print_line("img2 is a valid image handle == " + is_valid_image_handle(img2) + " its size is " + get_image_size(img2))
+	variable display = open_image_display(img2)
+	set_display_size(display, 79, 41)
+	variable img2Cpy = get_display_snapshot(display, true)
+	display = open_image_display(img0)
+	variable img0Cpy = get_display_snapshot(display, false)
+	display = open_image_display(null)
+	set_display_size(display, 108, 144)
+	variable imgnullCpy = get_display_snapshot(display, false)
+	variable img1Cpy0 = clone_image(img1)
+	variable img1Cpy1 = clone_image(img1, -5, 10, 77, 60, 58, 99)
+	variable img1Cpy2 = clone_image(img1, -5, 10, 77, 60)
+	variable img1Cpy3 = clone_image(img1, 5, 10, 57, 60, 58, 99)
+	save_image(imgnullCpy, "png", savedImgPath + "imgnullCpy.png")
+	save_image(img0Cpy, "png", savedImgPath + "img0Cpy.png")
+	save_image(img1Cpy0, "JPEG", savedImgPath + "img1Cpy0.JPEG")
+	save_image(img1Cpy1, "Bmp", savedImgPath + "img1Cpy1.bmp")
+	save_image(img1Cpy2, "png", savedImgPath + "img1Cpy2.png")
+	save_image(img1Cpy3, "Bmp", savedImgPath + "img1Cpy3.bmp")
+	save_image(img1Cpy3, "Jpg", savedImgPath + "img1Cpy3.jpg")
+	save_image(img1Cpy3, "png", savedImgPath + "img1Cpy3.png")
+	save_image(img2Cpy, "jPG", savedImgPath + "img2Cpy.jpg")
+endf
+
+function reg_test_draw_lib(aDisplay, savedImgPath)
+	variable display = aDisplay
+	if display == null
+		display = open_screen_display("display properties", [23, 179, 201], true, [640, 680])
+	endif
+	draw_point(null, display, [50, 40], [255, 0, 0], [6, "up_triangle"])
+	draw_point(1, display, [40, 40], [255, 0, 0], [5, "dot"])
+	draw_point(1, display, [40, 80], [255, 0, 0], [10, "circle"])
+	draw_point(1, display, [40, 120], [255, 0, 0], [15, "square"])
+	draw_point(1, display, [40, 160], [255, 0, 0], [20, "diamond"])
+	draw_point(1, display, [40, 200], [255, 0, 0], [25, "up_triangle"])
+	draw_point(1, display, [40, 240], [255, 0, 0], [30, "down_triangle"])
+	draw_point(1, display, [40, 280], [255, 0, 0], [35, "cross"])
+	draw_point(1, display, [40, 320], [255, 0, 0], [40, "x"])
+	draw_point(1, display, [40, 360], [255, 0, 0], [20, "diamnd"])
+	update_display(display)
+	sleep(3000)
+	save_image(get_display_snapshot(display, false), "jpeg", savedImgPath + "drawPointTest.jpg")
+	drop_old_painting_requests(1, display)
+	draw_line(["line", -3], display, [60, 73], [540, 119], [125, 203, 179, 42])
+	draw_line(["line", 4.78], display, [70, 93], [320, 149], [58, 43, 222, 12], [7])
+	draw_line(["line", 2.91], display, [80, 103], [470, 79], [225, 203, 79, 142], [19, "dot"])
+	update_display(display)
+	sleep(3000)
+	save_image(get_display_snapshot(display, false), "jpeg", savedImgPath + "drawLineTest.jpg")
+	drop_old_painting_requests(["line", 2.91], display)
+	draw_polygon("polygon1", display, [70, 90], [142, 184], [309, 111], [83, 44, 259], 8)
+	draw_polygon("polygon", display, [370, 390], [542, 584], [409, 411], [208, 600], [183, 44, 259], 0)
+	update_display(display)
+	sleep(3000)
+	save_image(get_display_snapshot(display, false), "jpeg", savedImgPath + "drawPolygonTest.jpg")
+	drop_old_painting_requests("polygon1", display)
+	draw_rect("rect", display, [240, 250], 40, 90, [209, 176, 31, 44], 8)
+	draw_rect("rect", display, [340, 350], 40, 90, [209, 176, 31, 44], 0)
+	variable pei = NULL
+	pei = set_porterduff_mode(pei, "")
+	draw_rect("rect", display, [440, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "clear")
+	draw_rect("rect", display, [420, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "src")
+	draw_rect("rect", display, [400, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "dst")
+	draw_rect("rect", display, [380, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "src_over")
+	draw_rect("rect", display, [360, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "dst_over")
+	draw_rect("rect", display, [340, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "src_in")
+	draw_rect("rect", display, [320, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "dst_in")
+	draw_rect("rect", display, [300, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "src_out")
+	draw_rect("rect", display, [280, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "dst_out")
+	draw_rect("rect", display, [260, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "src_atop")
+	draw_rect("rect", display, [240, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "dst_atop")
+	draw_rect("rect", display, [220, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "xor")
+	draw_rect("rect", display, [200, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	print_line("last puff mode is " + get_porterduff_mode(pei))
+	update_display(display)
+	sleep(3000)
+	save_image(get_display_snapshot(display, false), "jpeg", savedImgPath + "drawRectTest.jpg")
+	clear_rect("rect", display, [150, 480], 45, 59)
+	update_display(display)
+	sleep(3000)
+	save_image(get_display_snapshot(display, false), "jpeg", savedImgPath + "clearRectTest.jpg")
+	drop_old_painting_requests("rect", display)
+	draw_oval("oval", display, [240, 250], 40, 90, [209, 176, 31, 44], 8)
+	draw_oval("oval", display, [340, 350], 40, 90, [209, 176, 31, 44], 0)
+	pei = set_porterduff_mode(pei, "")
+	draw_oval("oval", display, [440, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "clear")
+	draw_oval("oval", display, [420, 450], 10, 20, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "src")
+	draw_oval("oval", display, [400, 450], 20, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "dst")
+	draw_oval("oval", display, [380, 450], 20, 20, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "src_over")
+	draw_oval("oval", display, [360, 450], 20, 20, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "dst_over")
+	draw_oval("oval", display, [340, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "src_in")
+	draw_oval("oval", display, [320, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "dst_in")
+	draw_oval("oval", display, [300, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "src_out")
+	draw_oval("oval", display, [280, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "dst_out")
+	draw_oval("oval", display, [260, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "src_atop")
+	draw_oval("oval", display, [240, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "dst_atop")
+	draw_oval("oval", display, [220, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	pei = set_porterduff_mode(pei, "xor")
+	draw_oval("oval", display, [200, 450], 10, 10, [209, 176, 31, 44], 0, pei)
+	update_display(display)
+	sleep(3000)
+	save_image(get_display_snapshot(display, false), "jpeg", savedImgPath + "drawOvalTest.jpg")
+	clear_oval("oval", display, [250, 480], 73, 42)
+	update_display(display)
+	sleep(3000)
+	save_image(get_display_snapshot(display, false), "jpeg", savedImgPath + "clearOvalTest.jpg")
+	drop_old_painting_requests("oval", display)
+	update_display(display)
+	sleep(3000)
+	save_image(get_display_snapshot(display, false), "jpeg", savedImgPath + "dropOLdPaintingTest.jpg")
+
+	draw_image("image", display, get_upper_level_path(get_src_file_path()) + "gem4.png", 48, 157)
+	variable gem3Img = load_image(get_upper_level_path(get_src_file_path()) + "gem4.png")
+	draw_image("image", display, gem3Img, 148, 257, 3, 0.5)
+	draw_image("image", display, gem3Img, 248, 157, 0.8, 2)
+	pei = set_porterduff_mode(pei, "")
+	draw_image("image", display, get_upper_level_path(get_src_file_path()) + "gem4.png", -10, -10, 80, 80, 110, 350, 200, 400, pei)
+	pei = set_porterduff_mode(pei, "clear")
+	draw_image("imagesrc", display, gem3Img, 0, 0, 64, 64, 250, 350, 180, 200, pei)
+	draw_image("image", display, gem3Img, 80, -20, -10, 90, 210, 350, 300, 400, pei)
+	pei = set_porterduff_mode(pei, "src")
+	draw_image("imagesrc", display, gem3Img, 80, -20, -10, 90, 310, 350, 400, 400, pei)
+	draw_image("imagesrc", display, gem3Img, -20, -10, 90, 80, 310, 400, 400, 450, pei)
+	draw_image("imagesrc", display, gem3Img, 0, 0, 90, 80, 210, 400, 300, 450, pei)
+	draw_image("imagesrc", display, gem3Img, 0, 0, 64, 64, 210, 440, 300, 480, pei)
+	draw_image("imagesrc", display, gem3Img, 0, 0, 32, 32, 210, 540, 300, 580, pei)
+	update_display(display)
+	sleep(3000)
+	save_image(get_display_snapshot(display, false), "jpeg", savedImgPath + "drawImageTest.jpg")
+	drop_old_painting_requests("imagesrc", display)
+	variable peichoices = ["", "clear", "src", "dst", "src_over", "dst_over", "src_in", "dst_in", "src_out", "dst_out", "src_atop", "dst_atop", "xor"]
+	for variable idx = 0 to size(peichoices)[0] - 1
+		variable horAlign = 0, verAlign = 0
+		variable peiBndrySize = [300, 55]
+		variable font = ""
+		select idx
+		case 0
+			horAlign = -1
+			verAlign = -1
+			font = null
+			break
+		case 1
+			horAlign = -1
+			verAlign = 0
+			font = null
+			break
+		case 2
+			horAlign = -1
+			verAlign = 1
+			break
+		case 3
+			horAlign = 0
+			verAlign = -1
+			break
+		case 4
+			horAlign = 0
+			verAlign = 0
+			font = "SimSun"
+			break
+		case 5
+			horAlign = 0
+			verAlign = 1
+			font = "SimSun"
+			break
+		case 6
+			horAlign = 1
+			verAlign = -1
+			font = "Arial"
+			break
+		case 7
+			horAlign = 1
+			verAlign = 0
+			font = "Arial"
+			break
+		case 8
+			horAlign = 1
+			verAlign = 1
+			font = "Arial 88"
+			break
+		case 9
+			horAlign = -1
+			verAlign = -1
+			peiBndrySize = [21,75]
+			font = "asdfwefaw"
+			break
+		case 10
+			horAlign = -1
+			verAlign = 1
+			peiBndrySize = [300, 11]
+			font = "Hei"
+			break
+		case 11
+			horAlign = 1
+			verAlign = -1
+			peiBndrySize = [21,75]
+			font = "Song 79"
+			break
+		case 12
+			horAlign = -1
+			verAlign = 1
+			peiBndrySize = [11,75]
+			font = "11"
+			break
+		ends
+		variable txtStr = "OK, horizontal align = " + horAlign + " while\nvertical align = " + verAlign
+		if idx == 0
+			variable bndry = calculate_text_boundary(display, txtStr, [108, 190])
+			draw_text("image", display, txtStr, [108, 190], [255, 255, 255])
+			draw_rect("image", display, [bndry[0], bndry[1]], bndry[2], bndry[3], [241, 11, 209, 11], 1)
+		elseif idx < 5
+			variable font = null
+			if idx == 2
+				font = ""
+			elseif idx == 3
+				font = " "
+			elseif idx == 4
+				font = "Hei"
+			else
+				font = "eweoi02e0"
+			endif
+			variable bndry = calculate_text_boundary(display, txtStr, [108, 190], [10 + idx, font])
+			draw_text("image", display, txtStr, [108, 190], [255, 255, 255], [10 + idx, font])
+			draw_rect("image", display, [bndry[0], bndry[1]], bndry[2], bndry[3], [241, 11, 209, 11], 1)
+		else
+			variable bndry = calculate_text_boundary(display, txtStr, [108, 190], idx * 2)
+			draw_text("image", display, txtStr, [108, 190], [255, 255, 255], idx * 2)
+			draw_rect("image", display, [bndry[0], bndry[1]], bndry[2], bndry[3], [241, 11, 209, 11], 1)
+		endif
+		draw_rect("image", display, [256, 72], peiBndrySize[0], peiBndrySize[1], [241, 209, 11], 1)
+		variable origin0 = calculate_text_origin(display, "pei is " + peichoices[idx], [256, 72], peiBndrySize[0], peiBndrySize[1], horAlign, verAlign)
+		variable origin1 = calculate_text_origin(display, "pei is " + peichoices[idx], [256, 72], peiBndrySize[0], peiBndrySize[1], horAlign, verAlign, 22)
+		variable origin2 = calculate_text_origin(display, "pei is " + peichoices[idx], [256, 72], peiBndrySize[0], peiBndrySize[1], horAlign, verAlign, [22])
+		print_line("origin0 = " + origin0 + " origin1 = " + origin1 + " origin2 = " + origin2)
+		variable origin = calculate_text_origin(display, "God it, god it, got it, got it, got it!!!\nI finally get it, you know what,\npei is " + peichoices[idx], [256, 72], peiBndrySize[0], peiBndrySize[1], horAlign, verAlign, [22, font])
+		draw_text("image", display, "God it, god it, got it, got it, got it!!!\nI finally get it, you know what,\npei is " + peichoices[idx], origin, [27, 149, 208], [22, font])
+		pei = set_porterduff_mode(pei, peichoices[idx])
+		draw_image("image", display, gem3Img, 80, -20, -10, 90, 310, 350, 400, 400, pei)
+		draw_image("image", display, gem3Img, -20, -10, 90, 80, 310, 400, 400, 450, pei)
+		draw_image("image", display, gem3Img, 0, 0, 90, 80, 210, 400, 300, 450, pei)
+		draw_image("image", display, gem3Img, 0, 0, 64, 64, 210, 440, 300, 480, pei)
+		draw_image("image", display, gem3Img, 0, 0, 32, 32, 210, 540, 300, 580, pei)
+		update_display(display)
+		sleep(3000)
+		save_image(get_display_snapshot(display, false), "jpeg", savedImgPath + "drawImageTest" + idx + ".jpg")
+		drop_old_painting_requests("image", display)
+	next
+endf
+
+function reg_test_image_display(savedImgPath)
+	variable displayImg = open_image_display(null)
+	print_line("Before shutdown_display, displayImg is onlive is " + is_display_on_live(displayImg))
+	shutdown_display(displayImg, false)
+	print_line("After shutdown_display, displayImg is onlive is " + is_display_on_live(displayImg))
+	
+	displayImg = open_image_display(get_upper_level_path(get_src_file_path()) + "gem1.png")
+	try
+		set_display_bgrnd_image(displayImg, null, 0)
+	catch
+		print_line("cannot set display background image to null")
+		set_display_bgrnd_image(displayImg, get_upper_level_path(get_src_file_path()) + "gem5.png", 1)
+		variable bkgrndImg = get_display_bgrnd_image(displayImg)
+		set_display_bgrnd_image(displayImg, get_upper_level_path(get_src_file_path()) + "gem3.png", 2)
+		set_display_bgrnd_image(displayImg, bkgrndImg, 3)
+	endtry
+	draw_rect("displayImg", displayImg, [200, 300], 100, 150, [58, 141, 109, 278], 0)  
+	set_display_size(displayImg, 640, 720)
+	draw_rect("displayImg", displayImg, [100, 100], 120, 110, [83, 278, 141, 109], 0)
+	update_display(displayImg)
+	save_image(get_display_snapshot(displayImg, false), "PNG", savedImgPath + "snapshot_img_set_bgrnd_null.png")
+	set_display_bgrnd_image(displayImg, get_upper_level_path(get_src_file_path()) + "gem5.png", 1)
+	variable bkgrndImg = get_display_bgrnd_image(displayImg)
+	set_display_bgrnd_image(displayImg, get_upper_level_path(get_src_file_path()) + "gem3.png", 2)
+	set_display_bgrnd_image(displayImg, bkgrndImg, 3)
+	set_display_size(displayImg, 640, 720)
+	set_display_resizable(displayImg, true)
+	save_image(get_display_snapshot(displayImg, false), "PNG", savedImgPath + "snapshot_img_b4_setbrgndcolor.png")
+	set_display_bgrnd_color(displayImg, [71, 55, 239, 31])//[71, 203, 92, 179])
+	set_display_caption(displayImg, "Image display test")
+	set_display_confirm_close(displayImg, true)
+	set_display_orientation(displayImg, 7)
+	print_line("display size is " + get_display_size(displayImg) + " background color is " + get_display_bgrnd_color(displayImg) _
+		+ "\nbackground image is " + get_display_bgrnd_image(displayImg) + " background image mode is " + get_display_bgrnd_image_mode(displayImg) _
+		+ "\ndisplay resizable is " + get_display_resizable(displayImg) + " display caption is " + get_display_caption(displayImg) _
+		+ "\ndisplay confirm close is " + get_display_confirm_close(displayImg) + " orientation is " + get_display_orientation(displayImg))
+	variable snapshotBig = get_display_snapshot(displayImg, false)
+	variable snapshotSmall = get_display_snapshot(displayImg, true, 0.5, 0.25)
+	save_image(snapshotBig, "jpEG", savedImgPath + "big_snapshot_img_display.jpg")
+	save_image(snapshotBig, "Png", savedImgPath + "big_snapshot_img_display.png")
+	save_image(snapshotSmall, "jpEG", savedImgPath + "small_snapshot_img_display.jpeg")
+	save_image(snapshotSmall, "Bmp", savedImgPath + "small_snapshot_img_display.bmp")
+	draw_rect("displayImg", displayImg, [300, 200], 100, 150, [119, 41, 209, 78], 0)  
+	set_display_snapshot_as_bgrnd(displayImg, false, false)
+	variable snapshot = get_display_snapshot(displayImg, false)
+	save_image(snapshot, "jpEG", savedImgPath + "snapshot_img_display1.jpg")
+	draw_rect("displayImg", displayImg, [400, 300], 100, 150, [119, 41, 209, 78], 0)  
+	set_display_snapshot_as_bgrnd(displayImg, true, false)
+	snapshot = get_display_snapshot(displayImg, false)
+	save_image(snapshot, "jpEG", savedImgPath + "snapshot_img_display2.jpg")
+	draw_rect("displayImg", displayImg, [500, 400], 100, 150, [119, 41, 209, 78], 0)  
+	set_display_snapshot_as_bgrnd(displayImg, true, true)
+	snapshot = get_display_snapshot(displayImg, false)
+	save_image(snapshot, "jpEG", savedImgPath + "snapshot_img_display3.jpg")
+	draw_rect("displayImg", displayImg, [600, 500], 100, 150, [119, 41, 209, 78], 0)  
+	snapshot = get_display_snapshot(displayImg, false)
+	save_image(snapshot, "jpEG", savedImgPath + "snapshot_img_display4.jpg")
+	update_display(displayImg)
+	snapshot = get_display_snapshot(displayImg, false)
+	save_image(snapshot, "jpEG", savedImgPath + "snapshot_img_display5.jpg")
+	shutdown_display(displayImg)
+endf
+
+function reg_test_display_properties(savedImgPath)
+	variable display = open_screen_display("display properties")
+	variable snapshotBig, snapshotSmall
+	variable waitingms = 2000
+	print_line("After start, display size is " + get_display_size(display))
+	print_line("After start, display background color is " + get_display_bgrnd_color(display))
+	print_line("After start, display background image is " + get_display_bgrnd_image(display))
+	print_line("After start, display background image mode is " + get_display_bgrnd_image_mode(display))
+	set_display_size(display, 640, 495)
+	print_line("After set, display size is " + get_display_size(display))
+	set_display_bgrnd_color(display, [121, 130, 21, 179])
+	print_line("After set, display background color is " + get_display_bgrnd_color(display))
+	sleep(waitingms)
+	set_display_bgrnd_image(display, get_upper_level_path(get_src_file_path()) + "gem1.png", 0)
+	variable imgGem1 = get_display_bgrnd_image(display)
+	print_line("After set, display background image is " + imgGem1)
+	print_line("After set, display background image mode is " + get_display_bgrnd_image_mode(display))
+	update_display(display)
+	sleep(waitingms)
+	set_display_bgrnd_image(display, imgGem1, 1)
+	print_line("After set, display background image is " + get_display_bgrnd_image(display))
+	print_line("After set, display background image mode is " + get_display_bgrnd_image_mode(display))
+	update_display(display)
+	sleep(waitingms)
+	set_display_bgrnd_image(display, imgGem1, 2)
+	print_line("After set, display background image is " + get_display_bgrnd_image(display))
+	print_line("After set, display background image mode is " + get_display_bgrnd_image_mode(display))
+	update_display(display)
+	sleep(waitingms)
+	set_display_size(display, 1028, 640)
+	set_display_bgrnd_image(display, imgGem1, 3)
+	print_line("After set, display background image is " + get_display_bgrnd_image(display))
+	print_line("After set, display background image mode is " + get_display_bgrnd_image_mode(display))
+	// update_display(display)
+	// sleep(waitingms)
+	snapshotSmall = get_display_snapshot(display, false)
+	snapshotBig = get_display_snapshot(display, true, 2, 3)
+	delete_file(get_upper_level_path(get_src_file_path()) + "big_snapshot.bmp")
+	save_image(snapshotBig, "bMp", savedImgPath + "big_snapshot.bmp")
+	delete_file(get_upper_level_path(get_src_file_path()) + "big_snapshot.jpeg")
+	save_image(snapshotBig, "JpG", savedImgPath + "big_snapshot.jpeg")
+	delete_file(get_upper_level_path(get_src_file_path()) + "small_snapshot.png")
+	save_image(snapshotSmall, "pnG", savedImgPath + "small_snapshot.png")
+	print_line("Is display resizable? " + get_display_resizable(display))
+	set_display_resizable(display, !get_display_resizable(display))
+	print_line("Is display resizable now? " + get_display_resizable(display))
+	set_display_resizable(display, !get_display_resizable(display))
+	print_line("The final display resizable : " + get_display_resizable(display))
+	print_line("Display caption is " + get_display_caption(display))
+	set_display_caption(display, "New caption")
+	print_line("Now the display caption is " + get_display_caption(display))
+	draw_text("game test", display, "Should Hello world text appears?", [10, 30], [233, 274, 118, 119], [18, "SimSun"])
+	//update_display(display)
+	//sleep(waitingms)
+	draw_text("game test", display, "Hello world text appears", [80, 130], [233, 274, 18, 119], [18, "SimSun"])
+	//update_display(display)
+	//sleep(waitingms)
+	set_display_snapshot_as_bgrnd(display, true, false) // do not clear painting events, otherwise, hello world text will not appear
+	print_line("Now the display orientation is " + get_display_orientation(display))
+	draw_text("game test", display, "display orientation is -1", [40, 170], [209, 24, 218, 219], [18, "SimSun"])
+	update_display(display)
+	set_display_orientation(display, -1)
+	print_line("After set display orientation = -1, the display orientation is " + get_display_orientation(display))
+	sleep(waitingms)
+	draw_text("game test", display, "display orientation is 0", [40, 190], [209, 124, 218, 219], [18, "SimSun"])
+	update_display(display)
+	set_display_orientation(display, 0)
+	print_line("After set display orientation = 0, the display orientation is " + get_display_orientation(display))
+	sleep(waitingms)
+	draw_text("game test", display, "display orientation is 1", [40, 210], [209, 124, 218, 219], [18, "SimSun"])
+	update_display(display)
+	set_display_orientation(display, 1)
+	print_line("After set display orientation = 1, the display orientation is " + get_display_orientation(display))
+	sleep(waitingms)
+	draw_text("game test", display, "display orientation is 6", [40, 230], [209, 124, 218, 219], [18, "SimSun"])
+	update_display(display)
+	set_display_orientation(display, 6)
+	print_line("After set display orientation = 6, the display orientation is " + get_display_orientation(display))
+	sleep(waitingms)
+	draw_text("game test", display, "display orientation is 7", [40, 250], [209, 124, 218, 219], [18, "SimSun"])
+	update_display(display)
+	set_display_orientation(display, 7)
+	print_line("After set display orientation = 7, the display orientation is " + get_display_orientation(display))
+	sleep(waitingms)
+	draw_text("game test", display, "display orientation is 8", [40, 270], [209, 124, 218, 219], [18, "SimSun"])
+	update_display(display)
+	set_display_orientation(display, 8)
+	print_line("After set display orientation = 8, the display orientation is " + get_display_orientation(display))
+	sleep(waitingms)
+	draw_text("game test", display, "display orientation is 9", [40, 290], [209, 124, 218, 219], [18, "SimSun"])
+	update_display(display)
+	set_display_orientation(display, 9)
+	print_line("After set display orientation = 9, the display orientation is " + get_display_orientation(display))
+	sleep(waitingms)
+	set_display_confirm_close(display, false)
+	print_line("After set display confirm close to be false, the confirm close is " + get_display_confirm_close(display))
+	sleep(waitingms)
+	set_display_confirm_close(display, true)
+	print_line("After set display confirm close to be true, the confirm close is " + get_display_confirm_close(display))
+	sleep(waitingms)
+	set_display_bgrnd_image(display, null, 1)
+	save_image(get_display_snapshot(display, true, 0.5, 0.4), "bMp", savedImgPath + "null_bkgrnd_shrinked_snapshot.bmp")
+	shutdown_display(display)
+	shutdown_display(display, true)
+endf
+
+function reg_test_open_close_screen_display()
+	// test open_screen_display and shutdown_display
+	variable display
+	print_line("Now open can close game test1, orientation is 111")
+	display = open_screen_display("game test1", [121, 54, 29, 177], false, [320, 180], true, 111)
+	draw_text("game test", display, "Hello world", [0, 10], [74, 233, 18, 9], [18, "SimSun"])
+	draw_text("game test", display, "one hundred and eleven", [50, 70], [199, 233, 295, 49], [29, "SimSun"])
+	update_display(display)
+	sleep(5000)
+	shutdown_display(display)
+	
+	print_line("Now open can close game test1, orientation is -1")
+	display = open_screen_display("game test1", [121, 54, 29, 177], false, [320, 180], true, -1)
+	draw_text("game test", display, "Hello world", [0, 10], [74, 233, 18, 9], [18, "SimSun"])
+	draw_text("game test", display, "minus one", [60, 90], [199, 233, 295, 49], [29, "SimSun"])
+	update_display(display)
+	sleep(5000)
+	shutdown_display(display)
+	
+	print_line("Now open can close game test1, orientation is 0")
+	display = open_screen_display("game test1", [121, 54, 29, 177], false, [320, 180], true, 0)
+	draw_text("game test", display, "Hello world", [0, 10], [74, 233, 18, 9], [18, "SimSun"])
+	draw_text("game test", display, "zero", [60, 90], [199, 233, 295, 49], [29, "SimSun"])
+	update_display(display)
+	sleep(5000)
+	shutdown_display(display)
+	
+	print_line("Now open can close game test1, orientation is 1")
+	display = open_screen_display("game test1", [121, 54, 29, 177], false, [320, 180], true, 1)
+	draw_text("game test", display, "Hello world", [0, 10], [74, 233, 18, 9], [18, "SimSun"])
+	draw_text("game test", display, "minus one", [60, 90], [199, 233, 295, 49], [29, "SimSun"])
+	update_display(display)
+	sleep(5000)
+	shutdown_display(display)
+	
+	print_line("Now open can close game test1, orientation is 6")
+	display = open_screen_display("game test1", [121, 54, 29, 177], false, [320, 180], true, 6)
+	draw_text("game test", display, "Hello world", [0, 10], [74, 233, 18, 9], [18, "SimSun"])
+	draw_text("game test", display, "six", [60, 90], [199, 233, 295, 49], [29, "SimSun"])
+	update_display(display)
+	sleep(5000)
+	shutdown_display(display)
+	
+	print_line("Now open can close game test1, orientation is 7")
+	display = open_screen_display("game test1", [121, 54, 29, 177], false, [320, 180], true, 7)
+	draw_text("game test", display, "Hello world", [0, 10], [74, 233, 18, 9], [18, "SimSun"])
+	draw_text("game test", display, "seven", [60, 90], [199, 233, 295, 49], [29, "SimSun"])
+	update_display(display)
+	sleep(5000)
+	shutdown_display(display)
+	
+	print_line("Now open can close game test1, orientation is 8")
+	display = open_screen_display("game test1", [121, 54, 29, 177], false, [320, 180], true, 8)
+	draw_text("game test", display, "Hello world", [0, 10], [74, 233, 18, 9], [18, "SimSun"])
+	draw_text("game test", display, "eight", [60, 90], [199, 233, 295, 49], [29, "SimSun"])
+	update_display(display)
+	sleep(5000)
+	shutdown_display(display)
+	
+	print_line("Now open can close game test1, orientation is 9")
+	display = open_screen_display("game test1", [121, 54, 29, 177], false, [320, 180], true, 9)
+	draw_text("game test", display, "Hello world", [0, 10], [74, 233, 18, 9], [18, "SimSun"])
+	draw_text("game test", display, "nine", [60, 90], [199, 233, 295, 49], [29, "SimSun"])
+	update_display(display)
+	sleep(5000)
+	shutdown_display(display)
+	
+	print_line("Now open can close game test2")
+	display = open_screen_display("game test2", [121, 54, 29, 177], false, [220, 380], false)
+	draw_text("game test", display, "Hello world", [0, 10], [74, 233, 18, 9], [18, "SimSun"])
+	update_display(display)
+	sleep(5000)
+	shutdown_display(display)
+	
+	print_line("Now open can close game test3")
+	display = open_screen_display("game test3", [121, 54, 29, 177], true, [280, 280])
+	sleep(5000)
+	shutdown_display(display, true)
+	
+	print_line("Now open can close game test4")
+	display = open_screen_display("game test4", [121, 54, 29, 177], true)
+	shutdown_display(display, true)
+	
+	print_line("Now open can close game test4, with user confirm close")
+	display = open_screen_display("game test4", [121, 54, 29, 177], true)
+	print_line("Before shutdown_display, game test4 is alive? " + is_display_on_live(display))
+	draw_text("game test", display, "Please do NOT confirm yes", [50, 30], [74, 233, 18, 9], [18, "SimSun"])
+	update_display(display)
+	shutdown_display(display) // do not confirm yes.
+	print_line("After NOT confirm shutdown_display, game test4 is alive? " + is_display_on_live(display))
+	draw_text("game test", display, "Now please confirm yes", [90, 30], [74, 233, 18, 9], [18, "SimSun"])
+	update_display(display)
+	shutdown_display(display) // confirm yes.
+	print_line("After confirm shutdown_display, game test4 is alive? " + is_display_on_live(display))
+	
+	print_line("Now open can close game test5")
+	display = open_screen_display("game test5", [121, 54, 29, 177])
+	print_line("Before shutdown_display, game test5 is alive? " + is_display_on_live(display))
+	draw_text("game test", display, "Please confirm yes", [70, 30], [74, 233, 18, 9], [18, "SimSun"])
+	update_display(display)
+	shutdown_display(display)
+	print_line("After shutdown_display, game test5 is alive? " + is_display_on_live(display))
+	
+	print_line("Now open can close game test6")
+	display = open_screen_display("game test6")
+	sleep(5000)
+	shutdown_display(display)
+	
+	print_line("Now open can close game test7")
+	display = open_screen_display()
+	sleep(5000)
+	shutdown_display(display)
+endf

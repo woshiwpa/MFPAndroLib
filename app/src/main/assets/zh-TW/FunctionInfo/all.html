@@ -1,0 +1,2079 @@
+<html>
+<head>
+<title>可編程科學計算器幫助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">可編程科學計算器幫助：所有函數</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函數名</th>
+<th>函數幫助信息</th>
+</tr>
+<tr>
+<td><center>abs</center></td>
+<td><p>::mfp::math::complex::abs(1) :</p>
+<p>abs(x)返回復數x的模或者實數x的絕對值。</p>
+</td>
+</tr>
+<tr>
+<td><center>accept</center></td>
+<td><p>::mfp::paracomp::connect::accept(1) :</p>
+<p>accept函數接收一個從遠端到一個本地網絡界面的連接請求然後返回接收端（也就是位於本地網絡界面的）連接對象。它只有一個參數，也就是本地網絡界面對象信息。網絡界面對象信息通常是generate_interface函數的返回值。註意如果沒有連接請求到來，該函數調用會阻塞當前線程。該函數的一個例子是accept(local_info)。</p>
+</td>
+</tr>
+<tr>
+<td><center>acos</center></td>
+<td><p>::mfp::math::trigon::acos(1) :</p>
+<p>acos(x)返回x的反余弦值，註意x可以為復數。</p>
+</td>
+</tr>
+<tr>
+<td><center>acosd</center></td>
+<td><p>::mfp::math::trigon::acosd(1) :</p>
+<p>acosd(x)返回基於角度的x的反余弦值。</p>
+</td>
+</tr>
+<tr>
+<td><center>acosh</center></td>
+<td><p>::mfp::math::trigon::acosh(1) :</p>
+<p>函數acosh(x)為雙曲余弦函數的反函數。</p>
+</td>
+</tr>
+<tr>
+<td><center>add_peer_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::add_peer_stream(1) :</p>
+<p>add_peer_stream函數將多媒體流（也就是視頻和音頻）鏈入web RTC的peer connection對象。註意此處的web RTC是指的用於支持聲音和視頻通信的web RTC函數庫，而不是用於支持數據通信的WEBRTC協議棧。它只有一個參數，就是peer connection對象的Id，也就是peer connection對象連接的遠端的地址。</p>
+</td>
+</tr>
+<tr>
+<td><center>add_rtc_media_ice_candidate</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::add_rtc_media_ice_candidate(2) :</p>
+<p>add_rtc_media_ice_candidate函數將一個ICE協議候選對象加入到peer connection對象的ICE候選對象列表中。它有兩個參數，第一個參數是peer connection對象的Id。第二個參數是基於字符串的ICE候選對象的內容。</p>
+</td>
+</tr>
+<tr>
+<td><center>add_rtc_video_output</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::add_rtc_video_output(5) :</p>
+<p>add_rtc_video_output將一個RTC視頻子窗口加到顯示窗口上。它有五個參數，第一個參數是顯示窗口的句柄，該句柄是open_screen_display函數的返回值。剩下的四個參數分別是基於整數的視頻子窗口的左上頂點的橫坐標，縱坐標，寬度和高度。這四個參數決定了視頻子窗口在顯示窗口上的位置。</p>
+</td>
+</tr>
+<tr>
+<td><center>adj</center></td>
+<td><p>::mfp::math::matrix::adj(1) :</p>
+<p>函數程式adj(x)返回2維方陣x的伴隨陣列。</p>
+</td>
+</tr>
+<tr>
+<td><center>alloc_array</center></td>
+<td><p>::mfp::array::alloc_array(1...) :</p>
+<p>alloc_array(x...)返回一個新分配的矩陣，其大小由參數決定。所有的參數都必須為正整數。</p>
+<p>::mfp::array::alloc_array(2) :</p>
+<p>alloc_array(x, y)返回一個新分配的矩陣，其大小由正整數數列參數x決定。參數y是矩陣中所有元素的初始值，註意y參數可省略，如果省略，所有元素被初始化為0。</p>
+</td>
+</tr>
+<tr>
+<td><center>and</center></td>
+<td><p>::mfp::math::logic::and(1...) :</p>
+<p>and(x...)接受不少於1個的任意個數的參數，返回這些參數的邏輯與值。如果某一個參數不是布爾類型，將會被自動轉換為布爾類型。</p>
+</td>
+</tr>
+<tr>
+<td><center>angle</center></td>
+<td><p>::mfp::math::complex::angle(1) :</p>
+<p>angle(x)返回復數x基於弧度的幅角值。</p>
+</td>
+</tr>
+<tr>
+<td><center>append_elem_to_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::append_elem_to_ablist(2) :</p>
+<p>append_elem_to_ablist(array_based_list, ref_of_elem)將ref_of_elem的引用添加到基於數組的序列array_based_list的尾部。它返回更新過的array_based_list。作為參數的array_based_list和返回值共享元素。</p>
+</td>
+</tr>
+<tr>
+<td><center>asin</center></td>
+<td><p>::mfp::math::trigon::asin(1) :</p>
+<p>asin(x)返回x的反正弦值，註意x可以為復數。</p>
+</td>
+</tr>
+<tr>
+<td><center>asind</center></td>
+<td><p>::mfp::math::trigon::asind(1) :</p>
+<p>asind(x)返回基於角度的x的反正弦值。</p>
+</td>
+</tr>
+<tr>
+<td><center>asinh</center></td>
+<td><p>::mfp::math::trigon::asinh(1) :</p>
+<p>函數asinh(x)為雙曲正弦函數的反函數。</p>
+</td>
+</tr>
+<tr>
+<td><center>atan</center></td>
+<td><p>::mfp::math::trigon::atan(1) :</p>
+<p>atan(x)返回x的反正切值，注意x可以為復數。</p>
+</td>
+</tr>
+<tr>
+<td><center>atand</center></td>
+<td><p>::mfp::math::trigon::atand(1) :</p>
+<p>atand(x)返回基於角度的x的反正切值。</p>
+</td>
+</tr>
+<tr>
+<td><center>atanh</center></td>
+<td><p>::mfp::math::trigon::atanh(1) :</p>
+<p>函數atanh(x)為雙曲正切函數的反函數。</p>
+</td>
+</tr>
+<tr>
+<td><center>avg</center></td>
+<td><p>::mfp::math::stat_stoch::avg(0...) :</p>
+<p>函數avg(…)返回任意個數參數的平均值。</p>
+</td>
+</tr>
+<tr>
+<td><center>beta</center></td>
+<td><p>::mfp::math::stat_stoch::beta(2) :</p>
+<p>函數程式beta(z1, z2)返回復數z1和z2的beta函數值。註意z1和z2的實部必須是正數。</p>
+</td>
+</tr>
+<tr>
+<td><center>calculate_text_boundary</center></td>
+<td><p>::mfp::graph_lib::draw::calculate_text_boundary(4) :</p>
+<p>calculate_text_boundary(display, string, text_origin, text_style)返回一個 文本塊的邊界長方形。邊界長方形是一個4元素數組，第一個元素是左邊界，第二個元素是上邊界，第三個元素是寬度，第四個元素是高度。Calculate_text_boundary的第一個參數是display，它既可以是screen display，也可以是image display。第二個參數是文本塊的文本，可以不止一行。第三個參數是文本塊起始點的位置。這是一個兩元素數組，第一個元素是起始點橫坐標，第二個元素是起始點縱坐標。最後一個參數是可省略參數，用於定義文本的字體和大小。如果它被省略，則字體為系統缺省字體，大小為16。如果它不被省略，那麼它必須是一個包含一個或者兩個元素的數組。如果是一個元素的數組，那麼該元素必須是一個正整數，代表字體的大小，而字體則為系統缺省字體。如果是包含兩個元素的數組，那麼第一個元素為字體的大小，第二個元素是基於字串的字體的名字。一個本函數的例子為：calculate_text_boundary(display, txtStr, [108, 190], [27, "SimSun"])。</p>
+</td>
+</tr>
+<tr>
+<td><center>calculate_text_origin</center></td>
+<td><p>::mfp::graph_lib::draw::calculate_text_origin(8) :</p>
+<p>calculate_text_origin(display, string, boundary_rect_left_top, width, height, horAlign, verAlign, text_style)返回指定邊界長方形和對齊方式的文本塊的起始點。起始點是一個兩元素（[x,y]）數組，將會被draw_text作為參數使用。Calculate_text_origin的第一個參數是display，它既可以是screen display，也可以是image display。第二個參數是文本塊的文本，可以不止一行。第三個參數是邊界長方形的左上角位置。這是一個兩元素數組，第一個元素是左邊界座標，第二個元素是上邊界座標。第四個和第五個參數是邊界長方形的寬度和高度。第六個參數是文本塊的橫向對齊方式。-1表示左對齊，0表示中對齊，1表示右對齊。第七個參數是文本塊的縱向對齊方式。-1表示上對齊，0表示中對齊，1表示下對齊。最後一個參數是可省略參數，用於定義文本的字體和大小。如果它被省略，則字體為系統缺省字體，大小為16。如果它不被省略，那麼它必須是一個包含一個或者兩個元素的數組。如果是一個元素的數組，那麼該元素必須是一個正整數，代表字體的大小，而字體則為系統缺省字體。如果是包含兩個元素的數組，那麼第一個元素為字體的大小，第二個元素是基於字串的字體的名字。一個本函數的例子為：calculate_text_origin(display, "pei is " + peichoices[idx], [256, 72], peiBndrySize[0], peiBndrySize[1], horAlign, verAlign, [22])。</p>
+</td>
+</tr>
+<tr>
+<td><center>cd</center></td>
+<td><p>::mfp::io::file::cd(1) :</p>
+<p>change_dir(path)（別名cd(path)）將當前路徑變為字串路徑path。如果成功，返回true，否則返回false。例子包括change_dir("D:\\Windows") (Windows)和cd("/") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>ceil</center></td>
+<td><p>::mfp::math::number::ceil(1) :</p>
+<p>ceil(x), x是浮點數，返回不小於x的最小整數。</p>
+<p>::mfp::math::number::ceil(2) :</p>
+<p>ceil(x,y)，x是浮點數，y是非負整數，返回不小於x的小數點後面保留y位有效數字的最小數值。</p>
+</td>
+</tr>
+<tr>
+<td><center>change_dir</center></td>
+<td><p>::mfp::io::file::change_dir(1) :</p>
+<p>change_dir(path)（別名cd(path)）將當前路徑變為字串路徑path。如果成功，返回true，否則返回false。例子包括change_dir("D:\\Windows") (Windows)和cd("/") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>clear_oval</center></td>
+<td><p>::mfp::graph_lib::draw::clear_oval(5) :</p>
+<p>clear_oval(owner_info, display, left_top, width, height)為繪圖事件調度器添加一個清除橢圓形的事件。在繪圖事件調度器調用這個繪製事件時，該事件將在display上清除一個橢圓形。Clear_oval有5個參數。第一個參數是owner_info。Owner_info告訴繪圖事件調度器誰擁有這個繪圖事件。Owner_info可以是一個字串，代表擁有者的名字，也可以是一個整數，代表擁有者的id，還可以是NULL，代表系統擁有該事件，更可以是一個包含兩個元素的數組，其中第一個元素是一個代表擁有者名字的字串，或者代表擁有者id的整數，或者代表系統的NULL，第二個元素是一個代表時標的浮點數，但要注意這裏的時標不是真正的時標，該浮點數可以是任意值。該浮點數的值在清除本繪圖事件時會發揮作用。第二個參數是display，它既可以是screen display，也可以是image display。第三個參數是包含兩個元素的數組（[x,y]），表示該橢圓的包絡長方形左上頂點的位置。第四個和第五個參數為該橢圓的包絡長方形的長度和高度。Clear_oval的例子包括：clear_oval(["my draw", 0.381], d, [128, 45], 18, 30)以及clear_oval(NULL, d, [23, 111], 70, 19)。</p>
+</td>
+</tr>
+<tr>
+<td><center>clear_rect</center></td>
+<td><p>::mfp::graph_lib::draw::clear_rect(5) :</p>
+<p>clear_rect(owner_info, display, left_top, width, height)為繪圖事件調度器添加一個清除長方形的事件。在繪圖事件調度器調用這個繪製事件時，該事件將在display上清除一個長方形。Clear_rect有5個參數。第一個參數是owner_info。Owner_info告訴繪圖事件調度器誰擁有這個繪圖事件。Owner_info可以是一個字串，代表擁有者的名字，也可以是一個整數，代表擁有者的id，還可以是NULL，代表系統擁有該事件，更可以是一個包含兩個元素的數組，其中第一個元素是一個代表擁有者名字的字串，或者代表擁有者id的整數，或者代表系統的NULL，第二個元素是一個代表時標的浮點數，但要注意這裏的時標不是真正的時標，該浮點數可以是任意值。該浮點數的值在清除本繪圖事件時會發揮作用。第二個參數是display，它既可以是screen display，也可以是image display。第三個參數是包含兩個元素的數組（[x,y]），表示該長方形左上頂點的位置。第四個和第五個參數為長方形的長度和高度。Clear_rect的例子包括：clear_rect(["my draw", 0.381], d, [128, 45], 18, 30)以及clear_rect(NULL, d, [23, 111], 70, 19)。</p>
+</td>
+</tr>
+<tr>
+<td><center>clone</center></td>
+<td><p>::mfp::object::clone(1) :</p>
+<p>clone(source_value)復制輸入參數source_value並返回source_value的拷貝。輸入參數可以是任何數據類型，包括字串，數，復數以及陣列。比如，如果變量a等於[1,2]，用戶執行語句variable b = clone(a)就會得的b等於[1,2]。但是這時候b和a是兩個不同的數據。如果用戶改變a的值，比如，設置a[0]等於3，a將會變成[3,2]但是b依然是[1，2]。</p>
+</td>
+</tr>
+<tr>
+<td><center>clone_image</center></td>
+<td><p>::mfp::multimedia::image_lib::clone_image(7) :</p>
+<p>clone_image(image_src, src_left, src_top, src_right, src_bottom, dest_width, dest_height)返回一個新的被包裝過的JAVA圖像對象。該圖形對象的寬度為dest_width，高度為dest_height。這個被返回的圖像是（被拉縮過的）原圖像image_src的被選中的區塊的拷貝。被選中的區塊的左、上、右、下的座標分別是src_left、src_top、src_right和src_bottom。注意src_left、src_top、src_right和src_botto是可選參數，它們的缺省值分別是0、0、image_src的寬度和image_src的高度。dest_width和dest_height也是可選參數。它們的缺省值分別是src_right - src_left以及src_bottom - src_top。本函數的一個例子為 clone_image(img_src, 0, 0, 100, 200, 50, 300)。</p>
+</td>
+</tr>
+<tr>
+<td><center>close_connection</center></td>
+<td><p>::mfp::paracomp::connect::close_connection(1) :</p>
+<p>close_connection關閉一個連接對象。它只有一個參數，就是connect函數，accept函數或者get_incoming_connect函數返回的連接對象。本函數的一個例子為close_connection(conn_obj)。</p>
+</td>
+</tr>
+<tr>
+<td><center>close_local</center></td>
+<td><p>::mfp::paracomp::connect::close_local(1) :</p>
+<p>close_local關閉一個本地網絡界面。它只有一個參數，就是generate_interface函數返回的連接對象。本函數的一個例子為close_local(local_info)。</p>
+</td>
+</tr>
+<tr>
+<td><center>close_rtc_media_peer</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::close_rtc_media_peer(1) :</p>
+<p>本函數關閉一個web RTC的peer connection對象。註意此處的web RTC是指的用於支持聲音和視頻通信的web RTC函數庫，而不是用於支持數據通信的WEBRTC協議棧。本函數唯一的參數是peer connection對象的Id，也就是它的遠端地址。</p>
+</td>
+</tr>
+<tr>
+<td><center>cofactor</center></td>
+<td><p>::mfp::math::matrix::cofactor(1) :</p>
+<p>函數程式cofactor(x)返回2維方陣x的余因子陣列。</p>
+</td>
+</tr>
+<tr>
+<td><center>concat_ablists</center></td>
+<td><p>::mfp::data_struct::array_based::concat_ablists(2) :</p>
+<p>concat_ablists(list1, list2)將基於數組的序列list2併入基於數組的序列list1的尾部並返回合併後的基於數組的序列。作為參數的list1和list2和返回值共享元素。</p>
+</td>
+</tr>
+<tr>
+<td><center>connect</center></td>
+<td><p>::mfp::paracomp::connect::connect(3) :</p>
+<p>connect(local_info, remote_info, not_reuse_exist)函數建立一條從local_info所定義的本地網絡界面到remote_info所定義的遠端網絡界面的網絡連接。參數local_info和remote_info均可通過調用generate_interface函數獲得。第三個參數也就是not_reuse_exist是一個可以省略的布爾值，其缺省值為false。如果它是true，本函數會重用本地網絡界面和遠端網絡界面之間已存在的網絡連接（如果有的話）。註意網絡連接是雙向的。一個網絡連接無論是從本地網絡界面連接到遠端網絡界面還是反過來，都是可以被本函數重用的。但需要註意的是，對於TCPIP協議，在服務端重用一個連入的網絡連接不是那麽容易。原因有兩個，第一，當客戶端發起一個連接時，客戶端所使用的IP端口是由操作系統而不是MFP語言決定的，然而，在服務端，如果想要找到一個連入的網絡連接，客戶端的地址必須完整而精確，也就是說客戶端的IP端口必不可少；其次，如果客戶端和服務端之間存在NAT層，服務端不可能知道位於NAT層內部客戶端實際的IP地址和端口。在這種情況下，如果想要重用已有的反向網絡連接，MFP語言需要分析從客戶端發送到服務端的消息，讀取消息的"TransConnectDestRemote"值。該值就是該網絡連接的客戶端的地址的精確完整信息，如果該連接基於TCPIP協議，該值就是客戶端的IP地址加IP端口。註意如果NAT層存在的話，該地址是從服務端看到的客戶端地址而並非NAT層內部客戶端實際的地址。獲取客戶端詳細地址後再將該地址作為一個參數傳入generate_interface函數便可獲取準確的遠端網絡界面的信息，也就是remote_info。connect函數返回一個字典對象，如果調用成功，其"CONNECT"關鍵字的值便是連接對象的詳細信息；反之，如果調用失敗，"CONNECT"的值則是NULL，而額外的"ERROR"關鍵字的值就是出錯信息。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv</center></td>
+<td><p>::mfp::sig_proc::conv(2) :</p>
+<p>conv(input_a, inputb)返回input_a和input_b的卷積。Input_a和input_b要麼都是一維向量，要麼都是二維矩陣。當前本函數程式僅僅支持一維和二維卷積，比如：</p>
+<p>conv([4,8,2,9],[5,3,8,9,6,7,8]) = [20, 52, 66, 151, 139, 166, 181, 132, 79, 72]</p>
+<p>conv([[4,8,2,9],[8,6,7,9],[2,2,8,-4]],[[-5,i,7],[0.6,8,4]]) = [[-20, -40 + 4 * i, 18 + 8 * i, 11 + 2 * i, 14 + 9 * i, 63], [-37.6, 6.8 + 8 * i, 102.2 + 6 * i, 50.4 + 7 * i, 129 + 9 * i, 99], [-5.2, 57.6 + 2 * i, 58.2 + 2 * i, 119.4 + 8 * i, 156 - 4 * i, 8], [1.2, 17.2, 28.8, 69.6, 0, -16]]</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_bin_to_dec</center></td>
+<td><p>::mfp::math::number::conv_bin_to_dec(1) :</p>
+<p>conv_bin_to_dec(x)將一個二進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個十進制的數值。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_bin_to_hex</center></td>
+<td><p>::mfp::math::number::conv_bin_to_hex(1) :</p>
+<p>conv_bin_to_hex(x)將一個二進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個代表16進制數的字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_bin_to_oct</center></td>
+<td><p>::mfp::math::number::conv_bin_to_oct(1) :</p>
+<p>conv_bin_to_oct(x)將一個二進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個代表八進制數的字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_dec_to_bin</center></td>
+<td><p>::mfp::math::number::conv_dec_to_bin(1) :</p>
+<p>conv_dec_to_bin(x)將一個十進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個代表二進制數的字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_dec_to_hex</center></td>
+<td><p>::mfp::math::number::conv_dec_to_hex(1) :</p>
+<p>conv_dec_to_hex(x)將一個十進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個代表16進制數的字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_dec_to_oct</center></td>
+<td><p>::mfp::math::number::conv_dec_to_oct(1) :</p>
+<p>conv_dec_to_oct(x)將一個十進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個代表八進制數的字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_hex_to_bin</center></td>
+<td><p>::mfp::math::number::conv_hex_to_bin(1) :</p>
+<p>conv_hex_to_bin(x)將一個16進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個代表二進制數的字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_hex_to_dec</center></td>
+<td><p>::mfp::math::number::conv_hex_to_dec(1) :</p>
+<p>conv_hex_to_dec(x)將一個16進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個十進制的數值。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_hex_to_oct</center></td>
+<td><p>::mfp::math::number::conv_hex_to_oct(1) :</p>
+<p>conv_hex_to_oct(x)將一個16進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個代表八進制數的字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_ints_to_str</center></td>
+<td><p>::mfp::string::conv_ints_to_str(1) :</p>
+<p>conv_ints_to_str(int_or_array)將一個整數或者一組整數轉換成一個Unicode字串。如果只有一個整數，返回的字串只包含一個Unicode字符，否則，返回字串的字符數目和int_or_array中的元素數目一致。如果需要轉換的整數是負數或者超出了Unicode字符集的定義範圍，則被轉換成整數0所對應的Unicode字符。示例包括conv_ints_to_str([20320, 22909, 25105, 22909, 22823, 23478, 22909])返回"你好我好大家好"，以及conv_ints_to_str(20320)返回"你"。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_oct_to_bin</center></td>
+<td><p>::mfp::math::number::conv_oct_to_bin(1) :</p>
+<p>conv_oct_to_bin(x)將一個八進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個代表二進制數的字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_oct_to_dec</center></td>
+<td><p>::mfp::math::number::conv_oct_to_dec(1) :</p>
+<p>conv_oct_to_dec(x)將一個八進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個十進制的數值。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_oct_to_hex</center></td>
+<td><p>::mfp::math::number::conv_oct_to_hex(1) :</p>
+<p>conv_oct_to_hex(x)將一個八進制的非負數或代表該數的字串x（x可以為浮點數，也可以為整數）轉換為一個代表16進制數的字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_str_to_ints</center></td>
+<td><p>::mfp::string::conv_str_to_ints(1) :</p>
+<p>conv_str_to_ints(str)將一個Unicode字串轉換成一個整數數組。通常，一個Unicode字符對應一個整數（但也有可能對應兩個整數，如果該Unicode字符超出了UTF-16字符集的範圍。但這種情況很少出現）。如果字串是空的，則返回一個空數組。一個示例為conv_str_to_ints("你好我好大家好")返回[20320, 22909, 25105, 22909, 22823, 23478, 22909]。</p>
+</td>
+</tr>
+<tr>
+<td><center>convert_unit</center></td>
+<td><p>::mfp::physics::convert_unit(3) :</p>
+<p>函數convert_unit(value, from_unit, to_unit)將基於某一個單位的數值轉換為基於另外一個單位的數值。第一個參數是將要轉換的數值，第二個參數是將被轉換的單位（單位是一個對大小寫敏感的字串），第三個參數是轉換後的單位（單位是一個對大小寫敏感的字串）。比如，convert_unit(23.71, "m", "km")。</p>
+<p>本函數支持以下單位：</p>
+<p>1. 長度單位: "um" (微米), "mm" (毫米), "cm" (厘米), "m" (米), "km" (公里), "in" (英寸), "ft" (英尺), "yd" (碼), "mi" (英里), "nmi" (海浬), "AU" (天文單位), "ly" (光年), "pc" (秒差距);</p>
+<p>2. 面積單位: "mm2" (平方毫米), "cm2" (平方厘米), "m2" (平方米), "ha" (公頃), "km2" (平方公里), "sq in" (平方英寸), "sq ft" (平方英尺), "sq yd" (平方碼), "ac" (英畝), "sq mi" (平方英里);</p>
+<p>3. 體積單位: "mL" (毫升), "L" (升), "m3" (立方米), "cu in" (立方英寸), "cu ft" (立方英尺), "cu yd" (立方碼), "km3" (立方公里), "fl oz(Imp)" (液盎司(英制)), "pt(Imp)" (品脫(英制)), "gal(Imp)" (加侖(英制)), "fl oz(US)" (液盎司(美制)), "pt(US)" (品脫(美制)), "gal(US)" (加侖(美制));</p>
+<p>4. 質量單位: "ug" (微克), "mg" (毫克), "g" (克), "kg" (千克), "t" (噸), "oz" (盎司), "lb" (磅), "jin" (市斤), "jin(HK)" (斤(香港)), "jin(TW)" (臺斤);</p>
+<p>5. 速度單位: "m/s" (米每秒), "km/h" (千米每小時), "ft/s" (英尺每秒), "mph" (英里每小時), "knot" (節);</p>
+<p>6. 時間單位: "ns" (納秒), "us" (微秒), "ms" (毫秒), "s" (秒), "min" (分鐘), "h" (小時), "d" (天), "wk" (禮拜), "yr" (年);</p>
+<p>7. 力單位: "N" (牛頓), "kgf" (千克力), "lbF" (磅力);</p>
+<p>8. 壓強單位: "Pa" (帕斯卡), "hPa" (百帕), "kPa" (千帕), "MPa" (兆帕), "atm" (大氣壓), "psi" (每平方英寸上受到的磅力壓力), "Torr" (毫米汞柱);</p>
+<p>9. 能量單位: "J" (焦耳), "kJ" (千焦), "MJ" (兆焦), "kWh" (千瓦時), "cal" (卡路里), "kcal" (千卡), "BTU" (英熱單位);</p>
+<p>10. 功率單位: "W" (瓦特), "kW" (千瓦), "MW" (兆瓦), "cal/s" (卡路里每秒), "BTU/h" (英熱單位每小時), "hp" (馬力);</p>
+<p>11. 溫度單位: "0C" (攝氏度), "0F" (華氏度), "K" (開氏溫標);</p>
+</td>
+</tr>
+<tr>
+<td><center>copy_file</center></td>
+<td><p>::mfp::io::file::copy_file(3) :</p>
+<p>copy_file(source, destination, replace_exist)函數程式拷貝位於字串source路徑的檔案或檔案目錄到位於字串destination路徑的檔案或檔案目錄。如果第三個參數，replace_exist，是true，那麼如果目標檔案已經存在，它將會被源檔案（或者源檔案目錄中的對應檔案）替換。註意第三個參數可以省略，它的缺省值為false。例子包括copy_file("c:\\temp\\try1", "D:\\", true) (Windows)和copy_file("/mnt/sdcard/testfile.txt", "./testfile_copy.txt") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>copy_to_resource</center></td>
+<td><p>::mfp_compiler::annotation::build_asset::copy_to_resource(2) :</p>
+<p>copy_to_resource(source_path, destination_path)是一個用於編譯的函數，也就是說它在打包腳本生成MFP應用時發揮作用。本函數source_path所指向的目標檔會被函數拷貝到assets目錄下的destination_path所指向的檔。這樣一來，一個從本腳本生成的MFP應用仍然能夠在該應用的assets中找到程式中引用的圖像或者聲音檔。本函數返回一個包含三個元素的數組，第一個元素是一個字串包含原始檔案路徑，第二個是基於字串的資源檔案名，第三個是目標路徑。</p>
+</td>
+</tr>
+<tr>
+<td><center>cos</center></td>
+<td><p>::mfp::math::trigon::cos(1) :</p>
+<p>cos(x)返回x的余弦值，註意x可以為復數。</p>
+</td>
+</tr>
+<tr>
+<td><center>cosd</center></td>
+<td><p>::mfp::math::trigon::cosd(1) :</p>
+<p>cosd(x)返回基於角度的x的余弦值。</p>
+</td>
+</tr>
+<tr>
+<td><center>cosh</center></td>
+<td><p>::mfp::math::trigon::cosh(1) :</p>
+<p>函數cosh(x)為雙曲余弦函數。</p>
+</td>
+</tr>
+<tr>
+<td><center>create_abdict</center></td>
+<td><p>::mfp::data_struct::array_based::create_abdict(0) :</p>
+<p>create_abdict()創建一個新的，基於數組的字典。</p>
+</td>
+</tr>
+<tr>
+<td><center>create_file</center></td>
+<td><p>::mfp::io::file::create_file(2) :</p>
+<p>create_file(path, is_folder)創建一個檔案（如果is_folder是false或者不存在）或者檔案 目錄（如果if_folder是true）。如果這個基於字串的路徑path的上級目錄不存在，不存在的上級目錄將會被創建。如果檔案能夠被創建，這個函數程式返回true，否則返回false。例子包括create_file("c:\\temp\\try1", true) (Windows)和create_file("testfile_copy.txt") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>create_image</center></td>
+<td><p>::mfp::multimedia::image_lib::create_image(2) :</p>
+<p>create_image(w, h)返回一個全新的，空白的被包裝過的JAVA圖像對象。該圖形對象的寬度為w，高度為h。</p>
+</td>
+</tr>
+<tr>
+<td><center>create_rtc_media_answer</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::create_rtc_media_answer(5) :</p>
+<p>本函數在接收到一個offer信令之後創建一個web RTC的answer信令。註意此處的web RTC是指的用於支持聲音和視頻通信的web RTC函數庫，而不是用於支持數據通信的WEBRTC協議棧。本函數有5個參數。第一個是peer connection對象的id。第二個是SDP的類型。該參數應該就是一個"offer"字符串。第三個參數是SDP的內容，也就是offer信令的內容。第四個參數是強制性的限制參數集。最後一個參數是可選的限制參數集。最後一個參數可以省略。本函數的一個例子是create_rtc_media_answer(remoteAddr, sdpType, sdpContent, [["OfferToReceiveAudio", "true"], ["OfferToReceiveVideo", supportVideoStr]], [["DtlsSrtpKeyAgreement", "true"]])。</p>
+</td>
+</tr>
+<tr>
+<td><center>create_rtc_media_offer</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::create_rtc_media_offer(3) :</p>
+<p>本函數創建一個web RTC的offer信令。註意此處的web RTC是指的用於支持聲音和視頻通信的web RTC函數庫，而不是用於支持數據通信的WEBRTC協議棧。本函數有3個參數。第一個是peer connection對象的id。第二個參數是強制性的限制參數集。最後一個參數是可選的限制參數集。最後一個參數可以省略。本函數的一個例子是create_rtc_media_offer(remoteAddr, [["OfferToReceiveAudio", "true"], ["OfferToReceiveVideo", supportVideoStr]], [["DtlsSrtpKeyAgreement", "true"]])。</p>
+</td>
+</tr>
+<tr>
+<td><center>delete_file</center></td>
+<td><p>::mfp::io::file::delete_file(2) :</p>
+<p>delete_file(path, delete_children_in_folder)刪除一個位於字串path的檔案或者檔案目錄。如果是一個目錄且第二個參數delete_children_in_folder是true，目錄中的所以檔案和子目錄將會被刪除。註意第二個參數可以省略，它的缺省值是false。如果刪除成功，本函數程式返回true，否則返回false。例子包括delete_file("c:\\temp\\try1", true) (Windows)和delete_file("testfile_copy.txt") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>deri_ridders</center></td>
+<td><p>::mfp::math::calculus::deri_ridders(4) :</p>
+<p>deri_ridders(expr, var, val, ord)返回基於變數var的運算式expr在var等於val的時候的ord階導數值。這個函數程式使用Ridders法進行計算。比如，deri_ridders("x**2+x","x",3,2)返回2。</p>
+</td>
+</tr>
+<tr>
+<td><center>derivative</center></td>
+<td><p>::mfp::math::calculus::derivative(2) :</p>
+<p>delete_file(path, derivative(expression, variable)返回基於變數variable的運算式expression的導數運算式。注意expression和variable均為字串。比如，derivative("x**2+x","x")返回一個字串運算式"2*x+1"。</p>
+<p>::mfp::math::calculus::derivative(4) :</p>
+<p>derivative(expr, var, val, method)返回基於變數var的運算式expr在var等於val的時候的導數值。參數method用於選擇計算方法，如果是true，意味著使用Ridders法進行計算，如果是false，則只是簡單地計算導數運算式在val時候的值。比如，derivative("x**2+x","x",2,true)返回5。</p>
+</td>
+</tr>
+<tr>
+<td><center>det</center></td>
+<td><p>::mfp::math::matrix::det(1) :</p>
+<p>det(x)計算2維方陣x的行列式值。</p>
+</td>
+</tr>
+<tr>
+<td><center>deter</center></td>
+<td><p>::mfp::math::matrix::deter(1) :</p>
+<p>deter(x)計算2維方陣x的行列式值。</p>
+</td>
+</tr>
+<tr>
+<td><center>dir</center></td>
+<td><p>::mfp::io::file::dir(1) :</p>
+<p>print_file_list(path) (别名ls(path)或者dir(path))函數程式和Windows平臺上的dir命令以及Linux平臺上的ls命令類似。它打印出位於字串path路徑的档案或者目錄中的所有子档案和子目錄的信息。它返回打印的條目的個數。如果不存在一個檔案或者目錄對應於path路徑，它返回-1。註意參數path是可以省略的。它的缺省值是當前目錄。例子包括dir("c:\\temp\\try1") (Windows)和ls("../testfile_copy.txt") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>dprod</center></td>
+<td><p>::mfp::math::matrix::dprod(2) :</p>
+<p>函數dprod用於計算兩個向量 [x1, x2, ... xn]和[y1, y2, ... yn]的點乘值。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_image</center></td>
+<td><p>::mfp::graph_lib::draw::draw_image(12) :</p>
+<p>draw_image為繪圖事件調度器添加一個繪製圖像的事件。在繪圖事件調度器調用這個繪製事件時，該事件將在display上繪製一個圖像。Draw_image有兩個不同的重載調用方式。第一個是draw_image(owner_info, display, image_or_path, left, top, width_ratio, height_ratio, painting_extra_info)。第二個是draw_image(owner_info, display, image_or_path, srcx1, srcy1, srcx2, srcy2, destx1, desty1, destx2, desty2, painting_extra_info)。在這兩種不同的調用方式中，第一個參數是owner_info。Owner_info告訴繪圖事件調度器誰擁有這個繪圖事件。Owner_info可以是一個字串，代表擁有者的名字，也可以是一個整數，代表擁有者的id，還可以是NULL，代表系統擁有該事件，更可以是一個包含兩個元素的數組，其中第一個元素是一個代表擁有者名字的字串，或者代表擁有者id的整數，或者代表系統的NULL，第二個元素是一個代表時標的浮點數，但要注意這裏的時標不是真正的時標，該浮點數可以是任意值。該浮點數的值在清除本繪圖事件時會發揮作用。第二個參數是display，它既可以是screen display，也可以是image display。第三個參數是圖像的句柄或者是一個指向圖像檔的地址字串。最後一個參數是painting_extra_info，它告訴繪圖事件調度器採用什麼樣的porterduff模式來繪製目標圖像。這個參數是可選參數。porterduff模式內部機制比較複雜，建議開發者省略這個參數（也就是使用參數的缺省值）。如果開發者想要詳細瞭解painting extra info，可以參考set_porterduff_mode以及get_porterduff_mode的函數幫助資訊。如果開發者想要詳細瞭解porterduff模式，建議閱讀相關的JAVA文檔。在第一種調用方式中，從第四個到第七個參數分別是圖像將被繪製的位置的左邊界的座標，圖像將被繪製的位置的上邊界座標，圖像繪製時沿長度方向的縮放比例（是一個可以省略的參數，它的缺省值為1），以及圖像繪製時沿高度方向的縮放比例（是一個可以省略的參數，它的缺省值為1）。在第二種調用方式中，從第四個到第十一個參數分別是選取圖像將被繪製的部分的源長方形的左邊界，選取圖像將被繪製的部分的源長方形的上邊界，選取圖像將被繪製的部分的源長方形的右邊界，選取圖像將被繪製的部分的源長方形的下邊界，目標位置的左邊界，目標位置的上邊界，目標位置的右邊界以及目標位置的下邊界。Draw_image的例子包括：draw_image("image", display, get_upper_level_path(get_src_file_path()) + "gem4.png", 48, 157) ，draw_image("image", display, gem3Img, 148, 257, 3, 0.5)以及draw_image("imagesrc", display, gem3Img, 0, 0, 32, 32, 210, 540, 300, 580, a_painting_extra_info)。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_line</center></td>
+<td><p>::mfp::graph_lib::draw::draw_line(7) :</p>
+<p>draw_line(owner_info, display, start_point_place, end_point_place, color, line_style, painting_extra_info)為繪圖事件調度器添加一個繪製線段的事件。在繪圖事件調度器調用這個繪製線段的事件時，該事件將在display上繪製一條線。Draw_line有7個參數。第一個參數是owner_info。Owner_info告訴繪圖事件調度器誰擁有這個繪圖事件。Owner_info可以是一個字串，代表擁有者的名字，也可以是一個整數，代表擁有者的id，還可以是NULL，代表系統擁有該事件，更可以是一個包含兩個元素的數組，其中第一個元素是一個代表擁有者名字的字串，或者代表擁有者id的整數，或者代表系統的NULL，第二個元素是一個代表時標的浮點數，但要注意這裏的時標不是真正的時標，該浮點數可以是任意值。該浮點數的值在清除本繪圖事件時會發揮作用。第二個參數是display，它既可以是screen display，也可以是image display。第三個參數和第四個參數是線段的起始位置（[x1,y1]）和終止位置（[x2,y2]），它們均為包含兩個元素的數組。第五個參數是color，代表繪圖使用的顏色，它是一個4個或3個元素的數組，如果是4個元素，就是[Alpha，R，G，B]，如果是3個元素，就是[R，G，B]，在該數組中，每一個元素的值都是從0到255。第六個參數是line_style。在現階段它是一個包含一個元素的數組，該元素是一個正整數，代表線的粗細。這個參數是可省略的，它的缺省值是[1]。最後一個參數是painting_extra_info，它告訴繪圖事件調度器採用什麼樣的porterduff模式來繪製目標圖像。這個參數也是可選參數。porterduff模式內部機制比較複雜，建議開發者省略這個參數（也就是使用參數的缺省值）。如果開發者想要詳細瞭解painting extra info，可以參考set_porterduff_mode以及get_porterduff_mode的函數幫助資訊。如果開發者想要詳細瞭解porterduff模式，建議閱讀相關的JAVA文檔。</p>
+<p>Draw_line的例子包括：draw_line(["my draw", 0.381], d, [128, 45], [250, -72], [79, 255, 0, 142])以及draw_line(NULL, d, [23, 111], [70, 333], [23, 178, 222], [7])。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_oval</center></td>
+<td><p>::mfp::graph_lib::draw::draw_oval(8) :</p>
+<p>draw_oval(owner_info, display, left_top, width, height, color, frame_or_fill, painting_extra_info)為繪圖事件調度器添加一個繪製橢圓形的事件。在繪圖事件調度器調用這個繪製事件時，該事件將在display上繪製一個橢圓形。Draw_oval有至少7個參數。第一個參數是owner_info。Owner_info告訴繪圖事件調度器誰擁有這個繪圖事件。Owner_info可以是一個字串，代表擁有者的名字，也可以是一個整數，代表擁有者的id，還可以是NULL，代表系統擁有該事件，更可以是一個包含兩個元素的數組，其中第一個元素是一個代表擁有者名字的字串，或者代表擁有者id的整數，或者代表系統的NULL，第二個元素是一個代表時標的浮點數，但要注意這裏的時標不是真正的時標，該浮點數可以是任意值。該浮點數的值在清除本繪圖事件時會發揮作用。第二個參數是display，它既可以是screen display，也可以是image display。第三個參數是包含兩個元素的數組（[x,y]），表示該橢圓的包絡長方形左上頂點的位置。第四個和第五個參數為該橢圓的包絡長方形的長度和高度。緊接著的參數是color，代表繪製使用的顏色，它是一個4個或3個元素的數組，如果是4個元素，就是[Alpha，R，G，B]，如果是3個元素，就是[R，G，B]，在該數組中，每一個元素的值都是從0到255。倒數第二個參數是是一個整數。它等於或小於零表示填充橢圓形，大於零表示橢圓形的邊的寬度。最後一個參數是painting_extra_info，它告訴繪圖事件調度器採用什麼樣的porterduff模式來繪製目標圖像。這個參數是可選參數。porterduff模式內部機制比較複雜，建議開發者省略這個參數（也就是使用參數的缺省值）。如果開發者想要詳細瞭解painting extra info，可以參考set_porterduff_mode以及get_porterduff_mode的函數幫助資訊。如果開發者想要詳細瞭解porterduff模式，建議閱讀相關的JAVA文檔。</p>
+<p>Draw_oval的例子包括：draw_oval(["my draw", 0.381], d, [128, 45], 18, 30, [79, 255, 0, 142], 0)以及draw_oval(NULL, d, [23, 111], 70, 19, [23, 178, 222], 3)。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_point</center></td>
+<td><p>::mfp::graph_lib::draw::draw_point(6) :</p>
+<p>draw_point(owner_info, display, point_place, color, point_style, painting_extra_info)為繪圖事件調度器添加一個繪製點的事件。在繪圖事件調度器調用這個繪製點的事件時，該事件將在display上繪製一個點。Draw_point有六個參數。第一個參數是owner_info。Owner_info告訴繪圖事件調度器誰擁有這個繪圖事件。Owner_info可以是一個字串，代表擁有者的名字，也可以是一個整數，代表擁有者的id，還可以是NULL，代表系統擁有該事件，更可以是一個包含兩個元素的數組，其中第一個元素是一個代表擁有者名字的字串，或者代表擁有者id的整數，或者代表系統的NULL，第二個元素是一個代表時標的浮點數，但要注意這裏的時標不是真正的時標，該浮點數可以是任意值。該浮點數的值在清除本繪圖事件時會發揮作用。第二個參數是display，它既可以是screen display，也可以是image display。第三個參數是point_place，也就是點的位置，他是一個包含兩個元素的數組，也就是[x,y]。第四個參數color，代表點的顏色，它是一個4個或3個元素的數組，如果是4個元素，就是[Alpha，R，G，B]，如果是3個元素，就是[R，G，B]，在該數組中，每一個元素的值都是從0到255。第五個參數是point_style。在現階段它的格式是[point_size, point_shape]。Point_size是點的大小。它是一個正整數。Point_shape是一個字串，代表點的形狀，可以取以下值："dot"（點，注意它的大小只能是1，point_size對它不起作用），"circle"（圓圈），"square"（方塊），"diamond"（正菱形），"up_triangle"（尖朝上的三角形），"down_triangle"（尖朝下的三角形），"cross"（十字形）和"x"（叉號）。這個參數是可省略的，它的缺省值是[1, "dot"]。最後一個參數是painting_extra_info，它告訴繪圖事件調度器採用什麼樣的porterduff模式來繪製這個點。這個參數也是可選參數。porterduff模式內部機制比較複雜，建議開發者省略這個參數（也就是使用參數的缺省值）。如果開發者想要詳細瞭解painting extra info，可以參考set_porterduff_mode以及get_porterduff_mode的函數幫助資訊。如果開發者想要詳細瞭解porterduff模式，建議閱讀相關的JAVA文檔。</p>
+<p>Draw_point的例子包括：draw_point(["my draw", 0.381], d, [128, 45], [79, 255, 0, 142])以及draw_point(NULL, d, [23, 111], [23, 178, 222], [78, "square"])。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_polygon</center></td>
+<td><p>::mfp::graph_lib::draw::draw_polygon(7...) :</p>
+<p>draw_polygon(owner_info, display, point1_place, point2_place, point3_place, ..., color, frame_or_fill, painting_extra_info)為繪圖事件調度器添加一個繪製多邊形的事件。在繪圖事件調度器調用這個繪製事件時，該事件將在display上繪製一個多邊形。Draw_polygon有至少7個參數。第一個參數是owner_info。Owner_info告訴繪圖事件調度器誰擁有這個繪圖事件。Owner_info可以是一個字串，代表擁有者的名字，也可以是一個整數，代表擁有者的id，還可以是NULL，代表系統擁有該事件，更可以是一個包含兩個元素的數組，其中第一個元素是一個代表擁有者名字的字串，或者代表擁有者id的整數，或者代表系統的NULL，第二個元素是一個代表時標的浮點數，但要注意這裏的時標不是真正的時標，該浮點數可以是任意值。該浮點數的值在清除本繪圖事件時會發揮作用。第二個參數是display，它既可以是screen display，也可以是image display。從第三個參數開始是多邊形頂點的位置，它們均為包含兩個元素的數組。緊接著的參數是color，代表繪製使用的顏色，它是一個4個或3個元素的數組，如果是4個元素，就是[Alpha，R，G，B]，如果是3個元素，就是[R，G，B]，在該數組中，每一個元素的值都是從0到255。倒數第二個參數是是一個整數。它等於或小於零表示填充多邊形，大於零表示多邊形的邊的寬度。最後一個參數是painting_extra_info，它告訴繪圖事件調度器採用什麼樣的porterduff模式來繪製目標圖像。這個參數是可選參數。porterduff模式內部機制比較複雜，建議開發者省略這個參數（也就是使用參數的缺省值）。如果開發者想要詳細瞭解painting extra info，可以參考set_porterduff_mode以及get_porterduff_mode的函數幫助資訊。如果開發者想要詳細瞭解porterduff模式，建議閱讀相關的JAVA文檔。</p>
+<p>Draw_polygon的例子包括：draw_polygon(["my draw", 0.381], d, [128, 45], [250, -72], [338, 29], [79, 255, 0, 142], 0)以及draw_polygon(NULL, d, [23, 111], [70, 333], [-239, 89], [66, 183], [23, 178, 222], 3)。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_rect</center></td>
+<td><p>::mfp::graph_lib::draw::draw_rect(8) :</p>
+<p>draw_rect(owner_info, display, left_top, width, height, color, frame_or_fill, painting_extra_info)為繪圖事件調度器添加一個繪製長方形的事件。在繪圖事件調度器調用這個繪製事件時，該事件將在display上繪製一個長方形。Draw_rect有至少7個參數。第一個參數是owner_info。Owner_info告訴繪圖事件調度器誰擁有這個繪圖事件。Owner_info可以是一個字串，代表擁有者的名字，也可以是一個整數，代表擁有者的id，還可以是NULL，代表系統擁有該事件，更可以是一個包含兩個元素的數組，其中第一個元素是一個代表擁有者名字的字串，或者代表擁有者id的整數，或者代表系統的NULL，第二個元素是一個代表時標的浮點數，但要注意這裏的時標不是真正的時標，該浮點數可以是任意值。該浮點數的值在清除本繪圖事件時會發揮作用。第二個參數是display，它既可以是screen display，也可以是image display。第三個參數是包含兩個元素的數組（[x,y]），表示該長方形左上頂點的位置。第四個和第五個參數為長方形的長度和高度。緊接著的參數是color，代表繪製使用的顏色，它是一個4個或3個元素的數組，如果是4個元素，就是[Alpha，R，G，B]，如果是3個元素，就是[R，G，B]，在該數組中，每一個元素的值都是從0到255。倒數第二個參數是是一個整數。它等於或小於零表示填充長方形，大於零表示長方形的邊的寬度。最後一個參數是painting_extra_info，它告訴繪圖事件調度器採用什麼樣的porterduff模式來繪製目標圖像。這個參數是可選參數。porterduff模式內部機制比較複雜，建議開發者省略這個參數（也就是使用參數的缺省值）。如果開發者想要詳細瞭解painting extra info，可以參考set_porterduff_mode以及get_porterduff_mode的函數幫助資訊。如果開發者想要詳細瞭解porterduff模式，建議閱讀相關的JAVA文檔。</p>
+<p>Draw_rect的例子包括：draw_rect(["my draw", 0.381], d, [128, 45], 18, 30, [79, 255, 0, 142], 0)以及draw_rect(NULL, d, [23, 111], 70, 19, [23, 178, 222], 3)。</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_text</center></td>
+<td><p>::mfp::graph_lib::draw::draw_text(7) :</p>
+<p>draw_text(owner_info, display, string, origin_place, color, text_style, painting_extra_info)為繪圖事件調度器添加一個繪製文本塊的事件。在繪圖事件調度器調用這個繪製事件時，該事件將在display上繪製一個文本塊。Draw_text的第一個參數是owner_info。Owner_info告訴繪圖事件調度器誰擁有這個繪圖事件。Owner_info可以是一個字串，代表擁有者的名字，也可以是一個整數，代表擁有者的id，還可以是NULL，代表系統擁有該事件，更可以是一個包含兩個元素的數組，其中第一個元素是一個代表擁有者名字的字串，或者代表擁有者id的整數，或者代表系統的NULL，第二個元素是一個代表時標的浮點數，但要注意這裏的時標不是真正的時標，該浮點數可以是任意值。該浮點數的值在清除本繪圖事件時會發揮作用。第二個參數是display，它既可以是screen display，也可以是image display。第三個參數是基於字串的文本塊，它可以多於一行。第四個參數是文本塊起始點的位置。這是一個兩元素數組，第一個元素是起始點橫坐標，第二個元素是起始點縱坐標。第五個參數是color，代表繪製使用的顏色，它是一個4個或3個元素的數組，如果是4個元素，就是[Alpha，R，G，B]，如果是3個元素，就是[R，G，B]，在該數組中，每一個元素的值都是從0到255。第六個參數是可省略參數，用於定義文本的字體和大小。如果它被省略，則字體為系統缺省字體，大小為16。如果它不被省略，那麼它必須是一個包含一個或者兩個元素的數組。如果是一個元素的數組，那麼該元素必須是一個正整數，代表字體的大小，而字體則為系統缺省字體。如果是包含兩個元素的數組，那麼第一個元素為字體的大小，第二個元素是基於字串的字體的名字。最後一個參數是painting_extra_info，它告訴繪圖事件調度器採用什麼樣的porterduff模式來繪製目標圖像。這個參數是可選參數。porterduff模式內部機制比較複雜，建議開發者省略這個參數（也就是使用參數的缺省值）。如果開發者想要詳細瞭解painting extra info，可以參考set_porterduff_mode以及get_porterduff_mode的函數幫助資訊。如果開發者想要詳細瞭解porterduff模式，建議閱讀相關的JAVA文檔。Draw_text的例子包括draw_text("image", display, txtStr, [108, 190], [255, 255, 255], [10 + idx, font])以及draw_text("image", display, txtStr, [108, 190], [255, 255, 255], [idx * 2])。</p>
+</td>
+</tr>
+<tr>
+<td><center>drop_old_painting_requests</center></td>
+<td><p>::mfp::graph_lib::draw::drop_old_painting_requests(2) :</p>
+<p>drop_old_painting_requests(owner_info, display)用於從screen或者image display的繪圖事件調度器中移除一些繪圖事件。移除的標準為，檢查一個繪圖事件的owner_info參數（也就是該事件的擁有者和創建時標），如果該繪圖事件的擁有者和drop_old_painting_requests的擁有者完全一樣，並且創建時標早於（小於）drop_old_painting_requests的創建時標，則該事件被移除。注意，有很多owner_info參數不包括創建時標，這種情況下創建時標為創建時的系統時間。本函數的例子為：drop_old_painting_requests("my owner", display)。該例子等價於drop_old_painting_requests(["my owner", now()], display)。</p>
+</td>
+</tr>
+<tr>
+<td><center>eig</center></td>
+<td><p>::mfp::math::matrix::eig(1) :</p>
+<p>eig(A)計算2維方陣A的特征向量和特征值。這個函數程式返回一個包含兩個成員的列表。第一個成員是特征向量陣列，每一列是一個特征向量。第二個成員是一個對角陣列，每一個對角線元素是一個特征值。註意運算這個程式非常耗費內存和CPU資源，如果在移動設備上運行，征列A的尺寸最好不要超過6*6，如果在電腦上運行，最好不要超過8*8，否則可能造成內存不足而程序崩潰或者運行很長時間而沒有結果。</p>
+<p>::mfp::math::matrix::eig(2) :</p>
+<p>eig(A, B)計算2維方陣A相對於同樣尺寸的方陣B的特征向量和特征值，也就是Av = lambda * Bv，在這裏，。lambda是一個特征值，v是一個特征向量。第二個參數，B，可以省略，其缺省值為I陣列。這個函數程式返回一個包含兩個成員的列表。第一個成員是特征向量陣列，每一列是一個特征向量。第二個成員是一個對角陣列，每一個對角線元素是一個特征值。註意運算這個程式非常耗費內存和CPU資源，如果在移動設備上運行，征列A的尺寸最好不要超過6*6，如果在電腦上運行，最好不要超過8*8，否則可能造成內存不足而程序崩潰或者運行很長時間而沒有結果。</p>
+</td>
+</tr>
+<tr>
+<td><center>evaluate</center></td>
+<td><p>::mfp::statement::evaluate(1...) :</p>
+<p>evaluate(expr_string,var_string1,var_value1,var_string2,var_value2, ...) 返回當基於字串的變數var_string1等於var_value1，var_string2等於var_value2，...時，基於字串的表達式expr_string的值。註意變數var_string1，var_string2，...的值可以為任意類型。變數的數目可以為0，也就是說，evaluate("3+2")是合法的。</p>
+</td>
+</tr>
+<tr>
+<td><center>exp</center></td>
+<td><p>::mfp::math::log_exp::exp(1) :</p>
+<p>exp(x)返回自然對數e的x次方，x可以為實數或者虛數。</p>
+</td>
+</tr>
+<tr>
+<td><center>expr_to_string</center></td>
+<td><p>::mfp::statement::expr_to_string(1) :</p>
+<p>expr_to_string(expr)將一個基於字串的運算式expr轉換成一個字串。如果運算式中包含已經定義的函數，函數名將會被轉換為全名，也就是絕對引用空間加函數名。比如expr_to_string("pwd()")將會返回"::mfp::io::file::pwd()"但是expr_to_string("pwd(1,  2)")將會返回"pwd(1,2)"，原因在於pwd函數沒有參數，所以pwd()是合法的但是pwd(1,2)是調用一個沒有定義的函數。</p>
+</td>
+</tr>
+<tr>
+<td><center>eye</center></td>
+<td><p>::mfp::math::matrix::eye(1) :</p>
+<p>eye(x)返回正整數x乘x的2維方陣I。註意表達式eye(0)返回常數1。</p>
+<p>::mfp::math::matrix::eye(2) :</p>
+<p>eye(x,y)返回y（y為正整數）維方陣I，註意每一維長度均為正整數x。</p>
+</td>
+</tr>
+<tr>
+<td><center>fact</center></td>
+<td><p>::mfp::math::number::fact(1) :</p>
+<p>函數fact(x)計算非負整數x的階乘。</p>
+</td>
+</tr>
+<tr>
+<td><center>fclose</center></td>
+<td><p>::mfp::io::file::fclose(1) :</p>
+<p>fclose(fd)關閉文件號fd所對應的檔案。如果檔案號不存在，返回-1，否則返回0。</p>
+</td>
+</tr>
+<tr>
+<td><center>feof</center></td>
+<td><p>::mfp::io::file::feof(1) :</p>
+<p>feof(fd)用于确定是否已经到达档案号为fd的读模式档案的末尾。如果是，返回true，否则返回false。如果档案号不合法，抛出异常。</p>
+</td>
+</tr>
+<tr>
+<td><center>fft</center></td>
+<td><p>::mfp::sig_proc::fft(1...) :</p>
+<p>FFT(a, ...)返回對一個數值向量作快速傅立葉變換後的值。註意數值向量中數值的個數必須是2的整數次方。如果參數a是一個數值序列，則本函數程式只可能擁有一個參數，返回值為對序列a[0], a[1], ..., a[N-1]作快速傅立葉變換的返回值。如果參數a僅僅是一個實數或者虛數，則本函數程式最少包含2個參數，而返回序列a， optional_params[0]， ...， optional_params[number_of_optional_params - 2]， optional_params[number_of_optional_params - 1]快速傅立葉變換後的值。註意返回值總是一個數組。</p>
+<p>函數程式例子：</p>
+<p>FFT(1, 2, 3, 4)返回[10, -2+2i, -2, -2 - 2i]；</p>
+<p>FFT([1, 2, 3, 4])同樣也是返回[10, -2+2i, -2, -2 - 2i]；</p>
+</td>
+</tr>
+<tr>
+<td><center>floor</center></td>
+<td><p>::mfp::math::number::floor(1) :</p>
+<p>floor(x)，x是浮點數，返回不大於x的最大整數。</p>
+<p>::mfp::math::number::floor(2) :</p>
+<p>floor(x,y)，x是浮點數，y是非負整數，返回不大於x的小數點後面保留y位有效數字的最大數值。</p>
+</td>
+</tr>
+<tr>
+<td><center>fopen</center></td>
+<td><p>::mfp::io::file::fopen(2) :</p>
+<p>fopen(path, mode)打开位于path路径的档案并返回档案号以进行后续读写操作。它和C以及Matlab中的同名函数程式用法相似。但它仅支持"r"、"a"、"w"、"rb"、"ab"和"wb"六种读写模式。例子包括fopen("C:\\Temp\\Hello.dat", "ab") (Windows)和fopen("./hello.txt", "r") (Android)。</p>
+<p>::mfp::io::file::fopen(3) :</p>
+<p>fopen(path, mode, encoding)用字符編碼encoding打開位於path路徑的檔案並返回檔案號以進行後續讀寫操作。由於只有文本檔案支持字符編碼，參數mode只能為"r"、"a"和"w"3種讀寫模式。例子包括fopen("C:\\Temp\\Hello.txt", "a", "LATIN-1") (Windows)和fopen("./hello.txt", "r", "UTF-8") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>fprintf</center></td>
+<td><p>::mfp::io::file::fprintf(2...) :</p>
+<p>printf(format_string, ...)，sprintf(format_string, ...)和fprintf(fd, format_string, ...)和C/C++中的对应函数程式工作方式相似。这些函数程式通过format_string和其后的数值参数构造出一个新的字串，printf将字串打印到标准输出，sprintf将字串作为返回值返回，fprintf则将字串输出到档案号为fd的文本档案。字串format_string支持输入整数（%d、%i、%x等），浮点数（%e、%f等），字符和字串（%c和%s）等等。用户可以在C语言的帮助手册中找到format_string的构造方法。例如，printf("Hello world!%f", 3.14)将会打印输出"Hello world!3.140000"，而sprintf("%c%d", "A", 9)则返回"A9"（注意MFP不支持单一字符数据类型，所以单一的字符将会存储为一个只包括一个字符的字串）。</p>
+</td>
+</tr>
+<tr>
+<td><center>fread</center></td>
+<td><p>::mfp::io::file::fread(4) :</p>
+<p>fread(fd, buffer, from, length)從檔案（檔案號fd）中讀取length個字節數據，並把讀出的數據保存在數組buffer中（從buffer的索引from開始保存）。註意from和length必須非負，並且from+length必須不比buffer的容量大。參數from和length可以同時省略。如果它們被省略，意味著fread讀取整個buffer容量的字節數據並保存在整個buffer中。Buffer也可以省略，如果buffer省略，fread讀取一個字節並返回。如果fread在讀取之前發現已經到達檔案末尾，則返回-1，否則返回讀取字節的個數（如果buffer不省略）。如果檔案不存在或非法或不可以訪問，將會拋出異常。例子包括fread(1)、fread(2, byte_buffer)以及fread(2, byte_buffer, 3, 7)。</p>
+</td>
+</tr>
+<tr>
+<td><center>freadline</center></td>
+<td><p>::mfp::io::file::freadline(1) :</p>
+<p>freadline(fd)讀取文本檔案（檔案號是fd）的一行。如果freadline在讀取之前發現已經到達檔案末尾，它返回NULL。否則，它返回基於字串的這一行的內容，但不包括結尾的換行符。</p>
+</td>
+</tr>
+<tr>
+<td><center>fscanf</center></td>
+<td><p>::mfp::io::file::fscanf(2) :</p>
+<p>scanf(format_string)，sscanf(input_from, format_string)和fscanf(fd, format_string)和C/C++中的對應函數程式工作方式相似。scanf讀取用戶的一行輸入，sscanf讀取字串input_from，fscanf從檔案（檔案號fd）中讀取檔案內容。字串format_string支持輸入整數（%d、%i、%x等），浮點數（%e、%f等），字符和字串（%c和%s）等等。用戶可以在C語言的幫助文檔中找到format_string的構造方法。但是，和C語言有所不同，MFP中的這些函數程式不需要輸入用於存儲讀取數值的參數。所有的讀取的數值將會保存在一個數組中作為返回值返回。比如，sscanf("3Hello world!", "%d%c%c%s")將會返回[3, "H", "e", "llo"]（註意MFP不支持單一字符數據類型，所以單一的字符將會存儲為一個只包括一個字符的字串）。</p>
+</td>
+</tr>
+<tr>
+<td><center>fwrite</center></td>
+<td><p>::mfp::io::file::fwrite(4) :</p>
+<p>fwrite(fd, buffer, from, length)向檔案（檔案號fd）中寫入length個字節數據。這些字節數據保存在數組buffer中（從buffer的索引from開始）。註意from和length必須非負，並且from+length必須不比buffer的容量大。參數from和length可以同時省略。如果它們被省略，意味著fwrite寫入整個buffer的字節數據。Buffer也可以是一個單獨的字節，在這種情況下fwrite僅寫入一個字節的數據。如果檔案不存在或非法或不可以訪問，將會拋出異常。例子包括fwrite(1, 108)、fwrite(2, byte_buffer)以及fwrite(2, byte_buffer, 3, 7)。</p>
+</td>
+</tr>
+<tr>
+<td><center>gamma</center></td>
+<td><p>::mfp::math::stat_stoch::gamma(1) :</p>
+<p>函數程式gamma(z)返回復數z的gamma函數值。註意z的實部必須是正數。</p>
+</td>
+</tr>
+<tr>
+<td><center>gavg</center></td>
+<td><p>::mfp::math::stat_stoch::gavg(0...) :</p>
+<p>函數gavg(…)返回任意個數參數的幾何平均數值。</p>
+</td>
+</tr>
+<tr>
+<td><center>generate_interface</center></td>
+<td><p>::mfp::paracomp::connect::generate_interface(2) :</p>
+<p>generate_interface(protocol, address)返回一個本地interface對象的定義。它需要兩個參數。第一個參數是基於字符串的通信協議名，比如"TCPIP"；第二個參數是基於字符串的地址，比如"10.32.202.78"。第二個參數是可選參數，缺省值為本機的localhost地址，比如，對於"TCPIP"協議，本機localhost地址是"127.0.0.1"。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_absolute_path</center></td>
+<td><p>::mfp::io::file::get_absolute_path(1) :</p>
+<p>get_absolute_path(fd_or_path)返回檔案號fd_or_path（這裏fd_or_path是一個整數）或者相對路徑為fd_or_path（這裏fd_or_path是一個字串）所對應的檔案的絕對路徑字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_connect_call_ids</center></td>
+<td><p>::mfp::paracomp::connect::get_all_connect_call_ids(1...) :</p>
+<p>get_all_connect_call_ids返回一個網絡界面所有的連接id或者一個連接的所有call沙盒id。它有兩種模式。第一種調用模式只有一個參數，為一個代表本地網絡界面信息的對象。 該對象為generate_interface函數的返回值。在這種模式下，本函數的返回值為所有從連入和連出的網絡連接的id數組。註意如果本地信息不合法，本函數將拋出異常。第二種調用模式有三個參數。第一個參數為一個代表本地網絡界面信息的對象。 該對象為generate_interface函數的返回值。第二個參數為一個連接對象的id（如果該連接是從本地到遠端的連出網絡連接，該id是遠端地址，如果是連入網絡連接，該id可以通過調用get_call_info函數得到）。第三個參數是一個布爾值，如果是true，這個函數返回所有通過該連接的連入的call沙盒id的數組，否則，這個函數返回所有通過該連接的連出的call沙盒id的數組。註意如果本地信息不合法，本函數將拋出異常。如果連接id不存在，將返回NULL。本函數的一個例子是get_all_connect_call_ids(server_interface, connect_id, false)。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_host_addresses</center></td>
+<td><p>::mfp::paracomp::host::get_all_host_addresses(1) :</p>
+<p>get_all_host_addresses(protocol_name)返回protocol_name協議在本機的所有界面的所有地址。參數protocol_name是可選的。如果沒有給出protocol_name參數或者給出是一個空的字符串，本函數返回本機所有被支持的通信協議在本機所有界面的所有地址。本函數的一個例子是get_all_host_addresses("TCPIP")。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_referred_units</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_all_referred_units(0) :</p>
+<p>get_all_referred_units()是一個用於編譯的函數，也就是說它在打包腳本生成MFP應用時發揮作用。本函數返回一個數組，其中包括所有的用戶定義的MFP函數和類的引用信息。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_asset_file_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_asset_file_path(1) :</p>
+<p>get_asset_file_path(asset_file_entry)告訴開發人員一個asset檔（檔案名由字串參數asset_file_entry給出）的路徑。注意，如果正在運行的腳本不是一個MFP應用，本函數返回null。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_audio_track_enable</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::get_audio_track_enable(1) :</p>
+<p>本函數測試音軌是否已經被激活。如果是，返回True，否則返回False。這個函數僅有一個參數，就是一個顯示窗口的句柄。該句柄是open_screen_display函數的返回值。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_call_info</center></td>
+<td><p>::mfp::paracomp::connect::get_call_info(0) :</p>
+<p>本函數如果不是在一個call沙盒中被調用，將會返回NULL。否則本函數返回一個數組。數組的第一個元素是調用本函數的call沙盒的id。數組的第二個元素是調用本函數的call沙盒所在的連接的id，數組的第三個元素是存有本地信息的對象。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_canonical_path</center></td>
+<td><p>::mfp::io::file::get_canonical_path(1) :</p>
+<p>get_canonical_path(fd_or_path)返回檔案號fd_or_path（這裏fd_or_path是一個整數）或者相對路徑為fd_or_path（這裏fd_or_path是一個字串）所對應的檔案的標準路徑（不依賴符號鏈接的絕對路徑）字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_classes</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_classes(0...) :</p>
+<p>get_classes(...) 是一個用於編譯的函數，也就是說它在打包腳本生成MFP應用時發揮作用。本函數返回一個數組，其中包括所有的出現在參數中的MFP類的引用信息。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_constant</center></td>
+<td><p>::mfp::physics::get_constant(2) :</p>
+<p>函數程式get_constant(const_name, n)返回一個由區分大小寫的字符串const_name所對應的常數值，返回的數值將會四舍五入後保留小數點後面n位有效數值，這裏n為非負整數並且可以省略。如果n被省略，返回值將不會被四舍五入處理。本函數程式支持以下常數：</p>
+<p>1. 圓周率 (const_name == "pi");</p>
+<p>2. 自然對數 (const_name == "e");</p>
+<p>3. 真空中的光速 [m/s] (const_name == "light_speed_in_vacuum");</p>
+<p>4. 萬有引力常數 [m**3/kg/(s**2)] (const_name == "gravitational_constant");</p>
+<p>5. 普朗克常數 [J*s] (const_name == "planck_constant");</p>
+<p>6. 磁常數（真空磁導率） [N/(A**2)] (const_name == "magnetic_constant");</p>
+<p>7. 電常數（真空電容率） [F/m] (const_name == "electric_constant");</p>
+<p>8. 基本電荷 [c] (const_name == "elementary_charge_constant");</p>
+<p>9. 亞佛加厥常數 [1/mol] (const_name == "avogadro_constant");</p>
+<p>10. 法拉第常數 [C/mol] (const_name == "faraday_constant");</p>
+<p>11. 氣體常數 [J/mol/K] (const_name == "molar_gas_constant");</p>
+<p>12. 玻茲曼常量 [J/K] (const_name == "boltzman_constant");</p>
+<p>13. 標準重力 [m/(s**2)] (const_name == "standard_gravity");</p>
+<p>例如，如果用戶輸入get_constant("pi", 4)，結果將會是3.1416；如果用戶輸入get_constant("pi", 8)，結果將會是3.14159265；如果用戶輸入get_constant("pi", 0)，將會得到3，如果用戶輸入get_constant("pi")返回值將是3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679 （小數點後有100位數字），這個數值就是本軟體內部所使用的圓周率數值。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_country_language</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_country_language(0) :</p>
+<p>本函數程式返回一個包含兩個元素的矩陣。第一個元素是一個基於字串的國家代碼。國家代碼要麼是一個空字元串，要麼是一個大寫的，符合ISO 3166國際標準的兩字母的代碼，要麼是一個符合UN M.49的3個數字的代碼。用戶可以查詢https://en.wikipedia.org/wiki/ISO_3166獲取ISO 3166國家代碼的列表。第二個元素是基於字串的語言代碼。它基本上符合ISO 639國際標準，除了極少數例外。出現例外的原因是ISO 639標準在變化，一些語言的代碼已經發生了改變，而這個函數總是返回舊的代碼。用戶可以查詢https://en.wikipedia.org/wiki/ISO_639獲取ISO 639所有的語言代碼列表。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_day_of_month</center></td>
+<td><p>::mfp::time_date::get_day_of_month(1) :</p>
+<p>get_year(timestamp)，get_month(timestamp)，get_day_of_year(timestamp)，get_day_of_month(timestamp)，get_day_of_week(timestamp)，get_hour(timestamp)，get_minute(timestamp)，get_second(timestamp)和get_millisecond(timestamp) 分別返回時標timestamp所對應的年，月，本年中的第幾天，本月中的第幾天，本星期中的第幾天（禮拜天是第0天，禮拜一是第一天，...），小時，分鐘，秒鐘和毫秒。時標是時標所表示的時刻和1970年1月1日午夜（UTC）的毫秒數時間差。例如，get_day_of_week(get_time_stamp(2014, 12, 21))返回0，表示2014年12月21日是禮拜天。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_day_of_week</center></td>
+<td><p>::mfp::time_date::get_day_of_week(1) :</p>
+<p>get_year(timestamp)，get_month(timestamp)，get_day_of_year(timestamp)，get_day_of_month(timestamp)，get_day_of_week(timestamp)，get_hour(timestamp)，get_minute(timestamp)，get_second(timestamp)和get_millisecond(timestamp) 分別返回時標timestamp所對應的年，月，本年中的第幾天，本月中的第幾天，本星期中的第幾天（禮拜天是第0天，禮拜一是第一天，...），小時，分鐘，秒鐘和毫秒。時標是時標所表示的時刻和1970年1月1日午夜（UTC）的毫秒數時間差。例如，get_day_of_week(get_time_stamp(2014, 12, 21))返回0，表示2014年12月21日是禮拜天。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_day_of_year</center></td>
+<td><p>::mfp::time_date::get_day_of_year(1) :</p>
+<p>get_year(timestamp)，get_month(timestamp)，get_day_of_year(timestamp)，get_day_of_month(timestamp)，get_day_of_week(timestamp)，get_hour(timestamp)，get_minute(timestamp)，get_second(timestamp)和get_millisecond(timestamp) 分別返回時標timestamp所對應的年，月，本年中的第幾天，本月中的第幾天，本星期中的第幾天（禮拜天是第0天，禮拜一是第一天，...），小時，分鐘，秒鐘和毫秒。時標是時標所表示的時刻和1970年1月1日午夜（UTC）的毫秒數時間差。例如，get_day_of_week(get_time_stamp(2014, 12, 21))返回0，表示2014年12月21日是禮拜天。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_color</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_color(1) :</p>
+<p>get_display_bgrnd_color(display)返回一個display的背景色。該display既可以是screen display，也可以是image display。背景色是一個4個或3個元素的數組，如果是4個元素，就是[Alpha，R，G，B]，如果是3個元素，就是[R，G，B]，在該數組中，每一個元素的值都是從0到255。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_image</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_image(1) :</p>
+<p>get_display_bgrnd_image(display)返回一個display的背景圖像。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_image_mode</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_image_mode(1) :</p>
+<p>get_display_bgrnd_image_mode(display)返回一個display的背景圖像的布置方式。0表示原始背景圖像被置於左上角，1表示背景圖像被縮放值screen大小以便覆蓋整個screen，2表示背景圖像如貼瓷磚一樣重復整齊排列，但每一片“瓷磚”大小保持原狀， 3背景圖像位於屏幕正中央。在這種情況下背景圖像的大小也不會改變。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_caption</center></td>
+<td><p>::mfp::graph_lib::display::get_display_caption(1) :</p>
+<p>get_display_caption(display)在JAVA平臺上返回一個screen display的標題。對於image display，或者是對於安卓平臺，get_display_caption總是返回空字元串。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_confirm_close</center></td>
+<td><p>::mfp::graph_lib::display::get_display_confirm_close(1) :</p>
+<p>get_display_confirm_close(display)返回關閉一個screen display是否需要確認。對於image display，get_display_confirm_close總是返回FALSE。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_orientation</center></td>
+<td><p>::mfp::graph_lib::display::get_display_orientation(1) :</p>
+<p>get_display_orientation(display)返回一個screen display是橫屏（0）還是豎屏（1）還是橫豎均可（-1）。對於image display，或者在JAVA平臺上，get_display_orientation總是返回-1。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_resizable</center></td>
+<td><p>::mfp::graph_lib::display::get_display_resizable(1) :</p>
+<p>get_display_resizable(display)用於返回一個布爾量，表示一個screen display是否可以改變大小。對於image display，get_display_resizable總是返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_size</center></td>
+<td><p>::mfp::graph_lib::display::get_display_size(1) :</p>
+<p>get_display_size(display)返回一個display（既可以是screen display，也可以是image display）的長度和高度。返回值是一個包含兩個元素的矩陣，第一個元素是長度，第二個元素是高度。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_snapshot</center></td>
+<td><p>::mfp::graph_lib::display::get_display_snapshot(4) :</p>
+<p>get_display_snapshot(display, update_screen_or_not, width_ratio, height_ratio)返回一個display（既可以是screen display，也可以是image display）的截屏。它的第二個參數，update_screen_or_not，告訴MFP在截屏之前該display是否需要刷新；它的第三個和第四個參數，是可選參數，缺省值均為1，分別用於告訴MFP返回的截屏的長度和高度的縮放比例。比如，get_display_snapshot(d, true, 0.5, 3)首先刷新螢幕d，然後截取d的圖像，最後將截取的圖像長度上壓縮為原來的一半，高度上拉伸為原來的三倍並返回新的圖像。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_eigen_values</center></td>
+<td><p>::mfp::math::matrix::get_eigen_values(1) :</p>
+<p>get_eigen_values(A)計算2維方陣A的特征值。這個函數程式返回所有特征值，包括重復的特征值的列表。註意運算這個程式非常耗費內存和CPU資源，如果在移動設備上運行，征列A的尺寸最好不要超過6*6，如果在電腦上運行，最好不要超過8*8，否則可能造成內存不足而程序崩潰或者運行很長時間而沒有結果。</p>
+<p>::mfp::math::matrix::get_eigen_values(2) :</p>
+<p>get_eigen_values(A, B)計算2維方陣A相對於同樣尺寸的方陣B的特征值，也就是Av = lambda * Bv，在這裏，。lambda是一個特征值，v是一個特征向量。第二個參數，B，可以省略，其缺省值為I陣列。這個函數程式返回所有特征值，包括重復的特征值的列表。註意運算這個程式非常耗費內存和CPU資源，如果在移動設備上運行，征列A的尺寸最好不要超過6*6，如果在電腦上運行，最好不要超過8*8，否則可能造成內存不足而程序崩潰或者運行很長時間而沒有結果。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_elem_from_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::get_elem_from_ablist(2) :</p>
+<p>get_elem_from_ablist(array_based_list, idx)返回基於數組的序列array_based_list在idx處的值的引用。如果idx不合法，一個異常將會被拋出。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_info</center></td>
+<td><p>::mfp::graph_lib::event::get_event_info(2) :</p>
+<p>get_event_info(event, property_name)返回event事件的一個特性。它的第一個參數是事件，第二個參數是基於字串的特性的名字。GDI_INITIALIZE和GDI_CLOSE事件沒有單獨的特性。WINDOW_RESIZED事件有四個整數特性，它們是"width"，"height"，"last_width"，"last_height"。它們分別表示當前窗口的寬度和高度，以及事件觸發前窗口的寬度和高度。POINT_DOWN，POINT_UP和POINT_CLICKED事件均有三個特性。其中，"button"特性是一個整數，表示滑鼠的哪一個鍵觸發了這個事件。注意在安卓平臺上，"button"特性總是0。"x"和"y"表示事件觸發時的座標位子，它們均為浮點數。POINT_DRAGGED和POINT_SLICED事件均有5個特性。其中，"button"特性是一個整數，表示滑鼠的哪一個鍵觸發了這個事件。注意在安卓平臺上，"button"特性總是0。"last_x"和"last_y"表示事件觸發前的座標位子，它們均為浮點數。"x"和"y"表示事件觸發後的座標位子，它們均為浮點數。POINTER_PINCHED事件有八個特性，它們是"last_x"、"last_y"、"last_x2"、"last_y2"、"x"、"y"、"x2"以及"y2"。這些特性定義了參與POINTER_PINCHED事件的兩根手指頭在事件觸發前和事件觸發後的座標位置。這些特性均為浮點數。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_type</center></td>
+<td><p>::mfp::graph_lib::event::get_event_type(1) :</p>
+<p>get_event_type(event)返回一個整數，表示事件event的類型。在現階段支持以下事件：GDI_INITIALIZE（類型為1，產生於screen display被創建的時候），GDI_CLOSE（類型為10，產生於screen display被關閉的時候），WINDOW_RESIZED（僅僅用於JAVA平臺，類型為21，產生於screen display的窗口大小被調整的時候），POINTER_DOWN（類型為102，產生於滑鼠按鈕被按下或者用戶手指點到觸摸屏的時候），POINTER_UP（類型為103，產生於滑鼠按鈕彈起或者用戶手指離開觸摸屏的時候），POINTER_CLICKED（類型為104，產生於滑鼠按鈕快速按下再立即彈起或者用戶手指輕敲觸摸屏的時候），POINTER_DRAGGED（類型為105，產生於滑鼠或者用戶手指按下並拖動的時候。注意只要拖動還在進行中，這個事件就會連續地觸發），POINTER_SLIDED（類型為106，產生於滑鼠或者用戶手指按下並拖動到終點，滑鼠按鈕彈起或者用戶手指離開觸摸屏的時候，注意這個事件只是在拖動事件結束的時候觸發一次），POINTER_PINCHED（僅用於安卓平臺，類型為201，當用戶捏合手指進行類似縮放操作的時候觸發）。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_type_name</center></td>
+<td><p>::mfp::graph_lib::event::get_event_type_name(1) :</p>
+<p>get_event_type_name(event)返回一個字串，表示事件event的類型的名字。在現階段支持以下事件："GDI_INITIALIZE"（產生於screen display被創建的時候），"GDI_CLOSE"（產生於screen display被關閉的時候），"WINDOW_RESIZED"（僅僅用於JAVA平臺，產生於screen display的窗口大小被調整的時候），"POINTER_DOWN"（產生於滑鼠按鈕被按下或者用戶手指點到觸摸屏的時候），"POINTER_UP"（產生於滑鼠按鈕彈起或者用戶手指離開觸摸屏的時候），"POINTER_CLICKED"（產生於滑鼠按鈕快速按下再立即彈起或者用戶手指輕敲觸摸屏的時候），"POINTER_DRAGGED"（產生於滑鼠或者用戶手指按下並拖動的時候。注意只要拖動還在進行中，這個事件就會連續地觸發），"POINTER_SLIDED"（產生於滑鼠或者用戶手指按下並拖動到終點，滑鼠按鈕彈起或者用戶手指離開觸摸屏的時候，注意這個事件只是在拖動事件結束的時候觸發一次），"POINTER_PINCHED"（僅用於安卓平臺，當用戶捏合手指進行類似縮放操作的時候觸發）。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_extreme_elem</center></td>
+<td><p>::mfp::array::get_extreme_elem(3) :</p>
+<p>函數程式get_extreme_elem分析輸入的數值陣列並返回其所有元素的最大或最小值。如果某一個元素不是實數，這個元素就會被忽略。這個函數程式有3個參數，第一個是數值陣列（也可以是一個單一的數值），第二個是起始的最大或者最小值，如果這個參數不是null並且是一個實數，本函數程式將該參數和選出的最大或最小元素進行比較，並返回新的最大或最小值。第三個參數是告訴本函數程式返回最大值還是最小值，如果是0則返回最小值，否則返回最大值。函數程式的例子包括get_extreme_elem([[2, 3], "hello", 5], null, 1)和get_extreme_elem([[3,4,6],[5+3i, 7, 9.88-4.61], [5.77 -0.03i]], -8, 0)。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_file_last_modified_time</center></td>
+<td><p>::mfp::io::file::get_file_last_modified_time(1) :</p>
+<p>get_file_last_modified_time(path)返回基於字串路徑的path的檔案或目錄的上一次更改時間。該時間等於從1970年1月1日午夜開始到上一次更改時刻所經歷的毫秒數。如果path不存在或者沒有訪問權限，返回-1。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_file_path</center></td>
+<td><p>::mfp::io::file::get_file_path(1) :</p>
+<p>get_file_path(fd)返回文件號fd（fd是一個整數）所對應的文件的路徑字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_file_separator</center></td>
+<td><p>::mfp::io::file::get_file_separator(0) :</p>
+<p>get_file_separator()返回路徑分割符。在Windows平臺下返回字串"\\"，在Linux和Android平臺下返回字串"/"。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_file_size</center></td>
+<td><p>::mfp::io::file::get_file_size(1) :</p>
+<p>get_file_size(path)返回基于字串路径的path的档案大小。如果path不是对应一个档案或者没有权限或者不存在，返回-1。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_func_fullname</center></td>
+<td><p>::mfp::reflection::get_func_fullname(3) :</p>
+<p>get_func_fullname(function_name, number_of_params, citing_spaces_to_check)返回一個函數的全名（也就是引用空間加函數名）。它有三個參數。第一個參數是一個基於字串的函數名，這個函數名可以包含部分或者不包含引用空間。第二個參數是參數的個數。這是一個可選參數，它的缺省值是-1，意思是僅僅搜索比較函數名，不考慮參數個數。第三個參數是將要檢視的引用空間列表。這是一個基於數組的一維矩陣，比如["::mfp_compiler", "::mfp::*"]。在這個例子中，本函數將會首先搜索引用空間::mfp_compiler，然後搜索引用空間::mfp以及::mfp的所有子空間。這個參數也是可省略的。它的缺省值就是當前上下文所使用的引用空間。如果get_func_fullname需要尋找的函數在給出的引用空間中沒有找到，本函數將會拋出異常。一個函數的例子為get_func_fullname("reflection:: get_func_fullname", 2)。這個例子的返回值為"::mfp::reflection::get_func_fullname"。注意這裏參數的個數用的是2而不是3但依然合法，原因是get_func_fullname有兩個缺省參數，所以參數個數可以是1或者2或者3。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_functions</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_functions(0...) :</p>
+<p>get_functions(...) 是一個用於編譯的函數，也就是說它在打包腳本生成MFP應用時發揮作用。本函數返回一個數組，其中包括所有的出現在參數中的MFP函數的引用信息。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_hour</center></td>
+<td><p>::mfp::time_date::get_hour(1) :</p>
+<p>get_year(timestamp)，get_month(timestamp)，get_day_of_year(timestamp)，get_day_of_month(timestamp)，get_day_of_week(timestamp)，get_hour(timestamp)，get_minute(timestamp)，get_second(timestamp)和get_millisecond(timestamp) 分別返回時標timestamp所對應的年，月，本年中的第幾天，本月中的第幾天，本星期中的第幾天（禮拜天是第0天，禮拜一是第一天，...），小時，分鐘，秒鐘和毫秒。時標是時標所表示的時刻和1970年1月1日午夜（UTC）的毫秒數時間差。例如，get_day_of_week(get_time_stamp(2014, 12, 21))返回0，表示2014年12月21日是禮拜天。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_image_size</center></td>
+<td><p>::mfp::multimedia::image_lib::get_image_size(1) :</p>
+<p>get_image_size(image_handle)返回由image_handle所代表的被包裝過的JAVA圖像對象的長和寬組成的數組。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_incoming_connect</center></td>
+<td><p>::mfp::paracomp::connect::get_incoming_connect(2) :</p>
+<p>get_incoming_connect函數返回一個從遠端地址連入一個本地網絡界面的網絡連接對象，或者如果沒有這樣一個網絡連接存在則返回null。這個函數接受兩個參數。第一個參數為一個代表本地網絡界面信息的對象。 該對象為generate_interface函數的返回值。第二個參數是遠端，也就是網絡連接發起端（或者說客戶端）的地址。註意對於TCPIP協議，客戶端的地址必須是包括IP地址和端口的完整地址。此外，如果在遠端和本地之間存在NAT層，客戶端地址必須是在本地看到的遠端地址，也就是客戶端在NAT層外側的地址。本函數的一個例子是get_incoming_connect(local_interface, "192.168.1.100:53521")。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_json_field</center></td>
+<td><p>::mfp::exdata::json::get_json_field(3) :</p>
+<p>此函數從一個代表JSON數據的字符串中獲取一個域的值。此函數有三個參數。第一個參數為一個代表JSON數據的字符串，第二個參數為JSON域的名字，第三個參數為JSON域的類型。如果第三個參數值為"s"，則意味著這個JSON域是一個字符串，如果是"b"，則意味著這個JSON域是一個布爾值，如果是"f"，則意味著這個JSON域是一個浮點數值，如果是"d"，則意味著這個JSON域是一個整數值，如果是"a"，則意味著這個JSON域是一個數組，如果是"j"，則意味著這個JSON域是一個代表JSON數據的字符串，如果是其他值或者這個參數被省略，則由MFP自己偵測這個JSON域的數據類型。註意第一個參數和第二個參數都是區分大小寫的，但第三個參數不區分大小寫。這個函數的返回值是這個JSON域的數據值。本函數的一個例子是get_json_field("{\"ABC\": null, \"JJJ\": {\"DEF\":[1, 8, [\"Welcome\", 9.99]],\"ZZ\":\"hello boy\"}}", "JJJ", "j")。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_local_host_address</center></td>
+<td><p>::mfp::paracomp::host::get_local_host_address(1) :</p>
+<p>get_local_host_address(protocol_name)返回protocol_name協議在本機的localhost地址。本函數的一個例子是get_local_host_address("TCPIP")。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_millisecond</center></td>
+<td><p>::mfp::time_date::get_millisecond(1) :</p>
+<p>get_year(timestamp)，get_month(timestamp)，get_day_of_year(timestamp)，get_day_of_month(timestamp)，get_day_of_week(timestamp)，get_hour(timestamp)，get_minute(timestamp)，get_second(timestamp)和get_millisecond(timestamp) 分別返回時標timestamp所對應的年，月，本年中的第幾天，本月中的第幾天，本星期中的第幾天（禮拜天是第0天，禮拜一是第一天，...），小時，分鐘，秒鐘和毫秒。時標是時標所表示的時刻和1970年1月1日午夜（UTC）的毫秒數時間差。例如，get_day_of_week(get_time_stamp(2014, 12, 21))返回0，表示2014年12月21日是禮拜天。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_minute</center></td>
+<td><p>::mfp::time_date::get_minute(1) :</p>
+<p>get_year(timestamp)，get_month(timestamp)，get_day_of_year(timestamp)，get_day_of_month(timestamp)，get_day_of_week(timestamp)，get_hour(timestamp)，get_minute(timestamp)，get_second(timestamp)和get_millisecond(timestamp) 分別返回時標timestamp所對應的年，月，本年中的第幾天，本月中的第幾天，本星期中的第幾天（禮拜天是第0天，禮拜一是第一天，...），小時，分鐘，秒鐘和毫秒。時標是時標所表示的時刻和1970年1月1日午夜（UTC）的毫秒數時間差。例如，get_day_of_week(get_time_stamp(2014, 12, 21))返回0，表示2014年12月21日是禮拜天。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_month</center></td>
+<td><p>::mfp::time_date::get_month(1) :</p>
+<p>get_year(timestamp)，get_month(timestamp)，get_day_of_year(timestamp)，get_day_of_month(timestamp)，get_day_of_week(timestamp)，get_hour(timestamp)，get_minute(timestamp)，get_second(timestamp)和get_millisecond(timestamp) 分別返回時標timestamp所對應的年，月，本年中的第幾天，本月中的第幾天，本星期中的第幾天（禮拜天是第0天，禮拜一是第一天，...），小時，分鐘，秒鐘和毫秒。時標是時標所表示的時刻和1970年1月1日午夜（UTC）的毫秒數時間差。例如，get_day_of_week(get_time_stamp(2014, 12, 21))返回0，表示2014年12月21日是禮拜天。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_num_of_results_sets</center></td>
+<td><p>::mfp::math::polynomial::get_num_of_results_sets(1) :</p>
+<p>get_num_of_results_sets(x)返回solve返回值x中所包含的解集的組數。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_porterduff_mode</center></td>
+<td><p>::mfp::graph_lib::draw::get_porterduff_mode(1) :</p>
+<p>get_porterduff_mode(painting_extra)返回一個painting extra數據結構的porterduff模式。painting extra數據結構在painting事件中被調用。Porterduff模式告訴MFP如何繪製目標區域。它是一個大寫的字串，具有以下可能值："CLEAR"，"SRC"，"DST"，"SRC_OVER"，"DST_OVER"，"SRC_IN"，"DST_IN"，"SRC_OUT"，"DST_OUT"，"SRC_ATOP"，"DST_ATOP"，"XOR"或者""，其中，空字元串""是缺省值。開發者可以參考JAVA文檔以獲取porterduff模式的詳細資訊。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_rtc_video_output_count</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::get_rtc_video_output_count(1) :</p>
+<p>本函數返回一個顯示窗口上的RTC視頻子窗口的個數。本函數僅有一個參數就是顯示窗口的句柄。該句柄是open_screen_display函數的返回值。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_rtc_video_output_lefttop</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::get_rtc_video_output_lefttop(2) :</p>
+<p>本函數返回一個包含兩個元素的數組。第一個元素是一個RTC視頻輸出子窗口的左上角的x坐標。第二個元素是該RTC視頻輸出子窗口的左上角的y坐標。這個函數有兩個參數。第一個參數是一個顯示窗口的句柄。該句柄是open_screen_display函數的返回值。第二個參數是該RTC視頻輸出子窗口在顯示窗口的RTC視頻輸出子窗口序列中的索引。第一個RTC視頻輸出子窗口的索引是0，第二個RTC視頻輸出子窗口的索引是1，以此類推。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sandbox_session_lib_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_sandbox_session_lib_path(0) :</p>
+<p>函數get_sandbox_session_lib_path返回一個基於字符串的路徑，該路徑是當前沙盒的用戶代碼庫的所在目錄。沙盒是在服務端運行的一個線程。這個線程在服務端收到一個客戶端的call指令後啟動。這個客戶端是一個獨立於服務端的進程，它可能位於本機，也可能位於另外一臺電腦。該線程擁有獨立於服務端其它線程的MFP用戶代碼庫，資源和棧。它的用戶代碼庫,資源和棧是拷貝自發送call指令的客戶端。這個函數沒有參數。如果當前運行的代碼不是位於沙盒中（比如，當前代碼是在常規的命令提示符下運行），這個函數返回NULL 。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sandbox_session_resource_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_sandbox_session_resource_path(0) :</p>
+<p>函數get_sandbox_session_resource_path返回一個基於字符串的路徑，該路徑是當前沙盒的資源文件（比如圖像文件，聲音文件和數據庫文件）的所在目錄。沙盒是在服務端運行的一個線程。這個線程在服務端收到一個客戶端的call指令後啟動。這個客戶端是一個獨立於服務端的進程，它可能位於本機，也可能位於另外一臺電腦。該線程擁有獨立於服務端其它線程的MFP用戶代碼庫，資源和棧。它的用戶代碼庫,資源和棧是拷貝自發送call指令的客戶端。這個函數沒有參數。如果當前運行的代碼不是位於沙盒中（比如，當前代碼是在常規的命令提示符下運行），這個函數返回NULL 。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_second</center></td>
+<td><p>::mfp::time_date::get_second(1) :</p>
+<p>get_year(timestamp)，get_month(timestamp)，get_day_of_year(timestamp)，get_day_of_month(timestamp)，get_day_of_week(timestamp)，get_hour(timestamp)，get_minute(timestamp)，get_second(timestamp)和get_millisecond(timestamp) 分別返回時標timestamp所對應的年，月，本年中的第幾天，本月中的第幾天，本星期中的第幾天（禮拜天是第0天，禮拜一是第一天，...），小時，分鐘，秒鐘和毫秒。時標是時標所表示的時刻和1970年1月1日午夜（UTC）的毫秒數時間差。例如，get_day_of_week(get_time_stamp(2014, 12, 21))返回0，表示2014年12月21日是禮拜天。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_solved_results_set</center></td>
+<td><p>::mfp::math::polynomial::get_solved_results_set(2) :</p>
+<p>get_solved_results_set(x, y)返回solve程式塊返回值x中所包含的第y+1組解集。註意本函數程式返回一個一維陣列，陣列中的第一個元素是solve程式塊的第一個待解變數的值，第二個元素是solve程式塊的第二個待解變數的值，依次類推。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_path</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_path(1) :</p>
+<p>get_sound_path(sound_handle)返回sound_handle所指向的音效檔的路徑。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_reference_path</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_reference_path(1) :</p>
+<p>get_sound_reference_path(sound_handle)返回sound_handle所指向的聲音引用檔的路徑。如果音效檔不是從zip壓縮的讀入的，聲音引用檔和sound_handle所指向的音效檔（也就是get_sound_file函數的返回值）是同一個檔。如果音效檔是從zip壓縮的讀入的，聲音引用檔路徑是壓縮檔的路徑加上音效檔的壓縮路徑，比如"/folder1/folder2/snd.zip/zipped_folder/snd.wav"，這裡"/folder1/folder2/snd.zip"是壓縮檔路徑，"zipped_folder/snd.wav"是音效檔的壓縮路徑。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_repeat</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_repeat(1) :</p>
+<p>get_sound_repeat(sound_handle)返回一個布爾量，表示參數sound_handle所代表的聲音是否會被重複演奏。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_source_type</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_source_type(1) :</p>
+<p>get_sound_source_type(sound_handle)返回一個整數，代表sound_handle所指向的聲音引用檔的類型。0表示常規檔，1表示壓縮的zip檔，2表示引用於MFP App中安卓asset中的zip檔。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_volume</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_volume(1) :</p>
+<p>get_sound_volume(sound_handle)返回參數sound_handle所代表的聲音的音量（一個變化範圍從0到1的浮點數）。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_src_file_path</center></td>
+<td><p>::mfp::io::file::get_src_file_path(0) :</p>
+<p>這個函數返回當前腳本的完整路徑。當前腳本是調用get_src_file_path的腳本。如果本函數在命令提示符中被調用，則返回null。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_time_stamp</center></td>
+<td><p>::mfp::time_date::get_time_stamp(1...) :</p>
+<p>get_time_stamp(string_or_year, ...)返回由其參數所決定的時標。時標是時標所表示的時刻和1970年1月1日午夜（UTC）的毫秒數時間差。這個函數程式有兩種工作模式。第一種模式是get_time_stamp(string_time_stamp)。這種模式僅僅接受一個字串參數，該參數必須基於yyyy-mm-dd hh:mm:ss[.f...]的格式。其中，秒的分數部分可以忽略。第二種模式是get_time_stamp(year, month, day, hour, minute, second, millisecond)。這些參數中，除了第一個參數year（年），所有的其他參數都可以省略。如果省略，month（月）和day（日）的缺省值是1，hour（小時），minute（分鐘），second（秒）和millisecond（毫秒）的缺省值是0。比如get_time_stamp("1981-05-30 17:05:06")返回1981年5月30日17點5分6秒0毫秒的時標，用戶也可以調用get_time_stamp(1981, 5, 30, 17, 5, 6, 0)獲得同樣的結果。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_type_fullname</center></td>
+<td><p>::mfp::reflection::get_type_fullname(1) :</p>
+<p>get_type_fullname返回參數類型的全名，即帶有引用空間路徑的名稱。例如，如果開發人員在引用空間::abc::def中定義了一個類A，並且已經從類A創建了一個名為objA的對象，則get_type_fullname(objA)將返回一個字符串，該字符串為::abc::def::a。請注意，由於MFP不區分大小寫，並且內部所有變量名稱和類型都轉換為小寫字母，所以A更改為a。另請注意，此函數可以返回MFP內置類型的全名。但是，建議用戶僅在程序運行期間使用它來識別兩個變量是否具有相同的類型。用戶不能假定MFP內置類型的全名在以後的版本中永遠不會更改。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_upper_level_path</center></td>
+<td><p>::mfp::io::file::get_upper_level_path(1) :</p>
+<p>本函數返回參數字串的上層目錄（也是一個字串）。比如，get_upper_level_path("abc/def")和get_upper_level_path("abc/def/")在安卓上都返回"abc/"。但是，要注意如果上層目錄是非法目錄，它返回null。比如get_upper_level_path("")和get_upper_level_path("/")均返回null。原因是""和"/"的上層目錄均不存在。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_value_from_abdict</center></td>
+<td><p>::mfp::data_struct::array_based::get_value_from_abdict(2) :</p>
+<p>get_value_from_abdict(array_based_dictionary, key)返回基於數組的字典array_based_dictionary的key所對應的值的引用。如果key不存在，一個異常將會被拋出。注意key只能是字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_variable_results</center></td>
+<td><p>::mfp::math::polynomial::get_variable_results(2) :</p>
+<p>get_variable_results(x, y)返回solve程式塊返回值x中該solve程式塊第y+1個待解變數的所有值。註意本函數程式返回一個一維陣列，陣列中的每一個元素是該待解變數的一個根。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_video_track_enable</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::get_video_track_enable(1) :</p>
+<p>本函數測試視頻功能是否已經被激活。如果是，返回True，否則返回False。這個函數僅有一個參數，就是一個顯示窗口的句柄。該句柄是open_screen_display函數的返回值。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_working_dir</center></td>
+<td><p>::mfp::io::file::get_working_dir(0) :</p>
+<p>get_working_dir()（別名pwd()）返回基於字串的當前路徑。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_year</center></td>
+<td><p>::mfp::time_date::get_year(1) :</p>
+<p>get_year(timestamp)，get_month(timestamp)，get_day_of_year(timestamp)，get_day_of_month(timestamp)，get_day_of_week(timestamp)，get_hour(timestamp)，get_minute(timestamp)，get_second(timestamp)和get_millisecond(timestamp) 分別返回時標timestamp所對應的年，月，本年中的第幾天，本月中的第幾天，本星期中的第幾天（禮拜天是第0天，禮拜一是第一天，...），小時，分鐘，秒鐘和毫秒。時標是時標所表示的時刻和1970年1月1日午夜（UTC）的毫秒數時間差。例如，get_day_of_week(get_time_stamp(2014, 12, 21))返回0，表示2014年12月21日是禮拜天。</p>
+</td>
+</tr>
+<tr>
+<td><center>hash_code</center></td>
+<td><p>::mfp::object::hash_code(1) :</p>
+<p>hash_code函數返回它唯一一個參數的哈希值。</p>
+</td>
+</tr>
+<tr>
+<td><center>havg</center></td>
+<td><p>::mfp::math::stat_stoch::havg(0...) :</p>
+<p>函數havg(…)返回任意個數參數的調和平均數值。</p>
+</td>
+</tr>
+<tr>
+<td><center>iff</center></td>
+<td><p>::mfp::command::iff(3...) :</p>
+<p>函數程式iff(condition1, true_result1, condition2, true_result2, ..., false_result)的參數condition1，condition2，...為代表條件的布爾值，iff函數程式的返回值由條件值決定。比如，iff(true, 3, 2)返回3，iff(3<2, 3, 2)返回2（這是因為3<2是false），iff(3<2, 3, 5>4, 5, 6==9, 6, 9)返回5，以及iff(3<2, 3, 5<4, 5, 6==9, 6, 9)返回9。</p>
+</td>
+</tr>
+<tr>
+<td><center>ifft</center></td>
+<td><p>::mfp::sig_proc::ifft(1...) :</p>
+<p>IFFT(a, ...)返回對一個數值向量作快速傅立葉變換的逆變換後的值。註意數值向量中數值的個數必須是2的整數次方。如果參數a是一個數值序列，則本函數程式只可能擁有一個參數，返回值為對序列a[0], a[1], ..., a[N-1]作快速傅立葉變換的逆變換的返回值。如果參數a僅僅是一個實數或者虛數，則本函數程式最少包含2個參數，而返回序列a， optional_params[0]， ...， optional_params[number_of_optional_params - 2]， optional_params[number_of_optional_params - 1]快速傅立葉變換的逆變換後的值。註意返回值總是一個數組。</p>
+<p>函數程式例子：</p>
+<p>IFFT(10, -2 + 2i, -2, -2 - 2i)返回[1, 2, 3, 4]；</p>
+<p>IFFT([10, -2 + 2i, -2, -2 - 2i])同樣也是返回[1, 2, 3, 4]；</p>
+</td>
+</tr>
+<tr>
+<td><center>image</center></td>
+<td><p>::mfp::math::complex::image(1) :</p>
+<p>image(x)返回復數x的虛部的實數值。</p>
+<p>::mfp::math::complex::image(2) :</p>
+<p>image(x, mode)返回復數x的虛部。如果參數mode是true，則返回虛數值，否則返回實數值。比如image(3+2i, true) = 2i而image(3+2i, false) = 2。</p>
+</td>
+</tr>
+<tr>
+<td><center>includes_inf</center></td>
+<td><p>::mfp::array::includes_inf(1) :</p>
+<p>includes_inf(x)用於判斷參數x是否包含正負無窮。這裏，包含指的是，如果x是個陣列，那麽它的某一個元素包含或者本身就是目標值，如果x是一個復數，那麽它的實部或者虛部是目標值，如果x是一個實數，那麽它就是目標值。如果是，返回true，否則，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>includes_nan</center></td>
+<td><p>::mfp::array::includes_nan(1) :</p>
+<p>includes_nan(x)用於判斷參數x是否包含Nan。這裏，包含指的是，如果x是個陣列，那麽它的某一個元素包含或者本身就是目標值，如果x是一個復數，那麽它的實部或者虛部是目標值，如果x是一個實數，那麽它就是目標值。如果是，返回true，否則，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>includes_nan_or_inf</center></td>
+<td><p>::mfp::array::includes_nan_or_inf(1) :</p>
+<p>includes_nan_or_inf(x)用於判斷參數x是否包含Nan或者正負無窮。這裏，包含指的是，如果x是個陣列，那麽它的某一個元素包含或者本身就是目標值，如果x是一個復數，那麽它的實部或者虛部是目標值，如果x是一個實數，那麽它就是目標值。如果是，返回true，否則，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>includes_nan_or_inf_or_null</center></td>
+<td><p>::mfp::array::includes_nan_or_inf_or_null(1) :</p>
+<p>includes_nan_or_inf_or_null(x)用於判斷參數x是否包含Nan或者正負無窮或者null。這裏，包含指的是，如果x是個陣列，那麽它的某一個元素包含或者本身就是目標值，如果x是一個復數，那麽它的實部或者虛部是目標值，如果x是一個實數，那麽它就是目標值。如果是，返回true，否則，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>includes_null</center></td>
+<td><p>::mfp::array::includes_null(1) :</p>
+<p>includes_null(x)用於判斷參數x是否包含null。這裏，包含指的是，如果x是個陣列，那麽它的某一個元素包含或者本身就是目標值，如果x是一個復數，那麽它的實部或者虛部是目標值，如果x是一個實數，那麽它就是目標值。如果是，返回true，否則，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>initialize_local</center></td>
+<td><p>::mfp::paracomp::connect::initialize_local(2) :</p>
+<p>initialize_local(local_info, settings)初始化一個本地interface對象。該對象由local_info定義（local_info是調用generate_interface的返回結果）。這個函數的第二個參數是本地網絡界面的設置。這個參數現在還沒有被使用，所以可以省略。本函數如果成功返回true，否則返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>initialize_rtc_mmedia</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::initialize_rtc_mmedia(0) :</p>
+<p>本函數用於初始化web RTC庫。註意此處的web RTC是指的用於支持聲音和視頻通信的web RTC函數庫，而不是用於支持數據通信的WEBRTC協議棧。如果初始化成功，函數返回True，否則返回False。</p>
+</td>
+</tr>
+<tr>
+<td><center>input</center></td>
+<td><p>::mfp::io::console::input(3) :</p>
+<p>input(prompt,input_type,default_value)在命令主控台上列印出基於字串的提示符prompt並等待用戶輸入。第二個參數input_type，以及第三個參數default_value，都是可選參數。在現階段，如果第二個參數存在，並且它值是字串"s"或者"S"，用戶的輸入將會被當作一個字串並且函數將會返回這個字串。如果第二個和第三個參數均存在，並且第二個參數是"default"或者"DEFAULT"，第三個參數將會作為缺省值。這個缺省值將在用戶直接輸入回車或者空格再回車的時候被函數作為返回值。除了前述這兩種情況，本函數將把用戶的輸入看作是一個運算式，運算式的值作為返回值返回。如果用戶輸入不是一個合法的運算式，本函數會重新列印提示符要求用戶再次輸入。用戶的一次輸入由ENTER鍵結束。如果用戶輸入了多行，僅僅第一行會被讀取。比如，用戶運行input("$", "S")，然後在提示符後輸入4 + 3，再按回車，這個函數返回一個字串"4 + 3"，如果用戶運行input("%")，然後再提示符後輸入4 + 3，再按回車，這個函數返回7。 如果用戶運行input("#", "default", "e")，然後再提示符後輸入空格並回車，本函數返回字串"e"。</p>
+</td>
+</tr>
+<tr>
+<td><center>insert_elem_into_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::insert_elem_into_ablist(3) :</p>
+<p>insert_elem_into_ablist(array_based_list, idx, ref_of_elem)將ref_of_elem的引用插入基於數組的序列array_based_list的idx號元素之前並返回更新後的基於數組的序列。作為參數的array_based_list和返回值共享元素。注意idx必須是一個合法的索引。</p>
+</td>
+</tr>
+<tr>
+<td><center>integrate</center></td>
+<td><p>::mfp::math::calculus::integrate(2) :</p>
+<p>integrate(x,y)返回基於變數y的表達式x的不定積分，表達式x和變數y均為字串。註意如果表達式x不存在不定積分，或者x過於復雜無法解出其不定積分，本函數程式將會拋出異常。</p>
+<p>::mfp::math::calculus::integrate(4) :</p>
+<p>integrate(x,y,z,w)返回表達式x在變數y從z到w的積分值。表達式x和變數y均為字串，z和w可以為實數，復數或字串。註意本函數程式采用的積分算法是自適應Gauss-Kronrod積分法。</p>
+<p>::mfp::math::calculus::integrate(5) :</p>
+<p>integrate(x,y,z,w,v)返回表達式x相對於變數y從w到z的積分。計算時每一步步長為(w-z)/v。表達式x和變數y均為字串，z和w可以為實數，復數或字串，v必須為正整數。註意如果v是0，則相當於執行integrate(x,y,z,w)。</p>
+</td>
+</tr>
+<tr>
+<td><center>invert</center></td>
+<td><p>::mfp::math::matrix::invert(1) :</p>
+<p>invert(x)返回方塊2維矩陣x的逆矩陣，註意x中的元素可以為復數。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_directory</center></td>
+<td><p>::mfp::io::file::is_directory(1) :</p>
+<p>is_directory(path)用於判斷位於字串path的檔案（或者目錄）是否是一個目錄。如果該檔案或目錄存在並且是一個目錄返回true，否則返回false。例子包括is_directory("E:\\") (Windows)和is_directory("/home/tony/Documents/cv.pdf") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_display_on_live</center></td>
+<td><p>::mfp::graph_lib::display::is_display_on_live(1) :</p>
+<p>is_display_on_live(display)函數程式返回布爾值，表示參數display是否依然有效。display既可以是screen display，也可以是image display。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_eye</center></td>
+<td><p>::mfp::math::matrix::is_eye(2) :</p>
+<p>is_eye(x,y)用於確定數組（或數）x是否是單位陣I（或數字1），如果是，返回true，否則返回false。參數y是布爾量，可以省略，缺省值為false。如果y是true，將所有的null值視為0，否則，null值不被當作0。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_executable</center></td>
+<td><p>::mfp::io::file::is_file_executable(1) :</p>
+<p>is_file_executable(path)用于判断位于字串path的档案（或者目录）是否可执行。如果该档案或目录存在并且可执行返回true，否则返回false。例子包括is_file_executable("E:\\") (Windows)和is_file_executable("/home/tony/Documents/cv.pdf") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_existing</center></td>
+<td><p>::mfp::io::file::is_file_existing(1) :</p>
+<p>is_file_existing(path)用於判斷位於字串path的文件（或者目錄）是否存在。如果存在返回true，否則返回false。例子包括is_file_existing("E:\\") (Windows)和is_file_existing("/home/tony/Documents/cv.pdf") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_hidden</center></td>
+<td><p>::mfp::io::file::is_file_hidden(1) :</p>
+<p>is_file_hidden(path)用于判断位于字串path的档案（或者目录）是否隱藏。如果该档案或目录存在并且隱藏返回true，否则返回false。例子包括is_file_hidden("E:\\") (Windows)和is_file_hidden("/home/tony/Documents/cv.pdf") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_normal</center></td>
+<td><p>::mfp::io::file::is_file_normal(1) :</p>
+<p>is_file_normal(path)用于判断位于字串path的档案（或者目录）是否是一個常規檔案而不是目錄。如果该档案或目录存在并且是一個常規檔案而不是目錄返回true，否则返回false。例子包括is_file_normal("E:\\") (Windows)和is_file_normal("/home/tony/Documents/cv.pdf") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_readable</center></td>
+<td><p>::mfp::io::file::is_file_readable(1) :</p>
+<p>is_file_readable(path)用于判断位于字串path的档案（或者目录）是否可讀。如果该档案或目录存在并且可讀返回true，否则返回false。例子包括is_file_readable("E:\\") (Windows)和is_file_readable("/home/tony/Documents/cv.pdf") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_writable</center></td>
+<td><p>::mfp::io::file::is_file_writable(1) :</p>
+<p>is_file_writable(path)用于判断位于字串path的档案（或者目录）是否可寫。如果该档案或目录存在并且可寫返回true，否则返回false。例子包括is_file_writable("E:\\") (Windows)和is_file_writable("/home/tony/Documents/cv.pdf") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_inf</center></td>
+<td><p>::mfp::math::number::is_inf(1) :</p>
+<p>is_inf(x)用於判斷參數x是否為正負無窮。如果是，返回true，否則，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_mfp_app</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_mfp_app(0) :</p>
+<p>is_running_on_android()告訴開發人員腳本是否在MFP應用中運行，如果是，返回true，如果不是，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_nan_or_inf</center></td>
+<td><p>::mfp::math::number::is_nan_or_inf(1) :</p>
+<p>is_nan_or_inf(x)用於判斷參數x是否為Nan或者正負無窮。如果是，返回true，否則，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_nan_or_inf_or_null</center></td>
+<td><p>::mfp::math::number::is_nan_or_inf_or_null(1) :</p>
+<p>is_nan_or_inf_or_null(x)用於判斷參數x是否為Nan或者正負無窮或者null。如果是，返回true，否則，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_path_absolute</center></td>
+<td><p>::mfp::io::file::is_path_absolute(1) :</p>
+<p>is_path_absolute(path)用于判断位于字串path是否是一個絕對路徑（也就是不是相對於當前目錄的路徑）。如果是返回true，否则返回false。例子包括is_path_absolute("E:\\temp") (Windows)和is_path_absolute("Documents/cv.pdf") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_path_parent</center></td>
+<td><p>::mfp::io::file::is_path_parent(2) :</p>
+<p>is_path_parent(path1, path2)用於判斷位於字串path1是否是字符串path2的上級目錄。如果是返回true，否則返回false。例子包括is_path_parent("E:\\temp", "E:\\temp\\..\\temp\\test") (Windows)和is_path_parent(".", "Documents/cv.pdf") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_path_same</center></td>
+<td><p>::mfp::io::file::is_path_same(2) :</p>
+<p>is_path_same(path1, path2)用於判斷位於字串path1是否和字串path2指向同一條路徑。如果是返回true，否則返回false。例子包括is_path_same("E:\\temp", "E:\\temp\\..\\temp\\") (Windows)和is_path_parent("/home/tony/Documents", "Documents/") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_playing</center></td>
+<td><p>::mfp::multimedia::audio_lib::is_playing(1) :</p>
+<p>這個函數程式接受一個媒體播放器句柄作為參數。如果該媒體播放器正在播放音樂，這個函數程式返回true，如果該媒體播放器沒有正在播放，或者該句柄無效，這個函數程式返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_prime</center></td>
+<td><p>::mfp::math::number::is_prime(1) :</p>
+<p>函數Is_Prime(x)用於測定正整數x(>=2)是否為素數。如果x不是大於等於二的正整數，則返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_running_on_android</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_running_on_android(0) :</p>
+<p>is_running_on_android()告訴開發人員腳本是否在安卓平臺上運行，如果是，返回true，如果不是，而是在普通的JAVA平臺上運行，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_sandbox_session</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_sandbox_session(0) :</p>
+<p>函數is_sandbox_session告訴開發者當前的MFP代碼是否運行在一個沙盒中。沙盒是在服務端運行的一個線程。這個線程在服務端收到一個客戶端的call指令後啟動。這個客戶端是一個獨立於服務端的進程，它可能位於本機，也可能位於另外一臺電腦。該線程擁有獨立於服務端其它線程的MFP用戶代碼庫，資源和棧。它的用戶代碼庫，資源和棧是拷貝自發送call指令的客戶端。這個函數沒有參數，如果當前代碼位於一個沙盒中它返回True，否則返回False 。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_symbol_link</center></td>
+<td><p>::mfp::io::file::is_symbol_link(1) :</p>
+<p>is_symbol_link(path)用于判断位于字串path的档案（或者目录）是否是一個符號鏈接。如果该档案或目录存在并且是一個符號鏈接返回true，否则返回false。例子包括is_symbol_link("E:\\") (Windows)和is_symbol_link("/home/tony/Documents/cv.pdf") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_valid_image_handle</center></td>
+<td><p>::mfp::multimedia::image_lib::is_valid_image_handle(1) :</p>
+<p>is_valid_image_handle(image_handle)返回一個布爾量，用於告訴開發人員一個被包裝過的JAVA圖像對象，也就是image_handle參數，是否依然合法還是已經被關閉。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_zeros</center></td>
+<td><p>::mfp::math::matrix::is_zeros(2) :</p>
+<p>is_zeros(x,y)用於確定數組（或數）x是否是零矩陣（或數字0），如果是，返回true，否則返回false。參數y是布爾量，可以省略，缺省值為false。如果y是true，將所有的null值視為0，否則，null值不被當作0。</p>
+</td>
+</tr>
+<tr>
+<td><center>left_recip</center></td>
+<td><p>::mfp::math::matrix::left_recip(1) :</p>
+<p>left_recip(x)計算x的左除倒數，註意當前僅支持數值或二維陣列。</p>
+</td>
+</tr>
+<tr>
+<td><center>lg</center></td>
+<td><p>::mfp::math::log_exp::lg(1) :</p>
+<p>函數lg(x)返回x的自然對數。</p>
+</td>
+</tr>
+<tr>
+<td><center>lim</center></td>
+<td><p>::mfp::math::calculus::lim(3) :</p>
+<p>lim(expr, var, dest_value)用於計算表達式expr在變數var趨近於dest_value時的值。expr和var必須為字串，dest_value為表達式或者數值，可以基於字串，也可以不基於字串。比如，lim("1/x", "x", 0)或者lim("(x+2)/(x+3)","x","3+0")。註意這個函數程式還在開發中。</p>
+</td>
+</tr>
+<tr>
+<td><center>link_video_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::link_video_stream(4) :</p>
+<p>此函數將web RTC視頻流鏈接到一個RTC視頻輸出窗口。它有四個參數。第一個是顯示窗口句柄，該句柄可以從open_screen_display函數調用中返回。第二個是peer connection對象的Id。第三個是視頻流軌的ID。最後一個是RTC視頻輸出子窗口在顯示窗口的RTC視頻輸出子窗口序列中的索引。此函數不會返回任何值。如果任何參數無效，或者無法將視頻流鏈接到視頻輸出窗口，本函數會拋出一個異常。</p>
+</td>
+</tr>
+<tr>
+<td><center>list_files</center></td>
+<td><p>::mfp::io::file::list_files(1) :</p>
+<p>list_files(path)返回位於字串path路徑的目錄中的所有子檔案或者子目錄的名字，或者如果path路徑對應的是一個檔案，它返回該檔案的名字。如果不存在一個檔案或者目錄對應於path路徑，它返回NULL。註意參數path是可以省略的。它的缺省值是當前目錄。例子包括list_files("c:\\temp\\try1") (Windows)和list_files("../testfile_copy.txt") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>listen</center></td>
+<td><p>::mfp::paracomp::connect::listen(1) :</p>
+<p>listen(local_info)在一個本地interface對象上偵聽外部的連接請求。參數local_info是調用generate_interface函數的返回值。listen如果成功，返回true，否則返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>ln</center></td>
+<td><p>::mfp::math::log_exp::ln(1) :</p>
+<p>函數ln(x)返回x的自然對數。</p>
+</td>
+</tr>
+<tr>
+<td><center>load_image</center></td>
+<td><p>::mfp::multimedia::image_lib::load_image(1) :</p>
+<p>load_image(image_path)返回一個被包裝過的JAVA圖像對象。它有一個參數image_path。這個參數是一個基於字串的，指向一個圖形檔的路徑。</p>
+</td>
+</tr>
+<tr>
+<td><center>load_image_from_zip</center></td>
+<td><p>::mfp::multimedia::image_lib::load_image_from_zip(3) :</p>
+<p>load_image_from_zip(zip_file_name, zip_entry_path, zip_file_type)返回一個被包裝過的JAVA圖像對象。該圖形對象從一個zip壓縮檔中讀取。它的第一個參數是基於字串的zip檔的壓縮路徑。它的第二個參數是圖像在該zip檔中的壓縮路徑。它的第三個參數要麼是0，要麼是1。如果等於0，表示普通的zip檔，而如果等於1，表示MFP App的安卓assets中的zip檔。</p>
+</td>
+</tr>
+<tr>
+<td><center>log</center></td>
+<td><p>::mfp::math::log_exp::log(1) :</p>
+<p>log(x)返回x的自然對數，註意x可以為復數。</p>
+</td>
+</tr>
+<tr>
+<td><center>log10</center></td>
+<td><p>::mfp::math::log_exp::log10(1) :</p>
+<p>函數log10(x)返回x以十為底的對數。</p>
+</td>
+</tr>
+<tr>
+<td><center>log2</center></td>
+<td><p>::mfp::math::log_exp::log2(1) :</p>
+<p>函數log2(x)返回x以2為底的對數。</p>
+</td>
+</tr>
+<tr>
+<td><center>loge</center></td>
+<td><p>::mfp::math::log_exp::loge(1) :</p>
+<p>函數loge(x)返回x的自然對數。</p>
+</td>
+</tr>
+<tr>
+<td><center>ls</center></td>
+<td><p>::mfp::io::file::ls(1) :</p>
+<p>print_file_list(path) (别名ls(path)或者dir(path))函數程式和Windows平臺上的dir命令以及Linux平臺上的ls命令類似。它打印出位於字串path路徑的档案或者目錄中的所有子档案和子目錄的信息。它返回打印的條目的個數。如果不存在一個檔案或者目錄對應於path路徑，它返回-1。註意參數path是可以省略的。它的缺省值是當前目錄。例子包括dir("c:\\temp\\try1") (Windows)和ls("../testfile_copy.txt") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>max</center></td>
+<td><p>::mfp::math::stat_stoch::max(0...) :</p>
+<p>函數max(...)返回任意數目參數中的最大值。</p>
+</td>
+</tr>
+<tr>
+<td><center>med</center></td>
+<td><p>::mfp::math::stat_stoch::med(0...) :</p>
+<p>函數med(…)返回任意數目參數的中位數。如果參數的個數為偶數個，返回中間兩個參數的平均值。</p>
+</td>
+</tr>
+<tr>
+<td><center>min</center></td>
+<td><p>::mfp::math::stat_stoch::min(0...) :</p>
+<p>函數min(...)返回任意數目參數中的最小值。</p>
+</td>
+</tr>
+<tr>
+<td><center>mod</center></td>
+<td><p>::mfp::math::number::mod(2) :</p>
+<p>mod(x,y)返回x除以正整數y的余數，如果x或者y不是整數，將被首先轉換為整數。</p>
+</td>
+</tr>
+<tr>
+<td><center>move_file</center></td>
+<td><p>::mfp::io::file::move_file(3) :</p>
+<p>move_file(source, destination, replace_exist)函數程式移動位於字串source路徑的檔案或檔案目錄到位於字串destination路徑的檔案或位於destination路徑的檔案目錄內（而不是位於destination路徑的檔案目錄本身）。如果第三個參數，replace_exist，是true，那麼如果目標檔案已經存在，它將會被源檔案（或者源檔案目錄中的對應檔案）替換。註意第三個參數可以省略，它的缺省值為false。例子包括move_file("c:\\temp\\try1", "D:\\", true) (Windows)和copy_file("/mnt/sdcard/testfile.txt", "./testfile_copy.txt") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>ncr</center></td>
+<td><p>::mfp::math::stat_stoch::ncr(2) :</p>
+<p>函數程式nCr(x, y)計算有x個元素的集合S的k個元素組合的個數。註意x，y都是非負整數，x >= y。</p>
+</td>
+</tr>
+<tr>
+<td><center>now</center></td>
+<td><p>::mfp::time_date::now(0) :</p>
+<p>now()返回當前時刻和1970年1月1日午夜（UTC）的毫秒數時間差。</p>
+</td>
+</tr>
+<tr>
+<td><center>npr</center></td>
+<td><p>::mfp::math::stat_stoch::npr(2) :</p>
+<p>函數程式nPr(x, y)計算有x個元素的集合S的k個元素置換的個數。註意x，y都是非負整數，x >= y。</p>
+</td>
+</tr>
+<tr>
+<td><center>ones</center></td>
+<td><p>::mfp::math::matrix::ones(1...) :</p>
+<p>ones函數返回一個所有元素都是1的矩陣，本函數的參數用於決定矩陣的尺寸，要麽為一批正整數，要麽為一個正整數數列。註意表達式ones([])返回常數1。</p>
+</td>
+</tr>
+<tr>
+<td><center>open_image_display</center></td>
+<td><p>::mfp::multimedia::image_lib::open_image_display(1) :</p>
+<p>open_image_display(image_path_or_handle)創建一個image display供開發人員調用MFP函數繪圖。它有一個參數。這個參數既可以是一個基於字串的，指向一個圖形檔的路徑，也可以是null，還可以是一個由load_image，load_image_from_zip，create_image或者clone_image函數返回的JAVA image對象的句柄。</p>
+</td>
+</tr>
+<tr>
+<td><center>open_screen_display</center></td>
+<td><p>::mfp::graph_lib::display::open_screen_display(6) :</p>
+<p>open_screen_display返回一個screen display的句柄。 screen display在JAVA平台上是一個窗口，在安卓平台上函數有6個可選參數：caption，background color，confirm quit，size，resizable， orientation。 Caption是display的標題，該參數在安卓平台上不起作用；background color是display的背景色，它是一個4個或3個元素的陣列，如果是4個元素，就是[Alpha，R，G， B]，如果是3個元素，就是[R，G，B]，在該陣列中，每一個元素的值都是從0到255；confirm quit是一個布爾值，用於告訴screen display在退出時是否需要用戶確認；size是screen display的大小，它是一個包含兩個元素的陣列，第一個元素是寬度，第二個元素是高度；resizable是告訴screen display是否可以調整大小，在安卓平台上，size和resizable都沒有作用，orientiation僅僅用於安卓平台，用於指定sc​​reen display是橫向（0），豎向（1）還是任意（-1）。該函數程式的示例為：</p>
+<p>variable display = open_screen_display("Hello world", [255, 238, 17], true, [640, 480], true, 0)</p>
+<p>以及</p>
+<p>variable display = open_screen_display("Hello")</p>
+</td>
+</tr>
+<tr>
+<td><center>or</center></td>
+<td><p>::mfp::math::logic::or(1...) :</p>
+<p>or(x...)接受不少於1個的任意個數的參數，返回這些參數的邏輯或值。如果某一個參數不是布爾類型，將會被自動轉換為布爾類型。</p>
+</td>
+</tr>
+<tr>
+<td><center>pause</center></td>
+<td><p>::mfp::system::pause(1) :</p>
+<p>pause(message)將暫停當前運行的程式，等待用戶輸入一個回車，然後繼續。字串參數message可以省略。如果不省略，message將作為提示被打印在熒幕上。</p>
+</td>
+</tr>
+<tr>
+<td><center>play_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::play_sound(4) :</p>
+<p>play_sound(source_path, repeat_or_not, volume, create_new_or_not)演奏一個音效檔，該音效檔可以是wave檔，也可以是midi檔，還可以是mp3檔。該函數返回一個演奏器的控制碼，該控制碼指向一個JAVA或安卓的多媒體演奏器。由於多媒體演奏器的資源是有限的，本函數會盡可能的回收並重用以前生成的多媒體演奏器。本函數有4個參數。第一個參數是音效檔的路徑。第二個參數是一個布爾值，表示該聲音是否需要重複演奏，這是一個缺省參數，缺省值是false。第三個參數是一個從0到1的浮點數，表示音量大小。這也是一個缺省參數，缺省值是1。第四個參數是一個布爾值，表示是否無論如何都強制生產一個新的多媒體演奏器。這也是一個缺省參數，缺省值是false。</p>
+</td>
+</tr>
+<tr>
+<td><center>play_sound_from_zip</center></td>
+<td><p>::mfp::multimedia::audio_lib::play_sound_from_zip(6) :</p>
+<p>play_sound_from_zip(source_zip_file_path, zip_entry_path, zip_file_type, repeat_or_not, volume, create_new_or_not)演奏一個從zip檔中抽取出的音效檔，該音效檔可以是wave檔，也可以是midi檔，還可以是mp3檔。該函數返回一個演奏器的控制碼，該控制碼指向一個JAVA或安卓的多媒體演奏器。由於多媒體演奏器的資源是有限的，本函數會盡可能的回收並重用以前生成的多媒體演奏器。本函數有6個參數。第一個參數是zip檔的路徑。第二個參數是被壓縮的音效檔的在zip檔中的位置路徑。第三個參數是一個布爾值，0表示zip檔是普通的壓縮檔，1表示zip檔位於MFP app的安卓asset目錄中。第四個參數是一個布林值，表示該聲音是否需要重複演奏，這是一個缺省參數，缺省值是false。第五個參數是一個從0到1的浮點數，表示音量大小。這也是一個缺省參數，缺省值是1。第六個參數是一個布爾值，表示是否無論如何都強制生產一個新的多媒體演奏器。 這也是一個缺省參數，缺省值是false。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot2d</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot2d(5...) :</p>
+<p>函數plot2D調用plot_multi_xy以繪制由最多8條2-D曲線所構成的圖像。其包括以下參數：1.圖像名字（圖像文件名）；2.圖像標題；3.X軸標題；4.Y軸標題；5.是否顯示網格；6.曲線標題；7.曲線顏色；8.t起始位置；9.t終止位置；10.t的間隔；11.以t為變量的X的表達式；12.以t為變量的Y的表達式...。其中，每增加一條新的曲線，需要添加7個參數（也就是參數6到12），最多定義8條曲線。需要註意的是，本函數程式不建議被使用。如果想繪制二維圖形，請使用函數程式plot2DEX。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot2dex</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot2dex(6...) :</p>
+<p>函數plot2DEX調用plot_multi_xy以繪制由最多8條2-D曲線所構成的圖像。其包括以下參數：1.圖像名字（圖像文件名）；2.圖像標題；3.X軸標題；4.Y軸標題；5.圖像背景色；6.是否顯示網格；7.曲線標題；8.曲線數據點顏色；9.曲線數據點形狀；10.曲線數據點大小；11.曲線連接線顏色；12.曲線連接線類型；13.曲線連接線粗細；14.t起始位置；15.t終止位置；16.t的間隔；17.以t為變量的X的表達式；18.以t為變量的Y的表達式...。其中，每增加一條新的曲線，需要添加12個參數（也就是參數7到18），最多定義8條曲線。另外要註意圖像背景色，曲線數據點的大小，曲線連接線顏色以及曲線連接線類型還沒有被實現，曲線連接線粗細僅支持0（意味著沒有連接線連接數據點）和非0（意味著有連接線連接數據點）。本函數程式的一個例子為：plot2DEX("chart 3", "3rd chart", "x", "y", "black", true, "cv1", "blue", "x", 2, "blue", "solid", 1, -5, 5, 0.1, "t", "t**2/2.5 - 4*t + 6", "cv2", "red", "square", 4, "square", "solid", 1, -10, 10, 0.1, "5*sin(t)", "10*cos(t)") 。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot3d</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot3d(5...) :</p>
+<p>函數plot3D調用plot_multi_xyz以繪制由最多8條3-D曲面所構成的圖像。其包括以下參數：1.圖像名字（圖像文件名）；2.圖像標題；3.X軸標題；4.Y軸標題；5.Z軸標題；6.曲線標題；7.是網格還是填充表面（true是網格，false是填充表面）；8.z值最小的時候的顏色；9.最小的z值（註意如果是null，意味著讓軟件自己找到最小的z值）；10.z值最大的時候的顏色；11.最大的z值（註意如果是null，意味著讓軟件自己找到最大的z值）；12.變數u的起始值；13.變數u的終止值；14.變數u的間隔（0意味著間隔由軟件決定）；15.變數v的起始值；16.變數v的終止值；17.變數v的間隔（0意味著間隔由軟件決定）；18.以u，v為變數的X的表達式；19.以u，v為變數的Y的表達式；20.以u，v為變數的Z的表達式；...。其中，每增加一條新的曲線，需要添加15個參數（也就是參數6到20），最多定義8條曲線。該函數的一個例子為：plot3D("chartI", "first chart", "x", "y", "z", "Curve1", true, "red", -0.5, "green", null, 0, pi, pi/8, -pi/2, pi/2, 0, "sin(u)*cos(v)", "sin(u)*sin(v)", "cos(u)")　。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_2d_curves</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_2d_curves(6...) :</p>
+<p>函數程式plot_2d_curves繪制由最多1024條2-D曲線所構成的圖像。其包括以下參量：1.圖像名字（圖像檔案名）；2.圖像標題；3.X軸標題；4.Y軸標題；5.圖像背景色；6.是否顯示網格（註意這個參數是一個字串，其值為"true"或者"false"）；7.曲線標題；8.曲線數據點顏色；9.曲線數據點形狀；10.曲線數據點大小；11.曲線連接線顏色；12.曲線連接線類型；13.曲線連接線粗細；14.內部變數的名字（通常為"t"）；15.內部變數的起始位置；16.內部變數的終止位置；17.內部變數的每一步變化間隔；18.基於內部變數的X的表達式；19.基於內部變數的Y的表達式...。其中，每增加一條新的曲線，需要添加13個參量（也就是參量7到19），最多定義1024條曲線。另外要註意圖像背景色，曲線數據點的大小，曲線連接線顏色以及曲線連接線類型還沒有被實現，曲線連接線粗細僅支持0（意味著沒有連接線連接數據點）和非0（意味著有連接線連接數據點）。本函數程式的一個例子為：plot_2d_curves("chart 3", "3rd chart", "x", "y", "black", "true", "cv1", "blue", "x", 2, "blue", "solid", 1, "t", -5, 5, 0.1, "t", "t**2/2.5 - 4*t + 6", "cv2", "red", "square", 4, "square", "solid", 1, "t", -10, 10, 0.1, "5*sin(t)", "10*cos(t)") 。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_2d_data</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_2d_data(16) :</p>
+<p>函數程式plot_2d_data分析最少1組，最多8組數值向量，每組數值向量將會被繪制為一條曲線。輸入的參數個數可以為1個（繪制一條曲線），2個（繪制一條曲線），4個（繪制2條曲線），6個（繪制3條曲線），8個（繪制4條曲線），10個（繪制5條曲線），12個（繪制6條曲線），14個（繪制7條曲線），16個（繪制8條曲線）。每一個參數都是一個數值向量（也就是一維陣列）。如果只有一個參數，該參數中的每一個元素將會是繪制出的曲線中的一個點，否則，奇數號參數決定曲線中的每一個點的x值，偶數號參數決定每一個點的y值。註意決定x值的參數中包含的元素個數應該和決定y值的參數中包含的元素相同。函數程式例子包括plot_2d_data([5.5, -7, 8.993, 2.788])以及plot_2d_data([2.47, 3.53, 4.88, 9.42], [8.49, 6.76, 5.31, 0.88], [-9, -7, -5, -3, -1], [28, 42, 33, 16, 7])。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_3d_data</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_3d_data(24) :</p>
+<p>函數程式plot_3d_data分析最少1組，最多8組數值陣列，每組數值陣列將會被繪制為一條曲面。輸入的參數個數可以為1個（繪制一條曲面），3個（繪制一條曲面），6個（繪制2條曲面），9個（繪制3條曲面），12個（繪制4條曲面），15個（繪制5條曲面），18個（繪制6條曲面），21個（繪制7條曲面），24個（繪制8條曲面）。如果只有一個參數，該參數必須是一個2維陣列，陣列中的每一個元素將會是繪制出的曲線中的一個點的z值，否則，每3個參數組成一個參數組，在每個參數組中，第一個參數必須是一個一維陣列，參數中的元素值決定的決定曲面中各點的x值，第二個參數也必須是一個一維陣列，參數中的元素值決定的決定曲面中各點的y值，第三個參數必須是一個二維陣列，陣列中的元素值決定每一個點的z值。註意決定x值的參數中包含的元素個數以及決定y值的參數中包含的元素應該和決定z值的參數中包含的元素個數相符。函數程式例子包括plot_3d_data([[2.47, 3.53, 4.88, 9.42], [8.49, 6.76, 5.31, 0.88], [-9, -7, -5, -3, -1]])以及plot_3d_data([1,2,3],[4,5,6,8],[[3,7,2],[5,8,9],[2,6,3],[7,4,4]],[8,7,4,8],[2,1],[[9,3,2,6],[4,5,3,7]])。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_3d_surfaces</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_3d_surfaces(5...) :</p>
+<p>函數程式plot_3d_surfaces繪制由最多1024條3-D曲面所構成的圖像。其包括以下參數：1.圖像名字（圖像檔案名）；2.圖像標題；3.X軸標題；4.Y軸標題；5.Z軸標題；6.曲線標題；7.是網格還是填充表面（這是一個布爾值，true是網格，false是填充表面）；8.z值最小的時候的正面的顏色；9.z值最小的時候的反面的顏色；10.最小的z值（註意如果是null，意味著讓軟體自己找到最小的z值）；11.z值最大的時候的正面的顏色；12.z值最大的時候的反面的顏色；13.最大的z值（註意如果是null，意味著讓軟體自己找到最大的z值）；14.第一個內部變數的名字（通常為"u"）；15.第一個內部變數的起始值；16.第一個內部變數的終止值；17.第一個內部變數的每一步變化的間隔（0意味著間隔由軟體決定）；18.第二個內部變數的名字（通常為"v"）；19.第二個內部變數的起始值；20.第二個內部變數的終止值；21.第二個內部變數的每一步變化的間隔（0意味著間隔由軟體決定）；22.基於前述兩個內部變數的X的表達式；23.基於前述兩個內部變數的Y的表達式；24.基於前述兩個內部變數的Z的表達式；...。其中，每增加一條新的曲面，需要添加19個參數（也就是參數6到24），最多定義1024條曲面。該函數程式的一個例子為：plot_3D_surfaces("chartI", "first chart", "x", "y", "z", "Curve1", false, "red", "cyan", -0.5, "green", "yellow", null, "u", 0, pi, pi/8, "v", -pi/2, pi/2, 0, "sin(u)*cos(v)", "sin(u)*sin(v)", "cos(u)")　。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_exprs</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_exprs(8) :</p>
+<p>函數程式plot_exprs分析最少1條，最多8條表達式以繪制2維或者3維圖形（取決於表達式中未知變數的個數）。輸入的表達式可以是一個等式，比如"4*x+9 == y +z**2"和"log(x*y) == x"，也可以是一個左側為未知變數的賦值表達式，比如"k= 3+ 7 * sin(z)"，還可以是一個可以被看作為賦值表達式的表達式，比如"9*log(y)"可以被看作"x = 9 * log(y)"。註意所有表達式中未知變數的總數不多於3，每一條表達式中的未知變數的個數不能少於未知變數的總數減一。未知變數的起始範圍可以在設置中設定，缺省是從-5到5，但是使用者可以在圖形繪制出來之後動態調整每個未知變數的範圍。如果有兩個未知變數並且其中一個是希臘字母α、β、γ或者θ，則繪制極坐標圖形而不是普通2維圖形。本函數程式的一個例子是plot_exprs("4*x+sin(y)", "4-y**2==(x**2 + z**2)", "x*lg(x)/log2(z)==y")。需要指出的是，如果是繪制二維隱函數表達式，這個函數程式最多能繪制出4個表達式解；如果繪制的是3維隱函數表達式，這個函數程式會根據情況，可能會求每一個變數的最多兩組解，繪制出最多6個解表達式圖形，這樣一來，整個求解繪圖過程會花費比較長的時間。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_multi_rangle</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_multi_rangle(2...) :</p>
+<p>plot_multi_rangle(包含>=2個參數)用於繪制2維或極坐標圖像，每個圖像最多包括1024條曲線。參數1為圖像名字，參數2為圖像設置，該參數是一個字串，比如"chart_type:multiXY;chart_title:1 chart;x_title:x;x_min:-6.2796950076838645;x_max:6.918480857169536;x_labels:10;y_title:y;y_min:-4.487378580559947;y_max:4.1268715788884345;y_labels:10;background_color:black;show_grid:true"。註意chart_type的值是multiXY（用於繪制二維圖像）或者multiRangle（用於繪制極坐標圖像），x_labels和y_lables分別代表x和y軸上有多少刻度標記（對於極坐標圖像是R軸有多少刻度標記，幅角的刻度標記不可設）。從參數3開始，每3個參數定義一條曲線，在這3個參數中，第一個參數為曲線設置，第二個參數是包含所有x數值（或者R數值）的向量，第三個參數是包括所有y值（或者幅角值）的向量。曲線設置參數為一個字串，比如"curve_label:cv2;point_color:blue;point_style:point;point_size:1;line_color:blue;line_style:solid;line_size:1"。另外註意x和y的每一個數值都必須為實數，x和y的數值個數必須一致。本函數程式不返回數值。本函數程式的一個例子是plot_multi_rangle("chart2", "chart_type:multiXY;chart_title:1 chart;x_title:x;x_min:-6;x_max:6;x_labels:6;y_title:y;y_min:-4;y_max:4;y_labels:5;background_color:black;show_grid:true", "curve_label:cv2;point_color:blue;point_style:circle;point_size:3;line_color:blue;line_style:solid;line_size:1", [-5, -3, -1, 0, 1, 2, 3, 4, 5], [-3.778, -2.9793, -2.0323, -1.1132, 0.2323, 1.2348, 3.9865, 2.3450, 0.4356]) 。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_multi_xy</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_multi_xy(2...) :</p>
+<p>plot_multi_xy(包含>=2個參數)用於繪制2維或極坐標圖像，每個圖像最多包括1024條曲線。參數1為圖像名字，參數2為圖像設置，該參數是一個字串，比如"chart_type:multiXY;chart_title:1 chart;x_title:x;x_min:-6.2796950076838645;x_max:6.918480857169536;x_labels:10;y_title:y;y_min:-4.487378580559947;y_max:4.1268715788884345;y_labels:10;background_color:black;show_grid:true"。註意chart_type的值是multiXY（用於繪制二維圖像）或者multiRangle（用於繪制極坐標圖像），x_labels和y_lables分別代表x和y軸上有多少刻度標記（對於極坐標圖像是R軸有多少刻度標記，幅角的刻度標記不可設）。從參數3開始，每3個參數定義一條曲線，在這3個參數中，第一個參數為曲線設置，第二個參數是包含所有x數值（或者R數值）的向量，第三個參數是包括所有y值（或者幅角值）的向量。曲線設置參數為一個字串，比如"curve_label:cv2;point_color:blue;point_style:point;point_size:1;line_color:blue;line_style:solid;line_size:1"。另外註意x和y的每一個數值都必須為實數，x和y的數值個數必須一致。本函數程式不返回數值。本函數程式的一個例子是plot_multi_xy("chart2", "chart_type:multiXY;chart_title:1 chart;x_title:x;x_min:-6;x_max:6;x_labels:6;y_title:y;y_min:-4;y_max:4;y_labels:5;background_color:black;show_grid:true", "curve_label:cv2;point_color:blue;point_style:circle;point_size:3;line_color:blue;line_style:solid;line_size:1", [-5, -3, -1, 0, 1, 2, 3, 4, 5], [-3.778, -2.9793, -2.0323, -1.1132, 0.2323, 1.2348, 3.9865, 2.3450, 0.4356]) 。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_multi_xyz</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_multi_xyz(2...) :</p>
+<p>plot_multi_xyz(包含>=2個參數)用於繪制3維圖像，每個圖像最多包括1024條曲面。參數1為圖像名字，參數2為圖像設置，圖像設置參數是一個字串，比如"chart_type:multiXYZ;chart_title:This is a graph;x_title:x axis;x_min:-24.43739154366772;x_max:24.712391543667717;x_labels:10;y_title:Y axis;y_min:-251.3514430737091;y_max:268.95144307370913;y_labels:10;z_title:Z axis;z_min:-1.6873277335234405;z_max:1.7896774628184482;z_labels:10"。需要註意的是chart_type的值必須是multiXYZ，x_labels，y_labels和z_lables分別代表x，y和z軸上有多少刻度標記。從參數3開始，每4個參數定義一條曲線，在這4個參數中，第一個參數為曲線設置，第二個參數是包含所有x數值的陣列，第三個參數是包括所有y值的陣列，第四個參數是包括所有z值的陣列。曲線設置參數為一個字串，比如"curve_label:cv2;is_grid:true;min_color:blue;min_color_1:cyan;min_color_value:-2.0;max_color:white;max_color_1:yellow;max_color_value:2.0"。另外註意x，y和z的每一個數值都必須為實數，x，y和z的陣列的尺寸必須一致。本函數程式不返回數值。本函數程式的一個例子為：plot_multi_xyz("chartII", "chart_type:multiXYZ;chart_title:This is a graph;x_title:x;x_min:-5;x_max:5;x_labels:6;y_title:Y;y_min:-6;y_max:6;y_labels:3;z_title:Z;z_min:-3;z_max:1;z_labels:4", "curve_label:cv1;min_color:blue;min_color_1:green;max_color:yellow;max_color_1:red", [[-4, -2, 0, 2, 4],[-4, -2, 0, 2, 4],[-4, -2, 0, 2, 4]], [[-5, -5, -5, -5, -5], [0, 0, 0, 0, 0], [-5, -5, -5, -5, -5]], [[-2.71, -2.65, -2.08, -1.82, -1.77], [-2.29, -2.36, -1.88, -1.45, -1.01], [-1.74, -1.49, -0.83, -0.17, 0.44]]) 。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_polar</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_polar(6...) :</p>
+<p>程式plot_polar調用plot_multi_xy以繪制由最多8條極坐標曲線所構成的圖像。其包括以下參數：1.圖像名字（圖像文件名）；2.圖像標題；3.R軸標題；4.幅角軸標題；5.圖像背景色；6.是否顯示網格；7.曲線標題；8.曲線數據點顏色；9.曲線數據點形狀；10.曲線數據點大小；11.曲線連接線顏色；12.曲線連接線類型；13.曲線連接線粗細；14.t起始位置；15.t終止位置；16.t的間隔；17.以t為變量的R的表達式；18.以t為變量的幅角的表達式...。其中，每增加一條新的曲線，需要添加12個參數（也就是參數7到18），最多定義8條曲線。另外要註意圖像背景色，曲線數據點的大小，曲線連接線顏色以及曲線連接線類型還沒有被實現，曲線連接線粗細僅支持0（意味著沒有連接線連接數據點）和非0（意味著有連接線連接數據點）。本函數程式的一個例子為：plot_polar("chart 3", "3rd chart", "R", "Angle", "black", true, "cv1", "blue", "point", 0, "yellow", "solid", 1, -5, 5, 0.1, "cos(t)", "t", "cv2", "red", "square", 4, "green", "solid", 1, 0, PI*2.23, PI/10, "5*sqrt(t)", "t + PI") 。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_polar_curves</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_polar_curves(6...) :</p>
+<p>函數程式plot_polar_curves繪制由最多1024條極坐標曲線所構成的圖像。其包括以下參量：1.圖像名字（圖像檔案名）；2.圖像標題；3.幅度軸標題；4.幅角標題（需要註意幅角標題在圖中實際上不會被顯示）；5.圖像背景色；6.是否顯示網格（註意這個參數是一個字串，其值為"true"或者"false"）；7.曲線標題；8.曲線數據點顏色；9.曲線數據點形狀；10.曲線數據點大小；11.曲線連接線顏色；12.曲線連接線類型；13.曲線連接線粗細；14.內部變數的名字（通常為"t"）；15.內部變數的起始位置；16.內部變數的終止位置；17.內部變數的每一步變化間隔；18.基於內部變數的幅度的表達式；19.基於內部變數的幅角的表達式...。其中，每增加一條新的曲線，需要添加13個參量（也就是參量7到19），最多定義1024條曲線。另外要註意圖像背景色，曲線數據點的大小，曲線連接線顏色以及曲線連接線類型還沒有被實現，曲線連接線粗細僅支持0（意味著沒有連接線連接數據點）和非0（意味著有連接線連接數據點）。本函數程式的一個例子為：plot_polar_curves("chart 3", "3rd chart", "R", "angle", "black", "false", "cv1", "blue", "x", 2, "blue", "solid", 1, "t", -5, 5, 0.1, "t", "t**2/2.5 - 4*t + 6", "cv2", "red", "square", 4, "square", "solid", 1, "t", -10, 10, 0.1, "5*sin(t)", "10*cos(t)") 。</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_polar_data</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_polar_data(16) :</p>
+<p>函數程式plot_polar_data分析最少1組，最多8組數值向量，每組數值向量將會被繪制為一條極坐標曲線。輸入的參數個數可以為2個（繪制一條曲線），4個（繪制2條曲線），6個（繪制3條曲線），8個（繪制4條曲線），10個（繪制5條曲線），12個（繪制6條曲線），14個（繪制7條曲線），16個（繪制8條曲線）。每一個參數都是一個數值向量（也就是一維陣列）。奇數號參數決定曲線中的每一個點的R值，偶數號參數決定每一個點的幅角值。註意決定R值的參數中包含的元素個數應該和決定幅角值的參數中包含的元素相同。函數程式一個例子為plot_polar_data([2.47, 3.53, 4.88, 9.42], [8.49, 6.76, 5.31, 0.88], [-9, -7, -5, -3, -1], [28, 42, 33, 16, 7])。</p>
+</td>
+</tr>
+<tr>
+<td><center>pow</center></td>
+<td><p>::mfp::math::log_exp::pow(2) :</p>
+<p>pow(x,y)返回x的y次方，註意x和y可以為實數，可以為虛數。如果結果有多個值，返回第一個值。</p>
+<p>::mfp::math::log_exp::pow(3) :</p>
+<p>pow(x,y,z)返回包含x的y次方的前z個值組成的一個向量，如果x的y次方只有少於z個值，返回所有值。註意y必須為實數，x可以為實數，可以為虛數，z必須為正整數。</p>
+</td>
+</tr>
+<tr>
+<td><center>print</center></td>
+<td><p>::mfp::io::console::print(1) :</p>
+<p>print(x)向輸出端打印任意數據類型x的值。</p>
+</td>
+</tr>
+<tr>
+<td><center>print_file_list</center></td>
+<td><p>::mfp::io::file::print_file_list(1) :</p>
+<p>print_file_list(path) (别名ls(path)或者dir(path))函數程式和Windows平臺上的dir命令以及Linux平臺上的ls命令類似。它打印出位於字串path路徑的档案或者目錄中的所有子档案和子目錄的信息。它返回打印的條目的個數。如果不存在一個檔案或者目錄對應於path路徑，它返回-1。註意參數path是可以省略的。它的缺省值是當前目錄。例子包括dir("c:\\temp\\try1") (Windows)和ls("../testfile_copy.txt") (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>print_line</center></td>
+<td><p>::mfp::io::console::print_line(1) :</p>
+<p>print_line(x)向輸出端打印任意數據類型x的值然後再起一行。注意x是一個可選參數，它的缺省值是空字元串""。</p>
+</td>
+</tr>
+<tr>
+<td><center>printf</center></td>
+<td><p>::mfp::io::console::printf(1...) :</p>
+<p>printf(format_string, ...)，sprintf(format_string, ...)和fprintf(fd, format_string, ...)和C/C++中的对应函数程式工作方式相似。这些函数程式通过format_string和其后的数值参数构造出一个新的字串，printf将字串打印到标准输出，sprintf将字串作为返回值返回，fprintf则将字串输出到档案号为fd的文本档案。字串format_string支持输入整数（%d、%i、%x等），浮点数（%e、%f等），字符和字串（%c和%s）等等。用户可以在C语言的帮助手册中找到format_string的构造方法。例如，printf("Hello world!%f", 3.14)将会打印输出"Hello world!3.140000"，而sprintf("%c%d", "A", 9)则返回"A9"（注意MFP不支持单一字符数据类型，所以单一的字符将会存储为一个只包括一个字符的字串）。</p>
+</td>
+</tr>
+<tr>
+<td><center>product_over</center></td>
+<td><p>::mfp::math::stat_stoch::product_over(3) :</p>
+<p>函數程式product_over(x, y, z)計算基於字串的表達式x中的變數取值從整數y逐步變化到整數z的值的乘積。y和z必須是字串的形式，其中，y必須寫成一個賦值表達式，比如"a=10"，這裏，a是變數名。本函數程式的一個例子為product_over("x+1", "x=1", "10")。</p>
+</td>
+</tr>
+<tr>
+<td><center>pull_event</center></td>
+<td><p>::mfp::graph_lib::event::pull_event(1) :</p>
+<p>pull_event(display)從screen display的輸入事件（比如，滑鼠事件或者觸摸屏的手勢事件）序列中按順序取走一個事件。如果沒有輸入事件，或者不是screen display而是image display，它返回Null，否則返回輸入事件。</p>
+</td>
+</tr>
+<tr>
+<td><center>pwd</center></td>
+<td><p>::mfp::io::file::pwd(0) :</p>
+<p>get_working_dir()（別名pwd()）返回基於字串的當前路徑。</p>
+</td>
+</tr>
+<tr>
+<td><center>quick_sort</center></td>
+<td><p>::mfp::math::stat_stoch::quick_sort(2) :</p>
+<p>函數程式quick_sort(desc, original_list)將擁有至少一個元素的向量original_list排序並返回排序後的向量。如果desc是true或者1，按照從大到小排序，否則（false或者0）按照從小到大排序。比如，輸入quick_sort(1, [5,6,7,9,4])得到[9,7,6,5,4]而輸入quick_sort(0, [5,6,7,9,4])的結果是[4,5,6,7,9]。</p>
+</td>
+</tr>
+<tr>
+<td><center>rand</center></td>
+<td><p>::mfp::math::stat_stoch::rand(0) :</p>
+<p>rand()函數返回一個大於等於0小於1的隨機浮點數。</p>
+</td>
+</tr>
+<tr>
+<td><center>rank</center></td>
+<td><p>::mfp::math::matrix::rank(1) :</p>
+<p>rank(matrix)返回矩陣的秩。比如，rank([[1,2],[2,4]])將返回1。</p>
+</td>
+</tr>
+<tr>
+<td><center>read_file</center></td>
+<td><p>::mfp::io::file::read_file(2) :</p>
+<p>函數read_file讀入一個文件並返回該文件的內容。它有兩個參數。第一個參數是文件的路徑。第二個參數是讀入模式。讀入模式是一個字符串。如果讀入模式是"b"或者"B"意味著以以二進制方式讀入，該函數會返回一個二進制數組。如果是其它字符串，則意味著以文本方式讀入，該函數會返回一個字符串。第二個參數可以省略。在第二個參數缺省時本函數以文本方式讀入文件並返回字符串 。</p>
+</td>
+</tr>
+<tr>
+<td><center>real</center></td>
+<td><p>::mfp::math::complex::real(1) :</p>
+<p>real(x)返回復數x的實部。</p>
+</td>
+</tr>
+<tr>
+<td><center>receive_rtc_mmedia_message</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::receive_rtc_mmedia_message(1) :</p>
+<p>此函數取回一個web RTC消息。註意此處的web RTC是指的用於支持聲音和視頻通信的web RTC函數庫，而不是用於支持數據通信的WEBRTC協議棧。本函數只有一個參數，就是等待的時間。如果該參數是一個正數，則代表等待的毫秒數。如果該參數是0，函數立即返回。如果是一個負數，函數會阻塞等待直到有消息到來。如果在等待超時後仍然沒有消息到來，則返回null。如果函數取回了一個合法的消息，則該函數的返回值是一個四個元素的數組。第一個元素是消息的目標peer connection對象的id。第二個元素是當前RTC會話的id。第三個元素是消息的類型。最後一個元素是消息的內容。如果消息是RTC信令，消息的類型則是"signal"，而消息的內容則是一個Json字符串。該Json字符串的"type"域值是信令的類型，也就是"offer"，"answer"或者"candidate"；如果信令的類型是"offer"或者"answer"，則該Json字符串的"sdp"域值是SDP的內容。如果消息是peer connection的事件，消息的類型則是"pc"，而消息的內容則是一個Json字符串。該Json字符串的"type"域值是事件的類型，比如"ice_connection_change"；而"content"域值則是基於字符的事件內容。</p>
+</td>
+</tr>
+<tr>
+<td><center>receive_sandbox_message</center></td>
+<td><p>::mfp::paracomp::connect::receive_sandbox_message(1...) :</p>
+<p>receive_sandbox_message函數返回沙盒或者MFP主進程發送的信息。發送者可能位於一個和本地有直接連接（這裏指的是通過MFP的connect函數構成的連接）的遠端MFP實例中（可能是一個call沙盒或者該MFP實例的主進程），也可能就是本地MFP實例的一個call沙盒或者該MFP實例的主進程。它有兩種工作模式。第一種工作模式只有一個參數，也就是等待的時間。如果是0，則意味著沒有等待，立即返回。如果隊列中有消息，則返回隊列中的第一個消息，否則，返回NULL。如果等待時間小於0，則意味著阻塞模式。也就是說如果隊列中沒有消息，函數將會阻塞。如果等待時間是正數，則代表等待的毫秒數。如果等待時間過去之後隊列中仍然沒有消息，則返回NULL。如果本函數是在沙盒中被調用，則必須采用第一種工作模式。第二種工作模式有兩個參數。第一個參數為一個代表本地信息（也就是監聽地址）的對象。它告訴本函數選擇哪一個本地地址收取消息。該信息對象可由調用generate_interface函數返回得到。第二個參數則是等待時間，其具體意義參見第一種工作模式。如果本函數是在MFP主進程中被調用，則必須采用第二種工作模式。本函數如果返回一個合法的消息，該返回值則是一個基於數組的字典。其中，“InterfaceInfo”的字段是發送端的本地信息，包括協議和地址。如果發送端和接收端位於同一個MFP實例中，並且接收端是該MFP實例的一個call沙盒而發送端是該MFP實例的主進程，這個字段則為NULL。“ConnectId”的字段是發送端的連接ID，如果發送端是MFP實例的主進程，該字段為一個空字符串。“CallId”的字段是發送端的call沙盒ID，如果發送端是MFP實例的主進程，該字段為0。“TransConnectSrcLocal”字段是傳輸連接發送端自己看到的本地地址。這裏，傳輸連接未必是發送或者接收端call沙盒的發起連接。但傳輸連接的兩端必然分別位於發送端和接收端所在的MFP實例中。發送端，無論是call沙盒還是MFP主進程，將要發送的消息交給MFP實例，然後發送端MFP實例將該消息通過傳輸連接發送到接收端的MFP實例，再由接收端MFP實例將消息配送到目標沙盒或者MFP主進程。註意由於傳輸連接是雙向的，發送端不一定是傳輸連接的客戶端，相應地，接收端也不一定是傳輸連接的服務端。類似地，字段“TransConnectSrcRemote”是傳輸連接發送端看到的接收端地址；字段“TransConnectDestLocal”是傳輸連接接收端自己看到的本地地址；字段“TransConnectDestRemote”是傳輸連接接收端看到的發送端地址。通常情況下，字段“TransConnectSrcLocal”和“TransConnectDestRemote”的值應該是一致的，字段“TransConnectSrcRemote”和“TransConnectDestLocal”的值應該是一致的。但是，如果是TCPIP協議並且發送端和接收端之間存在NAT層，這些字段的值不見得會一致。如果接收端位於傳輸連接的服務端，“TransConnectDestRemote”字段的值會非常有用，因為它可以告訴MFP傳輸連接在服務端的id，只有知道id該連接才可以被重用，並且還可以通過該連接發送回復的消息。如果發送端和接收端位於同一個MFP實例中，則不需要通過傳輸連接發送消息，這種情況下上述4個字段的內容都是空字符串。最後，消息的“Message”的字段是消息的內容。本函數的兩個例子為receive_sandbox_message(-1)和receive_sandbox_message(local_info, -1)。</p>
+</td>
+</tr>
+<tr>
+<td><center>recip</center></td>
+<td><p>::mfp::math::matrix::recip(1) :</p>
+<p>recip(x)計算x的倒數，註意當前僅支持數值或二維陣列。</p>
+</td>
+</tr>
+<tr>
+<td><center>remove_elem_from_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::remove_elem_from_ablist(2) :</p>
+<p>remove_elem_from_ablist(array_based_list, idx)將基於數組的序列array_based_list的idx號元素刪除並返回更新後的基於數組的序列。作為參數的array_based_list和返回值共享元素。注意idx必須是一個合法的索引。</p>
+</td>
+</tr>
+<tr>
+<td><center>remove_peer_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::remove_peer_stream(1) :</p>
+<p>此函數移除peer connection對象的視頻流。這個函數僅有一個參數，也就是peer connection對象的Id。這個函數不返回任何值。</p>
+</td>
+</tr>
+<tr>
+<td><center>roots</center></td>
+<td><p>::mfp::math::polynomial::roots(1...) :</p>
+<p>函數程式roots(a, ...)返回一個多項式的根數列。如果a是一個實數或虛數數列，返回多項式a[0] * x**(N-1) + a[1] * x**(N-2) + ... + a[N-2] * x + a[N-1] = 0的根數列。如果a是一個單一的實數，此函數程式則必須擁有至少兩個參數，返回多項式a * x**(number_of_optional_params) + optional_params[0] * x**(number_of_optional_params - 1) + ... + optional_params[number_of_optional_params - 2] * x + optional_params[number_of_optional_params - 1] = 0的根數列。</p>
+<p>需要註意的是，如果該多項式次數大於等於4，根的計算是通過牛頓拉夫遜法給出的近似值。由於牛頓拉夫遜法需要叠代計算，運算時間會比較長（取決於設備的性能）。</p>
+<p>函數程式例子：</p>
+<p>如果要計算多項式3 * x**2 - 4 * x + 1 == 0的根，輸入命令：roots([3, -4, 1])獲得的結果是[1, 0.33333333]；</p>
+<p>如果要計算多項式(1+2i) * x**3 + (7-6i) * x**2 + 0.54 * x - 4.31 - 9i == 0的根，輸入命令：roots(1+2i, 7-6i, 0.54, -4.31-9i)獲得的結果是[0.79288607 + 3.9247084 * i, -0.56361748 - 0.78399569 * i, 0.7707314 + 0.85928729 * i]。</p>
+</td>
+</tr>
+<tr>
+<td><center>round</center></td>
+<td><p>::mfp::math::number::round(1) :</p>
+<p>round(x)，x是浮點數，返回x的四舍五入值。</p>
+<p>::mfp::math::number::round(2) :</p>
+<p>round(x,y)，x是浮點數，y為非負整數，返回小數點後有y位數字的x的四舍五入值。</p>
+</td>
+</tr>
+<tr>
+<td><center>save_image</center></td>
+<td><p>::mfp::multimedia::image_lib::save_image(3) :</p>
+<p>save_image(image, file_format, path)保存一個被包裝過的JAVA影像物件至一個圖形檔。本函數的第一個參數是被包裝過的JAVA影像物件，第二個參數是基於字串的影像檔的格式，當前僅支援"png"，"jpg"以及"bmp"格式。 第三個參數是影像檔的路徑。 如果成功保存，本函數返回True，否則返回False。 本函數的一個例子為：save_image(img, "png", "C:\\Temp\\1.png")。</p>
+</td>
+</tr>
+<tr>
+<td><center>scanf</center></td>
+<td><p>::mfp::io::console::scanf(1) :</p>
+<p>scanf(format_string)，sscanf(input_from, format_string)和fscanf(fd, format_string)和C/C++中的對應函數程式工作方式相似。scanf讀取用戶的一行輸入，sscanf讀取字串input_from，fscanf從檔案（檔案號fd）中讀取檔案內容。字串format_string支持輸入整數（%d、%i、%x等），浮點數（%e、%f等），字符和字串（%c和%s）等等。用戶可以在C語言的幫助文檔中找到format_string的構造方法。但是，和C語言有所不同，MFP中的這些函數程式不需要輸入用於存儲讀取數值的參數。所有的讀取的數值將會保存在一個數組中作為返回值返回。比如，sscanf("3Hello world!", "%d%c%c%s")將會返回[3, "H", "e", "llo"]（註意MFP不支持單一字符數據類型，所以單一的字符將會存儲為一個只包括一個字符的字串）。</p>
+</td>
+</tr>
+<tr>
+<td><center>send_sandbox_message</center></td>
+<td><p>::mfp::paracomp::connect::send_sandbox_message(1...) :</p>
+<p>send_sandbox_message函數將消息發送到沙盒或MFP主進程。它具有四種工作模式。第一種工作模式是從沙盒向其本地MFP主進程發送消息。在這種情況下，該功能只有一個參數，即消息內容。請註意，消息內容不必是字符串。例如，send_sandbox_message([1,2,3])從沙盒向本地MFP主進程發送[1,2,3]。第二種工作模式是將消息從MFP主進程或沙盒發送到本地沙盒。在這種情況下，該功能需要四個參數。第一個參數是本地信息對象。可以從generate_interface函數獲得此本地信息對象。啟動接收方沙盒的call請求被本地信息對象所代表的接口地址接受。第二個參數是接收方沙盒的連接ID。註意這個連接是啟動接收方沙盒call對象的連接。第三個參數是接收方沙盒的call沙盒Id。最後一個參數是消息內容。此模式的一個示例是send_sandbox_message(local_info,"127.0.0.1",1,238.975+3.01i)。第三種工作模式是將消息從本地沙盒或MFP主進程發送到遠端MFP主進程。請註意，本地MFP實例必須已經通過調用connect函數連接到遠端MFP實例。此模式需要兩個參數。第一個是從connect函數返回的連接對象（即返回值的“CONNECT”字段）。第二個參數是消息內容。一個示例是send_sandbox_message(conn1,"Hello!")。最後一種工作模式是將消息從本地沙盒或MFP主進程發送到遠端沙盒。請註意，本地MFP實例必須通過調用connect函數連接到遠端MFP實例。此模式需要五個參數。第一個參數是從連接函數返回的連接對象（即返回值的“CONNECT”字段）。第二個參數是從generate_interface函數獲得的遠程接口對象。此遠程接口位於連接的另一端。遠程接口接受了啟動接收方沙盒的call請求。第三個參數是接收方沙盒的連接ID。註意這個連接是啟動接收方沙盒call對象的連接。第四個參數是接收方沙盒的call沙盒ID。最後一個參數是消息內容。此模式的一個示例是send_sandbox_message(conn1,remote_info,"192.168.1.139",4,[[1,2],[3,4]])。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_array_elem</center></td>
+<td><p>::mfp::array::set_array_elem(3) :</p>
+<p>set_array_elem(x,y,z)將x[y]賦值為z，並且返回新的x。註意x不是必須為矩陣，y必須為正整數向量。y的值可以超出x的尺寸和維度。比如，如果x=3，y=[1,2]，z=2+3i，那麽set_array_elem(x,y,z)等於[3, [0, 0, 2+3i]]。還要註意，調用了set_array_elem程式之後，x的值可能會自動變為新值，也可能不會。所以，必須將set_array_elem的返回值賦予x，以保證x的值得到更新。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_audio_track_enable</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::set_audio_track_enable(2) :</p>
+<p>此函數激活或者關閉音軌。這個函數有兩個參數。第一個參數是一個顯示窗口的句柄。該顯示窗口的句柄可以從open_screen_display函數調用中返回。第二個是一個布爾值，True表示激活音軌而false則表示關閉音軌。這個函數的返回值是音軌之前的狀態。True表示函數調用之前是激活狀態而false則表示函數調用之前是關閉狀態。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_bgrnd_color</center></td>
+<td><p>::mfp::graph_lib::display::set_display_bgrnd_color(2) :</p>
+<p>set_display_bgrnd_color(display, color)為一個display設置背景色。該display既可以是screen display，也可以是image display。背景色是一個4個或3個元素的數組，如果是4個元素，就是[Alpha，R，G，B]，如果是3個元素，就是[R，G，B]，在該數組中，每一個元素的值都是從0到255。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_bgrnd_image</center></td>
+<td><p>::mfp::graph_lib::display::set_display_bgrnd_image(3) :</p>
+<p>set_display_bgrnd_image(display, image, mode)為一個display設置背景圖像。該display既可以是screen display，也可以是image display。背景圖像是一個image句柄。mode是背景圖像的布置方式，0表示原始背景圖像被置於左上角，1表示背景圖像被縮放值screen大小以便覆蓋整個screen，2表示背景圖像如貼瓷磚一樣重復整齊排列，但每一片“瓷磚”大小保持原狀， 3背景圖像位於屏幕正中央。在這種情況下背景圖像的大小也不會改變。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_caption</center></td>
+<td><p>::mfp::graph_lib::display::set_display_caption(2) :</p>
+<p>set_display_caption(display, caption)在JAVA平臺上設置一個screen display的標題。set_display_resizable對image display不起作用，在安卓平臺上也不起作用。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_confirm_close</center></td>
+<td><p>::mfp::graph_lib::display::set_display_confirm_close(2) :</p>
+<p>set_display_confirm_close(display, confirm_close_or_not)設置關閉一個screen display是否需要確認。set_display_confirm_close對image display不起作用。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_orientation</center></td>
+<td><p>::mfp::graph_lib::display::set_display_orientation(2) :</p>
+<p>set_display_orientation(display, orientation)設置安卓平臺上一個screen display是橫屏（orientation等於0）還是豎屏（orientation等於1）還是橫豎均可（orientation等於-1）。set_display_orientation對image display不起作用，在JAVA平臺上也不起作用。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_resizable</center></td>
+<td><p>::mfp::graph_lib::display::set_display_resizable(2) :</p>
+<p>set_display_resizable(display, resizable_or_not)設置一個screen display是否可以改變大小。set_display_resizable對image display不起作用。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_size</center></td>
+<td><p>::mfp::graph_lib::display::set_display_size(3) :</p>
+<p>set_display_size(display, width, height)設置一個display（既可以是screen display，也可以是image display）的長度和高度分別為width和height。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_snapshot_as_bgrnd</center></td>
+<td><p>::mfp::graph_lib::display::set_display_snapshot_as_bgrnd(3) :</p>
+<p>set_display_snapshot_as_bgrnd(display, update_screen_or_not, clear_callbacks_or_not)將一個display（既可以是screen display，也可以是image display）的截屏設置為它的背景圖案。它的第二個參數，update_screen_or_not，告訴MFP在截屏之前該display是否需要刷新；它的第三個參數，clear_callbacks_or_not，告訴MFP是否需要將螢幕繪圖事件序列清空。比如，set_display_snapshot_as_bgrnd(d, true, true)首先刷新螢幕d，然後將螢幕繪圖事件序列清空，最後截屏並將所得圖像作為螢幕背景圖像。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_elem_in_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::set_elem_in_ablist(3) :</p>
+<p>set_elem_in_ablist(array_based_list, idx, ref_of_elem)將基於數組的序列array_based_list在idx處的值設置為ref_of_elem的引用。如果idx不合法，一個異常將會被拋出。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_file_last_modified_time</center></td>
+<td><p>::mfp::io::file::set_file_last_modified_time(2) :</p>
+<p>set_file_last_modified_time(path, time)设置基于字串路径的path的档案或目录的上一次更改时间为time。该时间等于从1970年1月1日午夜开始到上一次更改时刻所经历的毫秒数。如果path不存在或者没有访问权限，返回false，否则返回true。例子包括("C:\\Temp\\Hello\\", 99999999) (Windows)和set_file_last_modified_time("./hello.txt", 1111111111) (Android)。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_json_field</center></td>
+<td><p>::mfp::exdata::json::set_json_field(3) :</p>
+<p>此函數將一個值設置到代表JSON數據的字符串中。此函數有三個參數。第一個參數為一個代表JSON數據的字符串，第二個參數為JSON域的名字，第三個參數為JSON域的值。註意這三個參數都是區分大小寫的。如果這個JSON域已經存在，則將新值寫入，否則，將創建一個新的JSON域。這個函數的返回值是設置後的新的JSON域的字符串，或者如果數據類型不支持或JSON域的名字錯誤則拋出異常。本函數的一個例子是set_json_field("{\"ABC\": null, \"JJJ\": {\"DEF\":[1, 8, [\"Welcome\", 9.99]],\"ZZ\":\"hello boy\"}}", "JJJ", "New value")。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_local_host_address</center></td>
+<td><p>::mfp::paracomp::host::set_local_host_address(4) :</p>
+<p>set_local_host_address函數用於設置所選通信協議的本地地址。它有四個參數。第一個參數是通信協議的的名字。當前只支持WEBRTC協議所以它只能是字符串"WEBRTC"。第二個參數是通信接口的名稱，當前支持"main"作爲參數值。第三個參數是通信地址。由於僅支持WEBRTC協議，通信地址必須是一個合法的電子郵件地址。推薦使用微軟的outlook郵件或者騰訊公司的QQ郵件。第四個參數是一個字符串數組。數組中的第一個元素為"0"，代表該email地址支持smtp和imap協議。數組中的第二個元素為電子郵件的密碼。註意這是smtp和imap協議收發郵件所使用的密碼，該密碼未見得和登錄網頁信箱所需要的密碼一樣。如果開發人員使用微軟的outlook郵件或者hotmail郵箱，或者谷歌的gmail，以及騰訊的QQ郵件，以上信息就足夠了。但是，如果是其他的郵件地址，開發人員則需要提供smtp服務器和imap服務器的信息。這包括smtp服務器的地址，端口，是否支持SSL協議，和imap服務器的地址，端口，以及是否支持SSL協議。其中，是否支持SSL協議也是一個字符串，"0"表示不支持，"1"表示支持，"-1"表示不清楚。這些信息將分別填入第四個參數的第三號到第八號元素中。本函數的一個例子是set_local_host_address("WEBRTC", "main", "abcxyz@yahoo.com", ["0", "xxxxyyyyzzzzwwww", "smtp.mail.yahoo.com", "465", "1", "imap.mail.yahoo.com", "993", "1"])。另外一個例子是set_local_host_address("WEBRTC", "main", "mnopqrst@outlook.com", ["0", "abcd1234"])。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_porterduff_mode</center></td>
+<td><p>::mfp::graph_lib::draw::set_porterduff_mode(2) :</p>
+<p>set_porterduff_mode(painting_extra, porterduff_mode)為一個painting extra數據結構設置porterduff模式。painting extra數據結構在painting事件中被調用。Porterduff模式告訴MFP如何繪製目標區域。它是一個大寫的字串，具有以下可能值："CLEAR"，"SRC"，"DST"，"SRC_OVER"，"DST_OVER"，"SRC_IN"，"DST_IN"，"SRC_OUT"，"DST_OUT"，"SRC_ATOP"，"DST_ATOP"，"XOR"或者""，其中，空字元串""是缺省值。開發者可以參考JAVA文檔以獲取porterduff模式的詳細資訊。由於porterduff模式的使用非常複雜，在不十分清楚porterduff模式內部機制的情況下，不建議用戶調用此函數。換句話說，使用porterduff模式的缺省值在一般情況下足以滿足用戶的需求。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_rtc_media_remote_description</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::set_rtc_media_remote_description(3) :</p>
+<p>本函數在接收到一個answer信令之後設置web RTC的遠程描述。註意此處的web RTC是指的用於支持聲音和視頻通信的web RTC函數庫，而不是用於支持數據通信的WEBRTC協議棧。本函數有3個參數。第一個是peer connection對象的id。第二個是SDP的類型。該參數應該就是一個"answer"字符串。第三個參數是SDP的內容，也就是answer信令的內容。本函數不返回任何值。本函數的一個例子是set_rtc_media_remote_description(remoteAddr, sdpType, sdpContent)。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_sound_repeat</center></td>
+<td><p>::mfp::multimedia::audio_lib::set_sound_repeat(2) :</p>
+<p>set_sound_repeat(sound_handle, repeat_or_not)設置一個sound_handle所代表的聲音是否重複演奏。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_sound_volume</center></td>
+<td><p>::mfp::multimedia::audio_lib::set_sound_volume(2) :</p>
+<p>set_sound_volume(sound_handle, volume)設置一個sound_handle所代表的聲音的音量，注意音量參數volume的值變化範圍是從0到1。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_value_in_abdict</center></td>
+<td><p>::mfp::data_struct::array_based::set_value_in_abdict(3) :</p>
+<p>set_value_in_abdict(array_based_dictionary, key, value)將基於數組的字典array_based_dictionary的key所對於的值設置為value的引用並返回修改過的字典。如果key不存在，它將會被創造出來。注意key只能是字串但是value可以是任意數據類型。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_video_track_enable</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::set_video_track_enable(2) :</p>
+<p>此函數激活或者關閉視頻功能。這個函數有兩個參數。第一個參數是一個顯示窗口的句柄。該顯示窗口的句柄可以從open_screen_display函數調用中返回。第二個是一個布爾值，True表示激活視頻功能而false則表示關閉視頻功能。這個函數的返回值是視頻功能之前的狀態。True表示函數調用之前是激活狀態而false則表示函數調用之前是關閉狀態。</p>
+</td>
+</tr>
+<tr>
+<td><center>shutdown_display</center></td>
+<td><p>::mfp::graph_lib::display::shutdown_display(2) :</p>
+<p>shutdown_display函數程式用於關閉一個display。該display既可以是一個窗口，也就是screen display，也可以是一個圖像，也就是image display。它有兩個參數。第一個參數是該display，第二個參數是一個可選參數，它是一個布爾值，true表示關閉screen display時不需要用戶確認，而不管在該display創建時，有無設置需要確認退出。它的缺省值是false。註意它對image display不起作用。該函數程式的示例為：</p>
+<p>shutdown_display(d)</p>
+<p>以及</p>
+<p>shutdown_display(d, true)</p>
+</td>
+</tr>
+<tr>
+<td><center>sin</center></td>
+<td><p>::mfp::math::trigon::sin(1) :</p>
+<p>sin(x)返回x的正弦值，註意x可以為復數。</p>
+</td>
+</tr>
+<tr>
+<td><center>sind</center></td>
+<td><p>::mfp::math::trigon::sind(1) :</p>
+<p>sind(x)返回基於角度的x的正弦值。</p>
+</td>
+</tr>
+<tr>
+<td><center>sinh</center></td>
+<td><p>::mfp::math::trigon::sinh(1) :</p>
+<p>函數sinh(x)返回x的雙曲正弦值。</p>
+</td>
+</tr>
+<tr>
+<td><center>size</center></td>
+<td><p>::mfp::array::size(1) :</p>
+<p>size(x)返回矩陣x的尺寸向量。註意如果x不是一個矩陣，則總是返回[]。</p>
+<p>::mfp::array::size(2) :</p>
+<p>size(x,y)返回矩陣x前y維的尺寸向量，如果x少於y維，返回完整的尺寸向量，註意y必須為正整數。此外如果x不是一個矩陣，則總是返回[]。</p>
+</td>
+</tr>
+<tr>
+<td><center>sleep</center></td>
+<td><p>::mfp::system::sleep(1) :</p>
+<p>sleep(x)休眠x毫秒（x必須為正實數），此函數不返回任何值。</p>
+</td>
+</tr>
+<tr>
+<td><center>split</center></td>
+<td><p>::mfp::string::split(2) :</p>
+<p>string_regex)j將字串string_input按照正則表達式string_regex分割為若幹個子字串並返回包含所有子字串的數組。用戶可以閱讀JAVA語言的Pattern類和String.split函數程式的幫助檔案獲得更多關於正則表達式使用方法的資訊。例子包括split("boo:and:foo", ":")返回["boo", "and", "foo"]以及split("boo:and:foo", "o")返回["b", "", ":and:f"]。</p>
+</td>
+</tr>
+<tr>
+<td><center>sprintf</center></td>
+<td><p>::mfp::string::sprintf(1...) :</p>
+<p>printf(format_string, ...)，sprintf(format_string, ...)和fprintf(fd, format_string, ...)和C/C++中的对应函数程式工作方式相似。这些函数程式通过format_string和其后的数值参数构造出一个新的字串，printf将字串打印到标准输出，sprintf将字串作为返回值返回，fprintf则将字串输出到档案号为fd的文本档案。字串format_string支持输入整数（%d、%i、%x等），浮点数（%e、%f等），字符和字串（%c和%s）等等。用户可以在C语言的帮助手册中找到format_string的构造方法。例如，printf("Hello world!%f", 3.14)将会打印输出"Hello world!3.140000"，而sprintf("%c%d", "A", 9)则返回"A9"（注意MFP不支持单一字符数据类型，所以单一的字符将会存储为一个只包括一个字符的字串）。</p>
+</td>
+</tr>
+<tr>
+<td><center>sqrt</center></td>
+<td><p>::mfp::math::log_exp::sqrt(1) :</p>
+<p>函數sqrt(x)返回實數x的平方根值。</p>
+</td>
+</tr>
+<tr>
+<td><center>sscanf</center></td>
+<td><p>::mfp::string::sscanf(2) :</p>
+<p>scanf(format_string)，sscanf(input_from, format_string)和fscanf(fd, format_string)和C/C++中的對應函數程式工作方式相似。scanf讀取用戶的一行輸入，sscanf讀取字串input_from，fscanf從檔案（檔案號fd）中讀取檔案內容。字串format_string支持輸入整數（%d、%i、%x等），浮點數（%e、%f等），字符和字串（%c和%s）等等。用戶可以在C語言的幫助文檔中找到format_string的構造方法。但是，和C語言有所不同，MFP中的這些函數程式不需要輸入用於存儲讀取數值的參數。所有的讀取的數值將會保存在一個數組中作為返回值返回。比如，sscanf("3Hello world!", "%d%c%c%s")將會返回[3, "H", "e", "llo"]（註意MFP不支持單一字符數據類型，所以單一的字符將會存儲為一個只包括一個字符的字串）。</p>
+</td>
+</tr>
+<tr>
+<td><center>start_local_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::start_local_stream(2) :</p>
+<p>此函數開啟web RTC本地視頻。註意此處的web RTC是指的用於支持聲音和視頻通信的web RTC函數庫，而不是用於支持數據通信的WEBRTC協議棧。這個函數有兩個參數。第一個參數是一個顯示窗口的句柄。該顯示窗口的句柄可以從open_screen_display函數調用中返回。第二個是個是RTC視頻輸出子窗口在顯示窗口的RTC視頻輸出子窗口序列中的索引（第一個視頻輸出子窗口的索引值為0，第二個子窗口索引的值是1，以此類推）。這個函數如果調用成功，其返回值是True。否則，本函數返回False。</p>
+</td>
+</tr>
+<tr>
+<td><center>start_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::start_sound(1) :</p>
+<p>start_sound(sound_handle)演奏sound_handle所指向的音效檔。如果該音效檔已經啟動，這個函數什麼也不做。</p>
+</td>
+</tr>
+<tr>
+<td><center>stdev</center></td>
+<td><p>::mfp::math::stat_stoch::stdev(0...) :</p>
+<p>函數stdev(…)返回任意個數參數的標準差，註意這些參數是一個大的集合中的采樣。</p>
+</td>
+</tr>
+<tr>
+<td><center>stdevp</center></td>
+<td><p>::mfp::math::stat_stoch::stdevp(0...) :</p>
+<p>函數stdevp(…)返回任意個數參數的標準差。</p>
+</td>
+</tr>
+<tr>
+<td><center>stop_all_sounds</center></td>
+<td><p>::mfp::multimedia::audio_lib::stop_all_sounds(0) :</p>
+<p>stop_all_sounds()停止所有正在播放的聲音。</p>
+</td>
+</tr>
+<tr>
+<td><center>stop_local_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::stop_local_stream(1) :</p>
+<p>此函數關閉web RTC本地視頻。註意此處的web RTC是指的用於支持聲音和視頻通信的web RTC函數庫，而不是用於支持數據通信的WEBRTC協議棧。這個函數只有一個參數。該參數是一個顯示窗口的句柄。該顯示窗口的句柄可以從open_screen_display函數調用中返回。本函數沒有返回值。</p>
+</td>
+</tr>
+<tr>
+<td><center>stop_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::stop_sound(1) :</p>
+<p>stop_sound(sound_handle)停止sound_handle所代表的聲音的播放。如果該聲音沒有播放，這個函數什麼也不做。</p>
+</td>
+</tr>
+<tr>
+<td><center>strcat</center></td>
+<td><p>::mfp::string::strcat(2...) :</p>
+<p>strcat(string1, string2...)將字串參數順次連接在一起，返回新的連接好的字串。本函數程式需要至少兩個參數。</p>
+</td>
+</tr>
+<tr>
+<td><center>strcmp</center></td>
+<td><p>::mfp::string::strcmp(6) :</p>
+<p>strcmp(src, dest, src_start, src_end, dest_start, dest_end)比較源字符串src（從src_start到src_end）和目標字符串dest（從dest_start到dest_end）。如果src和dest相等返回0，如果src大於dest返回大於0的值，如果src小於dest返回小於0的值。註意字符串索引從0開始，src_end和dest_end的索引位置為最後一個被選中字符的索引位置加一。另外，最後四個參數可以省略，如果被省略，src_start和dest_start的缺省值為0，src_end和dest_end的缺省值為對應字符串的長度。</p>
+</td>
+</tr>
+<tr>
+<td><center>strcpy</center></td>
+<td><p>::mfp::string::strcpy(6) :</p>
+<p>strcpy(src, dest, src_start, src_end, dest_start, dest_end)返回將源字符串src從src_start到src_end拷貝到目標字符串dest從dest_start到dest_end的新字符串值。註意字符串索引從0開始，src_end和dest_end的索引位置為最後一個被選中字符的索引位置加一。另外，最後四個參數可以省略，如果被省略，src_start和dest_start的缺省值為0，src_end和dest_end的缺省值為對應字符串的長度。</p>
+</td>
+</tr>
+<tr>
+<td><center>stricmp</center></td>
+<td><p>::mfp::string::stricmp(6) :</p>
+<p>stricmp(src, dest, src_start, src_end, dest_start, dest_end)在忽略字母大小寫的前提下比較源字符串src（從src_start到src_end）和目標字符串dest（從dest_start到dest_end）。如果src和dest相等返回0，如果src大於dest返回大於0的值，如果src小於dest返回小於0的值。註意字符串索引從0開始，src_end和dest_end的索引位置為最後一個被選中字符的索引位置加一。另外，最後四個參數可以省略，如果被省略，src_start和dest_start的缺省值為0，src_end和dest_end的缺省值為對應字符串的長度。</p>
+</td>
+</tr>
+<tr>
+<td><center>strlen</center></td>
+<td><p>::mfp::string::strlen(1) :</p>
+<p>strlen(x)返回字符串x的長度。</p>
+</td>
+</tr>
+<tr>
+<td><center>strsub</center></td>
+<td><p>::mfp::string::strsub(2) :</p>
+<p>strsub(str, start)返回字符串str的子字符串。該子字符串從字符start開始到str的最後一個字符。註意字符串的第一個字符是0號字符。</p>
+<p>::mfp::string::strsub(3) :</p>
+<p>strsub(str, start, end)返回字符串str的子字符串。該子字符串從字符start開始到字符end-1。註意字符串的第一個字符是0號字符。</p>
+</td>
+</tr>
+<tr>
+<td><center>sum</center></td>
+<td><p>::mfp::math::stat_stoch::sum(0...) :</p>
+<p>函數sum(…)返回任意個數參數的總合。</p>
+</td>
+</tr>
+<tr>
+<td><center>sum_over</center></td>
+<td><p>::mfp::math::stat_stoch::sum_over(3) :</p>
+<p>函數程式sum_over(x, y, z)計算基於字串的表達式x中的變數取值從整數y逐步變化到整數z的值的總合。y和z必須是字串的形式，其中，y必須寫成一個賦值表達式，比如"a=10"，這裏，a是變數名。本函數程式的一個例子為sum_over("x+1", "x=1", "10")。</p>
+</td>
+</tr>
+<tr>
+<td><center>suspend_until_cond</center></td>
+<td><p>::mfp::paracomp::threading::suspend_until_cond(4) :</p>
+<p>此函數將掛起當前線程，直到滿足特定條件為止。它有四個參數。第一個參數為變量名稱。請註意，變量名不是字符串。第二個參數是布爾值。如果為TRUE，則該函數僅在寫入變量的值（不必更改）之後才開始檢查條件是否滿足。否則，函數將在調用函數時立即檢查是否滿足條件。此參數是可選的。默認情況下為TRUE。第三個參數是運算符字符串。當前此參數僅支持以下值，即""，"=="，"!="，">"，"<"，">="和"<="。""表示如果變量值被寫入（未必是被更改），則滿足條件。其他運算符意味著使用運算符比較變量的值。如果比較返回TRUE，則滿足條件。此參數也是可選的。默認情況下為""。最後一個參數是要比較的值。這也是一個可選參數。如果運算符為""，此參數沒有任何作用。對於其他運算符，默認情況下，此參數的值為變量的當前值。例如，suspend_until_cond(a)等於調用suspend_until_cond(a,TRUE,"")，這意味著掛起當前線程，直到變量a被另一個線程寫入。另一個示例是suspend_until_cond(a,FALSE,"!=")，這意味著掛起當前線程，直到變量a的值更改為止。第三個示例是suspend_until_cond(a,TRUE,">=",37)，這意味著掛起當前線程，直到寫入變量a（不一定更改a的值），並且寫入後的值不小於37。如果寫入後的值無法和37進行比較，例如a新的值為"Hello"，則當前線程仍然被阻塞。</p>
+</td>
+</tr>
+<tr>
+<td><center>system</center></td>
+<td><p>::mfp::system::system(1) :</p>
+<p>system(str_array)有一個參數。該參數必須是一個字串或者是一個字串數組。如果該參數是一個字串，system運行該字串所代表的系統指令並且返回該系統指令的返回值。註意系統指令必須是一個可執行的檔案以及它的命令參數。由於這個原因，在Windows操作系統上，諸如system("dir")無法正確執行是因為dir並非是一個單獨的可執行檔案，而是cmd.exe的一個內部功能。要執行dir指令，用戶需要運行system("cmd /c dir")。如果該參數是一個字串數組，那麽該數組的每一個元素是一個將為system函數運行的系統指令的一部分。比如，在Linux操作系統上，用戶想要把檔案file1重命名為file2需要運行系統指令"sh -c mv file1 file2"，註意由於我們不是在shell中，這裏的"sh -c"是不可以省略的。這時，如果要調用system函數程式執行上述命令，正確的寫法是system(["sh", "-c", "mv file1 file2"])，原因是"mv file1 file2"是sh的一個內部指令，它不能夠被分割為幾個部分。還要註意，在現階段，這個函數程式只能將系統指令的輸出打印出來，還無法接受在運行中用戶對於該系統指令的輸入。此外，如果該系統指令不存在，則會拋出異常。</p>
+</td>
+</tr>
+<tr>
+<td><center>tan</center></td>
+<td><p>::mfp::math::trigon::tan(1) :</p>
+<p>tan(x)返回x的正切值，註意x可以為復數。</p>
+</td>
+</tr>
+<tr>
+<td><center>tand</center></td>
+<td><p>::mfp::math::trigon::tand(1) :</p>
+<p>tand(x)返回基於角度的x的正切值。</p>
+</td>
+</tr>
+<tr>
+<td><center>tanh</center></td>
+<td><p>::mfp::math::trigon::tanh(1) :</p>
+<p>函數tanh(x)用於計算x的雙曲正切值。</p>
+</td>
+</tr>
+<tr>
+<td><center>tip</center></td>
+<td><p>::mfp::misc::tip(2) :</p>
+<p>函數tip(x,y)用於計算在美國飯館吃飯時所支付的所有費用包括實際費用和小費。</p>
+</td>
+</tr>
+<tr>
+<td><center>to_lowercase_string</center></td>
+<td><p>::mfp::string::to_lowercase_string(1) :</p>
+<p>to_lowercase_string(x)返回數據x的打印值（所有的字母均為小寫）。</p>
+</td>
+</tr>
+<tr>
+<td><center>to_string</center></td>
+<td><p>::mfp::string::to_string(1) :</p>
+<p>to_string(x)返回數據x的打印值。</p>
+</td>
+</tr>
+<tr>
+<td><center>to_uppercase_string</center></td>
+<td><p>::mfp::string::to_uppercase_string(1) :</p>
+<p>to_uppercase_string(x)返回數據x的打印值（所有的字母均為大寫）。</p>
+</td>
+</tr>
+<tr>
+<td><center>todeg</center></td>
+<td><p>::mfp::math::trigon::todeg(1) :</p>
+<p>函數todeg(x)將弧度x轉換為度數值。</p>
+</td>
+</tr>
+<tr>
+<td><center>torad</center></td>
+<td><p>::mfp::math::trigon::torad(1) :</p>
+<p>函數torad(x)將度數x轉換為弧度值。</p>
+</td>
+</tr>
+<tr>
+<td><center>tostring</center></td>
+<td><p>::mfp::string::tostring(1) :</p>
+<p>tostring(x) 返回數據x的打印值。</p>
+</td>
+</tr>
+<tr>
+<td><center>trim</center></td>
+<td><p>::mfp::string::trim(1) :</p>
+<p>trim(string)，trim_left(string)和trim_right(string)從字串的兩邊或者一邊刪除任何一個ASCI值小於等於空白字符（' '）的字符。具體說來，trim從左右兩邊刪除任何一個ASCI值小於等於空白字符（' '）的字符，直到左邊和右邊都遇到了一個ASCI值大於空白字符（' '）的字符；trim_left從左邊刪除任何一個ASCI值小於等於空白字符（' '）的字符，直到遇到了一個ASCI值大於空白字符（' '）的字符；trim_right從右邊刪除任何一個ASCI值小於等於空白字符（' '）的字符，直到遇到了一個ASCI值大於空白字符（' '）的字符。例子包括trim(" \n hello world ") （返回"hello world"）, trim_left(" \n hello world "）, （返回"hello world "）以及trim_right(" \n hello world ") （返回" hello world")。</p>
+</td>
+</tr>
+<tr>
+<td><center>trim_left</center></td>
+<td><p>::mfp::string::trim_left(1) :</p>
+<p>trim(string)，trim_left(string)和trim_right(string)從字串的兩邊或者一邊刪除任何一個ASCI值小於等於空白字符（' '）的字符。具體說來，trim從左右兩邊刪除任何一個ASCI值小於等於空白字符（' '）的字符，直到左邊和右邊都遇到了一個ASCI值大於空白字符（' '）的字符；trim_left從左邊刪除任何一個ASCI值小於等於空白字符（' '）的字符，直到遇到了一個ASCI值大於空白字符（' '）的字符；trim_right從右邊刪除任何一個ASCI值小於等於空白字符（' '）的字符，直到遇到了一個ASCI值大於空白字符（' '）的字符。例子包括trim(" \n hello world ") （返回"hello world"）, trim_left(" \n hello world "）, （返回"hello world "）以及trim_right(" \n hello world ") （返回" hello world")。</p>
+</td>
+</tr>
+<tr>
+<td><center>trim_right</center></td>
+<td><p>::mfp::string::trim_right(1) :</p>
+<p>trim(string)，trim_left(string)和trim_right(string)從字串的兩邊或者一邊刪除任何一個ASCI值小於等於空白字符（' '）的字符。具體說來，trim從左右兩邊刪除任何一個ASCI值小於等於空白字符（' '）的字符，直到左邊和右邊都遇到了一個ASCI值大於空白字符（' '）的字符；trim_left從左邊刪除任何一個ASCI值小於等於空白字符（' '）的字符，直到遇到了一個ASCI值大於空白字符（' '）的字符；trim_right從右邊刪除任何一個ASCI值小於等於空白字符（' '）的字符，直到遇到了一個ASCI值大於空白字符（' '）的字符。例子包括trim(" \n hello world ") （返回"hello world"）, trim_left(" \n hello world "）, （返回"hello world "）以及trim_right(" \n hello world ") （返回" hello world")。</p>
+</td>
+</tr>
+<tr>
+<td><center>unlink_video_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::unlink_video_stream(2...) :</p>
+<p>此函數斷開視頻流向RTC視頻輸出子窗口的輸出。這個函數有兩種工作模式。第一種工作模式有3個參數分別為一個顯示窗口的句柄（該顯示窗口的句柄可以從open_screen_display函數調用中返回）；一個peer connection對象的id；以及一個視頻軌的id。第二種工作模式有兩個參數分別為一個顯示窗口的句柄和一個RTC視頻輸出子窗口在顯示窗口的RTC視頻輸出子窗口序列中的索引（第一個視頻輸出子窗口的索引值為0，第二個子窗口索引的值是1，以此類推）。這個函數返回斷開的視頻軌的數目。</p>
+</td>
+</tr>
+<tr>
+<td><center>update_display</center></td>
+<td><p>::mfp::graph_lib::display::update_display(1) :</p>
+<p>update_display(display)函數程式刷新一個display。該display既可以是screen display，也可以是image display。</p>
+</td>
+</tr>
+<tr>
+<td><center>upper_triangular_matrix</center></td>
+<td><p>::mfp::math::matrix::upper_triangular_matrix(1) :</p>
+<p>upper_triangular_matrix(x)返回二維方陣x在LU分解之後的上三角矩陣。</p>
+</td>
+</tr>
+<tr>
+<td><center>xor</center></td>
+<td><p>::mfp::math::logic::xor(2) :</p>
+<p>函數xor計算x和y的異或值，x和y可以為任何數值。如果x不等於y，返回true。</p>
+</td>
+</tr>
+<tr>
+<td><center>zeros</center></td>
+<td><p>::mfp::math::matrix::zeros(1...) :</p>
+<p>zeros函數返回一個所有元素都是0的矩陣，本函數的參數用於決定矩陣的尺寸，要麽為一批正整數，要麽為一個正整數數列。註意表達式zeros([])返回常數值0。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

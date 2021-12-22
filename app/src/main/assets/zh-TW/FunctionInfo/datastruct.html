@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>程式開發科學計算器幫助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">程式開發科學計算器幫助：數據結構函數</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函數名</th>
+<th>函數幫助資訊</th>
+</tr>
+<tr>
+<td><center>append_elem_to_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::append_elem_to_ablist(2) :</p>
+<p>append_elem_to_ablist(array_based_list, ref_of_elem)將ref_of_elem的引用添加到基於數組的序列array_based_list的尾部。它返回更新過的array_based_list。作為參數的array_based_list和返回值共享元素。</p>
+</td>
+</tr>
+<tr>
+<td><center>concat_ablists</center></td>
+<td><p>::mfp::data_struct::array_based::concat_ablists(2) :</p>
+<p>concat_ablists(list1, list2)將基於數組的序列list2併入基於數組的序列list1的尾部並返回合併後的基於數組的序列。作為參數的list1和list2和返回值共享元素。</p>
+</td>
+</tr>
+<tr>
+<td><center>create_abdict</center></td>
+<td><p>::mfp::data_struct::array_based::create_abdict(0) :</p>
+<p>create_abdict()創建一個新的，基於數組的字典。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_elem_from_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::get_elem_from_ablist(2) :</p>
+<p>get_elem_from_ablist(array_based_list, idx)返回基於數組的序列array_based_list在idx處的值的引用。如果idx不合法，一個異常將會被拋出。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_value_from_abdict</center></td>
+<td><p>::mfp::data_struct::array_based::get_value_from_abdict(2) :</p>
+<p>get_value_from_abdict(array_based_dictionary, key)返回基於數組的字典array_based_dictionary的key所對應的值的引用。如果key不存在，一個異常將會被拋出。注意key只能是字串。</p>
+</td>
+</tr>
+<tr>
+<td><center>insert_elem_into_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::insert_elem_into_ablist(3) :</p>
+<p>insert_elem_into_ablist(array_based_list, idx, ref_of_elem)將ref_of_elem的引用插入基於數組的序列array_based_list的idx號元素之前並返回更新後的基於數組的序列。作為參數的array_based_list和返回值共享元素。注意idx必須是一個合法的索引。</p>
+</td>
+</tr>
+<tr>
+<td><center>remove_elem_from_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::remove_elem_from_ablist(2) :</p>
+<p>remove_elem_from_ablist(array_based_list, idx)將基於數組的序列array_based_list的idx號元素刪除並返回更新後的基於數組的序列。作為參數的array_based_list和返回值共享元素。注意idx必須是一個合法的索引。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_elem_in_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::set_elem_in_ablist(3) :</p>
+<p>set_elem_in_ablist(array_based_list, idx, ref_of_elem)將基於數組的序列array_based_list在idx處的值設置為ref_of_elem的引用。如果idx不合法，一個異常將會被拋出。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_value_in_abdict</center></td>
+<td><p>::mfp::data_struct::array_based::set_value_in_abdict(3) :</p>
+<p>set_value_in_abdict(array_based_dictionary, key, value)將基於數組的字典array_based_dictionary的key所對於的值設置為value的引用並返回修改過的字典。如果key不存在，它將會被創造出來。注意key只能是字串但是value可以是任意數據類型。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

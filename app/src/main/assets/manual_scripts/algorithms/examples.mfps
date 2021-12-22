@@ -1,0 +1,57 @@
+#!/usr/bin/mfplang 
+#The entry function of this script is newtonSolver. It ues Newton Raphson method to 
+#solve expression expr based on variable var. Note that both expr and var are string 
+#based. The initial guess of var is 0, max number of steps is 50 and error tolerance 
+#is 10e-8. For example, 
+#newtonSolver("x**2+2*x-9", "x") 
+#returns 2.1622777. If there is no real result for var, this function throws an exception. 
+#本脚本文件的入口函数是newtonSolver。这个函数用牛顿拉夫逊法解基于变量var的表达式expr。注意expr和var都 
+#是字符串。变量var的初始猜测值是0，错误容忍量是10e-8，计算步数最多50步。比如 
+#newtonSolver("x**2+2*x-9", "x") 
+#返回2.1622777。如果var没有实数解，则函数抛出异常。 
+ 
+@execution_entry mfpexample :: newtonSolver(@,@) 
+ 
+citingspace ::mfpexample 
+ 
+Help 
+@language: 
+  Using Newton Raphson method to solve expression expr based on variable var. Note 
+  that both expr and var are string based. The initial guess of var is 0, max number 
+  of steps is 50 and error tolerance is 10e-8. For example, 
+  newtonSolver("x**2+2*x-9", "x") 
+  returns 2.1622777. If there is no real result for var, this function throws an exception. 
+@end 
+@language:simplified_chinese 
+  用牛顿拉夫逊法解基于变量var的表达式expr。注意expr和var都是字符串。变量var的初始猜测值是0，错误 
+  容忍量是10e-8，计算步数最多50步。比如 
+  newtonSolver("x**2+2*x-9", "x") 
+  返回2.1622777。如果var没有实数解，则函数抛出异常。 
+@end 
+endh 
+function newtonSolver(expr, var) 
+  variable initial_val = 0, initial_deri_step = 1, err_tolerance = 10e-8, max_steps = 50, try_solving_times = 4 
+  variable num_of_step = 0, val = initial_val, deri_step = initial_deri_step
+  variable shaking_factor = 8
+  variable err = evaluate(expr, var, val) 
+  while !(abs(err) <= err_tolerance)
+    // do not use derivative because it cannot handle complex derivative(expr, var, val, true)
+    variable deri = (evaluate(expr,var, val + deri_step) - evaluate(expr,var, val))/deri_step
+    if or(is_nan_or_inf(err), deri ==0)
+      val = exp(shaking_factor * (0.5 - rand())) * (val + 1)
+    else
+      val = val - err / deri
+      deri_step = err / deri / 2.0
+    endif
+    //print_line("val is "+val+" err is "+err+" deri is "+deri)
+    err = evaluate(expr,var, val) 
+    num_of_step = num_of_step + 1 
+    if (mod(num_of_step, max_steps) == 0) 
+      shaking_factor = shaking_factor * exp(rand()*i)
+      err = nan
+    elseif num_of_step > max_steps*try_solving_times
+      throw "Newton method cannot converge" 
+    endif 
+  loop 
+  return val 
+endf 

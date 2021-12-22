@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>可编程科学计算器帮助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">可编程科学计算器帮助：系统和硬件函数</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函数名</th>
+<th>函数帮助信息</th>
+</tr>
+<tr>
+<td><center>get_asset_file_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_asset_file_path(1) :</p>
+<p>get_asset_file_path(asset_file_entry)告诉开发人员一个asset文件（文件名由字符串参数asset_file_entry给出）的路径。注意，如果正在运行的脚本不是一个MFP应用，本函数返回null。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_country_language</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_country_language(0) :</p>
+<p>本函数返回一个包含两个元素的矩阵。第一个元素是一个基于字符串的国家代码。国家代码要么是一个空字符串，要么是一个大写的，符合ISO 3166国际标准的两字母的代码，要么是一个符合UN M.49的3个数字的代码。用户可以查询百度百科获取ISO 3166国家代码的列表。第二个元素是基于字符串的语言代码。它基本上符合ISO 639国际标准，除了极少数例外。出现例外的原因是ISO 639标准在变化，一些语言的代码已经发生了改变，而这个函数总是返回旧的代码。用户可以查询百度百科获取ISO 639所有的语言代码列表。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sandbox_session_lib_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_sandbox_session_lib_path(0) :</p>
+<p>函数get_sandbox_session_lib_path返回一个基于字符串的路径，该路径是当前沙盒的用户代码库的所在目录。沙盒是在服务端运行的一个线程。这个线程在服务端收到一个客户端的call指令后启动。这个客户端是一个独立于服务端的进程，它可能位于本机，也可能位于另外一台电脑。该线程拥有独立于服务端其它线程的MFP用户代码库，资源和栈。它的用户代码库,资源和栈是拷贝自发送call指令的客户端。这个函数没有参数。如果当前运行的代码不是位于沙盒中（比如，当前代码是在常规的命令提示符下运行），这个函数返回NULL 。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sandbox_session_resource_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_sandbox_session_resource_path(0) :</p>
+<p>函数get_sandbox_session_resource_path返回一个基于字符串的路径，该路径是当前沙盒的资源文件（比如图像文件，声音文件和数据库文件）的所在目录。沙盒是在服务端运行的一个线程。这个线程在服务端收到一个客户端的call指令后启动。这个客户端是一个独立于服务端的进程，它可能位于本机，也可能位于另外一台电脑。该线程拥有独立于服务端其它线程的MFP用户代码库，资源和栈。它的用户代码库,资源和栈是拷贝自发送call指令的客户端。这个函数没有参数。如果当前运行的代码不是位于沙盒中（比如，当前代码是在常规的命令提示符下运行），这个函数返回NULL 。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_mfp_app</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_mfp_app(0) :</p>
+<p>is_running_on_android()告诉开发人员脚本是否在MFP应用中运行，如果是，返回true，如果不是，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_running_on_android</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_running_on_android(0) :</p>
+<p>is_running_on_android()告诉开发人员脚本是否在安卓平台上运行，如果是，返回true，如果不是，而是在普通的JAVA平台上运行，返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_sandbox_session</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_sandbox_session(0) :</p>
+<p>函数is_sandbox_session告诉开发者当前的MFP代码是否运行在一个沙盒中。沙盒是在服务端运行的一个线程。这个线程在服务端收到一个客户端的call指令后启动。这个客户端是一个独立于服务端的进程，它可能位于本机，也可能位于另外一台电脑。该线程拥有独立于服务端其它线程的MFP用户代码库,资源和栈。它的用户代码库,资源和栈是拷贝自发送call指令的客户端。这个函数没有参数，如果当前代码位于一个沙盒中它返回True，否则返回False 。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

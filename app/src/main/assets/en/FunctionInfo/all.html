@@ -1,0 +1,2081 @@
+<html>
+<head>
+<title>Scientific Calculator Plus Help</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">Scientific Calculator Plus Help : all functions</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>Function name</th>
+<th>Function info</th>
+</tr>
+<tr>
+<td><center>abs</center></td>
+<td><p>::mfp::math::complex::abs(1) :</p>
+<p>abs(x) returns modulus of a complex number or absolute value of a real number.</p>
+</td>
+</tr>
+<tr>
+<td><center>accept</center></td>
+<td><p>::mfp::paracomp::connect::accept(1) :</p>
+<p>accept function accepts a connecting request from remote to a local interface and returns the receiver side connection object, i.e. the connection object in this local interface. It has only one parameter, i.e. the local interface object which was returned from generate_interface function. Note that before a new connecting request arrives, this function is blocked. An example of this function is accept(local_info).</p>
+</td>
+</tr>
+<tr>
+<td><center>acos</center></td>
+<td><p>::mfp::math::trigon::acos(1) :</p>
+<p>acos(x), where x can be a complex number, returns arccos value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>acosd</center></td>
+<td><p>::mfp::math::trigon::acosd(1) :</p>
+<p>acosd(x) returns degree based arccos value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>acosh</center></td>
+<td><p>::mfp::math::trigon::acosh(1) :</p>
+<p>Function acosh(x) calculates inverse hyperbolic cos of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>add_peer_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::add_peer_stream(1) :</p>
+<p>add_peer_stream adds multimedia (i.e. video and voice) stream to a web RTC peer connection. Note that web RTC here is the web RTC library for voice and video communication, not the same thing as the WEBRTC protocol for data communication. It has one parameter which is the peerId, i.e. the remote address of the peer connection.</p>
+</td>
+</tr>
+<tr>
+<td><center>add_rtc_media_ice_candidate</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::add_rtc_media_ice_candidate(2) :</p>
+<p>This function adds an ICE candidate to a web RTC peer connection. It has two parameters. First is peer connection's Id. Second is string based content of this ICE candidate.</p>
+</td>
+</tr>
+<tr>
+<td><center>add_rtc_video_output</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::add_rtc_video_output(5) :</p>
+<p>add_rtc_video_output adds a RTC video window in a display. It has five parameters. The first one is a display handle, which is the returned value of open_screen_display function. The following parameters are the integer based left, top, width and height of the video output window. These parameters determine the position of the video output window in the display.</p>
+</td>
+</tr>
+<tr>
+<td><center>adj</center></td>
+<td><p>::mfp::math::matrix::adj(1) :</p>
+<p>adj(x), where x is 2D square matrix, returns the adjugate matrix of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>alloc_array</center></td>
+<td><p>::mfp::array::alloc_array(1...) :</p>
+<p>alloc_array(x...) returns a newly allocated array whose size is determined by parameters. All the parameters must be positive integers.</p>
+<p>::mfp::array::alloc_array(2) :</p>
+<p>alloc_array(x, y) returns a newly allocated array whose size is determined by parameter x which is a list of integer. Parameter y is the default value of array elements. Note that y is optional, by default all the elements are initialized as zero.</p>
+</td>
+</tr>
+<tr>
+<td><center>and</center></td>
+<td><p>::mfp::math::logic::and(1...) :</p>
+<p>and(x...) which accepts an arbitary number (> 0) of boolean parameters, returns logical and of the parameters. If a parameter's type is not boolean, it will be automatically converted to boolean first.</p>
+</td>
+</tr>
+<tr>
+<td><center>angle</center></td>
+<td><p>::mfp::math::complex::angle(1) :</p>
+<p>angle(x) returns radian based angle of a complex number</p>
+</td>
+</tr>
+<tr>
+<td><center>append_elem_to_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::append_elem_to_ablist(2) :</p>
+<p>append_elem_to_ablist(array_based_list, ref_of_elem) appends a reference of value ref_of_elem at idx to an array based list array_based_list. It returns updated array based list. The parameter array_based_list shares elements with returned value.</p>
+</td>
+</tr>
+<tr>
+<td><center>asin</center></td>
+<td><p>::mfp::math::trigon::asin(1) :</p>
+<p>asin(x), where x can be a complex number, returns arcsin value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>asind</center></td>
+<td><p>::mfp::math::trigon::asind(1) :</p>
+<p>asind(x) returns degree based arcsin value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>asinh</center></td>
+<td><p>::mfp::math::trigon::asinh(1) :</p>
+<p>Function asinh(x) calculates inverse hyperbolic sin of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>atan</center></td>
+<td><p>::mfp::math::trigon::atan(1) :</p>
+<p>atan(x) returns arctan value of x, where x can be a complex number.</p>
+</td>
+</tr>
+<tr>
+<td><center>atand</center></td>
+<td><p>::mfp::math::trigon::atand(1) :</p>
+<p>atand(x) returns degree based arctan value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>atanh</center></td>
+<td><p>::mfp::math::trigon::atanh(1) :</p>
+<p>Function atanh(x) calculates inverse hyperbolic tan of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>avg</center></td>
+<td><p>::mfp::math::stat_stoch::avg(0...) :</p>
+<p>Function avg(...) returns average value of an arbitary number of parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>beta</center></td>
+<td><p>::mfp::math::stat_stoch::beta(2) :</p>
+<p>Function beta(z1, z2) returns beta function value of complexes z1 and z2, note that real part of z1 and z2 must be positive.</p>
+</td>
+</tr>
+<tr>
+<td><center>calculate_text_boundary</center></td>
+<td><p>::mfp::graph_lib::draw::calculate_text_boundary(4) :</p>
+<p>calculate_text_boundary(display, string, text_origin, text_style) returns the boundary rectangle of a text block. The format of returned value is a four element array whose elements are [left, top, width, height]. This function's first parameter, display, can be either a screen display or an image display. The second parameter, string, is the multi-line text block. The third parameter is the text block's origin point ([x, y]). An origin point is used by draw_text function as a parameter to draw text. The last parameter, text_style, is a one or two element array. If it is a one element array. The element is a positve integer which is text font size. And the font is system default font. If it is a two element array, the first element is text font size and the second element is string based font name. Note that the last parameter is optional. By default, the system default font with size being 16 is used. Example of this function is: calculate_text_boundary(display, txtStr, [108, 190], [27, "SimSun"]).</p>
+</td>
+</tr>
+<tr>
+<td><center>calculate_text_origin</center></td>
+<td><p>::mfp::graph_lib::draw::calculate_text_origin(8) :</p>
+<p>calculate_text_origin(display, string, boundary_rect_left_top, width, height, horAlign, verAlign, text_style) returns the origin point of a text block given text block's boundary rectangle and alignments. The returned value, origin point, is a two element array (i.e. [x, y]) which will be used in draw_text function. Its first parameter, display, can be either a screen display or an image display. The second parameter, string, is the multi-line text block. The third parameter is the boundary rectangle's left and top. This is a two element array whose first element is left and second is top. The fourth and fifth parameters are width and height of the boundary rectangle respectively. The sixth parameter is the text block's horizontal alignment. -1 means left aligned, 0 means center aligned and 1 means right aligned. The seventh parameter is the text block's vertical alignment. -1 means top aligned, 0 means center aligned and 1 means bottom aligned. The last parameter, text style, is a one or two element array. If it is a one element array. The element is a positve integer which is text font size. And the font is system default font. If it is a two element array, the first element is text font size and the second element is string based font name. Note that the last parameter is optional. By default, the system default font with size being 16 is used. Example of this function is: calculate_text_origin(display, "pei is " + peichoices[idx], [256, 72], peiBndrySize[0], peiBndrySize[1], horAlign, verAlign, [22]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>cd</center></td>
+<td><p>::mfp::io::file::cd(1) :</p>
+<p>change_dir(path) (with alias cd(path)) changes current directory to string based value path. If successful, return true. Otherwise, return falses. Examples are change_dir("D:\\Windows") (Windows) and cd("/") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>ceil</center></td>
+<td><p>::mfp::math::number::ceil(1) :</p>
+<p>ceil(x), where x is a float value, returns the smallest integer no smaller than x.</p>
+<p>::mfp::math::number::ceil(2) :</p>
+<p>ceil(x,y), where x is a float value and y is a positive integer, returns the smallest float value with y digits after decimal point no smaller than x.</p>
+</td>
+</tr>
+<tr>
+<td><center>change_dir</center></td>
+<td><p>::mfp::io::file::change_dir(1) :</p>
+<p>change_dir(path) (with alias cd(path)) changes current directory to string based value path. If successful, return true. Otherwise, return falses. Examples are change_dir("D:\\Windows") (Windows) and cd("/") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>clear_oval</center></td>
+<td><p>::mfp::graph_lib::draw::clear_oval(5) :</p>
+<p>clear_oval(owner_info, display, left_top, width, height) adds a painting event in the painting event scheduler. This painting event will clear an oval area from a display when the scheduler calls it. It has at 5 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is a two element array (i.e. [x, y]). It is the left top corner of the rectangle which contains the oval. The next two parameters are the width and height of the rectangle contains the oval. An example of this function is: clear_oval(["my draw", 0.381], d, [128, 45], 18, 30) . And another example is: clear_oval(NULL, d, [23, 111], 70, 19) .</p>
+</td>
+</tr>
+<tr>
+<td><center>clear_rect</center></td>
+<td><p>::mfp::graph_lib::draw::clear_rect(5) :</p>
+<p>clear_rect(owner_info, display, left_top, width, height) adds a painting event in the painting event scheduler. This painting event will clear a rectangle area from a display when the scheduler calls it. It has at 5 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is a two element array (i.e. [x, y]). It is the left top corner of the rectangle. The next two parameters are the width and height of the rectangle. An example of this function is: clear_rect(["my draw", 0.381], d, [128, 45], 18, 30) . And another example is: clear_rect(NULL, d, [23, 111], 70, 19) .</p>
+</td>
+</tr>
+<tr>
+<td><center>clone</center></td>
+<td><p>::mfp::object::clone(1) :</p>
+<p>clone(source_value) clones source value and returns cloned copy of the source value. Source value can be anything including string, number, complex number and array. For example, if variable a is [1,2], user executes statement variable b = clone(a) and gets b = [1,2]. However, the returned [1,2] is not the same copy as parameter a. So if user changes a[0] to 3, a's new value is [3, 2] while b is still [1, 2].</p>
+</td>
+</tr>
+<tr>
+<td><center>clone_image</center></td>
+<td><p>::mfp::multimedia::image_lib::clone_image(7) :</p>
+<p>clone_image(image_src, src_left, src_top, src_right, src_bottom, dest_width, dest_height) returns a new wrapped JAVA image object with width = dest_width and height = dest_height. The returned image is a (zoomed) copy of image_src's selected area. The selected area's left, top, right and bottom are src_left, src_top, src_right and src_bottom respectively. Note that src_left, src_top, src_right and src_bottom are optional. By default, they equal 0, 0, width of image_src and height of image_src respectively. dest_width and dest_height are also optional. By default, dest_width equals src_right - src_left and dest_height equals src_bottom - src_top. An example of this function is clone_image(img_src, 0, 0, 100, 200, 50, 300) .</p>
+</td>
+</tr>
+<tr>
+<td><center>close_connection</center></td>
+<td><p>::mfp::paracomp::connect::close_connection(1) :</p>
+<p>close_connection closes a connection. It has one parameter which is the connection object returned from connect function, accept function or get_incoming_connect function. A example of this function is close_connection(conn_obj).</p>
+</td>
+</tr>
+<tr>
+<td><center>close_local</center></td>
+<td><p>::mfp::paracomp::connect::close_local(1) :</p>
+<p>close_local closes a local interface. It has one parameter which is the local interface object returned from generate_interface function. A example of this function is close_local(local_info).</p>
+</td>
+</tr>
+<tr>
+<td><center>close_rtc_media_peer</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::close_rtc_media_peer(1) :</p>
+<p>This function closes a web RTC peer connection. Note that web RTC here is the web RTC library for voice and video communication, not the same thing as the WEBRTC protocol for data communication. This function's only parameter is the web RTC peer connection Id, i.e. its remote address.</p>
+</td>
+</tr>
+<tr>
+<td><center>cofactor</center></td>
+<td><p>::mfp::math::matrix::cofactor(1) :</p>
+<p>cofactor(x), where x is 2D square matrix, returns the cofactor matrix of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>concat_ablists</center></td>
+<td><p>::mfp::data_struct::array_based::concat_ablists(2) :</p>
+<p>concat_ablists(list1, list2) concatenates array based list2 to array_based list1 and returns merged array based list. The parameters list1 and list2 shares elements with returned value.</p>
+</td>
+</tr>
+<tr>
+<td><center>connect</center></td>
+<td><p>::mfp::paracomp::connect::connect(3) :</p>
+<p>connect(local_info, remote_info, not_reuse_exist) initializes a connection from a local interface object defined by local_info to a remote interface object defined by remote_info. Both local_info and remote_info are returned by calling generate_interface function. The third parameter, not_reuse_exist, is a boolean value. This parameter is optional. Its default value is false. If it is true, this function always creates a new connection instead of using an existing one (if there is). Note that a connection is two way. A connection can be reused by this function whether it is connected from the remote interface to the local interface or the other way around. However, reusing an incoming connection at server side is not straightforward for TCPIP protocol. This is because of two reasons. First, when a new connection is initialized at client side, the client side IP port is selected by operating system and is invisible to MFP. However, to reuse the incoming connection at server side, parameter remote_info has to include full client side address including both IP address and IP port. Second, if NAT layer exists between client side and server side, server side has no idea about client's real IP address and IP port anyway. In this case, MFP needs to analyze any message sent from the client side via this connection, read the field "TransConnectDestRemote" from the message where the accurate client side IP address and port are stored. Note that this client address is client's external address, i.e. client's address seen from server side, if NAT exists. Then generate_interface function can be called using the accurate client side IP address + port as a parameter to return the correct remote_info object. This function returns a dictionary with "CONNECT" key points to the definition of the connection object if successful, otherwise the "CONNECT" key corresponds to NULL and there is an "ERROR" key points to the error message.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv</center></td>
+<td><p>::mfp::sig_proc::conv(2) :</p>
+<p>conv(input_a, inputb) returns convolution of input_a and input_b. input_a and input_b can either be two 1-D lists or two 2-D arrays. So far conv function only support 1-D and 2-D convolution. For example,</p>
+<p>conv([4,8,2,9],[5,3,8,9,6,7,8]) = [20, 52, 66, 151, 139, 166, 181, 132, 79, 72]</p>
+<p>conv([[4,8,2,9],[8,6,7,9],[2,2,8,-4]],[[-5,i,7],[0.6,8,4]]) = [[-20, -40 + 4 * i, 18 + 8 * i, 11 + 2 * i, 14 + 9 * i, 63], [-37.6, 6.8 + 8 * i, 102.2 + 6 * i, 50.4 + 7 * i, 129 + 9 * i, 99], [-5.2, 57.6 + 2 * i, 58.2 + 2 * i, 119.4 + 8 * i, 156 - 4 * i, 8], [1.2, 17.2, 28.8, 69.6, 0, -16]]</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_bin_to_dec</center></td>
+<td><p>::mfp::math::number::conv_bin_to_dec(1) :</p>
+<p>conv_bin_to_dec(x) converts a non-negative binary value or string x (can be float or integer) to a decimal value.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_bin_to_hex</center></td>
+<td><p>::mfp::math::number::conv_bin_to_hex(1) :</p>
+<p>conv_bin_to_hex(x) converts a non-negative binary value or string x (can be float or integer) to a hexadecimal string.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_bin_to_oct</center></td>
+<td><p>::mfp::math::number::conv_bin_to_oct(1) :</p>
+<p>conv_bin_to_oct(x) converts a non-negative binary value or string x (can be float or integer) to an octal string.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_dec_to_bin</center></td>
+<td><p>::mfp::math::number::conv_dec_to_bin(1) :</p>
+<p>conv_dec_to_bin(x) converts a non-negative decimal value or string x (can be float or integer) to a binary string.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_dec_to_hex</center></td>
+<td><p>::mfp::math::number::conv_dec_to_hex(1) :</p>
+<p>conv_dec_to_hex(x) converts a non-negative decimal value or string x (can be float or integer) to a hexadecimal string.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_dec_to_oct</center></td>
+<td><p>::mfp::math::number::conv_dec_to_oct(1) :</p>
+<p>conv_dec_to_oct(x) converts a non-negative decimal value or string x (can be float or integer) to an octal string.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_hex_to_bin</center></td>
+<td><p>::mfp::math::number::conv_hex_to_bin(1) :</p>
+<p>conv_hex_to_bin(x) converts a non-negative hexadecimal value or string x (can be float or integer) to a binary string.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_hex_to_dec</center></td>
+<td><p>::mfp::math::number::conv_hex_to_dec(1) :</p>
+<p>conv_hex_to_dec(x) converts a non-negative hexadecimal value or string x (can be float or integer) to a decimal value.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_hex_to_oct</center></td>
+<td><p>::mfp::math::number::conv_hex_to_oct(1) :</p>
+<p>conv_hex_to_oct(x) converts a non-negative hexadecimal value or string x (can be float or integer) to an octal string.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_ints_to_str</center></td>
+<td><p>::mfp::string::conv_ints_to_str(1) :</p>
+<p>conv_ints_to_str(int_or_array) converts a single integer or a list of integer to a unicode string. If int_or_array is a single integer, then returned string includes a single char. Otherwise, returned string should have same number of characters as the element number in the integer array. If an integer is negative or beyond unicode char set range, this integer will be converted to the unicode char whose integer value is 0. For example, conv_ints_to_str([97, 98, 99]) returns "abc" and conv_ints_to_str(97) returns "a".</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_oct_to_bin</center></td>
+<td><p>::mfp::math::number::conv_oct_to_bin(1) :</p>
+<p>conv_oct_to_bin(x) converts a non-negative octal value or string x (can be float or integer) to a binary string.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_oct_to_dec</center></td>
+<td><p>::mfp::math::number::conv_oct_to_dec(1) :</p>
+<p>conv_oct_to_dec(x) converts a non-negative octal value or string x (can be float or integer) to a decimal value.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_oct_to_hex</center></td>
+<td><p>::mfp::math::number::conv_oct_to_hex(1) :</p>
+<p>conv_oct_to_hex(x) converts a non-negative octal value or string x (can be float or integer) to a hexadecimal string.</p>
+</td>
+</tr>
+<tr>
+<td><center>conv_str_to_ints</center></td>
+<td><p>::mfp::string::conv_str_to_ints(1) :</p>
+<p>conv_str_to_ints(str) converts a unicode string to an integer array. Each unicode char in general corresponds to one integer (could be two integers, if the unicode char is beyond UTF-16 char set. However, this kind of unicode chars are not widely used). If string is empty, return a zero length array. For example, conv_str_to_ints("abc") returns [97, 98, 99].</p>
+</td>
+</tr>
+<tr>
+<td><center>convert_unit</center></td>
+<td><p>::mfp::physics::convert_unit(3) :</p>
+<p>Function convert_unit(value, from_unit, to_unit) converts value based on one unit to value based on another unit. The first parameter is the value to be converted, the second parameter is the from unit (a case sensitive string), the third parameter is the to unit (a case sensitive string). For example, convert_unit(23.71, "m", "km").</p>
+<p>This function supports the following units:</p>
+<p>1. length units: "um" (microns), "mm" (millimetres), "cm" (centimetres), "m" (metres), "km" (kilometres), "in" (inches), "ft" (feet), "yd" (yards), "mi" (miles), "nmi" (nautical miles), "AU" (Astronomical units), "ly" (light years), "pc" (parsecs);</p>
+<p>2. area units: "mm2" (square millimetres), "cm2" (square centimetres), "m2" (square metres), "ha" (hectares), "km2" (square kilometres), "sq in" (square inches), "sq ft" (square feet), "sq yd" (square yards), "ac" (acres), "sq mi" (square miles);</p>
+<p>3. volume units: "mL" (millilitres (cc)), "L" (litres), "m3" (cubic metres), "cu in" (cubic inches), "cu ft" (cubic feet), "cu yd" (cubic yards), "km3" (cubic kilometres), "fl oz(Imp)" (fluid ounce (Imp)), "pt(Imp)" (pint (Imp)), "gal(Imp)" (gallon (Imp)), "fl oz(US)" (fluid ounce (US)), "pt(US)" (pint (US)), "gal(US)" (gallon (US));</p>
+<p>4. mass units: "ug" (micrograms), "mg" (milligrams), "g" (grams), "kg" (kilograms), "t" (tonnes), "oz" (ounces), "lb" (pounds), "jin" (market catties), "jin(HK)" (catties (HK)), "jin(TW)" (catties (TW));</p>
+<p>5. speed units: "m/s" (metres per second), "km/h" (kilometres per hour), "ft/s" (feet per second), "mph" (miles per hour), "knot" (knots);</p>
+<p>6. time units: "ns" (nanoseconds), "us" (microseconds), "ms" (milliseconds), "s" (seconds), "min" (minutes), "h" (hours), "d" (days), "wk" (weeks), "yr" (years);</p>
+<p>7. force units: "N" (newtons), "kgf" (kilogram-force), "lbF" (pound-force);</p>
+<p>8. pressure units: "Pa" (pascal), "hPa" (hectopascal), "kPa" (kilopascal), "MPa" (megapascal), "atm" (atomsphere), "psi" (pounds per square inch), "Torr" (torrs (millimetres of mercury);</p>
+<p>9. energy units: "J" (joules), "kJ" (kilojoules), "MJ" (megajoules), "kWh" (kilowatt-hours), "cal" (calories), "kcal" (kilocalories), "BTU" (British Thermal Units);</p>
+<p>10. power units: "W" (Watts), "kW" (kilowatts), "MW" (megawatts), "cal/s" (calories per second), "BTU/h" (BTUs per hour), "hp" (horse power);</p>
+<p>11. temperature units: "0C" (celsius), "0F" (fahrenheit), "K" (Kelvin);</p>
+</td>
+</tr>
+<tr>
+<td><center>copy_file</center></td>
+<td><p>::mfp::io::file::copy_file(3) :</p>
+<p>copy_file(source, destination, replace_exist) copies file or folder whose path is string source to file or folder whose path is string destination. If the 3rd parameter, replace_exist, is true, then source file (or any file in source folder) will replace destination file (or corresponding file in destination folder) if destination exists. Note that the 3rd parameter is optional. By default it is false. Examples are copy_file("c:\\temp\\try1", "D:\\", true) (Windows) and copy_file("/mnt/sdcard/testfile.txt", "./testfile_copy.txt") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>copy_to_resource</center></td>
+<td><p>::mfp_compiler::annotation::build_asset::copy_to_resource(2) :</p>
+<p>copy_to_resource(source_path, destination_path) is a function for MFP compiler, which means it takes effect only when MFP is packing scripts to build an MFP app. It copies file(s) in source_path to the destination_path inside Android assets folder. In this way an MFP app built from the current script can still find referred sound or image files by searching the MFP app's assets. It returns a three element array with first element is string based source path, second element is string based resource name and last element is string based destination path.</p>
+</td>
+</tr>
+<tr>
+<td><center>cos</center></td>
+<td><p>::mfp::math::trigon::cos(1) :</p>
+<p>cos(x) returns cos value of x, where x can be a complex number.</p>
+</td>
+</tr>
+<tr>
+<td><center>cosd</center></td>
+<td><p>::mfp::math::trigon::cosd(1) :</p>
+<p>cosd(x) returns cos value of x, where x is a degree.</p>
+</td>
+</tr>
+<tr>
+<td><center>cosh</center></td>
+<td><p>::mfp::math::trigon::cosh(1) :</p>
+<p>Function cosh(x) calculates hyperbolic cos of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>create_abdict</center></td>
+<td><p>::mfp::data_struct::array_based::create_abdict(0) :</p>
+<p>create_abdict() creates an empty array based dictionary.</p>
+</td>
+</tr>
+<tr>
+<td><center>create_file</center></td>
+<td><p>::mfp::io::file::create_file(2) :</p>
+<p>create_file(path, is_folder) create a file (if is_folder is false or does not exist) or folder (if is_folder is true). If the parent of string based parameter path does not exist, the parent will be created. If the file can be created, this function returns true, otherwise, returns false. Examples are create_file("c:\\temp\\try1", true) (Windows) and create_file("testfile_copy.txt") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>create_image</center></td>
+<td><p>::mfp::multimedia::image_lib::create_image(2) :</p>
+<p>create_image(w, h) returns a new and blank wrapped JAVA image object with width = w and height = h.</p>
+</td>
+</tr>
+<tr>
+<td><center>create_rtc_media_answer</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::create_rtc_media_answer(5) :</p>
+<p>This function creates a web RTC answer signal after an offer signal is received. Note that web RTC here is the web RTC library for voice and video communication, not the same thing as the WEBRTC protocol for data communication. It has five parameters. First is peer connection id. Second is SDP type. A string whose value is "offer" is expected. The third one is a string based SDP content, i.e. offer signal content. The fourth one is a map for mandatory constraint parameters. The last one is also a map for optional constraint parameters. The last parameter is optional. An example of this function is create_rtc_media_answer(remoteAddr, sdpType, sdpContent, [["OfferToReceiveAudio", "true"], ["OfferToReceiveVideo", supportVideoStr]], [["DtlsSrtpKeyAgreement", "true"]]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>create_rtc_media_offer</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::create_rtc_media_offer(3) :</p>
+<p>This function creates a web RTC offer signal. Note that web RTC here is the web RTC library for voice and video communication, not the same thing as the WEBRTC protocol for data communication. It has three parameters. First is peer connection id. The second one is a map for mandatory constraint parameters. The last one is also a map for optional constraint parameters. The last parameter is optional. An example of this function is create_rtc_media_offer(remoteAddr, [["OfferToReceiveAudio", "true"], ["OfferToReceiveVideo", supportVideoStr]], [["DtlsSrtpKeyAgreement", "true"]]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>delete_file</center></td>
+<td><p>::mfp::io::file::delete_file(2) :</p>
+<p>delete_file(path, delete_children_in_folder) deletes a file or folder at string based parameter path. If it is a folder and the second parameter is true, all the files in the folder will be recursively deleted. The second parameter is optional. By default, it is false. If the file or folder can be deleted, this function returns true, otherwise, returns false. Examples are delete_file("c:\\temp\\try1", true) (Windows) and delete_file("testfile_copy.txt") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>deri_ridders</center></td>
+<td><p>::mfp::math::calculus::deri_ridders(4) :</p>
+<p>deri_ridders(expr, var, val, ord) calculate ord-order derivative value of expression expr which is based on variable var when the variable's value is equal to val. This function always uses Ridders method. For example, deri_ridders("x**2+x","x",3,2) returns 2.</p>
+</td>
+</tr>
+<tr>
+<td><center>derivative</center></td>
+<td><p>::mfp::math::calculus::derivative(2) :</p>
+<p>derivative(expression, variable) calculate derivative of expression which is based on variable. Note that both expression and variable must be strings. For example, derivative("x**2+x","x") returns a string based expression which is "2*x+1".</p>
+<p>::mfp::math::calculus::derivative(4) :</p>
+<p>derivative(expr, var, val, method) calculate derivative value of expression expr which is based on variable var when the variable's value is equal to val. The parameter method selects the method to use. True means using Ridders method while false means simply calculating derivative expression value at val. For example, derivative("x**2+x","x",2,true) returns 5.</p>
+</td>
+</tr>
+<tr>
+<td><center>det</center></td>
+<td><p>::mfp::math::matrix::det(1) :</p>
+<p>Function det(x) calculates determinant of square matrix x.</p>
+</td>
+</tr>
+<tr>
+<td><center>deter</center></td>
+<td><p>::mfp::math::matrix::deter(1) :</p>
+<p>Function deter(x) calculates determinant of square matrix x.</p>
+</td>
+</tr>
+<tr>
+<td><center>dir</center></td>
+<td><p>::mfp::io::file::dir(1) :</p>
+<p>print_file_list(path) (alias ls(path) or dir(path)) works like ls command in Linux or dir command in Windows. It print the information for the file or all the files in folder at string based path. It returns the number of entries that printed. If the path does not corresponds to an existing file or folder, it returns -1. Note that path is optional. By default it is current folder ("."). Examples are dir() (Windows) and ls("../testfile_copy.txt") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>dprod</center></td>
+<td><p>::mfp::math::matrix::dprod(2) :</p>
+<p>Function dprod calculates dot product of two vectors [x1, x2, ... xn] and [y1, y2, ... yn].</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_image</center></td>
+<td><p>::mfp::graph_lib::draw::draw_image(12) :</p>
+<p>Function draw_image adds a painting event in the painting event scheduler. This painting event will draw an image in a display when the scheduler calls it. This function has two different overloads. First is draw_image(owner_info, display, image_or_path, left, top, width_ratio, height_ratio, painting_extra_info). Second is draw_image(owner_info, display, image_or_path, srcx1, srcy1, srcx2, srcy2, destx1, desty1, destx2, desty2, painting_extra_info). In both of the overloads, the first parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is an image handle or a path string which points to an image file. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation. In the first overload, the fourth to seventh parameters are, respectively, left of the rectangle where the image will be drawn to, top of the rectangle where the image will be drawn to, the ratio by which the image will be zoomed along width when drawing (optional with 1.0 as its default), and the ratio by which the image will be zoomed along height when drawing (optional with 1.0 as its default). In the second overload, the fourth to eleventh parameters are, respectively, left of source rectangle, top of source rectangle, right of source rectangle, bottom of source rectangle, left of destination rectangle, top of destination rectangle, right of destination rectangle, and bottom of destination rectangle.</p>
+<p>Examples of this function are: draw_image("image", display, get_upper_level_path(get_src_file_path()) + "gem4.png", 48, 157) , draw_image("image", display, gem3Img, 148, 257, 3, 0.5) and draw_image("imagesrc", display, gem3Img, 0, 0, 32, 32, 210, 540, 300, 580, a_painting_extra_info).</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_line</center></td>
+<td><p>::mfp::graph_lib::draw::draw_line(7) :</p>
+<p>draw_line(owner_info, display, start_point_place, end_point_place, color, line_style, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw a line in a display when the scheduler calls it. It has 7 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third one and the fourth one are start_point_place and end_point_place respectively. They both are a two element array (i.e. [x, y]). The fifth one is color. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The sixth parameter is line style. At this moment, it is one element array whose element is a positive integer value representing line width. This parameter is optional, by default, it is [1]. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is also optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>An example of this function is: draw_line(["my draw", 0.381], d, [128, 45], [250, -72], [79, 255, 0, 142]) . And another example is: draw_line(NULL, d, [23, 111], [70, 333], [23, 178, 222], [7]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_oval</center></td>
+<td><p>::mfp::graph_lib::draw::draw_oval(8) :</p>
+<p>draw_oval(owner_info, display, left_top, width, height, color, frame_or_fill, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw an oval in a display when the scheduler calls it. It has at least 7 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is a two element array (i.e. [x, y]). It is the left top corner of the rectangle which contains the oval. The next two parameters are the width and height of the rectangle which contains the oval. Then the parameter is color to draw. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The second last parameter is an integer. If it is less than or equal to zero, the oval is filled. If it is larger than zero, it is the width of the oval's border. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>An example of this function is: draw_oval(["my draw", 0.381], d, [128, 45], 18, 30, [79, 255, 0, 142], 0) . And another example is: draw_oval(NULL, d, [23, 111], 70, 19, [23, 178, 222], 3) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_point</center></td>
+<td><p>::mfp::graph_lib::draw::draw_point(6) :</p>
+<p>draw_point(owner_info, display, point_place, color, point_style, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw a point in a display when the scheduler calls it. It has 6 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third one is point_place. It is a two element array (i.e. [x, y]). The fourth one is color. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The fifth parameter is point style. At this moment, its format is [point_size, point_shape]. Point size is a positive integer value. Point shape is a string which allows the following values: "dot", "circle", "square", "diamond", "up_triangle", "down_triangle", "cross" and "x". Note that if point shape is "dot", point size has no effect because dot point's size is always 1. This parameter is optional, by default, it is [1, "dot"]. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw this point. This parameter is also optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>An example of draw_point is: draw_point(["my draw", 0.381], d, [128, 45], [79, 255, 0, 142]) . And another example is: draw_point(NULL, d, [23, 111], [23, 178, 222], [78, "square"]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_polygon</center></td>
+<td><p>::mfp::graph_lib::draw::draw_polygon(7...) :</p>
+<p>draw_polygon(owner_info, display, point1_place, point2_place, point3_place, ..., color, frame_or_fill, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw a polygon in a display when the scheduler calls it. It has at least 7 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. From the third parameter forward the vertices of the polygon are defined. There should be at least three vertices. All the vertices are a two element array (i.e. [x, y]). The next parameter is color. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The second last parameter is an integer. If it is less than or equal to zero, the polygon is filled. If it is larger than zero, it is the width of the polygon's sides. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>An example of this function is: draw_polygon(["my draw", 0.381], d, [128, 45], [250, -72], [338, 29], [79, 255, 0, 142], 0) . And another example is: draw_polygon(NULL, d, [23, 111], [70, 333], [-239, 89], [66, 183], [23, 178, 222], 3) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_rect</center></td>
+<td><p>::mfp::graph_lib::draw::draw_rect(8) :</p>
+<p>draw_rect(owner_info, display, left_top, width, height, color, frame_or_fill, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw a rectangle in a display when the scheduler calls it. It has at least 7 parameters. First parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is a two element array (i.e. [x, y]). It is the left top corner of the rectangle. The next two parameters are the width and height of the rectangle. Then the parameter is color to draw. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The second last parameter is an integer. If it is less than or equal to zero, the rectangle is filled. If it is larger than zero, it is the width of the rectangle's sides. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>An example of this function is: draw_rect(["my draw", 0.381], d, [128, 45], 18, 30, [79, 255, 0, 142], 0) . And another example is: draw_rect(NULL, d, [23, 111], 70, 19, [23, 178, 222], 3) .</p>
+</td>
+</tr>
+<tr>
+<td><center>draw_text</center></td>
+<td><p>::mfp::graph_lib::draw::draw_text(7) :</p>
+<p>draw_text(owner_info, display, string, origin_place, color, text_style, painting_extra_info) adds a painting event in the painting event scheduler. This painting event will draw a text block in a display when the scheduler calls it. The first parameter is owner_info, which tells painting event scheduler who owns this painting event. The owner_info can be a string (i.e. owner name), or an integer (i.e. owner id), or NULL (meaning that system owns it), or a two element array with its first element is either string based owner name, or integer based owner id, or NULL, and its second element is a double value representing a pseudo timestamp (It is not a real timestamp. It can be any double value. It will be used when developer tries to remove this event from painting event scheduler). The second parameter is display. It can be either a screen display or an image display. The third parameter is string based multi-line text block. The fourth parameter is origin place of the text block ([x, y]). The fifth parameter is color to draw. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. The sixth parameter, text_style, is a one or two element array. If it is a one element array. The element is a positve integer which is text font size. And the font is system default font. If it is a two element array, the first element is text font size and the second element is string based font name. Note that this parameter is optional. By default, the system default font with size being 16 is used. The last parameter is painting_extra_info. It tells painting event scheduler what porterduff mode should be selected to draw. This parameter is optional. Because the underlying mechanism of porterduff mode is quite intricate, developer may simply use its default value (i.e. ignore it since it is optional). For detailed information about painting extra info, developer may refer to set_porterduff_mode and get_porterduff_mode functions. For detailed information about porterduff mode, developer may refer to JAVA documentation.</p>
+<p>Examples of this function are: draw_text("image", display, txtStr, [108, 190], [255, 255, 255], [10 + idx, font]) and draw_text("image", display, txtStr, [108, 190], [255, 255, 255], [idx * 2]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>drop_old_painting_requests</center></td>
+<td><p>::mfp::graph_lib::draw::drop_old_painting_requests(2) :</p>
+<p>drop_old_painting_requests(owner_info, display) removes selected painting events from painting event scheduler for a screen or image display. The criteria is, if a painting event's owner is the same as drop_old_painting_requests's owner (read from owner_info) and a painting event's owner info's timestamp is older (i.e. smaller) than drop_old_painting_requests's owner info's timestamp, the painting event is dropped. Note that some owner_info parameter doesn't include timestamp. In this case, it's timestamp is the system time when the painting function or drop_old_painting_requests is called. An example is drop_old_painting_requests("my owner", display). This example equals to drop_old_painting_requests(["my owner", now()], display).</p>
+</td>
+</tr>
+<tr>
+<td><center>eig</center></td>
+<td><p>::mfp::math::matrix::eig(1) :</p>
+<p>eig(A) calculates 2D square matrix A's eigen vectors and eigen values. This function returns a two element list. First element is the eigen vector matrix, each column is an eigen vector. Second element is a diagonal matrix. Each diagonal element is an eigen value. Note that this function needs big memory to run and consumes significant CPU time. If running in mobile device, size of A and B should be no greater than 6*6. If running on PC, A and B should be no greater than 8*8. Otherwise, it may fail because lack of memory or run for very long time.</p>
+<p>::mfp::math::matrix::eig(2) :</p>
+<p>eig(A, B) calculates 2D square matrix A's eigen vectors and eigen values against same size matrix B, i.e. Av = lambda * Bv, where lambda is an eigen value and v is an eigen vector. The second parameter, B, is optional. By default, B is an I matrix. This function returns a two element list. First element is the eigen vector matrix, each column is an eigen vector. Second element is a diagonal matrix. Each diagonal element is an eigen value. Note that this function needs big memory to run and consumes significant CPU time. If running in mobile device, size of A and B should be no greater than 6*6. If running on PC, A and B should be no greater than 8*8. Otherwise, it may fail because lack of memory or run for very long time.</p>
+</td>
+</tr>
+<tr>
+<td><center>evaluate</center></td>
+<td><p>::mfp::statement::evaluate(1...) :</p>
+<p>evaluate(expr_string,var_string1,var_value1,var_string2,var_value2, ...) returns the value of string based expression expr_string when the string based variable var_string1 equals var_value1, variable var_string2 equals var_value2, ... respectively. Note that var_value1, var_value2, ... can be any type and the number of variables can be zero, i.e. evaluate("3+2") is valid.</p>
+</td>
+</tr>
+<tr>
+<td><center>exp</center></td>
+<td><p>::mfp::math::log_exp::exp(1) :</p>
+<p>exp(x), where x is a real or complex number, returns x powers of e.</p>
+</td>
+</tr>
+<tr>
+<td><center>expr_to_string</center></td>
+<td><p>::mfp::statement::expr_to_string(1) :</p>
+<p>expr_to_string(expr) converts a string based expression expr to a string. Any defined function in the expression will be converted to its full name (i.e. citingspace followed by function name). For example, expr_to_string("pwd()") will be converted to "::mfp::io::file::pwd()" while expr_to_string("pwd(1,  2)") will be converted to "pwd(1,2)" because pwd function with zero parameter is defined while there is no pwd function with two parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>eye</center></td>
+<td><p>::mfp::math::matrix::eye(1) :</p>
+<p>eye(x), where x is a positive integer, returns 2-D matrix I whose size is x times x. Note that eye(0) returns 1.</p>
+<p>::mfp::math::matrix::eye(2) :</p>
+<p>eye(x,y), where x and y are both positive integer numbers, returns y-D matrix I whose size of each dimension is x.</p>
+</td>
+</tr>
+<tr>
+<td><center>fact</center></td>
+<td><p>::mfp::math::number::fact(1) :</p>
+<p>Function fact(x) calculates factorial of a non-negative integer x.</p>
+</td>
+</tr>
+<tr>
+<td><center>fclose</center></td>
+<td><p>::mfp::io::file::fclose(1) :</p>
+<p>fclose(fd) closes the file whose id is fd. If the fd is invalid, returns -1. Otherwise, returns 0.</p>
+</td>
+</tr>
+<tr>
+<td><center>feof</center></td>
+<td><p>::mfp::io::file::feof(1) :</p>
+<p>feof(fd) identifies if it has been the end of a read mode file whose id is fd. If so, returns true. Otherwise, returns false. If fd is invalid, throws an exception.</p>
+</td>
+</tr>
+<tr>
+<td><center>fft</center></td>
+<td><p>::mfp::sig_proc::fft(1...) :</p>
+<p>Function FFT(a, ...) returns fast fourier transform of a series of values, note that the number of values in the series should always be 2 to a positive integer. If a is a list of real or complex numbers, this function should only have one parameter and return fast fourier transform of a[0], a[1], ... a[N-1] where N is the number of values in a. If a is a single value (real or complex), this function should have at least two parameters and return fast fourier transform of a, optional_params[0], optional_params[1], ..., optional_params[number_of_optional_params - 1]. The returned value is always an array.</p>
+<p>Examples of this function:</p>
+<p>FFT(1, 2, 3, 4) returns [10, -2 + 2i, -2, -2 - 2i];</p>
+<p>FFT([1, 2, 3, 4]) also returns [10, -2 + 2i, -2, -2 - 2i].</p>
+</td>
+</tr>
+<tr>
+<td><center>floor</center></td>
+<td><p>::mfp::math::number::floor(1) :</p>
+<p>floor(x), where x is a float value, returns the largest integer no larger than x.</p>
+<p>::mfp::math::number::floor(2) :</p>
+<p>floor(x,y), where x is a float value and y is a positive integer, returns the largest float value with y digits after decimal point no larger than x.</p>
+</td>
+</tr>
+<tr>
+<td><center>fopen</center></td>
+<td><p>::mfp::io::file::fopen(2) :</p>
+<p>fopen(path, mode) opens file at path to read or write and returns the file id number. It is similar to C and Matlab's same name function. However, only "r", "a", "w", "rb", "ab" and "wb" modes are supported. Examples are fopen("C:\\Temp\\Hello.dat", "ab") (Windows) and fopen("./hello.txt", "r") (Android).</p>
+<p>::mfp::io::file::fopen(3) :</p>
+<p>fopen(path, mode, encoding) opens a text file at path using character set encoding to read or write and returns the file id number. Because only text file supports encoding, parameter mode can only be "r", "a" and "w". Examples are fopen("C:\\Temp\\Hello.txt", "a", "LATIN-1") (Windows) and fopen("./hello.txt", "r", "UTF-8") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>fprintf</center></td>
+<td><p>::mfp::io::file::fprintf(2...) :</p>
+<p>printf(format_string, ...), sprintf(format_string, ...) and fprintf(fd, format_string, ...) work like corresponding C/C++ functions. Function printf prints formatted string constructed from format_string and other parameter values to output console, sprintf constructs a new string from format_string and other parameters, and returns the new string, fprintf prints the formated string from format_string and other parameter values to the text file whose id is fd. The format_string parameter supports integer (%d, %i, %x, etc), float (%e, %f, etc), character(%c), string(%s) etc. User can find detailed information for construction of a format string by reading C language manual for these functions. For example, printf("Hello world!%f", 3.14) will output "Hello world!3.140000" on the screen, sprintf("%c%d", "A", 9) returns "A9" (MFP does not support single character type, so single character is stored as a one-char string).</p>
+</td>
+</tr>
+<tr>
+<td><center>fread</center></td>
+<td><p>::mfp::io::file::fread(4) :</p>
+<p>fread(fd, buffer, from, length) reads length number of bytes from file whose id is fd and stores the bytes in buffer starting from parameter from. Note that from and length must be non-negative and from + length should be no greater than buffer size. From and length are optional. If they do not exist, fread reads buffer size of bytes and fill the buffer. Buffer is also optional. If Buffer does not exist, fread returns a single byte. If fread find that it is end of the file before reading, returns -1. Otherwise, if using buffer, returns number of bytes that are read (if buffer is provided). If file does not exist, or is invalid or inaccessable, exception will be thrown. Examples are fread(1), fread(2, byte_buffer) and fread(2, byte_buffer, 3, 7).</p>
+</td>
+</tr>
+<tr>
+<td><center>freadline</center></td>
+<td><p>::mfp::io::file::freadline(1) :</p>
+<p>freadline(fd) reads one line from text file whose id is fd. If before reading, freadline finds it is end of the file, it returns NULL. Otherwise, it returns the string based line excluding the change-line character(s) at the end.</p>
+</td>
+</tr>
+<tr>
+<td><center>fscanf</center></td>
+<td><p>::mfp::io::file::fscanf(2) :</p>
+<p>scanf(format_string), sscanf(input_from, format_string) and fscanf(fd, format_string) work like corresponding C/C++ functions. Function scanf reads one line input from user, sscanf reads string based parameter input_from, and fscanf reads content from a file whose id is fd. The format_string parameter supports integer (%d, %i, %x, etc), float (%e, %f, etc), character(%c), string(%s) etc. User can find detailed information for construction of a format string by reading C language manual for these functions. Different from C language, these functions do not accept additional parameters to store read values. These functions simply return all the read values in an array. For example, sscanf("3Hello world!", "%d%c%c%s") will returns [3, "H", "e", "llo"] (MFP does not support single character type, so single character is stored as a one-char string).</p>
+</td>
+</tr>
+<tr>
+<td><center>fwrite</center></td>
+<td><p>::mfp::io::file::fwrite(4) :</p>
+<p>fwrite(fd, buffer, from, length) writes length number of bytes to file whose id is fd. The data to write store in parameter buffer starting from parameter from. Note that from and length must be non-negative and from + length should be no greater than buffer size. From and length are optional. If they do not exist, fwrite writes whole buffer to file. Buffer can also be a single byte which means fwrite writes only 1 byte to file. If file does not exist, or is invalid or inaccessable, exception will be thrown. Examples are fwrite(1, 108), fwrite(2, byte_buffer) and fwrite(2, byte_buffer, 3, 7).</p>
+</td>
+</tr>
+<tr>
+<td><center>gamma</center></td>
+<td><p>::mfp::math::stat_stoch::gamma(1) :</p>
+<p>Function gamma(z) returns gamma function value of complex z, note that real part of z must be positive.</p>
+</td>
+</tr>
+<tr>
+<td><center>gavg</center></td>
+<td><p>::mfp::math::stat_stoch::gavg(0...) :</p>
+<p>Function gavg(...) returns geometric mean value of an arbitary number of parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>generate_interface</center></td>
+<td><p>::mfp::paracomp::connect::generate_interface(2) :</p>
+<p>generate_interface(protocol, address) returns definition of a local interface object. It needs two parameters. The first parameter is string based protocol, like "TCPIP". The second parameter is address, also string based, like "10.32.202.78". This parameter is optional. By default, it is local host address, e.g. "127.0.0.1" for "TCPIP" protocol.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_absolute_path</center></td>
+<td><p>::mfp::io::file::get_absolute_path(1) :</p>
+<p>get_absolute_path(fd_or_path) returns a string value which is the absolute path of file either whose id number is fd_or_path (here fd_or_path is an integer) or whose relative path is fd_or_path (here fd_or_path is a string).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_connect_call_ids</center></td>
+<td><p>::mfp::paracomp::connect::get_all_connect_call_ids(1...) :</p>
+<p>get_all_connect_call_ids returns all connection ids of a network interface or all call ids of a connection. It has two modes. The first mode has one parameter which is an interface object returned by generate_interface function. The returned value is ids of all incoming and outgoing connections of this interface. If the interface is unavailable, an exception is thrown. The second mode has three parameters. The first one is an infterface object returned by generate_interface function. The second one is a connection id (which is remote address if the connection is outgoing or can be returned by get_call_info function if the connection is incoming). The third parameter is a boolean value. If it is true, this function's returned value is an array of all the incoming call ids of this connection. Otherwise, the returned value is all the outgoing call ids of this connection. If the interface is unavailable, an exception is thrown. If the connection id does not exist, it returns null. An example of this function is get_all_connect_call_ids(server_interface, connect_id, false).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_host_addresses</center></td>
+<td><p>::mfp::paracomp::host::get_all_host_addresses(1) :</p>
+<p>get_all_host_addresses(protocol_name) returns all string based addresses for all the interfaces of the protocol named by protocol_name. Parameter protocol_name is optional. If not given or is an empty string, this function returns all string based addresses for all the interfaces of all supported protocols. An example of this function is get_all_host_addresses("TCPIP").</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_referred_units</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_all_referred_units(0) :</p>
+<p>get_all_referred_units() is a function for MFP compiler, which means it takes effect only when MFP is packing scripts to build an MFP app. It returns an array of all the MFP function and class references defined in all the user defined libs.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_asset_file_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_asset_file_path(1) :</p>
+<p>get_asset_file_path(asset_file_entry) tells developer the path of an asset file (i.e. string based parameter asset_file_entry) if the running script is actually an MFP app. If it is not an MFP app, this functions returns null.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_audio_track_enable</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::get_audio_track_enable(1) :</p>
+<p>This function tests if audio track has been enabled. True is returned if audio track is enabled. Otherwise false. It has only one parameter which is a display handle returned from open_screen_display function.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_call_info</center></td>
+<td><p>::mfp::paracomp::connect::get_call_info(0) :</p>
+<p>This function returns NULL if not called within a call sandbox. Otherwise, it returns an array whose first element is its call sandbox id, second element is its connect id and third element is an local info object.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_canonical_path</center></td>
+<td><p>::mfp::io::file::get_canonical_path(1) :</p>
+<p>get_canonical_path(fd_or_path) returns a string value which is the canonical path (path which is absolute and does not rely on symbol link) of file either whose id number is fd_or_path (here fd_or_path is an integer) or whose relative path is fd_or_path (here fd_or_path is a string).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_classes</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_classes(0...) :</p>
+<p>get_classes(...) is a function for MFP compiler, which means it takes effect only when MFP is packing scripts to build an MFP app. It has arbitary number of string based parameters. Each parameter is a class name. It returns an array of all the MFP class references defined in the parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_constant</center></td>
+<td><p>::mfp::physics::get_constant(2) :</p>
+<p>get_constant(const_name, n) fetches a constant value (identified by a case-sensative string consta_name) wih n significant digits after decimal point. The second parameter n a non-negative integer and is optional. If it is omitted, this function returns the value without rounding. It supports the following constants:</p>
+<p>1. Ratio of circumference of a circle to its diameter (const_name == "pi");</p>
+<p>2. Natural logarithm (const_name == "e");</p>
+<p>3. Light speed in vacuum [m/s] (const_name == "light_speed_in_vacuum");</p>
+<p>4. Gravitational constant [m**3/kg/(s**2)] (const_name == "gravitational_constant");</p>
+<p>5. Planck constant [J*s] (const_name == "planck_constant");</p>
+<p>6. Magnetic constant [N/(A**2)] (const_name == "magnetic_constant");</p>
+<p>7. Electric constant [F/m] (const_name == "electric_constant");</p>
+<p>8. Elementary charge [c] (const_name == "elementary_charge_constant");</p>
+<p>9. Avogadro constant [1/mol] (const_name == "avogadro_constant");</p>
+<p>10. Faraday constant [C/mol] (const_name == "faraday_constant");</p>
+<p>11. Molar gas constant [J/mol/K] (const_name == "molar_gas_constant");</p>
+<p>12. Boltzman constant [J/K] (const_name == "boltzman_constant");</p>
+<p>13. Standard gravity [m/(s**2)] (const_name == "standard_gravity");</p>
+<p>For example, if user inputs get_constant("pi", 4), the result will be 3.1416; if user inputs get_constant("pi", 8), the result will be 3.14159265; if user inputs get_constant("pi", 0), s\he will get 3; if user inputs get_constant("pi"), the result will be 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679 (with 100 digits after decimal point), which is the pi value internally used by the software.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_country_language</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_country_language(0) :</p>
+<p>This function returns a two element array. The first element is string based country code. Country code should be either the empty string, an uppercase ISO 3166 2-letter code, or a UN M.49 3-digit code. User may check https://en.wikipedia.org/wiki/ISO_3166 for country code list. The second element is string based language code. It generally follows ISO 639 standard. However, please note that ISO 639 is not a stable standard. Some languages' codes have changed. This function always returns old code. User may check https://en.wikipedia.org/wiki/ISO_639 for language code list.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_day_of_month</center></td>
+<td><p>::mfp::time_date::get_day_of_month(1) :</p>
+<p>get_year(timestamp), get_month(timestamp), get_day_of_year(timestamp), get_day_of_month(timestamp), get_day_of_week(timestamp), get_hour(timestamp), get_minute(timestamp), get_second(timestamp) and get_millisecond(timestamp) return the year, month, day of year, day of month, day of week, hour minute, second and millisecond of the time stamp parameter respectively. Timestamp is the difference, measured in milliseconds, between the time and midnight, January 1, 1970 UTC. And day of week is an integer corresponding to Sunday if 0, Monday if 1, ... Saturday if 6. For example, get_day_of_week(get_time_stamp(2014, 12, 21)) returns 0 (Sunday).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_day_of_week</center></td>
+<td><p>::mfp::time_date::get_day_of_week(1) :</p>
+<p>get_year(timestamp), get_month(timestamp), get_day_of_year(timestamp), get_day_of_month(timestamp), get_day_of_week(timestamp), get_hour(timestamp), get_minute(timestamp), get_second(timestamp) and get_millisecond(timestamp) return the year, month, day of year, day of month, day of week, hour minute, second and millisecond of the time stamp parameter respectively. Timestamp is the difference, measured in milliseconds, between the time and midnight, January 1, 1970 UTC. And day of week is an integer corresponding to Sunday if 0, Monday if 1, ... Saturday if 6. For example, get_day_of_week(get_time_stamp(2014, 12, 21)) returns 0 (Sunday).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_day_of_year</center></td>
+<td><p>::mfp::time_date::get_day_of_year(1) :</p>
+<p>get_year(timestamp), get_month(timestamp), get_day_of_year(timestamp), get_day_of_month(timestamp), get_day_of_week(timestamp), get_hour(timestamp), get_minute(timestamp), get_second(timestamp) and get_millisecond(timestamp) return the year, month, day of year, day of month, day of week, hour minute, second and millisecond of the time stamp parameter respectively. Timestamp is the difference, measured in milliseconds, between the time and midnight, January 1, 1970 UTC. And day of week is an integer corresponding to Sunday if 0, Monday if 1, ... Saturday if 6. For example, get_day_of_week(get_time_stamp(2014, 12, 21)) returns 0 (Sunday).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_color</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_color(1) :</p>
+<p>get_display_bgrnd_color(display) returns background color of a display (whether screen display or image display). Color is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_image</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_image(1) :</p>
+<p>get_display_bgrnd_image(display) returns background image of a display (whether screen display or image display).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_bgrnd_image_mode</center></td>
+<td><p>::mfp::graph_lib::display::get_display_bgrnd_image_mode(1) :</p>
+<p>get_display_bgrnd_image_mode(display) returns background image mode of a display (whether screen display or image display). Image mode is an integer whose value is either 0 (original background image is placed on left-top), 1 (background image is scaled to the whole screen), 2 (background image is tiled), or 3 (background image in the middle of screen).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_caption</center></td>
+<td><p>::mfp::graph_lib::display::get_display_caption(1) :</p>
+<p>get_display_caption(display) returns a screen display's caption. If display is an image display or in Android, it always returns an empty string.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_confirm_close</center></td>
+<td><p>::mfp::graph_lib::display::get_display_confirm_close(1) :</p>
+<p>get_display_confirm_close(display) returns whether confirming is required before closing a screen display. If display is an image display, it always returns false.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_orientation</center></td>
+<td><p>::mfp::graph_lib::display::get_display_orientation(1) :</p>
+<p>get_display_orientation(display) returns orientation of a screen display. In Android, if a screen display is landscape, it returns 0; if a screen display is portrait, it returns 1; if a screen display's orientation is unspecified, it returns -1. For image display or on a JAVA platform, it always returns -1.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_resizable</center></td>
+<td><p>::mfp::graph_lib::display::get_display_resizable(1) :</p>
+<p>get_display_resizable(display) tells developer a screen display resizable or not. If display is an image display, it always returns false.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_size</center></td>
+<td><p>::mfp::graph_lib::display::get_display_size(1) :</p>
+<p>get_display_size(display) returns a display (whether screen display or image display)'s size. The returned value is a two element array, i.e. [width, height].</p>
+</td>
+</tr>
+<tr>
+<td><center>get_display_snapshot</center></td>
+<td><p>::mfp::graph_lib::display::get_display_snapshot(4) :</p>
+<p>get_display_snapshot(display, update_screen_or_not, width_ratio, height_ratio) returns a display (whether screen display or image display)'s snapshot. Its second parameter, update_screen_or_not, telling MFP whether or not the display should be refreshed so that latest image can be captured. The third and fourth parameters are optional. They tell MFP how to zoom the snapshot. By default, both of them are 1. For example, get_display_snapshot(d, true, 0.5, 3) refreshes display d (i.e. all the painting event callbacks take effect) and then takes snapshot of the display and returns a zoomed image. The width of returned image is 0.5 * original snapshot width and the height of returned image is 3 * original snapshot height.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_eigen_values</center></td>
+<td><p>::mfp::math::matrix::get_eigen_values(1) :</p>
+<p>get_eigen_values(A) calculates 2D square matrix A's eigen values. This function returns an eigen value list which includes all the eigen values including duplicated ones. Note that this function needs big memory to run and consumes significant CPU time. If running in mobile device, size of A and B should be no greater than 6*6. If running on PC, A and B should be no greater than 8*8. Otherwise, it may fail because lack of memory or run for very long time.</p>
+<p>::mfp::math::matrix::get_eigen_values(2) :</p>
+<p>get_eigen_values(A, B) calculates 2D square matrix A's eigen values against same size matrix B, i.e. Av = lambda * Bv, where lambda is an eigen value and v is an eigen vector. The second parameter, B, is optional. By default, B is an I matrix. This function returns an eigen value list which includes all the eigen values including duplicated ones. Note that this function needs big memory to run and consumes significant CPU time. If running in mobile device, size of A and B should be no greater than 6*6. If running on PC, A and B should be no greater than 8*8. Otherwise, it may fail because lack of memory or run for very long time.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_elem_from_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::get_elem_from_ablist(2) :</p>
+<p>get_elem_from_ablist(array_based_list, idx) returns a reference of the value at idx from an array based list array_based_list. If the idx is invalid, an exception is thrown.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_info</center></td>
+<td><p>::mfp::graph_lib::event::get_event_info(2) :</p>
+<p>get_event_info(event, property_name) returns a property of event. Its first parameter is the event and its second parameter is string based property name. The GDI_INITIALIZE and GDI_CLOSE events don't have any properties. WINDOW_RESIZED event has four integer properties which are "width" (current width of the window), "height" (current height of the window), "last_width" (width of the window before this event was triggered), "last_height" (height of the window before this event was triggered). POINTER_DOWN event has three properties which are "button" (an integer property telling developer which mouse button triggers this event in PC or always zero in Android), "x" (x coordinate which is a double) and "y" (y coordinate which is a double). Similar to POINTER_DOWN, POINTER_UP event and POINTER_CLICKED event also have three properties which are "button", "x" and "y". POINTER_DRAGGED event and POINTER_SLIDED event both have five properties which are "button", "x", "y", "last_x" and "last_y". Among them, "button" has same meaning as for POINTER_DOWN, "last_x" and "last_y" are coordinates before the event is triggered, and "x" and "y" are coordinates after the event is triggered. POINTER_PINCHED event has eight double value properties which store the coordinates of fingers before pinching and after pinching. The properties are "x", "y", "x2", "y2", "last_x", "last_y", "last_x2", and "last_y2".</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_type</center></td>
+<td><p>::mfp::graph_lib::event::get_event_type(1) :</p>
+<p>get_event_type(event) returns an integer which is type of the event. At this stage it supports the following events: GDI_INITIALIZE (type is 1, when a screen display is created), GDI_CLOSE (type is 10, when a screen display is shutdown), WINDOW_RESIZED (JAVA platform only, type is 21, when a screen display window is resized), POINTER_DOWN (type is 102, when a mouse button is pushed down in PC or user's finger is tapping down in Android), POINTER_UP (type is 103, when a mouse button bounces up in PC or user's finger is moving away from touchpad in Android), POINTER_CLICKED (type is 104, when a mouse button is clicked in PC or user's finger taps touchpad in Android), POINTER_DRAGGED (type is 105, when a mouse or user's finger is dragging. Different from POINTER_SLIDED event, this event is continously triggered during the dragging process), POINTER_SLIDED (type is 106, when a mouse is dragged to the destination and its button is released in PC, or when user's finger drags to the destination and starts to leave touchpad in Android. Different from POINTER_DRAGGED, this event is triggered once-off), POINTER_PINCHED (Android only, type is 201, when user pinches to zoom in Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_event_type_name</center></td>
+<td><p>::mfp::graph_lib::event::get_event_type_name(1) :</p>
+<p>get_event_type_name(event) returns a string which is type name of the event. At this stage it supports the following events: "GDI_INITIALIZE" (when a screen display is created), "GDI_CLOSE" (when a screen display is shutdown), "WINDOW_RESIZED" (JAVA platform only, when a screen display window is resized), "POINTER_DOWN" (when a mouse button is pushed down in PC or user's finger is tapping down in Android), "POINTER_UP" (when a mouse button bounces up in PC or user's finger is moving away from touchpad in Android), "POINTER_CLICKED" (when a mouse button is clicked in PC or user's finger taps touchpad in Android), "POINTER_DRAGGED" (when a mouse or user's finger is dragging. Different from "POINTER_SLIDED" event, this event is continously triggered during the dragging process), "POINTER_SLIDED" (when a mouse is dragged to the destination and its button is released in PC, or when user's finger drags to the destination and starts to leave touchpad in Android. Different from "POINTER_DRAGGED", this event is triggered once-off), "POINTER_PINCHED" (when user pinches to zoom in Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_extreme_elem</center></td>
+<td><p>::mfp::array::get_extreme_elem(3) :</p>
+<p>Function get_extreme_elem analyses input dataArray and returns the maximum or minimum element in the data array. If an element is not a real value, this function ignores it. It has three parameters. The first is data array (it can be a single value), the second is original max or min value. If this is not null and is a real value, the function compares selected max or min element with this parameter and returns the new max or min value. The third one is to tell the function to get max value or min value. 0 is for min value and 1 is for max value. Examples are get_extreme_elem([[2, 3], "hello", 5], null, 1) and get_extreme_elem([[3,4,6],[5+3i, 7, 9.88-4.61], [5.77 -0.03i]], -8, 0).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_file_last_modified_time</center></td>
+<td><p>::mfp::io::file::get_file_last_modified_time(1) :</p>
+<p>get_file_last_modified_time(path) returns the last modified time of the file or folder corresponding to a string based path. The time is measured by the number of milliseconds since midnight on January 1st, 1970. If path does not exist or the file is not accessable, returns -1.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_file_path</center></td>
+<td><p>::mfp::io::file::get_file_path(1) :</p>
+<p>get_file_path(fd) returns a string value which is the path of file whose id number is fd.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_file_separator</center></td>
+<td><p>::mfp::io::file::get_file_separator(0) :</p>
+<p>get_file_separator() returns the seperator used in path. In Windows it returns string "\\". In Linux or Android it returns string "/".</p>
+</td>
+</tr>
+<tr>
+<td><center>get_file_size</center></td>
+<td><p>::mfp::io::file::get_file_size(1) :</p>
+<p>get_file_size(path) returns the size of the file corresponding to a string based path. If path does not corresponds to a file, or the file does not exist or the file is not accessable, returns -1.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_func_fullname</center></td>
+<td><p>::mfp::reflection::get_func_fullname(3) :</p>
+<p>get_func_fullname(function_name, number_of_params, citing_spaces_to_check) returns the full name (i.e. full citingspace followed by "::" followed by function's own name) of a function. It has three parameters. The first parameter is string based function name without citingspace or with partial citingspace. The second parameter is number of parameters. This is an optional parameter. Its default value is -1 which means just searching function name without considering number of parameters. The third parameter is citingspaces to check. It is a string array like ["::mfp_compiler", "::mfp::*"]. In this example, this function will first search citingspace ::mfp_compiler and then search citingspace ::mfp and all sub-citingspaces of ::mfp to find function_name. This parameter is also optional. It's default value is the citingspaces currently used in context. If the function_name is not a valid function name or the number of parameters is incorrect or the citingspaces don't include the function, it throws an exception. An example of this function is get_func_fullname("reflection:: get_func_fullname", 2) with returned value being "::mfp::reflection::get_func_fullname". Note that the number of parameters is 2, not 3 because get_func_fullname has two optional parameters so its number of parameters can be 1 or 2 or 3.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_functions</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_functions(0...) :</p>
+<p>get_functions(...) is a function for MFP compiler, which means it takes effect only when MFP is packing scripts to build an MFP app. It has arbitary number of string based parameters. Each parameter is a function name. It returns an array of all the MFP function references defined in the parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_hour</center></td>
+<td><p>::mfp::time_date::get_hour(1) :</p>
+<p>get_year(timestamp), get_month(timestamp), get_day_of_year(timestamp), get_day_of_month(timestamp), get_day_of_week(timestamp), get_hour(timestamp), get_minute(timestamp), get_second(timestamp) and get_millisecond(timestamp) return the year, month, day of year, day of month, day of week, hour minute, second and millisecond of the time stamp parameter respectively. Timestamp is the difference, measured in milliseconds, between the time and midnight, January 1, 1970 UTC. And day of week is an integer corresponding to Sunday if 0, Monday if 1, ... Saturday if 6. For example, get_day_of_week(get_time_stamp(2014, 12, 21)) returns 0 (Sunday).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_image_size</center></td>
+<td><p>::mfp::multimedia::image_lib::get_image_size(1) :</p>
+<p>get_image_size(image_handle) returns size (i.e. [width, height]) of a wrapped JAVA image object (i.e. image handle).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_incoming_connect</center></td>
+<td><p>::mfp::paracomp::connect::get_incoming_connect(2) :</p>
+<p>get_incoming_connect returns a connection object from a remote address to a local network interface, or null if no such a connection exists. It accepts two parameters. The first parameter is local interface info, which can be returned by calling generate_interface function. The second parameter is the remote address where the incoming connection is initialized. Note that for TCPIP protocol, this remote address, i.e. client side address, should include both IP address and IP port. Moreover, if NAT exists between client and server, the remote address should be the client's external address, i.e. client's address seen from server side. An example of this function is get_incoming_connect(local_interface, "192.168.1.100:53521").</p>
+</td>
+</tr>
+<tr>
+<td><center>get_json_field</center></td>
+<td><p>::mfp::exdata::json::get_json_field(3) :</p>
+<p>This function gets a field value from a JSON string. It has three parameters. The first parameter is the JSON string. The second parameter is the field name. The third parameter is the field type. "s" means the field is a string, "b" means it is a boolean, "f" means it is float value, "d" means it is an integer, "a" means it is an array, "j" means it is a JSON string and other values or ignored means let MFP detect the type of the field. Note that JSON string and field name are both case sensitive while field type, if it is a string, is case insensative. It returns the field value. An example of this function is get_json_field("{\"ABC\": null, \"JJJ\": {\"DEF\":[1, 8, [\"Welcome\", 9.99]],\"ZZ\":\"hello boy\"}}", "JJJ", "j").</p>
+</td>
+</tr>
+<tr>
+<td><center>get_local_host_address</center></td>
+<td><p>::mfp::paracomp::host::get_local_host_address(1) :</p>
+<p>get_local_host_address(protocol_name) returns local host address of the protocol named by protocol_name. An example of this function is get_local_host_address("TCPIP").</p>
+</td>
+</tr>
+<tr>
+<td><center>get_millisecond</center></td>
+<td><p>::mfp::time_date::get_millisecond(1) :</p>
+<p>get_year(timestamp), get_month(timestamp), get_day_of_year(timestamp), get_day_of_month(timestamp), get_day_of_week(timestamp), get_hour(timestamp), get_minute(timestamp), get_second(timestamp) and get_millisecond(timestamp) return the year, month, day of year, day of month, day of week, hour minute, second and millisecond of the time stamp parameter respectively. Timestamp is the difference, measured in milliseconds, between the time and midnight, January 1, 1970 UTC. And day of week is an integer corresponding to Sunday if 0, Monday if 1, ... Saturday if 6. For example, get_day_of_week(get_time_stamp(2014, 12, 21)) returns 0 (Sunday).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_minute</center></td>
+<td><p>::mfp::time_date::get_minute(1) :</p>
+<p>get_year(timestamp), get_month(timestamp), get_day_of_year(timestamp), get_day_of_month(timestamp), get_day_of_week(timestamp), get_hour(timestamp), get_minute(timestamp), get_second(timestamp) and get_millisecond(timestamp) return the year, month, day of year, day of month, day of week, hour minute, second and millisecond of the time stamp parameter respectively. Timestamp is the difference, measured in milliseconds, between the time and midnight, January 1, 1970 UTC. And day of week is an integer corresponding to Sunday if 0, Monday if 1, ... Saturday if 6. For example, get_day_of_week(get_time_stamp(2014, 12, 21)) returns 0 (Sunday).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_month</center></td>
+<td><p>::mfp::time_date::get_month(1) :</p>
+<p>get_year(timestamp), get_month(timestamp), get_day_of_year(timestamp), get_day_of_month(timestamp), get_day_of_week(timestamp), get_hour(timestamp), get_minute(timestamp), get_second(timestamp) and get_millisecond(timestamp) return the year, month, day of year, day of month, day of week, hour minute, second and millisecond of the time stamp parameter respectively. Timestamp is the difference, measured in milliseconds, between the time and midnight, January 1, 1970 UTC. And day of week is an integer corresponding to Sunday if 0, Monday if 1, ... Saturday if 6. For example, get_day_of_week(get_time_stamp(2014, 12, 21)) returns 0 (Sunday).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_num_of_results_sets</center></td>
+<td><p>::mfp::math::polynomial::get_num_of_results_sets(1) :</p>
+<p>get_num_of_results_sets(x), where variable x is return of an in-line solve block, returns the number of results sets stored in variable x.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_porterduff_mode</center></td>
+<td><p>::mfp::graph_lib::draw::get_porterduff_mode(1) :</p>
+<p>get_porterduff_mode(painting_extra) returns porterduff mode of a painting extra information structure. Painting extra information structure is used in a painting event. Porterduff mode tells MFP the way to draw destination area. It is a capitalized string and supports the following modes: "CLEAR", "SRC", "DST", "SRC_OVER", "DST_OVER", "SRC_IN", "DST_IN", "SRC_OUT", "DST_OUT", "SRC_ATOP", "DST_ATOP", "XOR" or "" (empty string means default value). Developer may refer to JAVA documentation to find out detailed meaning of the above modes.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_rtc_video_output_count</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::get_rtc_video_output_count(1) :</p>
+<p>This function returns the number of RTC video output windows in a display. It has only one parameter which is a display handle returned from open_screen_display function.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_rtc_video_output_lefttop</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::get_rtc_video_output_lefttop(2) :</p>
+<p>This function returns a two element array whose first element is the x coordinate and second element is the y coordinate of a RTC video output window's left-top corner. It has two parameters. The first one is a display handle returned from open_screen_display function. The second one is the index of the RTC video output window in this display's RTC video output window list. The first RTC video output window's index is 0, second is 1, etc.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sandbox_session_lib_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_sandbox_session_lib_path(0) :</p>
+<p>Function get_sandbox_session_lib_path returns a string based path which is the folder where current sandbox session's MFP user defined libs are located. A sandbox session is a session which runs in server side after a call request from a client is received. A sandbox session has its independant MFP user libs, resources and stack from other sessions in this server. Its user libs, resources and stack are copied from the client who sent the call request whether the client is local or remote. This function has no parameter. If this function is called not by a sandbox session but a normal session, e.g. in a command line box, it returns NULL .</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sandbox_session_resource_path</center></td>
+<td><p>::mfp::platform_hardware::platform_info::get_sandbox_session_resource_path(0) :</p>
+<p>Function get_sandbox_session_resource_path returns a string based path which is the folder where current sandbox session's MFP resources, e.g. image files, database files and sound files, are located. A sandbox session is a session which runs in server side after a call request from a client is received. A sandbox session has its independant MFP user libs, resources and stack from other sessions in this server. Its user libs, resources and stack are copied from the client who sent the call request whether the client is local or remote. This function has no parameter. If this function is called not by a sandbox session but a normal session, e.g. in a command line box, it returns NULL .</p>
+</td>
+</tr>
+<tr>
+<td><center>get_second</center></td>
+<td><p>::mfp::time_date::get_second(1) :</p>
+<p>get_year(timestamp), get_month(timestamp), get_day_of_year(timestamp), get_day_of_month(timestamp), get_day_of_week(timestamp), get_hour(timestamp), get_minute(timestamp), get_second(timestamp) and get_millisecond(timestamp) return the year, month, day of year, day of month, day of week, hour minute, second and millisecond of the time stamp parameter respectively. Timestamp is the difference, measured in milliseconds, between the time and midnight, January 1, 1970 UTC. And day of week is an integer corresponding to Sunday if 0, Monday if 1, ... Saturday if 6. For example, get_day_of_week(get_time_stamp(2014, 12, 21)) returns 0 (Sunday).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_solved_results_set</center></td>
+<td><p>::mfp::math::polynomial::get_solved_results_set(2) :</p>
+<p>get_solved_results_set(x, y), where variable x is return of an in-line solve block, returns No. y + 1 results set stored in variable x. Note that this function returns an 1-dim array. The first element in the array is the result of the first to-be-solved variable in the solve block; the second element in the array is the result of the second to-be-solved variable in the solve block; etc ...</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_path</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_path(1) :</p>
+<p>get_sound_path(sound_handle) returns sound file path of the sound handle.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_reference_path</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_reference_path(1) :</p>
+<p>get_sound_reference_path(sound_handle) returns sound reference file path of the sound handle. If the sound is not extracted from a zip file, sound reference file is the same as sound file. If the sound is extracted from a zip file, sound reference file path is the zip file path followed by the sound's zip entry path, like "/folder1/folder2/snd.zip/zipped_folder/snd.wav", where "/folder1/folder2/snd.zip" is path of the zip file and "zipped_folder/snd.wav" is zip entry path.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_repeat</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_repeat(1) :</p>
+<p>get_sound_repeat(sound_handle) returns a boolean indicating the sound is repeatedly played or not.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_source_type</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_source_type(1) :</p>
+<p>get_sound_source_type(sound_handle) returns an integer which is sound reference source file type. 0 means normal source file, 1 means zipped source file and 2 means zipped source file in Android asset (for MFP app).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_volume</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_volume(1) :</p>
+<p>get_sound_volume(sound_handle) returns volume of the sound referred by sound_handle. Volume is a double value ranging from 0 to 1.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_src_file_path</center></td>
+<td><p>::mfp::io::file::get_src_file_path(0) :</p>
+<p>This function returns the full path of current script, i.e. the script which calls get_src_file_path. If the function is called within command line, it returns null.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_time_stamp</center></td>
+<td><p>::mfp::time_date::get_time_stamp(1...) :</p>
+<p>get_time_stamp(string_or_year, ...) returns the timestamp determined by the parameters. Timestamp is the difference, measured in milliseconds, between the time and midnight, January 1, 1970 UTC. This function supports two modes. First mode is get_time_stamp(string_time_stamp) where there is only one string based parameter which must be formatted as yyyy-mm-dd hh:mm:ss[.f...]. The fractional second may be omitted. The second mode is get_time_stamp(year, month, day, hour, minute, second, millisecond). All the parameters except year are optional. If omitted, the default value for the parameters hour, minute, second and millisecond is 0, and the default value for the parameters month and day is 1. For example, get_time_stamp("1981-05-30 17:05:06") will return timestamp at 17:05:06.000 on May 30, 1981. And it works exactly same as get_time_stamp(1981, 5, 30, 17, 5, 6, 0).</p>
+</td>
+</tr>
+<tr>
+<td><center>get_type_fullname</center></td>
+<td><p>::mfp::reflection::get_type_fullname(1) :</p>
+<p>get_type_fullname returns the full name, i.e. name with citingspace path, of the type of the parameter. For example, if developer has defined a class A in citingspace ::abc::def, and has already created an object named objA from class A, then get_type_fullname(objA) will return a string which is ::abc::def::a . Note that A is changed to a since MFP is case insensitive and internally all the variable names and types are turned to small case. Also note that this function can return the full name of MFP builtin types. However, user is recommended to only use it to identify if two variables have the same type during program run. User cannot assume that the full name of an MFP builtin type will never change in the future versions.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_upper_level_path</center></td>
+<td><p>::mfp::io::file::get_upper_level_path(1) :</p>
+<p>This function returns a string based path which is upper folder of its string based parameter. For example, both get_upper_level_path("abc/def") and get_upper_level_path("abc/def/") return "abc/" in Android. However, if upper folder is invalid, it returns null. For example, both get_upper_level_path("") and get_upper_level_path("/") return null in Android. get_upper_level_path("/") returns null because "/"'s upper folder doesn't exist.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_value_from_abdict</center></td>
+<td><p>::mfp::data_struct::array_based::get_value_from_abdict(2) :</p>
+<p>get_value_from_abdict(array_based_dictionary, key) returns a reference to string based key's value from array_based_dictionary. If the key doesn't exist, it throws an exception.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_variable_results</center></td>
+<td><p>::mfp::math::polynomial::get_variable_results(2) :</p>
+<p>get_variable_results(x, y), where variable x is return of an in-line solve block, returns all results of No. y + 1 to-be-solved variable in the solve block which returns x. Note that this function returns an 1-dim array. Each element in the array is one root of the to-be-solved variable.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_video_track_enable</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::get_video_track_enable(1) :</p>
+<p>This function tests if video track has been enabled. True is returned if video track is enabled. Otherwise false. It has only one parameter which is a display handle returned from open_screen_display function.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_working_dir</center></td>
+<td><p>::mfp::io::file::get_working_dir(0) :</p>
+<p>get_working_dir() (with alias pwd()) return string based current directory.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_year</center></td>
+<td><p>::mfp::time_date::get_year(1) :</p>
+<p>get_year(timestamp), get_month(timestamp), get_day_of_year(timestamp), get_day_of_month(timestamp), get_day_of_week(timestamp), get_hour(timestamp), get_minute(timestamp), get_second(timestamp) and get_millisecond(timestamp) return the year, month, day of year, day of month, day of week, hour minute, second and millisecond of the time stamp parameter respectively. Timestamp is the difference, measured in milliseconds, between the time and midnight, January 1, 1970 UTC. And day of week is an integer corresponding to Sunday if 0, Monday if 1, ... Saturday if 6. For example, get_day_of_week(get_time_stamp(2014, 12, 21)) returns 0 (Sunday).</p>
+</td>
+</tr>
+<tr>
+<td><center>hash_code</center></td>
+<td><p>::mfp::object::hash_code(1) :</p>
+<p>hash_code function returns hash code of its only parameter.</p>
+</td>
+</tr>
+<tr>
+<td><center>havg</center></td>
+<td><p>::mfp::math::stat_stoch::havg(0...) :</p>
+<p>Function havg(...) returns harmonic mean value of an arbitary number of parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>iff</center></td>
+<td><p>::mfp::command::iff(3...) :</p>
+<p>iff(condition1, true_result1, condition2, true_result2, ..., false_result), where condition1, condition2, ... are boolean values, returns the result based on the condition values. For example, iff(true, 3, 2) returns 3, iff(3<2, 3, 2) returns 2 (because 3<2 is false), iff(3<2, 3, 5>4, 5, 6==9, 6, 9) returns 5,  and iff(3<2, 3, 5<4, 5, 6==9, 6, 9) returns 9.</p>
+</td>
+</tr>
+<tr>
+<td><center>ifft</center></td>
+<td><p>::mfp::sig_proc::ifft(1...) :</p>
+<p>Function IFFT(a, ...) returns inverse fast fourier transform of a series of values, note that the number of values in the series should always be 2 to a positive integer. If a is a list of real or complex numbers, this function should only have one parameter and return inverse fast fourier transform of a[0], a[1], ... a[N-1] where N is the number of values in a. If a is a single value (real or complex), this function should have at least two parameters and return inverse fast fourier transform of a, optional_params[0], optional_params[1], ..., optional_params[number_of_optional_params - 1]. The returned value is always an array.</p>
+<p>Examples of this function:</p>
+<p>IFFT(10, -2 + 2i, -2, -2 - 2i) returns [1, 2, 3, 4];</p>
+<p>IFFT([10, -2 + 2i, -2, -2 - 2i]) returns [1, 2, 3, 4];</p>
+</td>
+</tr>
+<tr>
+<td><center>image</center></td>
+<td><p>::mfp::math::complex::image(1) :</p>
+<p>image(x) returns image part (a real value) of complex value x.</p>
+<p>::mfp::math::complex::image(2) :</p>
+<p>image(x, mode) returns image part of complex value x. If mode is true, returns image value. Otherwise, returns real value. For example, image(3+2i, true) = 2i while image(3+2i, false) = 2.</p>
+</td>
+</tr>
+<tr>
+<td><center>includes_inf</center></td>
+<td><p>::mfp::array::includes_inf(1) :</p>
+<p>includes_inf(x) determines if x includes positive infinite or negative infinite. Include means, if x is an array, then one of its elements is or includes the destination value(s), if x is a complex value, then its real or image is the destination value(s), if x is a single value, then it is the destination values(s). If it is, return true. Otherwise, return false.</p>
+</td>
+</tr>
+<tr>
+<td><center>includes_nan</center></td>
+<td><p>::mfp::array::includes_nan(1) :</p>
+<p>includes_nan(x) determines if x includes Nan. Include means, if x is an array, then one of its elements is or includes the destination value(s), if x is a complex value, then its real or image is the destination value(s), if x is a single value, then it is the destination values(s). If it is, return true. Otherwise, return false.</p>
+</td>
+</tr>
+<tr>
+<td><center>includes_nan_or_inf</center></td>
+<td><p>::mfp::array::includes_nan_or_inf(1) :</p>
+<p>includes_nan_or_inf(x) determines if x includes Nan or positive infinite or negative infinite. Include means, if x is an array, then one of its elements is or includes the destination value(s), if x is a complex value, then its real or image is the destination value(s), if x is a single value, then it is the destination values(s). If it is, return true. Otherwise, return false.</p>
+</td>
+</tr>
+<tr>
+<td><center>includes_nan_or_inf_or_null</center></td>
+<td><p>::mfp::array::includes_nan_or_inf_or_null(1) :</p>
+<p>includes_nan_or_inf_or_null(x) determines if x includes Nan or positive infinite or negative infinite or null. Include means, if x is an array, then one of its elements is or includes the destination value(s), if x is a complex value, then its real or image is the destination value(s), if x is a single value, then it is the destination values(s). If it is, return true. Otherwise, return false.</p>
+</td>
+</tr>
+<tr>
+<td><center>includes_null</center></td>
+<td><p>::mfp::array::includes_null(1) :</p>
+<p>includes_null(x) determines if x includes null. Include means, if x is an array, then one of its elements is or includes the destination value(s), if x is a complex value, then its real or image is the destination value(s), if x is a single value, then it is the destination values(s). If it is, return true. Otherwise, return false.</p>
+</td>
+</tr>
+<tr>
+<td><center>initialize_local</center></td>
+<td><p>::mfp::paracomp::connect::initialize_local(2) :</p>
+<p>initialize_local(local_info, settings) initializes a local interface object defined by local_info which is a returned value of generate_interface function. The second parameter, settings, currently is not used and, as such, is optional. This function returns true if successful, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td><center>initialize_rtc_mmedia</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::initialize_rtc_mmedia(0) :</p>
+<p>This function initializes web RTC library. Note that web RTC here is the web RTC library for voice and video communication, not the same thing as the WEBRTC protocol for data communication. This function returns true if it succeeds. Otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td><center>input</center></td>
+<td><p>::mfp::io::console::input(3) :</p>
+<p>input(prompt,input_type,default_value) prints string prompt on the console and waiting for user to input. The second parameter, input_type, and the third parameter default_value, are optional. At this stage if the second parameter exists and it is string "s" or "S", user's input is looked on as a string and this function returns the string. If the second and third parameter exist and the second one is "default" or "DEFAULT", then the third parameter will be the default value. And the default value is used when user just press ENTER or blanks in input. Otherwise, input is treated as an expression and this function returns the value of the expression. If input is not a valid expression, this functions will reprint the prompt and wait for user to input again. An input is finished by press ENTER key. If multiple lines are input, only the first line is read. For example, user runs input("$", "S"), then types 4 + 3 after prompt, presses ENTER, this function returns a string "4 + 3". If user runs input("%"), then type 4 + 3 after prompt, presses ENTER, this function returns 7. If user runs input("#", "default", "e"), then type space after prompt, presses ENTER, this function returns "e".</p>
+</td>
+</tr>
+<tr>
+<td><center>insert_elem_into_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::insert_elem_into_ablist(3) :</p>
+<p>insert_elem_into_ablist(array_based_list, idx, ref_of_elem) inserts a reference of value ref_of_elem before idx of array based list array_based_list. It returns updated array list. The parameter array_based_list shares elements with returned value. If idx is not valid, an exception will throw.</p>
+</td>
+</tr>
+<tr>
+<td><center>integrate</center></td>
+<td><p>::mfp::math::calculus::integrate(2) :</p>
+<p>integrate(x,y) returns the indefinite integrated expression of expression x based on variable y where x and y are both strings. Note that if x cannot be indefinitely integrated or x is too complicated to solve, this function will throw an exception.</p>
+<p>::mfp::math::calculus::integrate(4) :</p>
+<p>integrate(x,y,z,w) returns the integrated value of expression x based on variable y changing from z to w. Note that x and y are string type and z and w can be real numbers, complex numbers or strings. The integrating algorithm selected is adaptive Gauss-Kronrod method.</p>
+<p>::mfp::math::calculus::integrate(5) :</p>
+<p>integrate(x,y,z,w,v) returns integrated value given a string expression x of a variable y (also a string type) and an interval [z, w]. In calculation, one step length is (w - z)/v, note that v must be a positive integer while w and z can be real numbers, complex values or strings. If v is zero, this function is the same as integrate(x,y,z,w).</p>
+</td>
+</tr>
+<tr>
+<td><center>invert</center></td>
+<td><p>::mfp::math::matrix::invert(1) :</p>
+<p>invert(x) inverted 2D matrix x. Note that the elements of x can be complex numbers but x must be a square matrix (i.e. number of rows equals number of columns).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_directory</center></td>
+<td><p>::mfp::io::file::is_directory(1) :</p>
+<p>is_directory(path) identifies if the file (or folder) at string based parameter path is a directory or not. If it exists and is a directory the function returns true, otherwise false. Examples are is_directory("E:\\") (Windows) and is_directory("/home/tony/Documents/cv.pdf") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_display_on_live</center></td>
+<td><p>::mfp::graph_lib::display::is_display_on_live(1) :</p>
+<p>is_display_on_live(display) tells developer if a display (whether screen display or image display) is still alive.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_eye</center></td>
+<td><p>::mfp::math::matrix::is_eye(2) :</p>
+<p>is_eye(x,y), where x is an array or number and y is a boolean, identifies x is matrix I (or 1) or not. If x is matrix I (or 1), returns true, otherwise, returns false. If y is true, looks on all null values as zero, otherwise, null values are not looked on as zero. Y is optional. By default, it is false.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_executable</center></td>
+<td><p>::mfp::io::file::is_file_executable(1) :</p>
+<p>is_file_executable(path) identifies if the file (or folder) at string based parameter path is executable or not. If it exists and is executable the function returns true, otherwise false. Examples are is_file_executable("E:\\") (Windows) and is_file_executable("/home/tony/Documents/cv.pdf") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_existing</center></td>
+<td><p>::mfp::io::file::is_file_existing(1) :</p>
+<p>is_file_existing(path) identifies if the file (or folder) at string based parameter path exists or not. If exists it returns true, otherwise false. Examples are is_file_existing("E:\\") (Windows) and is_file_existing("/home/tony/Documents/cv.pdf") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_hidden</center></td>
+<td><p>::mfp::io::file::is_file_hidden(1) :</p>
+<p>is_file_hidden(path) identifies if the file (or folder) at string based parameter path is hidden or not. If it exists and is hidden the function returns true, otherwise false. Examples are is_file_hidden("E:\\") (Windows) and is_file_hidden("/home/tony/Documents/cv.pdf") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_normal</center></td>
+<td><p>::mfp::io::file::is_file_normal(1) :</p>
+<p>is_file_normal(path) identifies if the file (or folder) at string based parameter path is a normal file (not a folder) or not. If it exists and is a normal file the function returns true, otherwise false. Examples are is_file_normal("E:\\") (Windows) and is_file_normal("/home/tony/Documents/cv.pdf") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_readable</center></td>
+<td><p>::mfp::io::file::is_file_readable(1) :</p>
+<p>is_file_readable(path) identifies if the file (or folder) at string based parameter path is readable or not. If it exists and is readable the function returns true, otherwise false. Examples are is_file_readable("E:\\") (Windows) and is_file_readable("/home/tony/Documents/cv.pdf") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_file_writable</center></td>
+<td><p>::mfp::io::file::is_file_writable(1) :</p>
+<p>is_file_writable(path) identifies if the file (or folder) at string based parameter path is writable or not. If it exists and is writable the function returns true, otherwise false. Examples are is_file_writable("E:\\") (Windows) and is_file_writable("/home/tony/Documents/cv.pdf") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_inf</center></td>
+<td><p>::mfp::math::number::is_inf(1) :</p>
+<p>is_inf(x) determines if x is positive infinite or negative infinite. If it is, return true. Otherwise, return false.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_mfp_app</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_mfp_app(0) :</p>
+<p>is_mfp_app() tells developer whether the script is running in an MFP app. It returns true if running in an MFP app.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_nan_or_inf</center></td>
+<td><p>::mfp::math::number::is_nan_or_inf(1) :</p>
+<p>is_nan_or_inf(x) determines if x is Nan or positive infinite or negative infinite. If it is, return true. Otherwise, return false.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_nan_or_inf_or_null</center></td>
+<td><p>::mfp::math::number::is_nan_or_inf_or_null(1) :</p>
+<p>is_nan_or_inf_or_null(x) determines if x is Nan or positive infinite or negative infinite or null. If it is, return true. Otherwise, return false.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_path_absolute</center></td>
+<td><p>::mfp::io::file::is_path_absolute(1) :</p>
+<p>is_path_absolute(path) identifies if the string based path is an absolute path (i.e. not relative to current folder). If it is an absolute path the function returns true, otherwise false. Examples are is_path_absolute("E:\\temp") (Windows) and is_path_absolute("Documents/cv.pdf") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_path_parent</center></td>
+<td><p>::mfp::io::file::is_path_parent(2) :</p>
+<p>is_path_parent(path1, path2) identifies if the string based path1 is the parent of string based path2. If it is returns true, otherwise false. Examples are is_path_parent("E:\\temp", "E:\\temp\\..\\temp\\test") (Windows) and is_path_parent(".", "Documents/cv.pdf") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_path_same</center></td>
+<td><p>::mfp::io::file::is_path_same(2) :</p>
+<p>is_path_same(path1, path2) identifies if the string based path1 is actually the same as string based path2. If it is returns true, otherwise false. Examples are is_path_same("E:\\temp", "E:\\temp\\..\\temp\\") (Windows) and is_path_parent("/home/tony/Documents", "Documents/") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_playing</center></td>
+<td><p>::mfp::multimedia::audio_lib::is_playing(1) :</p>
+<p>This function accepts a single parameter, which is a media player handle. If the sound represented by the handle is playing, this function returns true. If the sound is not playing or the handle is invalid, returns false.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_prime</center></td>
+<td><p>::mfp::math::number::is_prime(1) :</p>
+<p>Function Is_Prime(x) is used to determine if a positive integer x(>=2) is a prime number or not. If x is not a positive integer or it is less than 2, return false.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_running_on_android</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_running_on_android(0) :</p>
+<p>is_running_on_android() tells developer whether the script is running on Android or a JAVA platform. It returns true if running on Android, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_sandbox_session</center></td>
+<td><p>::mfp::platform_hardware::platform_info::is_sandbox_session(0) :</p>
+<p>Function is_sandbox_session tells developer if the current MFP code is running in a sandbox session or not. A sandbox session is a session which runs in server side after a call request from a client is received. A sandbox session has its independant MFP user libs, resources and stack from other sessions in this server. Its user libs, resources and stack are copied from the client who sent the call request whether the client is local or remote. This function has no parameter. It returns true if this is a sandbox session. Otherwise false .</p>
+</td>
+</tr>
+<tr>
+<td><center>is_symbol_link</center></td>
+<td><p>::mfp::io::file::is_symbol_link(1) :</p>
+<p>is_symbol_link(path) identifies if the file (or folder) at string based parameter path is a symbol link or not. If it exists and is a symbol link the function returns true, otherwise false. Examples are is_symbol_link("E:\\") (Windows) and is_symbol_link("/home/tony/Documents/cv.pdf") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>is_valid_image_handle</center></td>
+<td><p>::mfp::multimedia::image_lib::is_valid_image_handle(1) :</p>
+<p>is_valid_image_handle(image_handle) returns true or false, telling developer if a image handle (i.e. a wrapped JAVA image object) is still valid or has been closed.</p>
+</td>
+</tr>
+<tr>
+<td><center>is_zeros</center></td>
+<td><p>::mfp::math::matrix::is_zeros(2) :</p>
+<p>is_zeros(x,y), where x is an array or number and y is a boolean, identifies x is matrix zeor (or number zero) or not. If x is, returns true, otherwise, returns false. If y is true, looks on all null values as zero, otherwise, null values are not looked on as zero. Y is optional. By default, it is false.</p>
+</td>
+</tr>
+<tr>
+<td><center>left_recip</center></td>
+<td><p>::mfp::math::matrix::left_recip(1) :</p>
+<p>left_recip(x) calculates left-division reciprocal of x. Note that so far x can only be a number or a 2D matrix.</p>
+</td>
+</tr>
+<tr>
+<td><center>lg</center></td>
+<td><p>::mfp::math::log_exp::lg(1) :</p>
+<p>Function lg(x) returns e based log value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>lim</center></td>
+<td><p>::mfp::math::calculus::lim(3) :</p>
+<p>lim(expr, var, dest_value) calculates the limit value of expression expr when variable var is closing to dest_value. expr and var should be string and dest_value can be expression or value, whether string based or not. For example, lim("1/x", "x", 0) or lim("(x+2)/(x+3)","x","3+0"). Note that this function is still under development.</p>
+</td>
+</tr>
+<tr>
+<td><center>link_video_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::link_video_stream(4) :</p>
+<p>This function links a web RTC video stream to a RTC video output window. It has four parameters. The first one is a display handle, which is returned from an open_screen_display call. The second one is a peer connection object's Id. The third one is video stream's track Id. The last one is video output window index. This function doesn't return anything. If any parameters are invalid, or it fails to link video stream to the video output window, an exception is thrown.</p>
+</td>
+</tr>
+<tr>
+<td><center>list_files</center></td>
+<td><p>::mfp::io::file::list_files(1) :</p>
+<p>list_files(path) returns all the file names in the folder whose path is the string based parameter path, or it returns the file at path if path corresponds to a file. If the path does not correspond to a file or folder, it returns NULL. Note that parameter path is optional. By default it is current folder ("."). Examples are list_files("c:\\temp\\try1") (Windows) and list_files("../testfile_copy.txt") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>listen</center></td>
+<td><p>::mfp::paracomp::connect::listen(1) :</p>
+<p>listen(local_info) listens on the local object defined by local_info. The parameter, local_info, is a returned value from generate_interface function. This function returns true if successful, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td><center>ln</center></td>
+<td><p>::mfp::math::log_exp::ln(1) :</p>
+<p>Function ln(x) returns e based log value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>load_image</center></td>
+<td><p>::mfp::multimedia::image_lib::load_image(1) :</p>
+<p>load_image(image_path) returns a wrapped JAVA image object. image_path is a string based path pointing to an image file.</p>
+</td>
+</tr>
+<tr>
+<td><center>load_image_from_zip</center></td>
+<td><p>::mfp::multimedia::image_lib::load_image_from_zip(3) :</p>
+<p>load_image_from_zip(zip_file_name, zip_entry_path, zip_file_type) returns a wrapped JAVA image object loaded from a zipped file. Its first parameter is the path of the zipped file. Its second parameter is the zip entry path of the image. Its last parameter is zip file type. 0 means it is a normal zip file and 1 means it is an Android asset zip file (for MFP app).</p>
+</td>
+</tr>
+<tr>
+<td><center>log</center></td>
+<td><p>::mfp::math::log_exp::log(1) :</p>
+<p>log(x), where x can be a complex number, returns e based logarithm value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>log10</center></td>
+<td><p>::mfp::math::log_exp::log10(1) :</p>
+<p>Function log10(x) returns 10 based log value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>log2</center></td>
+<td><p>::mfp::math::log_exp::log2(1) :</p>
+<p>Function log2(x) returns 2 based log value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>loge</center></td>
+<td><p>::mfp::math::log_exp::loge(1) :</p>
+<p>Function loge(x) returns e based log value of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>ls</center></td>
+<td><p>::mfp::io::file::ls(1) :</p>
+<p>print_file_list(path) (alias ls(path) or dir(path)) works like ls command in Linux or dir command in Windows. It print the information for the file or all the files in folder at string based path. It returns the number of entries that printed. If the path does not corresponds to an existing file or folder, it returns -1. Note that path is optional. By default it is current folder ("."). Examples are dir() (Windows) and ls("../testfile_copy.txt") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>max</center></td>
+<td><p>::mfp::math::stat_stoch::max(0...) :</p>
+<p>Function max(...) returns maximum value of an arbitary number of parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>med</center></td>
+<td><p>::mfp::math::stat_stoch::med(0...) :</p>
+<p>Function med(...) returns medium value of an arbitary number of parameters. If the number of parameters is even, returns average of the middle two parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>min</center></td>
+<td><p>::mfp::math::stat_stoch::min(0...) :</p>
+<p>Function min(...) returns minimum value of an arbitary number of parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>mod</center></td>
+<td><p>::mfp::math::number::mod(2) :</p>
+<p>mod(x,y) returns the remainder of x/y (y must be positive). If x and y are not integers, they will be converted to integer numbers first.</p>
+</td>
+</tr>
+<tr>
+<td><center>move_file</center></td>
+<td><p>::mfp::io::file::move_file(3) :</p>
+<p>move_file(source, destination, replace_exist) moves file or folder whose path is string source to file or INTO (not to) folder whose path is string destination. If the 3rd parameter, replace_exist, is true, then source file (or any file in source folder) will replace destination file (or corresponding file in destination folder) if corresponding file exists. Note that the 3rd parameter is optional. By default it is false. Examples are move_file("c:\\temp\\try1", "D:\\", true) (Windows) and move_file("/mnt/sdcard/testfile.txt", "./testfile_copy.txt") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>ncr</center></td>
+<td><p>::mfp::math::stat_stoch::ncr(2) :</p>
+<p>Function nCr(x, y) calculates the number of y-combination of a set S which has x elements. Note that x, y are non-negative integer, x >= y.</p>
+</td>
+</tr>
+<tr>
+<td><center>now</center></td>
+<td><p>::mfp::time_date::now(0) :</p>
+<p>now() returns the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.</p>
+</td>
+</tr>
+<tr>
+<td><center>npr</center></td>
+<td><p>::mfp::math::stat_stoch::npr(2) :</p>
+<p>Function nPr(x, y) calculates the number of y-permutation of a set S which has x elements. Note that x, y are non-negative integer, x >= y.</p>
+</td>
+</tr>
+<tr>
+<td><center>ones</center></td>
+<td><p>::mfp::math::matrix::ones(1...) :</p>
+<p>Function ones generates a matrix whose elements are all one. The dimension of the matrix is determined by the parameters of ones function, which is either a number of positive integers or a single positive integer list. Note that ones([]) returns 1.</p>
+</td>
+</tr>
+<tr>
+<td><center>open_image_display</center></td>
+<td><p>::mfp::multimedia::image_lib::open_image_display(1) :</p>
+<p>open_image_display(image_path_or_handle) creates an image display for developer to paint. image_path_or_handle is either a string based path pointing to an image file, or null, or a memory handle of a JAVA image object returned by load_image, load_image_from_zip, create_image or clone_image functions.</p>
+</td>
+</tr>
+<tr>
+<td><center>open_screen_display</center></td>
+<td><p>::mfp::graph_lib::display::open_screen_display(6) :</p>
+<p>open_screen_display(caption, background color, quit_confirm, size, resizable, orientation) returns a screen display handle. A screen display is a window in PC (JAVA) or an activity in Android. It has six parameters. All of them are optional. The first parameter is the caption of the display. This caption will be shown as window's title in PC, and has no use in Android. By default, it is an empty string. The second parameter is the background color. It is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255. By default it is [0, 0, 0, 0]. The third one is confirm quit or not. By default it is false. The fourth one is the size of the screen. It is a 2-elem array ([width, height]) with default value [0, 0]. It doesn't have any effect in Android. The fifth is resizable or not. It doesn't have any effect in Android. Its default value is false. The last one is the orientation of the display in Android. It doesn't have any effect in PC. Orientation is an integer. At this moment, it's value can be -1 (arbitary), 0 (horizontal) and 1 (vertical). By default it is -1. Examples of this function:</p>
+<p>variable display = open_screen_display("Hello world", [255, 238, 17], true, [640, 480], true, 0)</p>
+<p>and</p>
+<p>variable display = open_screen_display("Hello")</p>
+</td>
+</tr>
+<tr>
+<td><center>or</center></td>
+<td><p>::mfp::math::logic::or(1...) :</p>
+<p>or(x...) which accepts an arbitary number (> 0) of boolean parameters, returns logical or of the parameters. If a parameter's type is not boolean, it will be automatically converted to boolean first.</p>
+</td>
+</tr>
+<tr>
+<td><center>pause</center></td>
+<td><p>::mfp::system::pause(1) :</p>
+<p>pause(message) suspends current running program waiting for an enter input by user. Message, which is a string and is optional, will be printed on screen as a prompt if provided.</p>
+</td>
+</tr>
+<tr>
+<td><center>play_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::play_sound(4) :</p>
+<p>play_sound(source_path, repeat_or_not, volume, create_new_or_not) plays a sound file (can be wave, midi or mp3). This function returns a sound handle which is a JAVA (or Android) media player wrapper. Because the media player resource is scarce, this function will try to reuse previously created sound handle. It has four parameters. The first parameter is the path of the sound file. The second parameter is a boolean telling MFP whether the sound should be repeated to play or not. This parameter is optional and its default value is false. The third one, which is a double from 0 to 1, is the volume of the sound. This parameter is optional and its default value is 1. The fourth one is a boolean flag telling MFP to create a new sound handle compulsorily or not. If it is true, play_sound always creates a new sound handle. This function is optional and its default value is false.</p>
+</td>
+</tr>
+<tr>
+<td><center>play_sound_from_zip</center></td>
+<td><p>::mfp::multimedia::audio_lib::play_sound_from_zip(6) :</p>
+<p>play_sound_from_zip(source_zip_file_path, zip_entry_path, zip_file_type, repeat_or_not, volume, create_new_or_not) plays a sound file (can be wave, midi or mp3) extracted from a zip file. This function returns a sound handle which is a JAVA (or Android) media player wrapper. Because the media player resource is scarce, this function will try to reuse previously created sound handle. It has six parameters. The first parameter is the path of the zip file. The second parameter is zip entry path of the zipped sound file. The third parameter is zip file type, 0 for normal zip file and 1 for MFP app's Android asset zip file. The fourth parameter is a boolean telling MFP whether the sound should be repeated to play or not. This parameter is optional and its default value is false. The fifth one, which is a double from 0 to 1, is the volume of the sound. This parameter is optional and its default value is 1. The sixth one is a boolean flag telling MFP to create a new sound handle compulsorily or not. If it is true, play_sound always creates a new sound handle. This function is optional and its default value is false.</p>
+</td>
+</tr>
+<tr>
+<td><center>plot2d</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot2d(5...) :</p>
+<p>Function plot2D calls plot_multi_xy function to plot at most eight 2D-curves in one chart. It has the following parameters: 1. chart name (i.e. chart file name); 2. chart title; 3. X axis title; 4. Y axis title; 5. show grid or not; 6. curve title; 7. curve color; 8. t values start from; 9. t values end at; 10. t values' interval; 11. X's expression (based on variable t); 12. Y's expression (based on variable t)... Note that every new curve needs additional 7 parameters (i.e. parameters 6 to 12). At most 8 curves can be included. Note that this function is not recommended to use. Function plot2DEX should be used as a replacement.</p>
+</td>
+</tr>
+<tr>
+<td><center>plot2dex</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot2dex(6...) :</p>
+<p>Function plot2DEX calls plot_multi_xy function to plot at most eight 2D-curves in one chart. It has the following parameters: 1. chart name (i.e. chart file name); 2. chart title; 3. X axis title; 4. Y axis title; 5.  chart's background color; 6. show grid or not; 7. curve title; 8. curve point color; 9. curve point shape; 10. curve point size; 11. curve line color; 12. curve line pattern; 13. curve line size; 14. t values start from; 15. t values end at; 16. t values' interval; 17. X's expression (based on variable t); 18. Y's expression (based on variable t)... Note that every new curve needs additional 12 parameters (i.e. parameters 7 to 18). At most 8 curves can be included. Also note that at this moment chart's background color, curve point size, curve line color and curve line pattern are not realized yet. And curve line size only has two values, i.e. zero means no connection line and non-zero means with connection line. An example of this function is plot2DEX("chart 3", "3rd chart", "x", "y", "black", true, "cv1", "blue", "x", 2, "blue", "solid", 1, -5, 5, 0.1, "t", "t**2/2.5 - 4*t + 6", "cv2", "red", "square", 4, "square", "solid", 1, -10, 10, 0.1, "5*sin(t)", "10*cos(t)") .</p>
+</td>
+</tr>
+<tr>
+<td><center>plot3d</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot3d(5...) :</p>
+<p>Function plot3D calls plot_multi_xyz function to plot at most eight 3D-surfaces in one chart. It has the following parameters: 1. chart name (i.e. chart file name); 2. chart title; 3. X axis title; 4. Y axis title; 5. Z axis title; 6. curve title; 7. grid or not (if false, a filled surface will be drawn); 8. color at minimum z value; 9. minimum z value (null means automatically determined by software); 10. color at maximum z value; 11. maximum z value (null means automatically determined by software); 12. u values start from; 13. u values end at; 14. u values' interval; 15. v values start from; 16. v values end at; 17. v values' interval; 18. X's expression (based on variables u and v); 19. Y's expression (based on variables u and v); 20. Z's expression (based on variables u and v); ... Note that every new curve needs additional 15 parameters (i.e. parameters 6 to 20). At most 8 curves can be included. A Example of this function is plot3D("chartI", "first chart", "x", "y", "z", "Curve1", true, "red", -0.5, "green", null, 0, pi, pi/8, -pi/2, pi/2, 0, "sin(u)*cos(v)", "sin(u)*sin(v)", "cos(u)") .</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_2d_curves</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_2d_curves(6...) :</p>
+<p>Function plot_2d_curves plots at most 1024 2D-curves in one chart. It has the following parameters: 1. chart name (i.e. chart file name); 2. chart title; 3. X axis title; 4. Y axis title; 5.  chart's background color; 6. show grid or not (string "true" or string "false"); 7. curve title; 8. curve point color; 9. curve point shape; 10. curve point size; 11. curve line color; 12. curve line pattern; 13. curve line size; 14. internal variable's name (generally it is "t"); 15. internal variable's value starts from; 16. internal variable's value ends at; 17. internal variable's value changing interval; 18. X's expression (based on the internal variable); 19. Y's expression (based on the internal variable)... Note that every new curve needs additional 13 parameters (i.e. parameters 7 to 19). At most 1024 curves can be included. Also note that at this moment chart's background color, curve point size, curve line color and curve line pattern are not realized yet. And curve line size only has two values, i.e. zero means no connection line and non-zero means with connection line. An example of this function is plot_2d_curves("chart 3", "3rd chart", "x", "y", "black", "true", "cv1", "blue", "x", 2, "blue", "solid", 1, "t", -5, 5, 0.1, "t", "t**2/2.5 - 4*t + 6", "cv2", "red", "square", 4, "square", "solid", 1, "t", -10, 10, 0.1, "5*sin(t)", "10*cos(t)") .</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_2d_data</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_2d_data(16) :</p>
+<p>Function plot_2d_data analyses at least one at most eight groups of data lists and each data group will be plotted as one curve. The number of parameters in these function can be 1 (one curve), 2 (one curve), 4 (two curves), 6 (three curves), 8 (four curves), 10 (five curves), 12 (six curves), 14 (seven curves) and 16 (eight curves). Each parameter is a data list (i.e. 1-D data array). If only one parameter, each element value in the parameter will be a point in the curve, otherwise, the odd number of parameters are the x values of the points and the even number of parameters are the y values. Note that the size of x value parameter must match the size of y value parameter. For example, plot_2d_data([5.5, -7, 8.993, 2.788]) or plot_2d_data([2.47, 3.53, 4.88, 9.42], [8.49, 6.76, 5.31, 0.88], [-9, -7, -5, -3, -1], [28, 42, 33, 16, 7]).</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_3d_data</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_3d_data(24) :</p>
+<p>Function plot_3d_data analyses at least one at most eight groups of data lists and each data group will be plotted as one surface in 3D chart. The number of parameters in these function can be 1 (one curve), 3 (one curve), 6 (two curves), 9 (three curves), 12 (four curves), 15 (five curves), 18 (six curves), 21 (seven curves) and 24 (eight curves). If only one parameter, the parameter must be a 2-D array each element value in the parameter will be a point's z value in the surface, otherwise, every 3 parameters construct a group. In the group, the first parameter is a 1-D array whose elements are the x values of the points, the second parameter is a 1-D array whose elements are the y values, the third parameter is a 2-D array whose elements are the z values of the points in the surface. Note that the size of x value parameter and the size of y value parameter must match the size of z value parameter. Examples of this function are plot_3d_data([[2.47, 3.53, 4.88, 9.42], [8.49, 6.76, 5.31, 0.88], [-9, -7, -5, -3, -1]]) and plot_3d_data([1,2,3],[4,5,6,8],[[3,7,2],[5,8,9],[2,6,3],[7,4,4]],[8,7,4,8],[2,1],[[9,3,2,6],[4,5,3,7]]).</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_3d_surfaces</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_3d_surfaces(5...) :</p>
+<p>Function plot_3d_surfaces plots at most 1024 3D-surfaces in one chart. It has the following parameters: 1. chart name (i.e. chart file name); 2. chart title; 3. X axis title; 4. Y axis title; 5. Z axis title; 6. curve title; 7. grid or not (a boolean type. If false, a filled surface will be drawn); 8. front face color at minimum z value; 9. back face color at minimum z value; 10. minimum z value (null means automatically determined by software); 11. front face color at maximum z value; 12. back face color at maximum z value; 13. maximum z value (null means automatically determined by software); 14. first internal variable name (generally it is "u"); 15. first internal variable's value starts from; 16. first internal variable's value ends at; 17. first internal variable's value changing interval; 18. second internal variable name (generally it is "v"); 19. second internal variable's value starts from; 20. second internal variable's value ends at; 21. second internal variable's value changing interval; 22. X's expression (based on the two internal variables); 23. Y's expression (based on the two internal variables); 24. Z's expression (based on the two internal variables); ... Note that every new curve needs additional 19 parameters (i.e. parameters 6 to 24). At most 1024 curves can be included. A Example of this function is plot_3D_surfaces("chartI", "first chart", "x", "y", "z", "Curve1", true, "red", "cyan", -0.5, "green", "yellow", null, "u", 0, pi, pi/8, "v", -pi/2, pi/2, 0, "sin(u)*cos(v)", "sin(u)*sin(v)", "cos(u)") .</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_exprs</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_exprs(8) :</p>
+<p>Function plot_exprs analyses at least one expression at most 8 expressions and draw 2D, polar or 3D curves based on the number of variables in the expression. The expression should be an equation, e.g. "4*x+9 == y +z**2" and "log(x*y) == x", or an assignment with an unknown variable on the left side, e.g. "k= 3+ 7 * sin(z)", or an expression which can be recognized as an assignment, e.g. "9*log(y)" may be looked on as "x = 9 * log(y)".  Note that the total number of unknown variables in the expressions should be no more than 3 and each expression should include at most one unknown variable less than the total number of unknown variables. The initial range of each unknown variable is configurable, by default is from -5 to 5 but user can adjust the range after the chart is plotted. If there are two unknown variables and one of the unknown variables is Greek letter α, β, γ or θ, instead of plotting 2D chart, polar graph is drawn. One example of this function is plot_exprs("4*x+sin(y)", "4-y**2==(x**2 + z**2)", "x*lg(x)/log2(z)==y"). Also note that when plotting a 2D expression which is actually an implicit function, this function can plot at most 4 root expressions; when plotting a 3D implicit function, it could be very slow because this function may solve all of the three variables and plot at most 2 root expressions for each of the variables.</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_multi_rangle</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_multi_rangle(2...) :</p>
+<p>plot_multi_rangle(at least 2 parameters) plots a 2-dim or polar chart which includes at most 1024 curves. Parameters 1 and 2 are chart name and settings respectively. The chart settings parameter is a string like "chart_type:multiXY;chart_title:1 chart;x_title:x;x_min:-6.2796950076838645;x_max:6.918480857169536;x_labels:10;y_title:y;y_min:-4.487378580559947;y_max:4.1268715788884345;y_labels:10;background_color:black;show_grid:true". Note that chart_type session should be multiXY (2D chart) or multiRangle (polar chart), and x_labels and y_labels means how many tick marks are in the x and y axises (or R axis and angle, angle tick marks are ignored) respectively. From parameter 36, every three parameters define a curve. Among the three parameters, the first describes curve settings, the second is a list of x (or R) values and the third is a list of y (or angle) values. An example of curve settings parameter is "curve_label:cv2;point_color:blue;point_style:point;point_size:1;line_color:blue;line_style:solid;line_size:1". Note that number of x should equal number of y and x and y values must be real. This function returns nothing. An example of this function is plot_multi_rangle("chart2", "chart_type:multiXY;chart_title:1 chart;x_title:x;x_min:-6;x_max:6;x_labels:6;y_title:y;y_min:-4;y_max:4;y_labels:5;background_color:black;show_grid:true", "curve_label:cv2;point_color:blue;point_style:circle;point_size:3;line_color:blue;line_style:solid;line_size:1", [-5, -3, -1, 0, 1, 2, 3, 4, 5], [-3.778, -2.9793, -2.0323, -1.1132, 0.2323, 1.2348, 3.9865, 2.3450, 0.4356]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_multi_xy</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_multi_xy(2...) :</p>
+<p>plot_multi_xy(at least 2 parameters) plots a 2-dim or polar chart which includes at most 1024 curves. Parameters 1 and 2 are chart name and settings respectively. The chart settings parameter is a string like "chart_type:multiXY;chart_title:1 chart;x_title:x;x_min:-6.2796950076838645;x_max:6.918480857169536;x_labels:10;y_title:y;y_min:-4.487378580559947;y_max:4.1268715788884345;y_labels:10;background_color:black;show_grid:true". Note that chart_type session should be multiXY (2D chart) or multiRangle (polar chart), and x_labels and y_labels means how many tick marks are in the x and y axises (or R axis and angle, angle tick marks are ignored) respectively. From parameter 3, every three parameters define a curve. Among the three parameters, the first describes curve settings, the second is a list of x (or R) values and the third is a list of y (or angle) values. An example of curve settings parameter is "curve_label:cv2;point_color:blue;point_style:point;point_size:1;line_color:blue;line_style:solid;line_size:1". Note that number of x should equal number of y and x and y values must be real. This function returns nothing. An example of this function is plot_multi_xy("chart2", "chart_type:multiXY;chart_title:1 chart;x_title:x;x_min:-6;x_max:6;x_labels:6;y_title:y;y_min:-4;y_max:4;y_labels:5;background_color:black;show_grid:true", "curve_label:cv2;point_color:blue;point_style:circle;point_size:3;line_color:blue;line_style:solid;line_size:1", [-5, -3, -1, 0, 1, 2, 3, 4, 5], [-3.778, -2.9793, -2.0323, -1.1132, 0.2323, 1.2348, 3.9865, 2.3450, 0.4356]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_multi_xyz</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_multi_xyz(2...) :</p>
+<p>plot_multi_xyz(at least 2 parameters) plots a 3-dim chart which includes at most 1024 surface curves. Parameters 1 and 2 are chart name and settings respectively. The chart settings parameter is a string like "chart_type:multiXYZ;chart_title:This is a graph;x_title:x axis;x_min:-24.43739154366772;x_max:24.712391543667717;x_labels:10;y_title:Y axis;y_min:-251.3514430737091;y_max:268.95144307370913;y_labels:10;z_title:Z axis;z_min:-1.6873277335234405;z_max:1.7896774628184482;z_labels:10". Note that chart_type session should always be multiXYZ, and x_labels, y_labels and z_labels means how many tick marks are in the x, y and z axises respectively. From parameter 3, every four parameters define a curve. Among the four parameters, the first describes curve settings, the second is an array of x values, the third is an array of y values and the fourth is an array of z values. An example of curve settings parameter is "curve_label:cv2;is_grid:true;min_color:blue;min_color_1:cyan;min_color_value:-2.0;max_color:white;max_color_1:yellow;max_color_value:2.0". Note that the dimension of x, y and z arrays should equal and they should only include real value elements. This function returns nothing. An example of this function is plot_multi_xyz("chartII", "chart_type:multiXYZ;chart_title:This is a graph;x_title:x;x_min:-5;x_max:5;x_labels:6;y_title:Y;y_min:-6;y_max:6;y_labels:3;z_title:Z;z_min:-3;z_max:1;z_labels:4", "curve_label:cv1;min_color:blue;min_color_1:green;max_color:yellow;max_color_1:red", [[-4, -2, 0, 2, 4],[-4, -2, 0, 2, 4],[-4, -2, 0, 2, 4]], [[-5, -5, -5, -5, -5], [0, 0, 0, 0, 0], [-5, -5, -5, -5, -5]], [[-2.71, -2.65, -2.08, -1.82, -1.77], [-2.29, -2.36, -1.88, -1.45, -1.01], [-1.74, -1.49, -0.83, -0.17, 0.44]]) .</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_polar</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_polar(6...) :</p>
+<p>Function plot_polar calls plot_multi_xy function to plot at most eight polar-curves in one chart. It has the following parameters: 1. chart name (i.e. chart file name); 2. chart title; 3. R axis title; 4. Angle axis title; 5.  chart's background color; 6. show grid or not; 7. curve title; 8. curve point color; 9. curve point shape; 10. curve point size; 11. curve line color; 12. curve line pattern; 13. curve line size; 14. t values start from; 15. t values end at; 16. t values' interval; 17. R's expression (based on variable t); 18. Angle's expression (based on variable t)... Note that every new curve needs additional 12 parameters (i.e. parameters 7 to 18). At most 8 curves can be included. Also note that at this moment chart's background color, curve point size, curve line color and curve line pattern are not realized yet. And curve line size only has two values, i.e. zero means no connection line and non-zero means with connection line. An example of this function is plot_polar("chart 3", "3rd chart", "R", "Angle", "black", true, "cv1", "blue", "point", 0, "yellow", "solid", 1, -5, 5, 0.1, "cos(t)", "t", "cv2", "red", "square", 4, "green", "solid", 1, 0, PI*2.23, PI/10, "5*sqrt(t)", "t + PI") .</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_polar_curves</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_polar_curves(6...) :</p>
+<p>Function plot_polar_curves plots at most 1024 polar-curves in one chart. It has the following parameters: 1. chart name (i.e. chart file name); 2. chart title; 3. R axis title; 4. angle title (actually angle title is never shown); 5. chart's background color; 6. show grid or not (string "true" or string "false"); 7. curve title; 8. curve point color; 9. curve point shape; 10. curve point size; 11. curve line color; 12. curve line pattern; 13. curve line size; 14. internal variable's name (generally it is "t"); 15. internal variable's value starts from; 16. internal variable's value ends at; 17. internal variable's value changing interval; 18. R's expression (based on the internal variable); 19. angle's expression (based on the internal variable)... Note that every new curve needs additional 13 parameters (i.e. parameters 7 to 19). At most 1024 curves can be included. Also note that at this moment chart's background color, curve point size, curve line color and curve line pattern are not realized yet. And curve line size only has two values, i.e. zero means no connection line and non-zero means with connection line. An example of this function is plot_polar_curves("chart 3", "3rd chart", "R", "angle", "black", "false", "cv1", "blue", "x", 2, "blue", "solid", 1, "t", -5, 5, 0.1, "t", "t**2/2.5 - 4*t + 6", "cv2", "red", "square", 4, "square", "solid", 1, "t", -10, 10, 0.1, "5*sin(t)", "10*cos(t)") .</p>
+</td>
+</tr>
+<tr>
+<td><center>plot_polar_data</center></td>
+<td><p>::mfp::graph_lib::plot_math::plot_polar_data(16) :</p>
+<p>Function plot_polar_data analyses at least one at most eight groups of data lists and each data group will be plotted as one polar curve. The number of parameters in these function can be 2 (one curve), 4 (two curves), 6 (three curves), 8 (four curves), 10 (five curve), 12 (six curves), 14 (seven curves) and 16 (eight curves). Each parameter is a data list (i.e. 1-D data array). The odd number of parameters are the R values of the points and the even number of parameters are the angle values. Note that the size of R value parameter must match the size of angle value parameter. For example, plot_polar_data([2.47, 3.53, 4.88, 9.42], [8.49, 6.76, 5.31, 0.88], [-9, -7, -5, -3, -1], [28, 42, 33, 16, 7]).</p>
+</td>
+</tr>
+<tr>
+<td><center>pow</center></td>
+<td><p>::mfp::math::log_exp::pow(2) :</p>
+<p>pow(x,y) returns y powers of x. Note that both x and y can be either a real or a complex number. If there are more than one results of pow(x,y), return the first result.</p>
+<p>::mfp::math::log_exp::pow(3) :</p>
+<p>pow(x,y,z) returns a list including first z values of y powers of x. If y powers of x has less than z values, returns all the values. Note that y must be a real number while x can be either a real or a complex number. Z must be a positive integer.</p>
+</td>
+</tr>
+<tr>
+<td><center>print</center></td>
+<td><p>::mfp::io::console::print(1) :</p>
+<p>print(x) prints the value of x to output, x can be any value type.</p>
+</td>
+</tr>
+<tr>
+<td><center>print_file_list</center></td>
+<td><p>::mfp::io::file::print_file_list(1) :</p>
+<p>print_file_list(path) (alias ls(path) or dir(path)) works like ls command in Linux or dir command in Windows. It print the information for the file or all the files in folder at string based path. It returns the number of entries that printed. If the path does not corresponds to an existing file or folder, it returns -1. Note that path is optional. By default it is current folder ("."). Examples are dir() (Windows) and ls("../testfile_copy.txt") (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>print_line</center></td>
+<td><p>::mfp::io::console::print_line(1) :</p>
+<p>print_line(x) prints the value of x to output and then starts a new line, x can be any value type and is optional. By default its value is "".</p>
+</td>
+</tr>
+<tr>
+<td><center>printf</center></td>
+<td><p>::mfp::io::console::printf(1...) :</p>
+<p>printf(format_string, ...), sprintf(format_string, ...) and fprintf(fd, format_string, ...) work like corresponding C/C++ functions. Function printf prints formatted string constructed from format_string and other parameter values to output console, sprintf constructs a new string from format_string and other parameters, and returns the new string, fprintf prints the formated string from format_string and other parameter values to the text file whose id is fd. The format_string parameter supports integer (%d, %i, %x, etc), float (%e, %f, etc), character(%c), string(%s) etc. User can find detailed information for construction of a format string by reading C language manual for these functions. For example, printf("Hello world!%f", 3.14) will output "Hello world!3.140000" on the screen, sprintf("%c%d", "A", 9) returns "A9" (MFP does not support single character type, so single character is stored as a one-char string).</p>
+</td>
+</tr>
+<tr>
+<td><center>product_over</center></td>
+<td><p>::mfp::math::stat_stoch::product_over(3) :</p>
+<p>product_over(x, y, z) calculates the product of string based expression x over integer value y to z. Note that y and z are also string based value, y should be written like "a=10" (where a is the variable) and z should be like "20". For example, product_over("x+1", "x=1", "10").</p>
+</td>
+</tr>
+<tr>
+<td><center>pull_event</center></td>
+<td><p>::mfp::graph_lib::event::pull_event(1) :</p>
+<p>pull_event(display) pull an input event (e.g. mouse or touch pad event) out from screen display's event list. If there is no event, or the display is not a screen display but an image display, it returns Null. Otherwise, it returns the event.</p>
+</td>
+</tr>
+<tr>
+<td><center>pwd</center></td>
+<td><p>::mfp::io::file::pwd(0) :</p>
+<p>get_working_dir() (with alias pwd()) return string based current directory.</p>
+</td>
+</tr>
+<tr>
+<td><center>quick_sort</center></td>
+<td><p>::mfp::math::stat_stoch::quick_sort(2) :</p>
+<p>Function quick_sort(desc, original_list) returns a sorted list of an arbitary number of parameters. If desc is true (or 1), list elements are from largest to smallest, otherwise (desc is false or 0), from smallest to largest. For example, quick_sort(1, [5,6,7,9,4])'s result is [9,7,6,5,4] while quick_sort(0, [5,6,7,9,4]) is [4,5,6,7,9].</p>
+</td>
+</tr>
+<tr>
+<td><center>rand</center></td>
+<td><p>::mfp::math::stat_stoch::rand(0) :</p>
+<p>rand() function returns a random float number between 0 (inclusive) and 1 (exclusive).</p>
+</td>
+</tr>
+<tr>
+<td><center>rank</center></td>
+<td><p>::mfp::math::matrix::rank(1) :</p>
+<p>rank(matrix) returns the rank of a matrix. For example rank([[1,2],[2,4]]) returns 1.</p>
+</td>
+</tr>
+<tr>
+<td><center>read_file</center></td>
+<td><p>::mfp::io::file::read_file(2) :</p>
+<p>Function read_file reads a file and returns a string or a binary array which is the content of the file. It has two parameters. The first parameter is the file path. The second parameter is reading mode. Reading mode is a string. "b" or "B" means to read the file into a binary array. Otherwise it means to treat the file as text and return a string. The second parameter is optional. By default it returns a string .</p>
+</td>
+</tr>
+<tr>
+<td><center>real</center></td>
+<td><p>::mfp::math::complex::real(1) :</p>
+<p>real(x) returns real part of complex value x.</p>
+</td>
+</tr>
+<tr>
+<td><center>receive_rtc_mmedia_message</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::receive_rtc_mmedia_message(1) :</p>
+<p>This function retrieves a web RTC message. Note that web RTC here is the web RTC library for voice and video communication, not the same thing as the WEBRTC protocol for data communication. It has only one parameter which is the expiry time. If this parameter is a positive value, this function blocks and waits for the number of milliseconds. If this parameter is 0, this function returns immediately. Otherwise, this function waits indefinitely until a message is available. If after waiting no message is available, this function returns null. Otherwise, it returns a four element array whose first element is message's destination peer connection Id, second element is RTC session Id, third element is message type and last element is message content. If this message is a RTC signal, message type should be "signal" and message content should be a Json string whose "type" field is signal type, i.e. "offer", "answer" or "candidate"; and, if signal type is "offer" or "answer", "sdp" field is sdp content. If this message is a peer connection event, message type should be "pc" and message content is a Json based string whose "type" field is peer connection event type, e.g. "ice_connection_change"; and "content" field is string based content of the event.</p>
+</td>
+</tr>
+<tr>
+<td><center>receive_sandbox_message</center></td>
+<td><p>::mfp::paracomp::connect::receive_sandbox_message(1...) :</p>
+<p>receive_sandbox_message function retrieves a message sent from a sandbox or main entity. Sender can be either in a remote MFP instance but directly connected to receiver's MFP instance, or in local MFP instance same as receiver. It has two working modes. The first mode uses only one parameter which is waiting time. 0 means no waiting time (i.e. immediately return the first message from message queue or NULL if no message available). Less than 0 means this function will be blocked if no message available. Otherwise this function will wait at most the number of ms defined in the parameter until a message comes, or returns NULL if still no message available after expiry. This working mode is called within a sandbox. The second working mode has two parameters. The first parameter is a local info object which is returned value of generate_interface function. The second parameter is waiting time with the same meaning as in the first working mode. This working mode is called within main entity. The first parameter tells the function which local interface (i.e. a listening address) to monitor. If a message is returned, the returned value is an array based dictionary whose "InterfaceInfo" field is sender's local interface info including protocol and sender's local address. This field is NULL if the sender and receiver are in the same MFP instance, and receiver is a sandbox and sender is receiver's main entity. "ConnectId" field is the Id of the connection which initialized sender sand box or an empty string if sender is main entity; "CallId" field is sender's call Id or 0 if sender is main entity. "TransConnectSrcLocal" is the transmission connection's sender side local address seen from sender side. A transmission connection may not be the initializing connection of the sender or receiver call sandbox. However, the two ends of a transmission connection must be located in the same MFP instance as the sender and receiver respectively. Sender call sandbox or main entity passes its message to its MFP instance, this MFP instance then gives the message to the transmission connection to transmit. After the receiver side of the transmission connection receives the message, it passes this message to its MFP instance and finally the MFP instance at the receiver side gives the message to the receiver call sandbox or main entity. Note that since a transmission is two-way, sender isn't necessarily located at the client side of the transmission connection, and receiver isn't necessarily at the server side. Similarly, "TransConnectSrcRemote" is the transmission connection's receiver side address seen from sender side; "TransConnectDestLocal" is the transmission connection's receiver side address seen from receiver side; and "TransConnectDestRemote" is the transmission connection's sender side address seen from receiver side. Note that in general, value of "TransConnectSrcRemote" should be the same as value of "TransConnectDestLocal" and "TransConnectDestRemote" should be equal to "TransConnectSrcLocal". However, this is not the case for TCPIP protocol if NAT layer exists between sender and receiver. In this case value of field "TransConnectDestRemote" is especially useful because, if the receiver is at server side of the transmission connection, it tells server side MFP the id of the transmission connection which enables reuse of this connection and sending messages back. If sender and receiver are located in the same MFP instance, values of all the four fields are empty. Finally, "Message" field gives out sender's message content. Examples of this function are receive_sandbox_message(-1) and receive_sandbox_message(local_info, -1).</p>
+</td>
+</tr>
+<tr>
+<td><center>recip</center></td>
+<td><p>::mfp::math::matrix::recip(1) :</p>
+<p>recip(x) calculates reciprocal of x. Note that so far x can only be a number or a 2D matrix.</p>
+</td>
+</tr>
+<tr>
+<td><center>remove_elem_from_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::remove_elem_from_ablist(2) :</p>
+<p>remove_elem_from_ablist(array_based_list, idx) removes the idxth element from an array based list array_based_list. It returns updated array list. The parameter array_based_list shares elements with returned value. If idx is not valid, an exception will throw.</p>
+</td>
+</tr>
+<tr>
+<td><center>remove_peer_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::remove_peer_stream(1) :</p>
+<p>This function removes video stream from a peer connection object. It has only one parameter which is the peer connection. This function returns nothing.</p>
+</td>
+</tr>
+<tr>
+<td><center>roots</center></td>
+<td><p>::mfp::math::polynomial::roots(1...) :</p>
+<p>Function roots(a, ...) returns roots of a polynomial. If a is a list of real or complex numbers, this function should only have one parameter and return roots of a polynomial a[0] * x**(N-1) + a[1] * x**(N-2) + ... + a[N-2] * x + a[N-1] = 0. If a is a single value (real or complex), this function should have at least two parameters and return roots of a polynomial a * x**(number_of_optional_params) + optional_params[0] * x**(number_of_optional_params - 1) + ... + optional_params[number_of_optional_params - 2] * x + optional_params[number_of_optional_params - 1] = 0.</p>
+<p>Note that if degree of the polynomial is equal to or larger than 4, Newton-Raphson method is used so that the roots are approximated values. Because of the iterations required by Newton-Raphson method, the calculation time will be long (depends on device's performance).</p>
+<p>Examples of this function:</p>
+<p>To get roots of polynomial 3 * x**2 - 4 * x + 1 == 0, type in command: roots([3, -4, 1]) and the result is [1, 0.33333333];</p>
+<p>To get roots of polynomial (1+2i) * x**3 + (7-6i) * x**2 + 0.54 * x - 4.31 - 9i == 0, type in command: roots(1+2i, 7-6i, 0.54, -4.31-9i) and the result is [0.79288607 + 3.9247084 * i, -0.56361748 - 0.78399569 * i, 0.7707314 + 0.85928729 * i].</p>
+</td>
+</tr>
+<tr>
+<td><center>round</center></td>
+<td><p>::mfp::math::number::round(1) :</p>
+<p>round(x) returns rounded integer value of x.</p>
+<p>::mfp::math::number::round(2) :</p>
+<p>round(x,y) returns rounded value of x with y digits after decimal point.</p>
+</td>
+</tr>
+<tr>
+<td><center>save_image</center></td>
+<td><p>::mfp::multimedia::image_lib::save_image(3) :</p>
+<p>save_image(image, file_format, path) saves a wrapped JAVA image object to an image file. The first parameter is the wrapped JAVA image object. The second parameter is the format of the file. It is a string and currently only "png", "jpg" and "bmp" are supported. The third parameter is the path of the file. This function returns true if the file is saved successfully, and returns false if any failure. For example, save_image(img, "png", "C:\\Temp\\1.png") .</p>
+</td>
+</tr>
+<tr>
+<td><center>scanf</center></td>
+<td><p>::mfp::io::console::scanf(1) :</p>
+<p>scanf(format_string), sscanf(input_from, format_string) and fscanf(fd, format_string) work like corresponding C/C++ functions. Function scanf reads one line input from user, sscanf reads string based parameter input_from, and fscanf reads content from a file whose id is fd. The format_string parameter supports integer (%d, %i, %x, etc), float (%e, %f, etc), character(%c), string(%s) etc. User can find detailed information for construction of a format string by reading C language manual for these functions. Different from C language, these functions do not accept additional parameters to store read values. These functions simply return all the read values in an array. For example, sscanf("3Hello world!", "%d%c%c%s") will returns [3, "H", "e", "llo"] (MFP does not support single character type, so single character is stored as a one-char string).</p>
+</td>
+</tr>
+<tr>
+<td><center>send_sandbox_message</center></td>
+<td><p>::mfp::paracomp::connect::send_sandbox_message(1...) :</p>
+<p>send_sandbox_message function sends a message to a sandbox or main entity. It has four working modes. The first working mode is to send a message from a sandbox to its local main entity. In this case the function has just one parameter which is message content. Note that message content is not necessarily to be a string. For example, send_sandbox_message([1,2,3]) sends [1,2,3] from a sandbox to local main entity. The second working mode is to send a message from main entity or a sandbox to a local sandbox. In this case the function needs four parameters. The first parameter is a local interface object. This local interface object can be obtained from generate_interface function. And the call request which started the receiver sandbox was accepted by the local interface. The second parameter is the connection id of the receiver sandbox. Here the connection initialized the call of the receiver sandbox. The third parameter is the receiver sandbox's call id. The last parameter is message content. An example of this mode is send_sandbox_message(local_info, "127.0.0.1", 1, 238.975 + 3.01i). The third working mode is to send a message from local sandbox or main entity to a remote main entity. Note that the local MFP instance must have been connected to the remote MFP instance by calling connect function. This mode needs two parameters. The first one is a connection object which should be returned from connect function (i.e. the "CONNECT" field of the returned value). The second parameter is message content. An example is send_sandbox_message(conn1, "Hello!"). The last working mode is to send a message from local sandbox or main entity to a remote sandbox. Note that the local MFP instance must be connected to the remote MFP instance by calling connect function. This mode needs five parameters. The first parameter is a connection object which should be returned from connect function (i.e. the "CONNECT" field of the returned value). The second parameter is a remote interface object which can be obtained from generate_interface function. This remote interface is the other side of the connection. And the call request which started the receiver sandbox was accepted by the remote interface. The third parameter is the connection id of the receiver sandbox. Here the connection initialized the call of the reciever sandbox. The fourth parameter is the receiver sandbox' call id. The last parameter is message content. An example for this mode is send_sandbox_message(conn1, remote_info, "192.168.1.139", 4, [[1,2],[3,4]]).</p>
+</td>
+</tr>
+<tr>
+<td><center>set_array_elem</center></td>
+<td><p>::mfp::array::set_array_elem(3) :</p>
+<p>set_array_elem(x,y,z) sets x[y] to be z, and returns new x. Note that x can be an array or a single element, y must be a list of positive integers which are the indices. Y can be beyond the size of x. For example x = 3, y = [1, 2], z = 2 + 3i then set_array_elem(x,y,z) = [3, [0, 0, 2+3i]]. Also note that after set_array_elem is called, the original x value may or may not change. So please always assign returned value back to x to get updated x value.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_audio_track_enable</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::set_audio_track_enable(2) :</p>
+<p>This function enables or disables audio track. It has two parameters. The first parameter is a display handle returned from open_screen_display function. The second parameter is a boolean value. True means enabling audio track and false means disabling audio track. This function returns previous state of audio track. True means before the function call the audio track was enabled. False means before the function call the audio track was disabled.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_bgrnd_color</center></td>
+<td><p>::mfp::graph_lib::display::set_display_bgrnd_color(2) :</p>
+<p>set_display_bgrnd_color(display, color) sets background color for a display (whether screen display or image display). Color is a 4-elem array ([Alpha, R, G, B]) or 3-elem array ([R, G, B]) with each elem from 0 to 255.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_bgrnd_image</center></td>
+<td><p>::mfp::graph_lib::display::set_display_bgrnd_image(3) :</p>
+<p>set_display_bgrnd_image(display, image, mode) sets background image for a display (whether screen display or image display). Image is a image handle. Mode is an integer whose value is either 0 (original background image is placed on left-top), 1 (background image is scaled to the whole screen), 2 (background image is tiled), or 3 (background image in the middle of screen).</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_caption</center></td>
+<td><p>::mfp::graph_lib::display::set_display_caption(2) :</p>
+<p>set_display_caption(display, caption) sets a screen display's caption on JAVA platform. It does not affect an image display or a screen display in Android.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_confirm_close</center></td>
+<td><p>::mfp::graph_lib::display::set_display_confirm_close(2) :</p>
+<p>set_display_confirm_close(display, confirm_close_or_not) sets whether confirming is required before closing a screen display. It does not affect an image display.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_orientation</center></td>
+<td><p>::mfp::graph_lib::display::set_display_orientation(2) :</p>
+<p>set_display_orientation(display, orientation) sets orientation of a screen display in Android. If orientation is -1, it is an unspecified orientation; if it is 0, it is landscape; if it is 1, it is portrait. This function does not affect an image display and has no effect on JAVA platform.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_resizable</center></td>
+<td><p>::mfp::graph_lib::display::set_display_resizable(2) :</p>
+<p>set_display_resizable(display, resizable_or_not) sets a screen display resizable or not. It does not affect an image display.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_size</center></td>
+<td><p>::mfp::graph_lib::display::set_display_size(3) :</p>
+<p>set_display_size(display, width, height) sets a display (whether screen display or image display)'s size to be width * height.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_display_snapshot_as_bgrnd</center></td>
+<td><p>::mfp::graph_lib::display::set_display_snapshot_as_bgrnd(3) :</p>
+<p>set_display_snapshot_as_bgrnd(display, update_screen_or_not, clear_callbacks_or_not) sets a display (whether screen display or image display)'s snapshot as background image. Its second parameter, update_screen_or_not, telling MFP whether or not the display should be refreshed so that latest image can be captured. The third parameter, clear_callbacks_or_not, tells MFP whether or not the painting event callbacks should be cleared. For example, set_display_snapshot_as_bgrnd(d, true, true) refreshes display d (i.e. all the painting event callbacks take effect) and then drops all the painting event callbacks, and then takes snapshot of the display and sets the snapshot to be display's background image.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_elem_in_ablist</center></td>
+<td><p>::mfp::data_struct::array_based::set_elem_in_ablist(3) :</p>
+<p>set_elem_in_ablist(array_based_list, idx, ref_of_elem) set a reference of value ref_of_elem at idx for an array based list array_based_list. Note that if the idx is invalid, an exception is thrown.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_file_last_modified_time</center></td>
+<td><p>::mfp::io::file::set_file_last_modified_time(2) :</p>
+<p>set_file_last_modified_time(path, time) sets the last modified time of the file or folder corresponding to a string based path to be time. Here time is measured by the number of milliseconds since midnight on January 1st, 1970. If path does not exist or the file is not accessable, returns false. Otherwise, returns true. Examples are set_file_last_modified_time("C:\\Temp\\Hello\\", 99999999) (Windows) and set_file_last_modified_time("./hello.txt", 1111111111) (Android).</p>
+</td>
+</tr>
+<tr>
+<td><center>set_json_field</center></td>
+<td><p>::mfp::exdata::json::set_json_field(3) :</p>
+<p>This function sets a field value to a JSON string and returns the new JSON string. It has three parameters. The first parameter is the original JSON string. The second parameter is the field name. The third parameter is the field value. Note that all parameters are case-sensative. If the field name exists, this function refreshes the field's value. Otherwise, it adds a new field into the JSON string. It returns the new JSON string or throws an exception if the setting fails because of invalid field name or unsupported field value type. An example of this function is set_json_field("{\"ABC\": null, \"JJJ\": {\"DEF\":[1, 8, [\"Welcome\", 9.99]],\"ZZ\":\"hello boy\"}}", "JJJ", "New value").</p>
+</td>
+</tr>
+<tr>
+<td><center>set_local_host_address</center></td>
+<td><p>::mfp::paracomp::host::set_local_host_address(4) :</p>
+<p>set_local_host_address function sets local host address for an interface of the selected  protocol. It has four parameters. The first parameter is protocol name. Currently only WebRTC protocol is supported so that it can only be string "WEBRTC". The second is interface name, currently only "main" is the supported value. The third parameter is the address, which should be a valid email address for WEBRTC protocol. The email server should support smtp and imap protocols. Microsoft outlook email addresses are recommended. The last parameter includes additional information for this email. It is an array of strings whose first element should be "0", which means this email supports smtp and imap protocols. The second element is the password to send and receive emails using this email address. Please note that this password could be different from the password for webmail login. If the email is Microsoft hotmail or outlook mail, Google gmail or Tecent qq mail, no other information is required. Otherwises, developer needs to provide smtp server address, smtp server port, smtp support to SSL, imap server address, imap server port and imap support to SSL as the third to eighth parameters respectively. Please note that smtp support to SSL and imap support to SSL are "0" if SSL is not supported, "1" if SSL is supported, or "-1" if not sure. An example of this function is set_local_host_address("WEBRTC", "main", "abcxyz@yahoo.com", ["0", "xxxxyyyyzzzzwwww", "smtp.mail.yahoo.com", "465", "1", "imap.mail.yahoo.com", "993", "1"]). Another example is set_local_host_address("WEBRTC", "main", "mnopqrst@outlook.com", ["0", "abcd1234"]).</p>
+</td>
+</tr>
+<tr>
+<td><center>set_porterduff_mode</center></td>
+<td><p>::mfp::graph_lib::draw::set_porterduff_mode(2) :</p>
+<p>set_porterduff_mode(painting_extra, porterduff_mode) sets porterduff mode for a painting extra information structure. Painting extra information structure is used in a painting event. Porterduff mode tells MFP the way to draw destination area. It is a capitalized string and supports the following modes: "CLEAR", "SRC", "DST", "SRC_OVER", "DST_OVER", "SRC_IN", "DST_IN", "SRC_OUT", "DST_OUT", "SRC_ATOP", "DST_ATOP", "XOR" or "" (empty string means default value). Developer may refer to JAVA documentation to find out detailed meaning of the above modes. And because of the intricacy, this function is not recommended to user. Default porterduff mode should generally be enough to draw destination area properly.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_rtc_media_remote_description</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::set_rtc_media_remote_description(3) :</p>
+<p>This function sets a web RTC remote description after an answer signal is received. Note that web RTC here is the web RTC library for voice and video communication, not the same thing as the WEBRTC protocol for data communication. It has three parameters. First is peer connection id. Second is SDP type. A string whose value is "answer" is expected. The third one is a string based SDP content, i.e. answer signal content. This function returns nothing. An example of this function is set_rtc_media_remote_description(remoteAddr, sdpType, sdpContent) .</p>
+</td>
+</tr>
+<tr>
+<td><center>set_sound_repeat</center></td>
+<td><p>::mfp::multimedia::audio_lib::set_sound_repeat(2) :</p>
+<p>set_sound_repeat(sound_handle, repeat_or_not) set a sound handle to play repeatedly or not.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_sound_volume</center></td>
+<td><p>::mfp::multimedia::audio_lib::set_sound_volume(2) :</p>
+<p>set_sound_volume(sound_handle, volume) set volume (from 0 to 1) a sound handle.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_value_in_abdict</center></td>
+<td><p>::mfp::data_struct::array_based::set_value_in_abdict(3) :</p>
+<p>set_value_in_abdict(array_based_dictionary, key, value) sets reference of the value to key into array_based_dictionary and returns the updated array_based_dictionary. If the key doesn't exist, it will be created. Note that key must be a string while value can be any data type.</p>
+</td>
+</tr>
+<tr>
+<td><center>set_video_track_enable</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::set_video_track_enable(2) :</p>
+<p>This function enables or disables video track. It has two parameters. The first parameter is a display handle returned from open_screen_display function. The second parameter is a boolean value. True means enabling video track and false means disabling video track. This function returns previous state of video track. True means before the function call the video track was enabled. False means before the function call the video track was disabled.</p>
+</td>
+</tr>
+<tr>
+<td><center>shutdown_display</center></td>
+<td><p>::mfp::graph_lib::display::shutdown_display(2) :</p>
+<p>shutdown_display(display, no_confirm_dialog_pop_up) shutdown a display. It has two parameters, display and no_confirm_dialog_pop_up. Display is the reference of screen display or image display. no_confirm_dialog_pop_up is an optional flag. By default, it is false. It only takes effect if display is a screen display. If it is true, even if a screen display has set confirm to close flag, it is shutdown immediately. Examples of this function:</p>
+<p>shutdown_display(d)</p>
+<p>and</p>
+<p>shutdown_display(d, true)</p>
+</td>
+</tr>
+<tr>
+<td><center>sin</center></td>
+<td><p>::mfp::math::trigon::sin(1) :</p>
+<p>sin(x) returns sin value of x, where x can be a complex number.</p>
+</td>
+</tr>
+<tr>
+<td><center>sind</center></td>
+<td><p>::mfp::math::trigon::sind(1) :</p>
+<p>sind(x) returns sin value of x, where x is a degree.</p>
+</td>
+</tr>
+<tr>
+<td><center>sinh</center></td>
+<td><p>::mfp::math::trigon::sinh(1) :</p>
+<p>Function sinh(x) calculates hyperbolic sin of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>size</center></td>
+<td><p>::mfp::array::size(1) :</p>
+<p>size(x) returns a size list of array x. Note that if x is not an array, it always return [].</p>
+<p>::mfp::array::size(2) :</p>
+<p>size(x,y) returns a size list of array x which includes the first y dimension sizes. If x has less than y dimensions, return full size list. Note that y must be a positive integer. Note that if x is not an array, it always return [].</p>
+</td>
+</tr>
+<tr>
+<td><center>sleep</center></td>
+<td><p>::mfp::system::sleep(1) :</p>
+<p>sleep(x) suspends processing for positive real value x milliseconds. It returns nothing.</p>
+</td>
+</tr>
+<tr>
+<td><center>split</center></td>
+<td><p>::mfp::string::split(2) :</p>
+<p>split(string_input, string_regex) splits string_input around matches of the given regular expression defined by parameter string_regex and returns the array of strings computed by splitting string_input around matches of the given regular expression. User could refer to JAVA documents for the Pattern class and String.split function for detailed usage about regular express. For example, split("boo:and:foo", ":") returns ["boo", "and", "foo"] and split("boo:and:foo", "o") returns ["b", "", ":and:f"].</p>
+</td>
+</tr>
+<tr>
+<td><center>sprintf</center></td>
+<td><p>::mfp::string::sprintf(1...) :</p>
+<p>printf(format_string, ...), sprintf(format_string, ...) and fprintf(fd, format_string, ...) work like corresponding C/C++ functions. Function printf prints formatted string constructed from format_string and other parameter values to output console, sprintf constructs a new string from format_string and other parameters, and returns the new string, fprintf prints the formated string from format_string and other parameter values to the text file whose id is fd. The format_string parameter supports integer (%d, %i, %x, etc), float (%e, %f, etc), character(%c), string(%s) etc. User can find detailed information for construction of a format string by reading C language manual for these functions. For example, printf("Hello world!%f", 3.14) will output "Hello world!3.140000" on the screen, sprintf("%c%d", "A", 9) returns "A9" (MFP does not support single character type, so single character is stored as a one-char string).</p>
+</td>
+</tr>
+<tr>
+<td><center>sqrt</center></td>
+<td><p>::mfp::math::log_exp::sqrt(1) :</p>
+<p>Function sqrt(x) returns square root of real number x.</p>
+</td>
+</tr>
+<tr>
+<td><center>sscanf</center></td>
+<td><p>::mfp::string::sscanf(2) :</p>
+<p>scanf(format_string), sscanf(input_from, format_string) and fscanf(fd, format_string) work like corresponding C/C++ functions. Function scanf reads one line input from user, sscanf reads string based parameter input_from, and fscanf reads content from a file whose id is fd. The format_string parameter supports integer (%d, %i, %x, etc), float (%e, %f, etc), character(%c), string(%s) etc. User can find detailed information for construction of a format string by reading C language manual for these functions. Different from C language, these functions do not accept additional parameters to store read values. These functions simply return all the read values in an array. For example, sscanf("3Hello world!", "%d%c%c%s") will returns [3, "H", "e", "llo"] (MFP does not support single character type, so single character is stored as a one-char string).</p>
+</td>
+</tr>
+<tr>
+<td><center>start_local_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::start_local_stream(2) :</p>
+<p>This function starts web RTC's local video stream. Note that web RTC here is the web RTC library for voice and video communication, not the same thing as the WEBRTC protocol for data communication. It has two parameters. The first one is a display handle returned from open_screen_display function. The second one is the index of the RTC video output window in this display's RTC video output window list. The first RTC video output window's index is 0, second is 1, etc. This function returns true if local stream is started successfully. Otherwise it returns false.</p>
+</td>
+</tr>
+<tr>
+<td><center>start_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::start_sound(1) :</p>
+<p>start_sound(sound_handle) plays a sound referred by sound handle sound_handle. If the sound has been started, this function will do nothing.</p>
+</td>
+</tr>
+<tr>
+<td><center>stdev</center></td>
+<td><p>::mfp::math::stat_stoch::stdev(0...) :</p>
+<p>Function stdev(...) returns standard deviation of an arbitary number of parameters. Note that the parameters are a sample of a larger set.</p>
+</td>
+</tr>
+<tr>
+<td><center>stdevp</center></td>
+<td><p>::mfp::math::stat_stoch::stdevp(0...) :</p>
+<p>Function stdevp(...) returns standard deviation of an arbitary number of parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>stop_all_sounds</center></td>
+<td><p>::mfp::multimedia::audio_lib::stop_all_sounds(0) :</p>
+<p>stop_all_sounds() stops all playing sounds.</p>
+</td>
+</tr>
+<tr>
+<td><center>stop_local_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::stop_local_stream(1) :</p>
+<p>This function stops web RTC's local video stream. Note that web RTC here is the web RTC library for voice and video communication, not the same thing as the WEBRTC protocol for data communication. It has only one parameter which is a display handle returned from open_screen_display function. This function returns nothing.</p>
+</td>
+</tr>
+<tr>
+<td><center>stop_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::stop_sound(1) :</p>
+<p>stop_sound(sound_handle) stops the playing sound referred by sound_handle. If the sound is not playing, it does nothing.</p>
+</td>
+</tr>
+<tr>
+<td><center>strcat</center></td>
+<td><p>::mfp::string::strcat(2...) :</p>
+<p>strcat(string1, string2...) catenates the string parameters and return the new catenated string. Need at least two parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>strcmp</center></td>
+<td><p>::mfp::string::strcmp(6) :</p>
+<p>strcmp(src, dest, src_start, src_end, dest_start, dest_end) compare src string from src_start to src_end to dest string from dest_start to dest_end. It returns 0 if they are equal, positive value if src is greater or negative value if dest is greater. Note that string index is from 0, src_end and dest_end are one passed last selected character. Also note that the last four parameters can be omitted. If omitted, starts by default are 0 and ends by default are string length.</p>
+</td>
+</tr>
+<tr>
+<td><center>strcpy</center></td>
+<td><p>::mfp::string::strcpy(6) :</p>
+<p>strcpy(src, dest, src_start, src_end, dest_start, dest_end) returns a string which is the string value copying src string from src_start to src_end to dest string from dest_start to dest_end. Note that string index is from 0, src_end and dest_end are one passed last selected character. Also note that the last four parameters can be omitted. If omitted, starts by default are 0 and ends by default are string length.</p>
+</td>
+</tr>
+<tr>
+<td><center>stricmp</center></td>
+<td><p>::mfp::string::stricmp(6) :</p>
+<p>stricmp(src, dest, src_start, src_end, dest_start, dest_end) compare src string from src_start to src_end to dest string from dest_start to dest_end ignoring case of letters. It returns 0 if they are equal, positive value if src is greater or negative value if dest is greater. Note that string index is from 0, src_end and dest_end are one passed last selected character. Also note that the last four parameters can be omitted. If omitted, starts by default are 0 and ends by default are string length.</p>
+</td>
+</tr>
+<tr>
+<td><center>strlen</center></td>
+<td><p>::mfp::string::strlen(1) :</p>
+<p>strlen(x) returns length of string x.</p>
+</td>
+</tr>
+<tr>
+<td><center>strsub</center></td>
+<td><p>::mfp::string::strsub(2) :</p>
+<p>strsub(str, start) returns substring of string parameter str, the substring is from character start (the first character is character 0) to the end of str.</p>
+<p>::mfp::string::strsub(3) :</p>
+<p>strsub(str, start, end) returns substring of string parameter str, the substring is from character start to character end - 1 (the first character is character 0).</p>
+</td>
+</tr>
+<tr>
+<td><center>sum</center></td>
+<td><p>::mfp::math::stat_stoch::sum(0...) :</p>
+<p>Function sum(...) returns sum value of an arbitary number of parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>sum_over</center></td>
+<td><p>::mfp::math::stat_stoch::sum_over(3) :</p>
+<p>sum_over(x, y, z) calculates the sum of string based expression x over integer value y to z. Note that y and z are also string based value, y should be written like "a=10" (where a is the variable) and z should be like "20". For example, sum_over("x+1", "x=1", "10").</p>
+</td>
+</tr>
+<tr>
+<td><center>suspend_until_cond</center></td>
+<td><p>::mfp::paracomp::threading::suspend_until_cond(4) :</p>
+<p>This function suspends the current thread until a certain condition is satisfied. It has four parameters. The first parameter variable name. Note that variable name is not a string. The second parameter is a boolean value. If it is true, the function starts to check if the condition is satisfied only after the variable's value is written (not necessarily changed). Otherwise, the function starts to check if the condition is satisfied immediately when the function is called. This parameter is optional. By default it is TRUE. The third parameter is an operator string. Currently only the following inputs for this parameter are supported, i.e. "", "==", "!=", ">", "<", ">=" and "<=". "" means if a writing happens, the condition is satisfied. Other operators means to compare the variable's value using the operator. If comparison returns TRUE, the condition is satisifed. This parameter is also optional. By default it is "". The last parameter is the value to be compared with. This is also an optional parameter. It is useless if operator is "". For other operators, this parameter's value is current value of the variable by default. For example, suspend_until_cond(a) equals to call suspend_until_cond(a, TRUE, ""), which means to suspend the current thread until variable a is written by another thread. The other example is suspend_until_cond(a, FALSE, "!="), which means to suspend the current thread until variable a's value is changed. The third example is suspend_until_cond(a, TRUE, ">=", 37), which means to suspend the current thread until variable a is written (not necessarily changed), and the updated value is no smaller than 37. If the comparison is invalid, e.g. the updated value is "Hello", which cannot be compared with 37, the condition is not satisfied and the current thread is still blocked.</p>
+</td>
+</tr>
+<tr>
+<td><center>system</center></td>
+<td><p>::mfp::system::system(1) :</p>
+<p>system(str_or_array) has one parameter which is either a string or an array with string elements. If the parameter is a string, it runs the string based OS command and returns the value that the OS command returns. Note that the command should be an executable file with its parameters. Like system("dir") in windows cannot be executed because dir is an internal function of cmd.exe. User should use system("cmd /c dir") instead. If the parameter is an array, then each element in the array should be a part of a OS command and system function will run the OS command. For example, in Linux if user wants to rename file1 to file2, the full OS command should be "sh -c mv file1 file2", where "sh -c" cannot be omitted because we are not in a shell. So to call system function in the right way, user should write system(["sh", "-c", "mv file1 file2"]) because "mv file1 file2" is an internal command for sh which cannot be seperated into several parts. Also note that at this stage, user can only see any output from the running command but cannot input after the OS command starts. If the command does not exist, throws an exception.</p>
+</td>
+</tr>
+<tr>
+<td><center>tan</center></td>
+<td><p>::mfp::math::trigon::tan(1) :</p>
+<p>tan(x) returns tan value of x, where x can be a complex number.</p>
+</td>
+</tr>
+<tr>
+<td><center>tand</center></td>
+<td><p>::mfp::math::trigon::tand(1) :</p>
+<p>tand(x) returns tan value of x, where x is a degree.</p>
+</td>
+</tr>
+<tr>
+<td><center>tanh</center></td>
+<td><p>::mfp::math::trigon::tanh(1) :</p>
+<p>Function tanh(x) calculates hyperbolic tan of x.</p>
+</td>
+</tr>
+<tr>
+<td><center>tip</center></td>
+<td><p>::mfp::misc::tip(2) :</p>
+<p>Function tip(x, y) is used to calculate total money to pay in a American restaurant with known price x and tip ratio y.</p>
+</td>
+</tr>
+<tr>
+<td><center>to_lowercase_string</center></td>
+<td><p>::mfp::string::to_lowercase_string(1) :</p>
+<p>to_lowercase_string(x) returns a lower case string output of datum x.</p>
+</td>
+</tr>
+<tr>
+<td><center>to_string</center></td>
+<td><p>::mfp::string::to_string(1) :</p>
+<p>to_string(x) returns a string output of datum x.</p>
+</td>
+</tr>
+<tr>
+<td><center>to_uppercase_string</center></td>
+<td><p>::mfp::string::to_uppercase_string(1) :</p>
+<p>to_uppercase_string(x) returns a upper case string output of datum x.</p>
+</td>
+</tr>
+<tr>
+<td><center>todeg</center></td>
+<td><p>::mfp::math::trigon::todeg(1) :</p>
+<p>Function todeg(x) converts radian value x to degree value.</p>
+</td>
+</tr>
+<tr>
+<td><center>torad</center></td>
+<td><p>::mfp::math::trigon::torad(1) :</p>
+<p>Function torad(x) converts degree value x to radian value.</p>
+</td>
+</tr>
+<tr>
+<td><center>tostring</center></td>
+<td><p>::mfp::string::tostring(1) :</p>
+<p>tostring(x) returns a string output of datum x.</p>
+</td>
+</tr>
+<tr>
+<td><center>trim</center></td>
+<td><p>::mfp::string::trim(1) :</p>
+<p>trim(string), trim_left(string) and trim_right(string) trim the white space and the characters whose asci value is less than white space (e.g. \n, \t, \r, \0 etc.) off from the string from one or both sides. In particular, trim removes the characters from both the left and right sides until it sees a character whose asci value is greater than white space on each side; trim_left removes the characters from left side until it sees a character whose asci value is greater than white space; trim_right removes the characters from right side until it sees a character whose asci value is greater than white space. Examples are trim(" \n hello world ") (returns "hello world"), trim_left(" \n hello world ") (returns "hello world ") and trim_right(" \n hello world ") (returns " hello world").</p>
+</td>
+</tr>
+<tr>
+<td><center>trim_left</center></td>
+<td><p>::mfp::string::trim_left(1) :</p>
+<p>trim(string), trim_left(string) and trim_right(string) trim the white space and the characters whose asci value is less than white space (e.g. \n, \t, \r, \0 etc.) off from the string from one or both sides. In particular, trim removes the characters from both the left and right sides until it sees a character whose asci value is greater than white space on each side; trim_left removes the characters from left side until it sees a character whose asci value is greater than white space; trim_right removes the characters from right side until it sees a character whose asci value is greater than white space. Examples are trim(" \n hello world ") (returns "hello world"), trim_left(" \n hello world ") (returns "hello world ") and trim_right(" \n hello world ") (returns " hello world").</p>
+</td>
+</tr>
+<tr>
+<td><center>trim_right</center></td>
+<td><p>::mfp::string::trim_right(1) :</p>
+<p>trim(string), trim_left(string) and trim_right(string) trim the white space and the characters whose asci value is less than white space (e.g. \n, \t, \r, \0 etc.) off from the string from one or both sides. In particular, trim removes the characters from both the left and right sides until it sees a character whose asci value is greater than white space on each side; trim_left removes the characters from left side until it sees a character whose asci value is greater than white space; trim_right removes the characters from right side until it sees a character whose asci value is greater than white space. Examples are trim(" \n hello world ") (returns "hello world"), trim_left(" \n hello world ") (returns "hello world ") and trim_right(" \n hello world ") (returns " hello world").</p>
+</td>
+</tr>
+<tr>
+<td><center>unlink_video_stream</center></td>
+<td><p>::mfp::multimedia::webrtc_lib::unlink_video_stream(2...) :</p>
+<p>This function unlinks a video track to a video output window. It has two working modes. The first working mode includes three parameters which are, first, a display handle returned from open_screen_display function; second, a peer connection object id; and third a video track id. The second working mode includes only two parameters. The first one is a display handle and the second one is the index of the RTC video output window in this display's RTC video output window list. The first RTC video output window's index is 0, second is 1, etc. This function returns the number of unlinked RTC video tracks.</p>
+</td>
+</tr>
+<tr>
+<td><center>update_display</center></td>
+<td><p>::mfp::graph_lib::display::update_display(1) :</p>
+<p>update_display(display) update a display (whether screen display or image display).</p>
+</td>
+</tr>
+<tr>
+<td><center>upper_triangular_matrix</center></td>
+<td><p>::mfp::math::matrix::upper_triangular_matrix(1) :</p>
+<p>upper_triangular_matrix(x) returns the upper triangular matrix of 2D square x after LU decomposition.</p>
+</td>
+</tr>
+<tr>
+<td><center>xor</center></td>
+<td><p>::mfp::math::logic::xor(2) :</p>
+<p>Function xor calculates xor(x, y), where x, y can be any value. If x == y return false, else return true</p>
+</td>
+</tr>
+<tr>
+<td><center>zeros</center></td>
+<td><p>::mfp::math::matrix::zeros(1...) :</p>
+<p>Function zeros generates a matrix whose elements are all zero. The dimension of the matrix is determined by the parameters of zeros function, which is either a number of positive integers or a single positive integer list. Note that zeros([]) returns 0.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

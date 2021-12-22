@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>可编程科学计算器帮助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body style="background-color:white;">
+<h2 style="color:blue">MFP编程语言citingspace和using语句：</h2>
+<p style="font-family:verdana;color:black;">
+</p>
+<p style="font-family:verdana;color:black;">
+MFP编程语言的citingspace语句和C++/C#语言中的namespace语句非常相似。Citingspace是一组函数的容器，这些函数可以彼此之间直接调用而不用给出被调用函数的citingspace的路径名。一个citingspace可以在一个或者多个MFPS源文件中被声明。同样地，一个MFPS源文件也可以包括任意个citingspace的声明。如果一个MFPS源文件没有citingspace的声明，MFP则认为该文件中所定义的所有的函数都位于顶层的citingspace中。比如，在文件File1.mfps中，定义了如下citingspace和函数：</p>
+<pre style="font-family:verdana;color:black;">
+citingspace ::Abc::def
+function Aaa()
+    Bbb()
+endf
+endcs
+</pre>
+<p style="font-family:verdana;color:black;">
+，在File2.mfps文件中，开发者又定义了同样的一个citingspace和一个新的函数：</p>
+<pre style="font-family:verdana;color:black;">
+Citingspace ::ABC::def	// citingspace的名字不分大小写的。
+function Bbb()
+    Aaa()
+	::Abc::hij::Ccc()
+endf
+endcs
+</pre>
+<p style="font-family:verdana;color:black;">
+，这样一来，函数Aaa和Bbb都是相互可见的。换句话说，在函数Aaa中，Bbb可以被直接调用，反之亦然。然而，如果用户在以上两个文件或者一个新的文件中声明了一个新的citingspace，并且在这个新的citingspace中又定义了一个新的函数Ccc()，那么在函数Ccc中必须使用citingspace的路径来调用Aaa或者Bbb：</p>
+<pre style="font-family:verdana;color:black;">
+Citingspace ::Abc::hij
+function Ccc()
+    ::Abc::def::Aaa()
+endf
+endcs
+</pre>
+<p style="font-family:verdana;color:black;">
+。Citingspace的声明可以嵌套，比如：</p>
+<pre style="font-family:verdana;color:black;">
+citingspace ::a1
+citingspace ::b1 // 如果是声明citingspace b1，那么这个citingspace的完整路径就变成了::a1::b1
+endcs
+endcs
+</pre>
+<p style="font-family:verdana;color:black;">
+。还要注意顶级citingspace的全路径名是一个空字符串。</p>
+<p style="font-family:verdana;color:black;">
+Using语句告诉MFP程序哪一个citingspace被使用。调用using语句所声明将要使用的citingspace中的函数无需在函数名前面添加citingspace的路径。在上述例子中，如果一开始就声明using citingspace ::Abc::def，那么调用Aaa就不需要使用::Abc::def的前缀了。</p>
+<pre style="font-family:verdana;color:black;">
+Citingspace ::Abc::hij
+function Ccc()
+    using citingspace ::Abc::def // 注意在def的后面不能够有：：
+    Aaa()
+endf
+endcs
+</pre>
+<p style="font-family:verdana;color:black;">
+。需要注意的是using语句可以放在函数体的内部或者外部。在缺省时，顶级citingspace，MFP语言的citingspace和其所有的子citingspace（也就是::mfp::*，*是表示所有子citingspace和其本身的通配符）都被使用。</p>
+</body>
+</html>

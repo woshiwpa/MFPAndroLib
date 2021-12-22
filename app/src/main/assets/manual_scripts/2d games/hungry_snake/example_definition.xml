@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<example>
+<description>
+<english>A hungry snake game</english>
+<simplified_chinese>一个贪吃蛇的游戏</simplified_chinese>
+<traditional_chinese>一個貪吃蛇的遊戲</traditional_chinese>
+<spanish>Un juego de serpiente hambriento</spanish>
+</description>
+<application>
+<applicationName>Hungry Snake Example</applicationName>
+<applicationPkgName>com.cyzapps.HunSnake</applicationPkgName>
+<applicationWorkingFolder>HunSnake</applicationWorkingFolder>
+<applicationVersionStr>1.0.0.1805</applicationVersionStr>
+<applicationVersionCode>1707</applicationVersionCode>
+<functionInfo>
+<name> :: gdi_test::game_test::hungry_snake::run </name>
+<description>This is a hungry snake game. It has three levels. The entry point of this game is the run function. This run function may take one or zero parameter. The parameter tells the game what the score threshold for the player to proceed into next level. If no parameter, this parameter uses its default value which is 100. Player can control the snake moving direction by tapping the Left, Top, Right and Bottom button. Player can also achieve the same thing by dragging/dropping mounse or swipping the fingur on the non-button area of the screen.
+这是一个贪吃蛇的游戏。它有三关，它的入口函数是run函数。run函数接受一个或者0个参数。参数告诉游戏多少分才能进入下一关，如果没有参数，玩家需要积满100分才能过关。如果想要控制蛇的运动方向，玩家可以点击Left，Top，Right和Bottom按钮，也可以在屏幕没有按钮的地方用手指或鼠标滑向相应的方向。</description>
+<includesOptionalParam>TRUE</includesOptionalParam>
+<parameters>
+<parameter>
+<prompt>Please input score limit: </prompt>
+<isString>FALSE</isString>
+<needsInput>FALSE</needsInput>
+<defaultValue>100</defaultValue>
+</parameter>
+</parameters>
+</functionInfo>
+<helpInfo></helpInfo>
+</application>
+<sourceFiles>
+<sourceFile>hungry_snake.mfps</sourceFile>
+</sourceFiles>
+<assets>
+<asset>food.png</asset>
+<asset>eatfood.wav</asset>
+<asset>hitwall.wav</asset>
+</assets>
+<apkFile>hungry_snake.apk</apkFile>
+<info>
+<english>This is a hungry snake game. It is for fun and pleasure. It has three levels. The source file is hungry_snake.mfps. There are two wave files to mimic the sounds of eating food and hitting wall. All the files have been zipped in an attachment to share by email.</english>
+<simplified_chinese>这是一个贪吃蛇的小游戏。它包含三个等级。玩家只有在通过前一个等级后才能进入下一个等级。本游戏的源代码位于文件hungry_snake.mfps中。此外，本游戏还包括两个声音文件用于模拟吃食物和撞墙的声音。如果玩家共享本游戏的代码，游戏相关文件会被打入一个压缩包中通过email发给别人。</simplified_chinese>
+<traditional_chinese>這是一個貪吃蛇的小遊戲。它包含三個等級。玩家只有在通過前一個等級後才能進入下一個等級。本遊戲的源代碼位於檔案hungry_snake.mfps中。此外，本遊戲還包括兩個聲音檔案用於模擬吃食物和撞牆的聲音。如果玩家共享本遊戲的代碼，遊戲相關檔案會被打入一個壓縮包中通過email發給別人。</traditional_chinese>
+<spanish>Este es un juego de la serpiente hambrienta. Es para la diversión y el placer. Cuenta con tres niveles. El archivo de origen es hungry_snake.mfps. Hay dos archivos de sonido para imitar los sonidos de comer alimentos y golpear la pared. Cuando compartes este juego, se generará un correo electrónico con todos los archivos comprimidos en un archivo adjunto.</spanish>
+</info>
+</example>

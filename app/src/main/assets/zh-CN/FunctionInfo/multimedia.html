@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>可编程科学计算器帮助</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">可编程科学计算器帮助：多媒体函数</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>函数名</th>
+<th>函数帮助信息</th>
+</tr>
+<tr>
+<td><center>clone_image</center></td>
+<td><p>::mfp::multimedia::image_lib::clone_image(7) :</p>
+<p>clone_image(image_src, src_left, src_top, src_right, src_bottom, dest_width, dest_height)返回一个新的被包装过的JAVA图像对象。该图形对象的宽度为dest_width，高度为dest_height。这个被返回的图像是（被拉缩过的）原图像image_src的被选中的区块的拷贝。被选中的区块的左、上、右、下的坐标分别是src_left、src_top、src_right和src_bottom。注意src_left、src_top、src_right和src_botto是可选参数，它们的缺省值分别是0、0、image_src的宽度和image_src的高度。dest_width和dest_height也是可选参数。它们的缺省值分别是src_right - src_left以及src_bottom - src_top。本函数的一个例子为 clone_image(img_src, 0, 0, 100, 200, 50, 300)。</p>
+</td>
+</tr>
+<tr>
+<td><center>create_image</center></td>
+<td><p>::mfp::multimedia::image_lib::create_image(2) :</p>
+<p>create_image(w, h)返回一个全新的，空白的被包装过的JAVA图像对象。该图形对象的宽度为w，高度为h。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_image_size</center></td>
+<td><p>::mfp::multimedia::image_lib::get_image_size(1) :</p>
+<p>get_image_size(image_handle)返回由image_handle所代表的被包装过的JAVA图像对象的长和宽组成的数组。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_path</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_path(1) :</p>
+<p>get_sound_path(sound_handle)返回sound_handle所指向的声音文件的路径。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_reference_path</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_reference_path(1) :</p>
+<p>get_sound_reference_path(sound_handle)返回sound_handle所指向的声音引用文件的路径。如果声音文件不是从zip压缩的读入的，声音引用文件和sound_handle所指向的声音文件（也就是get_sound_file函数的返回值）是同一个文件。如果声音文件是从zip压缩的读入的，声音引用文件路径是压缩文件的路径加上声音文件的压缩路径，比如"/folder1/folder2/snd.zip/zipped_folder/snd.wav"，这里"/folder1/folder2/snd.zip"是压缩文件路径，"zipped_folder/snd.wav"是声音文件的压缩路径。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_repeat</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_repeat(1) :</p>
+<p>get_sound_repeat(sound_handle)返回一个布尔量，表示参数sound_handle所代表的声音是否会被重复演奏。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_source_type</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_source_type(1) :</p>
+<p>get_sound_source_type(sound_handle)返回一个整数，代表sound_handle所指向的声音引用文件的类型。0表示常规文件，1表示压缩的zip文件，2表示引用于MFP App中安卓asset中的zip文件。</p>
+</td>
+</tr>
+<tr>
+<td><center>get_sound_volume</center></td>
+<td><p>::mfp::multimedia::audio_lib::get_sound_volume(1) :</p>
+<p>get_sound_volume(sound_handle)返回参数sound_handle所代表的声音的音量（一个变化范围从0到1的浮点数）。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_playing</center></td>
+<td><p>::mfp::multimedia::audio_lib::is_playing(1) :</p>
+<p>这个函数接受一个媒体播放器句柄作为参数。如果该媒体播放器正在播放音乐，这个函数返回true，如果该媒体播放器没有正在播放，或者该句柄无效，这个函数返回false。</p>
+</td>
+</tr>
+<tr>
+<td><center>is_valid_image_handle</center></td>
+<td><p>::mfp::multimedia::image_lib::is_valid_image_handle(1) :</p>
+<p>is_valid_image_handle(image_handle)返回一个布尔量，用于告诉开发人员一个被包装过的JAVA图像对象，也就是image_handle参数，是否依然合法还是已经被关闭。</p>
+</td>
+</tr>
+<tr>
+<td><center>load_image</center></td>
+<td><p>::mfp::multimedia::image_lib::load_image(1) :</p>
+<p>load_image(image_path)返回一个被包装过的JAVA图像对象。它有一个参数image_path。这个参数是一个基于字符串的，指向一个图形文件的路径。</p>
+</td>
+</tr>
+<tr>
+<td><center>load_image_from_zip</center></td>
+<td><p>::mfp::multimedia::image_lib::load_image_from_zip(3) :</p>
+<p>load_image_from_zip(zip_file_name, zip_entry_path, zip_file_type)返回一个被包装过的JAVA图像对象。该图形对象从一个zip压缩文件中读取。它的第一个参数是基于字符串的zip文件的压缩路径。它的第二个参数是图像在该zip文件中的压缩路径。它的第三个参数要么是0，要么是1。如果等于0，表示普通的zip文件，而如果等于1，表示MFP App的安卓assets中的zip文件。</p>
+</td>
+</tr>
+<tr>
+<td><center>open_image_display</center></td>
+<td><p>::mfp::multimedia::image_lib::open_image_display(1) :</p>
+<p>open_image_display(image_path_or_handle)创建一个image display供开发人员调用MFP函数绘图。它有一个参数。这个参数既可以是一个基于字符串的，指向一个图形文件的路径，也可以是null，还可以是一个由load_image，load_image_from_zip，create_image或者clone_image函数返回的JAVA image对象的句柄。</p>
+</td>
+</tr>
+<tr>
+<td><center>play_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::play_sound(4) :</p>
+<p>play_sound(source_path, repeat_or_not, volume, create_new_or_not)演奏一个声音文件，该声音文件可以是wave文件，也可以是midi文件，还可以是mp3文件。该函数返回一个演奏器的句柄，该句柄指向一个JAVA或安卓的多媒体演奏器。由于多媒体演奏器的资源是有限的，本函数会尽可能的回收并重用以前生成的多媒体演奏器。本函数有4个参数。第一个参数是声音文件的路径。第二个参数是一个布尔值，表示该声音是否需要重复演奏，这是一个缺省参数，缺省值是false。第三个参数是一个从0到1的浮点数，表示音量大小。这也是一个缺省参数，缺省值是1。第四个参数是一个布尔值，表示是否无论如何都强制生产一个新的多媒体演奏器。这也是一个缺省参数，缺省值是false。</p>
+</td>
+</tr>
+<tr>
+<td><center>play_sound_from_zip</center></td>
+<td><p>::mfp::multimedia::audio_lib::play_sound_from_zip(6) :</p>
+<p>play_sound_from_zip(source_zip_file_path, zip_entry_path, zip_file_type, repeat_or_not, volume, create_new_or_not)演奏一个从zip文件中抽取出的声音文件，该声音文件可以是wave文件，也可以是midi文件，还可以是mp3文件。该函数返回一个演奏器的句柄，该句柄指向一个JAVA或安卓的多媒体演奏器。由于多媒体演奏器的资源是有限的，本函数会尽可能的回收并重用以前生成的多媒体演奏器。本函数有6个参数。第一个参数是zip文件的路径。第二个参数是被压缩的声音文件的在zip文件中的位置路径。第三个参数是一个布尔值，0表示zip文件是普通的压缩文件，1表示zip文件位于MFP app的安卓asset目录中。第四个参数是一个布尔值，表示该声音是否需要重复演奏，这是一个缺省参数，缺省值是false。第五个参数是一个从0到1的浮点数，表示音量大小。这也是一个缺省参数，缺省值是1。第六个参数是一个布尔值，表示是否无论如何都强制生产一个新的多媒体演奏器。这也是一个缺省参数，缺省值是false。</p>
+</td>
+</tr>
+<tr>
+<td><center>save_image</center></td>
+<td><p>::mfp::multimedia::image_lib::save_image(3) :</p>
+<p>save_image(image, file_format, path)保存一个被包装过的JAVA图像对象至一个图形文件。本函数的第一个参数是被包装过的JAVA图像对象，第二个参数是基于字符串的图像文件的格式，当前仅支持"png"，"jpg"以及"bmp"格式。第三个参数是图像文件的路径。如果成功保存，本函数返回True，否则返回False。本函数的一个例子为：save_image(img, "png", "C:\\Temp\\1.png")。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_sound_repeat</center></td>
+<td><p>::mfp::multimedia::audio_lib::set_sound_repeat(2) :</p>
+<p>set_sound_repeat(sound_handle, repeat_or_not)设置一个sound_handle所代表的声音是否重复演奏。</p>
+</td>
+</tr>
+<tr>
+<td><center>set_sound_volume</center></td>
+<td><p>::mfp::multimedia::audio_lib::set_sound_volume(2) :</p>
+<p>set_sound_volume(sound_handle, volume)设置一个sound_handle所代表的声音的音量，注意音量参数volume的值变化范围是从0到1。</p>
+</td>
+</tr>
+<tr>
+<td><center>start_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::start_sound(1) :</p>
+<p>start_sound(sound_handle)演奏sound_handle所指向的声音文件。如果该声音文件已经启动，这个函数什么也不做。</p>
+</td>
+</tr>
+<tr>
+<td><center>stop_all_sounds</center></td>
+<td><p>::mfp::multimedia::audio_lib::stop_all_sounds(0) :</p>
+<p>stop_all_sounds()停止所有正在播放的声音。</p>
+</td>
+</tr>
+<tr>
+<td><center>stop_sound</center></td>
+<td><p>::mfp::multimedia::audio_lib::stop_sound(1) :</p>
+<p>stop_sound(sound_handle)停止sound_handle所代表的声音的播放。如果该声音没有播放，这个函数什么也不做。</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

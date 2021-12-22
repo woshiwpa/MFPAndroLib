@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Scientific Calculator Plus Help</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8"></head>
+<body style="background-color:white;">
+<h2 style="color:blue">Scientific Calculator Plus Help : MFP compiling functions</h2>
+<table border="1" style="font-family:times;color:green;">
+<tr>
+<th>Function name</th>
+<th>Function info</th>
+</tr>
+<tr>
+<td><center>copy_to_resource</center></td>
+<td><p>::mfp_compiler::annotation::build_asset::copy_to_resource(2) :</p>
+<p>copy_to_resource(source_path, destination_path) is a function for MFP compiler, which means it takes effect only when MFP is packing scripts to build an MFP app. It copies file(s) in source_path to the destination_path inside Android assets folder. In this way an MFP app built from the current script can still find referred sound or image files by searching the MFP app's assets. It returns a three element array with first element is string based source path, second element is string based resource name and last element is string based destination path.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_all_referred_units</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_all_referred_units(0) :</p>
+<p>get_all_referred_units() is a function for MFP compiler, which means it takes effect only when MFP is packing scripts to build an MFP app. It returns an array of all the MFP function and class references defined in all the user defined libs.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_classes</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_classes(0...) :</p>
+<p>get_classes(...) is a function for MFP compiler, which means it takes effect only when MFP is packing scripts to build an MFP app. It has arbitary number of string based parameters. Each parameter is a class name. It returns an array of all the MFP class references defined in the parameters.</p>
+</td>
+</tr>
+<tr>
+<td><center>get_functions</center></td>
+<td><p>::mfp_compiler::annotation::compulsory_link::get_functions(0...) :</p>
+<p>get_functions(...) is a function for MFP compiler, which means it takes effect only when MFP is packing scripts to build an MFP app. It has arbitary number of string based parameters. Each parameter is a function name. It returns an array of all the MFP function references defined in the parameters.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

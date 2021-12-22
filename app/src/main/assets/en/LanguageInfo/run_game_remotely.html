@@ -1,0 +1,65 @@
+﻿<html>
+	<head>
+		<title>Scientific Calculator Plus Help</title>
+	</head>
+	<body style="background-color:white;">
+		<h2 style="color:blue">Scientific Calculator Plus Help : How to run local MFP games in a remote device</h2>
+		
+		<p style="font-family:verdana;color:black;">
+An important feature of MFP programming language is language syntax level support to parallel computing using <a href="call_endcall.html" target="_self">call ... endcall</a>statments. This is implemented using sandbox mechanism. All sandboxes share the same MFP system libraries. But every sandbox has independent stack, user defined libraries and user resource libraries. Server constructs an MFP sandbox for each call block sent by a client. Source files referred by the call block will be saved in the sandbox's user lib folder and referred resource files will be stored in the sandbox's resource lib folder. Sandboxes and MFP main thread do not affect each other.
+		</p>
+		<p style="font-family:verdana;color:black;">
+In the manual an example for call ... endcall statements can be found. However, this is a simple example to send algorithm to server. So how to do if client wants to send a game to server and run it there?
+		</p>
+		<p style="font-family:verdana;color:black;">
+Different from general algorithm, game uses audios and videos. As such a game is always packaged source codes with reource files. Source code files are altermatically recognized and transferred to server by call statement. However, developer needs to add some annotations and adjusts code to send resource files to server.
+		</p>
+		<p style="font-family:verdana;color:black;">
+The following code is an example. It needs an image file called food.png. In Scientific Calculator Plus, whether based on Android or JAVA, this image file is located in the same folder as the MFP code script.
+		</p>
+		<p>
+		<pre style="font-family:verdana;color:blue;">
+	@build_asset copy_to_resource(get_upper_level_path(get_src_file_path()) + "food.png", "images/food.png")
+	if is_sandbox_session()
+		foodImage = load_image(get_sandbox_session_resource_path() + "images/food.png")
+	elseif is_mfp_app()
+		foodImage = load_image_from_zip(get_asset_file_path("resource"), "images/food.png", 1)
+	else
+		foodImage = load_image(get_upper_level_path(get_src_file_path()) + "food.png")
+	endif
+		</pre>
+		</p>
+		<p style="font-family:verdana;color:black;">
+If we pack the above code into an APK package, the food.png file needs to be copied into a resource.zip file in the APK's asset. After APK is installed and starts to run, function load_image_from_zip has to be called to load the picture file from APK asset's resource.zip file. To realize the above procedure, an annotation statement is added:
+@build_asset copy_to_resource(get_upper_level_path(get_src_file_path()) + "food.png", "images/food.png")
+, which tells MFP to copy food.png from the folder where the code source file is located into APK asset's resource.zip file. And the entry in the zip file is images/food.png.
+		</p>
+		<p style="font-family:verdana;color:black;">
+If not build an APK package, but simply send the above code to another device to run, the @build_asset statement is still required. If client is running Scientific Calculator Plus application, @build_asset tells call statement to transfer the food.png file to server's corresponding MFP sandbox and save it in the sandbox's resource folder. The detailed location is resource/image/food.png in the MFP sandbox. If client is a compiled MFP app, as the image file has been packed in APK, call statement will extract food.png from APK's asset and then send it to server, and store it in the right place in the corresponding MFP sandbox.
+		</p>
+		<p style="font-family:verdana;color:black;">
+If the above code is running in an MFP sandbox, i.e. it is running in a call block in server side, resource file is saved in local storage. Developer only needs to call function load_image with right path to load food.png. Developer may call function is_sandbox_session() to identify if the code is running in a sandbox. And then call function get_sandbox_session_resource_path() to retrieve the sandbox's resource folder path.
+		</p>
+		<p style="font-family:verdana;color:black;">
+If the above code is running in a compiled MFP App, resource files are saved in APK asset's resource.zip file. Developer has to call function load_image_from_zip with right zip entry path to load a resource file. If function is_mfp_app() returns true, it tells code that the current session is a compiled MFP App. In this case get_asset_file_path("resource") should be called to retrieve detailed location of resource files in APK asset.
+		</p>
+		<p style="font-family:verdana;color:black;">
+If the above code is running in Scientific Calculator Plus, whether in Android or in JAVA, developer only needs to call function load_image to load food.png. The folder of the file is returned by calling get_upper_level_path(get_src_file_path()).
+		</p>
+		<p style="font-family:verdana;color:black;">
+The above logic does not change if we read an audio instead an image file. However, functions load_image and load_image_from_zip have to be replaced by play_sound and play_sound_from_zip.
+		</p>
+		<p style="font-family:verdana;color:black;">
+Also note that functions is_sandbox_session() and is_mfp_app() both return true if running in server side and the server is an MFP App. For this reason, developer has to check first if the current session is running in a sandbox (whose true return implies it is in server side), and then check if it is an MFP App (whose true return implies client side). In other words, the if is_sandbox_session() block has to be placed before if is_mfp_app() block.
+		</p>
+		<p style="font-family:verdana;color:black;">
+Embed the above code in a call block or in a normal function called by a call block, MFP will be able to transfer resource files and execute a game in another device.
+		</p>
+		<p style="font-family:verdana;color:black;">
+Scientific Calculator Plus v. 1.8.0.79 has provided an example to run game remotely. User needs two Android devices, one is running as server, the other is client. In server side, user selects "Explore examples", and then "Parallel computing example", and then taps "Run" button. Then user inputs 2, taps "OK" button and enters server mode. The program will list all IP addresses used by the device. User selects one of them to input, and taps "ENTER" key (not "RUN" key). In client side, similarly, user selects "Explore examples", and then "Parallel computing example", and then taps "Run" button. Then user inputs 3, taps "OK" button and enters client mode. The program will list all IP addresses used by the device. User selects one of them as client address to input, and taps "ENTER" key (not "RUN" key). Then user inputs server address, i.e. the address user just inputs in the server device, and taps "ENTER" key (not "RUN" key). MFP will send the call block from client to server, and then run a "super rabbit" game in the server side. Note that it doesn't matter whether server has installed this game or not because the game's codes and resources are all sent from client.
+		</p>
+		<p style="font-family:verdana;color:black;">
+Note that IP addresses of client and server should be in the same subnet. In other words, there should be no NAT (Network Address Translation) layer in between. If this condition cannot be satisfied, at least client should be able to ping server's IP address. In current IPV4 system, it is not an easy task to run remote parallel computing as a device's IP address is always obfuscated by one or several NAT layers. However, in future IPV6 system, where NAT is no longer prevalent, remote parallel computing will not be a dream. MFP, the first programming language supporting parallel computing at language syntax level, will be shining at that time.
+		</p>
+	</body>
+</html>

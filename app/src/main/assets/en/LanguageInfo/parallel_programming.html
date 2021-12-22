@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Scientific Calculator Plus Help</title>
+		<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+	</head>
+	<body style="background-color:white;">
+		<h2 style="color:blue">Scientific Calculator Plus : Parallel programming support</h2>
+		<p style="font-family:verdana;color:black;">
+			MFP programming language supports parallel programming by using <a href="call_endcall.html" target="_self">call ... endcall</a> block. The basic routine is :
+		<p style="font-family:verdana;color:black;">1.Call function <a href="../FunctionInfo/parallel.html" target="_self">generate_interface</a> in both client and server sides to create communication interface;</p>
+		<p style="font-family:verdana;color:black;">2.Call function <a href="../FunctionInfo/parallel.html" target="_self">initialize_local</a> in server side to listen to any incoming connection requests;</p>
+		<p style="font-family:verdana;color:black;">3.Call function <a href="../FunctionInfo/parallel.html" target="_self">connect</a> in client side to connect to server. This function returns a connection object;</p>
+		<p style="font-family:verdana;color:black;">4.Client sends a <a href="call_endcall.html" target="_self">call ... endcall</a> block, with related codes, resource files and copy of whole stack, to server. In the <a href="call_endcall.html" target="_self">call</a> statement, the first parameter is the connection object returned by <a href="../FunctionInfo/parallel.html" target="_self">connect</a> function;</p>
+		<p style="font-family:verdana;color:black;">5.Client may send more <a href="call_endcall.html" target="_self">call ... endcall</a> blocks to server if needed;</p>
+		<p style="font-family:verdana;color:black;">6.When server receives a <a href="call_endcall.html" target="_self">call ... endcall</a> block, it will create an <a href="run_game_remotely.html" target="_self">independent sandbox</a> for this block. The sandbox has a complete set of server side MFP system libraries. However, its user defined libraries and resource files are seperated from server's MFP system or any other sandbox. Source files of user defined libraries are stored in the user lib folder of the MFP sandbox. Resource files are saved in the user resource folder of the MFP sandbox. In the server side, multiple sandboxes are running simultaneously. The sandboxes and server side MFP main thread do not affect each other.</p>
+		<p style="font-family:verdana;color:black;">7.After server finishes running a <a href="call_endcall.html" target="_self">call ... endcall</a> block, result will be returned by the block's <a href="function_return_endf.html" target="_self">return</a> statement. The result value will be assigned to the client side variable which is the only parameter of the <a href="call_endcall.html" target="_self">endcall</a> statement. If <a href="call_endcall.html" target="_self">endcall</a> does not have any parameter, the result will be ignored. On the other hand, if a <a href="call_endcall.html" target="_self">call ... endcall</a> block's <a href="function_return_endf.html" target="_self">return</a> statement doesn't return any value, while the corresponding <a href="call_endcall.html" target="_self">endcall</a> does have a parameter, the parameter's value in the client side will never change;</p>
+		<p style="font-family:verdana;color:black;">8.In client side, if code attempts to read the <a href="call_endcall.html" target="_self">endcall</a> statement's parameter value, while server hasn't returned result, the code will be blocked until result is returned;</p>
+		<p style="font-family:verdana;color:black;">9.If client wants to close connection, it needs to call functions <a href="../FunctionInfo/parallel.html" target="_self">close_connection</a> and <a href="../FunctionInfo/parallel.html" target="_self">close_local</a>. If server calls function <a href="../FunctionInfo/parallel.html" target="_self">close_local</a>, the active listener is shutdown so that no incoming connection request will be accepted.</p>
+		<p style="font-family:verdana;color:black;">Developers may read the following docs for detailed information :</p>
+		<p style="font-family:verdana;color:black;"><a href="../FunctionInfo/parallel.html" target="_self">Parallel computing functions</a></p>
+		<p style="font-family:verdana;color:black;"><a href="call_endcall.html" target="_self">MFP language call and endcall statements</a></p>
+		<p style="font-family:verdana;color:black;"><a href="run_game_remotely.html" target="_self">How to run local MFP games in a remote device</a></p>
+	</body>
+</html>

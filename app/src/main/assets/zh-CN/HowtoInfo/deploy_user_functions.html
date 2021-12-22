@@ -1,0 +1,77 @@
+﻿<html>
+	<head>
+		<title>可编程科学计算器帮助</title>
+	</head>
+	<body style="background-color:white;">
+		<h2 style="color:blue">可编程科学计算器帮助：如何部署用户自定义的函数</h2>
+		
+		<p style="font-family:verdana;color:black;">
+		用户需要遵循以下步骤以实现和使用自己所编写的函数：
+		</p>
+		<p style="font-family:verdana;color:black;">
+		1. 启动可编程科学计算器；
+		</p>
+		<p style="font-family:verdana;color:black;">
+		2. 打开程序编辑器编写代码并保存。
+		</p>
+		<p style="font-family:verdana;color:black;">
+		很显然，在手机上敲代码不是一件容易的事情，一个比较快捷的办法是：
+		</p>
+		<p style="font-family:verdana;color:black;">
+		1. 将您的安卓设备通过USB电缆连接到个人电脑上；
+		</p>
+		<p style="font-family:verdana;color:black;">
+		2. 将您的安卓设备的存储卡设置为可读写；
+		</p>
+		<p style="font-family:verdana;color:black;">
+		3. 在个人电脑上找到您的安卓设备存储卡（包括SD卡和设备自带的存储器）所对应的文件夹或盘符，找到其中的AnMath目录，进入AnMath/Scripts子目录。在这个目录下创建一个.mfps文件，比如my_prog.mfps；
+		</p>
+		<p style="font-family:verdana;color:black;">
+		4. 用个人电脑上的文本编辑器编辑my_prog.mfps，比如，在该文件中写入以下内容：
+		</p>
+<pre style="font-family:verdana;color:blue;">
+Function MyFunc(Number_value1, Number_value2,Number_value3, Number_value4)
+    Variable avg_value
+    avg_value = (Number_value3-Number_value1)-(Number_value4-Number_value2)
+    Return avg_value
+Endf
+</pre>
+		<p style="font-family:verdana;color:black;">
+		然后保存，再将移动设备和个人电脑断开；
+		</p>
+		<p style="font-family:verdana;color:black;">
+		5. 打开可编程科学计算器；
+		</p>
+		<p style="font-family:verdana;color:black;">
+		6. 打开命令提示符，敲入：
+		</p>
+		<p style="font-family:verdana;color:black;">
+		myfunc(1,2,3,4)
+		</p>
+		<p style="font-family:verdana;color:black;">
+		然后回车，会看到函数返回0。
+		</p>
+		<p style="font-family:verdana;color:black;">
+		您需要注意的是：
+		</p>
+		<p style="font-family:verdana;color:black;">
+		1. 如果是在个人电脑上输入函数，用户可能需要在断开移动设备和个人电脑连接之后重新启动可编程科学计算器，否则，新编的函数有可能不被载入；
+		</p>
+		<p style="font-family:verdana;color:black;">
+		2. 函数必须申明，也就是必须有如下定义：
+		</p>
+<pre style="font-family:verdana;color:blue;">
+Function XXXX(...)
+Endf
+</pre>
+		<p style="font-family:verdana;color:black;">
+		否则函数无法被找到；
+		</p>
+		<p style="font-family:verdana;color:black;">
+		3. 不同的函数必须具有不同的函数名。当用户自定义函数时，必须保证自定义的函数名和已有的软件内建的和自定义的函数不重名。我们建议，用户自定义函数时，函数名总是以MyF开始，也就是MyF******；
+		</p>
+		<p style="font-family:verdana;color:black;">
+		4. 一些安卓设备，比如三星Galaxy Express，在连接到个人电脑上后，不允许用户从个人电脑上直接在手机存储卡文件夹中创建新的文件。这个限制能够防止病毒在个人电脑和手机之间传播，但是，它也给用户创建自定义函数程序的时候造成了一些小的麻烦。一个解决办法是，把位于手机存储卡中的AnMath目录整个拷贝到个人电脑的一个可读写的位置，在那里创建新的.mfps函数程序文件，并且在那里启动基于JAVA的可编程科学计算器以调式编写的代码。调试完成后，再将AnMath文件夹整个拷贝到手机存储卡中的原来位子以覆盖原来的AnMath目录。
+		</p>
+	</body>
+</html>

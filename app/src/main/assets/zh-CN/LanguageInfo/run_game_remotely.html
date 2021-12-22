@@ -1,0 +1,65 @@
+﻿<html>
+	<head>
+		<title>可编程科学计算器帮助</title>
+	</head>
+	<body style="background-color:white;">
+		<h2 style="color:blue">可编程科学计算器帮助：如何在将本机的游戏发送到远程设备上运行</h2>
+		
+		<p style="font-family:verdana;color:black;">
+MFP语言的一个重要功能就是通过<a href="call_endcall.html" target="_self">call ... endcall</a>语句实现对并行计算的支持。MFP语言实现多线互不干扰并行计算的基本原理是采用沙盒机制。每一个MFP沙盒拥有完整一套所在设备的MFP系统库，但是自己用户代码库和用户资源库则是独立的，服务端会为一个从客户端传来的call程序块建立一个MFP沙盒。程序块所在的代码文件和程序块调用的用户代码所在文件会保存在沙盒的用户代码库目录下，所需要的资源文件会保存在沙盒的用户资源库目录下。各个MFP沙盒的程序栈也都是独立的。这样就保证了各个MFP沙盒之间不会相互影响，沙盒和MFP服务端本地程序也不会相互影响。
+		</p>
+		<p style="font-family:verdana;color:black;">
+在帮助中已经有call ... endcall语句的详细例子，但是那是客户端设备发送一段算法去服务端设备。如果客户端想要发送一个游戏去服务端设备并在服务端设备运行，该如何实现呢？
+		</p>
+		<p style="font-family:verdana;color:black;">
+游戏和普通算法的区别在于，游戏需要支持视频和音频，所以有很多资源文件（比如，图像文件，数据库文件，声音文件等等）。在其他方面，游戏和普通算法是一样的。所以关键就在于客户端的MFP语言如何将资源文件传到服务端，而服务端的MFP语言（它和客户端MFP语言运行的是同样的代码）如何保存并调用这些资源文件，同时不影响在服务端运行的其它客户端的call程序块或者服务端自己正在运行的程序。
+		</p>
+		<p style="font-family:verdana;color:black;">
+以下代码给出了一个例子，在这段代码需要使用一个叫做food.png的图像文件。在可编程科学计算器上（不论是基于安卓的还是基于JAVA的），该图像文件和这段代码所在的MFP脚本文件位于同一个目录。
+		</p>
+		<p>
+		<pre style="font-family:verdana;color:blue;">
+	@build_asset copy_to_resource(get_upper_level_path(get_src_file_path()) + "food.png", "images/food.png")
+	if is_sandbox_session()
+		foodImage = load_image(get_sandbox_session_resource_path() + "images/food.png")
+	elseif is_mfp_app()
+		foodImage = load_image_from_zip(get_asset_file_path("resource"), "images/food.png", 1)
+	else
+		foodImage = load_image(get_upper_level_path(get_src_file_path()) + "food.png")
+	endif
+		</pre>
+		</p>
+		<p style="font-family:verdana;color:black;">
+如果我们将这段代码编译到一个APK安装包中，我们需要把food.png图片拷贝到APK的asset的resource.zip文件中。安装了APK之后，在运行MFP应用时，我们需要调用load_image_from_zip从APK的asset的resource.zip文件中读出图片。为了实现上述过程，我们加入了一个annotation语句：
+@build_asset copy_to_resource(get_upper_level_path(get_src_file_path()) + "food.png", "images/food.png")
+，告诉MFP编译器将位于代码所在目录的food.png文件拷贝到APK的asset的resource.zip文件中，在resource.zip文件中的具体位置是images/food.png。
+		</p>
+		<p style="font-family:verdana;color:black;">
+如果我们不是编译安装包，而是需要把这段代码发送到另外一个设备上去执行，@build_asset同样会发挥作用。如果客户端是可编程科学计算器，@build_asset会告诉call语句把位于代码所在目录的food.png文件传送到服务端MFP沙盒的resource目录中，具体位置是resource目录中的image子目录的food.png文件。如果客户端是一个通过编译出的APK安装的MFP应用，由于MFP应用已经将food.png保存在asset的resource.zip文件中的images目录下，call语句会从安卓的asset中提取出food.png然后传送到服务端MFP沙盒的resource目录中，具体位置仍然是resource目录中的image子目录的food.png文件。
+		</p>
+		<p style="font-family:verdana;color:black;">
+在运行上述代码时，我们需要根据MFP所在的环境执行不同的指令。如果MFP是在沙盒中运行，也就是服务端执行客户端的call程序块，那么资源文件是保存在本地存储器上的，读取图像文件时我们用load_image并指定路径即可。我们通过函数is_sandbox_session()返回true来断定MFP是在沙盒中运行，通过调用函数get_sandbox_session_resource_path()获取沙盒用户资源库所在目录。
+		</p>
+		<p style="font-family:verdana;color:black;">
+如果MFP是在编译安装后的MFP应用中运行，资源文件保存在安卓的asset中的resource.zip包内，所以我们需要调用load_image_from_zip函数。我们通过函数is_mfp_app()返回true来断定MFP是在编译安装后的MFP应用中运行，通过调用函数get_asset_file_path("resource")获取resource包在安卓asset中的具体位置。
+		</p>
+		<p style="font-family:verdana;color:black;">
+如果MFP是在可编程科学计算器中运行，不论是基于JAVA还是安卓，资源文件都保存在本地存储器上，读取图像文件时我们用load_image并指定路径即可。food.png所在的具体目录可以通过调用get_upper_level_path(get_src_file_path())来定位。
+		</p>
+		<p style="font-family:verdana;color:black;">
+如果读取的不是图像文件而是声音文件，上述代码的逻辑基本不变，区别就是调用play_sound或者play_sound_from_zip而不是load_image或者load_image_from_zip。
+		</p>
+		<p style="font-family:verdana;color:black;">
+还需要注意的是，由于函数is_sandbox_session()和is_mfp_app()可能均返回true（比如服务端是一个MFP应用），开发者必须首先判断当前MFP是否在沙盒中运行，也就是说is_sandbox_session()条件语句必须放在最前面，其次才是is_mfp_app()条件语句。
+		</p>
+		<p style="font-family:verdana;color:black;">
+将上述代码加入一个call程序块中，或者将上述代码编入一个运行游戏的函数然后在call程序块中调用，MFP就可以自动地替开发者传递代码和资源文件并在另一个设备中执行该游戏了。
+		</p>
+		<p style="font-family:verdana;color:black;">
+1.8.0.79版的可编程科学计算器已经提供了这样一个例子。在服务器端，使用者选择“探索示例”，然后选择“并行计算例子”，然后选择“运行”，输入2，点击确定按钮，进入服务器模式，这时该程序会列出本设备所有的IP地址，使用者选择一个作为服务地址，然后回车（ENTER键，注意不是运行键）。在客户端设备上，同样地，使用者选择“探索示例”，然后选择“并行计算例子”，然后选择“运行”，输入3，点击确定按钮，进入客户端模式，这时该程序会列出本设备所有的IP地址，使用者选择一个作为客户端地址，然后回车（ENTER键，注意不是运行键），然后再输入刚才选择的服务器地址，然后再次ENTER键回车，客户端会将call程序块发送到服务端，然后在服务端运行超级超级小白兔游戏。不管服务器端的用户代码库中是不是已经有了该游戏均不影响该游戏正常运行，因为该游戏的代码和资源都是通过客户端发送过来的。
+		</p>
+		<p style="font-family:verdana;color:black;">
+需要注意的是，服务器和客户端的IP地址最好位于同一个子网内，也就是中间没有NAT（Network Address Translation）层，如果做不到这一点，最少也必须做到通过客户端IP地址能够ping通服务端的IP地址，在现有的IPv4体系下，由于用户的设备（不管是客户端还是服务端）的IP地址往往被一重或多重NAT层所遮蔽，所以想要执行远程并行计算的难度比较大，但是如果多个设备在同一个内部网中，互联并行则毫无问题；未来IPv6体系下，NAT层不再会像现在这么大行其道，执行远程并行计算将不再是梦想。此外，开发者还在尝试引入NetOTC协议，真正实现远程点对点连接。总之，在编程语言级别上实现并行计算是一个全新思想，MFP语言作为全球第一种引入此思想的编程语言必然有着光明的前景。
+		</p>
+	</body>
+</html>
