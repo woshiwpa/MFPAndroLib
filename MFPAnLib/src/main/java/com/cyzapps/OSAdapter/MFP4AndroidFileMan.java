@@ -67,6 +67,9 @@ public class MFP4AndroidFileMan extends LangFileManager {
     public static final String STRING_ASSET_USER_SCRIPT_LIB_ZIP = "userdef_lib.zip";
     public static final String STRING_ASSET_RESOURCE_ZIP = "resource.zip";
 
+    public static final String STRING_ASSET_MFP_ANDROID_LIB_AAR = "MFPAnLib-release.aar";
+    public static final String STRING_ASSET_WEBRTC_LIB_AAR = "google-webrtc-1.0.19742.aar";
+
     public static LinkedList<String> m_slFailedFilePaths = new LinkedList<String>();
 
     protected AssetManager mAssetManager = null;
@@ -301,6 +304,16 @@ public class MFP4AndroidFileMan extends LangFileManager {
         } else {
             return STRING_ASSET_USER_SCRIPT_LIB_ZIP;
         }
+    }
+
+    public String getMFPAndroidLibAarFullPath() {
+        return AndroidStorageOptions.getSelectedStoragePath()
+                + STRING_PATH_DIVISOR + msstrAppFolder + STRING_PATH_DIVISOR + STRING_ASSET_MFP_ANDROID_LIB_AAR;
+    }
+
+    public String getWebRTCAarFullPath() {
+        return AndroidStorageOptions.getSelectedStoragePath()
+                + STRING_PATH_DIVISOR + msstrAppFolder + STRING_PATH_DIVISOR + STRING_ASSET_WEBRTC_LIB_AAR;
     }
 
     // this function is for MFP APP only
