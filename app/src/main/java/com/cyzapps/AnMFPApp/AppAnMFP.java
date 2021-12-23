@@ -26,7 +26,8 @@ import android.util.Log;
 public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 	public static final String STRING_APP_FOLDER = "MFPAndroLibTester";
 	// support single line statment, multiple line session and quick help statment
-	public static final String STRING_COMMANDS_TO_RUN = "\n\nplot_exprs(\"x**2+y**2+z**2==9\")\n::gdi_test::game_test::chess::main()";
+	public static final String STRING_COMMANDS_TO_RUN
+			= "\n\nplot_exprs(\"x**2+y**2+z**2==9\")\ngdi_test::game_test::super_bunny::run( )\n";//::gdi_test::game_test::chess::main()";
 
     private static Context mContext;
 
