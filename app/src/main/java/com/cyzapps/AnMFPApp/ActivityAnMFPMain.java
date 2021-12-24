@@ -925,7 +925,6 @@ public class ActivityAnMFPMain extends Activity {
 			@Override
 			public void run() {
 				AssetManager am = getAssets();
-				MFP4AndroidFileMan.msstrAppFolder = AppAnMFP.STRING_APP_FOLDER;
 				// Now start to load functions
 				MFP4AndroidFileMan mfp4AnFileMan = new MFP4AndroidFileMan(am);
 				MFPAdapter.clear(CitingSpaceDefinition.CheckMFPSLibMode.CHECK_USER_DEFINED_ONLY);

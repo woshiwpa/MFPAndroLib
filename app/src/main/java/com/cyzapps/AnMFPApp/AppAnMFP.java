@@ -37,6 +37,14 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
         mContext = this;
 
 		MFPAndroidLib mfpLib = MFPAndroidLib.getInstance();
+		// initialize function has three parameters. The first one is application's context,
+		// the second one is your app's shared preference name, and the last one is a boolean
+		// value, with true means your MFP scripts and resources are saved in your app's
+		// assets and false means your MFP scripts and resources are saved in your Android
+		// device's local storage.
+		// The following code saves MFP scripts and resources in assets of app. However, if
+		// developer wants to run scripts from local storage, uncomment the following line.
+		// MFP4AndroidFileMan.msstrAppFolder = STRING_APP_FOLDER;
 		mfpLib.initialize(mContext, "", true);	// we don't have any settings to load. So stick to default values
 
 		// load predefined libs when app starts
@@ -51,59 +59,6 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 
     public static Context getContext(){
         return mContext;
-    }
-
-    public String getStringFromAssetFile(String strAssetFile) {
-        
-		AssetManager am = getAssets();
-		InputStream inputStream = null;
-		if (am != null)	{
-			// MFPApp.cfg is an asset file
-			try {
-				inputStream = am.open(strAssetFile);
-			} catch(IOException e)	{
-			}
-		}
-
-	    final StringBuilder out = new StringBuilder();
-		if (inputStream != null) {
-			final char[] buffer = new char[1024];
-			Reader reader = null;
-		    try {
-		    	reader = new InputStreamReader(inputStream, "UTF-8");
-		        while (true) {
-		            int rsz = reader.read(buffer, 0, buffer.length);
-		            if (rsz < 0)
-		                break;
-		            out.append(buffer, 0, rsz);
-		        }
-		    }
-		    catch (UnsupportedEncodingException ex) {
-		        if (reader != null) {
-		        	try {
-		        		reader.close();
-		        	} catch (IOException ex1) {
-		        		
-		        	}
-		        }
-		    }
-		    catch (IOException ex) {
-		    	if (reader != null) {
-		        	try {
-		        		reader.close();
-		        	} catch (IOException ex1) {
-		        		
-		        	}
-		        }
-		    } finally {
-				try {
-					inputStream.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	    return out.toString();
     }
 
 	public static String getLocalLanguage()
