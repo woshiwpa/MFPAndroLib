@@ -1,3 +1,0 @@
-The first line includes 123, 56.480000, hi
-Now input some Chinese characters： 汉字中文
-Now add a new line -999, -48.730000, why?
