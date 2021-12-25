@@ -33,6 +33,7 @@ import com.cyzapps.Jmfp.ProgContext;
 import com.cyzapps.Jmfp.ScriptAnalyzer;
 import com.cyzapps.Jmfp.ScriptAnalyzer.ScriptInterrupter;
 import com.cyzapps.Jmfp.Statement;
+import com.cyzapps.Jmfp.VariableOperator;
 import com.cyzapps.Jmfp.VariableOperator.Variable;
 import com.cyzapps.Jsma.AbstractExpr;
 import com.cyzapps.Jsma.AbstractExpr.AbstractExprInterrupter;
@@ -130,10 +131,12 @@ public class ActivityAnMFPMain extends Activity {
 	protected ProgressDialog mdlgInitProgress = null;
 
 	public class CmdLineConsoleInput extends ConsoleInputStream	{
+		@Override
     	public void doBeforeInput() {
 
         }
-    	
+
+        @Override
     	public String inputString() throws InterruptedException	{
      		if (Thread.currentThread().isInterrupted())	{
     			// make sure that there is no log output after exception.
@@ -180,13 +183,15 @@ public class ActivityAnMFPMain extends Activity {
     		}
     		return null;	// cannot reach here.
     	}
-    	
+
+    	@Override
     	public void doAfterInput()  {
             
         }
     }
     
     public class CmdLineLogOutput extends LogOutputStream	{
+		@Override
     	public void outputString(String str) throws InterruptedException	{
     		if (Thread.currentThread().isInterrupted())	{
     			// make sure that there is no log output after exception.
@@ -198,104 +203,7 @@ public class ActivityAnMFPMain extends Activity {
    			mHandler.post(mUpdateResults);
     	}
     }
-    
-    public class CmdLineFunctionInterrupter extends FunctionInterrupter	{
 
-		@Override
-		public boolean shouldInterrupt() {
-			return Thread.currentThread().isInterrupted();
-		}
-
-		@Override
-		public void interrupt() throws InterruptedException {
-			throw new InterruptedException();
-		}
-    	
-    }
-	
-    public class CmdLineScriptInterrupter extends ScriptInterrupter	{
-
-		@Override
-		public boolean shouldInterrupt() {
-			return Thread.currentThread().isInterrupted();
-		}
-
-		@Override
-		public void interrupt() throws InterruptedException {
-			throw new InterruptedException();
-		}
-    	
-    }
-	
-    public class CmdLineAbstractExprInterrupter extends AbstractExprInterrupter	{
-
-		@Override
-		public boolean shouldInterrupt() {
-			return Thread.currentThread().isInterrupted();
-		}
-
-		@Override
-		public void interrupt() throws InterruptedException {
-			throw new InterruptedException();
-		}
-    	
-    }
-	
-	public class PlotGraphPlotter extends GraphPlotter	{
-		public PlotGraphPlotter()	{}
-		public PlotGraphPlotter(Context context)	{
-			mcontext = context;
-		}
-		
-		public boolean mbOK = false;
-		public Context mcontext = null;
-		
-		@Override
-		public boolean plotGraph(String strGraphInfo) {
-			Intent intent = new Intent(mcontext, ActivityChartDaemon.class);
-			intent.putExtra(ChartOperator.VMFPChart, strGraphInfo);
-			mcontext.startActivity(intent);
-			mbOK = true;
-			return true;
-		}
-		
-	}
-
-	public static class MFPChartFileOperator extends FileOperator	{
-
-		@Override
-        public boolean outputGraphFile(String strFileName, String strFileContent) throws IOException {
-            String strRootPath = AndroidStorageOptions.getSelectedStoragePath()
-                    + LangFileManager.STRING_PATH_DIVISOR
-                    + MFP4AndroidFileMan.msstrAppFolder;
-            int nLastDivIdx = strFileName.lastIndexOf(LangFileManager.STRING_PATH_DIVISOR);
-            File folder;
-            if (nLastDivIdx > 0) {
-                folder = new File(strRootPath + LangFileManager.STRING_PATH_DIVISOR
-                        + MFP4AndroidFileMan.STRING_CHART_FOLDER
-                        + LangFileManager.STRING_PATH_DIVISOR
-                        + strFileName.substring(0, nLastDivIdx));
-            } else {
-                folder = new File(strRootPath + LangFileManager.STRING_PATH_DIVISOR
-                        + MFP4AndroidFileMan.STRING_CHART_FOLDER
-                        + LangFileManager.STRING_PATH_DIVISOR);
-            }
-            File file = new File(strRootPath
-                    + LangFileManager.STRING_PATH_DIVISOR
-                    + MFP4AndroidFileMan.STRING_CHART_FOLDER
-                    + LangFileManager.STRING_PATH_DIVISOR
-                    + strFileName
-                    + MFP4AndroidFileMan.STRING_CHART_EXTENSION);
-            folder.mkdirs();
-            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file));
-            osw.write(strFileContent);
-            osw.flush();
-            osw.close();
-            return true;
-        }
-		
-	}
-	
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -336,7 +244,7 @@ public class ActivityAnMFPMain extends Activity {
 					}
 					return strReturn;
 				} 
-			       };
+	        };
         }
         mnEditableTextStart = medtCmdLineEdtBox.length();
         setEdtInputFilter(medtCmdLineEdtBox.getEditableText());
@@ -442,43 +350,19 @@ public class ActivityAnMFPMain extends Activity {
 			mthreadCmd = new Thread(new Runnable() {
 		        public void run() { 
 					mnEditableTextStart += medtCmdLineEdtBox.getText().length();
-	        		FuncEvaluator.msstreamLogOutput = new CmdLineLogOutput();
-	        		FuncEvaluator.msstreamConsoleInput = new CmdLineConsoleInput();
-	        		FuncEvaluator.msfunctionInterrupter = new CmdLineFunctionInterrupter();
-	        		FuncEvaluator.msfileOperator = new MFPChartFileOperator();
-	        		FuncEvaluator.msgraphPlotter = new PlotGraphPlotter(ActivityAnMFPMain.this);
-	        		FuncEvaluator.msgraphPlotter3D = new PlotGraphPlotter(ActivityAnMFPMain.this);
-					FuncEvaluator.msGDIMgr = new FlatGDIManager(ActivityAnMFPMain.this);
-					FuncEvaluator.msMultimediaMgr = new MultimediaManager(
-							new ImageMgrAndroid(ActivityAnMFPMain.this),
-							new SoundMgrAndroid(ActivityAnMFPMain.this)
-					);
-					/*FuncEvaluator.msPlatformHWMgr = new PlatformHWManager(
-							new MFP4AndroidFileMan(getAssets())
-					);*/  // msPlatformHWMgr is loaded early to analyze anotation at loading stage.
-	                if (FuncEvaluator.mspm == null) {
-	                    FuncEvaluator.mspm = new PatternManager();
-	                    try {
-							FuncEvaluator.mspm.loadPatterns(2);	// load pattern is a very time consuming work. So only do this if needed.
-						} catch (Exception e) {
-							 // load all integration patterns. Assume load patterns will not throw any exceptions.
-						}
-	                 }
-					if (FuncEvaluator.msCommMgr == null) {
-						FuncEvaluator.msCommMgr = new MFP4AndroidCommMan();
-					}
-					if (FuncEvaluator.msRtcMMediaManager == null) {
-						FuncEvaluator.msRtcMMediaManager = new AndroidRtcMMediaMan(ActivityAnMFPMain.this);
-					}
-	        		ScriptAnalyzer.msscriptInterrupter = new CmdLineScriptInterrupter();
-	        		AbstractExpr.msaexprInterrupter = new CmdLineAbstractExprInterrupter();
 		        	try	{
 		        		String[] statements = str2Run.trim().split("\\\n");
+		        		String strOutput;
 		        		if (statements.length == 1) {
-							processIndividualInput(str2Run.trim(), 1);    // only process single line.
-						} else {
-							processMultipleInputs(str2Run, statements); // run multiple lines
+		        			if (str2Run.matches("(?i)\\s*help\\s+.*") || str2Run.matches("(?i)\\s*help\\s*")) {	// this is help command
+		        				strOutput = quickhelp(str2Run);
+							} else {	// run single line
+								strOutput = MFPAndroidLib.processMFPStatement(str2Run.trim(), new LinkedList<Variable>(), mvarAns);
+							}
+						} else { // run multiple lines
+							strOutput = MFPAndroidLib.processMFPSession(statements, new LinkedList<Variable>(), mvarAns);
 						}
+						new CmdLineLogOutput().outputString(strOutput);
 		        	} catch(InterruptedException e)	{
 		    			Log.e("multithread", "Thread receive exception : " + e.toString());
 		        	}
@@ -502,96 +386,6 @@ public class ActivityAnMFPMain extends Activity {
 			return true;	// means thread started.
 		}
 		return false;	// means thread cannot be started.
-    }
-
-	public void processMultipleInputs(String strOriginalInput, String[] strlistInputSession) throws InterruptedException {
-		// first step: scan strlistInputSession to find out if it is a session or it is a lib.
-		String firstStatement = "", strReturn = "", strOutput = "";
-		try {
-			Boolean isInHelp = false;
-			for (int idx = 0; idx < strlistInputSession.length; idx ++) {
-				if (strlistInputSession[idx].matches("\\s*") || strlistInputSession[idx].matches("\\s*\\/\\/.*")) {
-					continue;   // if it is an empty line or a line starting with //
-				} else if (strlistInputSession[idx].matches("\\s*(?i)help(?-i)\\s+.*")) {
-					isInHelp = true;
-				} else if (strlistInputSession[idx].matches("\\s*(?i)endh(?-i)\\s+.*")) {
-					isInHelp = false;
-				} else if (!isInHelp) {
-					if (strlistInputSession[idx].matches("\\s*(?i)public(?-i)\\s+.*")
-							|| strlistInputSession[idx].matches("\\s*(?i)private(?-i)\\s+.*")) {
-						ErrorProcessor.ERRORTYPES e = ErrorProcessor.ERRORTYPES.ACCESS_KEYWORD_CANNOT_BE_HERE;   // public and private keywords can only be applied to function and variable
-						throw new JMFPCompErrException("", idx, idx, e);
-					} else if (strlistInputSession[idx].matches("\\s*(?i)citingspace(?-i)\\s+.*")) {
-						firstStatement = "citingspace";
-						break;
-					} else if (strlistInputSession[idx].matches("\\s*(?i)class(?-i)\\s+.*")) {
-						firstStatement = "class";
-						break;
-					} else if (strlistInputSession[idx].matches("\\s*(?i)function(?-i)\\s+.*")) {
-						firstStatement = "function";
-						break;
-					} else {
-						firstStatement = "";
-						break;
-					}
-				}
-			}
-			if (!firstStatement.equals("")) { // this is a not session.
-				MFPAdapter.loadLibCodeString(strlistInputSession, "", new String[] {"\u0000" + LangFileManager.STRING_COMMAND_INPUT_FILE_PATH});
-			} else {    // this is a session.
-				try {
-					FunctionEntry fe = MFPAdapter.loadSession(strlistInputSession);
-					fe.getStatementFunction().m_lCitingSpaces.addAll(MFPAdapter.getAllCitingSpaces(null));
-					for (Statement s : fe.getStatementLines()) {
-						s.analyze2(fe);     // analyse statement to use aexpr to replace string.
-					}
-					new CmdLineLogOutput().outputString("......" + getString(R.string.session_starts) + "......\n");
-					// Different from a function, an input session should not be able to read namespaces outside.
-					LinkedList<LinkedList<Variable>> lVarNameSpaces = new LinkedList<LinkedList<Variable>>();
-					lVarNameSpaces.add(mlCmdLineLocalVars);
-					ProgContext progContext = new ProgContext();
-					progContext.mstaticProgContext.setCallingFunc(fe.getStatementFunction());
-					progContext.mdynamicProgContext.mlVarNameSpaces = lVarNameSpaces;
-					ScriptAnalyzer.InFunctionCSManager inFuncCSMgr = new ScriptAnalyzer.InFunctionCSManager(progContext.mstaticProgContext);
-					ScriptAnalyzer sa = new ScriptAnalyzer();
-					sa.analyzeBlock(fe.getStatementLines(), fe.getStartStatementPos(), new LinkedList<Variable>(), inFuncCSMgr, progContext);
-				} catch (ScriptAnalyzer.FuncRetException e) {
-					String strarrayAnswer[] = new String[2];
-					if (e.m_datumReturn != null) {
-						try {
-							strarrayAnswer = MFPAdapter.outputDatum(e.m_datumReturn);
-							strReturn = strarrayAnswer[0];
-							strOutput = getString(R.string.session_returns) + " " + strarrayAnswer[1] + "\n";
-							mvarAns.setValue(e.m_datumReturn);  // assign answer to "ans" variable.
-						} catch (JFCALCExpErrException ex) {
-							strReturn = "Error";
-							strOutput = MFPAdapter.outputException(ex);
-						}
-					} else {
-						strReturn = "returns nothing";
-						strOutput = "";
-					}
-				} catch (ScriptAnalyzer.ScriptStatementException e) {
-					strReturn = "Error";
-					strOutput = MFPAdapter.outputException(e);
-				}
-			}
-		} catch (JMFPCompErrException e) {
-			strReturn = "Error";
-			strOutput = MFPAdapter.outputException(e);
-		} catch (Exception e) {
-			// unexcepted exception
-			strReturn = "Error";
-			strOutput = MFPAdapter.outputException(e);
-		}
-
-		strOutput += "\n";
-		new CmdLineLogOutput().outputString(strOutput);
-	}
-
-	public void processIndividualInput(String strInput, int nLine) throws InterruptedException	{
-		String strOutput = processCmd(strInput, nLine);
-		new CmdLineLogOutput().outputString(strOutput);
     }
 
 	public String quickhelp(String strExpression) {
@@ -737,63 +531,6 @@ public class ActivityAnMFPMain extends Activity {
 		return strOutput;
 	}
 
-    public String processCmd(String strCmd, int nLine) throws InterruptedException	{
-    	if (strCmd.trim().equals(""))	{
-    		// empty cmd
-    		return "";
-    	} else	{
-    		String strReturn, strOutput;
-	    	if (strCmd.trim().split("\\s+").length > 0
-	    			&& strCmd.trim().split("\\s+")[0].trim().equalsIgnoreCase("help"))	{
-	    		strReturn = "";
-	    		strOutput = quickhelp(strCmd);
-	    	} else	{
-                Statement sCmd = new Statement(strCmd, "", nLine);  // because it is in command line, line number is 1.
-                try {
-                    sCmd.analyze();
-                    if (sCmd.mstatementType.getType().equals("variable"))  {
-                        strReturn = "";
-                        strOutput = "";	// do not support variable.
-                    } else  {   // normal expression
-			    		// clear variable name spaces
-		                LinkedList<LinkedList<Variable>> lVarNameSpaces = new LinkedList<LinkedList<Variable>>();
-		                lVarNameSpaces.add(mlCmdLineLocalVars);
-                        ProgContext progContext = new ProgContext();
-						progContext.mstaticProgContext.setCitingSpacesExplicitly(MFPAdapter.getAllCitingSpaces(null));
-                        progContext.mdynamicProgContext.mlVarNameSpaces = lVarNameSpaces;
-                        ExprEvaluator exprEvaluator = new ExprEvaluator(progContext);
-			
-			    		/* evaluate the expression */
-			    		DCHelper.CurPos curpos = new DCHelper.CurPos();
-			    		curpos.m_nPos = 0;
-			    		DataClass datumAnswer = null;
-			    		String strarrayAnswer[] = new String[2];
-		    			datumAnswer = exprEvaluator.evaluateExpression(strCmd, curpos);
-		    			if (datumAnswer != null)	{
-		    				strarrayAnswer = MFPAdapter.outputDatum(datumAnswer);
-		    				strReturn = strarrayAnswer[0];
-                            mvarAns.setValue(datumAnswer);  // assign answer to "ans" variable.
-		    			} else	{
-		    				strReturn = "returns nothing";
-		    			}
-		    			/*strOutput = strCmd
-		    					+ ((datumAnswer == null)?(" " + getString(R.string.return_nothing_answer_shown)):("\n= " + strarrayAnswer[1]))
-		    					+ "\n";*/
-						strOutput = ((datumAnswer == null)?(""):(strCmd + "\n= " + strarrayAnswer[1]))
-								+ "\n";
-                    }
-                } catch(JMFPCompErrException e) {
-	    			strReturn = "Error";
-	    			strOutput = MFPAdapter.outputException(e);
-                } catch (JFCALCExpErrException e) {
-	    			strReturn = "Error";
-	    			strOutput = MFPAdapter.outputException(e);
-	    		}
-	    	}
-    		return strOutput + "\n";
-    	}
-    }
- 
 	private void outputString2Screen(String str)	{
 		// always output to the tail.
 		if (medtCmdLineEdtBox != null)	{
@@ -927,6 +664,9 @@ public class ActivityAnMFPMain extends Activity {
 				AssetManager am = getAssets();
 				// Now start to load functions
 				MFP4AndroidFileMan mfp4AnFileMan = new MFP4AndroidFileMan(am);
+				// if we repeatedly run this function, we have call the following statement to ensure
+				// MFP citingspace is clear. However, if we only code this function once, MFP citingspace
+				// is clear anyway so the following line can be removed.
 				MFPAdapter.clear(CitingSpaceDefinition.CheckMFPSLibMode.CHECK_USER_DEFINED_ONLY);
 				handler.post(new Runnable()	{
 					@Override
@@ -936,8 +676,19 @@ public class ActivityAnMFPMain extends Activity {
 						}
 					}
 				});
-				
-				MFP4AndroidFileMan.loadZippedUsrDefLib(MFP4AndroidFileMan.STRING_ASSET_USER_SCRIPT_LIB_ZIP, mfp4AnFileMan);	// load user defined lib.
+
+				if (mfp4AnFileMan.isMFPApp()) {
+					MFP4AndroidFileMan.loadZippedUsrDefLib(MFP4AndroidFileMan.STRING_ASSET_USER_SCRIPT_LIB_ZIP, mfp4AnFileMan);    // load user defined lib.
+				} else {
+					// use the following line if you put your MFP scripts in local storage
+					MFP4AndroidFileMan.reloadAllUsrLibs(ActivityAnMFPMain.this, -1, null);
+				}
+				// ok, now the libs are loaded.
+				IOLib.msstrWorkingDir = mfp4AnFileMan.getAppBaseFullPath();	// set the initial working directory.
+
+				// now initialize MFP interpreter environment
+				MFPAndroidLib.getInstance().initializeMFPInterpreterEnv(ActivityAnMFPMain.this, new CmdLineConsoleInput(), new CmdLineLogOutput());
+
 				handler.post(new Runnable()	{
 					@Override
 					public void run() {
@@ -952,9 +703,6 @@ public class ActivityAnMFPMain extends Activity {
 						startCalc(str2Run);
 					}
 				});
-				
-				// ok, now the libs are loaded.
-				IOLib.msstrWorkingDir = mfp4AnFileMan.getAppBaseFullPath();	// set the initial working directory.
 			}
 		});
 		threadInit.start();

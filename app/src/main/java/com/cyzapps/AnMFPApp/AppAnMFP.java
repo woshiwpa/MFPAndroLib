@@ -27,7 +27,8 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 	public static final String STRING_APP_FOLDER = "MFPAndroLibTester";
 	// support single line statment, multiple line session and quick help statment
 	public static final String STRING_COMMANDS_TO_RUN
-			= "\n\nplot_exprs(\"x**2+y**2+z**2==9\")\ngdi_test::game_test::super_bunny::run( )\n";//::gdi_test::game_test::chess::main()";
+	= "\n\nplot_exprs(\"x**2+y**2+z**2==9\")\ngdi_test::game_test::super_bunny::run( )\n";
+	//= "::gdi_test::game_test::chess::main()";
 
     private static Context mContext;
 
@@ -43,17 +44,18 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 		// assets and false means your MFP scripts and resources are saved in your Android
 		// device's local storage.
 		// The following code saves MFP scripts and resources in assets of app. However, if
-		// developer wants to run scripts from local storage, uncomment the following line.
+		// developer wants to run scripts from local storage, uncomment the following line and
+		// pass false to the third parameter of mfpLib.initialize function.
 		// MFP4AndroidFileMan.msstrAppFolder = STRING_APP_FOLDER;
 		mfpLib.initialize(mContext, "", true);	// we don't have any settings to load. So stick to default values
 
-		// load predefined libs when app starts
 		MFP4AndroidFileMan mfp4AnFileMan = new MFP4AndroidFileMan(getAssets());
 		// platform hardware manager has to be early initialized as it is needed to
 		// analyze anotations in the code at loading stage.
 		// other managers are loaded later at the first command.
 		FuncEvaluator.msPlatformHWMgr = new PlatformHWManager(mfp4AnFileMan);
 		MFPAdapter.clear(CitingSpaceDefinition.CheckMFPSLibMode.CHECK_EVERYTHING);
+		// load predefined libs when app starts
 		mfp4AnFileMan.loadPredefLibs();
     }
 
