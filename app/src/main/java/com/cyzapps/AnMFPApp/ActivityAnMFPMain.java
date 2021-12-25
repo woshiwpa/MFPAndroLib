@@ -362,6 +362,7 @@ public class ActivityAnMFPMain extends Activity {
 						} else { // run multiple lines
 							strOutput = MFPAndroidLib.processMFPSession(statements, new LinkedList<Variable>(), mvarAns);
 						}
+						// don't add this line if developer doesn't want to show the final output in app
 						new CmdLineLogOutput().outputString(strOutput);
 		        	} catch(InterruptedException e)	{
 		    			Log.e("multithread", "Thread receive exception : " + e.toString());
@@ -664,10 +665,10 @@ public class ActivityAnMFPMain extends Activity {
 				AssetManager am = getAssets();
 				// Now start to load functions
 				MFP4AndroidFileMan mfp4AnFileMan = new MFP4AndroidFileMan(am);
-				// if we repeatedly run this function, we have call the following statement to ensure
-				// MFP citingspace is clear. However, if we only code this function once, MFP citingspace
+				// if we repeatedly run this function, we have to call the following statement to ensure
+				// MFP citingspace is clear. However, if we only run this function once, MFP citingspace
 				// is clear anyway so the following line can be removed.
-				MFPAdapter.clear(CitingSpaceDefinition.CheckMFPSLibMode.CHECK_USER_DEFINED_ONLY);
+				// MFPAdapter.clear(CitingSpaceDefinition.CheckMFPSLibMode.CHECK_USER_DEFINED_ONLY);
 				handler.post(new Runnable()	{
 					@Override
 					public void run() {
@@ -684,7 +685,9 @@ public class ActivityAnMFPMain extends Activity {
 					MFP4AndroidFileMan.reloadAllUsrLibs(ActivityAnMFPMain.this, -1, null);
 				}
 				// ok, now the libs are loaded.
-				IOLib.msstrWorkingDir = mfp4AnFileMan.getAppBaseFullPath();	// set the initial working directory.
+				// set the initial working directory in local storage. Not essential.
+				// If not called, initial working directory will be app's default storage directory
+				IOLib.msstrWorkingDir = mfp4AnFileMan.getAppBaseFullPath();
 
 				// now initialize MFP interpreter environment
 				MFPAndroidLib.getInstance().initializeMFPInterpreterEnv(ActivityAnMFPMain.this, new CmdLineConsoleInput(), new CmdLineLogOutput());

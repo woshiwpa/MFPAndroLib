@@ -1,0 +1,184 @@
+<html>
+	<head>
+		<title>可编程科学计算器帮助</title>
+	</head>
+	<body style="background-color:white;">
+		<h2 style="color:blue">可编程科学计算器帮助：如何在你自己的应用中使用MFP安卓库</h2>
+		
+		<p style="font-family:verdana;color:black;">
+			众所周知，可编程科学计算器是基于MFP编程语言的强大工具。MFP语言是一种面向对象的脚本语言，它提供了丰富的函数，可以用于二维游戏开发，复数计算，矩阵计算，高价积分，二维三维和极坐标图像绘制，字符串，文件操作，JSON数据读写以及基于TCP和WebRTC协议的通信编程。基于Apache 2.0许可，MFP现在已经开放源代码。所以任何个人或公司均可以利用这种编程语言。显然，如果能够将这种编程语言整合进自己的应用，开发人员可以节省大量的时间和资源。
+		</p>
+		
+		<p style="font-family:verdana;color:black;">
+			MFP安卓库代码可以在<a href="https://github.com/woshiwpa/MFPAndroLib" target="_self">https://github.com/woshiwpa/MFPAndroLib</a>下载。并且，从2.1.1版开始，可编程科学计算器开始提供二进制MFP安卓库文件。每次用户升级到新版后，可编程科学计算器会自动将最新版的MFP安卓库拷贝到安卓设备内存的Android/data/com.cyzapps.AnMath/files/AnMath目录中。用户也可以在启动可编程科学计算器后点击“在电脑上运行”图标，手动拷贝MFP安卓库文件。
+		</p>
+		
+		<p style="font-family:verdana;color:black;">
+			将MFP库嵌入到Android项目中需要两个aar二进制文件。一个是MFPAnLib-release.aar。另一个是google-webrtc-x.x.xxxxx.aar。请将它们从安卓设备内存的AnMath文件夹复制到目标Android项目中。开发人员可以将它们放置在任何地方，只要gradle可以找到它们就没有问题。假设它们保存在名为app的模块的libs文件夹中。在这种情况下，开发人员需要在应用模块的build.gradle文件中添加以下两行：
+		</p>
+		
+		<pre style="font-family:verdana;color:blue;">
+implementation files('libs/google-webrtc-1.0.19742.aar')  <i style="font-family:verdana;color:green;">// google-webrtc aar在未来可能会发生变化</i>
+implementation files('libs/MFPAnLib-release.aar')
+		</pre>
+		
+		<p style="font-family:verdana;color:black;">
+			除了两个二进制文件之外，MFP还有一些预定义的脚本程序。这些脚本程序为开发人员提供了许多有用的功能。在可编程科学计算器中，预定义的脚本被压缩在安卓设备内存的Android/data/com.cyzapps.AnMath/files/AnMath文件夹内的assets.7z文件中。在assets.7z内有一个名为predef_lib的文件夹。开发者应将整个predef_lib文件夹复制到开发者自己的项目的assets文件夹中。
+		</p>		
+		
+		<p style="font-family:verdana;color:black;">
+			开发者的应用的Application的实现的onCreate函数应该包括以下代码：
+		</p>
+		
+		<pre style="font-family:verdana;color:blue;">
+public class YourAppImplementationClass extends androidx.multidex.MultiDexApplication {
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		... ...
+
+		MFPAndroidLib mfpLib = MFPAndroidLib.getInstance();
+		<i style="font-family:verdana;color:green;">
+		// initialize函数有三个参数。第一个参数是一个Application Context；第二个参数是你的App
+		// 的共享的设置（shared preference）的名字，最后一个是一个布尔值，true表示你的MFP代码和
+		// 资源文件均保存至你的应用的assets中，false表示你的MFP代码和资源文件保存在安卓设备
+		// 本地内存中。
+		// 以下代码适用于将MFP代码和资源文件保存在应用的assets中的情况。如果你想把MFP代码和资
+		// 源文件保存在安卓设备的本地存储中，请放回下面一行已经注释掉的代码并传送false给
+		// initialize函数的第三个参数。
+		// MFP4AndroidFileMan.msstrAppFolder = "My_App_MFP_Folder";
+		</i>
+		mfpLib.initialize(this, "Your_App_Settings", true);	
+
+		MFP4AndroidFileMan mfp4AnFileMan = new MFP4AndroidFileMan(getAssets());
+		<i style="font-family:verdana;color:green;">
+		// 平台的硬件管理器必须最先被初始化。这是因为它需要在装载代码时用于分析代码中的标注。
+		// 其它的解释器运行环境管理器可以在运行程序之前再初始化。</i>
+		FuncEvaluator.msPlatformHWMgr = new PlatformHWManager(mfp4AnFileMan);
+		MFPAdapter.clear(CitingSpaceDefinition.CheckMFPSLibMode.CHECK_EVERYTHING);
+		<i style="font-family:verdana;color:green;">
+		// 在启动时先装载预定义的MFP脚本</i>
+		mfp4AnFileMan.loadPredefLibs();
+    }
+	... ...
+		</pre>
+		
+		<p style="font-family:verdana;color:black;">
+			如上所述，有两种方法可以保存用户定义的MFP脚本和相关资源文件。一个是保存在模块的assets中。在这种情况下，开发人员必须在模块的assets中创建一个名为userdef_lib.zip的压缩文件。此压缩包内有一个名为scripts的文件夹。所有用户定义的MFP脚本都在其中。
+		</p>
+		
+		<p style="font-family:verdana;color:black;">
+			当开发人员编写MFP脚本时可能需要装载一些资源，比如图像或者声音。在这种情况下开发人员需要创建另外一个名为resource.zip的压缩包。该压缩包也放在assets中，资源文件保存至该压缩包内。
+		</p>
+		
+		<p style="font-family:verdana;color:black;">
+			以下代码展示了正确调用资源文件的完整方法。
+		</p>
+		
+		<pre style="font-family:verdana;color:blue;">
+@build_asset copy_to_resource(iff(is_sandbox_session(), get_sandbox_session_resource_path() + "sounds/drop2death.wav", _
+								is_mfp_app(), [1, get_asset_file_path("resource"), "sounds/drop2death.wav"], _
+								get_upper_level_path(get_src_file_path()) + "drop2death.wav"), "sounds/drop2death.wav")
+if is_sandbox_session()
+	play_sound(get_sandbox_session_resource_path() + "sounds/drop2death.wav", false)
+elseif is_mfp_app()
+	play_sound_from_zip(get_asset_file_path("resource"), "sounds/drop2death.wav", 1, false)
+else
+	play_sound(get_upper_level_path(get_src_file_path()) + "drop2death.wav", false)
+endif
+		</pre>
+		
+		<p style="font-family:verdana;color:black;">
+			上述代码的意思是，if ... elseif ... else ... endif程序块告诉MFP当前脚本需要装载一个叫做drop2death.wav的声音文件。如果当前代码是在一个沙盒中运行，该wav文件被保存至沙盒会话的sounds文件夹中。注意这里的沙盒是MFP并行计算的术语，意思是从远端的MFP实例发送到本地运行的call程序块。如果当前代码在MFP应用中运行（这也是当前示例的情况），则wav文件将保存在应用assets.zip文件的sounds文件夹中。请注意，函数play_sound_from_zip的第三个参数是1，这意味着函数get_asset_file_path返回安卓应用的assets路径。如果当前代码在本地设备内存中运行，例如SD卡或PC的硬盘，则wav文件将与脚本放在同一文件夹中。
+		</p>
+		
+		<p style="font-family:verdana;color:black;">
+			if程序块上方的@build_asset标注则是告诉MFP，如果需要编译MFP应用，或者在远端沙盒中运行一个call程序块，资源文件应该被拷贝保存至目标侧的哪个位置。MFP安卓库不包括将MFP脚本编译成MFP应用的功能，但如果开发人员需要远程运行一些代码，上述标注还是必不可少的。
+		</p>
+		
+		<p style="font-family:verdana;color:black;">
+			当然，如果完全没必要向远端发送代码，则用一行语句取代上述标注和if程序块就足够了：
+		</p>
+		
+		<pre style="font-family:verdana;color:blue;">
+play_sound_from_zip(get_asset_file_path("resource"), "sounds/drop2death.wav", 1, false)
+		</pre>
+		
+		<p style="font-family:verdana;color:black;">
+			如果开发人员将所有自己定义的MFP脚本放在安卓设备的本地内存而不是assets中，则需要告知MFP文件夹的位置。MFP文件夹位于Android/data/your.app.package.id/files/目录中。脚本应放置在MFP文件夹的scripts子文件夹中。此外，如果没有必要将代码发送到远端执行，则只需一行MFP语句即可加载资源。对于上面的示例，代码行应为
+		</p>
+		
+		<pre style="font-family:verdana;color:blue;">
+play_sound(get_upper_level_path(get_src_file_path()) + "drop2death.wav", false)
+		</pre>
+		
+		<p style="font-family:verdana;color:black;">
+			如以下截屏所示，在MFP安卓库的github代码项目中，示例应用的assets文件夹包含以下项：predef_lib、resource.zip、userdef_lib.zip、InternalFuncInfo.txt和MFPKeyWordsInfo.txt。如上所述，如果开发人员决定将自定义的脚本放在安卓设备本地存储中，则不需要resource.zip和userdef_lib.zip。此外，InternalFuncInfo.txt和MFPKeyWordsInfo.txt包含MFP预定义函数和关键字的帮助信息。开发人员通常无需用到它们。
+		</p>
+		
+		<p style="font-family:verdana;color:black;"><img src="structure_of_assets.jpg"  alt="structure_of_assets" /></p>
+		
+		<p style="font-family:verdana;color:black;">
+			将所有二进制文件、MFP脚本和资源复制到正确的位置后，开发人员需要加载自定义的MFP脚本。如果脚本保存在应用程序assets中，请调用MFP4AndroidFileMan.loadZippedUsrDefLib函数来加载脚本。否则，应该调用MFP4AndroidFileMan.reloadAllUsrLibs来完成这项工作：
+		</p>
+
+		<pre style="font-family:verdana;color:blue;">
+<i style="font-family:verdana;color:green;">// 现在开始装载函数</i>
+MFP4AndroidFileMan mfp4AnFileMan = new MFP4AndroidFileMan(am);
+<i style="font-family:verdana;color:green;">
+// 如果需要重复运行这个函数，我们必须调用clear函数以保持MFP引用空间（citingspace）的洁净。
+// 但是，如果我们只运行本函数一次，MFP引用空间肯定是处于洁净的初始状态，所以，下面一行代码
+// 无需被调用。
+// MFPAdapter.clear(CitingSpaceDefinition.CheckMFPSLibMode.CHECK_USER_DEFINED_ONLY);</i>
+
+<i style="font-family:verdana;color:green;">// 调用用户自定义的函数。</i>
+if (mfp4AnFileMan.isMFPApp()) {
+	MFP4AndroidFileMan.loadZippedUsrDefLib(MFP4AndroidFileMan.STRING_ASSET_USER_SCRIPT_LIB_ZIP, mfp4AnFileMan);
+} else {
+	<i style="font-family:verdana;color:green;">// 如果你的MFP脚本保存在安卓设备的本地内存中，则使用以下代码载入自定义的函数。</i>
+	MFP4AndroidFileMan.reloadAllUsrLibs(ActivityAnMFPMain.this, -1, null);
+}
+		</pre>
+		
+		<p style="font-family:verdana;color:black;">
+			在运行MFP代码前的最后一步是初始化MFP解释器的运行环境。注意这一步不能够和MFP库的initialize函数合并，这是因为MFP库的initialize函数需要的是应用（Application）的Context而这里需要的是活动（Activity）的Context。
+		</p>
+		
+		<pre style="font-family:verdana;color:blue;">
+<i style="font-family:verdana;color:green;">
+// 现在初始化MFP解释器的运行环境</i>
+MFPAndroidLib.getInstance().initializeMFPInterpreterEnv(ActivityAnMFPMain.this, new CmdLineConsoleInput(), new CmdLineLogOutput());
+		</pre>
+		
+		<p style="font-family:verdana;color:black;">
+			请注意，除了Activity的Context之外，开发人员还需要将CmdLineConsoleInput和CmdLineLogOutput传递到initializeMFPInterpreterEnv函数中。CmdLineConsoleInput和CmdLineLogOutput分别派生自MFP安卓库的抽象类ConsoleInputStream和LogOutputStream，它们告诉MFP如何从应用程序中读取MFP的input和scanf函数的输入，以及如何在应用程序中显示MFP的打印输出字符串。因此，两个类如何实现实完全取决于开发人员。例如，开发人员可能希望丢弃所有输出，则可以实现一个不做任何事的outputString函数。如果自定义的MFP脚本从未调用过任何MFP的输入函数，开发人员甚至可以只是在CmdLineConsoleInput的inputString函数中引发异常，尽管这是一种强烈不推荐的编程方式。github中的MFP安卓库源代码项目已经为这两个类提供了实现示例。
+		</p>
+
+		<p style="font-family:verdana;color:black;">
+			现在万事俱备，开发人员可以定义要运行的MFP语句了。所有的MFP语句都保存至JAVA字符串中，用断行字符（'\n'）分隔彼此。比如，"\n\nplot_exprs(\"x**2+y**2+z**2==9\")\ngdi_test::game_test::super_bunny::run( )\n"就包含两行MFP语句。第一行调用plot_exprs函数，第二行运行一个超级小白兔的游戏。
+		</p>
+		
+		<p style="font-family:verdana;color:black;">
+			取决于语句数目，开发人员需要调用MFPAndroidLib.processMFPStatement或者MFPAndroidLib.processMFPSession来解释MFP代码。这两个函数的的返回值均为一个字符串。如果单行MFP代码不返回任何值，或者多行MFP会话没有调用return语句返回某个值，并且程序运行时也没有异常抛出，这两个函数的返回值为空字符串。否则，这两个函数的返回字符串为MFP的返回值或者抛出的异常的栈信息。varAns是用于存放原始返回值的变量。如果MFP代码不返回任何值，varAns则保持其原始值，也就是MFP null，不变。varAns对于开发人员来说非常重要，因为它保存了MFP返回值的原始类型信息。
+		</p>
+
+		<pre style="font-family:verdana;color:blue;">		
+String[] statements = str2Run.trim().split("\\\n");
+String strOutput;
+Variable varAns = new Variable("ans", new DataClassNull());	<i style="font-family:verdana;color:green;">// 这个变量保存了返回值</i>
+if (statements.length == 1) {	<i style="font-family:verdana;color:green;">// 运行单行MFP语句</i>
+	strOutput = MFPAndroidLib.processMFPStatement(str2Run.trim(), new LinkedList<Variable>(), varAns);
+} else { <i style="font-family:verdana;color:green;">// 运行多行MFP语句</i>
+	strOutput = MFPAndroidLib.processMFPSession(statements, new LinkedList<Variable>(), varAns);
+}
+<i style="font-family:verdana;color:green;">// 如果开发人员不想在应用中显示MFP返回的字符串，则下面一行代码是多余的</i>
+new CmdLineLogOutput().outputString(strOutput);
+		</pre>
+		
+		<p style="font-family:verdana;color:black;">
+			要了解上述代码的实现详细信息，请转到github，下载MFP安卓库项目并亲自动手实践吧。
+		</p>
+
+	</body>
+</html>

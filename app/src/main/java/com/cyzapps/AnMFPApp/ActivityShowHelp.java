@@ -20,7 +20,7 @@ public class ActivityShowHelp extends Activity {
 		setTitle(getString(R.string.help));
 		setContentView(R.layout.help_info);
 
-        String strHelpFileStart = "index";
+        String strHelpFileStart = "use_mfp_android_lib";
         
         WebView webviewHelp = (WebView)findViewById(R.id.webview_help);
         webviewHelp.setVerticalScrollBarEnabled(true);

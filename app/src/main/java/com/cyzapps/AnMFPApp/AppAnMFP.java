@@ -27,7 +27,16 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 	public static final String STRING_APP_FOLDER = "MFPAndroLibTester";
 	// support single line statment, multiple line session and quick help statment
 	public static final String STRING_COMMANDS_TO_RUN
-	= "\n\nplot_exprs(\"x**2+y**2+z**2==9\")\ngdi_test::game_test::super_bunny::run( )\n";
+			//= "\n\nplot_exprs(\"x**2+y**2+z**2==9\")\ngdi_test::game_test::super_bunny::run( )\n";
+			= "Plot_3d_surfaces(\"3dBox\", \"3D Box\", \"x\", \"y\", \"z\", "
+			+ "\"\",false,\"red\",\"red\",null,\"red\",\"red\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"u\",\"v\",\"1\", "
+			+ "\"\",false,\"green\",\"green\",null,\"green\",\"green\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"u\",\"1\",\"v\", "
+			+ "\"\",false,\"blue\",\"blue\",null,\"blue\",\"blue\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"1\",\"u\",\"v\", "
+			+ "\"\",false,\"yellow\",\"yellow\",null,\"yellow\",\"yellow\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"u\",\"v\",\"-1\", "
+			+ "\"\",false,\"cyan\",\"cyan\",null,\"cyan\",\"cyan\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"u\",\"-1\",\"v\", "
+			+ "\"\",false,\"magenta\",\"magenta\",null,\"magenta\",\"magenta\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"-1\",\"u\",\"v\")\n"
+			+ "gdi_test::game_test::super_bunny::run( )\n";
+
 	//= "::gdi_test::game_test::chess::main()";
 
     private static Context mContext;
@@ -38,14 +47,15 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
         mContext = this;
 
 		MFPAndroidLib mfpLib = MFPAndroidLib.getInstance();
+
 		// initialize function has three parameters. The first one is application's context,
 		// the second one is your app's shared preference name, and the last one is a boolean
 		// value, with true means your MFP scripts and resources are saved in your app's
 		// assets and false means your MFP scripts and resources are saved in your Android
 		// device's local storage.
-		// The following code saves MFP scripts and resources in assets of app. However, if
-		// developer wants to run scripts from local storage, uncomment the following line and
-		// pass false to the third parameter of mfpLib.initialize function.
+		// The following code is for the situation to save MFP scripts and resources in assets
+		// of app. However, if developer wants to run scripts from local storage, uncomment
+		// the following line and pass false to the third parameter of mfpLib.initialize function.
 		// MFP4AndroidFileMan.msstrAppFolder = STRING_APP_FOLDER;
 		mfpLib.initialize(mContext, "", true);	// we don't have any settings to load. So stick to default values
 
