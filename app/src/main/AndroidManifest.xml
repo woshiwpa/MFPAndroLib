@@ -66,21 +66,6 @@
         <activity android:name="com.cyzapps.GraphDaemon.ActivityConfig3DExprGraph"
             android:theme="@android:style/Theme.Dialog"
             android:configChanges="orientation|keyboardHidden|screenSize"></activity>
-
-        <receiver
-            android:name="com.cyzapps.adapter.StorageActionReceiver"
-            android:enabled="true"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MEDIA_MOUNTED" />
-                <action android:name="android.intent.action.MEDIA_UNMOUNTED" />
-                <action android:name="android.intent.action.MEDIA_EJECT" />
-                <action android:name="android.intent.action.MEDIA_BAD_REMOVAL" />
-                <action android:name="android.intent.action.MEDIA_CHECKING" />
-
-                <data android:scheme="file" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>
