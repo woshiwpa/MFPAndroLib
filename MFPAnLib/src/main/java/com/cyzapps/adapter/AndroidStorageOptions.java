@@ -110,37 +110,6 @@ public class AndroidStorageOptions {
         setProperties();
     }
 
-    /**
-     * Android's external storage accessing APIs are scarce, confusing and always changing, Seems that in API 19-20,
-     * except root right apps, removable storage is always non-writable. Therefore, disable support for removable storage.
-     */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private static void getMountsFilesAndroid44() {
-        // from Android 4.4, we use the new API to get SD card folders
-        mMounts.clear();
-        mLabels.clear();
-        mMounts.add(new Pair<String, String>(getDefaultStorageMountPoint(), getDefaultStoragePath()));
-        String rawSecondaryStoragesStr = System.getenv("SECONDARY_STORAGE");
-        List<String> results = new ArrayList<String>();
-        File[] externalDirs = MFPAndroidLib.getContext().getExternalFilesDirs(null);
-        for (File file : externalDirs) {
-            String path = file.getAbsolutePath().split("/Android")[0];
-            if((Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && Environment.isExternalStorageRemovable(file))
-                    || (rawSecondaryStoragesStr != null && rawSecondaryStoragesStr.contains(path))){
-                boolean included = false;
-                for (Pair<String, String> p : mMounts) {
-                    if (p.first.equals(path)) {
-                        included = true;
-                        break;
-                    }
-                }
-                if (!included) {
-                    mMounts.add(new Pair<String, String>(path, file.getAbsolutePath()));
-                }
-            }
-        }
-    }
-
     private static void testAndCleanMountsList() {
         /*
          * Now that we have a cleaned list of mount paths Test each one to make
@@ -167,22 +136,12 @@ public class AndroidStorageOptions {
 
         int j = 0;
         if (mMounts.size() > 0) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD)
-                mLabels.add(MFPAndroidLib.getContext().getString(R.string.auto));
-            else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                if (Environment.isExternalStorageRemovable()) {
-                    mLabels.add(MFPAndroidLib.getContext().getString(R.string.external_sd_card) + " 1");
-                    j = 1;
-                } else
-                    mLabels.add(MFPAndroidLib.getContext().getString(R.string.internal_storage));
-            } else {
-                if (mMounts.get(0).first.equals(getDefaultStorageMountPoint())  // this is required because default storage may not have write permission and is removed.
+            if (mMounts.get(0).first.equals(getDefaultStorageMountPoint())  // this is required because default storage may not have write permission and is removed.
                         && (!Environment.isExternalStorageRemovable() || Environment.isExternalStorageEmulated()))
-                    mLabels.add(MFPAndroidLib.getContext().getString(R.string.internal_storage));
-                else {
-                    mLabels.add(MFPAndroidLib.getContext().getString(R.string.external_sd_card) + " 1");
-                    j = 1;
-                }
+                mLabels.add(MFPAndroidLib.getContext().getString(R.string.internal_storage));
+            else {
+                mLabels.add(MFPAndroidLib.getContext().getString(R.string.external_sd_card) + " 1");
+                j = 1;
             }
 
             if (mMounts.size() > 1) {
@@ -285,6 +244,10 @@ public class AndroidStorageOptions {
                 }
             }
         }
-        mMounts.addAll(results);
+        // from SDK 24, Android doesn't support access removable storage via FileProvider
+        // to make life easy, I always store things in internal storage
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            mMounts.addAll(results);
+        }
     }
 }
