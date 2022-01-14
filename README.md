@@ -18,4 +18,4 @@ Detailed instruction to use MFP Android lib in your app is available at https://
 
 MFP can also run in PC with JAVA installed. The corresponding git repo is MFPLang4JVM at https://github.com/woshiwpa/MFPLang4JVM .
 
-MFP's on-line language manual is located at https://woshiwpa.github.io/ .
+MFP's on-line language manual is located at https://woshiwpa.github.io/MFPLang/en/MFPIndex.html .
