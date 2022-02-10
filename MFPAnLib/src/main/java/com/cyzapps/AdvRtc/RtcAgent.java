@@ -8,9 +8,16 @@ import com.cyzapps.mfpanlib.MFPAndroidLib;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.webrtc.DataChannel;
+import org.webrtc.DefaultVideoDecoderFactory;
+import org.webrtc.DefaultVideoEncoderFactory;
+import org.webrtc.EglBase;
 import org.webrtc.MediaConstraints;
 import org.webrtc.PeerConnection;
 import org.webrtc.PeerConnectionFactory;
+import org.webrtc.SoftwareVideoDecoderFactory;
+import org.webrtc.SoftwareVideoEncoderFactory;
+import org.webrtc.VideoDecoderFactory;
+import org.webrtc.VideoEncoderFactory;
 
 import java.nio.ByteBuffer;
 import java.util.HashMap;
@@ -30,7 +37,8 @@ public abstract class RtcAgent {
     public int mAgentId;
     public final static int MAX_PEER = 4;
     public final static int MAX_PACKET_SIZE = 16000;
-    public static PeerConnectionFactory factory = null;
+    public static PeerConnectionFactory factoryDC = null; // this is for data channel
+    public static PeerConnectionFactory factoryMMedia = null;   // this is for multimedia
 
     // peers manager will be visited by two functions.
     // 1 is EmailSignalChannelAgent.IncomingHandler thread
@@ -186,17 +194,30 @@ public abstract class RtcAgent {
     }
 
     // initialize webrtc factory
-    public static void initWebRtcFactory() {
-        if (null == factory) {
-
-            // if call factory.dispose() here, whether called by Rtc thread or UI thread,
-            // it crashes at AudioTrack thread. And no matter how to organize the RtcAppClient,
-            // it always crashes here. So I have to comment it.
-            Log.d(TAG, "RtcAgent.setRtcListener : before initializeAndroidGlobals");
-            PeerConnectionFactory.initializeAndroidGlobals(MFPAndroidLib.getContext(), true);
-            Log.d(TAG, "RtcAgent.setRtcListener : before factory = new PeerConnectionFactory()");
-            factory = new PeerConnectionFactory(new PeerConnectionFactory.Options());
+    public static PeerConnectionFactory initWebRtcFactory(EglBase.Context eglBaseContext) {
+        // if call factory.dispose() here, whether called by Rtc thread or UI thread,
+        // it crashes at AudioTrack thread. And no matter how to organize the RtcAppClient,
+        // it always crashes here. So I have to comment it.
+        Log.d(TAG, "RtcAgent.setRtcListener : before initializeAndroidGlobals");
+        // this function no longer exists, replaced by
+        // PeerConnectionFactory.initializeAndroidGlobals(MFPAndroidLib.getContext(), true);
+        PeerConnectionFactory.initialize(PeerConnectionFactory.InitializationOptions.builder(MFPAndroidLib.getContext())
+                .setFieldTrials("WebRTC-IntelVP8/Enabled/")
+                .setEnableInternalTracer(true)
+                .createInitializationOptions());
+        Log.d(TAG, "RtcAgent.setRtcListener : before factory = new PeerConnectionFactory()");
+        VideoEncoderFactory encoderFactory = new SoftwareVideoEncoderFactory();
+        VideoDecoderFactory decoderFactory = new SoftwareVideoDecoderFactory();
+        if (eglBaseContext != null) {
+            encoderFactory = new DefaultVideoEncoderFactory(eglBaseContext, true, true);
+            decoderFactory = new DefaultVideoDecoderFactory(eglBaseContext);
         }
+        PeerConnectionFactory factory = PeerConnectionFactory.builder()
+                                        .setOptions(new PeerConnectionFactory.Options())
+                                        .setVideoEncoderFactory(encoderFactory)
+                                        .setVideoDecoderFactory(decoderFactory)
+                                        .createPeerConnectionFactory();
+        return factory;
     }
 
     public boolean isDataRtcAgentServer() {

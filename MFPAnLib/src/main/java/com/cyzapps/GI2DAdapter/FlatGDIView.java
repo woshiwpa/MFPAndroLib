@@ -25,7 +25,6 @@ import org.webrtc.EglBase;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.VideoFrame;
-import org.webrtc.VideoRenderer;
 import org.webrtc.VideoSink;
 
 import java.text.SimpleDateFormat;
@@ -342,6 +341,7 @@ public class FlatGDIView extends RelativeLayout {
 
     /** webRTC video renders */
     private final EglBase rootEglBase = EglBase.create();
+    public EglBase getEglBase(){ return rootEglBase; }
 
     private GestureDetector gestureDetector;
     private class SingleTapConfirm extends GestureDetector.SimpleOnGestureListener {
@@ -351,52 +351,25 @@ public class FlatGDIView extends RelativeLayout {
         }
     }
 
-    public class ProxyRenderer<T extends VideoRenderer.Callbacks & VideoSink>
-            implements VideoRenderer.Callbacks, VideoSink {
-        private T target;
-        public AtomicReference<VideoRenderer> videoRendererRef = new AtomicReference<VideoRenderer>();
-
-        @Override
-        synchronized public void renderFrame(VideoRenderer.I420Frame frame) {
-            if (target == null) {
-                Log.d("RTCVideo", "ProxyRenderer.renderFrame : Dropping frame in proxy because target is null.");
-                VideoRenderer.renderFrameDone(frame);
-                return;
-            }
-
-            target.renderFrame(frame);
-        }
-
+    public static class ProxyVideoSink implements VideoSink {
+        private VideoSink mTarget;
         @Override
         synchronized public void onFrame(VideoFrame frame) {
-            if (target == null) {
-                Log.d("RTCVideo", "ProxyRenderer.onFrame : Dropping frame in proxy because target is null.");
+            if (mTarget == null) {
+                Log.d("RTCVideo", "Dropping frame in proxy because target is null.");
                 return;
             }
-
-            target.onFrame(frame);
+            mTarget.onFrame(frame);
         }
-
-        synchronized public void setTarget(T target) {
-            this.target = target;
-        }
-
-        synchronized public int getTargetHashCode() {
-            if (this.target == null) {
-                return 0;
-            }
-            return this.target.hashCode();
-        }
-
-        synchronized public T getTarget() {
-            return target;
+        synchronized void setTarget(VideoSink target) {
+            this.mTarget = target;
         }
     }
 
     public class VideoRendererPair {
-        private ProxyRenderer proxyRenderer;
+        private ProxyVideoSink proxyRenderer;
         private SurfaceViewRenderer surfaceViewRenderer;
-        public VideoRendererPair(ProxyRenderer proxy, SurfaceViewRenderer renderer)    {
+        public VideoRendererPair(ProxyVideoSink proxy, SurfaceViewRenderer renderer)    {
             // assume proxy is not null. renderer can be null.
             proxyRenderer = proxy;
             surfaceViewRenderer = renderer;
@@ -408,7 +381,7 @@ public class FlatGDIView extends RelativeLayout {
             proxyRenderer.setTarget(surfaceViewRenderer);
         }
 
-        public ProxyRenderer getProxyRenderer() { return proxyRenderer; }
+        public ProxyVideoSink getProxyRenderer() { return proxyRenderer; }
         public SurfaceViewRenderer getSurfaceViewRenderer() { return surfaceViewRenderer; }
     }
 
@@ -484,7 +457,7 @@ public class FlatGDIView extends RelativeLayout {
                 rtcRenderer.setZOrderMediaOverlay(true);
                 rtcRenderer.setEnableHardwareScaler(true /* enabled */);
                 // add the rtc renderer into renderer list and return its position.
-                ProxyRenderer proxyRenderer = new ProxyRenderer();
+                ProxyVideoSink proxyRenderer = new ProxyVideoSink();
                 VideoRendererPair videoRendererPair = new VideoRendererPair(proxyRenderer, rtcRenderer);
                 videoRendererPairs.add(videoRendererPair);
                 return videoRendererPairs.size() - 1;

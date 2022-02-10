@@ -23,6 +23,7 @@ import org.webrtc.MediaConstraints;
 import org.webrtc.PeerConnection;
 import org.webrtc.SdpObserver;
 import org.webrtc.SessionDescription;
+import org.webrtc.VideoSink;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -71,7 +72,7 @@ public class AndroidRtcMMediaMan extends RtcMMediaManager {
             return result;
         }
     }
-    public Map<StreamTrackId, FlatGDIView.ProxyRenderer> mapStream2ProxyRenderer = new ConcurrentHashMap<StreamTrackId, FlatGDIView.ProxyRenderer>();
+    public Map<StreamTrackId, FlatGDIView.ProxyVideoSink> mapStream2ProxyRenderer = new ConcurrentHashMap<StreamTrackId, FlatGDIView.ProxyVideoSink>();
 
     public LinkedList<PeerConnection.IceServer> iceServers = new LinkedList<>();
 
@@ -120,7 +121,11 @@ public class AndroidRtcMMediaMan extends RtcMMediaManager {
                     },
                     MY_PERMISSIONS_REQUEST);
         }
-        RtcAgent.initWebRtcFactory();   // dont forget to initialize factory (and it can be called multiple times)
+        // do not initial WebRTC factory here because for multimedia webRTC application, we need EglBaseContext as
+        // a parameter to initialize factory. RtcAgent.initWebRtcFactory(eglBaseContext); will be called in the FlatGDI's
+        // startLocalStream function. This means before createOffer and createAnswer, we need to call initialize_local_video
+        // first
+        //RtcAgent.initWebRtcFactory();   // dont forget to initialize factory (and it can be called multiple times)
         return true;
     }
 

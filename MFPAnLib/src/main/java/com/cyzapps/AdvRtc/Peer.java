@@ -43,7 +43,7 @@ public class Peer implements SdpObserver, PeerConnection.Observer {
     public Peer(RtcAgent agent, String id, int sessionId) {
         Log.d(TAG, "Peer (" + hashCode() + ") constructor : Agent " + agent.mAgentId + " new Peer: remoteAddr: " + id + " , sessionId " + sessionId);
         mAgent = agent;
-        this.pc = mAgent.factory.createPeerConnection(mAgent.iceServers, mAgent.pcConstraints, this);   // this can return null but cannot be saved.
+        this.pc = mAgent.factoryDC.createPeerConnection(mAgent.iceServers, mAgent.pcConstraints, this);   // this can return null but cannot be saved.
         this.remoteAddress = id;
         this.currentSessionId = (sessionId == -1) ? 0 : sessionId;
 
@@ -164,7 +164,7 @@ public class Peer implements SdpObserver, PeerConnection.Observer {
 
     @Override
     public void onAddStream(MediaStream mediaStream) {
-        Log.d(TAG, "Peer.onAddStream : Agent " + mAgent.mAgentId + " add Stream " + mediaStream.label());
+        Log.d(TAG, "Peer.onAddStream : Agent " + mAgent.mAgentId + " add Stream " + mediaStream.getId());
         // Peer is not for media stream so do nothing here.
         // For media streaming let's use MMPeer.
     }
@@ -176,7 +176,7 @@ public class Peer implements SdpObserver, PeerConnection.Observer {
 
     @Override
     public void onRemoveStream(MediaStream mediaStream) {
-        Log.d(TAG, "Peer.onRemoveStream : Agent " + mAgent.mAgentId + " remove Stream " + mediaStream.label());
+        Log.d(TAG, "Peer.onRemoveStream : Agent " + mAgent.mAgentId + " remove Stream " + mediaStream.getId());
         // Peer is not for media stream so do nothing here.
         // For media streaming let's use MMPeer.
     }

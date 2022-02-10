@@ -48,10 +48,16 @@ import org.webrtc.AudioSource;
 import org.webrtc.AudioTrack;
 import org.webrtc.Camera1Capturer;
 import org.webrtc.Camera1Enumerator;
+import org.webrtc.Camera2Enumerator;
+import org.webrtc.CameraEnumerator;
+import org.webrtc.DefaultVideoDecoderFactory;
+import org.webrtc.DefaultVideoEncoderFactory;
 import org.webrtc.MediaConstraints;
 import org.webrtc.MediaStream;
+import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.VideoCapturer;
-import org.webrtc.VideoRenderer;
+import org.webrtc.VideoCodecInfo;
+import org.webrtc.VideoEncoderFactory;
 import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
 
@@ -897,20 +903,20 @@ public class FlatGDI extends Display2D {
             return false;
         }
         // step 2. initialize factory if needed
-        if (RtcAgent.factory == null) {
-            RtcAgent.initWebRtcFactory();   // we do not need to do this in Peer as Peer is created in the initialize local.
+        if (RtcAgent.factoryMMedia == null) {
+            RtcAgent.factoryMMedia = RtcAgent.initWebRtcFactory(mflatGDIView.getEglBase().getEglBaseContext());   // we do not need to do this in Peer as Peer is created in the initialize local.
         }
         // step 3. create local media stream
         if (mediaStream == null) {
-            mediaStream = RtcAgent.factory.createLocalMediaStream("ARDAMS");
+            mediaStream = RtcAgent.factoryMMedia.createLocalMediaStream("ARDAMS");
         }
         // step 4. create audio source
         if (audioSource == null) {
             // Create audio constraints.
             MediaConstraints audioConstraints = new MediaConstraints();
-            audioSource = RtcAgent.factory.createAudioSource(audioConstraints);
+            audioSource = RtcAgent.factoryMMedia.createAudioSource(audioConstraints);
         }
-        AudioTrack localAudioTrack = RtcAgent.factory.createAudioTrack("ARDAMSa0", audioSource);
+        AudioTrack localAudioTrack = RtcAgent.factoryMMedia.createAudioTrack("ARDAMSa0", audioSource);
         localAudioTrack.setEnabled(true);
         mediaStream.addTrack(localAudioTrack);
         // step 5. initialize parameters
@@ -924,34 +930,71 @@ public class FlatGDI extends Display2D {
         // step 6. create video source and add it the renderer
         if (videoSource == null) {
             // videoConstraints is removed from latest code library.
-            VideoCapturer videoCapturer = new Camera1Capturer(frontCameraDeviceName, new AdvRtcCameraEventHandler(), false);
-            videoSource = RtcAgent.factory.createVideoSource(videoCapturer);
+            if (Camera2Enumerator.isSupported(mflatGDIView.getGDIActivity())) {
+                Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera2 API.");
+                videoCapturer = createCameraCapturer(new Camera2Enumerator(mflatGDIView.getGDIActivity()));
+                videoSource = RtcAgent.factoryMMedia.createVideoSource(videoCapturer.isScreencast());
+            } else {
+                Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera1 API.");
+                videoCapturer = createCameraCapturer(new Camera1Enumerator(true));  // should captureToTexture be false?
+            }
+            SurfaceTextureHelper surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", mflatGDIView.getEglBase().getEglBaseContext());
+            videoSource = RtcAgent.factoryMMedia.createVideoSource(videoCapturer.isScreencast());
+            videoCapturer.initialize(surfaceTextureHelper, mflatGDIView.getGDIActivity(), videoSource.getCapturerObserver());
             videoCapturer.startCapture(params.videoWidth, params.videoHeight, params.videoFps);
         }
-        VideoTrack localVideoTrack = RtcAgent.factory.createVideoTrack("ARDAMSv0", videoSource);
+        VideoTrack localVideoTrack = RtcAgent.factoryMMedia.createVideoTrack("ARDAMSv0", videoSource);
         localVideoTrack.setEnabled(true);
         mediaStream.addTrack(localVideoTrack);
-        FlatGDIView.ProxyRenderer proxyRenderer = mflatGDIView.videoRendererPairs.get(videoOutputId).getProxyRenderer();
+        FlatGDIView.ProxyVideoSink proxyRenderer = mflatGDIView.videoRendererPairs.get(videoOutputId).getProxyRenderer();
         if (proxyRenderer != null) {
-            Log.d("FlatGDI_WebRTC_MMedia", "FlatGDI.startLocalStream: local video stream has been successfully mapped to a renderer!");
-            VideoRenderer videoRenderer = new VideoRenderer(proxyRenderer);
-            proxyRenderer.videoRendererRef.set(videoRenderer);
-            localVideoTrack.addRenderer(videoRenderer);
+            Log.d("FlatGDI_WebRTC_MMedia", "FlatGDI.startLocalStream: local video stream has been successfully mapped to a sink!");
+            localVideoTrack.addSink(proxyRenderer);
         }
         return true;
     }
+
+    private VideoCapturer createCameraCapturer(CameraEnumerator enumerator) {
+        final String[] deviceNames = enumerator.getDeviceNames();
+
+        // First, try to find front facing camera
+        Log.d("FlatGDI_WebRTC_MMedia", "Looking for front facing cameras.");
+        for (String deviceName : deviceNames) {
+            if (enumerator.isFrontFacing(deviceName)) {
+                Log.d("FlatGDI_WebRTC_MMedia", "Creating front facing camera capturer.");
+                VideoCapturer videoCapturer = enumerator.createCapturer(deviceName, new AdvRtcCameraEventHandler());
+                if (videoCapturer != null) {
+                    return videoCapturer;
+                }
+            }
+        }
+        // Front facing camera not found, try something else
+        Log.d("FlatGDI_WebRTC_MMedia", "Looking for other cameras.");
+        for (String deviceName : deviceNames) {
+            if (!enumerator.isFrontFacing(deviceName)) {
+                Log.d("FlatGDI_WebRTC_MMedia", "Creating other camera capturer.");
+                VideoCapturer videoCapturer = enumerator.createCapturer(deviceName, new AdvRtcCameraEventHandler());
+                if (videoCapturer != null) {
+                    return videoCapturer;
+                }
+            }
+        }
+
+        return null;
+    }
+
 
     @Override
     public void stopLocalStream() {
         if (mediaStream != null) {
             while(!mediaStream.audioTracks.isEmpty()) {
-                AudioTrack track = (AudioTrack)mediaStream.audioTracks.getFirst();
+                AudioTrack track = (AudioTrack)mediaStream.audioTracks.get(0);
                 mediaStream.removeTrack(track);
                 track.dispose();
             }
 
             while(!mediaStream.videoTracks.isEmpty()) {
-                VideoTrack track = (VideoTrack)mediaStream.videoTracks.getFirst();
+                VideoTrack track = (VideoTrack)mediaStream.videoTracks.get(0);
                 mediaStream.removeTrack(track);
                 track.dispose();
             }
@@ -1052,7 +1095,7 @@ public class FlatGDI extends Display2D {
         // if peerId is an empty string, it means local
         AndroidRtcMMediaMan.StreamTrackId streamTrackId = new AndroidRtcMMediaMan.StreamTrackId(peerId, trackId);
         AndroidRtcMMediaMan rtcMMediaMan = (AndroidRtcMMediaMan) FuncEvaluator.msRtcMMediaManager;
-        FlatGDIView.ProxyRenderer proxyRenderer = rtcMMediaMan.mapStream2ProxyRenderer.remove(streamTrackId);
+        FlatGDIView.ProxyVideoSink proxyRenderer = rtcMMediaMan.mapStream2ProxyRenderer.remove(streamTrackId);
         if (proxyRenderer == null) {
             return false;
         } else {
@@ -1066,7 +1109,7 @@ public class FlatGDI extends Display2D {
             return 0;
         }
         int removedCnt = 0;
-        FlatGDIView.ProxyRenderer value = mflatGDIView.videoRendererPairs.get(videoOutputId).getProxyRenderer();
+        FlatGDIView.ProxyVideoSink value = mflatGDIView.videoRendererPairs.get(videoOutputId).getProxyRenderer();
         AndroidRtcMMediaMan rtcMMediaMan = (AndroidRtcMMediaMan) FuncEvaluator.msRtcMMediaManager;
         Set<AndroidRtcMMediaMan.StreamTrackId> keySet = rtcMMediaMan.mapStream2ProxyRenderer.keySet();
         for(AndroidRtcMMediaMan.StreamTrackId key: keySet) {

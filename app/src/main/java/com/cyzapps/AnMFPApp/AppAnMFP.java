@@ -27,7 +27,7 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 	public static final String STRING_APP_FOLDER = "MFPAndroLibTester";
 	// support single line statment, multiple line session and quick help statment
 	public static final String STRING_COMMANDS_TO_RUN
-			//= "\n\nplot_exprs(\"x**2+y**2+z**2==9\")\ngdi_test::game_test::super_bunny::run( )\n";
+			/*= "\n\nplot_exprs(\"x**2+y**2+z**2==9\")\ngdi_test::game_test::super_bunny::run( )\n";
 			= "Plot_3d_surfaces(\"3dBox\", \"3D Box\", \"x\", \"y\", \"z\", "
 			+ "\"\",false,\"red\",\"red\",null,\"red\",\"red\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"u\",\"v\",\"1\", "
 			+ "\"\",false,\"green\",\"green\",null,\"green\",\"green\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"u\",\"1\",\"v\", "
@@ -35,9 +35,9 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 			+ "\"\",false,\"yellow\",\"yellow\",null,\"yellow\",\"yellow\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"u\",\"v\",\"-1\", "
 			+ "\"\",false,\"cyan\",\"cyan\",null,\"cyan\",\"cyan\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"u\",\"-1\",\"v\", "
 			+ "\"\",false,\"magenta\",\"magenta\",null,\"magenta\",\"magenta\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"-1\",\"u\",\"v\")\n"
-			+ "gdi_test::game_test::super_bunny::run( )\n";
+			+ "gdi_test::game_test::super_bunny::run( )\n";*/
 
-	//= "::gdi_test::game_test::chess::main()";
+	= "::gdi_test::game_test::chess::main()";
 
     private static Context mContext;
 

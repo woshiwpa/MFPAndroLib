@@ -19,7 +19,7 @@ import org.webrtc.PeerConnection;
 import org.webrtc.RtpReceiver;
 import org.webrtc.SdpObserver;
 import org.webrtc.SessionDescription;
-import org.webrtc.VideoRenderer;
+import org.webrtc.VideoSink;
 import org.webrtc.VideoTrack;
 
 import java.util.Arrays;
@@ -38,15 +38,17 @@ public class MMPeer implements SdpObserver, PeerConnection.Observer {
     public MMPeer(String id, int sessionId, MediaConstraints peerConnectionConstraints) {
         Log.d(TAG, "MMPeer (" + hashCode() + ") constructor : new Peer: remoteAddr: " + id + " , sessionId " + sessionId);
         mRtcMMediaMan = (AndroidRtcMMediaMan) FuncEvaluator.msRtcMMediaManager;
-        if (RtcAgent.factory == null) {
-            RtcAgent.initWebRtcFactory();   // we do not need to do this in Peer as Peer is created in the initialize local.
-        }
         remoteAddress = id;
         currentSessionId = (sessionId == -1) ? 0 : sessionId;
         pcConstraints = peerConnectionConstraints;
-        pc = RtcAgent.factory.createPeerConnection(mRtcMMediaMan.iceServers, pcConstraints, this);   // this can return null but cannot be saved.
-        if (FlatGDI.mediaStream != null) {
-            pc.addStream(FlatGDI.mediaStream);  // without this, onAddStream event will not be called.
+        if (RtcAgent.factoryMMedia == null) {
+            Log.d(TAG, "MMPeer (" + hashCode() + ") constructor : multimedia RTC factory hasn't been initialized.");
+            return;
+        } else {
+            pc = RtcAgent.factoryMMedia.createPeerConnection(mRtcMMediaMan.iceServers, pcConstraints, this);   // this can return null but cannot be saved.
+            if (FlatGDI.mediaStream != null) {
+                pc.addStream(FlatGDI.mediaStream);  // without this, onAddStream event will not be called.
+            }
         }
     }
 
@@ -158,7 +160,7 @@ public class MMPeer implements SdpObserver, PeerConnection.Observer {
 
     @Override
     public void onAddStream(MediaStream mediaStream) {
-        Log.d(TAG, "MMPeer.onAddStream : peerId : " + remoteAddress + " sessionId : " + currentSessionId + " add Stream " + mediaStream.label()
+        Log.d(TAG, "MMPeer.onAddStream : peerId : " + remoteAddress + " sessionId : " + currentSessionId + " add Stream " + mediaStream.getId()
                     + " stream's audio track size is " + mediaStream.audioTracks.size() + " stream's video track size is " + mediaStream.videoTracks.size());
         generateMMPeerEvent("pc", "add_stream", "");
         if (mediaStream.audioTracks.size() > 1 || mediaStream.videoTracks.size() > 1) {
@@ -172,14 +174,12 @@ public class MMPeer implements SdpObserver, PeerConnection.Observer {
         if (mediaStream.videoTracks.size() > 0) {
             VideoTrack videoTrack = mediaStream.videoTracks.get(0);
             videoTrack.setEnabled(true);
-            FlatGDIView.ProxyRenderer proxyRenderer = mRtcMMediaMan.mapStream2ProxyRenderer.get(new AndroidRtcMMediaMan.StreamTrackId(remoteAddress, 0));
-            if (proxyRenderer == null) {
+            VideoSink videoSink = mRtcMMediaMan.mapStream2ProxyRenderer.get(new AndroidRtcMMediaMan.StreamTrackId(remoteAddress, 0));
+            if (videoSink == null) {
                 Log.d(TAG, "MMPeer.onAddStream: The video stream has nowhere to go!");
             } else {
-                Log.d(TAG, "MMPeer.onAddStream: The video stream has been successfully mapped to a renderer!");
-                VideoRenderer videoRenderer = new VideoRenderer(proxyRenderer);
-                proxyRenderer.videoRendererRef.set(videoRenderer);
-                videoTrack.addRenderer(videoRenderer);
+                Log.d(TAG, "MMPeer.onAddStream: The video stream has been successfully mapped to a sink!");
+                videoTrack.addSink(videoSink);
             }
         }
     }
@@ -192,7 +192,7 @@ public class MMPeer implements SdpObserver, PeerConnection.Observer {
 
     @Override
     public void onRemoveStream(MediaStream mediaStream) {
-        Log.d(TAG, "MMPeer.onRemoveStream : peerId : " + remoteAddress + " sessionId : " + currentSessionId + " add Stream " + mediaStream.label()
+        Log.d(TAG, "MMPeer.onRemoveStream : peerId : " + remoteAddress + " sessionId : " + currentSessionId + " add Stream " + mediaStream.getId()
                 + " stream's audio track size is " + mediaStream.audioTracks.size() + " stream's video track size is " + mediaStream.videoTracks.size());
         generateMMPeerEvent("pc", "remove_stream", "");
         if (mediaStream.audioTracks.size() >1) {
@@ -208,15 +208,12 @@ public class MMPeer implements SdpObserver, PeerConnection.Observer {
             Log.d(TAG, "MMPeer.onRemoveStream : remove video render by MMPeer " + remoteAddress + " session id " + currentSessionId);
             VideoTrack videoTrack = mediaStream.videoTracks.get(0);
             videoTrack.setEnabled(false);
-            FlatGDIView.ProxyRenderer proxyRenderer = mRtcMMediaMan.mapStream2ProxyRenderer.get(new AndroidRtcMMediaMan.StreamTrackId(remoteAddress, 0));
-            if (proxyRenderer == null) {
-                Log.d(TAG, "MMPeer.onRemoveStream: The video stream hasn't been mapped to a renderer!");
+            VideoSink videoSink = mRtcMMediaMan.mapStream2ProxyRenderer.get(new AndroidRtcMMediaMan.StreamTrackId(remoteAddress, 0));
+            if (videoSink == null) {
+                Log.d(TAG, "MMPeer.onRemoveStream: The video stream hasn't been mapped to a sink!");
             } else {
-                Log.d(TAG, "MMPeer.onRemoveStream: The video stream has been successfully removed from a renderer!");
-                VideoRenderer vr = (VideoRenderer)proxyRenderer.videoRendererRef.getAndSet(null);
-                if (vr != null) {
-                    videoTrack.removeRenderer(vr);
-                }
+                Log.d(TAG, "MMPeer.onRemoveStream: The video stream has been successfully removed from a sink!");
+                videoTrack.removeSink(videoSink);
             }
         }
     }
