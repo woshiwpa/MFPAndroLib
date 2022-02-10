@@ -877,6 +877,7 @@ public class FlatGDI extends Display2D {
     public static volatile AudioSource audioSource = null;
     public static volatile VideoSource videoSource = null;
     public static volatile VideoCapturer videoCapturer = null;
+    public static volatile SurfaceTextureHelper surfaceTextureHelper = null;
 
     @Override
     public int addRtcVideoOutput(int left, int top, int width, int height, boolean enableSlide) {
@@ -938,7 +939,7 @@ public class FlatGDI extends Display2D {
                 Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera1 API.");
                 videoCapturer = createCameraCapturer(new Camera1Enumerator(true));  // should captureToTexture be false?
             }
-            SurfaceTextureHelper surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", mflatGDIView.getEglBase().getEglBaseContext());
+            surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", mflatGDIView.getEglBase().getEglBaseContext());
             videoSource = RtcAgent.factoryMMedia.createVideoSource(videoCapturer.isScreencast());
             videoCapturer.initialize(surfaceTextureHelper, mflatGDIView.getGDIActivity(), videoSource.getCapturerObserver());
             videoCapturer.startCapture(params.videoWidth, params.videoHeight, params.videoFps);
@@ -1000,6 +1001,29 @@ public class FlatGDI extends Display2D {
             }
             // do not call mediaStream.dispose(); because free(mediaStream.nativeStream) causes crash.
             mediaStream = null;
+        }
+        Log.d("FlatGDI_WebRTC_MMedia", "Stopping capture.");
+        if (videoCapturer != null) {
+            try {
+                videoCapturer.stopCapture();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            videoCapturer.dispose();
+            videoCapturer = null;
+        }
+        Log.d("FlatGDI_WebRTC_MMedia", "Closing video source.");
+        if (videoSource != null) {
+            videoSource.dispose();
+            videoSource = null;
+        }
+        if (surfaceTextureHelper != null) {
+            surfaceTextureHelper.dispose();
+            surfaceTextureHelper = null;
+        }
+        if (RtcAgent.factoryMMedia != null) {
+            RtcAgent.factoryMMedia.dispose();
+            RtcAgent.factoryMMedia = null;
         }
     }
 
