@@ -245,7 +245,7 @@ public class AndroidRtcMMediaMan extends RtcMMediaManager {
 
     @Override
     public void closePeer(String peerId) {
-        Log.d(TAG, "AndroidRtcMMediaMan.CreateAnswer : peerId " + peerId);
+        Log.d(TAG, "AndroidRtcMMediaMan.closePeer : peerId " + peerId);
         MMPeer peer = allPeerConnections.get(peerId);
         if (peer != null) {
             peer.close();

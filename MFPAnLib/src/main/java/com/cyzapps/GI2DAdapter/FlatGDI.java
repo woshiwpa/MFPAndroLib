@@ -54,6 +54,7 @@ import org.webrtc.DefaultVideoDecoderFactory;
 import org.webrtc.DefaultVideoEncoderFactory;
 import org.webrtc.MediaConstraints;
 import org.webrtc.MediaStream;
+import org.webrtc.PeerConnectionFactory;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.VideoCapturer;
 import org.webrtc.VideoCodecInfo;
@@ -874,10 +875,10 @@ public class FlatGDI extends Display2D {
     private static final String AUDIO_CODEC_OPUS = "opus";
 
     public static volatile MediaStream mediaStream = null;
-    public static volatile AudioSource audioSource = null;
-    public static volatile VideoSource videoSource = null;
-    public static volatile VideoCapturer videoCapturer = null;
-    public static volatile SurfaceTextureHelper surfaceTextureHelper = null;
+    public volatile AudioSource audioSource = null;
+    public volatile VideoSource videoSource = null;
+    public volatile VideoCapturer videoCapturer = null;
+    public volatile SurfaceTextureHelper surfaceTextureHelper = null;
 
     @Override
     public int addRtcVideoOutput(int left, int top, int width, int height, boolean enableSlide) {
@@ -904,19 +905,20 @@ public class FlatGDI extends Display2D {
             return false;
         }
         // step 2. initialize factory if needed
-        if (RtcAgent.factoryMMedia == null) {
-            RtcAgent.factoryMMedia = RtcAgent.initWebRtcFactory(mflatGDIView.getEglBase().getEglBaseContext());   // we do not need to do this in Peer as Peer is created in the initialize local.
-        }
+        // do not need if (RtcAgent.factoryMMedia == null)
+        RtcAgent.factoryMMedia = RtcAgent.initWebRtcFactory(mflatGDIView.getEglBase().getEglBaseContext());   // we do not need to do this in Peer as Peer is created in the initialize local.
+
         // step 3. create local media stream
         if (mediaStream == null) {
             mediaStream = RtcAgent.factoryMMedia.createLocalMediaStream("ARDAMS");
         }
+
         // step 4. create audio source
-        if (audioSource == null) {
-            // Create audio constraints.
-            MediaConstraints audioConstraints = new MediaConstraints();
-            audioSource = RtcAgent.factoryMMedia.createAudioSource(audioConstraints);
-        }
+        // do not need if (audioSource == null)
+        // Create audio constraints.
+        MediaConstraints audioConstraints = new MediaConstraints();
+        audioSource = RtcAgent.factoryMMedia.createAudioSource(audioConstraints);
+
         AudioTrack localAudioTrack = RtcAgent.factoryMMedia.createAudioTrack("ARDAMSa0", audioSource);
         localAudioTrack.setEnabled(true);
         mediaStream.addTrack(localAudioTrack);
@@ -929,21 +931,19 @@ public class FlatGDI extends Display2D {
         MmediaPeerConnectionParams params = new MmediaPeerConnectionParams(
                 true, false, displaySize.x, displaySize.y, /*surfaceViewRendererWidth, surfaceViewRendererHeight,*/ 30, 1, VIDEO_CODEC_VP9, true, 1, AUDIO_CODEC_OPUS, true);
         // step 6. create video source and add it the renderer
-        if (videoSource == null) {
-            // videoConstraints is removed from latest code library.
-            if (Camera2Enumerator.isSupported(mflatGDIView.getGDIActivity())) {
-                Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera2 API.");
-                videoCapturer = createCameraCapturer(new Camera2Enumerator(mflatGDIView.getGDIActivity()));
-                videoSource = RtcAgent.factoryMMedia.createVideoSource(videoCapturer.isScreencast());
-            } else {
-                Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera1 API.");
-                videoCapturer = createCameraCapturer(new Camera1Enumerator(true));  // should captureToTexture be false?
-            }
-            surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", mflatGDIView.getEglBase().getEglBaseContext());
-            videoSource = RtcAgent.factoryMMedia.createVideoSource(videoCapturer.isScreencast());
-            videoCapturer.initialize(surfaceTextureHelper, mflatGDIView.getGDIActivity(), videoSource.getCapturerObserver());
-            videoCapturer.startCapture(params.videoWidth, params.videoHeight, params.videoFps);
+        // videoConstraints is removed from latest code library.
+        if (Camera2Enumerator.isSupported(mflatGDIView.getGDIActivity())) {
+            Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera2 API.");
+            videoCapturer = createCameraCapturer(new Camera2Enumerator(mflatGDIView.getGDIActivity()));
+        } else {
+            Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera1 API.");
+            videoCapturer = createCameraCapturer(new Camera1Enumerator(true));  // should captureToTexture be false?
         }
+        surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", mflatGDIView.getEglBase().getEglBaseContext());
+        videoSource = RtcAgent.factoryMMedia.createVideoSource(videoCapturer.isScreencast());
+        videoCapturer.initialize(surfaceTextureHelper, mflatGDIView.getGDIActivity(), videoSource.getCapturerObserver());
+        videoCapturer.startCapture(params.videoWidth, params.videoHeight, params.videoFps);
+
         VideoTrack localVideoTrack = RtcAgent.factoryMMedia.createVideoTrack("ARDAMSv0", videoSource);
         localVideoTrack.setEnabled(true);
         mediaStream.addTrack(localVideoTrack);
@@ -1012,7 +1012,10 @@ public class FlatGDI extends Display2D {
             videoCapturer.dispose();
             videoCapturer = null;
         }
-        Log.d("FlatGDI_WebRTC_MMedia", "Closing video source.");
+        /* I have to comment the following code otherwise webrtc will crash
+        when restarts without quitting the app. It seems to be a webrtc's bug.
+         */
+        /*Log.d("FlatGDI_WebRTC_MMedia", "Closing video source.");
         if (videoSource != null) {
             videoSource.dispose();
             videoSource = null;
@@ -1024,7 +1027,8 @@ public class FlatGDI extends Display2D {
         if (RtcAgent.factoryMMedia != null) {
             RtcAgent.factoryMMedia.dispose();
             RtcAgent.factoryMMedia = null;
-        }
+        }*/
+        // release eglBase?
     }
 
     @Override

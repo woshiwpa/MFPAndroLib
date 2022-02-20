@@ -153,7 +153,10 @@ public class RtcAppClient {
 
     public void setRtcListener(RtcListener rtcListener, MmediaPeerConnectionParams params) {
         RtcAgent.setRtcListener(rtcListener, params);
-        RtcAgent.factoryDC = RtcAgent.initWebRtcFactory(null);
+        if (RtcAgent.factoryDC == null) {
+            // we only initialize factory once
+            RtcAgent.factoryDC = RtcAgent.initWebRtcFactory(null);
+        }
     }
 
     // this function should only be called in UI thread so that it is self-synchronized.
