@@ -73,6 +73,8 @@ public class MFPAdapter {
     
     public static double msdPlotChartVariableFrom = -5.0;
     public static double msdPlotChartVariableTo = 5.0;
+
+    public static int msnWebRTCDebugLevel = 0;
     
     public static LinkedList<String[]> mslSysAddCitingSpaces = new LinkedList<String[]>();
     
@@ -1747,6 +1749,11 @@ public class MFPAdapter {
     public static double getPlotChartVariableTo()
     {
         return msdPlotChartVariableTo;
+    }
+
+    public static int getWebRTCDebugLevel()
+    {
+        return msnWebRTCDebugLevel;
     }
 
     /**

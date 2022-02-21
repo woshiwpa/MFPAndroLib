@@ -1012,10 +1012,7 @@ public class FlatGDI extends Display2D {
             videoCapturer.dispose();
             videoCapturer = null;
         }
-        /* I have to comment the following code otherwise webrtc will crash
-        when restarts without quitting the app. It seems to be a webrtc's bug.
-         */
-        /*Log.d("FlatGDI_WebRTC_MMedia", "Closing video source.");
+        Log.d("FlatGDI_WebRTC_MMedia", "Closing video source.");
         if (videoSource != null) {
             videoSource.dispose();
             videoSource = null;
@@ -1024,7 +1021,10 @@ public class FlatGDI extends Display2D {
             surfaceTextureHelper.dispose();
             surfaceTextureHelper = null;
         }
-        if (RtcAgent.factoryMMedia != null) {
+        /* I have to comment the following code. It seems that if you want to
+        restart webRTC without restarting app, factory cannot be restarted.
+         */
+        /*if (RtcAgent.factoryMMedia != null) {
             RtcAgent.factoryMMedia.dispose();
             RtcAgent.factoryMMedia = null;
         }*/

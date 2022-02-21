@@ -57,6 +57,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by tony on 29/04/2018.
@@ -203,6 +204,7 @@ public class EmailSignalService extends Service {
             } else if (imapSSL != b.getInt("imapSSL", 0)) {
                 bParametersChanged = true;
             }
+            debugLevel.set(b.getInt("debugLevel", 0));
             serviceStartActivity = b.getBoolean("serviceStartActivity", false); // service start activty has to be set here otherwise it may not be set.
         }
 
@@ -246,7 +248,7 @@ public class EmailSignalService extends Service {
                         + " imapServerPort : " + imapServerPort + " imapSSL : " + imapSSL + " serviceStartActivity : " + serviceStartActivity);
             }
             // restart it.
-            start(false);
+            start();
         }
     }
 
@@ -381,7 +383,7 @@ public class EmailSignalService extends Service {
     private int imapSSL = -1;
 
     private AtomicBoolean isActivated = new AtomicBoolean();  // only if it is activated we can send and fetch emails
-    Boolean enableDbg = false;
+    AtomicInteger debugLevel = new AtomicInteger();
     public ExecutorService executor = Executors.newSingleThreadExecutor();
 
     SortedSet<FetchEmail.MsgEvent> sortedMsgEvents = new TreeSet<FetchEmail.MsgEvent>();  // all the signal channel agent share same listmsgevents
@@ -485,16 +487,16 @@ public class EmailSignalService extends Service {
         sortedMsgEvents.removeAll(toRemoveMsgEvents);
         FetchEmail.FetchReturnInfo fetchReturnInfo;
         if (localEmailType == RtcAppClient.USE_GMAIL_API) {
-            fetchReturnInfo = FetchEmail.fetch(gmailService, lastFetchDate, sortedMsgEvents, true, true);
+            fetchReturnInfo = FetchEmail.fetch(gmailService, lastFetchDate, sortedMsgEvents, debugLevel.get() > 1, debugLevel.get() > 0);
             if (fetchReturnInfo.err instanceof com.google.api.client.googleapis.json.GoogleJsonResponseException) {
                 // This means token is no longer valid.
                 if (refreshAccessToken()) {
                     // token and gmail service has been refreshed. Now fetch emails again.
-                    fetchReturnInfo = FetchEmail.fetch(gmailService, lastFetchDate, sortedMsgEvents, true, true);
+                    fetchReturnInfo = FetchEmail.fetch(gmailService, lastFetchDate, sortedMsgEvents, debugLevel.get() > 1, debugLevel.get() > 0);
                 }
             }
         } else {
-            fetchReturnInfo = FetchEmail.fetch(recvHost, recvPort, ssl, MAILSTORETYPE, localAddress, emailPassword, lastFetchDate, sortedMsgEvents, true, false);
+            fetchReturnInfo = FetchEmail.fetch(recvHost, recvPort, ssl, MAILSTORETYPE, localAddress, emailPassword, lastFetchDate, sortedMsgEvents, debugLevel.get() > 1, debugLevel.get() > 0);
         }
         lastFetchDate = fetchReturnInfo.dateFetched;
         Exception err = fetchReturnInfo.err;
@@ -738,10 +740,9 @@ public class EmailSignalService extends Service {
         return retVal;
     }
 
-    public void start(Boolean enableDebugger) {
+    public void start() {
         // this is actually restart
         Log.d(TAG, "EmailSignaService.start : All stale messages will be cleared. An activate signal will be sent to local i.e. " + localAddress);
-        enableDbg = enableDebugger;
         JSONObject message = new JSONObject();
         isActivated.set(false); // set activated to false so that previous asyncWork can exit.
         synchronized (mapAllMsgs) {

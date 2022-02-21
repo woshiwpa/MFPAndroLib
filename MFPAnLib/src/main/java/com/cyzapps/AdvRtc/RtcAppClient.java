@@ -162,7 +162,7 @@ public class RtcAppClient {
     // this function should only be called in UI thread so that it is self-synchronized.
     // And this function is called in an initialized RtcAppClient
     // This means emailSignalChannelAgent cannot be null.
-    public void startSignalService(Context context, Boolean stopEmailAgent1st, Boolean stopDCAgent1st, Boolean enableDbg) {
+    public void startSignalService(Context context, Boolean stopEmailAgent1st, Boolean stopDCAgent1st, int debugLevel) {
         // stop old SignalChannelAgent
         if (stopEmailAgent1st) {
             emailSignalChannelAgent.stop();
@@ -172,7 +172,7 @@ public class RtcAppClient {
         // the old emailSignalChannelAgent has been stopped
         emailSignalChannelAgent.setEmailSignalChannelAgent(mlocalEmailType, mgmailToken, mlocalAddress, memailPassword,
                 msmtpServer, msmtpPort, msmtpSSL, mimapServer, mimapPort, mimapSSL/*, new DataRtcAgent[] {dataClient0, dataClient1}*/);
-        emailSignalChannelAgent.start(context, enableDbg);
+        emailSignalChannelAgent.start(context, debugLevel);
         msignalServiceStarted = true;
     }
 

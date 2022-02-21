@@ -14,6 +14,8 @@ import com.cyzapps.AdvRtc.RtcListener;
 import com.cyzapps.Jfcalc.ErrProcessor;
 import com.cyzapps.Jfcalc.ErrProcessor.JFCALCExpErrException;
 import com.cyzapps.Jfcalc.FuncEvaluator;
+import com.cyzapps.adapter.AndroidStorageOptions;
+import com.cyzapps.adapter.MFPAdapter;
 import com.cyzapps.mfpanlib.MFPAndroidLib;
 
 import java.io.ByteArrayInputStream;
@@ -62,6 +64,7 @@ public class MFP4AndroidCommMan extends CommunicationManager implements RtcListe
     public static final String TAG = "New_AdvRtcapp_Debug";
     private static final String VIDEO_CODEC_VP9 = "VP9";
     private static final String AUDIO_CODEC_OPUS = "opus";
+    public static final String WEBRTC_DEBUG_LEVEL = "Webrtc_Debug_Level";
 
     @Override
     public String getLocalHost(String protocolName, String additionalInfo) throws JFCALCExpErrException {
@@ -244,7 +247,12 @@ public class MFP4AndroidCommMan extends CommunicationManager implements RtcListe
         if (localInfo.getProtocolName().equals("WEBRTC")) {
             if (!MFPAndroidLib.getRtcAppClient().emailSignalChannelAgent.isStarted()) {    //emailSignalChannelAgent is initialized in rtcAppClient's constructor so that it cannot be null.
                 // startSignalService is only executed in UI thread, it is garanteed synchronized.
-                MFPAndroidLib.getRtcAppClient().startSignalService(MFPAndroidLib.getContext(), false, false, false);
+                SharedPreferences settings = MFPAndroidLib.getContext().getSharedPreferences(MFPAndroidLib.getSettingsConfig(), 0);
+                int debugLevel = 0;
+                if (settings != null) {
+                    debugLevel = settings.getInt(WEBRTC_DEBUG_LEVEL, MFPAdapter.msnWebRTCDebugLevel);
+                }
+                MFPAndroidLib.getRtcAppClient().startSignalService(MFPAndroidLib.getContext(), false, false, debugLevel);
             }
             // wait for 400ms
             while (!MFPAndroidLib.getRtcAppClient().emailSignalChannelAgent.isStarted()) {
