@@ -127,6 +127,7 @@ public class EmailSignalService extends Service {
                     }
                     break;
                 case MSG_KILL_SERVICE:
+                    stop(); // stop email service looping first.  // should we put it here or in the onDestroy function?
                     stopForeground(true);
                     stopSelf();
                     break;
@@ -353,9 +354,8 @@ public class EmailSignalService extends Service {
     @Override
     public void onDestroy() {
         Log.d(TAG, "EmailSignalService.onDestroy");
+        stop(); // stop email service looping first.  // should we put it here or before stopSelf?
         // The service is no longer used and is being destroyed
-        stop(); // stop email service first.
-        stopForeground(true);
         nm.cancel(R.string.service_started); // Cancel the persistent notification.
         if (wl != null) {
             wl.release();   // now lock screen will stop CPU and the service.
@@ -462,7 +462,7 @@ public class EmailSignalService extends Service {
 
     public ReceivedMsgList allRecvMsgs = new ReceivedMsgList();
     public void fetchEmails() {
-        Log.d(TAG, "EmailSignalService start to fetch from " + localAddress);
+        Log.d(TAG, "EmailSignalService start to fetch from " + localAddress + " with debugLevel = " + debugLevel);
         String recvHost = imapServerAddr;
         int recvPort = imapServerPort;
         int ssl = imapSSL;
@@ -487,16 +487,16 @@ public class EmailSignalService extends Service {
         sortedMsgEvents.removeAll(toRemoveMsgEvents);
         FetchEmail.FetchReturnInfo fetchReturnInfo;
         if (localEmailType == RtcAppClient.USE_GMAIL_API) {
-            fetchReturnInfo = FetchEmail.fetch(gmailService, lastFetchDate, sortedMsgEvents, debugLevel.get() > 1, debugLevel.get() > 0);
+            fetchReturnInfo = FetchEmail.fetch(gmailService, lastFetchDate, sortedMsgEvents, (debugLevel.get() & 2) == 0, (debugLevel.get() & 1) == 0);
             if (fetchReturnInfo.err instanceof com.google.api.client.googleapis.json.GoogleJsonResponseException) {
                 // This means token is no longer valid.
                 if (refreshAccessToken()) {
                     // token and gmail service has been refreshed. Now fetch emails again.
-                    fetchReturnInfo = FetchEmail.fetch(gmailService, lastFetchDate, sortedMsgEvents, debugLevel.get() > 1, debugLevel.get() > 0);
+                    fetchReturnInfo = FetchEmail.fetch(gmailService, lastFetchDate, sortedMsgEvents, (debugLevel.get() & 2) == 0, (debugLevel.get() & 1) == 0);
                 }
             }
         } else {
-            fetchReturnInfo = FetchEmail.fetch(recvHost, recvPort, ssl, MAILSTORETYPE, localAddress, emailPassword, lastFetchDate, sortedMsgEvents, debugLevel.get() > 1, debugLevel.get() > 0);
+            fetchReturnInfo = FetchEmail.fetch(recvHost, recvPort, ssl, MAILSTORETYPE, localAddress, emailPassword, lastFetchDate, sortedMsgEvents, (debugLevel.get() & 2) == 0, (debugLevel.get() & 1) == 0);
         }
         lastFetchDate = fetchReturnInfo.dateFetched;
         Exception err = fetchReturnInfo.err;

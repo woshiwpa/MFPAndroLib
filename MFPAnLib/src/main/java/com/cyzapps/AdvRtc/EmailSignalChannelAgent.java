@@ -218,7 +218,7 @@ public class EmailSignalChannelAgent {
 
     public void start(Context ctx, int debugLevel) {
         // this is actually restart
-        Log.d(TAG, "EmailSignalChannelAgent.start : Email Signal Channel will be started with debug level " + debugLevel + ". An email will be sent to local i.e. " + localAddress + " if the service is recreated.");
+        Log.d(TAG, "EmailSignalChannelAgent.start : Email Signal Channel will be started with debugLevel " + debugLevel + ". An email will be sent to local i.e. " + localAddress + " if the service is recreated.");
         context = ctx;
         if (context != null) {
             // this EmailSignalChannelAgent is bound to an activity.

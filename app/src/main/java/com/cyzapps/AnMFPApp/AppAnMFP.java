@@ -11,17 +11,22 @@ import java.util.Properties;
 import com.cyzapps.AdvRtc.RtcAppClient;
 import com.cyzapps.JPlatformHW.PlatformHWManager;
 import com.cyzapps.Jfcalc.FuncEvaluator;
+import com.cyzapps.Jfcalc.IOLib;
 import com.cyzapps.OSAdapter.MFP4AndroidFileMan;
+import com.cyzapps.OSAdapter.ParallelManager.MFP4AndroidCommMan;
 import com.cyzapps.Oomfp.CitingSpaceDefinition;
+import com.cyzapps.adapter.AndroidStorageOptions;
 import com.cyzapps.adapter.MFPAdapter;
 import com.cyzapps.mfpanlib.MFPAndroidLib;
 
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.util.Log;
+import android.widget.Toast;
 
 public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 	public static final String STRING_APP_FOLDER = "MFPAndroLibTester";
@@ -48,6 +53,19 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 
 		MFPAndroidLib mfpLib = MFPAndroidLib.getInstance();
 
+		String settingsName = "AppAnMFP_settings";
+		SharedPreferences settings = AppAnMFP.getContext().getSharedPreferences(settingsName, 0);
+		if (settings != null) {
+			/*
+			 * Note: we cannot write like
+			 * calculator_settings.edit().putInt(BITS_OF_PRECISION, nBitsofPrecision);
+			 * calculator_settings.edit().putInt(NUMBER_OF_RECORDS, nNumberofRecords);
+			 * calculator_settings.edit().commit();
+			 * because calculator_settings.edit() returns different editor each time.
+			 */
+			settings.edit().putInt(MFP4AndroidCommMan.WEBRTC_DEBUG_LEVEL, 3)
+					.commit();
+		}
 		// initialize function has three parameters. The first one is application's context,
 		// the second one is your app's shared preference name, and the last one is a boolean
 		// value, with true means your MFP scripts and resources are saved in your app's
@@ -57,7 +75,7 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 		// of app. However, if developer wants to run scripts from local storage, uncomment
 		// the following line and pass false to the third parameter of mfpLib.initialize function.
 		// MFP4AndroidFileMan.msstrAppFolder = STRING_APP_FOLDER;
-		mfpLib.initialize(mContext, "", true);	// we don't have any settings to load. So stick to default values
+		mfpLib.initialize(mContext, settingsName, true);	// we don't have any settings to load. So stick to default values
 
 		MFP4AndroidFileMan mfp4AnFileMan = new MFP4AndroidFileMan(getAssets());
 		// platform hardware manager has to be early initialized as it is needed to
