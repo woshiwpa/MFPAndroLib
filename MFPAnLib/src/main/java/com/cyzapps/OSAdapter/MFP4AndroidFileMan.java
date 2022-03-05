@@ -68,7 +68,7 @@ public class MFP4AndroidFileMan extends LangFileManager {
     public static final String STRING_ASSET_RESOURCE_ZIP = "resource.zip";
 
     public static final String STRING_ASSET_MFP_ANDROID_LIB_AAR = "MFPAnLib-release.aar";
-    public static final String STRING_ASSET_WEBRTC_LIB_AAR = "google-webrtc-1.0.19742.aar";
+    public static final String STRING_ASSET_WEBRTC_LIB_AAR = "libwebrtc.aar";
 
     public static LinkedList<String> m_slFailedFilePaths = new LinkedList<String>();
 
