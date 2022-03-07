@@ -27,7 +27,9 @@ import com.cyzapps.VisualMFP.LineStyle.LINEPATTERN;
 import com.cyzapps.VisualMFP.PointStyle;
 import com.cyzapps.VisualMFP.TextStyle;
 
+import android.Manifest;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -43,6 +45,8 @@ import android.graphics.Paint.Style;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
+
+import androidx.core.content.ContextCompat;
 
 import org.webrtc.AudioSource;
 import org.webrtc.AudioTrack;
@@ -888,6 +892,22 @@ public class FlatGDI extends Display2D {
 
     @Override
     public boolean startLocalStream(int videoOutputId) {
+        // step 0. check if we have got camera permission
+        if (ContextCompat.checkSelfPermission(mflatGDIView.getGDIActivity(), android.Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(mflatGDIView.getGDIActivity(), android.Manifest.permission.MODIFY_AUDIO_SETTINGS)
+                != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(mflatGDIView.getGDIActivity(), android.Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED
+                /*|| ContextCompat.checkSelfPermission(mflatGDIView.getGDIActivity(), android.Manifest.permission.FLASHLIGHT)    // flashlight is a normal permission so no need to request.
+                    != PackageManager.PERMISSION_GRANTED*/
+                || ContextCompat.checkSelfPermission(mflatGDIView.getGDIActivity(), android.Manifest.permission.INTERNET)
+                != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(mflatGDIView.getGDIActivity(), Manifest.permission.ACCESS_NETWORK_STATE)
+                != PackageManager.PERMISSION_GRANTED
+        ) {
+            return false;
+        }
         // step 1. initialize front camera
         Camera1Enumerator camera1Enumerator = new Camera1Enumerator();
         final String[] deviceNames = camera1Enumerator.getDeviceNames();

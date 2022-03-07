@@ -63,8 +63,8 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 			 * calculator_settings.edit().commit();
 			 * because calculator_settings.edit() returns different editor each time.
 			 */
-			settings.edit().putInt(MFP4AndroidCommMan.WEBRTC_DEBUG_LEVEL, 3)
-					.commit();
+			//settings.edit().putInt(MFP4AndroidCommMan.WEBRTC_DEBUG_LEVEL, 3)
+			//		.commit();
 		}
 		// initialize function has three parameters. The first one is application's context,
 		// the second one is your app's shared preference name, and the last one is a boolean

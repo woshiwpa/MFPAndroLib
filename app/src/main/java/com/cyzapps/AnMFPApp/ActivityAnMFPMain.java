@@ -627,6 +627,9 @@ public class ActivityAnMFPMain extends Activity {
     	// stop signal service here to prevent the service competing with other webrtc apps' services
 		MFPAndroidLib.getRtcAppClient().stopSignalService();
     	super.onDestroy();
+		if (isFinishing()) {
+			System.exit(0);    // this can immediately kill the background service
+		}
     }
     
     private void interruptCmd()	{

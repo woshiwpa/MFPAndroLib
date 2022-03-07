@@ -1,5 +1,6 @@
 package com.cyzapps.OSAdapter;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -106,8 +107,6 @@ public class AndroidRtcMMediaMan extends RtcMMediaManager {
                 != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_NETWORK_STATE)
                 != PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_WIFI_STATE)
-                != PackageManager.PERMISSION_GRANTED
         ) {
             // No explanation, we request the permissions we need.
             ActivityCompat.requestPermissions((Activity)context, new String[]{
@@ -116,8 +115,7 @@ public class AndroidRtcMMediaMan extends RtcMMediaManager {
                             android.Manifest.permission.CAMERA,
                             //android.Manifest.permission.FLASHLIGHT,   // normal permission no need to request
                             android.Manifest.permission.INTERNET,
-                            android.Manifest.permission.ACCESS_NETWORK_STATE,
-                            android.Manifest.permission.ACCESS_WIFI_STATE,
+                            android.Manifest.permission.ACCESS_NETWORK_STATE
                     },
                     MY_PERMISSIONS_REQUEST);
         }
