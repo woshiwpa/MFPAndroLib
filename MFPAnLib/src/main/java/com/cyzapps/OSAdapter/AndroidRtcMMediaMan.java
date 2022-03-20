@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.cyzapps.AdvRtc.MMPeer;
+import com.cyzapps.AdvRtc.MMRtcView;
 import com.cyzapps.AdvRtc.Peer;
 import com.cyzapps.AdvRtc.RtcAgent;
 import com.cyzapps.GI2DAdapter.FlatGDI;
@@ -73,7 +74,7 @@ public class AndroidRtcMMediaMan extends RtcMMediaManager {
             return result;
         }
     }
-    public Map<StreamTrackId, FlatGDIView.ProxyVideoSink> mapStream2ProxyRenderer = new ConcurrentHashMap<StreamTrackId, FlatGDIView.ProxyVideoSink>();
+    public Map<StreamTrackId, MMRtcView.ProxyVideoSink> mapStream2ProxyRenderer = new ConcurrentHashMap<StreamTrackId, MMRtcView.ProxyVideoSink>();
 
     public LinkedList<PeerConnection.IceServer> iceServers = new LinkedList<>();
 

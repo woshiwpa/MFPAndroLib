@@ -2,6 +2,7 @@
 
 package com.cyzapps.Jfcalc;
 
+import com.cyzapps.AdvRtc.MMRtcDisplay;
 import com.cyzapps.JGI2D.Display2D;
 import com.cyzapps.Jfdatastruct.ArrayBasedDictionary;
 import com.cyzapps.Jmfp.ProgContext;
@@ -281,7 +282,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             int left = DCHelper.lightCvtOrRetDCMFPInt(listParams.removeLast()).getDataValue().intValue();
             int top = DCHelper.lightCvtOrRetDCMFPInt(listParams.removeLast()).getDataValue().intValue();
             int width = DCHelper.lightCvtOrRetDCMFPInt(listParams.removeLast()).getDataValue().intValue();
@@ -317,7 +319,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             int videoOutputId = DCHelper.lightCvtOrRetDCMFPInt(listParams.removeLast()).getDataValue().intValue();
             if (videoOutputId < 0) {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INVALID_PARAMETER);
@@ -343,7 +346,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             display.stopLocalStream();
             return null;
         }
@@ -365,7 +369,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             boolean ret = display.startVideoCapturer();
             return new DataClassSingleNum(DCHelper.DATATYPES.DATUM_MFPBOOL, new MFPNumeric(ret));
         }
@@ -387,7 +392,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             display.stopVideoCapturer();
             return null;
         }
@@ -409,7 +415,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             boolean toEnable = DCHelper.lightCvtOrRetDCMFPBool(listParams.removeLast()).getDataValue().booleanValue();
             boolean previousState = display.setVideoTrackEnable(0, toEnable);
             return new DataClassSingleNum(DCHelper.DATATYPES.DATUM_MFPBOOL, new MFPNumeric(previousState));
@@ -432,7 +439,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             boolean state = display.getVideoTrackEnable(0);
             return new DataClassSingleNum(DCHelper.DATATYPES.DATUM_MFPBOOL, new MFPNumeric(state));
         }
@@ -454,7 +462,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             boolean toEnable = DCHelper.lightCvtOrRetDCMFPBool(listParams.removeLast()).getDataValue().booleanValue();
             boolean previousState = display.setAudioTrackEnable(0, toEnable);
             return new DataClassSingleNum(DCHelper.DATATYPES.DATUM_MFPBOOL, new MFPNumeric(previousState));
@@ -477,7 +486,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             boolean state = display.getAudioTrackEnable(0);
             return new DataClassSingleNum(DCHelper.DATATYPES.DATUM_MFPBOOL, new MFPNumeric(state));
         }
@@ -499,7 +509,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             int videoOutputId = DCHelper.lightCvtOrRetDCMFPInt(listParams.removeLast()).getDataValue().intValue();
             if (videoOutputId < 0) {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INVALID_PARAMETER);
@@ -529,7 +540,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             int cnt = display.getRtcVideoOutputCount();
             DataClass ret = new DataClassSingleNum(DCHelper.DATATYPES.DATUM_MFPINT, new MFPNumeric(cnt));
             return ret;
@@ -552,7 +564,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             String peerId = DCHelper.lightCvtOrRetDCString(listParams.removeLast()).getStringValue();
             int trackId = DCHelper.lightCvtOrRetDCMFPInt(listParams.removeLast()).getDataValue().intValue();
             int videoOutputId = DCHelper.lightCvtOrRetDCMFPInt(listParams.removeLast()).getDataValue().intValue();
@@ -582,7 +595,8 @@ public class RTCMMediaLib {
             if (listParams.size() < mnMinParamNum || listParams.size() > mnMaxParamNum)   {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INCORRECT_NUM_OF_PARAMETER);
             }
-            Display2D display = get2DDisplay(listParams.removeLast(), false);
+            Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
+            MMRtcDisplay display = (MMRtcDisplay)handler;
             if (listParams.size() == 2) {
                 String peerId = DCHelper.lightCvtOrRetDCString(listParams.removeLast()).getStringValue();
                 int trackId = DCHelper.lightCvtOrRetDCMFPInt(listParams.removeLast()).getDataValue().intValue();

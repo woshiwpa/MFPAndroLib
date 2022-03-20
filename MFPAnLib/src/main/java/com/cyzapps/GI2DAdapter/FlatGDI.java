@@ -3,6 +3,8 @@ package com.cyzapps.GI2DAdapter;
 
 import com.cyzapps.AdvRtc.AdvRtcCameraEventHandler;
 import com.cyzapps.AdvRtc.MMPeer;
+import com.cyzapps.AdvRtc.MMRtcDisplay;
+import com.cyzapps.AdvRtc.MMRtcView;
 import com.cyzapps.AdvRtc.MmediaPeerConnectionParams;
 import com.cyzapps.AdvRtc.RtcAgent;
 import com.cyzapps.JGI2D.DisplayLib;
@@ -73,7 +75,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class FlatGDI extends Display2D {
+public class FlatGDI extends Display2D implements MMRtcDisplay {
 
     public static final String LOG_TAG = "GI2DAdapter.FlatGDI";
 
@@ -440,13 +442,18 @@ public class FlatGDI extends Display2D {
         return mnDisplayOrientation;    // use mnDisplayOrientation to avoid call from ui thread.
     }
 
+    protected MMRtcView mmRtcView = null;
+
     protected FlatGDIView mflatGDIView = null;
-    public void setGDIView(FlatGDIView flatGDIView) {
+    public void setGDIView(FlatGDIView flatGDIView)
+    {
         mflatGDIView = flatGDIView;
+        mmRtcView = new MMRtcView(mflatGDIView);
     }
     public FlatGDIView getGDIView() {
         return mflatGDIView;
     }
+    public MMRtcView getMmRtcView() { return mmRtcView; }
 
     protected Graphics mcurrentGraphics = null;
     public void setCurrentGraphics(Graphics graphics) {
@@ -886,7 +893,7 @@ public class FlatGDI extends Display2D {
 
     @Override
     public int addRtcVideoOutput(int left, int top, int width, int height, boolean enableSlide) {
-        int id = mflatGDIView.addVideoRenderer(left,top, width, height, enableSlide);
+        int id = mmRtcView.addVideoRenderer(left,top, width, height, enableSlide);
         return id;
     }
 
@@ -921,12 +928,12 @@ public class FlatGDI extends Display2D {
         if (frontCameraDeviceName == null) {
             return false;   // no front camera
         }
-        if (videoOutputId < 0 || videoOutputId >= mflatGDIView.videoRendererPairs.size()) {
+        if (videoOutputId < 0 || videoOutputId >= mmRtcView.videoRendererPairs.size()) {
             return false;
         }
         // step 2. initialize factory if needed
         // do not need if (RtcAgent.factoryMMedia == null)
-        RtcAgent.factoryMMedia = RtcAgent.initWebRtcFactory(mflatGDIView.getEglBase().getEglBaseContext());   // we do not need to do this in Peer as Peer is created in the initialize local.
+        RtcAgent.factoryMMedia = RtcAgent.initWebRtcFactory(mmRtcView.getEglBase().getEglBaseContext());   // we do not need to do this in Peer as Peer is created in the initialize local.
 
         // step 3. create local media stream
         if (mediaStream == null) {
@@ -943,7 +950,7 @@ public class FlatGDI extends Display2D {
         localAudioTrack.setEnabled(true);
         mediaStream.addTrack(localAudioTrack);
         // step 5. initialize parameters
-        View v = mflatGDIView.videoRendererPairs.get(videoOutputId).getSurfaceViewRenderer();
+        View v = mmRtcView.videoRendererPairs.get(videoOutputId).getSurfaceViewRenderer();
         int surfaceViewRendererWidth = v.getWidth();
         int surfaceViewRendererHeight = v.getHeight();
         Point displaySize = new Point();
@@ -959,7 +966,7 @@ public class FlatGDI extends Display2D {
             Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera1 API.");
             videoCapturer = createCameraCapturer(new Camera1Enumerator(true));  // should captureToTexture be false?
         }
-        surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", mflatGDIView.getEglBase().getEglBaseContext());
+        surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", mmRtcView.getEglBase().getEglBaseContext());
         videoSource = RtcAgent.factoryMMedia.createVideoSource(videoCapturer.isScreencast());
         videoCapturer.initialize(surfaceTextureHelper, mflatGDIView.getGDIActivity(), videoSource.getCapturerObserver());
         videoCapturer.startCapture(params.videoWidth, params.videoHeight, params.videoFps);
@@ -967,7 +974,7 @@ public class FlatGDI extends Display2D {
         VideoTrack localVideoTrack = RtcAgent.factoryMMedia.createVideoTrack("ARDAMSv0", videoSource);
         localVideoTrack.setEnabled(true);
         mediaStream.addTrack(localVideoTrack);
-        FlatGDIView.ProxyVideoSink proxyRenderer = mflatGDIView.videoRendererPairs.get(videoOutputId).getProxyRenderer();
+        MMRtcView.ProxyVideoSink proxyRenderer = mmRtcView.videoRendererPairs.get(videoOutputId).getProxyRenderer();
         if (proxyRenderer != null) {
             Log.d("FlatGDI_WebRTC_MMedia", "FlatGDI.startLocalStream: local video stream has been successfully mapped to a sink!");
             localVideoTrack.addSink(proxyRenderer);
@@ -1109,10 +1116,10 @@ public class FlatGDI extends Display2D {
 
     @Override
     public int[] getRtcVideoOutputLeftTop(int id) {
-        if (id < 0 || id >= mflatGDIView.videoRendererPairs.size()) {
+        if (id < 0 || id >= mmRtcView.videoRendererPairs.size()) {
             return null;
         } else {
-            View v = mflatGDIView.videoRendererPairs.get(id).getSurfaceViewRenderer();
+            View v = mmRtcView.videoRendererPairs.get(id).getSurfaceViewRenderer();
             int[] leftTop = new int[2];
             leftTop[0] = v.getLeft();
             leftTop[1] = v.getTop();
@@ -1122,7 +1129,7 @@ public class FlatGDI extends Display2D {
 
     @Override
     public int getRtcVideoOutputCount() {
-        return mflatGDIView.videoRendererPairs.size();
+        return mmRtcView.videoRendererPairs.size();
     }
 
     @Override
@@ -1130,8 +1137,8 @@ public class FlatGDI extends Display2D {
         // if peerId is an empty string, it means local
         AndroidRtcMMediaMan.StreamTrackId streamTrackId = new AndroidRtcMMediaMan.StreamTrackId(peerId, trackId);
         AndroidRtcMMediaMan rtcMMediaMan = (AndroidRtcMMediaMan) FuncEvaluator.msRtcMMediaManager;
-        if (mflatGDIView.videoRendererPairs.get(videoOutputId) != null) {
-            rtcMMediaMan.mapStream2ProxyRenderer.put(streamTrackId, mflatGDIView.videoRendererPairs.get(videoOutputId).getProxyRenderer());
+        if (mmRtcView.videoRendererPairs.get(videoOutputId) != null) {
+            rtcMMediaMan.mapStream2ProxyRenderer.put(streamTrackId, mmRtcView.videoRendererPairs.get(videoOutputId).getProxyRenderer());
             return true;
         } else {
             return false;
@@ -1143,7 +1150,7 @@ public class FlatGDI extends Display2D {
         // if peerId is an empty string, it means local
         AndroidRtcMMediaMan.StreamTrackId streamTrackId = new AndroidRtcMMediaMan.StreamTrackId(peerId, trackId);
         AndroidRtcMMediaMan rtcMMediaMan = (AndroidRtcMMediaMan) FuncEvaluator.msRtcMMediaManager;
-        FlatGDIView.ProxyVideoSink proxyRenderer = rtcMMediaMan.mapStream2ProxyRenderer.remove(streamTrackId);
+        MMRtcView.ProxyVideoSink proxyRenderer = rtcMMediaMan.mapStream2ProxyRenderer.remove(streamTrackId);
         if (proxyRenderer == null) {
             return false;
         } else {
@@ -1153,11 +1160,11 @@ public class FlatGDI extends Display2D {
 
     @Override
     public int unlinkVideoStream(int videoOutputId) {
-        if (videoOutputId >= mflatGDIView.videoRendererPairs.size() || videoOutputId < 0) {
+        if (videoOutputId >= mmRtcView.videoRendererPairs.size() || videoOutputId < 0) {
             return 0;
         }
         int removedCnt = 0;
-        FlatGDIView.ProxyVideoSink value = mflatGDIView.videoRendererPairs.get(videoOutputId).getProxyRenderer();
+        MMRtcView.ProxyVideoSink value = mmRtcView.videoRendererPairs.get(videoOutputId).getProxyRenderer();
         AndroidRtcMMediaMan rtcMMediaMan = (AndroidRtcMMediaMan) FuncEvaluator.msRtcMMediaManager;
         Set<AndroidRtcMMediaMan.StreamTrackId> keySet = rtcMMediaMan.mapStream2ProxyRenderer.keySet();
         for(AndroidRtcMMediaMan.StreamTrackId key: keySet) {
