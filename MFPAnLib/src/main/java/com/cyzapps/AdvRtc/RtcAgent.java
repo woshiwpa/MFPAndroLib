@@ -72,6 +72,17 @@ public abstract class RtcAgent {
             return null;
         }
 
+        public synchronized HashMap<String, Peer> getAllAddrPeers() {
+            HashMap<String, Peer> peersRet = new HashMap<String, Peer>();
+            for(String dest: peers.keySet()) {
+                Peer peer = get(dest);
+                if (peer != null) {
+                    peersRet.put(dest, peer);
+                }
+            }
+            return peersRet;
+        }
+
         public synchronized Peer remove(String peerId) {
             if (peers.get(peerId) != null) {
                 Peer p = peers.get(peerId).removeFirst();
