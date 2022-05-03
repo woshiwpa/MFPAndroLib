@@ -25,6 +25,7 @@ import android.os.RemoteException;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import android.util.Log;
+import android.util.Pair;
 
 import com.cyzapps.AdvRtc.RtcAppClient;
 import com.cyzapps.mfpanlib.R;
@@ -636,7 +637,7 @@ public class EmailSignalService extends Service {
             while (it.hasNext()) {
                 Map.Entry<String, BufferedMsgList> pair = (Map.Entry<String, BufferedMsgList>) it.next();
                 BufferedMsg bufferedMsg = null;
-                Map<String, Integer> titlePartCntMap = new HashMap<String, Integer>();
+                LinkedList<Pair<String, Integer>> titlePartCntMap = new LinkedList<Pair<String, Integer>>();
                 String title = "";
                 String body = "";
                 int ctrlMsgAgentId = -1;
@@ -647,18 +648,18 @@ public class EmailSignalService extends Service {
                     // was title += bufferedMsg.agentId + "->" + toCodedTitle(bufferedMsg.event) + ":";
                     // but repeated 1->s:1->s:1->s: ... or 0->s:0->s:0->s:... will be rejected by outlook
                     // so have to use zipped format, e.g. (1->s)7:
-                    if (!titlePartCntMap.containsKey(thisTitlePart)) {
-                        titlePartCntMap.put(thisTitlePart, 1);
+                    if (titlePartCntMap.size() == 0 || !titlePartCntMap.getLast().first.equals(thisTitlePart)) {
+                        titlePartCntMap.addLast(new Pair<String, Integer>(thisTitlePart, 1));
                     } else {
-                        titlePartCntMap.put(thisTitlePart, titlePartCntMap.get(thisTitlePart) + 1);
+                        titlePartCntMap.set(titlePartCntMap.size() - 1, new Pair<String, Integer>(thisTitlePart, titlePartCntMap.getLast().second + 1));
                     }
                     if (ctrlMsgAgentId == -1) {
                         ctrlMsgAgentId = bufferedMsg.agentId;   // the agent id used in the control message is the first buffered msg agent id.
                     }
                     body += messageStr + "\n";
                 }
-                for (Map.Entry<String,Integer> entry : titlePartCntMap.entrySet())  {
-                    title += "(" + entry.getKey() + ")" + entry.getValue() + ":";
+                for (Pair<String,Integer> p : titlePartCntMap)  {
+                    title += "(" + p.first + ")" + p.second + ":";
                 }
                 if (title.length() != 0) {
                     Exception e;
