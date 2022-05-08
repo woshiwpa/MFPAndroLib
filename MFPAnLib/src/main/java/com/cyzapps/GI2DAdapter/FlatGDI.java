@@ -28,8 +28,11 @@ import com.cyzapps.VisualMFP.LineStyle;
 import com.cyzapps.VisualMFP.LineStyle.LINEPATTERN;
 import com.cyzapps.VisualMFP.PointStyle;
 import com.cyzapps.VisualMFP.TextStyle;
+import com.cyzapps.adapter.MFPAdapter;
+import com.cyzapps.mfpanlib.MFPAndroidLib;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -898,7 +901,7 @@ public class FlatGDI extends Display2D implements MMRtcDisplay {
     }
 
     @Override
-    public boolean startLocalStream(int videoOutputId) {
+    public boolean startLocalStream(int videoOutputId, boolean useBackCameraIfAny) {
         // step 0. check if we have got camera permission
         if (ContextCompat.checkSelfPermission(mflatGDIView.getGDIActivity(), android.Manifest.permission.RECORD_AUDIO)
                 != PackageManager.PERMISSION_GRANTED
@@ -915,22 +918,21 @@ public class FlatGDI extends Display2D implements MMRtcDisplay {
         ) {
             return false;
         }
-        // step 1. initialize front camera
-        Camera1Enumerator camera1Enumerator = new Camera1Enumerator();
-        final String[] deviceNames = camera1Enumerator.getDeviceNames();
-        String frontCameraDeviceName = null;
-        for (String name : deviceNames) {
-            if (camera1Enumerator.isFrontFacing(name)) {
-                frontCameraDeviceName = name;
-                break;
-            }
-        }
-        if (frontCameraDeviceName == null) {
-            return false;   // no front camera
-        }
+        // step 1. initialize front camera (or back camera if required)
         if (videoOutputId < 0 || videoOutputId >= mmRtcView.videoRendererPairs.size()) {
             return false;
         }
+        if (Camera2Enumerator.isSupported(mflatGDIView.getGDIActivity())) {
+            Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera2 API.");
+            videoCapturer = createCameraCapturer(new Camera2Enumerator(mflatGDIView.getGDIActivity()), useBackCameraIfAny);
+        } else {
+            Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera1 API.");
+            videoCapturer = createCameraCapturer(new Camera1Enumerator(true), useBackCameraIfAny);  // should captureToTexture be false?
+        }
+        if (videoCapturer == null) {
+            return false;
+        }
+
         // step 2. initialize factory if needed
         // do not need if (RtcAgent.factoryMMedia == null)
         RtcAgent.factoryMMedia = RtcAgent.initWebRtcFactory(mmRtcView.getEglBase().getEglBaseContext());   // we do not need to do this in Peer as Peer is created in the initialize local.
@@ -959,13 +961,6 @@ public class FlatGDI extends Display2D implements MMRtcDisplay {
                 true, false, displaySize.x, displaySize.y, /*surfaceViewRendererWidth, surfaceViewRendererHeight,*/ 30, 1, VIDEO_CODEC_VP9, true, 1, AUDIO_CODEC_OPUS, true);
         // step 6. create video source and add it the renderer
         // videoConstraints is removed from latest code library.
-        if (Camera2Enumerator.isSupported(mflatGDIView.getGDIActivity())) {
-            Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera2 API.");
-            videoCapturer = createCameraCapturer(new Camera2Enumerator(mflatGDIView.getGDIActivity()));
-        } else {
-            Log.d("FlatGDI_WebRTC_MMedia", "Creating capturer using camera1 API.");
-            videoCapturer = createCameraCapturer(new Camera1Enumerator(true));  // should captureToTexture be false?
-        }
         surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", mmRtcView.getEglBase().getEglBaseContext());
         videoSource = RtcAgent.factoryMMedia.createVideoSource(videoCapturer.isScreencast());
         videoCapturer.initialize(surfaceTextureHelper, mflatGDIView.getGDIActivity(), videoSource.getCapturerObserver());
@@ -982,32 +977,36 @@ public class FlatGDI extends Display2D implements MMRtcDisplay {
         return true;
     }
 
-    private VideoCapturer createCameraCapturer(CameraEnumerator enumerator) {
+    private VideoCapturer createCameraCapturer(CameraEnumerator enumerator, boolean useBackCameraIfAny) {
         final String[] deviceNames = enumerator.getDeviceNames();
-
-        // First, try to find front facing camera
-        Log.d("FlatGDI_WebRTC_MMedia", "Looking for front facing cameras.");
-        for (String deviceName : deviceNames) {
+        String deviceName = null;
+        for (String name : deviceNames) {
+            if (enumerator.isFrontFacing(name) == !useBackCameraIfAny) {
+                deviceName = name;
+                break;
+            }
+        }
+        if (deviceName == null && useBackCameraIfAny) {
+            // no back camera but we can still try to use front camera
+            for (String name : deviceNames) {
+                if (enumerator.isFrontFacing(name)) {
+                    deviceName = name;
+                    break;
+                }
+            }
+        }
+        if (deviceName != null) {
             if (enumerator.isFrontFacing(deviceName)) {
                 Log.d("FlatGDI_WebRTC_MMedia", "Creating front facing camera capturer.");
-                VideoCapturer videoCapturer = enumerator.createCapturer(deviceName, new AdvRtcCameraEventHandler());
-                if (videoCapturer != null) {
-                    return videoCapturer;
-                }
+            } else {
+                Log.d("FlatGDI_WebRTC_MMedia", "Creating non-front facing camera capturer.");
+            }
+            VideoCapturer videoCapturer = enumerator.createCapturer(deviceName, new AdvRtcCameraEventHandler());
+            if (videoCapturer != null) {
+                return videoCapturer;
             }
         }
-        // Front facing camera not found, try something else
-        Log.d("FlatGDI_WebRTC_MMedia", "Looking for other cameras.");
-        for (String deviceName : deviceNames) {
-            if (!enumerator.isFrontFacing(deviceName)) {
-                Log.d("FlatGDI_WebRTC_MMedia", "Creating other camera capturer.");
-                VideoCapturer videoCapturer = enumerator.createCapturer(deviceName, new AdvRtcCameraEventHandler());
-                if (videoCapturer != null) {
-                    return videoCapturer;
-                }
-            }
-        }
-
+        // either no suitable camera or cannot create capturer
         return null;
     }
 

@@ -2,7 +2,7 @@ package com.cyzapps.AdvRtc;
 
 public interface MMRtcDisplay {
     public abstract int addRtcVideoOutput(int left, int top, int width, int height, boolean enableSlide);
-    public abstract boolean startLocalStream(int videoOutputId);
+    public abstract boolean startLocalStream(int videoOutputId, boolean useBackCameraIfAny);
     public abstract void stopLocalStream();
     public abstract boolean startVideoCapturer();
     public abstract void stopVideoCapturer();

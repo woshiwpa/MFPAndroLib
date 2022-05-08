@@ -311,7 +311,7 @@ public class RTCMMediaLib {
         public Start_local_streamFunction() {
             mstrProcessedNameWithFullCS = "::mfp::multimedia::webrtc_lib::start_local_stream";
             mstrarrayFullCS = mstrProcessedNameWithFullCS.split("::");
-            mnMaxParamNum = 2;
+            mnMaxParamNum = 3;
             mnMinParamNum = 2;
         }
         @Override
@@ -325,7 +325,11 @@ public class RTCMMediaLib {
             if (videoOutputId < 0) {
                 throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INVALID_PARAMETER);
             }
-            boolean ret = display.startLocalStream(videoOutputId);
+            boolean useBackCameraIfAny = false;
+            if (listParams.size() > 0) {
+                useBackCameraIfAny = DCHelper.lightCvtOrRetDCMFPBool(listParams.removeLast()).getDataValue().booleanValue();
+            }
+            boolean ret = display.startLocalStream(videoOutputId, useBackCameraIfAny);
             return new DataClassSingleNum(DCHelper.DATATYPES.DATUM_MFPBOOL, new MFPNumeric(ret));
         }
     }

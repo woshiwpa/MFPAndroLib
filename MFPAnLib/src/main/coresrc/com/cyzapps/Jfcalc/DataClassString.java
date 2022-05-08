@@ -8,6 +8,7 @@ import com.cyzapps.Jsma.AEConst;
 import com.cyzapps.Jsma.AEInvalid;
 import com.cyzapps.Jsma.AbstractExpr;
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.text.translate.UnicodeUnescaper;
 
 /**
  * This class caters reference of string, and of course null.
@@ -185,7 +186,9 @@ public final class DataClassString extends DataClass {
         if (DCHelper.isDataClassType(this, DATATYPES.DATUM_NULL)) {
             strOutput = "NULL";
         } else {
-            strOutput = "\"" + StringEscapeUtils.escapeJava(getStringValue()) + "\"";
+            String strEscaped = StringEscapeUtils.escapeJava(getStringValue());
+            String strTranslated = new UnicodeUnescaper().translate(strEscaped);
+            strOutput = "\"" + strTranslated + "\"";
         }
         return strOutput;
     }
