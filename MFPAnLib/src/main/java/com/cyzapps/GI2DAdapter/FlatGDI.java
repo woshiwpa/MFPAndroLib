@@ -919,7 +919,7 @@ public class FlatGDI extends Display2D implements MMRtcDisplay {
             return false;
         }
         // step 1. initialize front camera (or back camera if required)
-        if (videoOutputId < 0 || videoOutputId >= mmRtcView.videoRendererPairs.size()) {
+        if (videoOutputId >= mmRtcView.videoRendererPairs.size()) {
             return false;
         }
         if (Camera2Enumerator.isSupported(mflatGDIView.getGDIActivity())) {
@@ -952,9 +952,9 @@ public class FlatGDI extends Display2D implements MMRtcDisplay {
         localAudioTrack.setEnabled(true);
         mediaStream.addTrack(localAudioTrack);
         // step 5. initialize parameters
-        View v = mmRtcView.videoRendererPairs.get(videoOutputId).getSurfaceViewRenderer();
+        /*View v = mmRtcView.videoRendererPairs.get(videoOutputId).getSurfaceViewRenderer();
         int surfaceViewRendererWidth = v.getWidth();
-        int surfaceViewRendererHeight = v.getHeight();
+        int surfaceViewRendererHeight = v.getHeight();*/
         Point displaySize = new Point();
         mflatGDIView.getGDIActivity().getWindowManager().getDefaultDisplay().getSize(displaySize);
         MmediaPeerConnectionParams params = new MmediaPeerConnectionParams(
@@ -969,10 +969,13 @@ public class FlatGDI extends Display2D implements MMRtcDisplay {
         VideoTrack localVideoTrack = RtcAgent.factoryMMedia.createVideoTrack("ARDAMSv0", videoSource);
         localVideoTrack.setEnabled(true);
         mediaStream.addTrack(localVideoTrack);
-        MMRtcView.ProxyVideoSink proxyRenderer = mmRtcView.videoRendererPairs.get(videoOutputId).getProxyRenderer();
-        if (proxyRenderer != null) {
-            Log.d("FlatGDI_WebRTC_MMedia", "FlatGDI.startLocalStream: local video stream has been successfully mapped to a sink!");
-            localVideoTrack.addSink(proxyRenderer);
+        if (videoOutputId >= 0) {
+            // we output local video only if videoOutputId >= 0
+            MMRtcView.ProxyVideoSink proxyRenderer = mmRtcView.videoRendererPairs.get(videoOutputId).getProxyRenderer();
+            if (proxyRenderer != null) {
+                Log.d("FlatGDI_WebRTC_MMedia", "FlatGDI.startLocalStream: local video stream has been successfully mapped to a sink!");
+                localVideoTrack.addSink(proxyRenderer);
+            }
         }
         return true;
     }

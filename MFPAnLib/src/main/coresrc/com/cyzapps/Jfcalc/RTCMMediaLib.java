@@ -321,10 +321,9 @@ public class RTCMMediaLib {
             }
             Object handler = DCHelper.lightCvtOrRetDCExtObjRef(listParams.removeLast()).getExternalObject();
             MMRtcDisplay display = (MMRtcDisplay)handler;
+            // videoOutputId can be less than 0. If it is less than zero, it means we still start webrtc, but
+            // not show local video image (but local video stream can still be transmitted to remote)
             int videoOutputId = DCHelper.lightCvtOrRetDCMFPInt(listParams.removeLast()).getDataValue().intValue();
-            if (videoOutputId < 0) {
-                throw new ErrProcessor.JFCALCExpErrException(ErrProcessor.ERRORTYPES.ERROR_INVALID_PARAMETER);
-            }
             boolean useBackCameraIfAny = false;
             if (listParams.size() > 0) {
                 useBackCameraIfAny = DCHelper.lightCvtOrRetDCMFPBool(listParams.removeLast()).getDataValue().booleanValue();

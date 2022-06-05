@@ -41,8 +41,9 @@ public class AppAnMFP extends androidx.multidex.MultiDexApplication {
 			+ "\"\",false,\"cyan\",\"cyan\",null,\"cyan\",\"cyan\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"u\",\"-1\",\"v\", "
 			+ "\"\",false,\"magenta\",\"magenta\",null,\"magenta\",\"magenta\",null,\"u\",-1,1,2,\"v\",-1,1,2,\"-1\",\"u\",\"v\")\n"
 			+ "gdi_test::game_test::super_bunny::run( )\n";*/
-	= "print(\"你\\\"好\")\nreturn \"你\\\"好\"";
+	//= "print(\"你\\\"好\")\nreturn \"你\\\"好\"";
 	//= "::gdi_test::game_test::chess::main()";
+	= "::gdi_test::remote_ctrl::remote_monitor::main()";
 
     private static Context mContext;
 

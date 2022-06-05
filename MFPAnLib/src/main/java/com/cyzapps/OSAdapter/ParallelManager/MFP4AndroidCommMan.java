@@ -364,7 +364,9 @@ public class MFP4AndroidCommMan extends CommunicationManager implements RtcListe
             String data = json.getString("data");
             ConnectObject.PackedCallRequestInfo info = (ConnectObject.PackedCallRequestInfo) FuncEvaluator.msCommMgr.deserialize(data);
             // todo can send message to remote sandbox send from a server to client? if so, onReceivedData might be called by outgoing connect obj
-            peer.connectObj.processReceivedCallRequest(info);
+            if (peer.connectObj != null) {
+                peer.connectObj.processReceivedCallRequest(info);
+            }
         } catch (IOException | ClassNotFoundException | ClassCastException | org.json.JSONException ex) {
             Logger.getLogger(ConnectObject.class.getName()).log(Level.SEVERE, null, ex);
         }
